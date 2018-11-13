@@ -1,0 +1,29 @@
+{
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "country_name": {
+        "type": "string",
+        "length": 50
+    },
+    "code": {
+        "type": "string",
+        "length": 50
+    },
+    "cities": {
+        "type": "list"
+    }
+}
