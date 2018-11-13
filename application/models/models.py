@@ -15,7 +15,7 @@ def default_uuid():
     return str(uuid.uuid4())
 
 roles_users = db.Table('roles_users',
-                       db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
+                       db.Column('user_id', UUID(as_uuid=True), db.ForeignKey('user.id')),
                        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
 
