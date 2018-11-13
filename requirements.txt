@@ -28,4 +28,5 @@ websockets
 psycopg2
 aiosmtplib
 apscheduler
+aiohttp
 
