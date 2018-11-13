@@ -1,0 +1,82 @@
+#from gatco.exceptions import ServerError
+from gatco.response import json
+from application.database import  db
+from application.extensions import auth
+from application.models.models import *
+from application.server import app
+
+import asyncio
+import hashlib
+import ujson
+from datetime import datetime
+from gatco_restapi.helpers import to_dict
+
+
+def hash_value(value):
+    return hashlib.md5(value.encode('utf-8')).hexdigest()
+
+def check_content_json(request):
+    ret = False
+    try:
+        content_type = request.headers.get('Content-Type', "")
+        ret = content_type.startswith('application/json')
+    except:
+        pass
+    return ret
+
+def valid_phone_number(phone_number):
+    if phone_number is None:
+        return False
+    if phone_number.isdigit() and len(phone_number)>=8 and len(phone_number)<=12 and phone_number.startswith("0"):
+        return True
+    return False
+
+def check_donvi(donvi_id):
+    return db.session.query(DonVi).filter(DonVi.id == donvi_id).first()
+
+async def current_user(request):
+    uid = auth.current_user(request)
+    if uid is not None:
+        user = db.session.query(User).filter(User.id == uid).first()
+        return user
+    return None;
+
+def auth_func(request=None, **kw):
+    uid = auth.current_user(request)
+    if uid is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"auth_func can not found uid"},status=520)
+    
+def deny_func(request=None, **kw):
+    return json({"error_code":"PERMISSION_DENY","error_message":"permission deny"},status=520)
+    
+async def hasRole(request, role):
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        return currentUser.has_role(role)
+    else:    
+        return False;
+
+async def check_admin(request=None, **kw):
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        if not currentUser.has_role('Admin'):
+            return json({"error_code":"PERMISSION_DENY","error_message":"you don't have privileges"},status=520)
+    else:    
+        return json({"error_code":"SESSION_EXPIRED","error_message":"not found session"},status=520)
+
+    
+def role_pregetmany(search_params=None, **kw):
+    search_params["filters"] = {"$and":[search_params["filters"], {"id":{"$neq": 1}}]} if ("filters" in search_params)   \
+                                else {"id":{"$neq": 1}}
+                                
+async def user_pregetmany(search_params, Model, **kw ):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        if currentUser.has_role('Admin'):
+            print("user_pregetmany=============== is Admin")
+        else:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$eq": currentUser.id}}]} \
+                                            or {"id":{"$eq": currentUser.id}}  
+                                
+          

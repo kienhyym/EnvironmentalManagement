@@ -82,7 +82,7 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
 
 @manager.command
 def run():
-    run_app(host="0.0.0.0", port=8000)
+    run_app(host="0.0.0.0", port=9070)
     
 if __name__ == '__main__':
     manager.main()

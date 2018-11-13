@@ -2,7 +2,7 @@ class Config(object):
     #DEV MODE
     DEBUG = True
     STATIC_URL = "static"
-    SQLALCHEMY_DATABASE_URI = 'postgresql://demouser:123456@localhost:5432/demodb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://moitruongyteusr:123456@localhost:5432/moitruongyte'
 #     SQLALCHEMY_DATABASE_URI = 'sqlite:///testdb.db'
 #     SQLALCHEMY_TRACK_MODIFICATIONS = True
     
