@@ -6,7 +6,8 @@ require.config({
     baseUrl: '/static/js/lib',
     paths: {
         app: '../app',
-        tpl: '../tpl',
+		tpl: '../tpl',
+		schema: '../schema',
         vendor: '../../vendor'
     },
     shim: {

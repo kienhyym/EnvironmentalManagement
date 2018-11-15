@@ -34,7 +34,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"tuyendonvi",
         			    "route":"tuyendonvi/collection",
-        			    "$ref": "app/view/DanhMuc/TuyenDonVi/CollectionView",
+        			    "$ref": "app/view/DanhMuc/TuyenDonVi/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -43,7 +43,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"tuyendonvi",
         			    "route":"tuyendonvi/model",
-        			    "$ref": "app/view/DanhMuc/TuyenDonVi/ModelView",
+        			    "$ref": "app/view/DanhMuc/TuyenDonVi/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -112,7 +112,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"dantoc",
         			    "route":"dantoc/collection",
-        			    "$ref": "app/view/DanhMuc/DanToc/CollectionView",
+        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -121,7 +121,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"dantoc",
         			    "route":"dantoc/model",
-        			    "$ref": "app/view/DanhMuc/DanToc/ModelView",
+        			    "$ref": "app/view/DanhMuc/DanToc/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -129,7 +129,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"quocgia",
         			    "route":"quocgia/collection",
-        			    "$ref": "app/view/DanhMuc/QuocGia/CollectionView",
+        			    "$ref": "app/view/DanhMuc/QuocGia/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -138,7 +138,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"quocgia",
         			    "route":"quocgia/model",
-        			    "$ref": "app/view/DanhMuc/QuocGia/ModelView",
+        			    "$ref": "app/view/DanhMuc/QuocGia/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -146,7 +146,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"tinhthanh",
         			    "route":"tinhthanh/collection",
-        			    "$ref": "app/view/DanhMuc/TinhThanh/CollectionView",
+        			    "$ref": "app/view/DanhMuc/TinhThanh/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -155,7 +155,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"tinhthanh",
         			    "route":"tinhthanh/model",
-        			    "$ref": "app/view/DanhMuc/TinhThanh/ModelView",
+        			    "$ref": "app/view/DanhMuc/TinhThanh/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -163,7 +163,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"quanhuyen",
         			    "route":"quanhuyen/collection",
-        			    "$ref": "app/view/DanhMuc/QuanHuyen/CollectionView",
+        			    "$ref": "app/view/DanhMuc/QuanHuyen/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -172,7 +172,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"quanhuyen",
         			    "route":"quanhuyen/model",
-        			    "$ref": "app/view/DanhMuc/QuanHuyen/ModelView",
+        			    "$ref": "app/view/DanhMuc/QuanHuyen/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -180,7 +180,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"xaphuong",
         			    "route":"xaphuong/collection",
-        			    "$ref": "app/view/DanhMuc/XaPhuong/CollectionView",
+        			    "$ref": "app/view/DanhMuc/XaPhuong/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -189,7 +189,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"xaphuong",
         			    "route":"xaphuong/model",
-        			    "$ref": "app/view/DanhMuc/XaPhuong/ModelView",
+        			    "$ref": "app/view/DanhMuc/XaPhuong/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -197,7 +197,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"thonxom",
         			    "route":"thonxom/collection",
-        			    "$ref": "app/view/DanhMuc/ThonXom/CollectionView",
+        			    "$ref": "app/view/DanhMuc/ThonXom/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -206,7 +206,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"thonxom",
         			    "route":"thonxom/model",
-        			    "$ref": "app/view/DanhMuc/ThonXom/ModelView",
+        			    "$ref": "app/view/DanhMuc/ThonXom/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -214,7 +214,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"trinhdohocvan",
         			    "route":"trinhdohocvan/collection",
-        			    "$ref": "app/view/DanhMuc/TrinhDoHocVan/CollectionView",
+        			    "$ref": "app/view/DanhMuc/TrinhDoHocVan/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -223,7 +223,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"trinhdohocvan",
         			    "route":"trinhdohocvan/model",
-        			    "$ref": "app/view/DanhMuc/TrinhDoHocVan/ModelView",
+        			    "$ref": "app/view/DanhMuc/TrinhDoHocVan/view/ModelView",
         			    "visible":  false
         			},
         			{
@@ -231,7 +231,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"nghenghiep",
         			    "route":"nghenghiep/collection",
-        			    "$ref": "app/view/DanhMuc/NgheNghiep/CollectionView",
+        			    "$ref": "app/view/DanhMuc/NgheNghiep/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -240,7 +240,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"nghenghiep",
         			    "route":"nghenghiep/model",
-        			    "$ref": "app/view/DanhMuc/NgheNghiep/ModelView",
+        			    "$ref": "app/view/DanhMuc/NgheNghiep/view/ModelView",
         			    "visible":  false
         			},
         		]
@@ -267,6 +267,10 @@ define(function (require) {
 			    	return this.userHasRole("Admin");
 			    }
 			},
+
+			
+
+
         ];
 
 });
