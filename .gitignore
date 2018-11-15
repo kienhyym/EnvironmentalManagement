@@ -5,3 +5,4 @@ static/js/lib
 .settings
 ydct.3.4.2018.sql
 *.pyc
+alembic/*
