@@ -14,6 +14,7 @@ from application.server import app
 from application import run_app
 from application.database import db
 from application.extensions import auth
+from application.models.models import Role, User, Permission
 
 
 # Instance
@@ -79,12 +80,42 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile,)
 
+#@app.route('/createdata', methods=['GET'])
+@manager.command
+def create_test_models():
+     
+    role1 = Role(name='Admin')
+    db.session.add(role1)
+    role2 = Role(name='CanBo')
+    db.session.add(role2)
+    role3 = Role(name='User')
+    db.session.add(role3)
+    
+    
+    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'), active=True)
+    user1.roles.append(role1)
+    db.session.add(user1)
+    user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'), active=True)
+    user2.roles.append(role2)
+    db.session.add(user2)
+    user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'), active=True)
+    user3.roles.append(role3)
+    db.session.add(user3)
+        
+    db.session.commit()
 
 @manager.command
 def run():
+    role = db.session.query(Role).filter(Role.name == 'User').first()
+    if role is None:
+        create_test_models()
+        print("Khoi tao admin and role")
+        
     run_app(host="0.0.0.0", port=9070)
     
+    
 if __name__ == '__main__':
+    
     manager.main()
 
     

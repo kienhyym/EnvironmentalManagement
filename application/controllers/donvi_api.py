@@ -116,7 +116,7 @@ async def addUserExistToDonvi(request):
     return json({"error_code": "UPDATE_DONVI_FAILED", "error_message": error_msg},status=520)
 
 
-def apply_DonVi_filter(search_params, request=None, **kw ):
+async def apply_DonVi_filter(search_params, request=None, **kw ):
     
 #     request = kw.get("request", None)
     if request is None:
@@ -133,8 +133,8 @@ def apply_DonVi_filter(search_params, request=None, **kw ):
                                         or {"DonVi_id":{"$in": DonVichildids}}
     
 #@jwt_required()
-def entity_pregetmany(search_params=None,request=None, **kw):
-    apply_DonVi_filter(search_params, request)
+async def entity_pregetmany(search_params=None,request=None, **kw):
+    await apply_DonVi_filter(search_params, request)
     
 #def donvi_pregetmany(search_params=None, **kw):
     request = kw.get("request", None)
@@ -148,7 +148,7 @@ def entity_pregetmany(search_params=None,request=None, **kw):
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
                                         
-def donvi_predelete(instance_id=None):
+async def donvi_predelete(instance_id=None):
     """Accepts a single argument, `instance_id`, which is the primary key
     of the instance which will be deleted.
 
@@ -161,11 +161,11 @@ def donvi_predelete(instance_id=None):
             return json({"error_message":u'Không thể xoá đơn vị có đơn vị con'},
                                       status=520)
 
-def donvi_prepput_children(request=None, instance_id=None, data=None, **kw):
+async def donvi_prepput_children(request=None, instance_id=None, data=None, **kw):
     if 'children' in data :
         del data['children']
 
-def donvi_prepput(instance_id=None, data=None):
+async def donvi_prepput(instance_id=None, data=None):
     if 'children' in data :
         del data['children']
     if 'parent_id' in data:
@@ -182,80 +182,6 @@ def donvi_prepput(instance_id=None, data=None):
                                       status=520)
  
 
-@app.route('/api/v1/connect_mevabe', methods=['POST'])
-async def connect_mevabe(request):
-    currentUser = await current_user(request)
-    if currentUser is None:
-        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
-    
-    param = request.json
-    url = app.config.get("MEVABE_URL") + "/api/register/donvi"
-    donvi_id = request.json.get('donvi_id', None)
-    password = request.json.get('password', None)
-#     email = request.json.get('email', None)
-#     phone_number = request.json.get('phone', None)
-#     hoten = request.json.get('hoten', '')
-#     quocgia_id = request.json.get('quocgia_id', '')
-#     tinhthanh_id = request.json.get('tinhthanh_id', '')
-#     quanhuyen_id = request.json.get('quanhuyen_id', '')
-#     xaphuong_id = request.json.get('xaphuong_id', '')
-#     diachi = request.json.get('diachi', '')
-
-    data = request.json
-    headers = {"X-Auth-Token":"security-token"}
-    donvi_info = db.session.query(DonVi).filter(DonVi.id ==donvi_id).first()
-    if donvi_info is None:
-        return json({"error_code":"PARRAM_ERROR","error_message":"Tham số không hợp lệ"},status=520)
-    
-    resp = await HTTPClient.post(url, data, headers)
-    print( "register user=====",resp)
-    if resp is not None and 'error_code' not in resp:
-        uid = resp['id']
-        
-        donvi_info.id_mevabe = uid
-        donvi_info.password_mevabe = password
-        db.session.commit()
-        return json(resp,status=200)
-    else:
-        return json(resp["error_message"],status=520)
-        
-# @app.route('/api/v1/connect_mevabe/update', methods=['POST'])
-# async def update_mevabe(request):
-#     currentUser = await current_user(request)
-#     if currentUser is None:
-#         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
-#     
-#     param = request.json
-#     url = app.config.get("MEVABE_URL") + "/api/update/donvi"
-#     donvi_id = request.json.get('donvi_id', None)
-#     password = request.json.get('password', None)
-#     email = request.json.get('email', None)
-#     phone_number = request.json.get('phone', None)
-#     hoten = request.json.get('hoten', '')
-#     quocgia_id = request.json.get('quocgia_id', '')
-#     tinhthanh_id = request.json.get('tinhthanh_id', '')
-#     quanhuyen_id = request.json.get('quanhuyen_id', '')
-#     xaphuong_id = request.json.get('xaphuong_id', '')
-#     diachi = request.json.get('diachi', '')
-# 
-#     data = request.json
-#     headers = {"X-Auth-Token":"security-token"}
-#     donvi_info = db.session.query(DonVi).filter(DonVi.id ==donvi_id).first()
-#     if donvi_info is None:
-#         return json({"error_code":"PARRAM_ERROR","error_message":"Tham số không hợp lệ"},status=520)
-#     
-#     data["uid_donvi"] = donvi_info.id_mevabe
-#     resp = await HTTPClient.post(url, data, headers)
-#     print( "update donvi=====",resp)
-#     if resp is not None and 'error_code' not in resp:
-#         uid = resp['id']
-#         
-#         donvi_indo.password_mevabe = password
-#         db.session.commit()
-#         return json({"error_message":"Cập nhật thành công!"},status=200)
-#     else:
-#         return json({"error_code":"ERROR_CONNECT","error_message":"Cập nhật không thành công không thành công"},status=520)
-#             
         
 apimanager.create_api(DonVi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

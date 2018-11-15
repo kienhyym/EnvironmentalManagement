@@ -76,7 +76,12 @@ async def user_pregetmany(search_params, Model, **kw ):
         if currentUser.has_role('Admin'):
             print("user_pregetmany=============== is Admin")
         else:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$eq": currentUser.id}}]} \
-                                            or {"id":{"$eq": currentUser.id}}  
+            currDonVi = currentUser.DonVi
+            DonVichildids = []
+            if(currDonVi is not None):
+                currDonVi.get_children_ids(DonVichildids)
+                if currDonVi.tuyenDonVi != 1:
+                    search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"DonVi_id":{"$in": DonVichildids}}]} \
+                                            or {"DonVi_id":{"$in": DonVichildids}}  
                                 
-          
+

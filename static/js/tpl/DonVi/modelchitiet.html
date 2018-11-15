@@ -1,0 +1,60 @@
+<div block-bind="toolbar"></div>
+<div block-bind="content">
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+		<div class="col-md-2 text-right"><label>ID</label></div>
+		<div class="col-md-3">
+			<input type="text" readonly data-bind="value:id"/>
+		</div>
+		
+		<div class="col-md-2 text-right"><label>Mã</label></div>
+		<div class="col-md-4">
+			<input type="text" data-bind="value:ma"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+		<div class="col-md-2 text-right"><label>Tên</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:ten"/>
+		</div>
+		<div class="col-md-2 text-right"><label>Email</label></div>
+		<div class="col-md-4">
+			<input type="text" data-bind="value:email"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+		<div class="col-md-2 text-right"><label>SĐT</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:sodienthoai"/>
+		</div>
+		<div class="col-md-2 text-right"><label>Địa chỉ</label></div>
+		<div class="col-md-4">
+			<input type="text" data-bind="value:diachi"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+		
+		<div class="col-md-2 text-right"><label>Cấp trên</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:parent_id"/>
+		</div>
+		<div class="col-md-2 text-right"><label>Tuyến đơn vị</label></div>
+		<div class="col-md-4">
+			<input type="text" data-bind="value:tuyendonvi"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+		<div class="col-md-2 text-right"><label>Tỉnh thành</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:tinhthanh_id"/>
+		</div>
+		<div class="col-md-2 text-right"><label>Ghi chú</label></div>
+		<div class="col-md-4">
+			<input type="text" data-bind="value:ghichu"/>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:10px">
+		<div class="col-md-11" style="margin: auto">
+			<div data-bind="list:donvilienhe"></div>
+		</div>
+	</div>
+</div>

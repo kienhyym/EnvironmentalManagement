@@ -15,7 +15,7 @@ from sqlalchemy import or_
  
 async def get_user_with_permission(user):
     user_info = to_dict(user)
-    roles = [{"id":str(role.id),"role_name":role.name,"description":role.description} for role in user.roles]
+    roles = [{"id":str(role.id),"description":role.description,"name":role.name} for role in user.roles]
     roleids = [role.id for role in user.roles]
     user_info["roles"] = roles
     del(user_info["password"])
@@ -36,53 +36,6 @@ async def get_user_with_permission(user):
      
     return user_info
  
-     
-async def set_user_passwd(data=None,**kw):
-    if (data is not None) and ('password' in data) and ('confirm_password' in data):
-        if(data['password']  == data['confirm_password']):
-            data['password'] = auth.encrypt_password(data['password'])
-            del data['confirm_password']
-        else:
-            return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
-     
-    return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
-         
-async def pre_post_user(data, **kw):
-#     and ('macongdan' in data)
-    if ('phone' in data) and ('email' in data) :
-        user = db.session.query(User).filter((User.phone == data['phone']) | (User.email == data['email'])).first()
-        if user is not None:
-            print("user existed!!!!!!!!!!!!!!!!!!!!!!!1")
-            return json({"error_code":"USER_EXISTED","error_message":'Email or Phone existed'},status=520)
-    else:
-        return json({"error_code":"PARRAM_ERROR","error_message":'parameter is incorrect'},status=520)
-
- 
-apimanager.create_api(User,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(
-        GET_SINGLE=[auth_func], 
-        GET_MANY=[auth_func, user_pregetmany], 
-        POST=[auth_func, pre_post_user, set_user_passwd], 
-        PUT_SINGLE=[auth_func, check_admin]),
-    collection_name='user',
-    include_columns=['id', 'name', 'email', 'tenancy_id','tenancy', 'roles', 'roles.id', 'roles.role_name', 'stores'])
- 
- 
-apimanager.create_api(User,
-    methods=['PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], PUT_SINGLE=[auth_func, set_user_passwd]),
-    collection_name='user_resetpw',
-    include_columns=['id', 'name'])
-
-apimanager.create_api(Role,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, role_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func, check_admin]),
-    collection_name='role'
-)
  
 @app.route('/logout')
 async def logout(request):
@@ -94,7 +47,7 @@ async def logout(request):
  
  
 
-@app.route('/login', methods=['POST'])
+@app.route('api/v1/login', methods=['POST'])
 async def login(request):
     username = request.json.get("data", None)
     password = request.json.get("password", None)
@@ -168,10 +121,10 @@ async def register(request):
     if request.method == 'POST':
         password = request.json.get('password', None)
         cfpassword = request.json.get('password_confirm', None)
-#         macongdan = request.json.get('macongdan', None)
+        macongdan = request.json.get('macongdan', None)
         email = request.json.get('email', None)
         phone_number = request.json.get('phone', None)
-        hoten = request.json.get('name', '')
+        hoten = request.json.get('fullname', '')
         if ((email is None) or (email == '')):
             error_msg = u"Xin mời nhập email!"
         if(error_msg is None):
@@ -196,11 +149,10 @@ async def register(request):
                 
         if (error_msg is None):
             role = db.session.query(Role).filter(Role.name == 'User').first()
-            user = User(email=email, name=hoten, password=auth.encrypt_password(password), phone=phone_number, active=True)
+            user = User(email=email, fullname=hoten, password=auth.encrypt_password(password), phone=phone_number, active=True)
             if role not in user.roles:
                 user.roles.append(role)
             db.session.add(user)
-                
             db.session.commit()           
             auth.login_user(request, user)
             result = await get_user_with_permission(user)
@@ -274,7 +226,6 @@ async def send_reset_password_instructions(request, user):
     scheduler.add_job(send_mail,args=[subject, user.email, mailbody])
     scheduler.start()
     
-    
 @app.route('/api/reset_password', methods=["POST","GET"])
 async def reset_password(request):
     if request.method == 'GET':
@@ -316,3 +267,52 @@ def valid_phone_number(phone_number):
     if phone_number.isdigit() and len(phone_number)>=8 and len(phone_number)<=12 and phone_number.startswith("0"):
         return True
     return False
+
+    
+async def set_user_passwd(data=None,**kw):
+    if (data is not None) and ('password' in data) and ('confirm_password' in data):
+        if(data['password']  == data['confirm_password']):
+            data['password'] = auth.encrypt_password(data['password'])
+            del data['confirm_password']
+        else:
+            return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
+     
+    return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
+         
+async def pre_post_user(data, **kw):
+#     and ('macongdan' in data)
+    if ('phone' in data) and ('email' in data) :
+        user = db.session.query(User).filter((User.phone == data['phone']) | (User.email == data['email'])).first()
+        if user is not None:
+            print("user existed!!!!!!!!!!!!!!!!!!!!!!!1")
+            return json({"error_code":"USER_EXISTED","error_message":'Email or Phone existed'},status=520)
+    else:
+        return json({"error_code":"PARRAM_ERROR","error_message":'parameter is incorrect'},status=520)
+
+ 
+apimanager.create_api(User,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(
+        GET_SINGLE=[auth_func], 
+        GET_MANY=[auth_func, user_pregetmany], 
+        POST=[auth_func, pre_post_user, set_user_passwd], 
+        PUT_SINGLE=[auth_func, check_admin]),
+    collection_name='user',
+    include_columns=['id', 'fullname', 'phone', 'email','active', 'roles', 'roles.id', 'roles.name', 'donvi_id', 'donvi', 'donvi.id', 'donvi.ten'])
+ 
+ 
+apimanager.create_api(User,
+    methods=['PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], PUT_SINGLE=[auth_func, set_user_passwd]),
+    collection_name='user_resetpw',
+    include_columns=['id', 'name'])
+
+apimanager.create_api(Role,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, role_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func, check_admin]),
+    collection_name='role'
+)
+ 

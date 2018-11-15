@@ -1,0 +1,31 @@
+<div block-bind="toolbar"></div>
+<div block-bind="content">
+<div class="row " >
+	
+	<div class="col-lg-10 col-md-10 col-xs-12 col-md-offset-1 col-lg-offset-1" >
+		<h2>Thông tin địa chỉ của Trẻ</h2>
+  		<form>
+  			<div class="form-group">
+  				<label>Quốc Gia</label>
+				<input type="text" data-bind="dict:quocgia"  placeholder="Chọn quốc gia" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Tỉnh / Thành Phố</label>
+				<input type="text" data-bind="dict:tinhthanh"  placeholder="Chọn thông tin tỉnh/thành phố" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Quận / Huyện / Thị Xã</label>
+				<input type="text" data-bind="dict:quanhuyen"  placeholder="Chọn thông tin quận/huyện" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Xã / Phường</label>
+				<input type="text" data-bind="dict:xaphuong"  placeholder="Chọn thông tin xã/phường/thị trấn" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Địa chỉ ( Số Nhà, thôn xóm ...)</label>
+				<textarea rows="3" data-bind="value:diachi" placeholder="Nhập thông tin địa chỉ, số Nhà, thôn xóm..." class="form-control"></textarea>
+			</div>
+		</form>
+	</div>
+</div>
+</div>

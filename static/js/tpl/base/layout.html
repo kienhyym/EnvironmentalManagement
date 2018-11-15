@@ -4,14 +4,13 @@
 		<div class="page-header-inner">
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
-				<a href="/">
-				<img src="/static/images/logo.png" height="40px" alt="logo" class="logo-default"/>
+				<a id="logo" href="javascript:void(0);">
+				<img src="static/images/logo.png" height="40px" alt="logo" class="logo-default"/>
 				</a>
 				<div class="menu-toggler sidebar-toggler hide">
 					<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
 				</div>
 			</div>
-			
 			<!-- END LOGO -->
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 			<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,20 +23,19 @@
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" class="img-circle" src="/static/images/icons/user.png"/>
-						<span class="username username-hide-on-mobile">
-							<div id="header-display-name">...</div>
-						</span>
+						<img alt="" class="img-circle" src="static/images/icons/user.png"/>
+						<span id="fullname" class="username username-hide-on-mobile">
+						... </span>
 						<i class="fa fa-angle-down"></i>
 						</a>
-						<ul class="dropdown-menu dropdown-menu-right">
+						<ul class="dropdown-menu dropdown-menu-right" style="background-color: antiquewhite;">
 							<li>
-								<a href='javascript:;' onclick='javascript:gonrinApp().getRouter().navigate("user/change-password")'>
-								<i class="icon-key"></i> Đổi mật khẩu </a>
+								<a href="javascript:void(0);" id="userprofile">
+								<i class="fa fa-cog"></i> Cài Đặt </a>
 							</li>
 							<li>
-								<a href='javascript:;' onclick='javascript:gonrinApp().getRouter().navigate("logout")'>
-								<i class="icon-key"></i> Đăng xuất </a>
+								<a href="javascript:void(0);" id="logout">
+								<i class="fa fa-sign-out"></i> Đăng xuất </a>
 							</li>
 						</ul>
 					</li>
@@ -52,11 +50,6 @@
 					<!-- END QUICK SIDEBAR TOGGLER -->
 				</ul>
 			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<input type="text" id="selectDivisions" class="form-control input-sm"/>
-				</div>
-			</div>
 			<!-- END TOP NAVIGATION MENU -->
 		</div>
 		<!-- END HEADER INNER -->
@@ -67,6 +60,7 @@
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container page-container-fixed">
+	<div id="loading" class="hidden"></div>
 	<div class="page-navbar-wrapper">
 		<div class="page-navbar">
 		
@@ -74,7 +68,9 @@
 	</div>
 	<div class="page-content-wrapper">
 		<div class="page-content">
-			<div class="tools-area"></div>
+			<div class="row">
+				<div class="tools-area col-lg-4 col-md-4 col-sm-8 col-xs-11"></div>
+			</div>
 			<div class="content-area"></div>
 		</div>
 	</div>

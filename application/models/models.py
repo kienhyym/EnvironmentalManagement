@@ -37,14 +37,16 @@ class Permission(CommonModel):
 class User(CommonModel):
     __tablename__ = 'user'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    name = db.Column(db.String(255))
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
+    fullname = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean(), default=True)
     phone = db.Column(db.String(255), unique=True)
     birthday = db.Column(db.DateTime())
     gender = db.Column(db.String(255))
-    
+    macongdan = db.Column(db.String(255), unique=True)
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
  
@@ -100,8 +102,6 @@ class DonVi(CommonModel):
     parent_id = db.Column(UUID(as_uuid=True), ForeignKey('donvi.id'), nullable=True)
     active = db.Column(Boolean(), default=False)
     users = relationship('UserDonvi', viewonly=True)
-    id_mevabe = db.Column(String(255), nullable=True)
-    password_mevabe = db.Column(String(255), nullable=True)
     children = relationship("DonVi",
         # cascade deletions
         cascade="all, delete-orphan",

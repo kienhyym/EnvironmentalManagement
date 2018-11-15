@@ -58,12 +58,6 @@ class DanToc(CommonModel):
     ma = db.Column(String(255), unique=True)
     ten = db.Column(String(255))
     
-class Vacxin(CommonModel):
-    __tablename__ = 'vacxin'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255))
-    mota = db.Column(String(255))
  
 class TrinhDoHocVan(CommonModel):
     __tablename__ = 'trinhdohocvan'
