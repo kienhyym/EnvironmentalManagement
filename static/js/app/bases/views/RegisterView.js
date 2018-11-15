@@ -5,7 +5,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin            	= require('gonrin'),
         storejs				= require('store'),
-        tpl                 = require('text!tpl/base/register.html'),
+        tpl                 = require('text!app/bases/tpl/register.html'),
         template = _.template(tpl);
 
     return Gonrin.View.extend({

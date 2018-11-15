@@ -26,7 +26,7 @@ require.config({
 
 require(['jquery', 'gonrin', 'app/router',
 	'app/bases/Nav/NavbarView',
-	'text!tpl/base/layout.html', 
+	'text!app/bases/tpl/layout.html', 
 	'i18n!app/nls/app', 
 	'store'], 
 	function ($, Gonrin, Router, Nav, layout, lang, storejs) {

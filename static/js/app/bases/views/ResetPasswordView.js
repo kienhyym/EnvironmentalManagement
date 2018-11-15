@@ -4,7 +4,7 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin            	= require('gonrin'),
-        tpl                 = require('text!tpl/base/resetpassword.html'),
+        tpl                 = require('text!app/bases/tpl/resetpassword.html'),
         template = _.template(tpl);
 
     return Gonrin.View.extend({

@@ -6,7 +6,7 @@ define(function (require) {
     
     var template 			= require('text!tpl/DanhMuc/XaPhuong/collection.html'),
     	schema 				= require('json!app/view/DanhMuc/XaPhuong/Schema.json');
-    var CustomFilterView      = require('app/bases/CustomFilterView');
+    var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,

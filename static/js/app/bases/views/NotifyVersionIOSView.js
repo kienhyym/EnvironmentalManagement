@@ -3,7 +3,7 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    var tpl                 = require('text!tpl/base/NotifyVersion.html');
+    var tpl                 = require('text!app/bases/tpl/NotifyVersion.html');
     
     return Gonrin.DialogView.extend({
     	template : tpl,

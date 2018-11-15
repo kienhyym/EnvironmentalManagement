@@ -5,11 +5,11 @@ define(function (require) {
     var $           = require('jquery'),
         Gonrin    	= require('gonrin');
 //        storejs		= require('store');
-    var Login		= require('app/bases/LoginView');
-    var RegisterView	= require('app/bases/RegisterView');
-    var ForgotPasswordView	= require('app/bases/ForgotPasswordView');
-    var NotifyVersionAndroid	= require('app/bases/NotifyVersionAndroidView');
-    var NotifyVersionIOS	= require('app/bases/NotifyVersionIOSView');
+    var Login		= require('app/bases/views/LoginView');
+    var RegisterView	= require('app/bases/views/RegisterView');
+    var ForgotPasswordView	= require('app/bases/views/ForgotPasswordView');
+    var NotifyVersionAndroid	= require('app/bases/views/NotifyVersionAndroidView');
+    var NotifyVersionIOS	= require('app/bases/views/NotifyVersionIOSView');
     return Gonrin.Router.extend({
         routes: {
         	"index" : "index",
