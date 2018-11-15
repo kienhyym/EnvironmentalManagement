@@ -4,23 +4,23 @@ define(function (require) {
 	_                   = require('underscore'),
 	Gonrin				= require('gonrin');
 
-	var template 			= require('text!tpl/DonVi/collectiontree.html'),
-	schema 				= require('json!app/view/HeThong/DonVi/Schema.json');
+	var template 			= require('text!app/view/tpl/DonVi/collectiontree.html'),
+	schema 				= require('json!schema/DonViSchema.json');
 	
 //	var LienHeModelView 	= require("app/view/HeThong/DonVi/LienHeModelView");
 	
-	var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/SelectView");
-    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/SelectView");
-    var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/SelectView");
-    var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/SelectView");
+	var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/view/SelectView");
+    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
+    var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/view/SelectView");
+    var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/view/SelectView");
     
-	var DonViSelectView = require('app/view/HeThong/DonVi/SelectView');
-	var AddUserDialogView = require('app/view/HeThong/DonVi/AddUserDialog');
+	var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
+	var AddUserDialogView = require('app/view/HeThong/DonVi/view/AddUserDialog');
 
 	var templatemodel = require('text!tpl/DonVi/model.html');
 
 //	var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
-    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/SelectView');
+    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
 
 	var DonViModelView = Gonrin.ModelView.extend({
 		template : templatemodel,

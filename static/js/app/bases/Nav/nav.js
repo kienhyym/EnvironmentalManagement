@@ -17,7 +17,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"donvi",
         			    "route":"donvi/collectiontree",
-        			    "$ref": "app/view/HeThong/DonVi/CollectionTreeView",
+        			    "$ref": "app/view/HeThong/DonVi/view/CollectionTreeView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -26,7 +26,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"donvi",
         			    "route":"donvi/model(/:id)",
-        			    "$ref": "app/view/HeThong/DonVi/ModelView",
+        			    "$ref": "app/view/HeThong/DonVi/view/ModelView",
         			    "visible":  false
         			},
         			{

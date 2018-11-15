@@ -4,10 +4,10 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!tpl/DonVi/collection.html'),
-    	schema 				= require('json!app/view/HeThong/DonVi/Schema.json');
+    var template 			= require('text!app/view/tpl/DonVi/collection.html'),
+    	schema 				= require('json!schema/DonViSchema.json');
     
-    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/SelectView');
+    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
     
     return Gonrin.CollectionDialogView.extend({
     	

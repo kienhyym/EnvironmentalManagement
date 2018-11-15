@@ -3,8 +3,8 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
-    var template 				= require('text!tpl/User/changepassword.html');
+		
+    var template 				= require('text!app/view/tpl/User/changepassword.html');
     
     return Gonrin.ModelDialogView.extend({
     	template : template,

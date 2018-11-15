@@ -4,8 +4,8 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!tpl/DangKyDonVi/model.html'),
-    	schema 				= require('json!app/view/HeThong/DangKyDonVi/Schema.json');
+    var template 				= require('text!app/view/tpl/DangKyDonVi/model.html'),
+    	schema 				= require('json!schema/DangKyDonViSchema.json');
     
     var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
     

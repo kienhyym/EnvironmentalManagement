@@ -4,28 +4,21 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!tpl/Permission/collection.html'),
-    	schema 				= require('json!app/view/HeThong/Permission/Schema.json');
+    var template 			= require('text!app/view/tpl/Role/collection.html'),
+    	schema 				= require('json!schema/RoleSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "permission",
+    	collectionName: "role",
     	uiControl:{
     		fields: [
 	    	     { 
 	    	    	field: "id",label:"ID",width:50,readonly: true, 
 	    	     },
-		     	 { 
-	    	    	 field: "role_id", 
-	    	    	 label: "Role", 
-	    	    	 width:150 ,
-	    	    	 foreign: "role",
-                	 foreignValueField: "id",
-                	 foreignTextField: "name",
-	    	     },
-		     	 { field: "model", label: "Model", width:150 },
+		     	 { field: "name", label: "Tên", width:150 },
+		     	 { field: "description", label: "Mô tả", width:150 },
 		     ],
 		     onRowClick: function(event){
 		    	 if(event.rowId){

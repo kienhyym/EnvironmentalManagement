@@ -4,11 +4,11 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 		    = require('text!tpl/User/profile.html');
+    var template 		    = require('text!app/view/tpl/User/profile.html');
 //    	schema 				= require('json!app/view/HeThong/User/Schema.json');
-    var ChangePasswordView  = require('app/view/HeThong/User/ChangePasswordView');
+    var ChangePasswordView  = require('app/view/HeThong/User/view/ChangePasswordView');
     var AddressDialogView      = require('app/view/HeThong/User/Address/AddressDialogView');
-    var ProfileDialogView      = require('app/view/HeThong/User/ProfileDialogView');
+    var ProfileDialogView      = require('app/view/HeThong/User/view/ProfileDialogView');
     
     return Gonrin.ModelView.extend({
     	template : template,

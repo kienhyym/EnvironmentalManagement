@@ -4,8 +4,8 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!tpl/Role/model.html'),
-    	schema 				= require('json!app/view/HeThong/Role/Schema.json');
+    var template 				= require('text!app/view/tpl/Role/model.html'),
+    	schema 				= require('json!schema/RoleSchema.json');
     
     
     return Gonrin.ModelView.extend({

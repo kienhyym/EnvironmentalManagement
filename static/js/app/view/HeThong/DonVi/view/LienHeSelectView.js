@@ -4,8 +4,8 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!tpl/DonVi/collection.html'),
-    	schema 				= require('json!app/view/DanhMuc/DonVi/Schema.json');
+    var template 			= require('text!app/view/tpl/DonVi/collection.html'),
+    	schema 				= require('json!schema/DonViSchema.json');
     
     return Gonrin.DialogView.extend({
     	//selectedItems : [],  //[] may be array if multiple selection

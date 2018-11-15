@@ -3,8 +3,8 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
-    var template 			= require('text!tpl/Donvi/createuser.html');
+		
+    var template 			= require('text!app/view/tpl/DonVi/createuser.html');
     
     return Gonrin.ModelDialogView.extend({
     	template : template,

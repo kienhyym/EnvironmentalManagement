@@ -3,22 +3,29 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
-    var template 			= require('text!tpl/Role/collection.html'),
-    	schema 				= require('json!app/view/HeThong/Role/Schema.json');
+		
+    var template 			= require('text!app/view/tpl/Permission/collection.html'),
+    	schema 				= require('json!schema/PermissionSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "role",
+    	collectionName: "permission",
     	uiControl:{
     		fields: [
 	    	     { 
 	    	    	field: "id",label:"ID",width:50,readonly: true, 
 	    	     },
-		     	 { field: "name", label: "Tên", width:150 },
-		     	 { field: "description", label: "Mô tả", width:150 },
+		     	 { 
+	    	    	 field: "role_id", 
+	    	    	 label: "Role", 
+	    	    	 width:150 ,
+	    	    	 foreign: "role",
+                	 foreignValueField: "id",
+                	 foreignTextField: "name",
+	    	     },
+		     	 { field: "model", label: "Model", width:150 },
 		     ],
 		     onRowClick: function(event){
 		    	 if(event.rowId){

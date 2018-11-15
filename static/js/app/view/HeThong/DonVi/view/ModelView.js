@@ -3,17 +3,17 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
+		
+    var template 			= require('text!app/view/tpl/DonVi/model.html'),
+    	schema 				= require('json!schema/DonViSchema.json');
     
-    var template 				= require('text!tpl/DonVi/model.html'),
-    	schema 				= require('json!app/view/HeThong/DonVi/Schema.json');
+    var TuyenDonViSelectView  = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
+    var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
     
-    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/SelectView');
-    var DonViSelectView = require('app/view/HeThong/DonVi/SelectView');
-    
-    var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/SelectView");
-    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/SelectView");
-    var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/SelectView");
-    var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/SelectView");
+    var QuocGiaSelectView 		= require('app/view/DanhMuc/QuocGia/view/SelectView');
+    var TinhThanhSelectView 	= require('app/view/DanhMuc/TinhHuyen/view/SelectView');
+    var QuanHuyenSelectView 	= require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+    var XaPhuongSelectView		= require('app/view/DanhMuc/XaPhuong/view/SelectView');
     
     
     return Gonrin.ModelView.extend({

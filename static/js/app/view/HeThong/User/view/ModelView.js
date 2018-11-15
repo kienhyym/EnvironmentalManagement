@@ -4,10 +4,10 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!tpl/User/model.html'),
-    	schema 				= require('json!app/view/HeThong/User/Schema.json');
-    var DonViSelectView = require('app/view/HeThong/DonVi/SelectView');
-    var RoleSelectView = require('app/view/HeThong/Role/SelectView');
+    var template 				= require('text!app/view/tpl/User/model.html'),
+    	schema 				= require('json!schema/UserSchema.json');
+    var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
+    var RoleSelectView = require('app/view/HeThong/Role/view/SelectView');
     
     return Gonrin.ModelView.extend({
     	template : template,
