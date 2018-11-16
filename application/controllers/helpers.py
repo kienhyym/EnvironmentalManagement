@@ -2,7 +2,7 @@
 from gatco.response import json
 from application.database import  db
 from application.extensions import auth
-from application.models.models import *
+from application.models.model_user import *
 from application.server import app
 
 import asyncio

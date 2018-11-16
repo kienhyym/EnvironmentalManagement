@@ -4,7 +4,7 @@ import aiosmtplib
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gatco.response import json,text, html
 from application.extensions import apimanager
-from application.models.models import User, Permission, Role
+from application.models.model_user import User, Permission, Role
 from application.extensions import auth
 from application.database import db
 from application.server import app

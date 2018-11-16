@@ -8,7 +8,7 @@ from application.database import db
 from sqlalchemy.orm import aliased, joinedload_all
 from gatco.response import json, text, html
 
-from application.models.models import *
+from application.models.model_user import *
 from .helpers import *
 from application.models.model_danhmuc import TuyenDonVi
 from sqlalchemy import or_

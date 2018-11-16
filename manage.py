@@ -14,7 +14,7 @@ from application.server import app
 from application import run_app
 from application.database import db
 from application.extensions import auth
-from application.models.models import Role, User, Permission
+from application.models.model_user import Role, User, Permission
 
 
 # Instance
