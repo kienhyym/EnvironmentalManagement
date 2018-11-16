@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 		    = require('text!app/view/tpl/User/profile.html');
+    var template 		    = require('text!app/view/tpl/HeThong/User/profile.html');
 //    	schema 				= require('json!app/view/HeThong/User/Schema.json');
     var ChangePasswordView  = require('app/view/HeThong/User/view/ChangePasswordView');
     var AddressDialogView      = require('app/view/HeThong/User/Address/AddressDialogView');

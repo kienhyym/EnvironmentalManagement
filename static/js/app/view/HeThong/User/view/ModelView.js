@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/tpl/User/model.html'),
+    var template 				= require('text!app/view/tpl/HeThong/User/model.html'),
     	schema 				= require('json!schema/UserSchema.json');
     var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
     var RoleSelectView = require('app/view/HeThong/Role/view/SelectView');

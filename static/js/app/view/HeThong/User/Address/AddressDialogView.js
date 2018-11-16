@@ -4,12 +4,12 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!tpl/User/address.html'),
-    	schema 				= require('json!app/view/HeThong/User/Address/Schema.json');
-    var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/SelectView");
-    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/SelectView");
-    var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/SelectView");
-    var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/SelectView");
+    var template 			= require('text!app/view/tpl/User/address.html'),
+    	schema 				= require('json!schema/AddressSchema.json');
+    var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/view/SelectView");
+    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
+    var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/view/SelectView");
+    var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/view/SelectView");
     
     return Gonrin.ModelDialogView.extend({
     	template : template,

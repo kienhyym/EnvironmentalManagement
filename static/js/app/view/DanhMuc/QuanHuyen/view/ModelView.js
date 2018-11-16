@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/tpl/QuanHuyen/model.html'),
+    var template 			= require('text!app/view/tpl/DanhMuc/QuanHuyen/model.html'),
     	schema 				= require('json!schema/QuanHuyenSchema.json');
     var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
     return Gonrin.ModelView.extend({

@@ -51,7 +51,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"user",
         			    "route":"user/collection",
-        			    "$ref": "app/view/HeThong/User/CollectionView",
+        			    "$ref": "app/view/HeThong/User/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -61,7 +61,7 @@ define(function (require) {
 						"type":"view",
 						"collectionName":"user",
 						"route":"user/profile",
-						"$ref": "app/view/HeThong/User/ProfileView",
+						"$ref": "app/view/HeThong/User/view/ProfileView",
 						"visible":false
 				   	},
         			{
@@ -69,14 +69,14 @@ define(function (require) {
                          "type":"view",
                          "collectionName":"user",
                          "route":"user/changepwd",
-                         "$ref": "app/view/HeThong/User/ChangePasswordView",
+                         "$ref": "app/view/HeThong/User/view/ChangePasswordView",
                          "visible":false
                     },
         			{
         			    "type":"view",
         			    "collectionName":"user",
         			    "route":"user/model(/:id)",
-        			    "$ref": "app/view/HeThong/User/ModelView",
+        			    "$ref": "app/view/HeThong/User/view/ModelView",
         			    "visible": false
         			},
         			{
@@ -84,7 +84,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"role",
         			    "route":"role/collection",
-        			    "$ref": "app/view/HeThong/Role/CollectionView",
+        			    "$ref": "app/view/HeThong/Role/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
@@ -93,7 +93,7 @@ define(function (require) {
         			    "type":"view",
         			    "collectionName":"role",
         			    "route":"role/model(/:id)",
-        			    "$ref": "app/view/HeThong/Role/ModelView",
+        			    "$ref": "app/view/HeThong/Role/view/ModelView",
         			    "visible": false
         			},
         		]
