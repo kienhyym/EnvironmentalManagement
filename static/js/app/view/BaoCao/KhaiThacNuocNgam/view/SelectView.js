@@ -5,7 +5,7 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/BaoCao/KhaiThacNuocNgam/tpl/collection.html'),
-    	schema 				= require('json!schema/KhaiThacNuocNgamSchema.json');
+    	schema 				= require('json!schema/KhaiThacNuocSongSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
@@ -34,17 +34,175 @@ define(function (require) {
     	    	]
     	    },
     	],
-    	uiControl:{
-    		fields: [
-    			{ field: "tenphuluc", label: "Tên Phụ Lục", width:250},
-    			{ field: "thongtu", label: "Thông Tư", width:250},
-	    	     { field: "loaiphieu", label: "Loại Phiếu", width:250},
-		     	 { field: "tenphieu", label: "Tên Phiếu", width:250 },
-		    ],
-		    onRowClick: function(event){
-	    		this.uiControl.selectedItems = event.selectedItems;
-	    	},
-    	},
+    	// uiControl : {
+		// 	fields : [
+		// 	// {
+		// 	// field:"ngaybanhanhthongtu",
+		// 	// textFormat:"DD/MM/YYYY",
+		// 	// extraFormats:["DDMMYYYY"],
+		// 	// maxDate: currentDate,
+		// 	// },
+
+		// 	{
+		// 		field : "phamvi",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "bienbao",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "vatnuoi",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "nuoitrongthuysan",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "khaithactainguyen",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "nguoisinhhoat",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "duongongkenhmuong",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	},
+
+		// 	{
+		// 		field : "chanrac",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "bendoneodau",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "duonguongkenhmuong",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	}, {
+		// 		field : "congtrinhxaydung",
+		// 		uicontrol : "radio",
+		// 		textField : "text",
+		// 		valueField : "value",
+		// 		cssClassField : "cssClass",
+		// 		dataSource : [ {
+		// 			value : 0,
+		// 			text : "Có"
+		// 		}, {
+		// 			value : 1,
+		// 			text : "Không",
+		// 			cssClass : "yeallow"
+		// 		}, ],
+		// 	},
+
+		// 	],
+		// },
     	render:function(){
     		var self= this;
     		var filter = new CustomFilterView({

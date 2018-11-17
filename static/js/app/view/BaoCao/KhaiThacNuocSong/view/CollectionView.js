@@ -14,10 +14,10 @@ define(function (require) {
     	collectionName: "khaithacnuocsong",
     	uiControl:{
     		fields: [
-    			 { field: "tenphuluc", label: "Tên Phụ Lục", width:250},
-    			 { field: "thongtu", label: "Thông Tư", width:250},
+    			 { field: "id", label: "ID", width:250},
+    			 { field: "tenphieu", label: "Tên Phiếu", width:250 },
 	    	     { field: "loaiphieu", label: "Loại Phiếu", width:250},
-		     	 { field: "tenphieu", label: "Tên Phiếu", width:250 },
+		     	
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

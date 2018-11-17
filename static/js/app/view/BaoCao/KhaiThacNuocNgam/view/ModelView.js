@@ -12,7 +12,148 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "khaithacnuocngam",
-    	
+    	uiControl: {
+			fields: [
+				// {
+				// field:"ngaybanhanhthongtu",
+				// textFormat:"DD/MM/YYYY",
+				// extraFormats:["DDMMYYYY"],
+				// maxDate: currentDate,
+				// },
+
+				{
+					field: "phamvi",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "tuongbaove",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "congtrinhxaydung",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "duongongkenhmuong",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "canhtacnongnghiep",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "vatnuoi",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "bairacthai",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				},
+
+				{
+					field: "phandongvat",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "nhatieu",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				
+				},
+
+			],
+		},
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",
