@@ -17,7 +17,7 @@ define(function (require) {
 	var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
 	var AddUserDialogView = require('app/view/HeThong/DonVi/view/AddUserDialog');
 
-	var templatemodel = require('text!tpl/DonVi/model.html');
+	var templatemodel = require('text!app/view/tpl/HeThong/DonVi/model.html');
 
 //	var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
     var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');

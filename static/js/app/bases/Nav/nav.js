@@ -256,18 +256,67 @@ define(function (require) {
 			    	return true;
 			    },
 			},
-			{
-			    "text":"Báo Cáo Thống Kê HMIS",
-			    "type":"view",
-			    "icon":"fa fa-tasks",
-			    "collectionName":"monitor",
-			    "route":"admin/monitor/hmis",
-			    "$ref": "app/bases//monitor/MonitorHMISView",
-			    "visible": function(){
+			
+			
+			 {
+        		"text":"Báo Cáo",
+        		"icon":"fa fa-book",
+        		"type":"category",
+        		"visible": function(){
 			    	return this.userHasRole("Admin");
-			    }
-			},
+			    },
+        		"entries":[
+        			
+        			{
+        			    "text":"Khai Thác Nước Ngầm",
+        			    "type":"view",
+        			    "collectionName":"khaithacnuocngam",
+        			    "route":"khaithacnuocngam/collection",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocNgam/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"khaithacnuocngam",
+        			    "route":"khaithacnuocngam/model",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocNgam/view/ModelView",
+        			    "visible":  false
+        			},
 
+        			{
+        			    "text":"Khai Thác Nước Sông",
+        			    "type":"view",
+        			    "collectionName":"dantoc",
+        			    "route":"dantoc/collection",
+        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+        			{
+        			    "text":"Khai Thác Từ Hồ Chứa",
+        			    "type":"view",
+        			    "collectionName":"dantoc",
+        			    "route":"dantoc/collection",
+        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+        			{
+        			    "text":"Phiếu Nội Kiểm Tra Chất Lượng",
+        			    "type":"view",
+        			    "collectionName":"dantoc",
+        			    "route":"dantoc/collection",
+        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+        			],
+			 },
 			
 
 

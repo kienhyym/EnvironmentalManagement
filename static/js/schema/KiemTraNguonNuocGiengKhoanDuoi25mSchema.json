@@ -41,13 +41,13 @@
     "dungcubomnuoc": {
         "type": "number"
     },
-    "khoangcachgiengtoinhatieugannhat": {
+    "conhatieugangieng10m": {
         "type": "number"
     },
-    "khoangcachgiengtoibairacgannhat": {
+    "cobairacgangieng10m": {
         "type": "number"
     },
-    "khoangcachgiengtoichuonggiasucgannhat": {
+    "cochuonggiasucgangieng10m": {
         "type": "number"
     },
     "ranhthoatnuoc": {

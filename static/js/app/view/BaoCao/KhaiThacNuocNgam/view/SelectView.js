@@ -4,16 +4,16 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= rrequire('text!app/view/tpl/DanhMuc/NgheNghiep/collection.html'),
-    	schema 				= require('json!schema/NgheNghiepSchema.json');
+    var template 			= require('text!app/view/BaoCao/KhaiThacNuocNgam/tpl/collection.html'),
+    	schema 				= require('json!schema/KhaiThacNuocNgamSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "nghenghiep",
-    	textField: "ten",
+    	collectionName: "khaithacnuocngam",
+    	textField: "tenphieu",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -36,9 +36,8 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
-		     	{ field: "mota", label: "Mô tả", width:250 },
+	    	     { field: "loaiphieu", label: "Loại Phiếu", width:150},
+		     	 { field: "tenphieu", label: "Tên Phiếu", width:250 },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
@@ -48,15 +47,15 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "nghenghiep_filter"
+    			sessionKey: "Khaithacnuocngam_filter"
     		});
     		filter.render();
     		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"ma": {"$like": text }},
-					{"ten": {"$like": text }},
+					{"loaiphieu": {"$like": text }},
+					{"tenphieu": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -68,8 +67,8 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"ten": {"$like": text }},
-							{"ma": {"$like": text }},
+							{"loaiphieu": {"$like": text }},
+							{"tenphieu": {"$like": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
@@ -79,7 +78,9 @@ define(function (require) {
 				}
 				self.applyBindings();
     		});
+    		
     		return this;
+    		
     	},
     	
     });
