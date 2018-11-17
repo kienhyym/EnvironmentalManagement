@@ -1,0 +1,118 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "donvibaocao": {
+        "type": "string",
+        "length": null
+    },
+    "sophieu": {
+        "type": "number"
+    },
+    "ngaybanhanhphieu": {
+        "type": "datetime"
+    },
+    "tenbaocao": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "cosocapnuoc": {
+        "type": "number"
+    },
+    "cosoguibaocao": {
+        "type": "number"
+    },
+    "cosodambaovs": {
+        "type": "number"
+    },
+    "tyle": {
+        "type": "number"
+    },
+    "cosokhongdambaovs": {
+        "type": "string",
+        "length": null
+    },
+    "cosodatchuan": {
+        "type": "number"
+    },
+    "cosokhongdatchuan": {
+        "type": "string",
+        "length": null
+    },
+    "maunuoclamxn": {
+        "type": "number"
+    },
+    "maudatchuan": {
+        "type": "number"
+    },
+    "tylemaudatchuan": {
+        "type": "number"
+    },
+    "mauxnkhongdatchuan": {
+        "type": "number"
+    },
+    "maukodatlyhoahoc": {
+        "type": "number"
+    },
+    "maukodatvsvatly": {
+        "type": "number"
+    },
+    "maukodatvisinhvat": {
+        "type": "number"
+    },
+    "bienphapkhacphuc": {
+        "type": "number"
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kiennghi": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    }
+}

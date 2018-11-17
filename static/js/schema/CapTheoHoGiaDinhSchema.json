@@ -1,0 +1,45 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "giengdao": {
+        "type": "number"
+    },
+    "giengkhoan": {
+        "type": "number"
+    },
+    "mangtuchay": {
+        "type": "number"
+    },
+    "benuocmua": {
+        "type": "number"
+    },
+    "loaikhac": {
+        "type": "number"
+    },
+    "cong": {
+        "type": "number"
+    }
+}

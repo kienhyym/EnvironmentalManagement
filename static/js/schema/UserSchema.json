@@ -58,6 +58,10 @@
         "type": "string",
         "length": 255
     },
+    "macongdan": {
+        "type": "string",
+        "length": 255
+    },
     "donvi_id": {
         "type": "string"
     },

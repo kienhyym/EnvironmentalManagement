@@ -1,0 +1,141 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "donvibaocao": {
+        "type": "string",
+        "length": null
+    },
+    "sophieu": {
+        "type": "number"
+    },
+    "ngaytaophieu": {
+        "type": "datetime"
+    },
+    "tenbaocao": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "baocaodinhky": {
+        "type": "string",
+        "length": null
+    },
+    "sotinhtrendiaban": {
+        "type": "number"
+    },
+    "sotinhcobaocao": {
+        "type": "number"
+    },
+    "sonhamaynuoc": {
+        "type": "number"
+    },
+    "sonhamaykiemtra": {
+        "type": "number"
+    },
+    "soluotkiemtra": {
+        "type": "number"
+    },
+    "soluotkiemtrakhongdat": {
+        "type": "number"
+    },
+    "tylekodat": {
+        "type": "number"
+    },
+    "coso2lankhongdat": {
+        "type": "number"
+    },
+    "maunuoclamxn": {
+        "type": "number"
+    },
+    "maudatchuan": {
+        "type": "number"
+    },
+    "tyledatchuan": {
+        "type": "number"
+    },
+    "maukhongdatchuan": {
+        "type": "number"
+    },
+    "kodatchitieuvatlyhoahoc": {
+        "type": "number"
+    },
+    "kodatchitieuvisinhvat": {
+        "type": "number"
+    },
+    "bienphap": {
+        "type": "string",
+        "length": null
+    },
+    "tongsomaunuoclamxn": {
+        "type": "number"
+    },
+    "tongsodatquydinh": {
+        "type": "number"
+    },
+    "tyledungquydinh": {
+        "type": "number"
+    },
+    "tongsokodatquydinh": {
+        "type": "number"
+    },
+    "bienphapxuli": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua": {
+        "type": "string",
+        "length": null
+    },
+    "hoatdongnghiencuu": {
+        "type": "string",
+        "length": null
+    },
+    "nhanxetkiennghi": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "baocao_id": {
+        "type": "string",
+        "required": true
+    },
+    "thongtinkiemtra": {
+        "type": "string",
+        "length": null
+    },
+    "khoangcachgiengtoinhatieugannhat": {
+        "type": "number"
+    },
+    "khoangcachgiengtoibairacgannhat": {
+        "type": "number"
+    },
+    "khoangcachgiengtoichuonggiasucgannhat": {
+        "type": "number"
+    },
+    "napdaygieng": {
+        "type": "number"
+    },
+    "thanhgieng": {
+        "type": "number"
+    },
+    "vachgieng": {
+        "type": "number"
+    },
+    "sangieng": {
+        "type": "number"
+    },
+    "ranhthoatnuoc": {
+        "type": "number"
+    },
+    "dungculaynuoc": {
+        "type": "number"
+    }
+}

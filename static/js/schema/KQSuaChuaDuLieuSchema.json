@@ -1,0 +1,50 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tt": {
+        "type": "number"
+    },
+    "loi": {
+        "type": "string",
+        "length": null
+    },
+    "sua": {
+        "type": "string",
+        "length": null
+    },
+    "khongsua": {
+        "type": "string",
+        "length": null
+    },
+    "thoigiansua": {
+        "type": "string",
+        "length": null
+    },
+    "ghichu": {
+        "type": "string",
+        "length": null
+    }
+}
