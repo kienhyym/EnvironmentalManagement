@@ -284,37 +284,26 @@ define(function (require) {
         			    "$ref": "app/view/BaoCao/KhaiThacNuocNgam/view/ModelView",
         			    "visible":  false
         			},
-
         			{
         			    "text":"Khai Thác Nước Sông",
         			    "type":"view",
-        			    "collectionName":"dantoc",
-        			    "route":"dantoc/collection",
-        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+        			    "collectionName":"khaithacnuocsong",
+        			    "route":"khaithacnuocsong/collection",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocSong/view/CollectionView",
         			    "visible": function(){
         			    	return this.userHasRole("Admin");
         			    }
         			},
-        			{
-        			    "text":"Khai Thác Từ Hồ Chứa",
+					{
         			    "type":"view",
-        			    "collectionName":"dantoc",
-        			    "route":"dantoc/collection",
-        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
-        			    "visible": function(){
-        			    	return this.userHasRole("Admin");
-        			    }
+        			    "collectionName":"khaithacnuocsong",
+        			    "route":"khaithacnuocsong/model",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocSong/view/ModelView",
+        			    "visible":  false
         			},
-        			{
-        			    "text":"Phiếu Nội Kiểm Tra Chất Lượng",
-        			    "type":"view",
-        			    "collectionName":"dantoc",
-        			    "route":"dantoc/collection",
-        			    "$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
-        			    "visible": function(){
-        			    	return this.userHasRole("Admin");
-        			    }
-        			},
+
+        			
+        			
         			],
 			 },
 			

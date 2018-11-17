@@ -1,4 +1,4 @@
-define(function (require) {
+ondefine(function (require) {
     "use strict";
     var $                   = require('jquery'),
         _                   = require('underscore'),
