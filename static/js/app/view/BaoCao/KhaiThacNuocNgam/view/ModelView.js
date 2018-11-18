@@ -36,7 +36,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "tuongbaove",
+					field: "tuongraobaove",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",

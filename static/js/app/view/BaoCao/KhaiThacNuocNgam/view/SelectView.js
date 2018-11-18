@@ -23,7 +23,7 @@ define(function (require) {
 					{
 		    	    	name: "select",
 		    	    	type: "button",
-		    	    	buttonClass: "btn-success btn-sm",
+		    	    	buttonClass: "btn btn-success",
 		    	    	label: "TRANSLATE:SELECT",
 		    	    	command: function(){
 		    	    		var self = this;
