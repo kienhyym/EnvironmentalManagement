@@ -40,8 +40,7 @@
         "length": null
     },
     "thoigiansua": {
-        "type": "string",
-        "length": null
+        "type": "datetime"
     },
     "ghichu": {
         "type": "string",
