@@ -4,18 +4,153 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/tpl/model.html'),
-    	schema 				= require('json!schema/TongHopKQNuocSinhHoatTren1000mSchema.json');
-	
-	
+    var template 				= require('text!app/view/BaoCao/MauNuocKhongDat/tpl/model.html'),
+    	schema 				= require('json!schema/MauNuocKhongDatSchema.json');
+    
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "tonghopkqnuocsinhhoattren1000m",
+    	collectionName: "maunuockhongdat",
     	uiControl: {
 			fields: [
+				// {
+				// field:"ngaybanhanhthongtu",
+				// textFormat:"DD/MM/YYYY",
+				// extraFormats:["DDMMYYYY"],
+				// maxDate: currentDate,
+				// },
+
+				{
+					field: "phamvi",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "tuongraobaove",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "congtrinhxaydung",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "duongongkenhmuong",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "canhtacnongnghiep",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "vatnuoi",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "bairacthai",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				},
+
+				{
+					field: "phandongvat",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
+				}, {
+					field: "nhatieu",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					cssClassField: "cssClass",
+					dataSource: [{
+						value: 0,
+						text: "Có"
+					}, {
+						value: 1,
+						text: "Không",
+						cssClass: "yeallow"
+					},],
 				
+				},
 
 			],
 		},

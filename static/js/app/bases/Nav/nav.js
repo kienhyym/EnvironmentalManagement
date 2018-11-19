@@ -364,23 +364,7 @@ define(function(require) {
 								return this.userHasRole("Admin");
 							}
 						},
-						{
-							"type" : "view",
-							"collectionName" : "kiemtranguonnuochogiadinh",
-							"route" : "kiemtranguonnuochogiadinh/model",
-							"$ref" : "app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/view/ModelView",
-							"visible" : false
-						},
-						{
-							"text" : "TongHopKQNuocSinhHoatTren1000m",
-							"type" : "view",
-							"collectionName" : "tonghopkqnuocsinhhoattren1000m",
-							"route" : "tonghopkqnuocsinhhoattren1000m/collection",
-							"$ref" : "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
-							"visible" : function() {
-								return this.userHasRole("Admin");
-							}
-						},
+						
 						{
 							"type" : "view",
 							"collectionName" : "Nước Sinh Hoạt Trên 1000m",
@@ -526,6 +510,56 @@ define(function(require) {
 							"route" : "kqsuachuasieudulieu/model",
 							"$ref" : "app/view/BaoCao/KQSuaChuaSieuDuLieu/view/ModelView",
 							"visible" : false
+						},
+						{
+							"text":"Nước Sinh Hoạt Trên 1000m",
+							"type":"view",
+							"collectionName":"tonghopkqnuocsinhhoattren1000m",
+							"route":"tonghopkqnuocsinhhoattren1000m/collection",
+							"$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
+							"visible": function(){
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type":"view",
+							"collectionName":"tonghopkqnuocsinhhoattren1000m",
+							"route":"tonghopkqnuocsinhhoattren1000m/model",
+							"$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
+							"visible":  false
+						},
+						{
+							"text":"Kết Quả Chất Lượng Nước Uống",
+							"type":"view",
+							"collectionName":"kqchatluongnuocanuong",
+							"route":"kqchatluongnuocanuong/collection",
+							"$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/CollectionView",
+							"visible": function(){
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type":"view",
+							"collectionName":"kqchatluongnuocanuong",
+							"route":"kqchatluongnuocanuong/model",
+							"$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
+							"visible":  false
+						},{
+							"text":"Mẫu Nước Không Đạt",
+							"type":"view",
+							"collectionName":"maunuockhongdat",
+							"route":"maunuockhongdat/collection",
+							"$ref": "app/view/BaoCao/MauNuocKhongDat/view/CollectionView",
+							"visible": function(){
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type":"view",
+							"collectionName":"maunuockhongdat",
+							"route":"maunuockhongdat/model",
+							"$ref": "app/view/BaoCao/MauNuocKhongDat/view/ModelView",
+							"visible":  false
 						},
 
 				],

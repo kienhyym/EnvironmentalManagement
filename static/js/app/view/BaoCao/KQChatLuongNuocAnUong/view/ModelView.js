@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/tpl/model.html'),
-    	schema 				= require('json!schema/TongHopKQNuocSinhHoatTren1000mSchema.json');
+    var template 				= require('text!app/view/BaoCao/KQChatLuongNuocAnUong/tpl/model.html'),
+    	schema 				= require('json!schema/KQChatLuongNuocAnUongSchema.json');
 	
 	
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "tonghopkqnuocsinhhoattren1000m",
+    	collectionName: "kqchatluongnuocanuong",
     	uiControl: {
 			fields: [
 				

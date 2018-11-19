@@ -30,12 +30,6 @@
 					<textarea type="text" class="form-control" data-bind="value:thongtu" id="formGroupExampleInput"></textarea>
 				</div>
 			</div>
-			<div class="col-md-5">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Tên Phiếu</label>
-					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tenphieu" />
-				</div>
-			</div>
 
 
 			<div class="col-md-5">
@@ -53,7 +47,7 @@
 			<div class="col-md-5">
 				<div class="form-group">
 					<label for="formGroupExampleInput">Đơn Vị Bao Cấp</label>
-					<input type="text" data-bind="value:donvibaocap" class="form-control" id="formGroupExampleInput" />
+					<input type="text" data-bind="value:donvibaocao" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -69,17 +63,125 @@
 				</div>
 			</div>
 			<div class="col-md-5">
-					<div class="form-group">
-						<label for="formGroupExampleInput">Phạm Vi</label>
-						<input type="text" data-bind="value:phamvi" class="form-control" id="formGroupExampleInput" />
-					</div>
+				<div class="form-group">
+					<label for="formGroupExampleInput">Phạm Vi</label>
+					<input type="text" data-bind="value:phamvi" class="form-control" id="formGroupExampleInput" />
 				</div>
-				<div class="col-md-5">
-						<div class="form-group">
-							<label for="formGroupExampleInput">Ngày Báo Cáo</label>
-							<input type="text" data-bind="value:ngaybaocao" class="form-control" id="formGroupExampleInput" />
-						</div>
-					</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Ngày Báo Cáo</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:ngaybaocao" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Cấp Nước</label>
+					<input type="text" data-bind="value:cosocapnuoc" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Gửi Báo Cáo</label>
+					<input type="text" data-bind="value:cosoguibaocao" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Đảm Bảo Vệ Sinh</label>
+					<input type="text" data-bind="value:cosodambaovs" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tỷ Lệ</label>
+					<input type="number" data-bind="value:tyle" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Không Đảm Bảo Vệ Sinh</label>
+					<input type="text" data-bind="value:cosokhongdambaovs" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Đạt Chuẩn</label>
+					<input type="number" data-bind="value:cosodatchuan" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Cơ Sở Không Đạt Chuẩn</label>
+					<input type="number" data-bind="value:cosokhongdatchuan" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Nước Làm Xét Nghiệm</label>
+					<input type="number" data-bind="value:maunuoclamxn" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Nước Đạt Chuẩn</label>
+					<input type="number" data-bind="value:maudatchuan" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tỷ Lệ Mẫu Nước Đạt Chuẩn</label>
+					<input type="number" data-bind="value:tylemaudatchuan" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Nước Xét Nghiệm Không Đạt Chuẩn</label>
+					<input type="number" data-bind="value:mauxnkhongdatchuan" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Không Đạt Lý Hóa Học</label>
+					<input type="number" data-bind="value:maukodatlyhoahoc" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Không Đật Vệ Sinh Vật Lý</label>
+					<input type="number" data-bind="value:maukodatvsvatly" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Mẫu Không Đạt Vi Sinh Vật</label>
+					<input type="number" data-bind="value:maukodatvisinhvat" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Biện Pháp Khắc Phục</label>
+					<textarea type="text" data-bind="value:bienphapkhacphuc" class="form-control" id="formGroupExampleInput"></textarea>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Nhận Xét</label>
+					<input type="text" data-bind="value:nhanxet" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Kiến Nghị</label>
+					<input type="text" data-bind="value:kiennghi" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Ký Tên</label>
+					<input type="text" data-bind="value:kyten" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
 
 
 
