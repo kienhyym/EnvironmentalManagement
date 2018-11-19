@@ -90,8 +90,8 @@ def create_test_models():
 #     db.session.add(role2)
 #     role3 = Role(name='User')
 #     db.session.add(role3)
-    
-    
+#               
+#            
 #     user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'), active=True)
 #     user1.roles.append(role1)
 #     db.session.add(user1)
@@ -101,7 +101,7 @@ def create_test_models():
 #     user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'), active=True)
 #     user3.roles.append(role3)
 #     db.session.add(user3)
-        
+#         
     db.session.commit()
 
 @manager.command

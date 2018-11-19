@@ -334,7 +334,7 @@ class KiemTraVSChatLuongNuocThanhPham(CommonModel):
 
 
 class BanGiaoSanPham(CommonModel):
-    __tablename__ = 'banGiaoSanPham'
+    __tablename__ = 'bangiaosanpham'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     tenphuluc = db.Column(db.String)
     tenbienban = db.Column(db.String)
