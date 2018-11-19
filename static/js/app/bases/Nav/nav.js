@@ -527,6 +527,60 @@ define(function(require) {
 							"$ref" : "app/view/BaoCao/KQSuaChuaSieuDuLieu/view/ModelView",
 							"visible" : false
 						},
+						
+						{
+							"text" : "Kết Quả Sửa Chữa Dữ Liệu",
+							"type" : "view",
+							"collectionName" : "kqsuachuadulieu",
+							"route" : "kqsuachuadulieu/collection",
+							"$ref" : "app/view/BaoCao/KQSuaChuaDuLieu/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "kqsuachuadulieu",
+							"route" : "kqsuachuadulieu/model",
+							"$ref" : "app/view/BaoCao/KQSuaChuaDuLieu/view/ModelView",
+							"visible" : false
+						},
+						
+						{
+							"text" : "BC Kết Quả Kiểm Tra",
+							"type" : "view",
+							"collectionName" : "bcketquakiemtra",
+							"route" : "bcketquakiemtra/collection",
+							"$ref" : "app/view/BaoCao/BCKetQuaKiemTra/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "bcketquakiemtra",
+							"route" : "bcketquakiemtra/model",
+							"$ref" : "app/view/BaoCao/BCKetQuaKiemTra/view/ModelView",
+							"visible" : false
+						},
+						
+						{
+							"text" : "Mẫu Dữ Liệu Đặc Tả",
+							"type" : "view",
+							"collectionName" : "maudulieudacta",
+							"route" : "maudulieudacta/collection",
+							"$ref" : "app/view/BaoCao/MauDuLieuDacTa/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "maudulieudacta",
+							"route" : "maudulieudacta/model",
+							"$ref" : "app/view/BaoCao/MauDuLieuDacTa/view/ModelView",
+							"visible" : false
+						},
 
 				],
 			},
