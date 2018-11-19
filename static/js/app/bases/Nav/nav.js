@@ -335,9 +335,74 @@ define(function (require) {
         			    "$ref": "app/view/BaoCao/PhieuNoiKiemChatLuong/view/ModelView",
         			    "visible":  false
         			},
-
-
-        			
+					{
+        			    "text":"Kết Quả Xét Nghiệm Nước Tai Chỗ",
+        			    "type":"view",
+        			    "collectionName":"ketquaxetnghiemtaicho",
+        			    "route":"ketquaxetnghiemtaicho/collection",
+        			    "$ref": "app/view/BaoCao/KetQuaXNNuocTaiCho/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"ketquaxetnghiemtaicho",
+        			    "route":"ketquaxetnghiemtaicho/model",
+        			    "$ref": "app/view/BaoCao/KetQuaXNNuocTaiCho/view/ModelView",
+        			    "visible":  false
+        			},
+					{
+        			    "text":"Phiếu Ngoại Kiểm Tra Chất Lượng",
+        			    "type":"view",
+        			    "collectionName":"phieungoaikiemchatluong",
+        			    "route":"phieungoaikiemchatluong/collection",
+        			    "$ref": "app/view/BaoCao/PhieuNgoaiKiemChatLuong/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"phieungoaikiemchatluong",
+        			    "route":"phieungoaikiemchatluong/model",
+        			    "$ref": "app/view/BaoCao/PhieuNgoaiKiemChatLuong/view/ModelView",
+        			    "visible":  false
+					},
+					{
+        			    "text":"Kiểm Tra Nguồn Nước Gia Đình",
+        			    "type":"view",
+        			    "collectionName":"kiemtranguonnuochogiadinh",
+        			    "route":"kiemtranguonnuochogiadinh/collection",
+        			    "$ref": "app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"kiemtranguonnuochogiadinh",
+        			    "route":"kiemtranguonnuochogiadinh/model",
+        			    "$ref": "app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/view/ModelView",
+        			    "visible":  false
+        			},
+        			{
+        			    "text":"TongHopKQNuocSinhHoatTren1000m",
+        			    "type":"view",
+        			    "collectionName":"tonghopkqnuocsinhhoattren1000m",
+        			    "route":"tonghopkqnuocsinhhoattren1000m/collection",
+        			    "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"Nước Sinh Hoạt Trên 1000m",
+        			    "route":"tonghopkqnuocsinhhoattren1000m/model",
+        			    "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
+        			    "visible":  false
+        			},
         			
         			],
 			 },

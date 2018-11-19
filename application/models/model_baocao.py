@@ -184,6 +184,7 @@ class KiemTraNguonNuocHoGiaDinh(CommonModel):
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh', viewonly=True)
     thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+    thonxom = relationship('ThonXom')  
     thonxom_ten = db.Column(db.String)
     xaphuong_ten = db.Column(db.String)
     quanhuyen_ten = db.Column(db.String)

@@ -132,5 +132,8 @@
     },
     "tinhthanh": {
         "type": "dict"
+    },
+    "thonxom": {
+        "type": "dict"
     }
 }
