@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/KQSuaChuaSieuDuLieu/tpl/model.html'),
-    	schema 				= require('json!schema/KQSuaChuaSieuDuLieuSchema.json');
+    var template 				= require('text!app/view/BaoCao/BCKetQuaKiemTra/tpl/model.html'),
+    	schema 				= require('json!schema/BCKetQuaKiemTraSchema.json');
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "kqsuachuasieudulieu",
+    	collectionName: "bcketquakiemtra",
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",

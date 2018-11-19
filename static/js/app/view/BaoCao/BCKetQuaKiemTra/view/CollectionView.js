@@ -4,22 +4,20 @@ define(function (require) {
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
 		
-    var template 			= require('text!app/view/BaoCao/BanGiaoSanPham/tpl/collection.html'),
-    	schema 				= require('json!schema/BanGiaoSanPhamSchema.json');
+    var template 			= require('text!app/view/BaoCao/BCKetQuaKiemTra/tpl/collection.html'),
+    	schema 				= require('json!schema/BCKetQuaKiemTraSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "bangiaosanpham",
+    	collectionName: "bcketquakiemtra",
     	uiControl:{
     		fields: [
     			 { field: "id", label: "ID", width:250},
-				 { field: "tenbienban", label: "Tên Biên Bản", width:250 },
-				 { field: "thanhphan", label: "Thành Phần", width:250},
-				 { field: "bengiao", label: "Bên Giao", width:250},
-				 { field: "bennhan", label: "Bên Nhận", width:250},
-	    	     { field: "sanphambangiao", label: "Sản Phẩm Bàn Giao", width:250},
+				 { field: "tenbaocao", label: "Tên Báo Cáo", width:250 },
+				 { field: "tenduan", label: "Tên Dự Án", width:250},
+	    	     { field: "mucdich", label: "Mục Đích", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

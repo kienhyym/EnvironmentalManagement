@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/BaoCao/NguoiThamGiaSuaChua/tpl/collection.html'),
-    	schema 				= require('json!schema/NguoiThamGiaSuaChuaSchema.json');
+    var template 			= require('text!app/view/BaoCao/MauDuLieuDacTa/tpl/collection.html'),
+    	schema 				= require('json!schema/MauDuLieuDacTaSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "nguoithamgiasuachua",
+    	collectionName: "maudulieudacta",
     	textField: "stt",
     	tools : [
     	    {
@@ -39,7 +39,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "Nguoithamgiasuachua_filter"
+    			sessionKey: "Maudulieudacta_filter"
     		});
     		filter.render();
     		
@@ -47,7 +47,7 @@ define(function (require) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
 					{"stt": {"$like": text }},
-					{"hoten": {"$like": text }},
+					{"dulieudacta": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -60,7 +60,7 @@ define(function (require) {
 					if (text !== null){
 						var filters = { "$or": [
 							{"stt": {"$like": text }},
-							{"hoten": {"$like": text }},
+							{"dulieudacta": {"$like": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

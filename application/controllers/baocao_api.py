@@ -301,7 +301,7 @@ apimanager.create_api(BCXayDungDuLieuDacTa,
     collection_name='bcxaydungdulieudacta')
 
 
-apimanager.create_api(MauDulieuDacTa,
+apimanager.create_api(MauDuLieuDacTa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),

@@ -727,7 +727,7 @@ class BCXayDungDuLieuDacTa(CommonModel):
     nguoitaobaocaoky = db.Column(db.String)
 
     
-class MauDulieuDacTa(CommonModel):
+class MauDuLieuDacTa(CommonModel):
     __tablename__ = 'maudulieudacta'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     stt = db.Column(db.Integer)
