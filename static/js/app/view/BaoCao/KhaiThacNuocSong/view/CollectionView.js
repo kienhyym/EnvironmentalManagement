@@ -15,7 +15,8 @@ define(function (require) {
     	uiControl:{
     		fields: [
     			 { field: "id", label: "ID", width:250},
-    			 { field: "tenphieu", label: "Tên Phiếu", width:250 },
+				 { field: "tenphieu", label: "Tên Phiếu", width:250 },
+				 { field: "thongtu", label: "Thông Tư", width:250},
 	    	     { field: "loaiphieu", label: "Loại Phiếu", width:250},
 		     	
 		     ],

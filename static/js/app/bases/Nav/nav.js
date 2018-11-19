@@ -300,7 +300,42 @@ define(function (require) {
         			    "route":"khaithacnuocsong/model",
         			    "$ref": "app/view/BaoCao/KhaiThacNuocSong/view/ModelView",
         			    "visible":  false
+					},
+					{
+        			    "text":"Khai Thác Nước Từ Hồ Chứa",
+        			    "type":"view",
+        			    "collectionName":"khaithacnuoctuhochua",
+        			    "route":"khaithacnuoctuhochua/collection",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocTuHoChua/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
         			},
+					{
+        			    "type":"view",
+        			    "collectionName":"khaithacnuoctuhochua",
+        			    "route":"khaithacnuoctuhochua/model",
+        			    "$ref": "app/view/BaoCao/KhaiThacNuocTuHoChua/view/ModelView",
+        			    "visible":  false
+					},
+					{
+        			    "text":"Phiếu Nội Kiểm Tra Chất Lượng",
+        			    "type":"view",
+        			    "collectionName":"phieunoikiemchatluong",
+        			    "route":"phieunoikiemchatluong/collection",
+        			    "$ref": "app/view/BaoCao/PhieuNoiKiemChatLuong/view/CollectionView",
+        			    "visible": function(){
+        			    	return this.userHasRole("Admin");
+        			    }
+        			},
+					{
+        			    "type":"view",
+        			    "collectionName":"phieunoikiemchatluong",
+        			    "route":"phieunoikiemchatluong/model",
+        			    "$ref": "app/view/BaoCao/PhieuNoiKiemChatLuong/view/ModelView",
+        			    "visible":  false
+        			},
+
 
         			
         			

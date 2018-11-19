@@ -1,0 +1,156 @@
+<div>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">Trang Chủ</li>
+			<li class="breadcrumb-item"></li>Báo Cáo</li>
+			<li class="breadcrumb-item active" aria-current="page">Khai Thác Nước Sông</li>
+		</ol>
+	</nav>
+</div>
+
+
+<div style="margin-left: 15px" block-bind="toolbar"></div>
+<div block-bind="content">
+
+	<div class="container">
+
+
+
+		<div style="height: 9px"></div>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">ID</label>
+					<input type="text" class="form-control" readonly id="formGroupExampleInput" data-bind="value:id" />
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tên Phiếu</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tenphieu" />
+				</div>
+			</div>
+
+
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tên Phụ Lục</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tenphuluc" />
+				</div>
+			</div>
+
+
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Ngày Ban Hành</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:ngaybanhanhthongtu" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Thời Gian Kiểm Tra</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:thoigiankiemtra" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Loại Phiếu</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:loaiphieu" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Thông Tư</label>
+					<textarea cols="6" class="form-control" id="formGroupExampleInput" data-bind="value:thongtu"></textarea>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tên Cơ Sở</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tencoso" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Người Kiểm Tra</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:nguoikiemtra" />
+				</div>
+			</div>
+			
+		</div>
+
+
+
+		<div style="height: 30px"></div>
+		<div class="row">
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Phạm Vi</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:phamvi">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Biển Báo</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:bienbao">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Rác Thải</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:racthai">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Công Trình
+					Xây Dựng</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:congtrinhxaydung">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Đường Ống
+					Kênh Nước</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:duongongkenhmuong">
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Biến Đỗ</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:thuyenbeneodau">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Nguời Sinh
+					Hoạt</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:nguoisinhhoat">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Canh Tác Nông Nghiệp</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:canhtacnongnghiep">
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Nuôi Trồng</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:nuoitrong">
+				</div>
+			</div>
+
+
+			<div class="col-md-4">
+				<label class="form-check-label" for="inlineRadio1">Vật Nuôi</label>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" data-bind="value:vatnuoi">
+				</div>
+			</div>
+		</div>
+
+	</div>
