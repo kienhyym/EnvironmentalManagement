@@ -15,9 +15,11 @@ define(function (require) {
     	uiControl:{
     		fields: [
     			 { field: "stt", label: "STT", width:250},
-				 { field: "danhmucsp", label: "Danh Mục Sản Phẩm", width:250 },
-				 { field: "khuondang", label: "Khuôn Dạng", width:250},
+				 { field: "danhmucsp", label: "Danh mục sản phẩm", width:250 },
+				 { field: "khuondang", label: "Khuôn dạng", width:250},
 	    	     { field: "dvt", label: "DVT", width:250},
+	    	     { field: "soluong", label: "Số lượng", width:250},
+	    	     { field: "ghichu", label: "Ghi chú", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

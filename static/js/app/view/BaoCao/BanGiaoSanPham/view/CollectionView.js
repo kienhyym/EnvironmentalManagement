@@ -17,6 +17,8 @@ define(function (require) {
     			 { field: "id", label: "ID", width:250},
 				 { field: "tenbienban", label: "Tên Biên Bản", width:250 },
 				 { field: "thanhphan", label: "Thành Phần", width:250},
+				 { field: "bengiao", label: "Bên Giao", width:250},
+				 { field: "bennhan", label: "Bên Nhận", width:250},
 	    	     { field: "sanphambangiao", label: "Sản Phẩm Bàn Giao", width:250},
 		     	
 		     ],
