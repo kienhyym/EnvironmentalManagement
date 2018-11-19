@@ -757,7 +757,7 @@ class KQSuaChuaSieuDuLieu(CommonModel):
     loi = db.Column(db.String)
     sua = db.Column(db.String)
     khongsua = db.Column(db.String)
-    thoigiansua = db.Column(db.String)
+    thoigiansua = db.Column(db.DateTime())
     ghichu = db.Column(db.String)
 
     
@@ -768,7 +768,7 @@ class KQSuaChuaDuLieu(CommonModel):
     loi = db.Column(db.String)
     sua = db.Column(db.String)
     khongsua = db.Column(db.String)
-    thoigiansua = db.Column(db.String)
+    thoigiansua = db.Column(db.DateTime())
     ghichu = db.Column(db.String)
 
     
