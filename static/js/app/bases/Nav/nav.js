@@ -364,7 +364,23 @@ define(function(require) {
 								return this.userHasRole("Admin");
 							}
 						},
-						
+						{
+							"type" : "view",
+							"collectionName" : "kiemtranguonnuochogiadinh",
+							"route" : "kiemtranguonnuochogiadinh/model",
+							"$ref" : "app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/view/ModelView",
+							"visible" : false
+						},
+						{
+							"text" : "TongHopKQNuocSinhHoatTren1000m",
+							"type" : "view",
+							"collectionName" : "tonghopkqnuocsinhhoattren1000m",
+							"route" : "tonghopkqnuocsinhhoattren1000m/collection",
+							"$ref" : "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
 						{
 							"type" : "view",
 							"collectionName" : "Nước Sinh Hoạt Trên 1000m",
@@ -511,16 +527,7 @@ define(function(require) {
 							"$ref" : "app/view/BaoCao/KQSuaChuaSieuDuLieu/view/ModelView",
 							"visible" : false
 						},
-<<<<<<< HEAD
-						{
-							"text":"Nước Sinh Hoạt Trên 1000m",
-							"type":"view",
-							"collectionName":"tonghopkqnuocsinhhoattren1000m",
-							"route":"tonghopkqnuocsinhhoattren1000m/collection",
-							"$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
-							"visible": function(){
-=======
-						
+
 						{
 							"text" : "Kết Quả Sửa Chữa Dữ Liệu",
 							"type" : "view",
@@ -528,33 +535,17 @@ define(function(require) {
 							"route" : "kqsuachuadulieu/collection",
 							"$ref" : "app/view/BaoCao/KQSuaChuaDuLieu/view/CollectionView",
 							"visible" : function() {
->>>>>>> 18cb398197f06b452afcb0cc114511265edf4dec
 								return this.userHasRole("Admin");
 							}
 						},
 						{
-<<<<<<< HEAD
-							"type":"view",
-							"collectionName":"tonghopkqnuocsinhhoattren1000m",
-							"route":"tonghopkqnuocsinhhoattren1000m/model",
-							"$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
-							"visible":  false
-						},
-						{
-							"text":"Kết Quả Chất Lượng Nước Uống",
-							"type":"view",
-							"collectionName":"kqchatluongnuocanuong",
-							"route":"kqchatluongnuocanuong/collection",
-							"$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/CollectionView",
-							"visible": function(){
-=======
 							"type" : "view",
 							"collectionName" : "kqsuachuadulieu",
 							"route" : "kqsuachuadulieu/model",
 							"$ref" : "app/view/BaoCao/KQSuaChuaDuLieu/view/ModelView",
 							"visible" : false
 						},
-						
+
 						{
 							"text" : "BC Kết Quả Kiểm Tra",
 							"type" : "view",
@@ -562,32 +553,17 @@ define(function(require) {
 							"route" : "bcketquakiemtra/collection",
 							"$ref" : "app/view/BaoCao/BCKetQuaKiemTra/view/CollectionView",
 							"visible" : function() {
->>>>>>> 18cb398197f06b452afcb0cc114511265edf4dec
 								return this.userHasRole("Admin");
 							}
 						},
 						{
-<<<<<<< HEAD
-							"type":"view",
-							"collectionName":"kqchatluongnuocanuong",
-							"route":"kqchatluongnuocanuong/model",
-							"$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
-							"visible":  false
-						},{
-							"text":"Mẫu Nước Không Đạt",
-							"type":"view",
-							"collectionName":"maunuockhongdat",
-							"route":"maunuockhongdat/collection",
-							"$ref": "app/view/BaoCao/MauNuocKhongDat/view/CollectionView",
-							"visible": function(){
-=======
 							"type" : "view",
 							"collectionName" : "bcketquakiemtra",
 							"route" : "bcketquakiemtra/model",
 							"$ref" : "app/view/BaoCao/BCKetQuaKiemTra/view/ModelView",
 							"visible" : false
 						},
-						
+
 						{
 							"text" : "Mẫu Dữ Liệu Đặc Tả",
 							"type" : "view",
@@ -595,24 +571,51 @@ define(function(require) {
 							"route" : "maudulieudacta/collection",
 							"$ref" : "app/view/BaoCao/MauDuLieuDacTa/view/CollectionView",
 							"visible" : function() {
->>>>>>> 18cb398197f06b452afcb0cc114511265edf4dec
 								return this.userHasRole("Admin");
 							}
 						},
 						{
-<<<<<<< HEAD
-							"type":"view",
-							"collectionName":"maunuockhongdat",
-							"route":"maunuockhongdat/model",
-							"$ref": "app/view/BaoCao/MauNuocKhongDat/view/ModelView",
-							"visible":  false
-=======
 							"type" : "view",
 							"collectionName" : "maudulieudacta",
 							"route" : "maudulieudacta/model",
 							"$ref" : "app/view/BaoCao/MauDuLieuDacTa/view/ModelView",
 							"visible" : false
->>>>>>> 18cb398197f06b452afcb0cc114511265edf4dec
+						},
+
+						{
+							"text" : "Báo Cáo Xây Dựng Dữ Liệu Đặc Tả",
+							"type" : "view",
+							"collectionName" : "bcxaydungdulieudacta",
+							"route" : "bcxaydungdulieudacta/collection",
+							"$ref" : "app/view/BaoCao/BCXayDungDuLieuDacTa/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "bcxaydungdulieudacta",
+							"route" : "bcxaydungdulieudacta/model",
+							"$ref" : "app/view/BaoCao/BCXayDungDuLieuDacTa/view/ModelView",
+							"visible" : false
+						},
+
+						{
+							"text" : "Phân Loại Dữ Liệu",
+							"type" : "view",
+							"collectionName" : "phanloaidulieu",
+							"route" : "phanloaidulieu/collection",
+							"$ref" : "app/view/BaoCao/PhanLoaiDuLieu/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "phanloaidulieu",
+							"route" : "phanloaidulieu/model",
+							"$ref" : "app/view/BaoCao/PhanLoaiDuLieu/view/ModelView",
+							"visible" : false
 						},
 
 				],
