@@ -3,7 +3,7 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
+
     var template 			= require('text!app/view/BaoCao/PhieuNgoaiKiemChatLuong/tpl/collection.html'),
     	schema 				= require('json!schema/PhieuNgoaiKiemChatLuongSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
@@ -13,7 +13,7 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "phieungoaikiemchatluong",
-    	textField: "tenphieu",
+    	//textField: "tenphieu",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -210,7 +210,7 @@ define(function (require) {
     			sessionKey: "Phieunoikiemchatluong_filter"
     		});
     		filter.render();
-    		
+
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
@@ -220,7 +220,7 @@ define(function (require) {
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
-    		
+
     		filter.on('filterChanged', function(evt) {
     			var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
@@ -238,11 +238,11 @@ define(function (require) {
 				}
 				self.applyBindings();
     		});
-    		
+
     		return this;
-    		
+
     	},
-    	
+
     });
 
 });

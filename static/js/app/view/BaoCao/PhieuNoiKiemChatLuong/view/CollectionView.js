@@ -3,10 +3,10 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
-		
+
     var template 			= require('text!app/view/BaoCao/PhieuNoiKiemChatLuong/tpl/collection.html'),
     	schema 				= require('json!schema/PhieuNoiKiemChatLuongSchema.json');
-    
+
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -14,18 +14,18 @@ define(function (require) {
     	collectionName: "phieunoikiemchatluong",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
+    		    { field: "ngaybanhanhthongtu", label: "Ngày Ban Hành Thông", width:250},
 				 { field: "tenphieu", label: "Tên Phiếu", width:250 },
-				 { field: "thongtu", label: "Thông Tư", width:250},
-	    	     { field: "loaiphieu", label: "Loại Phiếu", width:250},
-		     	
+				 { field: "loaiphieu", label: "Loại Phiếu", width:250},
+	    	 { field: "tencoso", label: "Tên Cơ Sở", width:250},
+
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
 		        		var path = this.collectionName + '/model?id='+ event.rowId;
 		        		this.getApp().getRouter().navigate(path);
 		        }
-		    	
+
 		    }
     	},
 	    render:function(){

@@ -3,10 +3,10 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
-		
+
     var template 			= require('text!app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/tpl/collection.html'),
     	schema 				= require('json!schema/KiemTraNguonNuocHoGiaDinhSchema.json');
-    
+
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -14,33 +14,33 @@ define(function (require) {
     	collectionName: "kiemtranguonnuochogiadinh",
 		uiControl:{
 	    	fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",width:250,readonly: true, 
+	    	     {
+	    	    	field: "ngaybanhanh",label:"Ngày Ban Hành",width:250, 
 	    	     },
-		     	
+
 		     	 {
-	            	 field: "xaphuong_id", 
+	            	 field: "xaphuong_id",
 	            	 label: "Xã Phường",
 	            	 foreign: "xaphuong",
 	            	 foreignValueField: "id",
 	            	 foreignTextField: "ten",
 					},
 					{
-						field: "thonxom", 
+						field: "thonxom",
 						label: "Thôn Xóm",
 						foreign: "thonxom",
 						foreignValueField: "id",
 						foreignTextField: "ten",
 					   },
 					   {
-						field: "tinhthanh", 
+						field: "tinhthanh",
 						label: "Tỉnh Thành",
 						foreign: "tinhthanh",
 						foreignValueField: "id",
 						foreignTextField: "ten",
 					   },
 					   {
-						field: "quanhuyen", 
+						field: "quanhuyen",
 						label: "Quận Huyện",
 						foreign: "quanhuyen",
 						foreignValueField: "id",

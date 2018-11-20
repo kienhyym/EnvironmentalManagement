@@ -13,7 +13,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "tonghopkqnuocsinhhoattren1000m",
-		textField: "tenphieu",
+		//textField: "tenphieu",
 		tools: [
 			{
 				name: "defaultgr",
