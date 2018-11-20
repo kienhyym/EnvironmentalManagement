@@ -498,6 +498,8 @@ class MauNuocKhongDat(CommonModel):
     benuocmua = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
     
+
+#BeginCode
     
 class KQNgoaiKiemNuocSinhHoat(CommonModel):
     __tablename__ = 'kqngoaikiemnuocsinhhoat'
@@ -713,7 +715,8 @@ class PhanLoaiDuLieu(CommonModel):
     dvt = db.Column(db.String)
     soluong = db.Column(db.Integer)
     ghichu = db.Column(db.String)
-    
+
+    #EndCode 
     
 class BCXayDungDuLieuDacTa(CommonModel):
     __tablename__ = 'bcxaydungdulieudacta'

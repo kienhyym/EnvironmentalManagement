@@ -14,15 +14,9 @@ define(function (require) {
     	collectionName: "maunuockhongdat",
     	uiControl: {
 			fields: [
-				// {
-				// field:"ngaybanhanhthongtu",
-				// textFormat:"DD/MM/YYYY",
-				// extraFormats:["DDMMYYYY"],
-				// maxDate: currentDate,
-				// },
-
+			
 				{
-					field: "phamvi",
+					field: "cosocapnuoctt",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -36,7 +30,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "tuongraobaove",
+					field: "giengdao",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -50,7 +44,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "congtrinhxaydung",
+					field: "giengkhoan",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -64,7 +58,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "duongongkenhmuong",
+					field: "mangtuchay",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -78,7 +72,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "canhtacnongnghiep",
+					field: "benuocmua",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -92,21 +86,7 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				}, {
-					field: "vatnuoi",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "bairacthai",
+					field: "loaikhac",
 					uicontrol: "radio",
 					textField: "text",
 					valueField: "value",
@@ -120,38 +100,6 @@ define(function (require) {
 						cssClass: "yeallow"
 					},],
 				},
-
-				{
-					field: "phandongvat",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "nhatieu",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				
-				},
-
 			],
 		},
     	tools : [

@@ -14,10 +14,11 @@ define(function (require) {
     	collectionName: "maunuockhongdat",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-    			 { field: "thongtu", label: "Thông tư", width:250},
-	    	     { field: "loaiphieu", label: "Loại phiếu", width:250},
-		     	 { field: "tenphieu", label: "Tên phiếu", width:250 },
+           
+    			 { field: "giengdao", label: "Giếng đào ", width:250},
+	    	     { field: "giengkhoan", label: "Giếng khoan ", width:250},
+		     	 { field: "mangtuchay", label: "Máng tự chảy ", width:250 },
+		     	  { field: "benuocmua", label: "Bể nước mưa",with:250},
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

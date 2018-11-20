@@ -619,6 +619,23 @@ define(function(require) {
           "$ref": "app/view/BaoCao/PhanLoaiDuLieu/view/ModelView",
           "visible": false
         },
+         {
+          "text": "Mẫu nước không đạt",
+          "type": "view",
+          "collectionName": "maunuockhongdat",
+          "route": "maunuockhongdat/collection",
+          "$ref": "app/view/BaoCao/MauNuocKhongDat/view/CollectionView",
+          "visible": function() {
+            return this.userHasRole("Admin");
+          }
+        },
+        {
+          "type": "view",
+          "collectionName": "maunuockhongdat",
+          "route": "maunuockhongdat/model",
+          "$ref": "app/view/BaoCao/MauNuocKhongDat/view/ModelView",
+          "visible": false
+        },
 
       ],
     },
