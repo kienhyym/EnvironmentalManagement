@@ -6,7 +6,7 @@ define(function (require) {
 
     var template 				= require('text!app/view/BaoCao/KQSuaChuaDuLieu/tpl/model.html'),
     	schema 				= require('json!schema/KQSuaChuaDuLieuSchema.json');
-
+var maxDate = new Date();
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,

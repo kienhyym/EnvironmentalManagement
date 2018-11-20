@@ -14,7 +14,6 @@ define(function (require) {
     	collectionName: "kqsuachuadulieu",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
 				 { field: "tt", label: "TT", width:250 },
 				 { field: "loi", label: "Lỗi", width:250},
 	    	     { field: "sua", label: "Sửa", width:250},
