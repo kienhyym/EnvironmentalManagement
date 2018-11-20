@@ -64,48 +64,48 @@ apimanager.create_api(KiemTraNguonNuocHoGiaDinh,
     collection_name='kiemtranguonnuochogiadinh')
 
 
-apimanager.create_api(KiemTraNguonNuocTuChay,
+apimanager.create_api(NguonNuocTuChay,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kiemtranguonnuoctuchay')
+    collection_name='nguonnuoctuchay')
 
 ######
 
-apimanager.create_api(KiemTraNguonNuocGiengDao,
+apimanager.create_api(NguonNuocGiengDao,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kiemtranguonnuocgiengdao')
+    collection_name='nguonnuocgiengdao')
 
 
-apimanager.create_api(KiemTraNguonNuocGiengKhoanTren25m,
+apimanager.create_api(NguonNuocGiengKhoanTren25m,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kiemtranguonnuocgiengkhoantren25m')
+    collection_name='nguonnuocgiengkhoantren25m')
 
 
-apimanager.create_api(KiemTraNguonNuocGiengKhoanDuoi25m,
+apimanager.create_api(NguonNuocGiengKhoanDuoi25m,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kiemtranguonnuocgiengkhoanduoi25m')
+    collection_name='nguonnuocgiengkhoanduoi25m')
 
 
-apimanager.create_api(KiemTraHeThongThuHungNuocMua,
+apimanager.create_api(HeThongThuHungNuocMua,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kiemtrahethongthuhungnuocmua')
+    collection_name='hethongthuhungnuocmua')
 
 ######
 
-apimanager.create_api(LuuTruNuoc,
+apimanager.create_api(LuuTruNuocBECHUMVAI,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='luutrunuoc')
+    collection_name='luutrunuocbechumvai')
 
 
 apimanager.create_api(KiemTraVSChatLuongNuocThanhPham,
@@ -122,11 +122,11 @@ apimanager.create_api(BanGiaoSanPham,
     collection_name='bangiaosanpham')
 
 
-apimanager.create_api(DuAnBanGiao,
+apimanager.create_api(DanhMucSanPham,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='duanbangiao')
+    collection_name='danhmucsanpham')
 
 
 ######
