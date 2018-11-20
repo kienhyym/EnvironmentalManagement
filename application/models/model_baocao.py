@@ -242,7 +242,6 @@ class KiemTraNguonNuocGiengDao(CommonModel):
     __tablename__ = 'kiemtranguonnuocgiengdao'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
-    thongtinkiemtra = db.Column(db.String)
     conhatieugangieng10m = db.Column(db.Integer)
     cobairacgangieng10m = db.Column(db.Integer)
     cochuonggiasucgangieng10m = db.Column(db.Integer)
@@ -258,7 +257,6 @@ class KiemTraNguonNuocGiengKhoanTren25m(CommonModel):
     __tablename__ = 'kiemtranguonnuocgiengkhoantren25m'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
-    thongtinkiemtra = db.Column(db.String)
     cogieng = db.Column(db.Integer)
     sangieng = db.Column(db.Integer)
     dungcubomnuoc = db.Column(db.Integer)

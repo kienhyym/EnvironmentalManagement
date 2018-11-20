@@ -812,6 +812,25 @@
             "$ref": "app/view/BaoCao/CapTheoNguonNuoc/view/ModelView",
             "visible": false
           },
+          
+          {
+              "text": "Kiểm Tra Nguồn Nước Giếng Đào",
+              "type": "view",
+              "collectionName": "kiemtranguonnuocgiengdao",
+              "route": "kiemtranguonnuocgiengdao/collection",
+              "$ref": "app/view/BaoCao/KiemTraNguonNuocGiengDao/view/CollectionView",
+              "visible": function() {
+               return this.userHasRole("Admin");
+             }
+            },
+            {
+             "type": "view",
+             "collectionName": "kiemtranguonnuocgiengdao",
+             "route": "kiemtranguonnuocgiengdao/model",
+             "$ref": "app/view/BaoCao/KiemTraNguonNuocGiengDao/view/ModelView",
+             "visible": false
+            },
+
 
 
           ],
