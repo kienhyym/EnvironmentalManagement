@@ -620,7 +620,7 @@ define(function(require) {
           "visible": false
         },
          {
-          "text": "Mẫu nước không đạt",
+          "text": "Mẫu Nước Không Đạt",
           "type": "view",
           "collectionName": "maunuockhongdat",
           "route": "maunuockhongdat/collection",
@@ -651,6 +651,39 @@ define(function(require) {
             "collectionName": "kqchatluongnuocanuong",
             "route": "kqchatluongnuocanuong/model",
             "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
+            "visible": false
+          },
+          {
+            "text": "Phân Loại Và Đánh Gía Dữ Liệu",
+            "type": "view",
+            "collectionName": "phanloaivadanhgiadulieu",
+            "route": "phanloaivadanhgiadulieu/collection",
+            "$ref": "app/view/BaoCao/PhanLoaiVaDanhGiaDuLieu/view/CollectionView",
+            "visible": function() {
+              return this.userHasRole("Admin");
+            }
+          },
+          {
+            "type": "view",
+            "collectionName": "phanloaivadanhgiadulieu",
+            "route": "phanloaivadanhgiadulieu/model",
+            "$ref": "app/view/BaoCao/PhanLoaiVaDanhGiaDuLieu/view/ModelView",
+            "visible": false
+          },
+           "text": "Dữ Liệu Đã Thu Thập",
+            "type": "view",
+            "collectionName": "dulieudathuthap",
+            "route": "dulieudathuthap/collection",
+            "$ref": "app/view/BaoCao/DuLieuDaThuThap/view/CollectionView",
+            "visible": function() {
+              return this.userHasRole("Admin");
+            }
+          },
+          {
+            "type": "view",
+            "collectionName": "dulieudathuthap",
+            "route": "dulieudathuthap/model",
+            "$ref": "app/view/BaoCao/DuLieuDaThuThap/view/ModelView",
             "visible": false
           },
 
