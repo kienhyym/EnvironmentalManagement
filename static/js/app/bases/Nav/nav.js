@@ -704,6 +704,24 @@ define(function(require) {
             "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/ModelView",
             "visible": false
           },
+          
+          {
+              "text": "Kết Quả Ngoại Kiểm Tra Nước Vệ Sinh",
+               "type": "view",
+               "collectionName": "kqngoaikiemnuocsinhhoat",
+               "route": "kqngoaikiemnuocsinhhoat/collection",
+               "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/CollectionView",
+               "visible": function() {
+                 return this.userHasRole("Admin");
+               }
+             },
+             {
+               "type": "view",
+               "collectionName": "kqngoaikiemnuocsinhhoat",
+               "route": "kqngoaikiemnuocsinhhoat/model",
+               "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/ModelView",
+               "visible": false
+             },
       ],
     },
 

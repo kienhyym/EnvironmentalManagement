@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
 
-    var template 			= require('text!app/view/BaoCao/KQChatLuongNuocAnUong/tpl/collection.html'),
-    	schema 				= require('json!schema/KQChatLuongNuocAnUongSchema.json');
+    var template 			= require('text!app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/tpl/collection.html'),
+    	schema 				= require('json!schema/KQNgoaiKiemNuocSinhHoatSchema.json');
 
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "kqchatluongnuocanuong",
+    	collectionName: "kqngoaikiemnuocsinhhoat",
     	uiControl:{
     		fields: [
     			 { field: "tenbaocao", label: "Tên báo cáo", width:250},
