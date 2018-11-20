@@ -6,14 +6,14 @@ define(function (require) {
 
 	var template 			= require('text!app/view/tpl/HeThong/DonVi/collectiontree.html'),
 	schema 				= require('json!schema/DonViSchema.json');
-	
+
 //	var LienHeModelView 	= require("app/view/HeThong/DonVi/LienHeModelView");
-	
+
 	var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/view/SelectView");
     var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
     var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/view/SelectView");
     var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/view/SelectView");
-    
+
 	var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
 	var AddUserDialogView = require('app/view/HeThong/DonVi/view/AddUserDialog');
 
@@ -43,7 +43,7 @@ define(function (require) {
 		        	        		   self.getApp().showloading();
 		        	        		   self.model.save(null,{
 		        	        			   success: function (model, respose, options) {
-		        	        				  
+
 		        	        				   self.getApp().notify("Lưu đơn vị thành công!");
 		        	        			   },
 		        	        			   error: function (model, xhr, options) {
@@ -160,7 +160,7 @@ define(function (require) {
 		    				          {field:"donvi_id", visible:false},
 		                	          {field:"ten", label:"Tên"},
 		                	          {field:"macongdan", label: "Mã công dân"},
-		                	          
+
 		                	        ],
 		                	tools:[
 	            	                 {
@@ -219,7 +219,7 @@ define(function (require) {
 		//tools:[],
 		urlPrefix: "/api/v1/",
 		collectionName: "donvi",
-		
+
 		render:function(){
 			var self = this;
 			var url = "/api/v1/donvitree";
@@ -228,10 +228,10 @@ define(function (require) {
 				dataType: "json",
 				contentType: "application/json",
 				success: function(data) {
-//					if(!response || response.length ===0){
-//						return;
-//					}
-//					var data = response[0];
+					// if(!response || response.length ===0){
+					// 	return;
+					// }
+					// var data = response[0];
 					data.state = {selected: true};
 					var tree = self.$el.find("#donvi-tree");
 					datatree = []
@@ -245,7 +245,7 @@ define(function (require) {
 						textField: "ten",
 						onNodeSelected: $.proxy(self.onItemClick, self)
 					});
-					
+
 					var selectedNodes = tree.treeview('getSelected');
 					if(selectedNodes && (selectedNodes.length > 0)){
 						var node = selectedNodes[0];

@@ -2,7 +2,7 @@ define(function (require) {
 	"use strict";
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-	var template = require('text!app/view/BaoCao/PhieuNoiKiemChatLuong/tpl/model.html'), 
+	var template = require('text!app/view/BaoCao/PhieuNoiKiemChatLuong/tpl/model.html'),
 	schema = require('json!schema/PhieuNoiKiemChatLuongSchema.json');
 
 	var maxDate = new Date();
@@ -15,12 +15,18 @@ define(function (require) {
 
 			uiControl: {
 				fields: [
-					// {
-					// field:"ngaybanhanhthongtu",
-					// textFormat:"DD/MM/YYYY",
-					// extraFormats:["DDMMYYYY"],
-					// maxDate: currentDate,
-					// },
+					{
+						field:"ngaybanhanhthongtu",
+						textFormat:"DD/MM/YYYY",
+						extraFormats:["DDMMYYYY"],
+						maxDate,
+						},
+						{
+							field:"thoigiankiemtra",
+							textFormat:"DD/MM/YYYY",
+							extraFormats:["DDMMYYYY"],
+							maxDate,
+							},
 
 					{
 						field: "phamvi",

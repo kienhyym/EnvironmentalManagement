@@ -3,11 +3,11 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
+
     var template 				= require('text!app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/tpl/model.html'),
     	schema 				= require('json!schema/TongHopKQNuocSinhHoatTren1000mSchema.json');
-	
-	
+
+      var maxDate = new Date();
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -15,7 +15,18 @@ define(function (require) {
     	collectionName: "tonghopkqnuocsinhhoattren1000m",
     	uiControl: {
 			fields: [
-				
+        {
+          field:"ngaybanhanhphieu",
+          textFormat:"DD/MM/YYYY",
+          extraFormats:["DDMMYYYY"],
+          maxDate,
+          },
+          {
+            field:"ngaybaocao",
+            textFormat:"DD/MM/YYYY",
+            extraFormats:["DDMMYYYY"],
+            maxDate,
+            },
 
 			],
 		},
@@ -32,7 +43,7 @@ define(function (require) {
 							label: "TRANSLATE:BACK",
 							command: function(){
 								var self = this;
-								
+
 								Backbone.history.history.back();
 							}
 						},
@@ -43,16 +54,16 @@ define(function (require) {
 			    	    	label: "TRANSLATE:SAVE",
 			    	    	command: function(){
 			    	    		var self = this;
-			    	    		
+
 			                    self.model.save(null,{
 			                        success: function (model, respose, options) {
 			                            self.getApp().notify("Lưu thông tin thành công");
 			                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-			                            
+
 			                        },
 			                        error: function (model, xhr, options) {
 			                            self.getApp().notify('Lưu thông tin không thành công!');
-			                           
+
 			                        }
 			                    });
 			    	    	}
@@ -74,16 +85,16 @@ define(function (require) {
 			                        },
 			                        error: function (model, xhr, options) {
 			                            self.getApp().notify('Xoá dữ liệu không thành công!');
-			                            
+
 			                        }
 			                    });
 			    	    	}
 			    	    },
 	    	    	],
 	    	    }],
-	    	
-	        	
-	        	
+
+
+
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
@@ -100,7 +111,7 @@ define(function (require) {
     		}else{
     			self.applyBindings();
     		}
-    		
+
     	},
     });
 

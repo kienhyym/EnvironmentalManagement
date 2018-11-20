@@ -14,13 +14,13 @@ define(function (require) {
     	collectionName: "phanloaidulieu",
     	uiControl:{
     		fields: [
-    		
+
 				 { field: "stt", label: "STT", width:250 },
-				 { field: "dulieu", label: "Dữ Liệu", width:250},
-				 { field: "khuondang", label: "Khuôn Dạng", width:250},
+				 { field: "dulieu", label: "Dữ liệu", width:250},
+				 { field: "khuondang", label: "Khuôn dạng", width:250},
 				 { field: "dvt", label: "DVT", width:250},
-				 { field: "soluong", label: "Số Lượng", width:250},
-				 { field: "ghichu", label: "Ghi Chú", width:250},
+				 { field: "soluong", label: "Số lượng", width:250},
+				 { field: "ghichu", label: "Ghi chú", width:250},
 
 		     ],
 		     onRowClick: function(event){

@@ -14,10 +14,10 @@ define(function (require) {
     	collectionName: "phieungoaikiemchatluong",
     	uiControl:{
     		fields: [
-    			{ field: "ngaybanhanhthongtu", label: "Ngày Ban Hành Thông Tư", width:250},
-				 { field: "tenphieu", label: "Tên Phiếu", width:250 },
-				 { field: "diachi", label: "Địa Chỉ", width:250},
-				 { field: "loaiphieu", label: "Loại Phiếu", width:250},
+    			{ field: "ngaybanhanhthongtu", label: "Ngày ban hành thông tư", width:250},
+				 { field: "tenphieu", label: "Tên phiếu", width:250 },
+				 { field: "diachi", label: "Địa chỉ", width:250},
+				 { field: "loaiphieu", label: "Loại phiếu", width:250},
 
 
 

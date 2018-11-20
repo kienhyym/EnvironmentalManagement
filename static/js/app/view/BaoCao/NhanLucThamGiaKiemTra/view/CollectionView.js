@@ -17,7 +17,7 @@ define(function (require) {
     			 { field: "id", label: "ID", width:250},
 				 { field: "stt", label: "STT", width:250 },
 				 { field: "hovaten", label: "Họ và tên", width:250},
-	    	     { field: "congviec", label: "Công Việc Thực Hiện", width:250},
+	    	     { field: "congviec", label: "Công việc thực hiện", width:250},
 
 		     ],
 		     onRowClick: function(event){

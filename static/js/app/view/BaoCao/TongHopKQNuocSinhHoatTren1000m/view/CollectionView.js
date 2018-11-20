@@ -14,10 +14,10 @@ define(function (require) {
     	collectionName: "tonghopkqnuocsinhhoattren1000m",
     	uiControl:{
     		fields: [
-    			 { field: "ngaybanhanhthongtu", label: "Ngày Ban Hành Thông Thư", width:250},
-    			 { field: "tenbaocao", label: "Tên Báo Cáo", width:250},
-	    	     { field: "tenphuluc", label: "Tên Phụ Lục", width:250},
-		     	 { field: "sophieu", label: "Số Phiếu", width:250 },
+    			 { field: "ngaybanhanhthongtu", label: "Ngày ban hành thông tư", width:250},
+    			 { field: "tenbaocao", label: "Tên báo cáo", width:250},
+	    	     { field: "tenphuluc", label: "Tên phụ lục", width:250},
+		     	 { field: "sophieu", label: "Số phiếu", width:250 },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

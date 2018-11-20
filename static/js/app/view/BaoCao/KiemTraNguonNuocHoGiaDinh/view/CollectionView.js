@@ -15,33 +15,34 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     {
-	    	    	field: "ngaybanhanh",label:"Ngày Ban Hành",width:250, 
+	    	    	field: "ngaybanhanhthongtu",label:"Ngày ban hành",
+              field: "tenhogiadinh",label:"Tên hộ gia đình",
 	    	     },
 
 		     	 {
 	            	 field: "xaphuong_id",
-	            	 label: "Xã Phường",
+	            	 label: "Xã phường",
 	            	 foreign: "xaphuong",
 	            	 foreignValueField: "id",
 	            	 foreignTextField: "ten",
 					},
 					{
 						field: "thonxom",
-						label: "Thôn Xóm",
+						label: "Thôn xóm",
 						foreign: "thonxom",
 						foreignValueField: "id",
 						foreignTextField: "ten",
 					   },
 					   {
 						field: "tinhthanh",
-						label: "Tỉnh Thành",
+						label: "Tỉnh thành",
 						foreign: "tinhthanh",
 						foreignValueField: "id",
 						foreignTextField: "ten",
 					   },
 					   {
 						field: "quanhuyen",
-						label: "Quận Huyện",
+						label: "Quận huyện",
 						foreign: "quanhuyen",
 						foreignValueField: "id",
 						foreignTextField: "ten",
