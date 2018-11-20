@@ -886,6 +886,42 @@
             "visible": false
           },
 
+          {
+              "text": "Số Lượng Mẫu Nước Không Đạt",
+              "type": "view",
+              "collectionName": "slmaunuockhongdat",
+              "route": "slmaunuockhongdat/collection",
+              "$ref": "app/view/BaoCao/SLMauNuocKhongDat/view/CollectionView",
+              "visible": function() {
+               return this.userHasRole("Admin");
+             }
+             },
+             {
+               "type": "view",
+               "collectionName": "slmaunuockhongdat",
+               "route": "slmaunuockhongdat/model",
+               "$ref": "app/view/BaoCao/SLMauNuocKhongDat/view/ModelView",
+               "visible": false
+             },
+             
+             {
+                 "text": "Kết Quả Kiểm Tra Chất Lượng Nước Sinh Hoạt",
+                 "type": "view",
+                 "collectionName": "kqktchatluongnuocsinhhoat",
+                 "route": "kqktchatluongnuocsinhhoat/collection",
+                 "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoat/view/CollectionView",
+                 "visible": function() {
+                  return this.userHasRole("Admin");
+                }
+                },
+                {
+                  "type": "view",
+                  "collectionName": "kqktchatluongnuocsinhhoat",
+                  "route": "kqktchatluongnuocsinhhoat/model",
+                  "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoat/view/ModelView",
+                  "visible": false
+                },
+
 
 
 
