@@ -851,7 +851,7 @@
           },
 
             {
-           "text": "% Mẫu Nước Không Đạt",
+           "text": "Phần Trăm Mẫu Nước Không Đạt",
            "type": "view",
            "collectionName": "phantrammaunuockhongdat",
            "route": "phantrammaunuockhongdat/collection",
