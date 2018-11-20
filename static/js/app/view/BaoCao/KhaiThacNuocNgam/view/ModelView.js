@@ -7,6 +7,8 @@ define(function (require) {
     var template 				= require('text!app/view/BaoCao/KhaiThacNuocNgam/tpl/model.html'),
     	schema 				= require('json!schema/KhaiThacNuocNgamSchema.json');
     
+    var maxDate = new Date();
+    
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -14,28 +16,14 @@ define(function (require) {
     	collectionName: "khaithacnuocngam",
     	uiControl: {
 			fields: [
-				// {
-				// field:"ngaybanhanhthongtu",
-				// textFormat:"DD/MM/YYYY",
-				// extraFormats:["DDMMYYYY"],
-				// maxDate: currentDate,
-				// },
+				 {
+				 field:"ngaybanhanhthongtu",
+				 textFormat:"DD/MM/YYYY",
+				 extraFormats:["DDMMYYYY"],
+				 maxDate,
+				 },
 
 				{
-					field: "phamvi",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
 					field: "tuongraobaove",
 					uicontrol: "radio",
 					textField: "text",

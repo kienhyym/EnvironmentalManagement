@@ -14,10 +14,11 @@ define(function (require) {
     	collectionName: "khaithacnuocngam",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-    			 { field: "thongtu", label: "Thông Tư", width:250},
-	    	     { field: "loaiphieu", label: "Loại Phiếu", width:250},
-		     	 { field: "tenphieu", label: "Tên Phiếu", width:250 },
+    			{ field: "ngaybanhanhthongtu", label: "Ngày ban hành thông tư", width:250},
+    			 { field: "thongtu", label: "Thông tư", width:250},
+	    	     { field: "loaiphieu", label: "Loại phiếu", width:250},
+		     	 { field: "tenphieu", label: "Tên phiếu", width:250 },
+		     	 { field: "phamvi", label: "Phạm vi", width:250},
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
