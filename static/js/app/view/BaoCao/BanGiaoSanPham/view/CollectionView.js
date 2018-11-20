@@ -6,7 +6,6 @@ define(function (require) {
 		
     var template 			= require('text!app/view/BaoCao/BanGiaoSanPham/tpl/collection.html'),
     	schema 				= require('json!schema/BanGiaoSanPhamSchema.json');
-    
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -14,12 +13,12 @@ define(function (require) {
     	collectionName: "bangiaosanpham",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-				 { field: "tenbienban", label: "Tên Biên Bản", width:250 },
-				 { field: "thanhphan", label: "Thành Phần", width:250},
-				 { field: "bengiao", label: "Bên Giao", width:250},
-				 { field: "bennhan", label: "Bên Nhận", width:250},
-	    	     { field: "sanphambangiao", label: "Sản Phẩm Bàn Giao", width:250},
+    			 { field: "ngaytaobienban", label: "Ngày tạo biên bản", width:250 },
+				 { field: "tenbienban", label: "Tên biên bản", width:250 },
+				 { field: "thanhphan", label: "Thành phần", width:250},
+				 { field: "bengiao", label: "Bên giao", width:250},
+				 { field: "bennhan", label: "Bên nhận", width:250},
+	    	     { field: "sanphambangiao", label: "Sản phẩm bàn giao", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

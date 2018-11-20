@@ -14,13 +14,12 @@ define(function (require) {
     	collectionName: "bcxaydungdulieudacta",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-				 { field: "tenphuluc", label: "Tên Phụ Lục", width:250 },
-				 { field: "tenbaocao", label: "Tên Báo Cáo", width:250},
-				 { field: "tenduan", label: "Tên Dự Án", width:250 },
-				 { field: "donvithuchien", label: "Đơn Vị Thực Hiện", width:250 },
-				 { field: "thongtinbosung", label: "Thông Tin Bổ Sung", width:250 },
-				 { field: "ngaytaobaocao", label: "Ngày Tạo Báo Cáo", width:250 },
+				 { field: "tenphuluc", label: "Tên phụ lục", width:250 },
+				 { field: "tenbaocao", label: "Tên báo cáo", width:250},
+				 { field: "tenduan", label: "Tên dự án", width:250 },
+				 { field: "donvithuchien", label: "Đơn vị thực hiện", width:250 },
+				 { field: "thongtinbosung", label: "Thông tin bổ sung", width:250 },
+				 { field: "ngaytaobaocao", label: "Ngày tạo báo cáo", width:250 },
 		     	
 		     ],
 		     onRowClick: function(event){

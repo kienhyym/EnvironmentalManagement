@@ -19,7 +19,7 @@ def default_uuid():
 
 class KhaiThacNuocNgam(CommonModel):
     __tablename__ = 'khaithacnuocngam'
-    id = db.Column(UUID(as_uuid=True),primary_key=True, default=default_uuid)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     tenphuluc = db.Column(db.String)
     thongtu = db.Column(db.String)
     ngaybanhanhthongtu = db.Column(db.DateTime())
@@ -678,7 +678,7 @@ class BanGiaoDuLieuDaThuThap(CommonModel):
     bengiaoky = db.Column(db.String)
     bennhanky = db.Column(db.String)
 
-    
+
 class DuLieuDaThuThap(CommonModel):
     __tablename__ = 'dulieudathuthap'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)

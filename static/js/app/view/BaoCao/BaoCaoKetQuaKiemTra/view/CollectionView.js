@@ -14,10 +14,10 @@ define(function (require) {
     	collectionName: "baocaoketquakiemtra",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-				 { field: "tenbaocao", label: "Tên Báo Cáo", width:250 },
-				 { field: "tenduan", label: "Tên Dự Án", width:250},
-	    	     { field: "ykiennhomkiemtra", label: "Ý Kiến Nhóm Kiểm Tra", width:250},
+				 { field: "tenbaocao", label: "Tên báo cáo", width:250 },
+				 { field: "tenduan", label: "Tên dự án", width:250},
+				 { field: "mucdich", label: "Mục đích", width:250},
+	    	     { field: "ykiennhomkiemtra", label: "Ý kiến nhóm kiểm tra", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

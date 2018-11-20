@@ -15,9 +15,9 @@ define(function (require) {
     	uiControl:{
     		fields: [
     			 { field: "id", label: "ID", width:250},
-				 { field: "tenbaocao", label: "Tên Báo Cáo", width:250 },
-				 { field: "tenduan", label: "Tên Dự Án", width:250},
-	    	     { field: "mucdich", label: "Mục Đích", width:250},
+				 { field: "tenbaocao", label: "Tên báo cáo", width:250 },
+				 { field: "tenduan", label: "Tên dự án", width:250},
+	    	     { field: "mucdich", label: "Mục đích", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

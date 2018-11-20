@@ -14,10 +14,11 @@ define(function (require) {
     	collectionName: "ketquaxetnghiemtaicho",
     	uiControl:{
     		fields: [
-    			 { field: "id", label: "ID", width:250},
-				 { field: "baocao_tenphieu", label: "Báo Cáo Tên Phiếu", width:250 },
-				 { field: "tenmau", label: "Tên Mẫu", width:250},
-	    	     { field: "mamau", label: "Mã Mẫu", width:250},
+				 { field: "baocao_tenphieu", label: "Báo cáo tên phiếu", width:250 },
+				 { field: "mamau", label: "Mã mẫu", width:250},
+				 { field: "tenmau", label: "Tên mẫu", width:250},
+	    	     { field: "vitrilaymau", label: "Vị trí lấy mẫu", width:250},
+	    	     { field: "danhgia", label: "Đánh giá", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){

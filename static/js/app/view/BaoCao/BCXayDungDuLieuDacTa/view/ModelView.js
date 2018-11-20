@@ -6,12 +6,23 @@ define(function (require) {
     
     var template 				= require('text!app/view/BaoCao/BCXayDungDuLieuDacTa/tpl/model.html'),
     	schema 				= require('json!schema/BCXayDungDuLieuDacTaSchema.json');
-    
+    var maxDate  = new Date();
+    var currentDate = new Date();
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "bcxaydungdulieudacta",
+    	uiControl:{
+    		fields: [
+    			{
+  					field:"ngaytaobaocao",
+  					textFormat:"DD/MM/YYYY",
+  					extraFormats:["DDMMYYYY"],
+  					maxDate: currentDate
+  				},
+		     ],
+    	},
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",
