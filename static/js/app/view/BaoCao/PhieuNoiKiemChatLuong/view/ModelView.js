@@ -16,6 +16,12 @@ define(function (require) {
 			uiControl: {
 				fields: [
 					{
+						field:"ngaykiemtra",
+						textFormat:"DD/MM/YYYY",
+						extraFormats:["DDMMYYYY"],
+						maxDate,
+						},
+					{
 						field:"ngaybanhanhthongtu",
 						textFormat:"DD/MM/YYYY",
 						extraFormats:["DDMMYYYY"],

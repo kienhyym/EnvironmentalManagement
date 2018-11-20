@@ -34,188 +34,19 @@ define(function (require) {
     	    	]
     	    },
     	],
-    	// uiControl : {
-		// 	fields : [
-		// 	// {
-		// 	// field:"ngaybanhanhthongtu",
-		// 	// textFormat:"DD/MM/YYYY",
-		// 	// extraFormats:["DDMMYYYY"],
-		// 	// maxDate: currentDate,
-		// 	// },
-
-		// 	{
-		// 		field : "phamvi",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "bienbao",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "vatnuoi",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "nuoitrongthuysan",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "khaithactainguyen",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "nguoisinhhoat",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "duongongkenhmuong",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	},
-
-		// 	{
-		// 		field : "chanrac",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "bendoneodau",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "duonguongkenhmuong",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	}, {
-		// 		field : "congtrinhxaydung",
-		// 		uicontrol : "radio",
-		// 		textField : "text",
-		// 		valueField : "value",
-		// 		cssClassField : "cssClass",
-		// 		dataSource : [ {
-		// 			value : 0,
-		// 			text : "Có"
-		// 		}, {
-		// 			value : 1,
-		// 			text : "Không",
-		// 			cssClass : "yeallow"
-		// 		}, ],
-		// 	},
-
-		// 	],
-		// },
     	render:function(){
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "Phieunoikiemchatluong_filter"
+    			sessionKey: "Ketquaxenghiemtaicho_filter"
     		});
     		filter.render();
     		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"loaiphieu": {"$like": text }},
-					{"tenphieu": {"$like": text }},
+					{"mamau": {"$like": text }},
+					{"tenmau": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -227,8 +58,8 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"loaiphieu": {"$like": text }},
-							{"tenphieu": {"$like": text }},
+							{"mamau": {"$like": text }},
+							{"tenmau": {"$like": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
