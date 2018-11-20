@@ -14,11 +14,12 @@ define(function (require) {
     	uiControl:{
     		fields: [
     			 { field: "ngaybaocao", label: "Ngày báo cáo", width:250 },
-				 { field: "tenbienban", label: "Tên biên bản", width:250 },
+				 { field: "tenbaocao", label: "Tên báo cáo", width:250 },
 				 { field: "thanhphan", label: "Thành phần", width:250},
 				 { field: "bengiao", label: "Bên giao", width:250},
 				 { field: "bennhan", label: "Bên nhận", width:250},
-	    	     { field: "sanphambangiao", label: "Sản phẩm bàn giao", width:250},
+	    	     { field: "bengiaoky", label: "Bên giao ký", width:250},
+	    	      { field: "bennhanky", label: "Bên nhận ký", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){
