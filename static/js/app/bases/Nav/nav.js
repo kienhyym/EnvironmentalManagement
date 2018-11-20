@@ -832,6 +832,27 @@
             },
 
 
+          {
+           "text": "KQ Kiểm Tra Nước Sinh Hoạt",
+           "type": "view",
+           "collectionName": "kqktvesinhnuocsinhhoat",
+           "route": "kqktvesinhnuocsinhhoat/collection",
+           "$ref": "app/view/BaoCao/KQKTVeSinhNuocSinhHoat/view/CollectionView",
+           "visible": function() {
+            return this.userHasRole("Admin");
+          }
+          },
+          {
+            "type": "view",
+            "collectionName": "kqktvesinhnuocsinhhoat",
+            "route": "kqktvesinhnuocsinhhoat/model",
+            "$ref": "app/view/BaoCao/KQKTVeSinhNuocSinhHoat/view/ModelView",
+            "visible": false
+          },
+
+
+
+
 
           ],
           },

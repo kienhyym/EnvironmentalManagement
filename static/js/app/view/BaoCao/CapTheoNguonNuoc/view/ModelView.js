@@ -14,105 +14,105 @@ define(function (require) {
 		modelSchema	: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "captheonguonnuoc",
-		uiControl: {
-			fields: [
-				 // {
-				 // field:"ngaybanhanhthongtu",
-				 // textFormat:"DD/MM/YYYY",
-				 // extraFormats:["DDMMYYYY"],
-				 // maxDate,
-				 // },
+		// uiControl: {
+		// 	fields: [
+		// 		 // {
+		// 		 // field:"ngaybanhanhthongtu",
+		// 		 // textFormat:"DD/MM/YYYY",
+		// 		 // extraFormats:["DDMMYYYY"],
+		// 		 // maxDate,
+		// 		 // },
 
-				{
-					field: "giengdao",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "giengkhoan",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "benuocmua",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "loaikhac",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "cong",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				}, {
-					field: "mangtuchay",
-					uicontrol: "radio",
-					textField: "text",
-					valueField: "value",
-					cssClassField: "cssClass",
-					dataSource: [{
-						value: 0,
-						text: "Có"
-					}, {
-						value: 1,
-						text: "Không",
-						cssClass: "yeallow"
-					},],
-				},
+		// 		{
+		// 			field: "giengdao",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		}, {
+		// 			field: "giengkhoan",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		}, {
+		// 			field: "benuocmua",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		}, {
+		// 			field: "loaikhac",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		}, {
+		// 			field: "cong",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		}, {
+		// 			field: "mangtuchay",
+		// 			uicontrol: "radio",
+		// 			textField: "text",
+		// 			valueField: "value",
+		// 			cssClassField: "cssClass",
+		// 			dataSource: [{
+		// 				value: 0,
+		// 				text: "Có"
+		// 			}, {
+		// 				value: 1,
+		// 				text: "Không",
+		// 				cssClass: "yeallow"
+		// 			},],
+		// 		},
 
 				
 				
-			],
-		},
+		// 	],
+		// },
 
 
 			tools : [
