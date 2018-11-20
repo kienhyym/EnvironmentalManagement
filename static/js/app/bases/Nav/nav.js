@@ -850,6 +850,24 @@
             "visible": false
           },
 
+            {
+           "text": "% Mẫu Nước Không Đạt",
+           "type": "view",
+           "collectionName": "phantrammaunuockhongdat",
+           "route": "phantrammaunuockhongdat/collection",
+           "$ref": "app/view/BaoCao/PhamTramMauNuocKhongDat/view/CollectionView",
+           "visible": function() {
+            return this.userHasRole("Admin");
+          }
+          },
+          {
+            "type": "view",
+            "collectionName": "phantrammaunuockhongdat",
+            "route": "phantrammaunuockhongdat/model",
+            "$ref": "app/view/BaoCao/PhamTramMauNuocKhongDat/view/ModelView",
+            "visible": false
+          },
+
 
 
 
