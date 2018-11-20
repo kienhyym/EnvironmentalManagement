@@ -868,6 +868,24 @@
             "visible": false
           },
 
+            {
+           "text": "KQKT Cơ Sở Công Xuất Dưói 1000M",
+           "type": "view",
+           "collectionName": "kqktcosococongsuatduoi1000m",
+           "route": "kqktcosococongsuatduoi1000m/collection",
+           "$ref": "app/view/BaoCao/KQKTCoSoCoCongSuatDuoi1000m/view/CollectionView",
+           "visible": function() {
+            return this.userHasRole("Admin");
+          }
+          },
+          {
+            "type": "view",
+            "collectionName": "kqktcosococongsuatduoi1000m",
+            "route": "kqktcosococongsuatduoi1000m/model",
+            "$ref": "app/view/BaoCao/KQKTCoSoCoCongSuatDuoi1000m/view/ModelView",
+            "visible": false
+          },
+
 
 
 
