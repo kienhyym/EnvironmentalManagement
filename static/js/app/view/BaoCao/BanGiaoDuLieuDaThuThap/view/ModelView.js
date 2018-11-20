@@ -4,14 +4,25 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/DuLieuDaThuThap/tpl/model.html'),
-    	schema 				= require('json!schema/DuLieuDaThuThapSchema.json');
-    
+    var template 				= require('text!app/view/BaoCao/BanGiaoDuLieuDaThuThap/tpl/model.html'),
+    	schema 				= require('json!schema/BanGiaoDuLieuDaThuThapSchema.json');
+    var maxDate  = new Date();
+    var currentDate = new Date();
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "dulieudathuthap",
+    	collectionName: "bangiaodulieudathuthap",
+    	uiControl:{
+    		fields: [
+    			{
+  					field:"ngaybaocao",
+  					textFormat:"DD/MM/YYYY",
+  					extraFormats:["DDMMYYYY"],
+  					maxDate: currentDate
+  				},
+		     ],
+    	},
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",

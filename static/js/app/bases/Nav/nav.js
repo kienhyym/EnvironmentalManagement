@@ -670,6 +670,7 @@ define(function(require) {
             "$ref": "app/view/BaoCao/PhanLoaiVaDanhGiaDuLieu/view/ModelView",
             "visible": false
           },
+          {
            "text": "Dữ Liệu Đã Thu Thập",
             "type": "view",
             "collectionName": "dulieudathuthap",
@@ -686,7 +687,23 @@ define(function(require) {
             "$ref": "app/view/BaoCao/DuLieuDaThuThap/view/ModelView",
             "visible": false
           },
-
+          {
+           "text": "Bàn Giao Dữ Liệu Đã Thu Thập",
+            "type": "view",
+            "collectionName": "bangiaodulieudathuthap",
+            "route": "bangiaodulieudathuthap/collection",
+            "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/CollectionView",
+            "visible": function() {
+              return this.userHasRole("Admin");
+            }
+          },
+          {
+            "type": "view",
+            "collectionName": "bangiaodulieudathuthap",
+            "route": "bangiaodulieudathuthap/model",
+            "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/ModelView",
+            "visible": false
+          },
       ],
     },
 

@@ -4,21 +4,21 @@ define(function (require) {
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
 		
-    var template 			= require('text!app/view/BaoCao/DuLieuDaThuThap/tpl/collection.html'),
-    	schema 				= require('json!schema/DuLieuDaThuThapSchema.json');
-    
+    var template 			= require('text!app/view/BaoCao/BanGiaoDuLieuDaThuThap/tpl/collection.html'),
+    	schema 				= require('json!schema/BanGiaoDuLieuDaThuThapSchema.json');
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "dulieudathuthap",
+    	collectionName: "bangiaodulieudathuthap",
     	uiControl:{
     		fields: [
-    			 { field: "stt", label: "STT", width:250},
-				 { field: "khuondang", label: "Khuôn dạng", width:250},
-	    	     { field: "dvt", label: "DVT", width:250},
-	    	     { field: "soluong", label: "Số lượng", width:250},
-	    	     { field: "ghichu", label: "Ghi chú", width:250},
+    			 { field: "ngaybaocao", label: "Ngày báo cáo", width:250 },
+				 { field: "tenbienban", label: "Tên biên bản", width:250 },
+				 { field: "thanhphan", label: "Thành phần", width:250},
+				 { field: "bengiao", label: "Bên giao", width:250},
+				 { field: "bennhan", label: "Bên nhận", width:250},
+	    	     { field: "sanphambangiao", label: "Sản phẩm bàn giao", width:250},
 		     	
 		     ],
 		     onRowClick: function(event){
