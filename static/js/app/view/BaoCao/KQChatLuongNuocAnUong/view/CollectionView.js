@@ -14,11 +14,10 @@ define(function (require) {
     	collectionName: "kqchatluongnuocanuong",
     	uiControl:{
     		fields: [
-    			 { field: "ngaybanhanhthongtu", label: "Ngày ban hành thông tư", width:250},
-    			 { field: "thongtu", label: "Thông tư", width:250},
-	    	     { field: "tenphuluc", label: "Tên phụ Lục", width:250},
+    			 { field: "tenbaocao", label: "Tên báo cáo", width:250},
+    			 { field: "donvibaocao", label: "Đơn vị báo cáo", width:250},
+	    	     { field: "ngaybaocao", label: "Ngày báo cáo", width:250},
 		     	 { field: "sophieu", label: "Số Phiếu", width:250 },
-           	 { field: "donvibaocao", label: "Đơn vị báo cáo", width:250 },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

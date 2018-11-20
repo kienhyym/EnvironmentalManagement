@@ -636,6 +636,23 @@ define(function(require) {
           "$ref": "app/view/BaoCao/MauNuocKhongDat/view/ModelView",
           "visible": false
         },
+        {
+            "text": "Kết Quả Chất Lượng Nước Ăn Uống",
+            "type": "view",
+            "collectionName": "kqchatluongnuocanuong",
+            "route": "kqchatluongnuocanuong/collection",
+            "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/CollectionView",
+            "visible": function() {
+              return this.userHasRole("Admin");
+            }
+          },
+          {
+            "type": "view",
+            "collectionName": "kqchatluongnuocanuong",
+            "route": "kqchatluongnuocanuong/model",
+            "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
+            "visible": false
+          },
 
       ],
     },

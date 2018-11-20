@@ -13,7 +13,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "kqchatluongnuocanuong",
-		textField: "tenphieu",
+		textField: "tenbaocao",
 		tools: [
 			{
 				name: "defaultgr",
@@ -38,7 +38,7 @@ define(function (require) {
 			var self = this;
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
-				sessionKey: "Nuocsinhhoattren1000m_filter"
+				sessionKey: "Kqchatluongnuocanuong_filter"
 			});
 			filter.render();
 
@@ -46,8 +46,8 @@ define(function (require) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
 				var filters = {
 					"$or": [
-						{ "loaiphieu": { "$like": text } },
-						{ "tenphieu": { "$like": text } },
+						{ "tenbaocao": { "$like": text } },
+						{ "donvibaocao": { "$like": text } },
 					]
 				};
 				self.uiControl.filters = filters;
@@ -61,8 +61,8 @@ define(function (require) {
 					if (text !== null) {
 						var filters = {
 							"$or": [
-								{ "loaiphieu": { "$like": text } },
-								{ "tenphieu": { "$like": text } },
+								{ "tenbaocao": { "$like": text } },
+								{ "donvibaocao": { "$like": text } },
 							]
 						};
 						$col.data('gonrin').filter(filters);

@@ -7,18 +7,35 @@ define(function (require) {
     var template 				= require('text!app/view/BaoCao/KQChatLuongNuocAnUong/tpl/model.html'),
     	schema 				= require('json!schema/KQChatLuongNuocAnUongSchema.json');
 	
-	
+	var maxDate = new Date();
+	var currentDate = new Date();
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "kqchatluongnuocanuong",
-    	uiControl: {
-			fields: [
-				
-
-			],
-		},
+    	uiControl:{
+    		fields: [
+    			{
+  					field:"ngaybanhanhthongtu",
+  					textFormat:"DD/MM/YYYY",
+  					extraFormats:["DDMMYYYY"],
+  					maxDate: currentDate
+  				},
+  				{
+  					field:"ngaytaophieu",
+  					textFormat:"DD/MM/YYYY",
+  					extraFormats:["DDMMYYYY"],
+  					maxDate: currentDate
+  				},
+  				{
+  					field:"ngaybaocao",
+  					textFormat:"DD/MM/YYYY",
+  					extraFormats:["DDMMYYYY"],
+  					maxDate: currentDate
+  				},
+		     ],
+    	},
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",

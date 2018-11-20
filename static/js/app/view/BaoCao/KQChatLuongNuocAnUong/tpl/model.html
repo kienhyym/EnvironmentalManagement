@@ -3,7 +3,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item">Trang Chủ</li>
 			<li class="breadcrumb-item"></li>Báo Cáo</li>
-			<li class="breadcrumb-item active" aria-current="page">Kết Quả Kiểm Tra Chất Lượng Nước Uống</li>
+			<li class="breadcrumb-item active" aria-current="page">Kết Quả Kiểm Tra Chất Lượng Nước Ăn Uống</li>
 		</ol>
 	</nav>
 </div>
@@ -26,16 +26,16 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Thông Tư</label>
-					<textarea type="text" class="form-control" data-bind="value:thongtu" id="formGroupExampleInput"></textarea>
+					<label for="formGroupExampleInput">Tên Phụ Lục</label>
+					<input type="text" class="form-control" data-bind="value:tenphuluc" id="formGroupExampleInput">
 				</div>
 			</div>
 
 
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Tên Phụ Lục</label>
-					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tenphuluc" />
+					<label for="formGroupExampleInput">Thông Tư</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:thongtu" />
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -54,6 +54,12 @@
 				<div class="form-group">
 					<label for="formGroupExampleInput">Số Phiếu</label>
 					<input type="text" data-bind="value:sophieu" class="form-control" id="formGroupExampleInput" />
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Ngày Tạo Phiếu</label>
+					<input type="text" data-bind="value:ngaytaophieu" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -101,7 +107,7 @@
 			<div class="col-md-5">
 				<div class="form-group">
 					<label for="formGroupExampleInput">Số Nhà Máy Nước</label>
-					<input type="text" data-bind="value:sonhamaynuoc" class="form-control" id="formGroupExampleInput" />
+					<input type="number" data-bind="value:sonhamaynuoc" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
 			<div class="col-md-5">
@@ -112,13 +118,13 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Số Lượt Kiêm Tra Không Đat</label>
+					<label for="formGroupExampleInput">Số Lượt Kiêm Tra Không Đạt</label>
 					<input type="number" data-bind="value:soluotkiemtrakhongdat" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Tỷ Lệ Không Đat</label>
+					<label for="formGroupExampleInput">Tỷ Lệ Không Đạt</label>
 					<input type="number" data-bind="value:tylekodat" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
@@ -130,7 +136,7 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Mấu Nước Làm Xét Nghiệm</label>
+					<label for="formGroupExampleInput">Mẫu Nước Làm Xét Nghiệm</label>
 					<input type="number" data-bind="value:maunuoclamxn" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
@@ -196,7 +202,7 @@
 			</div>
 			<div class="col-md-5">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Biện Pháp Sử Lí</label>
+					<label for="formGroupExampleInput">Biện Pháp Xử Lí</label>
 					<input type="text" data-bind="value:bienphapxuli" class="form-control" id="formGroupExampleInput" />
 				</div>
 			</div>
