@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
 		
-    var template 			= require('text!app/view/BaoCao/CapTheoHoGiaDinh/tpl/collection.html'),
-    	schema 				= require('json!schema/CapTheoHoGiaDinhSchema.json');
+    var template 			= require('text!app/view/BaoCao/CapTheoNguonNuoc/tpl/collection.html'),
+    	schema 				= require('json!schema/CapTheoNguonNuocSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "captheohogiadinh",
+    	collectionName: "captheonguonnuoc",
     	uiControl:{
     		fields: [
 				 { field: "giengdao", label: "Giếng đào", width:250 },

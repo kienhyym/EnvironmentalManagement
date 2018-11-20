@@ -4,8 +4,8 @@ define(function (require) {
 	_                   = require('underscore'),
 	Gonrin				= require('gonrin');
 
-	var template 				= require('text!app/view/BaoCao/CapTheoHoGiaDinh/tpl/model.html'),
-	schema 				= require('json!schema/CapTheoHoGiaDinhSchema.json');
+	var template 				= require('text!app/view/BaoCao/CapTheoNguonNuoc/tpl/model.html'),
+	schema 				= require('json!schema/CapTheoNguonNuocSchema.json');
 
 	var maxDate = new Date();
 
@@ -13,7 +13,7 @@ define(function (require) {
 		template : template,
 		modelSchema	: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "captheohogiadinh",
+		collectionName: "captheonguonnuoc",
 		uiControl: {
 			fields: [
 				 // {

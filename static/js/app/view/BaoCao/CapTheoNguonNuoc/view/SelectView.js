@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/BaoCao/CapTheoHoGiaDinh/tpl/collection.html'),
-    	schema 				= require('json!schema/CapTheoHoGiaDinhSchema.json');
+    var template 			= require('text!app/view/BaoCao/CapTheoNguonNuoc/tpl/collection.html'),
+    	schema 				= require('json!schema/CapTheoNguonNuocSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "captheohogiadinh",
+    	collectionName: "captheonguonnuoc",
     	
     	tools : [
     	    {
