@@ -540,7 +540,7 @@ class KQNgoaiKiemNuocSinhHoat(CommonModel):
 
     
 class KQKTCoSoCongSuatDuoi1000m(CommonModel):
-    __tablename__ = 'kqktcosocongsuat1000m'
+    __tablename__ = 'kqktcosocongsuatduoi1000m'
     baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
     cosocapnuoctt = db.Column(db.Integer)
     giengdao = db.Column(db.Integer)

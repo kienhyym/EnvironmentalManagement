@@ -722,6 +722,24 @@ define(function(require) {
                "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/ModelView",
                "visible": false
              },
+             
+             {
+                 "text": "Kết Quả Kiểm Tra Cơ Sở Công Suất Dưới 1000m",
+                  "type": "view",
+                  "collectionName": "kqktcosocongsuat1000m",
+                  "route": "kqktcosocongsuat1000m/collection",
+                  "$ref": "app/view/BaoCao/KQKTCoSoCongSuatDuoi1000m/view/CollectionView",
+                  "visible": function() {
+                    return this.userHasRole("Admin");
+                  }
+                },
+                {
+                  "type": "view",
+                  "collectionName": "kqktcosocongsuat1000m",
+                  "route": "kqktcosocongsuat1000m/model",
+                  "$ref": "app/view/BaoCao/KQKTCoSoCongSuatDuoi1000m/view/ModelView",
+                  "visible": false
+                },
       ],
     },
 
