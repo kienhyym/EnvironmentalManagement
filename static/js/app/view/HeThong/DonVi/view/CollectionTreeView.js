@@ -234,7 +234,7 @@ define(function (require) {
 					// var data = response[0];
 					data.state = {selected: true};
 					var tree = self.$el.find("#donvi-tree");
-					datatree = []
+					var datatree = []
 					if (!!data && data.length>0 && data[0].length >0){
 						datatree = [data];
 					}
