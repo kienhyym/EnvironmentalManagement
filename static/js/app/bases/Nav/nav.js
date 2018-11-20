@@ -704,6 +704,24 @@ define(function(require) {
             "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/ModelView",
             "visible": false
           },
+
+          {
+              "text": "Báo Cáo Thu Thập Dữ Liệu",
+               "type": "view",
+               "collectionName": "bcthuthapdulieu",
+               "route": "bcthuthapdulieu/collection",
+               "$ref": "app/view/BaoCao/BCThuThapDuLieu/view/CollectionView",
+               "visible": function() {
+                 return this.userHasRole("Admin");
+               }
+             },
+             {
+               "type": "view",
+               "collectionName": "bcthuthapdulieu",
+               "route": "bcthuthapdulieu/model",
+               "$ref": "app/view/BaoCao/BCThuThapDuLieu/view/ModelView",
+               "visible": false
+             },
           
           {
               "text": "Kết Quả Ngoại Kiểm Tra Nước Vệ Sinh",
@@ -740,6 +758,26 @@ define(function(require) {
                   "$ref": "app/view/BaoCao/KQKTCoSoCongSuatDuoi1000m/view/ModelView",
                   "visible": false
                 },
+
+                  {
+                 "text": "Cấp Theo Hộ Gia Đình",
+                  "type": "view",
+                  "collectionName": "captheohogiadinh",
+                  "route": "captheohogiadinh/collection",
+                  "$ref": "app/view/BaoCao/CapTheoHoGiaDinh/view/CollectionView",
+                  "visible": function() {
+                    return this.userHasRole("Admin");
+                  }
+                },
+                {
+                  "type": "view",
+                  "collectionName": "captheohogiadinh",
+                  "route": "captheohogiadinh/model",
+                  "$ref": "app/view/BaoCao/CapTheoHoGiaDinh/view/ModelView",
+                  "visible": false
+                },
+
+
       ],
     },
 
