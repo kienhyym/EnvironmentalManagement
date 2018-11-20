@@ -228,7 +228,6 @@ class KiemTraNguonNuocTuChay(CommonModel):
     __tablename__ = 'kiemtranguonnuoctuchay'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
-    thongtinkiemtra = db.Column(db.String)
     phamvi = db.Column(db.String)
     nguoisinhhoat = db.Column(db.Integer)
     duongong = db.Column(db.Integer)
@@ -498,8 +497,6 @@ class MauNuocKhongDat(CommonModel):
     benuocmua = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
     
-
-#BeginCode
     
 class KQNgoaiKiemNuocSinhHoat(CommonModel):
     __tablename__ = 'kqngoaikiemnuocsinhhoat'
@@ -540,7 +537,7 @@ class KQNgoaiKiemNuocSinhHoat(CommonModel):
 
     
 class KQKTCoSoCongSuatDuoi1000m(CommonModel):
-    __tablename__ = 'kqktcosocongsuatduoi1000m'
+    __tablename__ = 'kqktcosocongsuat1000m'
     baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
     cosocapnuoctt = db.Column(db.Integer)
     giengdao = db.Column(db.Integer)
@@ -715,8 +712,7 @@ class PhanLoaiDuLieu(CommonModel):
     dvt = db.Column(db.String)
     soluong = db.Column(db.Integer)
     ghichu = db.Column(db.String)
-
-    #EndCode 
+    
     
 class BCXayDungDuLieuDacTa(CommonModel):
     __tablename__ = 'bcxaydungdulieudacta'

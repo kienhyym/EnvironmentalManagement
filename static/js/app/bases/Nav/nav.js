@@ -776,6 +776,24 @@ define(function(require) {
                   "$ref": "app/view/BaoCao/CapTheoHoGiaDinh/view/ModelView",
                   "visible": false
                 },
+                
+                {
+                    "text": "Kiểm Tra Nguồn Nước Tự Chảy",
+                     "type": "view",
+                     "collectionName": "kiemtranguonnuoctuchay",
+                     "route": "kiemtranguonnuoctuchay/collection",
+                     "$ref": "app/view/BaoCao/KiemTraNguonNuocTuChay/view/CollectionView",
+                     "visible": function() {
+                       return this.userHasRole("Admin");
+                     }
+                   },
+                   {
+                     "type": "view",
+                     "collectionName": "kiemtranguonnuoctuchay",
+                     "route": "kiemtranguonnuoctuchay/model",
+                     "$ref": "app/view/BaoCao/KiemTraNguonNuocTuChay/view/ModelView",
+                     "visible": false
+                   },
 
 
       ],
