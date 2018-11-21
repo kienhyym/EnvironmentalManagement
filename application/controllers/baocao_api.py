@@ -193,43 +193,43 @@ apimanager.create_api(KQKT1000mNuocHoGiaDinhKoDat,
     collection_name='kqkt1000mnuochogiadinhkodat')
 
 
-apimanager.create_api(KQKTChatLuongNuocSinhHoat,
+apimanager.create_api(KQKTChatLuongNuocSinhHoatCapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqktchatluongnuocsinhhoat')
+    collection_name='kqktchatluongnuocsinhhoatcaphuyen')
 
-apimanager.create_api(KQVSCoSoCungCapNuocHoGd,
+apimanager.create_api(KQVSCoSoCungCapNuocHoGdCapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqvscosocungcapnuochogd')
+    collection_name='kqvscosocungcapnuochogdcaphuyen')
 
 
 
-apimanager.create_api(KQVSCSCungCapNuocGdKoDat,
+apimanager.create_api(KQVSCSCungCapNuocGdKoDatCapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqvscscungcapnuocgdkdat')
+    collection_name='kqvscscungcapnuocgdkdatcaphuyen')
 
-apimanager.create_api(KQKTVeSinhNuocSinhHoat,
+apimanager.create_api(KQKTVeSinhNuocSinhHoatCapXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqktvesinhnuocsinhhoat')
+    collection_name='kqktvesinhnuocsinhhoatcapxa')
 
-apimanager.create_api(KQVSCapNuocHGD,
+apimanager.create_api(KQVSCoSoCungCapNuocHoGdCapXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ksvscapnuochgd')
+    collection_name='kqvscosocungcapnuochogdcapxa')
 
-apimanager.create_api(KQVSCapNuocTinhHGD,
+apimanager.create_api(KQVSCSCungCapNuocGdKoDatCapXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ksvscapnuoctinhhgd')
+    collection_name='kqvscscungcapnuocgdkdatcapxa')
 
 apimanager.create_api(BCThuThapDuLieu,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
