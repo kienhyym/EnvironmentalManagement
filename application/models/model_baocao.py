@@ -117,11 +117,11 @@ class PhieuNoiKiemChatLuong(CommonModel):
 class KQPhieuNoiKiemChatLuong(CommonModel):
     __tablename__ = 'kqphieunoikiemtrachatluong'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    vitrilaymau = db.Cloumn(db.String)
-    ph = db.Cloumn(db.String)
-    doduc = db.Cloumn(db.String)
-    clodu = db.Cloumn(db.String)
-    danhgia = db.Cloumn(db.String)
+    vitrilaymau = db.Column(db.String)
+    ph = db.Column(db.String)
+    doduc = db.Column(db.String)
+    clodu = db.Column(db.String)
+    danhgia = db.Column(db.String)
 
 #Mau 4.5.
 class PhieuNgoaiKiemChatLuong(CommonModel):
@@ -171,11 +171,11 @@ class PhieuNgoaiKiemChatLuong(CommonModel):
 class KQPhieuNgoaiKiemChatLuong(CommonModel):
     __tablename__ = 'kqphieungoaikiemtrachatluong'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    vitrilaymau = db.Cloumn(db.String)
-    ph = db.Cloumn(db.String)
-    doduc = db.Cloumn(db.String)
-    clodu = db.Cloumn(db.String)
-    danhgia = db.Cloumn(db.String)
+    vitrilaymau = db.Column(db.String)
+    ph = db.Column(db.String)
+    doduc = db.Column(db.String)
+    clodu = db.Column(db.String)
+    danhgia = db.Column(db.String)
 
 
 #Mau 4.6.
@@ -239,11 +239,11 @@ class KiemTraNguonNuocHoGiaDinh(CommonModel):
 class KTNuocHoGiaDinh(CommonModel):
     __tablename__ = 'ktnuochogiadinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    vitrilaymau = db.Cloumn(db.String)
-    ph = db.Cloumn(db.String)
-    doduc = db.Cloumn(db.String)
-    clodu = db.Cloumn(db.String)
-    danhgia = db.Cloumn(db.String)
+    vitrilaymau = db.Column(db.String)
+    ph = db.Column(db.String)
+    doduc = db.Column(db.String)
+    clodu = db.Column(db.String)
+    danhgia = db.Column(db.String)
 
 
 #<------------------------------
@@ -440,37 +440,37 @@ class KQChatLuongNuocAnUong(CommonModel):
 class CoSoCapNuocDuoi1000m(CommonModel):
     __tablename__ = 'cosocapnuocduoi1000m'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diabancosocapnuoctt = db.Cloumn(db.Integer)
-    diabangiengdao = db.Cloumn(db.Integer)
-    diabangiengkhoan = db.Cloumn(db.Integer)
-    diabanmangtuchay = db.Cloumn(db.Integer)
-    diabanbenuocmua = db.Cloumn(db.Integer)
-    diabanloaikhac = db.Cloumn(db.Integer)
-    diabancong = db.Cloumn(db.Integer)
+    diabancosocapnuoctt = db.Column(db.Integer)
+    diabangiengdao = db.Column(db.Integer)
+    diabangiengkhoan = db.Column(db.Integer)
+    diabanmangtuchay = db.Column(db.Integer)
+    diabanbenuocmua = db.Column(db.Integer)
+    diabanloaikhac = db.Column(db.Integer)
+    diabancong = db.Column(db.Integer)
 
-    kiemtracosocapnuoctt = db.Cloumn(db.Integer)
-    kiemtragiengdao = db.Cloumn(db.Integer)
-    kiemtragiengkhoan = db.Cloumn(db.Integer)
-    kiemtramangtuchay = db.Cloumn(db.Integer)
-    kiemtrabenuocmua = db.Cloumn(db.Integer)
-    kiemtraloaikhac = db.Cloumn(db.Integer)
-    kiemtracong = db.Cloumn(db.Integer)
+    kiemtracosocapnuoctt = db.Column(db.Integer)
+    kiemtragiengdao = db.Column(db.Integer)
+    kiemtragiengkhoan = db.Column(db.Integer)
+    kiemtramangtuchay = db.Column(db.Integer)
+    kiemtrabenuocmua = db.Column(db.Integer)
+    kiemtraloaikhac = db.Column(db.Integer)
+    kiemtracong = db.Column(db.Integer)
 
-    tieuchuancosocapnuoctt = db.Cloumn(db.Integer)
-    tieuchuangiengdao = db.Cloumn(db.Integer)
-    tieuchuangiengkhoan = db.Cloumn(db.Integer)
-    tieuchuanmangtuchay = db.Cloumn(db.Integer)
-    tieuchuanbenuocmua = db.Cloumn(db.Integer)
-    tieuchuanloaikhac = db.Cloumn(db.Integer)
-    tieuchuancong = db.Cloumn(db.Integer)
+    tieuchuancosocapnuoctt = db.Column(db.Integer)
+    tieuchuangiengdao = db.Column(db.Integer)
+    tieuchuangiengkhoan = db.Column(db.Integer)
+    tieuchuanmangtuchay = db.Column(db.Integer)
+    tieuchuanbenuocmua = db.Column(db.Integer)
+    tieuchuanloaikhac = db.Column(db.Integer)
+    tieuchuancong = db.Column(db.Integer)
 
-    tylecosocapnuoctt = db.Cloumn(db.Integer)
-    tylegiengdao = db.Cloumn(db.Integer)
-    tylegiengkhoan = db.Cloumn(db.Integer)
-    tylemangtuchay = db.Cloumn(db.Integer)
-    tylebenuocmua = db.Cloumn(db.Integer)
-    tyleloaikhac = db.Cloumn(db.Integer)
-    tylecong = db.Cloumn(db.Integer)
+    tylecosocapnuoctt = db.Column(db.Integer)
+    tylegiengdao = db.Column(db.Integer)
+    tylegiengkhoan = db.Column(db.Integer)
+    tylemangtuchay = db.Column(db.Integer)
+    tylebenuocmua = db.Column(db.Integer)
+    tyleloaikhac = db.Column(db.Integer)
+    tylecong = db.Column(db.Integer)
 
 
 #Table 4.11 - 2
@@ -541,37 +541,37 @@ class KQNgoaiKiemNuocSinhHoat(CommonModel):
 class KQKT1000mNuocHoGiaDinh(CommonModel):
     __tablename__ = 'kqkt1000mnuochogiadinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diabancosocapnuoctt = db.Cloumn(db.Integer)
-    diabangiengdao = db.Cloumn(db.Integer)
-    diabangiengkhoan = db.Cloumn(db.Integer)
-    diabanmangtuchay = db.Cloumn(db.Integer)
-    diabanbenuocmua = db.Cloumn(db.Integer)
-    diabanloaikhac = db.Cloumn(db.Integer)
-    diabancong = db.Cloumn(db.Integer)
+    diabancosocapnuoctt = db.Column(db.Integer)
+    diabangiengdao = db.Column(db.Integer)
+    diabangiengkhoan = db.Column(db.Integer)
+    diabanmangtuchay = db.Column(db.Integer)
+    diabanbenuocmua = db.Column(db.Integer)
+    diabanloaikhac = db.Column(db.Integer)
+    diabancong = db.Column(db.Integer)
 
-    kiemtracosocapnuoctt = db.Cloumn(db.Integer)
-    kiemtragiengdao = db.Cloumn(db.Integer)
-    kiemtragiengkhoan = db.Cloumn(db.Integer)
-    kiemtramangtuchay = db.Cloumn(db.Integer)
-    kiemtrabenuocmua = db.Cloumn(db.Integer)
-    kiemtraloaikhac = db.Cloumn(db.Integer)
-    kiemtracong = db.Cloumn(db.Integer)
+    kiemtracosocapnuoctt = db.Column(db.Integer)
+    kiemtragiengdao = db.Column(db.Integer)
+    kiemtragiengkhoan = db.Column(db.Integer)
+    kiemtramangtuchay = db.Column(db.Integer)
+    kiemtrabenuocmua = db.Column(db.Integer)
+    kiemtraloaikhac = db.Column(db.Integer)
+    kiemtracong = db.Column(db.Integer)
 
-    tieuchuancosocapnuoctt = db.Cloumn(db.Integer)
-    tieuchuangiengdao = db.Cloumn(db.Integer)
-    tieuchuangiengkhoan = db.Cloumn(db.Integer)
-    tieuchuanmangtuchay = db.Cloumn(db.Integer)
-    tieuchuanbenuocmua = db.Cloumn(db.Integer)
-    tieuchuanloaikhac = db.Cloumn(db.Integer)
-    tieuchuancong = db.Cloumn(db.Integer)
+    tieuchuancosocapnuoctt = db.Column(db.Integer)
+    tieuchuangiengdao = db.Column(db.Integer)
+    tieuchuangiengkhoan = db.Column(db.Integer)
+    tieuchuanmangtuchay = db.Column(db.Integer)
+    tieuchuanbenuocmua = db.Column(db.Integer)
+    tieuchuanloaikhac = db.Column(db.Integer)
+    tieuchuancong = db.Column(db.Integer)
 
-    tylecosocapnuoctt = db.Cloumn(db.Integer)
-    tylegiengdao = db.Cloumn(db.Integer)
-    tylegiengkhoan = db.Cloumn(db.Integer)
-    tylemangtuchay = db.Cloumn(db.Integer)
-    tylebenuocmua = db.Cloumn(db.Integer)
-    tyleloaikhac = db.Cloumn(db.Integer)
-    tylecong = db.Cloumn(db.Integer)
+    tylecosocapnuoctt = db.Column(db.Integer)
+    tylegiengdao = db.Column(db.Integer)
+    tylegiengkhoan = db.Column(db.Integer)
+    tylemangtuchay = db.Column(db.Integer)
+    tylebenuocmua = db.Column(db.Integer)
+    tyleloaikhac = db.Column(db.Integer)
+    tylecong = db.Column(db.Integer)
 
 
 #Table 4.10 - 2
@@ -631,11 +631,11 @@ class KQKTChatLuongNuocSinhHoat(CommonModel):
 class KQVSCoSoCungCapNuocHoGd(CommonModel):
     __tablename__ = 'kqvscosocungcapnuochogd'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diabancosocapnuoctt = db.Cloumn(db.Integer)
-    diabangiengdao = db.Cloumn(db.Integer)
-    diabangiengkhoan = db.Cloumn(db.Integer)
-    diabanmangtuchay = db.Cloumn(db.Integer)
-    diabanbenuocmua = db.Cloumn(db.Integer)
+    diabancosocapnuoctt = db.Column(db.Integer)
+    diabangiengdao = db.Column(db.Integer)
+    diabangiengkhoan = db.Column(db.Integer)
+    diabanmangtuchay = db.Column(db.Integer)
+    diabanbenuocmua = db.Column(db.Integer)
     diabanloaikhac = db.Column(db.Integer)
     diabancong = db.Column(db.Integer)
 
@@ -730,11 +730,11 @@ class KQKTVeSinhNuocSinhHoat(CommonModel):
 class KQVSCapNuocHGD(CommonModel):
     __tablename__ = 'ksvscapnuochgd'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diabancosocapnuoctt = db.Cloumn(db.Integer)
-    diabangiengdao = db.Cloumn(db.Integer)
-    diabangiengkhoan = db.Cloumn(db.Integer)
-    diabanmangtuchay = db.Cloumn(db.Integer)
-    diabanbenuocmua = db.Cloumn(db.Integer)
+    diabancosocapnuoctt = db.Column(db.Integer)
+    diabangiengdao = db.Column(db.Integer)
+    diabangiengkhoan = db.Column(db.Integer)
+    diabanmangtuchay = db.Column(db.Integer)
+    diabanbenuocmua = db.Column(db.Integer)
     diabanloaikhac = db.Column(db.Integer)
     diabancong = db.Column(db.Integer)
 
@@ -766,11 +766,11 @@ class KQVSCapNuocHGD(CommonModel):
 class KQVSCapNuocTinhHGD(CommonModel):
     __tablename__ = 'ksvscapnuoctinhhgd'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diabancosocapnuoctt = db.Cloumn(db.Integer)
-    diabangiengdao = db.Cloumn(db.Integer)
-    diabangiengkhoan = db.Cloumn(db.Integer)
-    diabanmangtuchay = db.Cloumn(db.Integer)
-    diabanbenuocmua = db.Cloumn(db.Integer)
+    diabancosocapnuoctt = db.Column(db.Integer)
+    diabangiengdao = db.Column(db.Integer)
+    diabangiengkhoan = db.Column(db.Integer)
+    diabanmangtuchay = db.Column(db.Integer)
+    diabanbenuocmua = db.Column(db.Integer)
     diabanloaikhac = db.Column(db.Integer)
     diabancong = db.Column(db.Integer)
 
@@ -855,11 +855,11 @@ class BanGiaoThuThap(CommonModel):
     __tablename__ = 'bangiaothuthap'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     stt = db.Column(db.Integer)
-    dulieu = db.Cloumn(db.String)
-    khuondang = db.Cloumn(db.String)
-    dvt = db.Cloumn(db.String)
-    soluong = db.Cloumn(db.Integer)
-    ghichu = db.Cloumn(db.String)
+    dulieu = db.Column(db.String)
+    khuondang = db.Column(db.String)
+    dvt = db.Column(db.String)
+    soluong = db.Column(db.Integer)
+    ghichu = db.Column(db.String)
 
 
 # Mau 5.3
@@ -907,31 +907,31 @@ class BCXayDungDuLieuDacTa(CommonModel):
 class NhanLucSuaChua(CommonModel):
     __tablename__ = 'nhanlucsuachua'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    stt = db.Cloumn(db.String)
-    hovaten = db.Cloumn(db.String)
-    congviecthuchien = db.Cloumn(db.String)
+    stt = db.Column(db.String)
+    hovaten = db.Column(db.String)
+    congviecthuchien = db.Column(db.String)
 
 #Table 5.5 -2
 class KetQuaSuaChua(CommonModel):
     __tablename__ = 'ketquasuachua'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    tt = db.Cloumn(db.String)
-    loi = db.Cloumn(db.String)
-    chuasua = db.Cloumn(db.Integer)
-    dasua = db.Cloumn(db.Integer)
-    thoigian = db.Cloumn(db.DateTime())
-    ghichu = db.Cloumn(db.String)    
+    tt = db.Column(db.String)
+    loi = db.Column(db.String)
+    chuasua = db.Column(db.Integer)
+    dasua = db.Column(db.Integer)
+    thoigian = db.Column(db.DateTime())
+    ghichu = db.Column(db.String)    
   
 #Table 5.5 -3
 class KetQuaSuaChuaDuLieu(CommonModel):
     __tablename__ = 'ketquasuachuadulieu'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    tt = db.Cloumn(db.String)
-    loi = db.Cloumn(db.String)
-    chuasua = db.Cloumn(db.Integer)
-    dasua = db.Cloumn(db.Integer)
-    thoigian = db.Cloumn(db.DateTime())
-    ghichu = db.Cloumn(db.String)    
+    tt = db.Column(db.String)
+    loi = db.Column(db.String)
+    chuasua = db.Column(db.Integer)
+    dasua = db.Column(db.Integer)
+    thoigian = db.Column(db.DateTime())
+    ghichu = db.Column(db.String)    
 
 
 # Mau 5.5
@@ -972,17 +972,17 @@ class BCKetQuaKiemTra(CommonModel):
 class KQNhanLucThamGiaKT(CommonModel):
     __tablename__ = 'kqnhanlucthamgiakt'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    stt = db.Cloumn(db.String)
-    hovate = db.Cloumn(db.String)
-    congiecthuchien = db.Cloumn(db.String)  
+    stt = db.Column(db.String)
+    hovate = db.Column(db.String)
+    congiecthuchien = db.Column(db.String)  
 
 #Table 5.6 -2
 class KQNhanLucThamGiaKTDacTa(CommonModel):
     __tablename__ = 'kqnhanlucthamgiaktdacta'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    stt = db.Cloumn(db.String)
-    loi = db.Cloumn(db.String)
-    mota = db.Cloumn(db.String) 
+    stt = db.Column(db.String)
+    loi = db.Column(db.String)
+    mota = db.Column(db.String) 
 
 
 # Mau 5.7
@@ -997,7 +997,6 @@ class BienBanBanGiaoSanPham(CommonModel):
     bennhan = db.Column(db.String)
     daidienbennhan = db.Column(db.String)
     chucvubennhan = db.Column(db.String)
-    bangiaosanpham = relationship("KQSuaChuaSieuDuLieu")
     daidienbengiaoky = db.Column(db.String)
     daidienbennhanky = db.Column(db.String)
 
@@ -1008,9 +1007,9 @@ class BienBanBanGiaoSanPham(CommonModel):
 class CungNhauBanGiaoSanPham(CommonModel):
     __tablename__ = 'cungnhaubangiaosanpham'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    stt = db.Cloumn(db.String)
-    danhmucsanpham = db.Cloumn(db.String)
-    khuondang = db.Cloumn(db.String) 
-    kdv = db.Cloumn(db.String) 
-    soluong = db.Cloumn(db.Integer) 
-    ghichu = db.Cloumn(db.String) 
+    stt = db.Column(db.String)
+    danhmucsanpham = db.Column(db.String)
+    khuondang = db.Column(db.String) 
+    kdv = db.Column(db.String) 
+    soluong = db.Column(db.Integer) 
+    ghichu = db.Column(db.String) 

@@ -43,11 +43,11 @@ apimanager.create_api(PhieuNoiKiemChatLuong,
 
 ######
 
-apimanager.create_api(KetQuaXNNuocTaiCho,
+apimanager.create_api(KQPhieuNoiKiemChatLuong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ketquaxetnghiemtaicho')
+    collection_name='kqphieunoikiemtrachatluong')
 
 
 apimanager.create_api(PhieuNgoaiKiemChatLuong,
@@ -55,6 +55,12 @@ apimanager.create_api(PhieuNgoaiKiemChatLuong,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='phieungoaikiemchatluong')
+
+apimanager.create_api(KQPhieuNgoaiKiemChatLuong,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqphieungoaikiemtrachatluong')
 
 
 apimanager.create_api(KiemTraNguonNuocHoGiaDinh,
@@ -72,6 +78,20 @@ apimanager.create_api(NguonNuocTuChay,
 
 ######
 
+apimanager.create_api(KTNuocHoGiaDinh,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ktnuochogiadinh')
+
+
+apimanager.create_api(NguonNuocTuChay,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='NguonNuocTuChay')
+
+
 apimanager.create_api(NguonNuocGiengDao,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
@@ -85,6 +105,7 @@ apimanager.create_api(NguonNuocGiengKhoanTren25m,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='nguonnuocgiengkhoantren25m')
 
+######
 
 apimanager.create_api(NguonNuocGiengKhoanDuoi25m,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -99,7 +120,6 @@ apimanager.create_api(HeThongThuHungNuocMua,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='hethongthuhungnuocmua')
 
-######
 
 apimanager.create_api(LuuTruNuocBECHUMVAI,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -115,42 +135,7 @@ apimanager.create_api(KiemTraVSChatLuongNuocThanhPham,
     collection_name='kiemtrachatluongnuocthanhpham')
 
 
-apimanager.create_api(BienBanBanGiaoSanPham,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='bienbanbangiaosanpham')
-
-
-apimanager.create_api(DanhMucSanPham,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='danhmucsanpham')
-
-
 ######
-
-apimanager.create_api(BaoCaoKetQuaKiemTra,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='baocaoketquakiemtra')
-
-
-apimanager.create_api(NhanLucThamGiaKiemTra,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='nhanlucthamgiakiemtra')
-
-
-apimanager.create_api(KetQuaKiemTraDuLieu,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ketquakiemtradulieu')
-
 
 apimanager.create_api(TongHopKQNuocSinhHoatTren1000m,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -159,7 +144,12 @@ apimanager.create_api(TongHopKQNuocSinhHoatTren1000m,
     collection_name='tonghopkqnuocsinhhoattren1000m')
 
 
-######
+# apimanager.create_api(NhanLucThamGiaKiemTra,
+#     methods=['GET', 'POST', 'DELETE', 'PUT'],
+#     url_prefix='/api/v1',
+#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+#     collection_name='nhanlucthamgiakiemtra')
+
 
 apimanager.create_api(KQChatLuongNuocAnUong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -167,11 +157,41 @@ apimanager.create_api(KQChatLuongNuocAnUong,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='kqchatluongnuocanuong')
 
+
+apimanager.create_api(CoSoCapNuocDuoi1000m,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='cosocapnuocduoi1000m')
+
+
+######
+
+apimanager.create_api(CoSoCapNuocDuoi1000mKoDat,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='cosocapnuocduoi1000mkodat')
+
 apimanager.create_api(KQNgoaiKiemNuocSinhHoat,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='kqngoaikiemnuocsinhhoat')
+
+apimanager.create_api(KQKT1000mNuocHoGiaDinh,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqkt1000mnuochogiadinh')
+
+
+apimanager.create_api(KQKT1000mNuocHoGiaDinhKoDat,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqkt1000mnuochogiadinhkodat')
+
 
 apimanager.create_api(KQKTChatLuongNuocSinhHoat,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -179,6 +199,19 @@ apimanager.create_api(KQKTChatLuongNuocSinhHoat,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='kqktchatluongnuocsinhhoat')
 
+apimanager.create_api(KQVSCoSoCungCapNuocHoGd,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqvscosocungcapnuochogd')
+
+
+
+apimanager.create_api(KQVSCSCungCapNuocGdKoDat,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqvscscungcapnuocgdkdat')
 
 apimanager.create_api(KQKTVeSinhNuocSinhHoat,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -186,12 +219,17 @@ apimanager.create_api(KQKTVeSinhNuocSinhHoat,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='kqktvesinhnuocsinhhoat')
 
-
-apimanager.create_api(KetQuaKiemTraNuoc,
+apimanager.create_api(KQVSCapNuocHGD,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ketquakiemtranuoc')
+    collection_name='ksvscapnuochgd')
+
+apimanager.create_api(KQVSCapNuocTinhHGD,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ksvscapnuoctinhhgd')
 
 apimanager.create_api(BCThuThapDuLieu,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -199,13 +237,12 @@ apimanager.create_api(BCThuThapDuLieu,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='bcthuthapdulieu')
 
-
-
-apimanager.create_api(SoLieuThuThap,
+apimanager.create_api(TongHopThuThap,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='solieuthuthap')
+    collection_name='tonghopthuthap')
+
 
 apimanager.create_api(BanGiaoDuLieuDaThuThap,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -213,11 +250,23 @@ apimanager.create_api(BanGiaoDuLieuDaThuThap,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='bangiaodulieudathuthap')
 
+apimanager.create_api(BanGiaoThuThap,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='bangiaothuthap')
+
 apimanager.create_api(PhanLoaiVaDanhGiaDuLieu,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='phanloaivadanhgiadulieu')
+
+apimanager.create_api(DanhGiaBanGiaoThuThap,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='danhgiabangiaothuthap')
 
 apimanager.create_api(BCXayDungDuLieuDacTa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -225,30 +274,64 @@ apimanager.create_api(BCXayDungDuLieuDacTa,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='bcxaydungdulieudacta')
 
+apimanager.create_api(NhanLucSuaChua,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='nhanlucsuachua')
+
+apimanager.create_api(KetQuaSuaChua,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ketquasuachua')
+
+apimanager.create_api(KetQuaSuaChuaDuLieu,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ketquasuachuadulieu')
+
 apimanager.create_api(BCKetQuaSuaChua,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='bcketquasuachua')
 
-apimanager.create_api(NguoiThamGiaSuaChua,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='nguoithamgiasuachua')
-
-
-apimanager.create_api(KQSuaChuaSieuDuLieu,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqsuachuasieudulieu')
-
 apimanager.create_api(BCKetQuaKiemTra,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='bcketquakiemtra')
+
+apimanager.create_api(KQNhanLucThamGiaKT,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqnhanlucthamgiakt')
+
+apimanager.create_api(KQNhanLucThamGiaKTDacTa,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='kqnhanlucthamgiaktdacta')
+
+apimanager.create_api(BienBanBanGiaoSanPham,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='bienbanbangiaosanpham')
+
+apimanager.create_api(CungNhauBanGiaoSanPham,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='cungnhaubangiaosanpham')
+
+
+
+
+
 
 
 
