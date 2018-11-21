@@ -400,6 +400,8 @@ class KetQuaKiemTraDuLieu(CommonModel):
     
  #Bao cao kq sua chua ko tim thay dau???
 #TODO review 21/11/2018, mai lam tiep   
+
+#Mau 12
 class TongHopKQNuocSinhHoatTren1000m(CommonModel):
     __tablename__ = 'tonghopkqnuocsinhhoattren1000m'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
@@ -431,7 +433,7 @@ class TongHopKQNuocSinhHoatTren1000m(CommonModel):
     kiennghi = db.Column(db.String)
     kyten = db.Column(db.String)
 
-
+#Mau 4.11
 class KQChatLuongNuocAnUong(CommonModel):
     __tablename__ = 'kqchatluongnuocanuong'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
@@ -466,8 +468,7 @@ class KQChatLuongNuocAnUong(CommonModel):
     tongsodatquydinh = db.Column(db.Integer)
     tyledungquydinh = db.Column(db.Integer)
     tongsokodatquydinh = db.Column(db.Integer)
-#     maunuockhongdat_id = db.Column(UUID(as_uuid=True), ForeignKey('maunuockhongdat.id'), nullable=True)
-#     maunuockhongdat = relationship('MauNuocKhongDat')
+    maunuockhongdat = relationship('MauNuocKhongDat')
     bienphapxuli = db.Column(db.String)
     ketqua = db.Column(db.String)
     hoatdongnghiencuu = db.Column(db.String)
@@ -491,6 +492,8 @@ class KQChatLuongNuocDuoi1000m(CommonModel):
 class MauNuocKhongDat(CommonModel):
     __tablenameclass__ = 'maunuockhongdat'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    kqchatluongnuocanuong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqchatluongnuocanuong.id'), nullable=True)
+    tenchitieu = db.Column(db.String)
     cosocapnuoctt = db.Column(db.Integer)
     giengdao = db.Column(db.Integer)
     giengkhoan = db.Column(db.Integer)
