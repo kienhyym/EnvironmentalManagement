@@ -369,19 +369,16 @@ class BaoCaoKetQuaKiemTra(CommonModel):
 class NhanLucThamGiaKiemTra(CommonModel):
     __tablename__ = 'nhanlucthamgiakiemtra'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    baocaoketquakiemtra_id = db.Column(
-        UUID(as_uuid=True), ForeignKey('baocaoketquakiemtra.id'), nullable=True)
+    baocaoketquakiemtra_id = db.Column(UUID(as_uuid=True), ForeignKey('baocaoketquakiemtra.id'), nullable=True)
     hovaten = db.Column(db.String)
     congviec = db.Column(db.String)
 
-    class KetQuaKiemTraDuLieu(CommonModel):
-        __tablenameclass__ = 'ketquakiemtradulieu'
-        id = db.Column(UUID(as_uuid=True), primary_key=True,
-                       default=default_uuid)
-        baocaoketquakiemtra_id = db.Column(
-            UUID(as_uuid=True), ForeignKey('baocaoketquakiemtra.id'), nullable=True)
-        loi = db.Column(db.String)
-        mota = db.Column(db.String)
+class KetQuaKiemTraDuLieu(CommonModel):
+    __tablenameclass__ = 'ketquakiemtradulieu'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    baocaoketquakiemtra_id = db.Column(UUID(as_uuid=True), ForeignKey('baocaoketquakiemtra.id'), nullable=True)
+    loi = db.Column(db.String)
+    mota = db.Column(db.String)
 
  # Bao cao kq sua chua ko tim thay dau???
 # TODO review 21/11/2018, mai lam tiep
@@ -457,7 +454,7 @@ class KQChatLuongNuocAnUong(CommonModel):
     tongsokodatquydinh = db.Column(db.Integer)
 
     # quan he 1 Nhieu
-    kqktnuoc1000m3hogd = relationship('KQKTNuocHoGiaDinh')
+    thongkechatluongnuoc = relationship('ThongKeChatLuongNuoc')
     kqktnuoc1000m3hogdkodat = relationship('KQKTNuocHoGiaDinhKoDat')
     bienphapxuli = db.Column(db.String)
     ketqua = db.Column(db.String)
@@ -473,11 +470,12 @@ class KQChatLuongNuocAnUong(CommonModel):
     cong = db.Column(db.Integer)
 
 # Table KetQuaKiemTraNuoc 4.11 - 1
-class KQKTNuocHoGiaDinh(CommonModel):
-    __tablename__ = 'kqktnuochogiadinh'
+class ThongKeChatLuongNuoc(CommonModel):
+    __tablename__ = 'thongkechatluongnuoc'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     kqktnuoc1000m3hogd_id = db.Column(UUID(as_uuid=True), ForeignKey('kqchatluongnuocanuong.id'), nullable=True)
     tentieuchi = db.Column(db.Integer)
+    cosocapnuoc = db.Column(db.Integer)
     giengdao = db.Column(db.Integer)
     giengkhoan = db.Column(db.Integer)
     mangtuchay = db.Column(db.Integer)
