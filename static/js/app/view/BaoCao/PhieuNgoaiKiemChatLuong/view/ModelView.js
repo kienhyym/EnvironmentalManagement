@@ -4,9 +4,9 @@ define(function (require) {
 
 	var template = require('text!app/view/BaoCao/PhieuNgoaiKiemChatLuong/tpl/model.html'),
 	schema = require('json!schema/PhieuNgoaiKiemChatLuongSchema.json');
-	//var modelKQphieungoaikiemtrachatluong = require('app/view/BaoCao/KQPhieuNgoaiKiemChatLuong/view/ModelView')
+	var KQNgoaiKiemNuocDialogView = require('app/view/BaoCao/KQPhieuNgoaiKiemChatLuong/view/ModelDialogView');
 
-	var maxDate = new Date();
+	var currentDate = new Date();
 	return Gonrin.ModelView
 		.extend({
 			template: template,
@@ -16,40 +16,23 @@ define(function (require) {
 
 			uiControl: {
 				fields: [
-					// {
-        			// 	field:"tenvitri1",
-        			// 	uicontrol:"ref",
-        			// 	textField: "tenvitri1",
-        			// 	foreignRemoteField: "id",
-        			// 	foreignField: "kqphieungoaikiemtrachatluong",
-        			// 	dataSource: modelKQphieungoaikiemtrachatluong
-					// },
-					// {
-        			// 	field:"tenvitri2",
-        			// 	uicontrol:"ref",
-        			// 	textField: "tenvitri1",
-        			// 	foreignRemoteField: "id",
-        			// 	foreignField: "kqphieungoaikiemtrachatluong",
-        			// 	dataSource: modelKQphieungoaikiemtrachatluong
-					// },
-					
 					{
 					field:"ngaybanhanhthongtu",
 					textFormat:"DD/MM/YYYY",
 					extraFormats:["DDMMYYYY"],
-					maxDate,
+					maxDate:currentDate,
 					},
 					{
 					field:"thoigiankiemtra",
 					textFormat:"DD/MM/YYYY",
 					extraFormats:["DDMMYYYY"],
-					maxDate,
+					maxDate:currentDate,
 					},
 					{
 					field:"ngaykiemtra",
 					textFormat:"DD/MM/YYYY",
 					extraFormats:["DDMMYYYY"],
-					maxDate,
+					maxDate:currentDate,
 					},
 					{
 	    				field: "kqphieungoaikiemtrachatluong",
@@ -81,21 +64,30 @@ define(function (require) {
 	                     	   	 },
 	                	        ],
 	                	tools:[
-	                	                 {
-	                	                	 name: "create",
-	                	                	 buttonClass:"btn-success",
-	                	                	 label: "Thêm",
-	                	                	 command: function(){
-	                	                		 this.addUser();
-	                	                	 }
-	                	                 }
+        	                 {
+        	                	 name: "create",
+        	                	 buttonClass:"btn-success",
+        	                	 label: "Thêm",
+        	                	 command: function(){
+        	                		 var self = this;
+                	    			 var view = new KQNgoaiKiemNuocDialogView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
+        	                		 view.dialog();
+        	                		 view.on('close',function(data){
+        	                			 var kqphieungoaikiemtrachatluong = self.model.get('kqphieungoaikiemtrachatluong');
+        	                			 kqphieungoaikiemtrachatluong.push(data);
+        	                			 self.model.set("kqphieungoaikiemtrachatluong",kqphieungoaikiemtrachatluong);
+        	                			 self.applyBindings();
+        	                		 });
+        	                	 }
+        	                 }
           	                 ],
 	                	onRowClick: function(event){
-	                	    		if(event.rowId){
-	                	        		var path = 'user/model?id='+ event.rowId;
-	                	        		this.getApp().getRouter().navigate(path);
-	                	        	}
-	                	    	}
+	                		var self= this;
+            	    		if(event.rowId){
+            	    			 var view = new KQNgoaiKiemNuocDialogView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
+    	                		 view.dialog();
+            	        	}
+            	    	}
 	    			},
 
 
@@ -162,8 +154,7 @@ define(function (require) {
 						buttonClass: "btn-danger btn-sm",
 						label: "TRANSLATE:DELETE",
 						visible: function () {
-							return this.getApp().getRouter().getParam(
-								"id") !== null;
+							return this.getApp().getRouter().getParam("id") !== null;
 						},
 						command: function () {
 							var self = this;

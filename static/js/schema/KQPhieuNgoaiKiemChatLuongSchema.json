@@ -3,6 +3,9 @@
         "type": "string",
         "primary": true
     },
+    "phieungoaikiemchatluong_id": {
+        "type": "string"
+    },
     "vitrilaymau": {
         "type": "string",
         "length": null
