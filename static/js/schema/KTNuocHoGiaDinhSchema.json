@@ -44,8 +44,7 @@
         "length": null
     },
     "tieuchikhac": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "danhgia": {
         "type": "string",

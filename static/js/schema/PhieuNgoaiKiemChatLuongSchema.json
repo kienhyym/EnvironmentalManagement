@@ -165,6 +165,6 @@
         "length": null
     },
     "kqphieungoaikiemtrachatluong": {
-        "type": "dict"
+        "type": "list"
     }
 }

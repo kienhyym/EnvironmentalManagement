@@ -4,7 +4,7 @@ from application.database import db
 from application.database.model import CommonModel
 from PIL.JpegImagePlugin import COM
 from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
-from sqlalchemy.dialects.postgresql import JSON, JSONB, UUID
+from sqlalchemy.dialects.postgresql import  UUID
 from sqlalchemy.orm import *
 # from sqlalchemy import *
 from sqlalchemy.orm import backref, relationship
@@ -121,7 +121,7 @@ class KQPhieuNoiKiemChatLuong(CommonModel):
     ph = db.Column(db.String)
     doduc = db.Column(db.String)
     clodu = db.Column(db.String)
-    tieuchikhac = db.Column(db.String)
+    tieuchikhac = db.Column(JSON)
     danhgia = db.Column(db.String)
 
 #Mau 4.5.
@@ -172,19 +172,13 @@ class PhieuNgoaiKiemChatLuong(CommonModel):
 class KQPhieuNgoaiKiemChatLuong(CommonModel):
     __tablename__ = 'kqphieungoaikiemtrachatluong'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    phieunoikiemchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('phieungoaikiemchatluong.id'),index=True, nullable=True)
-    tenvitri1 = db.Column(db.String)
-    tenvitri2 = db.Column(db.String)
-    vitrilaymau1ph = db.Column(db.String)
-    vitrilaymau1doduc = db.Column(db.String)
-    vitrilaymau1clodu = db.Column(db.String)
-    vitrilaymau1danhgia = db.Column(db.String)
-
-    vitri2ph = db.Column(db.String)
-    vitri2doduc = db.Column(db.String)
-    vitri2clodu = db.Column(db.String)
-    vitri2tieuchikhac = db.Column(db.String)
-    vitri2danhgia = db.Column(db.String)
+    phieungoaikiemchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('phieungoaikiemchatluong.id'),index=True, nullable=True)
+    vitrilaymau = db.Column(db.String)
+    ph = db.Column(db.String)
+    doduc = db.Column(db.String)
+    clodu = db.Column(db.String)
+    tieuchikhac = db.Column(JSON)
+    danhgia = db.Column(db.String)
 
 
 #Mau 4.6.
@@ -252,7 +246,7 @@ class KTNuocHoGiaDinh(CommonModel):
     ph = db.Column(db.String)
     doduc = db.Column(db.String)
     clodu = db.Column(db.String)
-    tieuchikhac = db.Column(db.String)
+    tieuchikhac = db.Column(JSON)
     danhgia = db.Column(db.String)
 
 

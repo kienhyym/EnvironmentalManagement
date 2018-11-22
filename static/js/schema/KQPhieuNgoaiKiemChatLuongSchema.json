@@ -1,73 +1,28 @@
 {
-    "created_at": {
-        "type": "datetime"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
     "id": {
         "type": "string",
         "primary": true
     },
-    "phieunoikiemchatluong_id": {
+    "vitrilaymau": {
+        "type": "string",
+        "length": null
+    },
+    "ph": {
+        "type": "string",
+        "length": null
+    },
+    "doduc": {
+        "type": "string",
+        "length": null
+    },
+    "clodu": {
+        "type": "string",
+        "length": null
+    },
+    "tieuchikhac": {
         "type": "string"
     },
-    "tenvitri1": {
-        "type": "string",
-        "length": null
-    },
-    "tenvitri2": {
-        "type": "string",
-        "length": null
-    },
-    "vitrilaymau1ph": {
-        "type": "string",
-        "length": null
-    },
-    "vitrilaymau1doduc": {
-        "type": "string",
-        "length": null
-    },
-    "vitrilaymau1clodu": {
-        "type": "string",
-        "length": null
-    },
-    "vitrilaymau1danhgia": {
-        "type": "string",
-        "length": null
-    },
-    "vitri2ph": {
-        "type": "string",
-        "length": null
-    },
-    "vitri2doduc": {
-        "type": "string",
-        "length": null
-    },
-    "vitri2clodu": {
-        "type": "string",
-        "length": null
-    },
-    "vitri2tieuchikhac": {
-        "type": "string",
-        "length": null
-    },
-    "vitri2danhgia": {
+    "danhgia": {
         "type": "string",
         "length": null
     }

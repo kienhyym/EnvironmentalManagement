@@ -51,7 +51,52 @@ define(function (require) {
 					extraFormats:["DDMMYYYY"],
 					maxDate,
 					},
-
+					{
+	    				field: "kqphieungoaikiemtrachatluong",
+	    				uicontrol: "grid",
+	    				refresh: true,
+	    				primaryField: "id",
+	    				fields:[
+	    				          {field:"vitrilaymau", label:"Vị trí lấy mẫu"},
+	                	          {field:"ph", label:"pH"},
+	                	          {field:"doduc", label: "Độ đục (NTU)"},
+	                	          {field:"danhgia", label: "Đánh giá"},
+	                	          {
+	                     	    	 field: "command", 
+	                     	    	 label:"Command",
+	                     	    	 width:"50px", 
+	                     	    	 command: [
+	                     	    	     {"label":"Delete",
+	                     	    	        	"action": "delete",
+	                     	    	        	"class": "btn-sm",
+	                     	    	     },
+//	                     	    	     {
+//	                     	    	       "label":"Custom function",
+//	                        	    	        "action": function(params, args){
+//	                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
+//	                        	    	        },
+//	                        	    	        "class": "btn-primary btn-sm"
+//	                        	    	     },   
+	                     	    	 ],
+	                     	   	 },
+	                	        ],
+	                	tools:[
+	                	                 {
+	                	                	 name: "create",
+	                	                	 buttonClass:"btn-success",
+	                	                	 label: "Thêm",
+	                	                	 command: function(){
+	                	                		 this.addUser();
+	                	                	 }
+	                	                 }
+          	                 ],
+	                	onRowClick: function(event){
+	                	    		if(event.rowId){
+	                	        		var path = 'user/model?id='+ event.rowId;
+	                	        		this.getApp().getRouter().navigate(path);
+	                	        	}
+	                	    	}
+	    			},
 
 
 				],
