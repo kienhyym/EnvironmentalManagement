@@ -173,12 +173,18 @@ class KQPhieuNgoaiKiemChatLuong(CommonModel):
     __tablename__ = 'kqphieungoaikiemtrachatluong'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     phieunoikiemchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('phieungoaikiemchatluong.id'),index=True, nullable=True)
-    vitrilaymau = db.Column(db.String)
-    ph = db.Column(db.String)
-    doduc = db.Column(db.String)
-    clodu = db.Column(db.String)
-    tieuchikhac = db.Column(db.String)
-    danhgia = db.Column(db.String)
+    tenvitri1 = db.Column(db.String)
+    tenvitri2 = db.Column(db.String)
+    vitrilaymau1ph = db.Column(db.String)
+    vitrilaymau1doduc = db.Column(db.String)
+    vitrilaymau1clodu = db.Column(db.String)
+    vitrilaymau1danhgia = db.Column(db.String)
+
+    vitri2ph = db.Column(db.String)
+    vitri2doduc = db.Column(db.String)
+    vitri2clodu = db.Column(db.String)
+    vitri2tieuchikhac = db.Column(db.String)
+    vitri2danhgia = db.Column(db.String)
 
 
 #Mau 4.6.

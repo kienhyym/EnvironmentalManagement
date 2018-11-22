@@ -27,27 +27,47 @@
     "phieunoikiemchatluong_id": {
         "type": "string"
     },
-    "vitrilaymau": {
+    "tenvitri1": {
         "type": "string",
         "length": null
     },
-    "ph": {
+    "tenvitri2": {
         "type": "string",
         "length": null
     },
-    "doduc": {
+    "vitrilaymau1ph": {
         "type": "string",
         "length": null
     },
-    "clodu": {
+    "vitrilaymau1doduc": {
         "type": "string",
         "length": null
     },
-    "tieuchikhac": {
+    "vitrilaymau1clodu": {
         "type": "string",
         "length": null
     },
-    "danhgia": {
+    "vitrilaymau1danhgia": {
+        "type": "string",
+        "length": null
+    },
+    "vitri2ph": {
+        "type": "string",
+        "length": null
+    },
+    "vitri2doduc": {
+        "type": "string",
+        "length": null
+    },
+    "vitri2clodu": {
+        "type": "string",
+        "length": null
+    },
+    "vitri2tieuchikhac": {
+        "type": "string",
+        "length": null
+    },
+    "vitri2danhgia": {
         "type": "string",
         "length": null
     }

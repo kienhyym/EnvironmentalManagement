@@ -330,7 +330,7 @@
                 "visible": false
               },
               {
-                "text": "Phiếu Ngoại Kiểm Tra Chất Lượng",
+                "text": "Báo Cáo Mẫu 4.5",
                 "type": "view",
                 "collectionName": "phieungoaikiemchatluong",
                 "route": "phieungoaikiemchatluong/collection",

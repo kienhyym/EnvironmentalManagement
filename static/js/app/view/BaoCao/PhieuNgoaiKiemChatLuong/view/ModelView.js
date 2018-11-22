@@ -4,6 +4,7 @@ define(function (require) {
 
 	var template = require('text!app/view/BaoCao/PhieuNgoaiKiemChatLuong/tpl/model.html'),
 	schema = require('json!schema/PhieuNgoaiKiemChatLuongSchema.json');
+	//var modelKQphieungoaikiemtrachatluong = require('app/view/BaoCao/KQPhieuNgoaiKiemChatLuong/view/ModelView')
 
 	var maxDate = new Date();
 	return Gonrin.ModelView
@@ -15,6 +16,23 @@ define(function (require) {
 
 			uiControl: {
 				fields: [
+					// {
+        			// 	field:"tenvitri1",
+        			// 	uicontrol:"ref",
+        			// 	textField: "tenvitri1",
+        			// 	foreignRemoteField: "id",
+        			// 	foreignField: "kqphieungoaikiemtrachatluong",
+        			// 	dataSource: modelKQphieungoaikiemtrachatluong
+					// },
+					// {
+        			// 	field:"tenvitri2",
+        			// 	uicontrol:"ref",
+        			// 	textField: "tenvitri1",
+        			// 	foreignRemoteField: "id",
+        			// 	foreignField: "kqphieungoaikiemtrachatluong",
+        			// 	dataSource: modelKQphieungoaikiemtrachatluong
+					// },
+					
 					{
 					field:"ngaybanhanhthongtu",
 					textFormat:"DD/MM/YYYY",

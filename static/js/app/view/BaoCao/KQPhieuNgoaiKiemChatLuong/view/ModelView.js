@@ -4,34 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/tpl/model.html'),
-    	schema 				= require('json!schema/KQNgoaiKiemNuocSinhHoatSchema.json');
-	
-	var maxDate = new Date();
-	var currentDate = new Date();
+    var template 				= require('text!app/view/BaoCao/KQPhieuNgoaiKiemChatLuong/tpl/model.html'),
+    	schema 				= require('json!schema/KQPhieuNgoaiKiemChatLuongSchema.json');
+    
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "kqngoaikiemnuocsinhhoat",
-		
-    	uiControl:{
-    		fields: [
-    			{
-  					field:"ngaybanhanhthongtu",
-  					textFormat:"DD/MM/YYYY",
-  					extraFormats:["DDMMYYYY"],
-  					maxDate: currentDate
-  				},
-  				{
-  					field:"ngaytaophieu",
-  					textFormat:"DD/MM/YYYY",
-  					extraFormats:["DDMMYYYY"],
-  					maxDate: currentDate
-  				},
-  			
-		     ],
-    	},
+    	collectionName: "kqphieungoaikiemtrachatluong",
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",
@@ -94,9 +74,6 @@ define(function (require) {
 			    	    },
 	    	    	],
 	    	    }],
-	    	
-	        	
-	        	
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
