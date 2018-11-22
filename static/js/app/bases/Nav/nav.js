@@ -233,17 +233,7 @@
               },
               ]
             },
-            {
-              "text": "Trang chủ",
-              "type": "view",
-              "icon": "fa fa-home",
-              "collectionName": "sochamsoc",
-              "route": "sochamsoc/model?id=current",
-              "$ref": "app/view/SoChamSoc/ModelView",
-              "visible": function() {
-                return true;
-              },
-            },
+          
 
             {
               "text": "Báo Cáo",

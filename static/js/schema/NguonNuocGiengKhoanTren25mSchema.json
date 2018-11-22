@@ -24,29 +24,13 @@
         "type": "string",
         "primary": true
     },
-    "tenphuluc": {
-        "type": "string",
-        "length": null
+    "conggieng": {
+        "type": "number"
     },
-    "tenbaocao": {
-        "type": "string",
-        "length": null
+    "sangieng": {
+        "type": "number"
     },
-    "tenduan": {
-        "type": "string",
-        "length": null
-    },
-    "mucdich": {
-        "type": "string",
-        "length": null
-    },
-    "nhanlucsuachua": {
-        "type": "list"
-    },
-    "ketquasuachua": {
-        "type": "list"
-    },
-    "ketquasuachuadulieu": {
-        "type": "list"
+    "dungcubomnuoc": {
+        "type": "number"
     }
 }

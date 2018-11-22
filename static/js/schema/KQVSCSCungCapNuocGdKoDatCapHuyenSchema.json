@@ -1,0 +1,93 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "lycosocapnuocttsoluong": {
+        "type": "number"
+    },
+    "lycosocapnuocttphantram": {
+        "type": "number"
+    },
+    "lygiengdaosoluong": {
+        "type": "number"
+    },
+    "lygiengdaophantram": {
+        "type": "number"
+    },
+    "lygiengkhoansoluong": {
+        "type": "number"
+    },
+    "lygiengkhoanphantram": {
+        "type": "number"
+    },
+    "lymangtuchaysoluong": {
+        "type": "number"
+    },
+    "lymangtuchayphantram": {
+        "type": "number"
+    },
+    "lybenuocmuasoluong": {
+        "type": "number"
+    },
+    "lyloaikhacsoluong": {
+        "type": "number"
+    },
+    "lybenuocmuaphantram": {
+        "type": "number"
+    },
+    "vicosocapnuocttsoluong": {
+        "type": "number"
+    },
+    "vicosocapnuocttphantram": {
+        "type": "number"
+    },
+    "vigiengdaosoluong": {
+        "type": "number"
+    },
+    "vigiengdaophantram": {
+        "type": "number"
+    },
+    "vigiengkhoansoluong": {
+        "type": "number"
+    },
+    "vigiengkhoanphantram": {
+        "type": "number"
+    },
+    "vimangtuchaysoluong": {
+        "type": "number"
+    },
+    "vimangtuchayphantram": {
+        "type": "number"
+    },
+    "vibenuocmuasoluong": {
+        "type": "number"
+    },
+    "viloaikhacsoluong": {
+        "type": "number"
+    },
+    "vibenuocmuaphantram": {
+        "type": "number"
+    }
+}

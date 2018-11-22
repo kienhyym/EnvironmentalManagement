@@ -39,5 +39,11 @@
     "mucdich": {
         "type": "string",
         "length": null
+    },
+    "kqnhanlucthamgiakt": {
+        "type": "list"
+    },
+    "kqnhanlucthamgiaktdacta": {
+        "type": "list"
     }
 }

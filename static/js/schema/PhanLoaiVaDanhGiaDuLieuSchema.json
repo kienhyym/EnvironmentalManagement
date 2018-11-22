@@ -58,5 +58,8 @@
     "nguoilapbaocaoky": {
         "type": "string",
         "length": null
+    },
+    "danhgiabangiaothuthap": {
+        "type": "list"
     }
 }

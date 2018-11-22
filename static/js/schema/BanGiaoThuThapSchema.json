@@ -24,34 +24,29 @@
         "type": "string",
         "primary": true
     },
-    "tenphuluc": {
+    "bangiaodulieudathuthap_id": {
+        "type": "string"
+    },
+    "stt": {
+        "type": "number"
+    },
+    "dulieu": {
         "type": "string",
         "length": null
     },
-    "tenbaocao": {
+    "khuondang": {
         "type": "string",
         "length": null
     },
-    "tenduan": {
+    "dvt": {
         "type": "string",
         "length": null
     },
-    "donvithuchien": {
+    "soluong": {
+        "type": "number"
+    },
+    "ghichu": {
         "type": "string",
         "length": null
-    },
-    "thongtinbosung": {
-        "type": "string",
-        "length": null
-    },
-    "ngaytaobaocao": {
-        "type": "datetime"
-    },
-    "nguoitaobaocaoky": {
-        "type": "string",
-        "length": null
-    },
-    "dulieutheochuan": {
-        "type": "list"
     }
 }

@@ -61,5 +61,11 @@
     "nhanxet": {
         "type": "string",
         "length": null
+    },
+    "ksvscapnuochgd_id": {
+        "type": "string"
+    },
+    "ksvscapnuochgd": {
+        "type": "dict"
     }
 }

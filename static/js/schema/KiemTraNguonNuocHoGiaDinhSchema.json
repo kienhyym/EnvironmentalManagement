@@ -55,19 +55,7 @@
     "thonxom_id": {
         "type": "string"
     },
-    "thonxom_ten": {
-        "type": "string",
-        "length": null
-    },
-    "xaphuong_ten": {
-        "type": "string",
-        "length": null
-    },
-    "quanhuyen_ten": {
-        "type": "string",
-        "length": null
-    },
-    "tinhthanh_ten": {
+    "diachi": {
         "type": "string",
         "length": null
     },
@@ -88,6 +76,24 @@
     "thongtinmau": {
         "type": "string",
         "length": null
+    },
+    "nguonnuoctuchay_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengdao_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengkhoantren25m_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengkhoanduoi25m_id": {
+        "type": "string"
+    },
+    "hethongthuhungnuocmua_id": {
+        "type": "string"
+    },
+    "luutrunuocbechumvai_id": {
+        "type": "string"
     },
     "gianmua": {
         "type": "string",
@@ -135,5 +141,26 @@
     },
     "thonxom": {
         "type": "dict"
+    },
+    "nguonuoctuchay": {
+        "type": "dict"
+    },
+    "nguonnuocgiengdao": {
+        "type": "dict"
+    },
+    "nguonnuocgiengkhoantren25m": {
+        "type": "dict"
+    },
+    "nguonnuocgiengkhoanduoi25m": {
+        "type": "dict"
+    },
+    "hethongthuhungnuocmua": {
+        "type": "dict"
+    },
+    "luutrunuocbechumvai": {
+        "type": "dict"
+    },
+    "ktnuochogiadinh": {
+        "type": "list"
     }
 }

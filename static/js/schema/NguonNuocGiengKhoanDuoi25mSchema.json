@@ -24,34 +24,29 @@
         "type": "string",
         "primary": true
     },
-    "tenphuluc": {
+    "thongtinkiemtra": {
         "type": "string",
         "length": null
     },
-    "tenbaocao": {
-        "type": "string",
-        "length": null
+    "cogieng": {
+        "type": "number"
     },
-    "tenduan": {
-        "type": "string",
-        "length": null
+    "sangieng": {
+        "type": "number"
     },
-    "donvithuchien": {
-        "type": "string",
-        "length": null
+    "dungcubomnuoc": {
+        "type": "number"
     },
-    "thongtinbosung": {
-        "type": "string",
-        "length": null
+    "conhatieugangieng10m": {
+        "type": "number"
     },
-    "ngaytaobaocao": {
-        "type": "datetime"
+    "cobairacgangieng10m": {
+        "type": "number"
     },
-    "nguoitaobaocaoky": {
-        "type": "string",
-        "length": null
+    "cochuonggiasucgangieng10m": {
+        "type": "number"
     },
-    "dulieutheochuan": {
-        "type": "list"
+    "ranhthoatnuoc": {
+        "type": "number"
     }
 }

@@ -24,34 +24,28 @@
         "type": "string",
         "primary": true
     },
-    "tenphuluc": {
+    "bcketquasuachua_id": {
+        "type": "string"
+    },
+    "stt": {
         "type": "string",
         "length": null
     },
-    "tenbaocao": {
+    "loi": {
         "type": "string",
         "length": null
     },
-    "tenduan": {
-        "type": "string",
-        "length": null
+    "chuasua": {
+        "type": "number"
     },
-    "donvithuchien": {
-        "type": "string",
-        "length": null
+    "dasua": {
+        "type": "number"
     },
-    "thongtinbosung": {
-        "type": "string",
-        "length": null
-    },
-    "ngaytaobaocao": {
+    "thoigian": {
         "type": "datetime"
     },
-    "nguoitaobaocaoky": {
+    "ghichu": {
         "type": "string",
         "length": null
-    },
-    "dulieutheochuan": {
-        "type": "list"
     }
 }

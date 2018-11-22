@@ -137,5 +137,38 @@
     "kyten": {
         "type": "string",
         "length": null
+    },
+    "cosocapnuoctt": {
+        "type": "number"
+    },
+    "giengdao": {
+        "type": "number"
+    },
+    "giengkhoan": {
+        "type": "number"
+    },
+    "mangnuoctuchay": {
+        "type": "number"
+    },
+    "benuocmua": {
+        "type": "number"
+    },
+    "loaikhac": {
+        "type": "number"
+    },
+    "cong": {
+        "type": "number"
+    },
+    "cosocapnuocduoi1000m_id": {
+        "type": "string"
+    },
+    "cosocapnuocduoi1000mkodat_id": {
+        "type": "string"
+    },
+    "cosocapnuocduoi1000m": {
+        "type": "dict"
+    },
+    "cosocapnuocduoi1000mkdat": {
+        "type": "dict"
     }
 }

@@ -51,8 +51,19 @@
         "type": "string",
         "length": null
     },
+    "xacnhancuadonvi_kyten": {
+        "type": "string",
+        "length": null
+    },
     "nguoilapbaocao": {
         "type": "string",
         "length": null
+    },
+    "nguoilapbaocao_kyten": {
+        "type": "string",
+        "length": null
+    },
+    "tonghopthuthap": {
+        "type": "list"
     }
 }

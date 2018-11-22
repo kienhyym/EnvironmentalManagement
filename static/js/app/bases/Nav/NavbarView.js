@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
 
-	var template = '<div id="leftmenu" class="form-group"> <ul  class="page-navbar-menu scroll-nav clearfix" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">'
+	var template = '<div id="leftmenu" class="form-group"> <ul  class="page-navbar-menu scroll-nav clearfix" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="250">'
 		+ '<li class="navbar-toggler-wrapper"><div class="navbar-toggler"></div></li></ul></div>';
 	var navdata = require('app/bases/Nav/nav');
 	var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || $( window ).width() <= 767;

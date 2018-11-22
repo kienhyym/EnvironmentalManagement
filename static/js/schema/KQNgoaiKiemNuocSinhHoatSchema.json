@@ -133,5 +133,17 @@
     "kyten": {
         "type": "string",
         "length": null
+    },
+    "kqkt1000mnuochogiadinh_id": {
+        "type": "string"
+    },
+    "kqkt1000mnuochogiadinhkodat_id": {
+        "type": "string"
+    },
+    "kqkt1000mnuochogiadinh": {
+        "type": "dict"
+    },
+    "kqkt1000mnuochogiadinhkodat": {
+        "type": "dict"
     }
 }

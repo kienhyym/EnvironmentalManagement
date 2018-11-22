@@ -24,54 +24,31 @@
         "type": "string",
         "primary": true
     },
-    "tenphuluc": {
+    "kiemtranguonnuochogiadinh_id": {
+        "type": "string"
+    },
+    "vitrilaymau": {
         "type": "string",
         "length": null
     },
-    "tenbaocao": {
+    "ph": {
         "type": "string",
         "length": null
     },
-    "ngaybaocao": {
-        "type": "datetime"
-    },
-    "thanhphan": {
+    "doduc": {
         "type": "string",
         "length": null
     },
-    "bengiao": {
+    "clodu": {
         "type": "string",
         "length": null
     },
-    "daidienbengiao": {
+    "tieuchikhac": {
         "type": "string",
         "length": null
     },
-    "chucvubengiap": {
+    "danhgia": {
         "type": "string",
         "length": null
-    },
-    "bennhan": {
-        "type": "string",
-        "length": null
-    },
-    "daidienbennhan": {
-        "type": "string",
-        "length": null
-    },
-    "chucvubennhan": {
-        "type": "string",
-        "length": null
-    },
-    "bengiaoky": {
-        "type": "string",
-        "length": null
-    },
-    "bennhanky": {
-        "type": "string",
-        "length": null
-    },
-    "bangiaothuthap": {
-        "type": "list"
     }
 }

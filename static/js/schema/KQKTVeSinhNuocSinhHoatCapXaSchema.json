@@ -28,50 +28,50 @@
         "type": "string",
         "length": null
     },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "donvibaocao": {
+        "type": "string",
+        "length": null
+    },
+    "sophieu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaytaophieu": {
+        "type": "datetime"
+    },
     "tenbaocao": {
         "type": "string",
         "length": null
     },
-    "ngaybaocao": {
-        "type": "datetime"
-    },
-    "thanhphan": {
+    "phamvi": {
         "type": "string",
         "length": null
     },
-    "bengiao": {
+    "bienphapxuly": {
         "type": "string",
         "length": null
     },
-    "daidienbengiao": {
+    "nhanxet": {
         "type": "string",
         "length": null
     },
-    "chucvubengiap": {
-        "type": "string",
-        "length": null
+    "kqvscosocungcapnuochogd_id": {
+        "type": "string"
     },
-    "bennhan": {
-        "type": "string",
-        "length": null
+    "kqvscscungcapnuocgdkdat_id": {
+        "type": "string"
     },
-    "daidienbennhan": {
-        "type": "string",
-        "length": null
+    "kqvscosocungcapnuochogd": {
+        "type": "dict"
     },
-    "chucvubennhan": {
-        "type": "string",
-        "length": null
-    },
-    "bengiaoky": {
-        "type": "string",
-        "length": null
-    },
-    "bennhanky": {
-        "type": "string",
-        "length": null
-    },
-    "bangiaothuthap": {
-        "type": "list"
+    "kqvscscungcapnuocgdkdat": {
+        "type": "dict"
     }
 }
