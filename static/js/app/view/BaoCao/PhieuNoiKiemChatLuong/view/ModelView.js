@@ -4,6 +4,7 @@ define(function (require) {
 
 	var template = require('text!app/view/BaoCao/PhieuNoiKiemChatLuong/tpl/model.html'),
 	schema = require('json!schema/PhieuNoiKiemChatLuongSchema.json');
+	var KQNoiKiemNuocDialogView = require('app/view/BaoCao/KQPhieuNoiKiemChatLuong/view/ModelDialogView');
 
 	var maxDate = new Date();
 	return Gonrin.ModelView
@@ -34,179 +35,62 @@ define(function (require) {
 							maxDate,
 							},
 
-					{
-						field: "phamvi",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "bienbao",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "vatnuoi",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "racthai",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "canhtacnongnghiep",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "vatnuoi",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "nguoisinhhoat",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					},
-
-					{
-						field: "thuyenbeneodau",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "duongongkenhmuong",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "congtrinhxaydung",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "canhtacnongnghiep",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					},
-					{
-						field: "nuoitrong",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					},
-
+						{
+		    				field: "kqphieunoikiemtrachatluong",
+		    				uicontrol: "grid",
+		    				refresh: true,
+		    				primaryField: "id",
+		    				fields:[
+		    				          {field:"vitrilaymau", label:"Vị trí lấy mẫu"},
+		                	          {field:"ph", label:"pH"},
+		                	          {field:"doduc", label: "Độ đục (NTU)"},
+		                	          {field:"danhgia", label: "Đánh giá"},
+		                	          {
+		                     	    	 field: "command", 
+		                     	    	 label:"Command",
+		                     	    	 width:"50px", 
+		                     	    	 command: [
+		                     	    	     {"label":"Delete",
+		                     	    	        	"action": "delete",
+		                     	    	        	"class": "btn-sm",
+		                     	    	     },
+//		                     	    	     {
+//		                     	    	       "label":"Custom function",
+//		                        	    	        "action": function(params, args){
+//		                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
+//		                        	    	        },
+//		                        	    	        "class": "btn-primary btn-sm"
+//		                        	    	     },   
+		                     	    	 ],
+		                     	   	 },
+		                	        ],
+		                	        
+		                	tools:[
+	        	                 {
+	        	                	 name: "create",
+	        	                	 buttonClass:"btn-success",
+	        	                	 label: "Thêm",
+	        	                	 command: function(){
+	        	                		 var self = this;
+	                	    			 var view = new KQNoiKiemNuocDialogView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
+	        	                		 view.dialog();
+	        	                		 view.on('close',function(data){
+	        	                			 var kqphieunoikiemtrachatluong = self.model.get('kqphieunoikiemtrachatluong');
+	        	                			 kqphieunoikiemtrachatluong.push(data);
+	        	                			 self.model.set("kqphieunoikiemtrachatluong",kqphieunoikiemtrachatluong);
+	        	                			 self.applyBindings();
+	        	                		 });
+	        	                	 }
+	        	                 }
+	          	                 ],
+		                	onRowClick: function(event){
+		                		var self= this;
+	            	    		if(event.rowId){
+	            	    			 var view = new KQNoiKiemNuocDialogView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
+	    	                		 view.dialog();
+	            	        	}
+	            	    	}
+		    			},
 				],
 			},
 

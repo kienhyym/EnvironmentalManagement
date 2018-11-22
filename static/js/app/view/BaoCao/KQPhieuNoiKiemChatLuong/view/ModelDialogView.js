@@ -4,14 +4,20 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/BaoCao/PhamTramMauNuocKhongDat/tpl/model.html'),
-    	schema 				= require('json!schema/PhamTramMauNuocKhongDatSchema.json');
+    var template 				= require('text!app/view/BaoCao/KQPhieuNoiKiemChatLuong/tpl/model.html'),
+	schema 				= require('json!schema/KQPhieuNoiKiemChatLuongSchema.json');
     
-    return Gonrin.ModelView.extend({
+	var currentDate = new Date();
+    return Gonrin.ModelDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "phantrammaunuockhongdat",
+		collectionName: "kqphieunoikiemtrachatluong",
+		
+    	uiControl:{
+    		fields: [
+		     ],
+    	},
     	tools : [
 	    	    {
 	    	    	name: "defaultgr",
@@ -25,8 +31,7 @@ define(function (require) {
 							label: "TRANSLATE:BACK",
 							command: function(){
 								var self = this;
-								
-								Backbone.history.history.back();
+								self.close();
 							}
 						},
 						{
@@ -40,7 +45,8 @@ define(function (require) {
 			                    self.model.save(null,{
 			                        success: function (model, respose, options) {
 			                            self.getApp().notify("Lưu thông tin thành công");
-			                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+			                            self.trigger("close",self.model.toJSON());
+			                            self.close()
 			                            
 			                        },
 			                        error: function (model, xhr, options) {
@@ -63,7 +69,9 @@ define(function (require) {
 			                    self.model.destroy({
 			                        success: function(model, response) {
 			                        	self.getApp().notify('Xoá dữ liệu thành công');
-			                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+			                        	self.trigger("delete",self.model.toJSON());
+			                        	self.close();
+			                        	
 			                        },
 			                        error: function (model, xhr, options) {
 			                            self.getApp().notify('Xoá dữ liệu không thành công!');
@@ -74,9 +82,18 @@ define(function (require) {
 			    	    },
 	    	    	],
 	    	    }],
+	    	
+	        	
+	        	
     	render:function(){
     		var self = this;
-    		var id = this.getApp().getRouter().getParam("id");
+    		
+    		var id = null;
+    		if (self.viewData!==null){
+    			id = self.viewData.id;
+    			var baocao_id = self.viewData.baocao_id;
+    			self.model.set("phieunoikiemchatluong_id",baocao_id);
+    		}
     		if(id){
     			this.model.set('id',id);
         		this.model.fetch({
