@@ -236,7 +236,7 @@
 
 
               {
-                "text": "Báo Cáo",
+                "text": "Báo Cáo - Phụ Lục IV",
                 "icon": "fa fa-book",
                 "type": "category",
                 "visible": function () {
@@ -245,7 +245,7 @@
                 "entries": [
 
                   {
-                    "text": "Mẫu 01 Phụ Luc 01 - Khai Thác Nước Ngầm",
+                    "text": "Mẫu 1: Khai Thác Nước Ngầm",
                     "type": "view",
                     "collectionName": "khaithacnuocngam",
                     "route": "khaithacnuocngam/collection",
@@ -262,7 +262,7 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 02 Phụ Luc 01 - Khai Thác Nước Sông",
+                    "text": "Mẫu 2: Khai Thác Nước Sông",
                     "type": "view",
                     "collectionName": "khaithacnuocsong",
                     "route": "khaithacnuocsong/collection",
@@ -279,7 +279,7 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 03 Phụ Lục 01 - Khai Thác Nước Từ Hồ Chứa",
+                    "text": "Mẫu 3: Khai Thác Nước Từ Hồ Chứa",
                     "type": "view",
                     "collectionName": "khaithacnuoctuhochua",
                     "route": "khaithacnuoctuhochua/collection",
@@ -296,7 +296,7 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 01 Phụ Lục 02 - Phiếu Nội Kiểm Tra Chất Lượng",
+                    "text": "Mẫu 04: Phiếu Nội Kiểm Tra Chất Lượng",
                     "type": "view",
                     "collectionName": "phieunoikiemchatluong",
                     "route": "phieunoikiemchatluong/collection",
@@ -313,15 +313,9 @@
                     "visible": false
                   },
 
+      
                   {
-                    "type": "view",
-                    "collectionName": "ketquaxetnghiemtaicho",
-                    "route": "ketquaxetnghiemtaicho/model",
-                    "$ref": "app/view/BaoCao/KetQuaXNNuocTaiCho/view/ModelView",
-                    "visible": false
-                  },
-                  {
-                    "text": "Mẫu 02 Phụ Lục 02 - Phiếu Ngoại Kiểm Vệ Sinh Chất Lượng",
+                    "text": "Mẫu 5: Phiếu Ngoại Kiểm Vệ Sinh Chất Lượng",
                     "type": "view",
                     "collectionName": "phieungoaikiemchatluong",
                     "route": "phieungoaikiemchatluong/collection",
@@ -338,7 +332,7 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 03 Phụ Luc 02 - Kiểm Tra Nguồn Nước Gia Đình",
+                    "text": "Mẫu 6: Kiểm Tra Nguồn Nước Gia Đình",
                     "type": "view",
                     "collectionName": "kiemtranguonnuochogiadinh",
                     "route": "kiemtranguonnuochogiadinh/collection",
@@ -355,182 +349,44 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 04 Phụ Lục 03 - Nước Sinh Hoạt Trên 1000m",
-                    "type": "view",
-                    "collectionName": "tonghopkqnuocsinhhoattren1000m",
-                    "route": "tonghopkqnuocsinhhoattren1000m/collection",
-                    "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "tonghopkqnuocsinhhoattren1000m",
-                    "route": "tonghopkqnuocsinhhoattren1000m/model",
-                    "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
-                    "visible": false
-                  },    
-
-                  {
-                    "text": "Mẫu 3.1 Phụ Lục 5 - Báo Cáo Xây Dựng Dữ Liệu Đặc Tả",
-                    "type": "view",
-                    "collectionName": "bcxaydungdulieudacta",
-                    "route": "bcxaydungdulieudacta/collection",
-                    "$ref": "app/view/BaoCao/BCXayDungDuLieuDacTa/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "bcxaydungdulieudacta",
-                    "route": "bcxaydungdulieudacta/model",
-                    "$ref": "app/view/BaoCao/BCXayDungDuLieuDacTa/view/ModelView",
-                    "visible": false
-                  },
-
-                  {
-                    "text": "Mẫu 05 Phụ Lục 04 - Kết Quả Chất Lượng Nước Ăn Uống",
-                    "type": "view",
-                    "collectionName": "kqchatluongnuocanuong",
-                    "route": "kqchatluongnuocanuong/collection",
-                    "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "kqchatluongnuocanuong",
-                    "route": "kqchatluongnuocanuong/model",
-                    "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
-                    "visible": false
-                  },
-                  {
-                    "text": "Mẫu 3.1 Phụ Luc 5 - Phân Loại Và Đánh Gía Dữ Liệu",
-                    "type": "view",
-                    "collectionName": "phanloaivadanhgiadulieu",
-                    "route": "phanloaivadanhgiadulieu/collection",
-                    "$ref": "app/view/BaoCao/PhanLoaiVaDanhGiaDuLieu/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "phanloaivadanhgiadulieu",
-                    "route": "phanloaivadanhgiadulieu/model",
-                    "$ref": "app/view/BaoCao/PhanLoaiVaDanhGiaDuLieu/view/ModelView",
-                    "visible": false
-                  },
-                  {
-                    "text": "Dữ Liệu Đã Thu Thập",
-                    "type": "view",
-                    "collectionName": "dulieudathuthap",
-                    "route": "dulieudathuthap/collection",
-                    "$ref": "app/view/BaoCao/DuLieuDaThuThap/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "dulieudathuthap",
-                    "route": "dulieudathuthap/model",
-                    "$ref": "app/view/BaoCao/DuLieuDaThuThap/view/ModelView",
-                    "visible": false
-                  },
-                  {
-                    "text": "Mẫu 2.1 Phụ Lục 5 - Bàn Giao Dữ Liệu Đã Thu Thập",
-                    "type": "view",
-                    "collectionName": "bangiaodulieudathuthap",
-                    "route": "bangiaodulieudathuthap/collection",
-                    "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "bangiaodulieudathuthap",
-                    "route": "bangiaodulieudathuthap/model",
-                    "$ref": "app/view/BaoCao/BanGiaoDuLieuDaThuThap/view/ModelView",
-                    "visible": false
-                  },
-
-                  {
-                    "text": "Mẫu 3.1 Phụ Lục 5 - Báo Cáo Thu Thập Dữ Liệu",
-                    "type": "view",
-                    "collectionName": "bcthuthapdulieu",
-                    "route": "bcthuthapdulieu/collection",
-                    "$ref": "app/view/BaoCao/BCThuThapDuLieu/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "bcthuthapdulieu",
-                    "route": "bcthuthapdulieu/model",
-                    "$ref": "app/view/BaoCao/BCThuThapDuLieu/view/ModelView",
-                    "visible": false
-                  },
-
-                  {
-                    "text": "Mẫu 03 Phụ Luc 04 - Kết Quả Ngoại Kiểm Tra Nước Vệ Sinh",
-                    "type": "view",
-                    "collectionName": "kqngoaikiemnuocsinhhoat",
-                    "route": "kqngoaikiemnuocsinhhoat/collection",
-                    "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "kqngoaikiemnuocsinhhoat",
-                    "route": "kqngoaikiemnuocsinhhoat/model",
-                    "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/ModelView",
-                    "visible": false
-                  },
-
-                  {
-                    "text": "Mẫu 04 Phụ Lục 04 - Cơ Sở Công Suất Từ 1000m",
-                    "type": "view",
-                    "collectionName": "kqktcosocongsuat1000m",
-                    "route": "kqktcosocongsuat1000m/collection",
-                    "$ref": "app/view/BaoCao/KQKTCoSoCongSuatDuoi1000m/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "kqktcosocongsuat1000m",
-                    "route": "kqktcosocongsuat1000m/model",
-                    "$ref": "app/view/BaoCao/KQKTCoSoCongSuatDuoi1000m/view/ModelView",
-                    "visible": false
-                  },
-
-                
-                  {
-                    "text": "Mẫu 02 Phụ Lục 04 - KQKT Chất Lượng Nước Sinh Hoạt",
-                    "type": "view",
-                    "collectionName": "kqktchatluongnuocsinhhoat",
-                    "route": "kqktchatluongnuocsinhhoat/collection",
-                    "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoat/view/CollectionView",
-                    "visible": function () {
-                      return this.userHasRole("Admin");
-                    }
-                  },
-                  {
-                    "type": "view",
-                    "collectionName": "kqktchatluongnuocsinhhoat",
-                    "route": "kqktchatluongnuocsinhhoat/model",
-                    "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoat/view/ModelView",
-                    "visible": false
-                  },
+                      "text": "Mẫu 6: Nguồn Nước Tự Chảy",
+                      "type": "view",
+                      "collectionName": "nguonnuoctuchay",
+                      "route": "nguonnuoctuchay/collection",
+                      "$ref": "app/view/BaoCao/NguonNuocTuChay/view/CollectionView",
+                      "visible": function () {
+                        return this.userHasRole("Admin");
+                      }
+                    },
+                    {
+                      "type": "view",
+                      "collectionName": "nguonnuoctuchay",
+                      "route": "nguonnuoctuchay/model",
+                      "$ref": "app/view/BaoCao/NguonNuocTuChay/view/ModelView",
+                      "visible": false
+                    },
+                    {
+                        "text": "Mẫu 6: Nguồn Nước Giếng Đào",
+                        "type": "view",
+                        "collectionName": "nguonnuocgiengdao",
+                        "route": "nguonnuocgiengdao/collection",
+                        "$ref": "app/view/BaoCao/NguonNuocGiengDao/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "nguonnuocgiengdao",
+                        "route": "nguonnuocgiengdao/model",
+                        "$ref": "app/view/BaoCao/NguonNuocGiengDao/view/ModelView",
+                        "visible": false
+                      },
+                 
+                  
+                  
+                  
+                  
                 ],
               },
 

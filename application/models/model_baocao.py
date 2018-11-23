@@ -262,6 +262,7 @@ class NguonNuocTuChay(CommonModel):
     racthai = db.Column(db.Integer)
     dungcudannuoc = db.Column(db.Integer)
     dungcuchuanuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 
 
 class NguonNuocGiengDao(CommonModel):
@@ -276,6 +277,7 @@ class NguonNuocGiengDao(CommonModel):
     sangieng = db.Column(db.Integer)
     ranhthoatnuoc = db.Column(db.Integer)
     dungculaynuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 
 
 class NguonNuocGiengKhoanTren25m(CommonModel):
@@ -284,6 +286,7 @@ class NguonNuocGiengKhoanTren25m(CommonModel):
     conggieng = db.Column(db.Integer)
     sangieng = db.Column(db.Integer)
     dungcubomnuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 
 
 class NguonNuocGiengKhoanDuoi25m(CommonModel):
@@ -297,6 +300,7 @@ class NguonNuocGiengKhoanDuoi25m(CommonModel):
     cobairacgangieng10m = db.Column(db.Integer)
     cochuonggiasucgangieng10m = db.Column(db.Integer)
     ranhthoatnuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 
 
 class HeThongThuHungNuocMua(CommonModel):
@@ -310,6 +314,7 @@ class HeThongThuHungNuocMua(CommonModel):
     thanhbe = db.Column(db.Integer)
     rongreucontrung = db.Column(db.Integer)
     dungculaynuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 
 
 class LuuTruNuocBECHUMVAI(CommonModel):
@@ -319,6 +324,7 @@ class LuuTruNuocBECHUMVAI(CommonModel):
     napday = db.Column(db.Integer)
     rongreucontrung = db.Column(db.Integer)
     dungculaynuoc = db.Column(db.Integer)
+    cong = db.Column(db.Integer)
 #------------------------------------->
 
 #Mau 4.7.

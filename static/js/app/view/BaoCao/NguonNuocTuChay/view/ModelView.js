@@ -2,84 +2,21 @@ define(function (require) {
 	"use strict";
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-	var template = require('text!app/view/BaoCao/KhaiThacNuocSong/tpl/model.html'), schema = require('json!schema/KhaiThacNuocSongSchema.json');
+	var template = require('text!app/view/BaoCao/NguonNuocTuChay/tpl/model.html'), 
+	schema = require('json!schema/NguonNuocTuChaySchema.json');
 
 	var maxDate = new Date();
-	var currentDate = new Date();
 	return Gonrin.ModelView
 		.extend({
 			template: template,
 			modelSchema: schema,
 			urlPrefix: "/api/v1/",
-			collectionName: "khaithacnuocsong",
+			collectionName: "nguonnuoctuchay",
 
 			uiControl: {
 				fields: [
+
 					 {
-					 field:"ngaybanhanhthongtu",
-					 textFormat:"DD/MM/YYYY",
-					 extraFormats:["DDMMYYYY"],
-					 maxDate: currentDate,
-					 },
-					 {
-						field: "bienbao",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có",
-							cssClass: "yeallow"
-						}, {
-							value: 1,
-							text: "Không",
-							
-						},],
-					}, {
-						field: "vatnuoi",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "nuoitrongthuysan",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-						
-						},],
-					}, {
-						field: "khaithactainguyen",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có",
-							cssClass: "yeallow"
-						}, {
-							value: 1,
-							text: "Không",
-							
-						},],
-					}, {
 						field: "nguoisinhhoat",
 						uicontrol: "radio",
 						textField: "text",
@@ -91,10 +28,25 @@ define(function (require) {
 						}, {
 							value: 1,
 							text: "Không",
-							
+							cssClass: "yeallow"
 						},],
 					}, {
-						field: "duongongkenhmuong",
+						field: "duongong",
+						uicontrol: "radio",
+						textField: "text",
+						valueField: "value",
+						cssClassField: "cssClass",
+						dataSource: [{
+							value: 0,
+							text: "Có",
+							cssClass: "yeallow"
+						}, {
+							value: 1,
+							text: "Không",
+						
+						},],
+					}, {
+						field: "nuoitrong",
 						uicontrol: "radio",
 						textField: "text",
 						valueField: "value",
@@ -105,67 +57,69 @@ define(function (require) {
 						}, {
 							value: 1,
 							text: "Không",
-							
+							cssClass: "yeallow"
+						},],
+					}, {
+						field: "vatnuoi",
+						uicontrol: "radio",
+						textField: "text",
+						valueField: "value",
+						cssClassField: "cssClass",
+						dataSource: [{
+							value: 0,
+							text: "Có",
+							cssClass: "yeallow"
+						}, {
+							value: 1,
+							text: "Không",
+						
+						},],
+					}, {
+						field: "racthai",
+						uicontrol: "radio",
+						textField: "text",
+						valueField: "value",
+						cssClassField: "cssClass",
+						dataSource: [{
+							value: 0,
+							text: "Có"
+						}, {
+							value: 1,
+							text: "Không",
+							cssClass: "yeallow"
+						},],
+					}, {
+						field: "dungcudannuoc",
+						uicontrol: "radio",
+						textField: "text",
+						valueField: "value",
+						cssClassField: "cssClass",
+						dataSource: [{
+							value: 0,
+							text: "Có"
+						}, {
+							value: 1,
+							text: "Không",
+							cssClass: "yeallow"
 						},],
 					},
 
 					{
-						field: "chanrac",
+						field: "dungcuchuanuoc",
 						uicontrol: "radio",
 						textField: "text",
 						valueField: "value",
 						cssClassField: "cssClass",
 						dataSource: [{
 							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
+							text: "Có",
 							cssClass: "yeallow"
-						},],
-					}, {
-						field: "bendoneodau",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							cssClass: "yeallow"
-						},],
-					}, {
-						field: "duonguongkenhmuong",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
 						}, {
 							value: 1,
 							text: "Không",
 							
 						},],
-					}, {
-						field: "congtrinhxaydung",
-						uicontrol: "radio",
-						textField: "text",
-						valueField: "value",
-						cssClassField: "cssClass",
-						dataSource: [{
-							value: 0,
-							text: "Có"
-						}, {
-							value: 1,
-							text: "Không",
-							
-						},],
-					},
+					}, 
 
 				],
 			},
