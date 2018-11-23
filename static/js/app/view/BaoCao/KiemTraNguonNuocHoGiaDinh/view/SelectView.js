@@ -13,33 +13,33 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "kiemtranguonnuochogiadinh",
-		textField: "ten",
+		//textField: "ten",
 		uiControl:{
     		fields: [
 //	    	     { 
 //	    	    	field: "id",label:"ID",width:150,readonly: true, 
 //	    	     },
-	    	     { field: "ma", label: "Mã", width:200},
-		     	 { field: "ten", label: "Tên", width:250 },
-		     	{
-   	        	 field: "xaphuong_id", 
-   	        	 label: "Xã Phường",
-   	        	 foreign: "xaphuong",
-   	        	 foreignValueField: "id",
-   	        	 foreignTextField: "ten",
-   	        	 width:250
-   	         },
-				{ field: "xaphuong", visible:false },
-				{
-   	        	 field: "thonxom_id", 
-   	        	 label: "Thôn Xóm",
-   	        	 foreign: "thonxom",
-   	        	 foreignValueField: "id",
-   	        	 foreignTextField: "ten",
-   	        	 width:250
-   	         },
-   	         { field: "thonxom", visible:false },
-		    ],
+//	    	     { field: "ma", label: "Mã", width:200},
+//		     	 { field: "ten", label: "Tên", width:250 },
+//		     	{
+//   	        	 field: "xaphuong_id", 
+//   	        	 label: "Xã Phường",
+//   	        	 foreign: "xaphuong",
+//   	        	 foreignValueField: "id",
+//   	        	 foreignTextField: "ten",
+//   	        	 width:250
+//   	         },
+//				{ field: "xaphuong", visible:false },
+//				{
+//   	        	 field: "thonxom_id", 
+//   	        	 label: "Thôn Xóm",
+//   	        	 foreign: "thonxom",
+//   	        	 foreignValueField: "id",
+//   	        	 foreignTextField: "ten",
+//   	        	 width:250
+//   	         },
+//   	         { field: "thonxom", visible:false },
+//		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    	},

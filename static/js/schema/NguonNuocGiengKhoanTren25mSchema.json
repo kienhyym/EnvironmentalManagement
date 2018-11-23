@@ -32,5 +32,8 @@
     },
     "dungcubomnuoc": {
         "type": "number"
+    },
+    "cong": {
+        "type": "number"
     }
 }

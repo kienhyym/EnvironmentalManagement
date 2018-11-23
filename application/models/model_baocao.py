@@ -293,7 +293,7 @@ class NguonNuocGiengKhoanDuoi25m(CommonModel):
     __tablename__ = 'nguonnuocgiengkhoanduoi25m'
     id = db.Column(UUID(as_uuid=True),primary_key=True, default=default_uuid)
     thongtinkiemtra = db.Column(db.String)
-    cogieng = db.Column(db.Integer)
+    congieng = db.Column(db.Integer)
     sangieng = db.Column(db.Integer)
     dungcubomnuoc = db.Column(db.Integer)
     conhatieugangieng10m = db.Column(db.Integer)

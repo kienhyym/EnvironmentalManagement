@@ -10,6 +10,9 @@ define(function(require) {
   var thonxomView = require('app/view/DanhMuc/ThonXom/view/SelectView');
   var tinhthanhView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
   var quanhuyenView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+  
+//  var nuoctuchayView = require('app/view/BaoCao/NguonNuocTuChay/view/SelectView');
+//  var nuocgiengdaoView = require('app/view/BaoCao/NguonNuocGiengDao/view/SelectView');
 
   var maxDate = new Date();
 
@@ -75,6 +78,24 @@ define(function(require) {
           foreignField: "tinhthanh_id",
           dataSource: tinhthanhView
         },
+//        {
+//            field: "nguonuoctuchay",
+//            uicontrol: "dict",
+//            textField: "cong",
+//            //chuyen sang thanh object
+//            foreignRemoteField: "id",
+//            foreignField: "nguonnuoctuchay_id",
+//            dataSource: nuoctuchayView
+//          },
+//          {
+//              field: "nguonnuocgiengdao",
+//              uicontrol: "dict",
+//              textField: "cong",
+//              //chuyen sang thanh object
+//              foreignRemoteField: "id",
+//              foreignField: "nguonnuocgiengdao_id",
+//              dataSource: nuoctuchayView
+//            },
 
       ],
     },

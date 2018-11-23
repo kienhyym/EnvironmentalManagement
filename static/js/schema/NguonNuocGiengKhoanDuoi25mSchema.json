@@ -28,7 +28,7 @@
         "type": "string",
         "length": null
     },
-    "cogieng": {
+    "congieng": {
         "type": "number"
     },
     "sangieng": {
@@ -47,6 +47,9 @@
         "type": "number"
     },
     "ranhthoatnuoc": {
+        "type": "number"
+    },
+    "cong": {
         "type": "number"
     }
 }

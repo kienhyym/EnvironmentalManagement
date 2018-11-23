@@ -16,37 +16,16 @@ define(function (require) {
 	    	fields: [
 	    	     {
 	    	    	field: "ngaybanhanhthongtu",label:"Ngày ban hành",
-              field: "tenhogiadinh",label:"Tên hộ gia đình",
+	    	    	field: "tenhogiadinh",label:"Tên hộ gia đình",
 	    	     },
 
-		     	 {
-	            	 field: "xaphuong_id",
-	            	 label: "Xã phường",
-	            	 foreign: "xaphuong",
-	            	 foreignValueField: "id",
-	            	 foreignTextField: "ten",
-					},
-					{
-						field: "thonxom_id",
-						label: "Thôn xóm",
-						foreign: "thonxom",
-						foreignValueField: "id",
-						foreignTextField: "ten",
-					   },
 					   {
-						field: "tinhthanh_id",
-						label: "Tỉnh thành",
-						foreign: "tinhthanh",
-						foreignValueField: "id",
-						foreignTextField: "ten",
-					   },
-					   {
-						field: "quanhuyen_id",
-						label: "Quận huyện",
-						foreign: "quanhuyen",
-						foreignValueField: "id",
-						foreignTextField: "ten",
-					   },
+							field: "nguonnuoctuchay_id",
+							label: "Tổng điểm nguồn nước chảy",
+							foreign: "nguonuoctuchay",
+							foreignValueField: "id",
+							foreignTextField: "cong",
+						   },
 		     ],
 		     onRowClick: function(event){
 		    		if(event.rowId){

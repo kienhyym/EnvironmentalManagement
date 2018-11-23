@@ -382,6 +382,74 @@
                         "$ref": "app/view/BaoCao/NguonNuocGiengDao/view/ModelView",
                         "visible": false
                       },
+                      {
+                          "text": "Mẫu 6: Nguồn Nước Giếng Khoan Trên 25m",
+                          "type": "view",
+                          "collectionName": "nguonnuocgiengkhoantren25m",
+                          "route": "nguonnuocgiengkhoantren25m/collection",
+                          "$ref": "app/view/BaoCao/NguonNuocGiengKhoanTren25m/view/CollectionView",
+                          "visible": function () {
+                            return this.userHasRole("Admin");
+                          }
+                        },
+                        {
+                          "type": "view",
+                          "collectionName": "nguonnuocgiengkhoantren25m",
+                          "route": "nguonnuocgiengkhoantren25m/model",
+                          "$ref": "app/view/BaoCao/NguonNuocGiengKhoanTren25m/view/ModelView",
+                          "visible": false
+                        },
+                        {
+                            "text": "Mẫu 6: Nguồn Nước Giếng Khoan Dưới 25m",
+                            "type": "view",
+                            "collectionName": "nguonnuocgiengkhoanduoi25m",
+                            "route": "nguonnuocgiengkhoanduoi25m/collection",
+                            "$ref": "app/view/BaoCao/NguonNuocGiengKhoanDuoi25m/view/CollectionView",
+                            "visible": function () {
+                              return this.userHasRole("Admin");
+                            }
+                          },
+                          {
+                            "type": "view",
+                            "collectionName": "nguonnuocgiengkhoanduoi25m",
+                            "route": "nguonnuocgiengkhoanduoi25m/model",
+                            "$ref": "app/view/BaoCao/NguonNuocGiengKhoanDuoi25m/view/ModelView",
+                            "visible": false
+                          },
+                          {
+                              "text": "Mẫu 6: Hệ Thống Thu Hứng Nước Mưa",
+                              "type": "view",
+                              "collectionName": "hethongthuhungnuocmua",
+                              "route": "hethongthuhungnuocmua/collection",
+                              "$ref": "app/view/BaoCao/HeThongThuHungNuocMua/view/CollectionView",
+                              "visible": function () {
+                                return this.userHasRole("Admin");
+                              }
+                            },
+                            {
+                              "type": "view",
+                              "collectionName": "hethongthuhungnuocmua",
+                              "route": "hethongthuhungnuocmua/model",
+                              "$ref": "app/view/BaoCao/HeThongThuHungNuocMua/view/ModelView",
+                              "visible": false
+                            },
+                            {
+                                "text": "Mẫu 6: Lưu Trữ Nước Bể,Chum,Vại",
+                                "type": "view",
+                                "collectionName": "luutrunuocbechumvai",
+                                "route": "luutrunuocbechumvai/collection",
+                                "$ref": "app/view/BaoCao/LuuTruNuocBECHUMVAI/view/CollectionView",
+                                "visible": function () {
+                                  return this.userHasRole("Admin");
+                                }
+                              },
+                              {
+                                "type": "view",
+                                "collectionName": "luutrunuocbechumvai",
+                                "route": "luutrunuocbechumvai/model",
+                                "$ref": "app/view/BaoCao/LuuTruNuocBECHUMVAI/view/ModelView",
+                                "visible": false
+                              },
                  
                   
                   

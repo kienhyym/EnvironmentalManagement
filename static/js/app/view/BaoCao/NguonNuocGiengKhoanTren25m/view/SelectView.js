@@ -4,33 +4,16 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/BaoCao/NguonNuocGiengDao/tpl/collectionDialog.html'),
-    	schema 				= require('json!schema/NguonNuocGiengDaoSchema.json');
+    var template 			= require('text!app/view/BaoCao/NguonNuocGiengKhoanTren25m/tpl/collection.html'),
+    	schema 				= require('json!schema/NguonNuocGiengKhoanTren25mSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "nguonnuocgiengdao",
-    	textField: "id",
-    	valueField: "cong"
-    	uiControl:{
-    		fields: [
-    				{ field: "cong", label: "Tổng điểm", width:100},
-    		     	{ field: "nguoisinhhoat", label: "Người sinh hoạt", width:100 },
-    		     	{ field: "duongong", label: "Đường ống", width:100 },
-    		     	{ field: "nuoitrong", label: "Nuôi thủy sản", width:100 },
-    		     	{ field: "vatnuoi", label: "Gia súc gia cầm", width:100 },
-    		     	{ field: "racthai", label: "Rác thải", width:100 },
-    		     	{ field: "dungcudannuoc", label: "Đồ dẫn nước", width:100 },
-    		     	{ field: "dungcuchuanuoc", label: "Đồ chứa nước", width:100 },
-    		    ],
-    		    onRowClick: function(event){
-    	    		this.uiControl.selectedItems = event.selectedItems;
-    	    	},
-    	},
-    	
+    	collectionName: "nguonnuocgiengkhoantren25m",
+//    	textField: "id",
     	tools : [
     	    {
     	    	name: "defaultgr",

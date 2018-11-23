@@ -48,5 +48,8 @@
     },
     "dungculaynuoc": {
         "type": "number"
+    },
+    "cong": {
+        "type": "number"
     }
 }
