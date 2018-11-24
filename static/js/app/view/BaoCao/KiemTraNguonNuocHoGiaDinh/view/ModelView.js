@@ -217,6 +217,8 @@ define(function(require) {
     render: function() {
       var self = this;
      
+      var view_nguonnuoctuchay = new nuoctuchayView();
+      var view_NuocGiengDaoView = new NuocGiengDaoView();
       
       var id = this.getApp().getRouter().getParam("id");
       if (id) {
@@ -232,8 +234,7 @@ define(function(require) {
       } else {
         self.applyBindings();
       }
-      var view_nguonnuoctuchay = new nuoctuchayView();
-      var view_NuocGiengDaoView = new NuocGiengDaoView();
+      
       
       
     },
