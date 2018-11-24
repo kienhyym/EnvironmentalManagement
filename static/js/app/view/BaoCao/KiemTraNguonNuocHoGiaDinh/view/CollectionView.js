@@ -14,18 +14,14 @@ define(function (require) {
     	collectionName: "kiemtranguonnuochogiadinh",
 		uiControl:{
 	    	fields: [
-	    	     {
-	    	    	field: "ngaybanhanhthongtu",label:"Ngày ban hành",
-	    	    	field: "tenhogiadinh",label:"Tên hộ gia đình",
-	    	     },
-
-					   {
-							field: "nguonnuoctuchay_id",
-							label: "Tổng điểm nguồn nước chảy",
-							foreign: "nguonuoctuchay",
-							foreignValueField: "id",
-							foreignTextField: "cong",
-						   },
+	    	     
+	    	    	{ field: "ngaybanhanhthongtu",label:"Ngày ban hành"},
+	    	    	{ field: "tenhogiadinh",label:"Tên hộ gia đình"},
+	    	    	{ field: "tenphieu",label:"Tên phiếu"},
+	    	    	{field: "sonhankhau",label:"Số nhân khẩu"},
+	    	    	{field: "nguoikiemtra",label:"Người kiểm tra"},
+	    	    	{field: "thoigiankiemtra",label:"Thời gian kiểm tra"},   	    	   	    
+	    	     				  
 		     ],
 		     onRowClick: function(event){
 		    		if(event.rowId){

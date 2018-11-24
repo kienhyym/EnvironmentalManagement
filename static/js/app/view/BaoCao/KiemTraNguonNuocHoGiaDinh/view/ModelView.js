@@ -11,10 +11,12 @@ define(function(require) {
   var tinhthanhView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
   var quanhuyenView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
   
-//  var nuoctuchayView = require('app/view/BaoCao/NguonNuocTuChay/view/SelectView');
-//  var nuocgiengdaoView = require('app/view/BaoCao/NguonNuocGiengDao/view/SelectView');
+  var KTNuocHoGiaDinhDialogView = require('app/view/BaoCao/KTNuocHoGiaDinh/view/ModelDialogView');
 
-  var maxDate = new Date();
+  var nuoctuchayView = require('app/view/BaoCao/NguonNuocTuChay/view/ModelView');
+  var NuocGiengDaoView = require('app/view/BaoCao/NguonNuocGiengDao/view/ModelView');
+
+  var currentDate = new Date();
 
   return Gonrin.ModelView.extend({
     template: template,
@@ -27,20 +29,30 @@ define(function(require) {
           field: "ngaybanhanhthongtu",
           textFormat: "DD/MM/YYYY",
           extraFormats: ["DDMMYYYY"],
-          maxDate,
+          maxDate:currentDate,
         },
-				{
+			{
 	          field: "thoigiankiemtra",
 	          textFormat: "DD/MM/YYYY",
 	          extraFormats: ["DDMMYYYY"],
-	          maxDate,
+	          maxDate:currentDate,
 	        },
-					{
-		          field: "ngaykiemtra",
-		          textFormat: "DD/MM/YYYY",
-		          extraFormats: ["DDMMYYYY"],
-		          maxDate,
-		        },
+	        {
+	          field:"nguonuoctuchay",
+	          uicontrol:false,
+	          itemView:nuoctuchayView
+	        },
+	        {
+	          field:"nguonnuocgiengdao",
+	          uicontrol:false,
+	          itemView:NuocGiengDaoView
+	        },
+			{
+	          field: "ngaykiemtra",
+	          textFormat: "DD/MM/YYYY",
+	          extraFormats: ["DDMMYYYY"],
+	          maxDate:currentDate
+		     },
 
         {
           field: "xaphuong",
@@ -78,28 +90,68 @@ define(function(require) {
           foreignField: "tinhthanh_id",
           dataSource: tinhthanhView
         },
-//        {
-//            field: "nguonuoctuchay",
-//            uicontrol: "dict",
-//            textField: "cong",
-//            //chuyen sang thanh object
-//            foreignRemoteField: "id",
-//            foreignField: "nguonnuoctuchay_id",
-//            dataSource: nuoctuchayView
-//          },
-//          {
-//              field: "nguonnuocgiengdao",
-//              uicontrol: "dict",
-//              textField: "cong",
-//              //chuyen sang thanh object
-//              foreignRemoteField: "id",
-//              foreignField: "nguonnuocgiengdao_id",
-//              dataSource: nuoctuchayView
-//            },
+		{
+			field: "ktnuochogiadinh",
+			uicontrol: "grid",
+			refresh: true,
+			primaryField: "id",
+			fields:[
+			          {field:"vitrilaymau", label:"Vị trí lấy mẫu"},
+        	          {field:"ph", label:"pH"},
+        	          {field:"doduc", label: "Độ đục (NTU)"},
+        	          {field:"danhgia", label: "Đánh giá"},
+        	          {
+             	    	 field: "command", 
+             	    	 label:"Command",
+             	    	 width:"50px", 
+             	    	 command: [
+             	    	     {"label":"Delete",
+             	    	        	"action": "delete",
+             	    	        	"class": "btn-sm",
+             	    	     },
+//             	    	     {
+//             	    	       "label":"Custom function",
+//                	    	        "action": function(params, args){
+//                	    	        	$("#grid").data('gonrin').deleteRow(params.el);
+//                	    	        },
+//                	    	        "class": "btn-primary btn-sm"
+//                	    	     },   
+             	    	 ],
+             	   	 },
+        	        ],
+        	tools:[
+                 {
+                	 name: "create",
+                	 buttonClass:"btn-success",
+                	 label: "Thêm",
+                	 command: function(){
+                		 var self = this;
+    	    			 var view = new KTNuocHoGiaDinhDialogView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
+                		 view.dialog();
+                		 view.on('close',function(data){
+                			 var ktnuochogiadinh = self.model.get('ktnuochogiadinh');
+                			 ktnuochogiadinh.push(data);
+                			 self.model.set("ktnuochogiadinh",ktnuochogiadinh);
+                			 self.applyBindings();
+                		 });
+                	 }
+                 }
+	                 ],
+        	onRowClick: function(event){
+        		var self= this;
+	    		if(event.rowId){
+	    			 var view = new KTNuocHoGiaDinhDialogView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
+            		 view.dialog();
+	        	}
+	    	}
+		},
 
       ],
     },
-    tools: [{
+ 
+    
+  
+  tools: [{
       name: "defaultgr",
       type: "group",
       groupClass: "toolbar-group",
@@ -164,6 +216,8 @@ define(function(require) {
 
     render: function() {
       var self = this;
+     
+      
       var id = this.getApp().getRouter().getParam("id");
       if (id) {
         this.model.set('id', id);
@@ -178,7 +232,10 @@ define(function(require) {
       } else {
         self.applyBindings();
       }
-
+      var view_nguonnuoctuchay = new nuoctuchayView();
+      var view_NuocGiengDaoView = new NuocGiengDaoView();
+      
+      
     },
   });
 

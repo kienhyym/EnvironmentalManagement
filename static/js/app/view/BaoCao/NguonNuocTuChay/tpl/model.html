@@ -1,106 +1,74 @@
-<div style="margin-top: 30px" class="panel panel-info">
-	<div class="panel-heading">Mẫu 6: Nước Tự Chảy</div>
-	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px" block-bind="content">
-		<div class="panel-body">
-
-			<div style="height: 9px"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="formGroupExampleInput">ID</label> <input type="text"
-							class="form-control" readonly id="formGroupExampleInput"
-							data-bind="value:id" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<label class="form-check-label" for="inlineRadio1">Phạm vi
-						ban hành</label>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="text"
-							data-bind="value:phamvi">
-					</div>
-				</div>
-				<div class="col-md-6">
-							<label class="form-check-label" for="inlineRadio1">Tổng
-								số điểm</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input form-control" type="text"
-									data-bind="value:cong">
-							</div>
-						</div>
-
-			</div>
-			<div class="panel panel-warning">
-				<div class="panel-heading">(Có : 1, không : 0)</div>
-				<div class="panel-body">
-					<div style="margin-top: 10px" class="row">
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Hoạt
-								động tắm,gặt</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:nguoisinhhoat">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Đường
-								ống kênh mương</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:duongong">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Hoạt
-								động nuôi trồng thủy sản</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:nuoitrong">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Gia
-								súc,gia cầm</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:vatnuoi">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Rác
-								thải hoặc phân người</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:racthai">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Dẫn
-								nước đến hộ gia đình bị bẩn</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:dungcudannuoc">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Dụng
-								cụ chứa nước,múc nước bẩn</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:dungcuchuanuoc">
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-
-
-		</div>
-	</div>
-</div>
+<table
+	style="text-align: center; text-decoration: none; font-family: serif;"
+	class="table table-bordered">
+	<thead>
+		<tr>
+			<th>STT</th>
+			<th>Các nội dung kiểm tra</th>
+			<th>Điểm nguy cơ</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1.1</td>
+			<td>Hoạt động tắm giặt hoặc sản xuất hoặc khai thác tài nguyên <br />
+				(Có: 1 ; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:nguoisinhhoat"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.2</td>
+			<td>Đường ống cống hoặc kênh mương hoặc rãnh nước thải đổ vào
+				nguồn nước <br />(Có: 1 ; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:duongong"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.3</td>
+			<td>Hoạt động nuôi trồng thủy sản <br /> (Có:1; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:nuoitrong"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.4</td>
+			<td>Gia súc, gia cầm hoặc các loại vật nuôi khác đến tắm, uống
+				nước <br /> (Có: 1; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:vatnuoi"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.5</td>
+			<td>Rác thải hoặc phân người hoặc phân gia súc hoặc xác súc vật<br />
+				(Có: 1; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:racthai"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.6</td>
+			<td>Dụng cụ dẫn nước từ nguồn nước tới hộ gia đình bị bẩn<br />
+				(Có: 1; không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:dungcudannuoc"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>1.7</td>
+			<td>Dụng cụ chứa nước, múc nước bị bẩn, ô nhiễm<br /> (Có: 1;
+				không: 0)
+			</td>
+			<td><input type="text" data-ngonnguoc-bind="value:dungcuchuanuoc"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Cộng</td>
+			<td><input type="text" data-ngonnguoc-bind="value:cong"
+				class="form-control" /></td>
+		</tr>
+	</tbody>
+</table>

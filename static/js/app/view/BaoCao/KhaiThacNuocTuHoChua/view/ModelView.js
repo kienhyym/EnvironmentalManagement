@@ -30,11 +30,12 @@ define(function (require) {
 						cssClassField: "cssClass",
 						dataSource: [{
 							value: 0,
-							text: "Có"
+							text: "Có",
+							cssClass: "yeallow"
 						}, {
 							value: 1,
 							text: "Không",
-							cssClass: "yeallow"
+							
 						},],
 					}, {
 						field: "vatnuoi",
@@ -58,11 +59,12 @@ define(function (require) {
 						cssClassField: "cssClass",
 						dataSource: [{
 							value: 0,
-							text: "Có"
+							text: "Có",
+							cssClass: "yeallow"
 						}, {
 							value: 1,
 							text: "Không",
-							cssClass: "yeallow"
+							
 						},],
 					}, {
 						field: "canhtacnongnghiep",
@@ -86,11 +88,12 @@ define(function (require) {
 						cssClassField: "cssClass",
 						dataSource: [{
 							value: 0,
-							text: "Có"
+							text: "Có",
+							cssClass: "yeallow"
 						}, {
 							value: 1,
 							text: "Không",
-							cssClass: "yeallow"
+						
 						},],
 					}, {
 						field: "nguoisinhhoat",
@@ -116,11 +119,12 @@ define(function (require) {
 						cssClassField: "cssClass",
 						dataSource: [{
 							value: 0,
-							text: "Có"
+							text: "Có",
+							cssClass: "yeallow"
 						}, {
 							value: 1,
 							text: "Không",
-							cssClass: "yeallow"
+							
 						},],
 					}, {
 						field: "duongongkenhmuong",

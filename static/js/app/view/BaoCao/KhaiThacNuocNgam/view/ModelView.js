@@ -59,7 +59,8 @@ define(function (require) {
 					cssClassField: "cssClass",
 					dataSource: [{
 						value: 0,
-						text: "Có"
+						text: "Có",
+						cssClass: "yeallow"
 					}, {
 						value: 1,
 						text: "Không",
@@ -74,6 +75,7 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có"
+						cssClass: "yeallow"
 					}, {
 						value: 1,
 						text: "Không",
@@ -91,6 +93,7 @@ define(function (require) {
 					}, {
 						value: 1,
 						text: "Không",
+						cssClass: "yeallow"
 						
 					},],
 				}, {
@@ -133,7 +136,7 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có",
-							cssClass: "yeallow"
+						cssClass: "yeallow"
 					}, {
 						value: 1,
 						text: "Không",
