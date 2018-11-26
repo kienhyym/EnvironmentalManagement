@@ -366,6 +366,23 @@
                       "visible": false
                     },
                     {
+                        "text": "Mẫu 8: Kết Quả Kiểm Tra Vệ Sinh Nước Ăn Uống Sinh Hoạt",
+                        "type": "view",
+                        "collectionName": "kqktvesinhnuocsinhhoatcapxa",
+                        "route": "kqktvesinhnuocsinhhoatcapxa/collection",
+                        "$ref": "app/view/BaoCao/KQKTVeSinhNuocSinhHoatCapXa/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "kqktvesinhnuocsinhhoatcapxa",
+                        "route": "kqktvesinhnuocsinhhoatcapxa/model",
+                        "$ref": "app/view/BaoCao/KQKTVeSinhNuocSinhHoatCapXa/view/ModelView",
+                        "visible": false
+                      },
+                    {
                         "text": "Mẫu 9: Kết Quả Kiểm Tra Vệ Sinh Nước Ăn Uống Sinh Hoạt",
                         "type": "view",
                         "collectionName": "kqktchatluongnuocsinhhoatcaphuyen",
