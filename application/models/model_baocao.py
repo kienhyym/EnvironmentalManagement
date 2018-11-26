@@ -331,7 +331,6 @@ class LuuTruNuocBECHUMVAI(CommonModel):
 class KiemTraVSChatLuongNuocThanhPham(CommonModel):
     __tablename__ = 'kiemtrachatluongnuocthanhpham'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    baocao_id = db.Column(UUID(as_uuid=True), nullable=False)
     tenphuluc = db.Column(db.String)
     thongtu = db.Column(db.String)
     ngaybanhanhthongtu = db.Column(db.DateTime())
@@ -343,6 +342,7 @@ class KiemTraVSChatLuongNuocThanhPham(CommonModel):
     diachi = db.Column(db.String)
     congsuat = db.Column(db.String)
     sodan = db.Column(db.Integer)
+    nguonnguocnguyenlieu = db.Column(db.String)
     tinhtrangnguonnuocnguyenlieu = db.Column(db.String)
     tinhtrangngoaicanhcoso = db.Column(db.String)
     tinhtrangethongsanxuat = db.Column(db.String)
@@ -354,6 +354,8 @@ class KiemTraVSChatLuongNuocThanhPham(CommonModel):
     somaukhongdatvevisinhvat = db.Column(db.Integer)
     somaukhongdatlyhoahocvavisinhvat = db.Column(db.Integer)
     chitieukhongdat = db.Column(db.String)
+    chitieua = db.Column(db.String)
+    chitieub = db.Column(db.String)
     khacphuc = db.Column(db.String)
     ketluan = db.Column(db.String)
     kyten = db.Column(db.String)

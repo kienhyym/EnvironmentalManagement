@@ -348,6 +348,23 @@
                     "$ref": "app/view/BaoCao/KiemTraNguonNuocHoGiaDinh/view/ModelView",
                     "visible": false
                   },
+                  {
+                      "text": "Mẫu 7: Kiểm Tra Chất Lượng Nước Thành Phẩm",
+                      "type": "view",
+                      "collectionName": "kiemtrachatluongnuocthanhpham",
+                      "route": "kiemtrachatluongnuocthanhpham/collection",
+                      "$ref": "app/view/BaoCao/KiemTraVSChatLuongNuocThanhPham/view/CollectionView",
+                      "visible": function () {
+                        return this.userHasRole("Admin");
+                      }
+                    },
+                    {
+                      "type": "view",
+                      "collectionName": "kiemtrachatluongnuocthanhpham",
+                      "route": "kiemtrachatluongnuocthanhpham/model",
+                      "$ref": "app/view/BaoCao/KiemTraVSChatLuongNuocThanhPham/view/ModelView",
+                      "visible": false
+                    },
                     
                   
                   

@@ -32,12 +32,15 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						cssClass: "yeallow"
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "congtrinhxaydung",
 					uicontrol: "radio",
 					textField: "text",
@@ -46,12 +49,15 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						cssClass: "yeallow"
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "duongongkenhmuong",
 					uicontrol: "radio",
 					textField: "text",
@@ -61,12 +67,15 @@ define(function (require) {
 						value: 0,
 						text: "Có",
 						cssClass: "yeallow"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "canhtacnongnghiep",
 					uicontrol: "radio",
 					textField: "text",
@@ -76,12 +85,15 @@ define(function (require) {
 						value: 0,
 						text: "Có"
 						cssClass: "yeallow"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "vatnuoi",
 					uicontrol: "radio",
 					textField: "text",
@@ -90,13 +102,16 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						cssClass: "yeallow"
 						
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "bairacthai",
 					uicontrol: "radio",
 					textField: "text",
@@ -105,11 +120,13 @@ define(function (require) {
 					dataSource: [{
 						value: 0,
 						text: "Có"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						cssClass: "yeallow"
-					},],
+					},
+					],
 				},
 
 				{
@@ -126,8 +143,10 @@ define(function (require) {
 						value: 1,
 						text: "Không",
 						
-					},],
-				}, {
+					},
+					],
+				}, 
+				{
 					field: "nhatieu",
 					uicontrol: "radio",
 					textField: "text",
@@ -137,11 +156,13 @@ define(function (require) {
 						value: 0,
 						text: "Có",
 						cssClass: "yeallow"
-					}, {
+					}, 
+					{
 						value: 1,
 						text: "Không",
 						
-					},],
+					},
+					],
 				
 				},
 

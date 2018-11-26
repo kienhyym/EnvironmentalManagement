@@ -24,10 +24,6 @@
         "type": "string",
         "primary": true
     },
-    "baocao_id": {
-        "type": "string",
-        "required": true
-    },
     "tenphuluc": {
         "type": "string",
         "length": null
@@ -69,6 +65,10 @@
     "sodan": {
         "type": "number"
     },
+    "nguonnguocnguyenlieu": {
+        "type": "string",
+        "length": null
+    },
     "tinhtrangnguonnuocnguyenlieu": {
         "type": "string",
         "length": null
@@ -104,6 +104,14 @@
         "type": "number"
     },
     "chitieukhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "chitieua": {
+        "type": "string",
+        "length": null
+    },
+    "chitieub": {
         "type": "string",
         "length": null
     },
