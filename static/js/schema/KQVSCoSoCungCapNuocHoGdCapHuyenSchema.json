@@ -54,7 +54,7 @@
     "kiemtragiengkhoan": {
         "type": "number"
     },
-    "kiemtramangnuochay": {
+    "kiemtramangtuchay": {
         "type": "number"
     },
     "kiemtrabenuocmua": {
@@ -75,7 +75,7 @@
     "tieuchuangiengkhoan": {
         "type": "number"
     },
-    "tieuchuanmangnuocmua": {
+    "tieuchuanmangtuchay": {
         "type": "number"
     },
     "tieuchuanbenuocmua": {
@@ -87,27 +87,6 @@
     "tieuchuancong": {
         "type": "number"
     },
-    "vesinhcosocapnuoctt": {
-        "type": "number"
-    },
-    "vesinhgiengdao": {
-        "type": "number"
-    },
-    "vesinhgiengkhoan": {
-        "type": "number"
-    },
-    "vesinhmangnuocchay": {
-        "type": "number"
-    },
-    "vesinhbenuocmua": {
-        "type": "number"
-    },
-    "vesinhloaikhac": {
-        "type": "number"
-    },
-    "vesinhcong": {
-        "type": "number"
-    },
     "tylecosocapnuoctt": {
         "type": "number"
     },
@@ -117,10 +96,10 @@
     "tylegiengkhoan": {
         "type": "number"
     },
-    "tylebenuocmua": {
+    "tylemangtuchay": {
         "type": "number"
     },
-    "tylemangnuocchay": {
+    "tylebenuocmua": {
         "type": "number"
     },
     "tyleloaikhac": {

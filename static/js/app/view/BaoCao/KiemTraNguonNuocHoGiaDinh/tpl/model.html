@@ -2,7 +2,7 @@
 <div style="margin-top: 30px" class="panel panel-primary">
 	<div class="panel-heading">Mẫu 6: Kiểm Tra Nước Hộ Gia Đình</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div class="text-primary"
+	<div class=""
 		style="margin-left: 26px; margin-right: 20px; text-align: left; font-size: 15px; font-family: serif; font-style: normal;"
 		block-bind="content">
 
@@ -228,27 +228,99 @@
 					<div data-bind="dict:nguonuoctuchay"></div>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-md-12" style="margin-right: 20px">
 					<div data-bind="dict:nguonnuocgiengdao"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-right: 20px">
+					<div data-bind="dict:nguonnuocgiengkhoantren25m"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-right: 20px">
+					<div data-bind="dict:nguonnuocgiengkhoanduoi25m"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-right: 20px">
+					<div data-bind="dict:hethongthuhungnuocmua"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="margin-right: 20px">
+					<div data-bind="dict:luutrunuocbechumvai"></div>
+				</div>
+			</div>
+
+			<label style="margin-top: 13px; margin-bottom: 9px;formGroupExampleInput">II.
+				Vệ sinh khu xử lý nước (nếu có): </label>
+
+			<div class="row">
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">1. Giàn mưa:</label> <input
+						type="text" class="form-control" data-bind="value:gianmua" />
+				</div>
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">2. Bể lọc:</label> <input
+						type="text" class="form-control" data-bind="value:beloc" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">3. Vật liệu trong bể
+						lọc:</label> <input type="text" class="form-control"
+						data-bind="value:vatlieutrongbeloc" />
+				</div>
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">4. Dụng cụ chứa, múc
+						nước sau xử lý:</label> <input type="text" class="form-control"
+						data-bind="value:dungcuchuanuocsauxuly" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">Kết luận</label> <input
+						type="text" class="form-control" data-bind="value:ketluan" />
+				</div>
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">Kiến nghị</label> <input
+						type="text" class="form-control" data-bind="value:kiennghi" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">Đại diện gia đình ký tên</label> <input
+						type="text" class="form-control" data-bind="value:daidienhogiadinhkyten" />
+				</div>
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">Đoàn kiểm tra ký tên</label> <input
+						type="text" class="form-control" data-bind="value:nguoikiemtrakyten" />
+				</div>
+				<div class="col-md-6">
+					<label for="formGroupExampleInput">Ngày kiểm tra</label> <input
+						type="text" class="form-control" data-bind="value:ngaykiemtra" />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-		<div style="padding-right: 20px" class="row">
-			<div class="col-md-12">
-				<div class="panel panel-info">
-					<div class="panel-heading">KẾT QUẢ XÉT NGHIỆM NƯỚC TẠI CHỖ</div>
-					<div class="panel-body">
-						<div data-bind="list:ktnuochogiadinh"></div>
-					</div>
-				</div>
+<div style="padding-right: 20px" class="row">
+	<div class="col-md-12">
+		<div class="panel panel-info">
+			<div class="panel-heading">KẾT QUẢ XÉT NGHIỆM NƯỚC TẠI CHỖ</div>
+			<div class="panel-body">
+				<div data-bind="list:ktnuochogiadinh"></div>
 			</div>
 		</div>
+	</div>
+</div>
+
+
+
 
 
 

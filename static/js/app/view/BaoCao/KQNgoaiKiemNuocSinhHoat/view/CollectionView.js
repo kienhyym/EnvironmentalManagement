@@ -12,20 +12,23 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "kqngoaikiemnuocsinhhoat",
-    	uiControl:{
-    		fields: [
-    			 { field: "tenbaocao", label: "Tên báo cáo", width:250},
-    			 { field: "donvibaocao", label: "Đơn vị báo cáo", width:250},
-	    	     { field: "ngaybaocao", label: "Ngày báo cáo", width:250},
-	    	     { field: "sophieu", label: "Số phiếu", width:250},
+		uiControl:{
+	    	fields: [
+	    	     
+	    	    	{ field: "ngaybanhanhthongtu",label:"Ngày ban hành"},
+	    	    	{ field: "ngaytaophieu",label:"Ngày tạo phiếu"},
+	    	    	{ field: "donvibaocao",label:"Đơn vị báo cáo"},
+	    	    	{field: "ngaybaocao",label:"Ngày báo cáo"},
+	    	    	{field: "phamvi",label:"Phạm vi"},
+	    	    	{field: "kyten",label:"Ký tên"},   	    	   	    
+	    	     				  
 		     ],
 		     onRowClick: function(event){
-		    	if(event.rowId){
+		    		if(event.rowId){
 		        		var path = this.collectionName + '/model?id='+ event.rowId;
 		        		this.getApp().getRouter().navigate(path);
-		        }
-
-		    }
+		        	}
+		    	}
     	},
 	    render:function(){
 	    	 this.applyBindings();

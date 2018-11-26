@@ -15,6 +15,10 @@ define(function(require) {
 
   var nuoctuchayView = require('app/view/BaoCao/NguonNuocTuChay/view/ModelView');
   var NuocGiengDaoView = require('app/view/BaoCao/NguonNuocGiengDao/view/ModelView');
+  var NuocTren25mView = require('app/view/BaoCao/NguonNuocGiengKhoanTren25m/view/ModelView');
+  var NuocDuoi25mView = require('app/view/BaoCao/NguonNuocGiengKhoanDuoi25m/view/ModelView');
+  var NuocThuHungView = require('app/view/BaoCao/HeThongThuHungNuocMua/view/ModelView');
+  var NuocChumVaiView = require('app/view/BaoCao/LuuTruNuocBECHUMVAI/view/ModelView');
 
   var currentDate = new Date();
 
@@ -46,6 +50,26 @@ define(function(require) {
 	          field:"nguonnuocgiengdao",
 	          uicontrol:false,
 	          itemView:NuocGiengDaoView
+	        },
+	        {
+	          field:"nguonnuocgiengkhoantren25m",
+	          uicontrol:false,
+	          itemView:NuocTren25mView
+	        },
+	        {
+	          field:"nguonnuocgiengkhoanduoi25m",
+	          uicontrol:false,
+	          itemView:NuocDuoi25mView
+	        },
+	        {
+	          field:"hethongthuhungnuocmua",
+	          uicontrol:false,
+	          itemView:NuocThuHungView
+	        },
+	        {
+	          field:"luutrunuocbechumvai",
+	          uicontrol:false,
+	          itemView:NuocChumVaiView
 	        },
 			{
 	          field: "ngaykiemtra",
@@ -211,14 +235,15 @@ define(function(require) {
         },
       ],
     }],
-
-
-
     render: function() {
       var self = this;
      
       var view_nguonnuoctuchay = new nuoctuchayView();
       var view_NuocGiengDaoView = new NuocGiengDaoView();
+      var view_NuocTren25m = new NuocTren25mView();
+      var view_NuocDuoi25m = new NuocDuoi25mView();
+      var view_NuocThuHungView = new NuocThuHungView();
+      var view_NuocChumVaiView = new NuocChumVaiView();
       
       var id = this.getApp().getRouter().getParam("id");
       if (id) {

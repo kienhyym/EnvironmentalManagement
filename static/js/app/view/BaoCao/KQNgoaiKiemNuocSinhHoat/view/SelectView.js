@@ -13,7 +13,38 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "kqngoaikiemnuocsinhhoat",
-		textField: "tenbaocao",
+		//textField: "ten",
+		uiControl:{
+    		fields: [
+//	    	     { 
+//	    	    	field: "id",label:"ID",width:150,readonly: true, 
+//	    	     },
+//	    	     { field: "ma", label: "Mã", width:200},
+//		     	 { field: "ten", label: "Tên", width:250 },
+//		     	{
+//   	        	 field: "xaphuong_id", 
+//   	        	 label: "Xã Phường",
+//   	        	 foreign: "xaphuong",
+//   	        	 foreignValueField: "id",
+//   	        	 foreignTextField: "ten",
+//   	        	 width:250
+//   	         },
+//				{ field: "xaphuong", visible:false },
+//				{
+//   	        	 field: "thonxom_id", 
+//   	        	 label: "Thôn Xóm",
+//   	        	 foreign: "thonxom",
+//   	        	 foreignValueField: "id",
+//   	        	 foreignTextField: "ten",
+//   	        	 width:250
+//   	         },
+//   	         { field: "thonxom", visible:false },
+//		    ],
+		    onRowClick: function(event){
+	    		this.uiControl.selectedItems = event.selectedItems;
+	    	},
+		},
+		
 		tools: [
 			{
 				name: "defaultgr",
@@ -38,7 +69,7 @@ define(function (require) {
 			var self = this;
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
-				sessionKey: "Kqchatluongnuocanuong_filter"
+				sessionKey: "Khaithacnuocngam_filter"
 			});
 			filter.render();
 
@@ -46,8 +77,8 @@ define(function (require) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
 				var filters = {
 					"$or": [
-						{ "tenbaocao": { "$like": text } },
-						{ "donvibaocao": { "$like": text } },
+						{ "loaiphieu": { "$like": text } },
+						{ "tenphieu": { "$like": text } },
 					]
 				};
 				self.uiControl.filters = filters;
@@ -61,8 +92,8 @@ define(function (require) {
 					if (text !== null) {
 						var filters = {
 							"$or": [
-								{ "tenbaocao": { "$like": text } },
-								{ "donvibaocao": { "$like": text } },
+								{ "loaiphieu": { "$like": text } },
+								{ "tenphieu": { "$like": text } },
 							]
 						};
 						$col.data('gonrin').filter(filters);

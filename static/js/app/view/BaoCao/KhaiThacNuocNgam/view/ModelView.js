@@ -83,7 +83,7 @@ define(function (require) {
 					cssClassField: "cssClass",
 					dataSource: [{
 						value: 0,
-						text: "Có"
+						text: "Có",
 						cssClass: "yeallow"
 					}, 
 					{

@@ -20,20 +20,7 @@ define(function (require) {
 			},
 			render: function () {
 				var self = this;
-				var id = this.getApp().getRouter().getParam("id");
-				if (id) {
-					this.model.set('id', id);
-					this.model.fetch({
-						success: function (data) {
-							self.applyBindings();
-						},
-						error: function () {
-							self.getApp().notify("Get data Eror");
-						},
-					});
-				} else {
-					self.applyBindings();
-				}
+				self.applyBindings();
 
 			},
 		});

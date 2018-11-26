@@ -365,6 +365,76 @@
                       "$ref": "app/view/BaoCao/KiemTraVSChatLuongNuocThanhPham/view/ModelView",
                       "visible": false
                     },
+                    {
+                        "text": "Mẫu 9: Kết Quả Kiểm Tra Vệ Sinh Nước Ăn Uống Sinh Hoạt",
+                        "type": "view",
+                        "collectionName": "kqktchatluongnuocsinhhoatcaphuyen",
+                        "route": "kqktchatluongnuocsinhhoatcaphuyen/collection",
+                        "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoatCapHuyen/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "kqktchatluongnuocsinhhoatcaphuyen",
+                        "route": "kqktchatluongnuocsinhhoatcaphuyen/model",
+                        "$ref": "app/view/BaoCao/KQKTChatLuongNuocSinhHoatCapHuyen/view/ModelView",
+                        "visible": false
+                      },
+                    {
+                        "text": "Mẫu 10: Kết Quả Ngoại Kiểm Vệ Sinh",
+                        "type": "view",
+                        "collectionName": "kqngoaikiemnuocsinhhoat",
+                        "route": "kqngoaikiemnuocsinhhoat/collection",
+                        "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "kqngoaikiemnuocsinhhoat",
+                        "route": "kqngoaikiemnuocsinhhoat/model",
+                        "$ref": "app/view/BaoCao/KQNgoaiKiemNuocSinhHoat/view/ModelView",
+                        "visible": false
+                      },
+                    
+                    {
+                        "text": "Mẫu 11: Kết Quả Nước Ăn Uống Sinh Hoạt",
+                        "type": "view",
+                        "collectionName": "kqchatluongnuocanuong",
+                        "route": "kqchatluongnuocanuong/collection",
+                        "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "kqchatluongnuocanuong",
+                        "route": "kqchatluongnuocanuong/model",
+                        "$ref": "app/view/BaoCao/KQChatLuongNuocAnUong/view/ModelView",
+                        "visible": false
+                      },
+                    
+                    {
+                        "text": "Mẫu 12: Tổng Kết Quả Nội Kiểm Vệ Sinh",
+                        "type": "view",
+                        "collectionName": "tonghopkqnuocsinhhoattren1000m",
+                        "route": "tonghopkqnuocsinhhoattren1000m/collection",
+                        "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/CollectionView",
+                        "visible": function () {
+                          return this.userHasRole("Admin");
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "collectionName": "tonghopkqnuocsinhhoattren1000m",
+                        "route": "tonghopkqnuocsinhhoattren1000m/model",
+                        "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
+                        "visible": false
+                      },
                     
                   
                   

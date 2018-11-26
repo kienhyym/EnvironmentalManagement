@@ -1,104 +1,80 @@
-<div style="margin-top: 30px" class="panel panel-info">
-	<div class="panel-heading">Mẫu 6: Hệ Thống Thu Hứng Nước Mưa</div>
-	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px" block-bind="content">
-		<div class="panel-body">
+<table
+	style="text-align: center; text-decoration: none; font-family: serif;"
+	class="table table-bordered">
+	<thead>
+		<tr>
+			<th>STT</th>
+			<th>Các nội dung kiểm tra</th>
+			<th>Điểm nguy cơ</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>4.1</td>
+			<td>Mái hứng nước mưa (nếu có) có làm bằng fibro xi măng<br />
+				(Có: 1 ; không: 0)
+			</td>
+			<td><input type="text"
+				data-hungnuoc-bind="value:vatlieumaihungmua" class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.2</td>
+			<td>Mái hứng nước mưa và máng dẫn nước mưa bị bẩn hoặc bị tắc
+				nghẽn, đọng rác, lá cây, đất cát<br />(Có: 1 ; không: 0)
+			</td>
+			<td><input type="text" data-hungnuoc-bind="value:maihungmangdan"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.3</td>
+			<td>Thiếu hộp hoặc ga ngăn rác<br /> (Có:1; không: 0)
+			</td>
+			<td><input type="text" data-hungnuoc-bind="value:ganganrac"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.4</td>
+			<td>Thiếu nắp đậy bể<br /> (Có:1; không: 0)
+			</td>
+			<td><input type="text" data-hungnuoc-bind="value:napdaybe"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.5</td>
+			<td>Thành bể bị nứt, hở hoặc rò rỉ<br /> (Có:1; không: 0)
+			</td>
+			<td><input type="text" data-hungnuoc-bind="value:thanhbe"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.6</td>
+			<td>Rong rêu, rác, xác súc vật chết trong bể<br /> (Có:1;
+				không: 0)
+			</td>
+			<td><input type="text"
+				data-hungnuoc-bind="value:rongreucontrung" class="form-control" /></td>
+		</tr>
+		<tr>
+			<td>4.7</td>
+			<td>Dụng cụ lấy nước bị bẩn hoặc được đặt trên nền đất<br />
+				(Có:1; không: 0)
+			</td>
+			<td><input type="text" data-hungnuoc-bind="value:dungculaynuoc"
+				class="form-control" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Cộng</td>
+			<td><input type="text" data-hungnuoc-bind="value:cong"
+				class="form-control" /></td>
+		</tr>
+	</tbody>
+	<p>
+		Đánh giá nguy cơ: <br />
+		<br /> - 0 điểm: Chưa có nguy cơ gây ô nhiễm nguồn nước; <br /> - 1 -
+		2 điểm: Có nguy cơ gây ô nhiễm nguồn nước; <br /> - ≥ 3 điểm: Có nguy
+		cơ cao gây ô nhiễm nguồn nước.
+	</p>
+	<strong>4. Đối với hệ thống thu hứng, lưu trữ nước mưa:</strong>
 
-			<div style="height: 9px"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="formGroupExampleInput">ID</label> <input type="text"
-							class="form-control" readonly id="formGroupExampleInput"
-							data-bind="value:id" />
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="formGroupExampleInput">Tổng điểm</label> <input
-							type="text" class="form-control" id="formGroupExampleInput"
-							data-bind="value:cong" />
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="formGroupExampleInput">Thông tin kiểm tra</label> <input
-							type="text" class="form-control" id="formGroupExampleInput"
-							data-bind="value:thongtinkiemtra" />
-					</div>
-				</div>
-
-			</div>
-			<div class="panel panel-warning">
-				<div class="panel-heading">(Có : 1, không : 0)</div>
-				<div class="panel-body">
-					<div style="margin-top: 10px" class="row">
-
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Mái
-								hứng nước mưa (nếu có) có làm bằng fibro xi măng</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:vatlieumaihungmua">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Dụng
-								cụ lấy nước bị bẩn hoặc được đặt trên nền đất</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:dungculaynuoc">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Mái
-								hứng nước mưa và máng dẫn nước mưa bị bẩn hoặc bị tắc nghẽn,
-								đọng rác, lá cây, đất cát</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:maihungmangdan">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Thiếu
-								hộp hoặc ga ngăn rác</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:ganganrac">
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Thiếu
-								nắp đậy bể</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:napdaybe">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Thành
-								bể bị nứt, hở hoặc rò rỉ</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:thanhbe">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<label class="form-check-label" for="inlineRadio1">Rong
-								rêu, rác, xác súc vật chết trong bể</label>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									data-bind="value:rongreucontrung">
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+</table>
