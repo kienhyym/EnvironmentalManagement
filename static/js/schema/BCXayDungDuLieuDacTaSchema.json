@@ -50,8 +50,5 @@
     "nguoitaobaocaoky": {
         "type": "string",
         "length": null
-    },
-    "dulieutheochuan": {
-        "type": "list"
     }
 }

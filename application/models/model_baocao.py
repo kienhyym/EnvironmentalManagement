@@ -845,6 +845,7 @@ class BanGiaoDuLieuDaThuThap(CommonModel):
     bennhan = db.Column(db.String)
     daidienbennhan = db.Column(db.String)
     chucvubennhan = db.Column(db.String)
+    cungnhaubangiao = db.Column(db.String)
     bengiaoky = db.Column(db.String)
     bennhanky = db.Column(db.String)
 
@@ -903,17 +904,17 @@ class BCXayDungDuLieuDacTa(CommonModel):
     thongtinbosung = db.Column(db.String)
     ngaytaobaocao = db.Column(db.DateTime())
     nguoitaobaocaoky = db.Column(db.String)
-    dulieutheochuan = relationship('DuLieuDacTaTheoChuan')
+#     dulieutheochuan = relationship('DuLieuDacTaTheoChuan')
 
 
 #Table 5.4 -1
-class DuLieuDacTaTheoChuan(CommonModel):
-    __tablename__ = 'dulieudactatheochuan'
-    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    bcxaydungdulieudacta_id = db.Column(UUID(as_uuid=True), ForeignKey('bcxaydungdulieudacta.id'),index=True, nullable=True)
-    mathongtin = db.Column(db.String)
-    tenthongtin = db.Column(db.String)
-    mota = db.Column(db.String)
+# class DuLieuDacTaTheoChuan(CommonModel):
+#     __tablename__ = 'dulieudactatheochuan'
+#     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+#     bcxaydungdulieudacta_id = db.Column(UUID(as_uuid=True), ForeignKey('bcxaydungdulieudacta.id'),index=True, nullable=True)
+#     mathongtin = db.Column(db.String)
+#     tenthongtin = db.Column(db.String)
+#     mota = db.Column(db.String)
 
 #Table 5.5 -1
 class NhanLucSuaChua(CommonModel):
@@ -971,7 +972,9 @@ class BCKetQuaKiemTra(CommonModel):
     tenbaocao = db.Column(db.String)
     tenduan = db.Column(db.String)
     mucdich = db.Column(db.String)
-
+    ngaytaobaocao = db.Column(db.DateTime())
+    nguoilapbaocaokyten = db.Column(db.String)
+    cacnhomdexuat = db.Column(db.String)
     kqnhanlucthamgiakt = relationship('KQNhanLucThamGiaKT')
     kqnhanlucthamgiaktdacta = relationship('KQNhanLucThamGiaKTDacTa')
 
@@ -1006,6 +1009,7 @@ class BienBanBanGiaoSanPham(CommonModel):
     bennhan = db.Column(db.String)
     daidienbennhan = db.Column(db.String)
     chucvubennhan = db.Column(db.String)
+    cungnhaubangiao = db.Column(db.String)
     daidienbengiaoky = db.Column(db.String)
     daidienbennhanky = db.Column(db.String)
 

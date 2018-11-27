@@ -40,6 +40,17 @@
         "type": "string",
         "length": null
     },
+    "ngaytaobaocao": {
+        "type": "datetime"
+    },
+    "nguoilapbaocaokyten": {
+        "type": "string",
+        "length": null
+    },
+    "cacnhomdexuat": {
+        "type": "string",
+        "length": null
+    },
     "kqnhanlucthamgiakt": {
         "type": "list"
     },

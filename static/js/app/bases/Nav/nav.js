@@ -480,6 +480,108 @@
                           "$ref": "app/view/BaoCaoPhuLuc5/BCThuThapDuLieu/view/ModelView",
                           "visible": false
                         },
+                        {
+                            "text": "Mẫu 2: Bàn Giao Dữ Liệu Thu Thập",
+                            "type": "view",
+                            "collectionName": "bangiaodulieudathuthap",
+                            "route": "bangiaodulieudathuthap/collection",
+                            "$ref": "app/view/BaoCaoPhuLuc5/BanGiaoDuLieuDaThuThap/view/CollectionView",
+                            "visible": function () {
+                              return this.userHasRole("Admin");
+                            }
+                          },
+                          {
+                            "type": "view",
+                            "collectionName": "bangiaodulieudathuthap",
+                            "route": "bangiaodulieudathuthap/model",
+                            "$ref": "app/view/BaoCaoPhuLuc5/BanGiaoDuLieuDaThuThap/view/ModelView",
+                            "visible": false
+                          },
+                          {
+                              "text": "Mẫu 3: Phân Loại Đánh Giá Dữ Liệu",
+                              "type": "view",
+                              "collectionName": "phanloaivadanhgiadulieu",
+                              "route": "phanloaivadanhgiadulieu/collection",
+                              "$ref": "app/view/BaoCaoPhuLuc5/PhanLoaiVaDanhGiaDuLieu/view/CollectionView",
+                              "visible": function () {
+                                return this.userHasRole("Admin");
+                              }
+                            },
+                            {
+                              "type": "view",
+                              "collectionName": "phanloaivadanhgiadulieu",
+                              "route": "phanloaivadanhgiadulieu/model",
+                              "$ref": "app/view/BaoCaoPhuLuc5/PhanLoaiVaDanhGiaDuLieu/view/ModelView",
+                              "visible": false
+                            },
+                            {
+                                "text": "Mẫu 4: Báo Cáo Xây Cấu Trúc Dữ Liệu Đặc Tả",
+                                "type": "view",
+                                "collectionName": "bcxaydungdulieudacta",
+                                "route": "bcxaydungdulieudacta/collection",
+                                "$ref": "app/view/BaoCaoPhuLuc5/BCXayDungDuLieuDacTa/view/CollectionView",
+                                "visible": function () {
+                                  return this.userHasRole("Admin");
+                                }
+                              },
+                              {
+                                "type": "view",
+                                "collectionName": "bcxaydungdulieudacta",
+                                "route": "bcxaydungdulieudacta/model",
+                                "$ref": "app/view/BaoCaoPhuLuc5/BCXayDungDuLieuDacTa/view/ModelView",
+                                "visible": false
+                              },
+                              {
+                                  "text": "Mẫu 5: Báo Cáo Kết Quả Sửa Chữa",
+                                  "type": "view",
+                                  "collectionName": "bcketquasuachua",
+                                  "route": "bcketquasuachua/collection",
+                                  "$ref": "app/view/BaoCaoPhuLuc5/BCKetQuaSuaChua/view/CollectionView",
+                                  "visible": function () {
+                                    return this.userHasRole("Admin");
+                                  }
+                                },
+                                {
+                                  "type": "view",
+                                  "collectionName": "bcketquasuachua",
+                                  "route": "bcketquasuachua/model",
+                                  "$ref": "app/view/BaoCaoPhuLuc5/BCKetQuaSuaChua/view/ModelView",
+                                  "visible": false
+                                },
+                                {
+                                    "text": "Mẫu 6: Báo Cáo Kết Quả Kiểm Tra",
+                                    "type": "view",
+                                    "collectionName": "bcketquakiemtra",
+                                    "route": "bcketquakiemtra/collection",
+                                    "$ref": "app/view/BaoCaoPhuLuc5/BCKetQuaKiemTra/view/CollectionView",
+                                    "visible": function () {
+                                      return this.userHasRole("Admin");
+                                    }
+                                  },
+                                  {
+                                    "type": "view",
+                                    "collectionName": "bcketquakiemtra",
+                                    "route": "bcketquakiemtra/model",
+                                    "$ref": "app/view/BaoCaoPhuLuc5/BCKetQuaKiemTra/view/ModelView",
+                                    "visible": false
+                                  },
+                                  {
+                                      "text": "Mẫu 7: Biên Bản Bàn Giao Sản Phẩm",
+                                      "type": "view",
+                                      "collectionName": "bienbanbangiaosanpham",
+                                      "route": "bienbanbangiaosanpham/collection",
+                                      "$ref": "app/view/BaoCaoPhuLuc5/BienBanBanGiaoSanPham/view/CollectionView",
+                                      "visible": function () {
+                                        return this.userHasRole("Admin");
+                                      }
+                                    },
+                                    {
+                                      "type": "view",
+                                      "collectionName": "bienbanbangiaosanpham",
+                                      "route": "bienbanbangiaosanpham/model",
+                                      "$ref": "app/view/BaoCaoPhuLuc5/BienBanBanGiaoSanPham/view/ModelView",
+                                      "visible": false
+                                    },
               ],
               },
               
