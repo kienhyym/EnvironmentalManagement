@@ -25,7 +25,7 @@ SQLAlchemy
 ujson
 uvloop
 websockets
-psycopg2
+psycopg2-binary
 aiosmtplib
 apscheduler
 aiohttp
