@@ -3,7 +3,8 @@ define('jquery', [], function() {
 });
 
 require.config({
-    baseUrl: '/static/js/lib',
+	baseUrl: static_url + '/js/lib',
+//    baseUrl: '/static/js/lib',
     paths: {
         app: '../app',
 		tpl: '../tpl',
@@ -40,6 +41,7 @@ require(['jquery', 'gonrin', 'app/router',
 	var app = new Gonrin.Application({
 //		serviceURL: 'http://127.0.0.1:9070',
 		serviceURL: 'https://upstart.vn/moitruongyte',
+		staticURL: static_url,
 		router: new Router(),
 		lang: lang,
 		//layout: layout,
