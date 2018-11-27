@@ -15,7 +15,7 @@ from sqlalchemy import or_
  
 async def get_user_with_permission(user):
     user_info = to_dict(user)
-    roles = [{"id":str(role.id),"description":role.description,"name":role.name} for role in user.roles]
+    roles = [{"id":str(role.id),"description":role.description,"role_name":role.name} for role in user.roles]
     roleids = [role.id for role in user.roles]
     user_info["roles"] = roles
     del(user_info["password"])
