@@ -122,8 +122,20 @@ define(function (require) {
 	                	    			 var view = new KQNhanLucThamGiaKTDacTaView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
 	        	                		 view.dialog();
 	        	                		 view.on('close',function(data){
-	        	                			 var kqnhanlucthamgiaktdacta = self.model.get('kqnhanlucthamgiaktdacta');
-	        	                			 kqnhanlucthamgiaktdacta.push(data);
+	        	                			 var kqnhanlucthamgiaktdacta = self.model.get('kqnhanlucthamgiaktdacta');        	                			
+	        	                			 kqnhanlucthamgiaktdacta.forEach(function(item) {
+	        	                				  if(item.id == data.id){
+	        	                					  //console.log(data.id);
+	        	                					  //console.log(item.id);
+	        	                					  var removeItem = kqnhanlucthamgiaktdacta.remove(item);
+	        	                					  removeItem = [item];
+	        	                					  console.log(item);
+	        	                					  //kqnhanlucthamgiaktdacta.splice(item);
+	        	                					  kqnhanlucthamgiaktdacta.push(item);
+	        	                				  }        	                				
+	        	                				});
+	        	                			 		kqnhanlucthamgiaktdacta.push(data);  
+	        	                			 		   			 
 	        	                			 self.model.set("kqnhanlucthamgiaktdacta",kqnhanlucthamgiaktdacta);
 	        	                			 self.applyBindings();
 	        	                		 });

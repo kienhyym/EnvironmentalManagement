@@ -44,8 +44,7 @@ define(function (require) {
 			    	    		
 			                    self.model.save(null,{
 			                        success: function (model, respose, options) {			                       			                        	
-			                            self.getApp().notify("Lưu thông tin thành công");	
-			                            
+			                            self.getApp().notify("Lưu thông tin thành công");				                            
 			                            self.trigger("close",self.model.toJSON());
 			                            self.close();
 			                            self.applyBindings();
