@@ -88,23 +88,23 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
 @manager.command
 def create_test_models():
      
-    # role1 = Role(name='Admin')
-    # db.session.add(role1)
-    # role2 = Role(name='CanBo')
-    # db.session.add(role2)
-    # role3 = Role(name='User')
-    # db.session.add(role3)
+    role1 = Role(name='Admin')
+    db.session.add(role1)
+    role2 = Role(name='CanBo')
+    db.session.add(role2)
+    role3 = Role(name='User')
+    db.session.add(role3)
                
             
-    # user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'), active=True)
-    # user1.roles.append(role1)
-    # db.session.add(user1)
-    # user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'), active=True)
-    # user2.roles.append(role2)
-    # db.session.add(user2)
-    # user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'), active=True)
-    # user3.roles.append(role3)
-    # db.session.add(user3)
+    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'), active=True)
+    user1.roles.append(role1)
+    db.session.add(user1)
+    user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'), active=True)
+    user2.roles.append(role2)
+    db.session.add(user2)
+    user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'), active=True)
+    user3.roles.append(role3)
+    db.session.add(user3)
          
     db.session.commit()
 
