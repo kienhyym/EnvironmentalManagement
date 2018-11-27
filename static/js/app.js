@@ -38,7 +38,8 @@ require(['jquery', 'gonrin', 'app/router',
    	});
 	
 	var app = new Gonrin.Application({
-		serviceURL: 'http://127.0.0.1:9070',
+//		serviceURL: 'http://127.0.0.1:9070',
+		serviceURL: 'https://upstart.vn/moitruongyte',
 		router: new Router(),
 		lang: lang,
 		//layout: layout,
