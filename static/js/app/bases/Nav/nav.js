@@ -296,7 +296,7 @@
                     "visible": false
                   },
                   {
-                    "text": "Mẫu 04: Phiếu Nội Kiểm Tra Chất Lượng",
+                    "text": "Mẫu 4: Phiếu Nội Kiểm Tra Chất Lượng",
                     "type": "view",
                     "collectionName": "phieunoikiemchatluong",
                     "route": "phieunoikiemchatluong/collection",
@@ -451,14 +451,38 @@
                         "route": "tonghopkqnuocsinhhoattren1000m/model",
                         "$ref": "app/view/BaoCao/TongHopKQNuocSinhHoatTren1000m/view/ModelView",
                         "visible": false
-                      },
-                    
-                  
-                  
-                  
-                  
+                      },                                                                                        
                 ],
               },
+              
+              {
+                  "text": "Báo Cáo - Phụ Lục V",
+                  "icon": "fa fa-book",
+                  "type": "category",
+                  "visible": function () {
+                    return this.userHasRole("Admin");
+                  },
+                  "entries": [
+                	  {
+                          "text": "Mẫu 1: Báo Cáo Thu Thập Dữ Liệu",
+                          "type": "view",
+                          "collectionName": "bcthuthapdulieu",
+                          "route": "bcthuthapdulieu/collection",
+                          "$ref": "app/view/BaoCaoPhuLuc5/BCThuThapDuLieu/view/CollectionView",
+                          "visible": function () {
+                            return this.userHasRole("Admin");
+                          }
+                        },
+                        {
+                          "type": "view",
+                          "collectionName": "bcthuthapdulieu",
+                          "route": "bcthuthapdulieu/model",
+                          "$ref": "app/view/BaoCaoPhuLuc5/BCThuThapDuLieu/view/ModelView",
+                          "visible": false
+                        },
+              ],
+              },
+              
 
             ];
 

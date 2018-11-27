@@ -43,23 +43,24 @@ define(function (require) {
 	    				          {field:"vitrilaymau", label:"Vị trí lấy mẫu"},
 	                	          {field:"ph", label:"pH"},
 	                	          {field:"doduc", label: "Độ đục (NTU)"},
+	                	          {field:"clodu", label: "Clo dư"},
 	                	          {field:"danhgia", label: "Đánh giá"},
 	                	          {
 	                     	    	 field: "command", 
 	                     	    	 label:"Command",
 	                     	    	 width:"50px", 
 	                     	    	 command: [
-	                     	    	     {"label":"Delete",
-	                     	    	        	"action": "delete",
-	                     	    	        	"class": "btn-sm",
-	                     	    	     },
-//	                     	    	     {
-//	                     	    	       "label":"Custom function",
-//	                        	    	        "action": function(params, args){
-//	                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
-//	                        	    	        },
-//	                        	    	        "class": "btn-primary btn-sm"
-//	                        	    	     },   
+//	                     	    	     {"label":"Delete",
+//	                     	    	        	"action": "delete",
+//	                     	    	        	"class": "btn-sm",
+//	                     	    	     },
+	                     	    	     {
+	                     	    	       "label":"Delete",
+	                        	    	        "action": function(params, args){
+	                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
+	                        	    	        },
+	                        	    	        "class": "btn-danger btn-sm"
+	                        	    	     },   
 	                     	    	 ],
 	                     	   	 },
 	                	        ],

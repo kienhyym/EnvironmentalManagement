@@ -46,7 +46,8 @@ define(function (require) {
 			                        success: function (model, respose, options) {
 			                            self.getApp().notify("Lưu thông tin thành công");
 			                            self.trigger("close",self.model.toJSON());
-			                            self.close()
+			                            self.close();
+			                            
 			                            
 			                        },
 			                        error: function (model, xhr, options) {
@@ -72,6 +73,7 @@ define(function (require) {
 			                        	self.trigger("delete",self.model.toJSON());
 			                        	self.close();
 			                        	
+			                        	
 			                        },
 			                        error: function (model, xhr, options) {
 			                            self.getApp().notify('Xoá dữ liệu không thành công!');
@@ -81,10 +83,7 @@ define(function (require) {
 			    	    	}
 			    	    },
 	    	    	],
-	    	    }],
-	    	
-	        	
-	        	
+	    	    }],	    		        		        	
     	render:function(){
     		var self = this;
     		
