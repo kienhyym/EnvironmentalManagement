@@ -1,0 +1,9 @@
+[
+      {"value":1, "name":"TW", "text":"Cục YDCT"},
+      {"value":2, "name":"soyte","text":"Sở Y tế"},
+      {"value":3, "name":"cosodaotao","text":"Cơ sở đào tạo"},
+      {"value":4, "name":"bvydct","text":"Bệnh viên YDCT"},
+      {"value":5, "name":"khoaydct","text":"Bệnh viện đa khoa, chuyên khoa, PK đa khoa khu vực"},
+      {"value":6, "name":"quanhuyen","text":"Đơn vị phụ trách Trạm Y tế xã, phường"},
+      {"value":7, "name":"bvtructhuocso","text":"Bệnh viện thuộc sở"}
+]

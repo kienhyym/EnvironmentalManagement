@@ -21,7 +21,7 @@
         "type": "datetime"
     },
     "id": {
-        "type": "string",
+        "type": "number",
         "primary": true
     },
     "ma": {

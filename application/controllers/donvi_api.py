@@ -10,7 +10,7 @@ from gatco.response import json, text, html
 
 from application.models.model_user import *
 from .helpers import *
-from application.models.model_danhmuc import TuyenDonVi
+from application.models.model_user import TuyenDonVi
 from sqlalchemy import or_
 from application.client import HTTPClient 
 
@@ -182,7 +182,12 @@ async def donvi_prepput(instance_id=None, data=None):
                                       status=520)
  
 
-        
+apimanager.create_api(TuyenDonVi,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    collection_name='tuyendonvi')
+
 apimanager.create_api(DonVi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',

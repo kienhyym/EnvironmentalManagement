@@ -2,6 +2,7 @@
 # Libraries
 import sys
 import json
+import os
 
 from os.path import abspath, dirname
 sys.path.insert(0, dirname(abspath(__file__)))
@@ -14,7 +15,7 @@ from application.server import app
 from application import run_app
 from application.database import db
 from application.extensions import auth
-from application.models.model_user import Role, User, Permission
+from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
 
 
 # Instance
@@ -86,28 +87,42 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
 
 #@app.route('/createdata', methods=['GET'])
 @manager.command
-def create_test_models():
-     
-    role1 = Role(name='Admin')
+def create_test_models():    
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url_tuyendonvi = os.path.join(SITE_ROOT, "static/js/app/enum", "TuyenDonViEnum.json");
+    data_tuyendonvi = json.load(open(json_url_tuyendonvi))
+    for item_tdv in data_tuyendonvi:
+        print (item_tdv)
+        dmTuyenDonVi = TuyenDonVi(id = item_tdv["value"],ma = item_tdv["name"], ten = item_tdv["text"])
+        db.session.add(dmTuyenDonVi)
+        
+    tuyendonvi = TuyenDonVi.query.filter(TuyenDonVi.ma == "TW").first()
+    donvi = DonVi( ten=u'Cục quản lý YDCT', captren = None, tuyendonvi_id = tuyendonvi.id)
+    db.session.add(donvi)
+    db.session.flush()
+    
+    role1 = Role(id=1,name='Admin')
     db.session.add(role1)
-    role2 = Role(name='CanBo')
+    role2 = Role(id=2,name='CanBo')
     db.session.add(role2)
-    role3 = Role(name='User')
+    role3 = Role(id=3,name='User')
     db.session.add(role3)
                
             
-    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'), active=True)
+    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user1.roles.append(role1)
     db.session.add(user1)
-    user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'), active=True)
+    user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user2.roles.append(role2)
     db.session.add(user2)
-    user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'), active=True)
+    user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'),donvi_id=1, active=True)
     user3.roles.append(role3)
     db.session.add(user3)
          
     db.session.commit()
 
+
+    
 @manager.command
 def run():
     role = db.session.query(Role).filter(Role.name == 'User').first()

@@ -10,7 +10,7 @@ from .helpers import *
 
 
 from application.models.model_danhmuc import QuocGia, TinhThanh, QuanHuyen, XaPhuong, ThonXom, TrinhDoHocVan, DanToc,\
-    NgheNghiep, TuyenDonVi
+    NgheNghiep
 
 
 apimanager.create_api(QuocGia,
@@ -60,11 +60,6 @@ apimanager.create_api(NgheNghiep,
     collection_name='nghenghiep')
 
 
-apimanager.create_api(TuyenDonVi,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
-    collection_name='tuyendonvi')
 
 
 apimanager.create_api(DanToc,

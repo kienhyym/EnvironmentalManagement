@@ -63,7 +63,8 @@
         "length": 255
     },
     "donvi_id": {
-        "type": "string"
+        "type": "number",
+        "required": true
     },
     "confirmed_at": {
         "type": "datetime"

@@ -72,12 +72,7 @@ class NgheNghiep(CommonModel):
     ten = db.Column(String(255))
     mota = db.Column(String(255))
     
-class TuyenDonVi(CommonModel):
-    __tablename__ = 'tuyendonvi'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255))
-    mota = db.Column(String(255))
+
 
 
     

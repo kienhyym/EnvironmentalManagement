@@ -1,4 +1,4 @@
-ondefine(function (require) {
+define(function (require) {
     "use strict";
     var $                   = require('jquery'),
         _                   = require('underscore'),
@@ -11,7 +11,7 @@ ondefine(function (require) {
     var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
     
     var QuocGiaSelectView 		= require('app/view/DanhMuc/QuocGia/view/SelectView');
-    var TinhThanhSelectView 	= require('app/view/DanhMuc/TinhHuyen/view/SelectView');
+    var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
     var QuanHuyenSelectView 	= require('app/view/DanhMuc/QuanHuyen/view/SelectView');
     var XaPhuongSelectView		= require('app/view/DanhMuc/XaPhuong/view/SelectView');
     
@@ -38,7 +38,7 @@ ondefine(function (require) {
   				  textField: "ten",
   				  //valueField: "value",
   				  foreignRemoteField: "id",
-  				  foreignField: "parent_id",
+  				  foreignField: "captren_id",
   				  dataSource: DonViSelectView,
     			},
     			{
