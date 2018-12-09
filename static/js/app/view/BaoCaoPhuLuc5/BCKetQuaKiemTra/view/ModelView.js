@@ -79,6 +79,16 @@ define(function (require) {
 	            	    		if(event.rowId){
 	            	    			 var view = new KQNhanLucThamGiaKTView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
 	    	                		 view.dialog();
+	    	                		 view.on('close',function(data){
+	    	                			 var str = self.model.get('kqnhanlucthamgiakt');
+	    	                			    for(var i=0 ;i<str.length;i++){
+	    	                			    	if(str[i].id == data.id){	    	                			    
+		    	                					str.splice(i,1);	    	              	  	    	                			 
+		    	                				 }		    	                			    	 
+	    	                			    } 	   
+	    	                			    str.push(data);  
+		  	    	                		self.applyBindings();                				  	    	                			
+        	                		 });	    	                		 	    	                		
 	            	        	}
 	            	    	}
 		    			},
@@ -122,21 +132,15 @@ define(function (require) {
 	                	    			 var view = new KQNhanLucThamGiaKTDacTaView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
 	        	                		 view.dialog();
 	        	                		 view.on('close',function(data){
-	        	                			 var kqnhanlucthamgiaktdacta = self.model.get('kqnhanlucthamgiaktdacta');        	                			
-	        	                			 kqnhanlucthamgiaktdacta.forEach(function(item) {
-	        	                				  if(item.id == data.id){
-	        	                					  //console.log(data.id);
-	        	                					  //console.log(item.id);
-	        	                					  var removeItem = kqnhanlucthamgiaktdacta.remove(item);
-	        	                					  removeItem = [item];
-	        	                					  console.log(item);
-	        	                					  //kqnhanlucthamgiaktdacta.splice(item);
-	        	                					  kqnhanlucthamgiaktdacta.push(item);
-	        	                				  }        	                				
-	        	                				});
-	        	                			 		kqnhanlucthamgiaktdacta.push(data);  
+	        	                			 var str = self.model.get('kqnhanlucthamgiaktdacta');        	                			
+	        	                			 for(var i=0;str<=i;++i){
+	        	                				if(str[i] == data.id){
+	        	                					str.slipce(i,str);
+	        	                				}
+	        	                			 }
+	        	                			 str.push(data);  
 	        	                			 		   			 
-	        	                			 self.model.set("kqnhanlucthamgiaktdacta",kqnhanlucthamgiaktdacta);
+	        	                			 self.model.set("kqnhanlucthamgiaktdacta",str);
 	        	                			 self.applyBindings();
 	        	                		 });
 	        	                	 }
@@ -147,6 +151,16 @@ define(function (require) {
 	            	    		if(event.rowId){
 	            	    			 var view = new KQNhanLucThamGiaKTDacTaView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
 	    	                		 view.dialog();
+	    	                		 view.on('close',function(data){
+	    	                			 var str = self.model.get('kqnhanlucthamgiaktdacta');
+	    	                			    for(var i=0 ;i<str.length;i++){
+	    	                			    	if(str[i].id == data.id){	    	                			    
+		    	                					str.splice(i,1);			    	                					
+		    	                				 }		    	                			    	 
+	    	                			    } 	   
+	    	                			    str.push(data);  
+		  	    	                		self.applyBindings();       		  	    	                				  	    	                				  	    	                		
+        	                		 });	
 	            	        	}
 	            	    	}
 		    			},
@@ -179,33 +193,16 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;						                				                			 
-							self.model
-								.save(
-									null,
+							self.model.save(null,
 									{
-										success: function (
-											model, respose,
-											options) {
-											
-											self
-												.getApp()
-												.notify(
-													"Lưu thông tin thành công");
-											self
-												.getApp()
-												.getRouter()
-												.navigate(
-													self.collectionName
-													+ "/collection");
+										success: function (model, respose,options) {	
+											self.getApp().notify("Lưu thông tin thành công");
+											self.getApp().getRouter().navigate(
+											self.collectionName+ "/collection");
 
 										},
-										error: function (model,
-											xhr, options) {
-											self
-												.getApp()
-												.notify(
-													'Lưu thông tin không thành công!');
-
+										error: function (model,xhr, options) {
+											self.getApp().notify('Lưu thông tin không thành công!');
 										}
 									});
 						}
@@ -216,36 +213,23 @@ define(function (require) {
 						buttonClass: "btn-danger btn-sm",
 						label: "TRANSLATE:DELETE",
 						visible: function () {
-							return this.getApp().getRouter().getParam(
-								"id") !== null;
+							return this.getApp().getRouter().getParam("id") !== null;
 						},
-						command: function () {
-							var self = this;
-							self.model
-								.destroy({
-									success: function (model,
-										response) {
-										self
-											.getApp()
-											.notify(
-												'Xoá dữ liệu thành công');
-										self
-											.getApp()
-											.getRouter()
-											.navigate(
-												self.collectionName
-												+ "/collection");
-									},
-									error: function (model, xhr,
-										options) {
-										self
-											.getApp()
-											.notify(
-												'Xoá dữ liệu không thành công!');
-
-									}
-								});
-						}
+						command: function(){
+		    	    		var self = this;
+		                    self.model.destroy({
+		                        success: function(model, response) {
+		                        	self.getApp().notify('Xoá dữ liệu thành công');
+		                        	self.trigger("delete",self.model.toJSON());
+		                        	self.close();
+		                        	self.applyBindings();			                        		                        	
+		                        },
+		                        error: function (model, xhr, options) {
+		                            self.getApp().notify('Xoá dữ liệu không thành công!');
+		                            
+		                        }
+		                    });
+		    	    	}
 					},],
 			}],
 

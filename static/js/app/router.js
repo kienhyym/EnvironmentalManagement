@@ -4,7 +4,7 @@ define(function (require) {
     
     var $           = require('jquery'),
         Gonrin    	= require('gonrin');
-//        storejs		= require('store');
+       // storejs		= require('store');
     var Login		= require('app/bases/views/LoginView');
     var RegisterView	= require('app/bases/views/RegisterView');
     var ForgotPasswordView	= require('app/bases/views/ForgotPasswordView');
@@ -24,12 +24,11 @@ define(function (require) {
         },
         defaultRoute:function(){
         	var qrcode = this.getApp().getRouter().getParam("qr");
-		    	if(qrcode !== undefined && qrcode!== null && qrcode !==""){
-	            	this.navigate("index?qr="+qrcode,true);
-	            }else{
-	            	this.navigate("index",true);
-	            }
-        	
+	    	if(qrcode !== undefined && qrcode!== null && qrcode !==""){
+            	this.navigate("index?qr="+qrcode,true);
+            } else {
+            	this.navigate("index",true);
+            }
         },
         index:function(){
         	//check storejs session

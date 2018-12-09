@@ -77,6 +77,16 @@ define(function (require) {
 	            	    		if(event.rowId){
 	            	    			 var view = new DanhGiaBanGiaoThuThapView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
 	    	                		 view.dialog();
+	    	                		 view.on('close',function(data){
+	    	                			 var str = self.model.get('danhgiabangiaothuthap');
+	    	                			    for(var i=0 ;i<str.length;i++){
+	    	                			    	if(str[i].id == data.id){	    	                			    
+		    	                					str.splice(i,1);	    	              	  	    	                			 
+		    	                				 }		    	                			    	 
+	    	                			    } 	   
+	    	                			    str.push(data);  
+		  	    	                		self.applyBindings();                				  	    	                			
+        	                		 });	
 	            	        	}
 	            	    	}
 		    			},

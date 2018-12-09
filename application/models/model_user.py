@@ -19,6 +19,29 @@ roles_users = db.Table('roles_users',
                        db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
 
 
+#Enum
+class TuyenDonViEnum(object):
+    TW = 1
+    soyte = 2
+    cosodaotao = 3
+    bvydct = 4
+    khoaydct = 5
+    quanhuyen = 6
+    bvtructhuocso = 7
+    moidangky = 99
+
+class TrangThaiDangKyDonViEnum(object):
+    khoa = 1
+    taomoi = 2
+    dongbo = 3
+
+class TinhTrangBaocaoEnum(object):
+    taomoi = 1
+    daduyet = 2
+    dakhoa = 3
+    
+    
+
 class Role(CommonModel):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
@@ -42,6 +65,7 @@ class User(CommonModel):
     fullname = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
+    confirmpassword = db.Column(db.String(255))
     active = db.Column(db.Boolean(), default=True)
     phone = db.Column(db.String(255), unique=True)
     birthday = db.Column(db.DateTime())
@@ -52,12 +76,14 @@ class User(CommonModel):
  
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
+    
     confirmed_at = db.Column(db.DateTime())
     last_login_at = db.Column(db.DateTime())
     current_login_at = db.Column(db.DateTime())
     last_login_ip = db.Column(db.String(255))
     current_login_ip = db.Column(db.String(255))
     login_count = db.Column(db.Integer)
+    trangthai = db.Column(db.SmallInteger)
  
     
     def __repr__(self):
@@ -77,12 +103,11 @@ class User(CommonModel):
         pass
 
 
-
 class DonVi(CommonModel):
     __tablename__ = 'donvi'
     id = db.Column(db.Integer, primary_key=True)
-    ma = db.Column(db.String(255), nullable=True)
     ten = db.Column(db.String(255), nullable=False)
+    ma = db.Column(db.String(255))
     sodienthoai = db.Column(db.String(63))
     diachi = db.Column(db.String(255))
     email = db.Column(db.String(255))
@@ -119,14 +144,14 @@ class DonVi(CommonModel):
 
 
     def __repr__(self):
-        return "DonVi(id=%r, ten=%r, parent_id=%r, tuyendonvi_id=%r)" % (
+        return "DonVi(id=%r, ten=%r, captren_id=%r, tuyendonvi_id=%r)" % (
                     self.id,
                     self.ten,
-                    self.parent_id,
+                    self.captren_id,
                     self.tuyendonvi_id
                 )
     def __todict__(self):
-        return {"id":str(self.id), "ma": self.ma,"text": self.ten,"ten": self.captren_id, "captren_id": str(self.captren_id), "tuyendonvi_id":str(self.tuyendonvi_id)}
+        return {"id":str(self.id),"ma": self.ma, "ten": self.ten, "captren_id": str(self.captren_id), "tuyendonvi_id":str(self.tuyendonvi_id)}
 
     def __toid__(self):
         return self.id
@@ -154,15 +179,53 @@ class TuyenDonVi(CommonModel):
     ma = db.Column(String(255), unique=True)
     ten = db.Column(String(255))
     mota = db.Column(String(255))
+
+
+# class DangKyDonVi(CommonModel):
+#     __tablename__ = 'dangkydonvi'
+#     id = db.Column(db.Integer, primary_key=True)
+#     madangky = db.Column(db.String(36), index=True)
+#     user_name = db.Column(db.String(255))
+#     user_email = db.Column(db.String(255))
+#     user_password = db.Column(db.String(255))
+#     user_phone = db.Column(db.String(255))
+#     donvi_ten = db.Column(db.String(255))
+#     captren_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
+#     donvi_diachi = db.Column(db.String(255))
+#     donvi_sodienthoai = db.Column(db.String(255))
+#     #donvi_tuyendonvi = db.Column(db.SmallInteger)
+#     donvi_tuyendonvi_id = db.Column(db.Integer, db.ForeignKey('tuyendonvi.id', onupdate="SET NULL"), nullable=True)
+#     donvi_tuyendonvi = db.relationship('TuyenDonVi')
+#      
+#     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
+#     user_id = db.Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=True)
+#     trangthai = db.Column(db.SmallInteger)
+#     donvi = db.relationship('DonVi', foreign_keys=[donvi_id], viewonly=True)
+#     captren = db.relationship('DonVi', foreign_keys=[captren_id],backref=db.backref('dangkydonvi',
+#                                                          lazy='dynamic'), viewonly=True)
+#     user = db.relationship('User', viewonly=True)
+       
     
-    
-# class UserDonvi(CommonModel):
-#     __tablename__ = 'user_donvi'
-#     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-#     uid = db.Column(String(200), index=True, nullable=False)
-#     ten = db.Column(String(255), nullable=False)
-#     macongdan = db.Column(String(200), nullable=True)
-#     donvi_id = db.Column(UUID(as_uuid=True), ForeignKey('donvi.id'), index=True, nullable=False)
-#     donvi = relationship('DonVi')
-#     __table_args__ = (UniqueConstraint('uid','donvi_id', name='uq_user_donvi_uid_donvi_id'),)
+class UserDonvi(CommonModel):
+    __tablename__ = 'user_donvi'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    fullname = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    password = db.Column(db.String(255))
+    confirm_password = db.Column(db.String(255))
+    phone = db.Column(db.String(255))
+    donvi_sodienthoai = db.Column(db.String(255))
+    donvi_diachi = db.Column(db.String(255))
+    donvi_ten = db.Column(db.String(255))
+    macongdan = db.Column(String(200))
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
+    user_id =  db.Column(UUID(as_uuid=True), db.ForeignKey('user.id', onupdate="CASCADE", ondelete="SET NULL"),nullable=True)
+    trangthai = db.Column(db.SmallInteger)
+    donvi = db.relationship('DonVi', foreign_keys=[donvi_id], viewonly=True)
+    users = db.relationship('User', viewonly=True)
+    captren_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
+    donvi_tuyendonvi_id = db.Column(db.Integer, db.ForeignKey('tuyendonvi.id', onupdate="SET NULL"), nullable=True)
+    donvi_tuyendonvi = db.relationship('TuyenDonVi')
+    captren = db.relationship('DonVi', foreign_keys=[captren_id],backref=db.backref('user_donvi',lazy='dynamic'), viewonly=True)
+    #__table_args__ = (UniqueConstraint('uid','donvi_id', name='uq_user_donvi_uid_donvi_id'),)
 

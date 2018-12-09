@@ -37,7 +37,7 @@ define(function (require) {
   	    	],
     	dialog: function(){
     		var self = this;
-    		this.initToolbar();
+    		this.initToolbar(this.tools);
     		this.renderTree();
     		//this.applyBindings();
     		self.$dialog = gonrin.dialog.dialog({message:self.$el});
@@ -45,7 +45,7 @@ define(function (require) {
     	},
     	renderTree: function(){
     		var self = this;
-			var url = "/donvitree";
+			var url = "/api/v1/donvitree";
 			$.ajax({
 				url: url,
 				dataType: "json",

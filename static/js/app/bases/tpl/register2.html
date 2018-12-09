@@ -1,0 +1,135 @@
+<style>
+		/* #overlay {
+			background-position: left center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			flex-grow: 1;
+			flex-shrink: 1;
+			height: 698px;
+			margin: 0px auto;
+			position: absolute;
+			width: 100%;
+			background-color: rgba(6, 13, 46, 0.63);
+			max-width: 100%;
+			pointer-events: none;
+			z-index: 0;
+	
+		} */
+	
+		#section-0 {
+			background-image: url("static/images/b2.jpg");
+			background-position: left center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			flex-grow: 1;
+			flex-shrink: 1;
+			height: 700px;
+			width: 100%;
+			margin: 0 auto;
+			position: relative;
+			max-width: 100%;
+			/* opacity: 0.8; */
+			background-color: rgba(36, 56, 155, 0.63);
+	
+		}
+	
+		#sec-0 {
+			background-position: left center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			flex-grow: 1;
+			flex-shrink: 1;
+			height: 698px;
+			margin: 0px auto;
+			position: relative;
+			width: 960px;
+		}
+	</style>
+	
+	<!-- END LOGO -->
+	<!-- BEGIN LOGIN -->
+<div style="margin-left: 30px;margin-right: 25px" block-bind="content">
+		<form id="register-form" class="register-form" action=""  method="post">
+
+			<div class="row">
+				<div class="col-md-6">
+					<h3>Thông tin đơn vị</h3>
+					<div class="form-group">
+						<label class="control-label visible-ie8 visible-ie9">Tên đơn vị</label>
+						<input class="form-control placeholder-no-fix" type="text" placeholder="Tên đơn vị" name="donvi_ten"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label visible-ie8 visible-ie9">Cơ quan cấp trên</label>
+						<input class="form-control placeholder-no-fix" type="text" placeholder="Cơ quan cấp trên" id="captren_id" name="captren_id"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label visible-ie8 visible-ie9">Số điện thoại</label>
+						<input class="form-control placeholder-no-fix" type="text" placeholder="Số điện thoại đơn vị" name="donvi_sodienthoai"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label visible-ie8 visible-ie9">Địa chỉ</label>
+						<input class="form-control placeholder-no-fix" type="text" placeholder="Địa chỉ đơn vị" name="donvi_diachi"/>
+					</div>
+					<div class="form-group">
+						<table>
+							<tr>
+								<td>
+									<label class="control-label visible-ie8 visible-ie9">Thuộc khối TW</label>
+									<input type="text" class="form-control" id="tuyendv_tw" /> 
+								</td>
+								<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+								<td>
+									<label class="control-label visible-ie8 visible-ie9">Thuộc khối Sở</label>
+									<input type="text" class="form-control" id="tuyendv_so" /> 
+								</td>
+							</tr>
+						</table>
+						
+					</div>
+				</div>
+				<div class="col-md-6">
+					<!-- BEGIN REGISTRATION FORM -->
+						<h3>Thông tin tài khoản</h3>
+						<div class="form-group">
+							<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+							<label class="control-label visible-ie8 visible-ie9">Email (Dùng để đăng nhập)</label>
+							<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="user_email"/>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label visible-ie8 visible-ie9">Tên người dùng</label>
+							<input class="form-control placeholder-no-fix" type="text" placeholder="Tên người dùng" name="user_name"/>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label visible-ie8 visible-ie9">Số điện thoại</label>
+							<input class="form-control placeholder-no-fix" type="text" placeholder="Số điện thoại người dùng" name="user_phone"/>
+						</div>
+						<!-- <p class="hint">
+							 Xin điền mật khẩu:
+						</p> -->
+						<div class="form-group">
+							<label class="control-label visible-ie8 visible-ie9">Xin điền mật khẩu (Dùng để đăng nhập)</label>
+							<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Mật khẩu" name="user_password"/>
+						</div>
+						<div class="form-group">
+							<label class="control-label visible-ie8 visible-ie9">Gõ lại mật khẩu</label>
+							<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Gõ lại mật khẩu" name="user_password_confirm"/>
+						</div>
+					<!-- END REGISTRATION FORM -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 form-actions text-center">
+					<a href="/#login"><button type="button" id="register-back-btn" class="btn btn-default">Quay lại</button></a>
+					<button type="submit" id="register-submit-btn" class="btn btn-success uppercase">Gửi</button>
+				</div>
+			</div>
+
+		
+		</form>
+		<div class="copyright">
+		 2018 © Moi Truong y te.
+	</div>
+	</div>
+	

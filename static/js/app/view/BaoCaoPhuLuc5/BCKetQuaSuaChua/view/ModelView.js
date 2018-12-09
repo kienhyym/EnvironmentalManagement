@@ -78,6 +78,16 @@ define(function (require) {
 	            	    		if(event.rowId){
 	            	    			 var view = new NhanLucSuaChuaView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
 	    	                		 view.dialog();
+	    	                		 view.on('close',function(data){
+	    	                			 var str = self.model.get('nhanlucsuachua');
+	    	                			    for(var i=0 ;i<str.length;i++){
+	    	                			    	if(str[i].id == data.id){	    	                			    
+		    	                					str.splice(i,1);	    	              	  	    	                			 
+		    	                				 }		    	                			    	 
+	    	                			    } 	   
+	    	                			    str.push(data);  
+		  	    	                		self.applyBindings();                				  	    	                			
+        	                		 });	
 	            	        	}
 	            	    	}
 		    			},
@@ -196,6 +206,16 @@ define(function (require) {
 	            	    		if(event.rowId){
 	            	    			 var view = new KetQuaSuaChuaDuLieuView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
 	    	                		 view.dialog();
+	    	                		 view.on('close',function(data){
+	    	                			 var str = self.model.get('ketquasuachuadulieu');
+	    	                			    for(var i=0 ;i<str.length;i++){
+	    	                			    	if(str[i].id == data.id){	    	                			    
+		    	                					str.splice(i,1);	    	              	  	    	                			 
+		    	                				 }		    	                			    	 
+	    	                			    } 	   
+	    	                			    str.push(data);  
+		  	    	                		self.applyBindings();                				  	    	                			
+        	                		 });	
 	            	        	}
 	            	    	}
 		    			},
@@ -228,32 +248,11 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;						                				                			 
-							self.model
-								.save(
-									null,
-									{
-										success: function (
-											model, respose,
-											options) {
-											
-											self
-												.getApp()
-												.notify(
-													"Lưu thông tin thành công");
-											self
-												.getApp()
-												.getRouter()
-												.navigate(
-													self.collectionName
-													+ "/collection");
-
+							self.model.save(null,{
+										success: function (model, respose,options) {self.getApp().notify("Lưu thông tin thành công");
+											self.getApp().getRouter().navigate(self.collectionName+ "/collection");
 										},
-										error: function (model,
-											xhr, options) {
-											self
-												.getApp()
-												.notify(
-													'Lưu thông tin không thành công!');
+										error: function (model,xhr, options) {self.getApp().notify('Lưu thông tin không thành công!');
 
 										}
 									});
@@ -272,26 +271,11 @@ define(function (require) {
 							var self = this;
 							self.model
 								.destroy({
-									success: function (model,
-										response) {
-										self
-											.getApp()
-											.notify(
-												'Xoá dữ liệu thành công');
-										self
-											.getApp()
-											.getRouter()
-											.navigate(
-												self.collectionName
-												+ "/collection");
+									success: function (model,response) {self.getApp().notify('Xoá dữ liệu thành công');
+										self.getApp().getRouter().navigate(self.collectionName+ "/collection");
 									},
-									error: function (model, xhr,
-										options) {
-										self
-											.getApp()
-											.notify(
+									error: function (model, xhr,options) {self.getApp().notify(
 												'Xoá dữ liệu không thành công!');
-
 									}
 								});
 						}

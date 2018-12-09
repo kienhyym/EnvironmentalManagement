@@ -4,7 +4,7 @@ import aiosmtplib
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gatco.response import json,text, html
 from application.extensions import apimanager
-from application.models.model_user import User, Permission, Role
+from application.models.model_user import *
 from application.extensions import auth
 from application.database import db
 from application.server import app
@@ -52,8 +52,12 @@ async def login(request):
     username = request.json.get("data", None)
     password = request.json.get("password", None)
     user = db.session.query(User).filter(or_(User.email == username, User.phone == username)).first()
+    print(password)
+    print(auth.encrypt_password(password))
+    print(to_dict(user))
     if (user is not None) and auth.verify_password(password, user.password):
         auth.login_user(request, user)
+        
         result = await get_user_with_permission(user)
         return json(result)
     return json({"error_code":"LOGIN_FAILED","error_message":"user does not exist or incorrect password"}, status=520)
@@ -100,14 +104,14 @@ async def user_changepw(request):
 async def user_change_phone(request):
     currentUser = current_user(request)
     if currentUser is not None:
-        phone_number = request.json.get('phone', None)
-        if(phone_number is not None):
-            user = db.session.query(User).filter(User.phone == phone_number).filter(User.id != currentUser.id).first()
+        phone = request.json.get('phone', None)
+        if(phone is not None):
+            user = db.session.query(User).filter(User.phone == phone).filter(User.id != currentUser.id).first()
             if(user is not None):
                 return json({"error_code":"PARAMS_ERROR","error_message":u"Số điện thoại đã tồn tại"},status=520)
             else:
                 check_current_user = db.session.query(User).filter(User.id == currentUser.id).first()
-                check_current_user.phone = phone_number
+                check_current_user.phone = phone
                 db.session.commit()
                 return json({"error_message":"Successfully"},status=200)
         else:
@@ -115,49 +119,111 @@ async def user_change_phone(request):
         pass
     return json({"error_code":"ERROR_SESSION","error_message":"Session expired!"},status=520)     
 
-@app.route('/api/register', methods=["POST", "GET"])
+
+@app.route('/api/v1/donvilist')
+def donvilist(request):
+    donvilist = DonVi.query.filter(DonVi.tuyendonvi_id < 5).order_by(DonVi.ten).all()
+    dvlist = [ {"id": row.id, "ten": row.ten} for row in donvilist]
+    return json(dvlist,status=200)
+
+@app.route('/api/v1/register', methods=["POST", "GET"])
 async def register(request):
     error_msg = None
     if request.method == 'POST':
-        password = request.json.get('password', None)
-        cfpassword = request.json.get('password_confirm', None)
-        macongdan = request.json.get('macongdan', None)
-        email = request.json.get('email', None)
-        phone_number = request.json.get('phone', None)
-        hoten = request.json.get('fullname', '')
-        if ((email is None) or (email == '')):
+        form_data = request.form
+        #formvars = form.to_dict()
+        password = request.form.get('user_password', None)
+        cfpassword = request.form.get('user_password_confirm', None)
+        
+        user_email = request.form.get('user_email', None)
+        donvi_ten = request.form.get('donvi_ten', None)
+        
+        if ((user_email is None) or (user_email == '')):
             error_msg = u"Xin mời nhập email!"
+        
         if(error_msg is None):
-            if  not valid_phone_number(phone_number):
-                error_msg = u"Số điện thoại không đúng định dạng, xin mời nhập lại!"
-            checkphone = db.session.query(User).filter(User.phone == phone_number).first()
-            if(checkphone is not None):
-                error_msg = u"Số điện thoại đã có người sử dụng, xin mời nhập lại!"
+            if ((donvi_ten is None) or (donvi_ten == '')):
+                error_msg = u"Xin mời nhập tên đơn vị!"
+            
         if(error_msg is None):
-            checkuser = db.session.query(User).filter(User.email == email).first()
+            #check email trung va ten don vi trung
+            checkuser = User.query.filter(User.email == user_email).first()
             if(checkuser is not None):
                 error_msg = u"Email đã có người sử dụng, xin mời nhập lại!"
-                    
-                    
+                
+        if(error_msg is None):
+            #check email trung va ten don vi trung
+            checkdonvi = DonVi.query.filter(DonVi.ten == donvi_ten).first()
+            if(checkdonvi is not None):
+                error_msg = u"Tên đơn vị đã được sử dụng, xin mời nhập lại!"
+            
         if((error_msg is None)):
             if((password is None) or (password == '') or (password != cfpassword )) :
                 error_msg = u"Xin mời nhập lại mật khẩu!"
-            
+        
+        captren_id = request.form.get('captren_id', None)
         if((error_msg is None)):
-            if(password != cfpassword ) :
-                error_msg = u"Mật khẩu không khớp!"
-                
-        if (error_msg is None):
-            role = db.session.query(Role).filter(Role.name == 'User').first()
-            user = User(email=email, fullname=hoten, password=auth.encrypt_password(password), phone=phone_number, active=True)
-            if role not in user.roles:
-                user.roles.append(role)
-            db.session.add(user)
-            db.session.commit()           
-            auth.login_user(request, user)
-            result = await get_user_with_permission(user)
-            return json(result,status=200)
+            if((captren_id is None) or (captren_id == '')) :
+                error_msg = u"Xin mời nhập lại Đơn vị chủ quản!"
+            try:
+                captren_id = int(captren_id)
+            except:
+                error_msg = u"Xin mời nhập lại Đơn vị chủ quản!"
+        
+        if((error_msg is None)):
             
+            tuyendv_tw = request.form.get('donvi_tuyendonvi_tw', None)
+            tuyendv_so = request.form.get('donvi_tuyendonvi_so', None)
+            
+            if (tuyendv_tw is None) and (tuyendv_so is None):
+                error_msg = u"Xin mời nhập lại Tuyến/Khối đơn vị!"
+        
+        if (error_msg is None):
+            dangky = UserDonvi()
+            dangky.fullname = request.form.get('user_name', None)
+            dangky.email = request.form.get('user_email', None)
+            dangky.phone = request.form.get('user_phone', None)
+            dangky.password = password
+            #user.active = False
+            
+            dangky.donvi_ten = request.form.get('donvi_ten', None)
+            dangky.captren_id = captren_id
+            
+            dangky.donvi_diachi = request.form.get('donvi_diachi', None)
+            dangky.donvi_sodienthoai = request.form.get('donvi_sodienthoai', None)
+            tuyendv_tw = request.form.get('tuyendv_tw', None)
+            tuyendv_so = request.form.get('tuyendv_so', None)
+            
+            if (tuyendv_tw is not None):
+                tuyendv = int(tuyendv_tw)
+                dangky.donvi_tuyendonvi_id = tuyendv
+            elif (tuyendv_so is not None):
+                tuyendv = int(tuyendv_so)
+                dangky.donvi_tuyendonvi_id = tuyendv
+            
+            dangky.trangthai = TrangThaiDangKyDonViEnum.taomoi
+            
+            dangky.uid = str(uuid.uuid1())
+            db.session.add(dangky)
+            db.session.commit()
+            return json(uid=dangky.madangky,status=200)
+            
+            return json("Messgager : đăng ký thành công",status=200)
+            #return render_template('dangky/success.html', madangky=dangky.madangky)
+    
+    tuyendonvi = TuyenDonVi.query.all()
+    tuyendv_tw = []
+    tuyendv_so = []
+    for tdv in tuyendonvi:
+        if (tdv.ma is not None) and (tdv.ma.endswith("_tw")):
+            tuyendv_tw.append(tdv)
+        if (tdv.ma is not None) and (tdv.ma.endswith("_so")):
+            tuyendv_so.append(tdv) 
+   
+    #return render_template('dangky/index.html', tuyentw=tuyendv_tw, tuyenso=tuyendv_so,error_msg=error_msg)
+    #return "dang ky blueprint"
+    return json(tuyendv_tw,status=200)
+    return json(tuyendv_so,status=200)
     return json({"error_code": "ERROR", "error_msg": error_msg},status=520)
 
 @app.route('/api/resetpw', methods=["POST", "GET"])
@@ -261,19 +327,20 @@ async def reset_password(request):
         return text(u'bạn đã lấy lại mật khẩu thành công. mời bạn đăng nhập lại để sử dụng!')
 
 
-def valid_phone_number(phone_number):
-    if phone_number is None:
+def valid_phone(phone):
+    if phone is None:
         return False
-    if phone_number.isdigit() and len(phone_number)>=8 and len(phone_number)<=12 and phone_number.startswith("0"):
+    if phone.isdigit() and len(phone)>=8 and len(phone)<=12 and phone.startswith("0"):
         return True
     return False
 
-    
+
 async def set_user_passwd(data=None,**kw):
-    if (data is not None) and ('password' in data) and ('confirm_password' in data):
-        if(data['password']  == data['confirm_password']):
+    if (data is not None) and ('password' in data) and ('confirmpassword' in data):
+        if(data['password']  == data['confirmpassword']):
             data['password'] = auth.encrypt_password(data['password'])
-            del data['confirm_password']
+            del data['confirmpassword']
+            print(to_dict(data))
         else:
             return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
      
@@ -289,18 +356,44 @@ async def pre_post_user(data, **kw):
     else:
         return json({"error_code":"PARRAM_ERROR","error_message":'parameter is incorrect'},status=520)
 
- 
+def reset_user_passwd(instance_id=None, data=None,**kw):
+    if (data is not None) and ('password' in data) and ('confirmpassword' in data):
+        if (data['password'] is not None):
+            if(data['password'] == data['confirmpassword']):
+                #user = user_datastore.find_user(id=instance_id)
+                #if verify_password(data['password'], user.password):
+                data['password'] =encrypt_password(data['password'])
+                    #del data['newpassword']
+                del data['confirmpassword']
+                #else:
+                #    raise ProcessingException(description='Password is not correct',code=401)
+            else:
+                raise ProcessingException(description='Confirm password is not match',code=401)
+        else:
+            del data['confirmpassword']
+            del data['password']
+    else:
+        raise ProcessingException(description='Parameters are not correct',code=401)
+    
+
+def user_pregetmany(search_params=None, **kw):
+    apply_donvi_filter(search_params)
+        
+def entity_pregetmany(search_params=None, **kw):
+    apply_donvi_filter(search_params)
+    
 apimanager.create_api(User,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(
         GET_SINGLE=[auth_func], 
-        GET_MANY=[auth_func, user_pregetmany], 
-        POST=[auth_func, pre_post_user, set_user_passwd], 
-        PUT_SINGLE=[auth_func, check_admin]),
+        GET_MANY=[auth_func], 
+        POST=[auth_func], 
+        PUT_SINGLE=[auth_func,set_user_passwd]),
     collection_name='user',
     include_columns=['id', 'fullname', 'phone', 'email','active', 'roles', 'roles.id', 'roles.name', 'donvi_id', 'donvi', 'donvi.id', 'donvi.ten'])
- 
+  
+   
  
 apimanager.create_api(User,
     methods=['PUT'],
@@ -315,4 +408,4 @@ apimanager.create_api(Role,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, role_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func, check_admin]),
     collection_name='role'
 )
- 
+

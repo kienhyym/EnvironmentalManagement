@@ -4,20 +4,50 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 				= require('text!app/view/tpl/HeThong/DangKyDonVi/model.html'),
-    	schema 				= require('json!schema/DangKyDonViSchema.json');
+    var template 				= require('text!app/view/HeThong/DangKyDonVi/tpl/model.html'),
+    	schema 				= require('json!schema/UserDonviSchema.json');
     
     var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
     
     var TrangThaiDangKyDonViEnum = require('json!app/enum/TrangThaiDangKyDonViEnum.json');
+    var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
+    var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
+    
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "dangkydonvi",
+    	collectionName: "user_donvi",
     	state: null,
-    	
+    	uiControl:{
+    		fields:[
+        		{
+  				  field:"captren",
+				  uicontrol: "ref",
+				  textField: "ten",
+				  foreignRemoteField: "id",
+				  foreignField: "captren_id",
+				  dataSource: DonViSelectView,
+			},
+			{
+				field:"donvi_tuyendonvi",
+				uicontrol: "ref",
+	  				textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "donvi_tuyendonvi_id",
+					dataSource: TuyenDonViSelectView
+  			 },
+  			{
+ 				field: "trangthai",
+ 				uicontrol: "combobox",
+ 				textField: "text",
+ 				valueField: "value",
+ 				dataSource: TrangThaiDangKyDonViEnum,
+ 			},
+ 			
+        	],
+    	},
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -28,11 +58,11 @@ define(function (require) {
 						name: "back",
 						type: "button",
 						buttonClass: "btn-default btn-sm",
-						label: "app.lang.back",
+						label: "Quay lại",
 						command: function(){
 							var self = this;
 							if(self.progressbar){
-  		    	    			self.progressbar.hide();
+  		    	    		
   		    	    		}
 							Backbone.history.history.back();
 			                //self.getApp().getRouter().navigate(self.collectionName + "/collection");
@@ -42,25 +72,19 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "app.lang.save",
+		    	    	label: "TRANSLATE:SAVE",
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		if(self.progressbar){
-  		    	    			self.progressbar.show();
-  		    	    		}
+		    	    		
 		                    self.model.save(null,{
 		                        success: function (model, respose, options) {
-		                        	if(self.progressbar){
-		  		    	    			self.progressbar.hide();
-		  		    	    		}
-		                            self.getApp().notify("Save successfully");
+		                            self.getApp().notify("Lưu thông tin thành công");
+		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		                            
 		                        },
 		                        error: function (model, xhr, options) {
-		                            //self.alertMessage("Something went wrong while processing the model", false);
-		                            self.getApp().notify('Save error');
-		                            if(self.progressbar){
-		  		    	    			self.progressbar.hide();
-		  		    	    		}
+		                            self.getApp().notify('Lưu thông tin không thành công!');
+		                           
 		                        }
 		                    });
 		    	    	}
@@ -69,17 +93,17 @@ define(function (require) {
 		    	    	name: "delete",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-danger btn-sm",
-		    	    	label: "app.lang.delete",
+		    	    	label: "Xóa",
 		    	    	visible: function(){
 		    	    		return this.getApp().getRouter().getParam("id") !== null;
 		    	    	},
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		self.progressbar.show();
+		    	    		
 		                    self.model.destroy({
 		                        success: function(model, response) {
 		                        	if(self.progressbar){
-		  		    	    			self.progressbar.hide();
+		  		    	    		
 		  		    	    		}
 		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
 		                        },
@@ -108,26 +132,29 @@ define(function (require) {
 						},
 						command: function(){
 							var self = this;
-							self.progressbar.show();
+							
 							var id = self.model.get('id');
-							var url = "/dangky/exportdonvi?id="+ id;
+							var url = "/api/v1/adddonviwilluser?id="+ id;
 							//
 							$.ajax({
 		    	 				url: url,
 		    	 				success: function(data) {
 		    	 					self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		    	 					self.getApp().notify("Thêm tài khoản thành công");
 		    	 				},
 		    	 				error: function (xhr, status, error) {
 		    	 			       try {
 		    	 			    	    var msgJson = $.parseJSON(xhr.responseText); 
 		    	 			    	    if(msgJson){
-		    	 			    	    	self.getApp().notify(msgJson.message);
+		    	 			    	    	self.getApp().notify(msgJson.error_message);
 		    	 			    	    }
 		    	 			    	}
 		    	 			    	catch(err) {
-		    	 			    		self.getApp().notify("Error");
+		    	 			    		self.getApp().notify("error");
+		    	 			    		
+		    	 			    	
 		    	 			    	}
-		    	 			    	self.progressbar.hide();
+		    	 			    
 		    	 			    }
 		    	 			});
 						}

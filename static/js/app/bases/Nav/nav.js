@@ -19,13 +19,15 @@
                   "visible": function () {
                     return this.userHasRole("Admin");
                   }
-                }, {
+                },
+                {
                   "type": "view",
                   "collectionName": "donvi",
                   "route": "donvi/model(/:id)",
                   "$ref": "app/view/HeThong/DonVi/view/ModelView",
                   "visible": false
-                }, {
+                }, 
+                {
                   "text": "Tuyến đơn vị",
                   "type": "view",
                   "collectionName": "tuyendonvi",
@@ -34,13 +36,32 @@
                   "visible": function () {
                     return this.userHasRole("Admin");
                   }
-                }, {
+                }, 
+                {
                   "type": "view",
                   "collectionName": "tuyendonvi",
                   "route": "tuyendonvi/model",
                   "$ref": "app/view/DanhMuc/TuyenDonVi/view/ModelView",
                   "visible": false
-                }, {
+                },
+                {
+                    "text": "Đăng ký đơn vị",
+                    "type": "view",
+                    "collectionName": "user_donvi",
+                    "route": "user_donvi/collection",
+                    "$ref": "app/view/HeThong/DangKyDonVi/view/CollectionView",
+                    "visible": function () {
+                      return this.userHasRole("Admin");
+                    }
+                  }, 
+                  {
+                    "type": "view",
+                    "collectionName": "user_donvi",
+                    "route": "user_donvi/model",
+                    "$ref": "app/view/HeThong/DangKyDonVi/view/ModelView",
+                    "visible": false
+                  },
+                {
                   "text": "Quản trị người dùng",
                   "type": "view",
                   "collectionName": "user",
@@ -582,10 +603,89 @@
                                       "$ref": "app/view/BaoCaoPhuLuc5/BienBanBanGiaoSanPham/view/ModelView",
                                       "visible": false
                                     },
-              ],
+                          ],
               },
               
-
+              {
+                  "text": "Vệ Sinh Gia Đình",
+                  "icon": "fa fa-book",
+                  "type": "category",
+                  "visible": function () {
+                    return this.userHasRole("Admin");
+                  },
+                  "entries": [
+                	  {
+                          "text": "Dùng Cho Nhà Tiêu Tự Hoại",
+                          "type": "view",
+                          "collectionName": "nhatieutuhoai",
+                          "route": "nhatieutuhoai/collection",
+                          "$ref": "app/view/Vesinhgiadinh/NhaTieuTuHoai/view/CollectionView",
+                          "visible": function () {
+                            return this.userHasRole("Admin");
+                          }
+                        },
+                        {
+                          "type": "view",
+                          "collectionName": "nhatieutuhoai",
+                          "route": "nhatieutuhoai/model",
+                          "$ref": "app/view/Vesinhgiadinh/NhaTieuTuHoai/view/ModelView",
+                          "visible": false
+                        },
+                        {
+                          "text": "Dùng Cho Nhà Tiêu Thấm Dội Nước",
+                          "type": "view",
+                          "collectionName": "nhatieuthamdoinuoc",
+                          "route": "nhatieuthamdoinuoc/collection",
+                          "$ref": "app/view/Vesinhgiadinh/NhaTieuTham/view/CollectionView",
+                          "visible": function () {
+                            return this.userHasRole("Admin");
+                          }
+                        },
+                        {
+                          "type": "view",
+                          "collectionName": "nhatieuthamdoinuoc",
+                          "route": "nhatieuthamdoinuoc/model",
+                          "$ref": "app/view/Vesinhgiadinh/NhaTieuTham/view/ModelView",
+                          "visible": false
+                        },
+                        {
+                            "text": "Dùng Cho Nhà Tiêu 2 Ngăn",
+                            "type": "view",
+                            "collectionName": "dungchonhatieu2ngan",
+                            "route": "dungchonhatieu2ngan/collection",
+                            "$ref": "app/view/Vesinhgiadinh/DungChoNhaTieu2Ngan/view/CollectionView",
+                            "visible": function () {
+                              return this.userHasRole("Admin");
+                            }
+                          },
+                          {
+                            "type": "view",
+                            "collectionName": "dungchonhatieu2ngan",
+                            "route": "dungchonhatieu2ngan/model",
+                            "$ref": "app/view/Vesinhgiadinh/DungChoNhaTieu2Ngan/view/ModelView",
+                            "visible": false
+                          },   {
+                              "text": "Dùng Cho Nhà Tiêu Chìm Có Ống Thông Hơi",
+                              "type": "view",
+                              "collectionName": "nhatieuthonghoi",
+                              "route": "nhatieuthonghoi/collection",
+                              "$ref": "app/view/Vesinhgiadinh/NhaTieuThongHoi/view/CollectionView",
+                              "visible": function () {
+                                return this.userHasRole("Admin");
+                              }
+                            },
+                            {
+                              "type": "view",
+                              "collectionName": "nhatieuthonghoi",
+                              "route": "nhatieuthonghoi/model",
+                              "$ref": "app/view/Vesinhgiadinh/NhaTieuThongHoi/view/ModelView",
+                              "visible": false
+                            },   
+                              
+                ],
+              },
+              
             ];
-
+           
+            
           });

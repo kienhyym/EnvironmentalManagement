@@ -47,7 +47,9 @@ define(function (require) {
 			                            self.getApp().notify("Lưu thông tin thành công");				                            
 			                            self.trigger("close",self.model.toJSON());
 			                            self.close();
-			                            self.applyBindings();
+			                            
+			                       
+			                            
 			                            
 			                        },
 			                        error: function (model, xhr, options) {

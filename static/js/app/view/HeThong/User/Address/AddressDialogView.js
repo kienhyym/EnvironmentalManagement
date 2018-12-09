@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/tpl/User/address.html'),
+    var template 			= require('text!app/view/tpl/HeThong/User/address.html'),
     	schema 				= require('json!schema/AddressSchema.json');
     var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/view/SelectView");
     var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
@@ -166,8 +166,7 @@ define(function (require) {
 //    	    					self.getApp().data("quocgia_id",quocgia_id);
 //    	    				}
 //    	    				
-//    	    			});
-    	        		
+//    	    			});   	        		
     	        		self.model.on("change:tinhthanh_id", function(){
     	    				var tinhthanh_id = self.model.get("tinhthanh_id");
     	        			if(self.getApp().data("tinhthanh_id") !== tinhthanh_id){
@@ -186,9 +185,7 @@ define(function (require) {
     		}else{
     			self.getApp().notify("Có lỗi xảy ra, vui lòng thử lại sau ");
     			self.applyBindings();
-    		}
-    		
-    		
+    		}  		   		
     		return this;
     	},
     });

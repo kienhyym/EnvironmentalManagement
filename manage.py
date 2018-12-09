@@ -115,9 +115,7 @@ def create_test_models():
     user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user2.roles.append(role2)
     db.session.add(user2)
-    user3 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'),donvi_id=1, active=True)
-    user3.roles.append(role3)
-    db.session.add(user3)
+
          
     db.session.commit()
 

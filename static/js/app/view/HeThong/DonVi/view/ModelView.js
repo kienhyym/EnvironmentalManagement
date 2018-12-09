@@ -75,38 +75,56 @@ define(function (require) {
     			},
     			]
     	},
-    	tools : [ {
-			name : "save",
-			type : "button",
-			buttonClass : "btn-success btn-sm",
-			label : "TRANSLATE:SAVE",
-			command : function() {
-				var self = this;
-//				var parent_id = self.model.get("parent_id");
-//				if(parent_id === undefined || parent_id === null || parent_id <=0){
-//					self.getApp().notify('Chưa chọn cấp trên');
-//				} else {
-					self.model.save(null, {
-						success : function(model, respose, options) {
-							self.getApp().notify("Lưu đơn vị thành công");
-							self.getApp().getRouter().navigate(
-									self.collectionName + "/collectiontree");
-						},
-						error : function(model, xhr, options) {
-							self.getApp().notify('Lưu đơn vị không thành công!');
+    	tools : [
+    	    {
+    	    	name: "defaultgr",
+    	    	type: "group",
+    	    	groupClass: "toolbar-group",
+    	    	buttons: [
+					{
+						name: "back",
+						type: "button",
+						buttonClass: "btn-default btn-sm",
+						label: "TRANSLATE:BACK",
+						command: function(){
+							var self = this;
+							
+							Backbone.history.history.back();
 						}
-					});
-//				}
-				
-			}
-		} ],
+					},
+					{
+		    	    	name: "save",
+		    	    	type: "button",
+		    	    	buttonClass: "btn-success btn-sm",
+		    	    	label: "TRANSLATE:SAVE",
+		    	    	command: function(){
+		    	    		var self = this;
+		    	    		console.log(self.model.toJSON());
+		                    self.model.save(null,{
+		                        success: function (model, respose, options) {
+		                            self.getApp().notify("Lưu thông tin thành công");
+		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		                            
+		                        },
+		                        error: function (model, xhr, options) {
+		                            self.getApp().notify('Lưu thông tin không thành công!');
+		                           
+		                        }
+		                    });
+		    	    	}
+		    	    },
+					
+    	    	],
+    	    }],
     	render:function(){
     		var self = this;
+    		
     		var id = this.getApp().getRouter().getParam("id");
     		if(id){
     			this.model.set('id',id);
         		this.model.fetch({
         			success: function(data){
+        				
         				self.applyBindings();
         			},
         			error:function(){

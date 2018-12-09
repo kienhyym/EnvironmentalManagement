@@ -1,2 +1,13 @@
+<style>
+    .table-wrapper-scroll-y {
+        display: block;
+        max-height: 600px;
+        overflow-y: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+</style>
 <div block-bind="toolbar"></div>
-<div id="donvi-tree" style="margin-top:10px"></div>
+
+<div class="table-wrapper-scroll-y">
+    <div id="donvi-tree" style="margin-top:10px"></div>
+</div>

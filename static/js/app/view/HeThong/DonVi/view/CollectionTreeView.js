@@ -7,19 +7,17 @@ define(function (require) {
 	var template 			= require('text!app/view/tpl/HeThong/DonVi/collectiontree.html'),
 	schema 				= require('json!schema/DonViSchema.json');
 
-//	var LienHeModelView 	= require("app/view/HeThong/DonVi/LienHeModelView");
 
 	var QuocGiaSelectView 	= require("app/view/DanhMuc/QuocGia/view/SelectView");
     var TinhThanhSelectView 	= require("app/view/DanhMuc/TinhThanh/view/SelectView");
     var QuanHuyenSelectView 	= require("app/view/DanhMuc/QuanHuyen/view/SelectView");
     var XaPhuongSelectView 	= require("app/view/DanhMuc/XaPhuong/view/SelectView");
 
-	var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
-	var AddUserDialogView = require('app/view/HeThong/DonVi/view/AddUserDialog');
+	var DonViSelectView = require('app/view/HeThong/DonVi/view/TreeSelectView');
 
 	var templatemodel = require('text!app/view/tpl/HeThong/DonVi/model.html');
 	var TrangThaiDangKyDonViEnum = require('json!app/enum/TrangThaiDangKyDonViEnum.json');
-//	var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
+	
     var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
 
 	var DonViModelView = Gonrin.ModelView.extend({
@@ -56,44 +54,44 @@ define(function (require) {
 		        	        		   });
 		        	        	   }
 		        	           },
-		        	           {
-		        	        	   name: "delete",
-		        	        	   type: "button",
-		        	        	   buttonClass: "btn-danger btn-sm",
-		        	        	   label: "Xoá đơn vị",
-		        	        	   visible: function(){
-		        	        		   if(this.getApp().currentUser !== null){
-		        	        			   return this.getApp().currentUser.donvi_id == 1;
-		        	        		   }
-		        	        		   return false;
-		        	        	   },
-		        	        	   command: function(){
-		        	        		   var self = this;
-		        	        		   self.getApp().showloading();
-		        	        		   self.model.destroy({
-		        	        			   success: function(model, response) {
-		        	        				   self.getApp().hideloading();
-		        	        				   var tree = _.result(self.viewData, 'treeView');
-		        	        				   if(tree){
-		        	        					   tree.refresh();
-		        	        				   }
-		        	        			   },
-		        	        			   error: function (model, xhr, options) {
-		        	        				   self.getApp().notify($.parseJSON(xhr.responseText).message);
-		        	        				   self.getApp().hideloading();
-		        	        			   }
-		        	        		   });
-		        	        	   }
-		        	           },
+//		        	           {
+//		        	        	   name: "delete",
+//		        	        	   type: "button",
+//		        	        	   buttonClass: "btn-danger btn-sm",
+//		        	        	   label: "Xoá đơn vị",
+//		        	        	   visible: function(){
+//		        	        		   if(this.getApp().currentUser !== null){
+//		        	        			   return this.getApp().currentUser.donvi_id == 1;
+//		        	        		   }
+//		        	        		   return false;
+//		        	        	   },
+//		        	        	   command: function(){
+//		        	        		   var self = this;
+//		        	        		   self.getApp().showloading();
+//		        	        		   self.model.destroy({
+//		        	        			   success: function(model, response) {
+//		        	        				   self.getApp().hideloading();
+//		        	        				   var tree = _.result(self.viewData, 'treeView');
+//		        	        				   if(tree){
+//		        	        					   tree.refresh();
+//		        	        				   }
+//		        	        			   },
+//		        	        			   error: function (model, xhr, options) {
+//		        	        				   self.getApp().notify($.parseJSON(xhr.responseText).message);
+//		        	        				   self.getApp().hideloading();
+//		        	        			   }
+//		        	        		   });
+//		        	        	   }
+//		        	           },
 		        	           ]
 		         },
 		         ],
 		         uiControl: {
 		        	 fields:
 		        		 [
-		                  { field: "id",label:"ID",width:250,readonly: true},
-		                  { field: "ten", label: "Tên", width:250 },
-		                  { field: "ma", label: "Mã", width:250},
+		        			  { field: "id",label:"ID",width:250,readonly: true,},
+			                  { field: "ten", label: "Tên", width:250 },
+			                  { field: "ma", label: "Mã", width:250},
 		                  {
 		    				field:"tuyendonvi",
 		    				uicontrol: "ref",
@@ -170,7 +168,7 @@ define(function (require) {
 		            	                	 buttonClass:"btn-success",
 		            	                	 label: "Thêm người dùng",
 		            	                	 command: function(){
-		            	                		 this.addUser();
+		            	                		 //this.addUser();
 		            	                	 }
 		            	                 }
 	              	                 ],
@@ -179,7 +177,74 @@ define(function (require) {
 				                	        		var path = 'user/model?id='+ event.rowId;
 				                	        		this.getApp().getRouter().navigate(path);
 				                	        	}				                	    	}
-		    			},		                			         
+		    			},		
+		    			{
+		    				field: "user_donvi",
+		    				uicontrol: "grid",
+		    				refresh: true,
+		    				primaryField: "id",
+		    				fields: [
+		    				         { 
+		    				        	 field: "id",label:"ID"
+		    				         },
+		    				         { field: "donvi_ten", label: "Tên đơn vị"},
+		    				         { 
+		    				        	 field: "captren_id", 
+		    				        	 /*label: "Cấp trên",
+		    				        	 foreign: "captren",
+		    				        	 foreignValueField: "id",
+		    				        	 foreignTextField: "ten",*/
+		    				        	 visible:false
+		    				         },
+		    				         { field: "captren", label: "Cấp trên", textField: "ten"},
+		    				         { field: "user_email", label: "Email"},
+		    				         { field: "user_phone", label: "Phone"},
+		    				         {
+		    				        	 field: "donvi_tuyendonvi",
+		    				        	 label: "Tuyến đơn vị",
+		    				        	 //foreignValues: TuyenDonViSelectView,
+		    				        	 //foreignValueField: "id",
+		    				        	 textField: "ten"
+
+		    				         },
+		    				         { field: "trangthai", label: "Trạng thái",
+		    				        	 foreignValues: TrangThaiDangKyDonViEnum,
+		    				        	 foreignValueField: "value",
+		    				        	 foreignTextField: "text"
+		    				         },
+
+		    				         {
+		    				        	 "field": "user_name",
+		    				        	 "visible": false
+		    				         },
+		    				         
+		    				        
+		    				         {
+		    				        	 "field": "donvi_diachi",
+		    				        	 "visible": false
+		    				         },
+		    				         {
+		    				        	 "field": "donvi_sodienthoai",
+		    				        	 "visible": false
+		    				         },
+
+		    				         {
+		    				        	 "field": "donvi_id",
+		    				        	 "visible": false
+		    				         },
+		    				         {
+		    				        	 "field": "user_id",
+		    				        	 "visible": false
+		    				         }
+		    				         ],
+		    			onRowClick: function(event){
+		    				        	 if(event.rowId){
+		    				        		 var path = 'user_donvi/model?id='+ event.rowId;
+		    				        		 this.getApp().getRouter().navigate(path);
+		    				        	 }
+		    				         }
+		    			},
+		    			
 		                  ]},
 		                  render:function(){
 		                	  var self = this;
@@ -196,21 +261,21 @@ define(function (require) {
 		                		  });
 		                	  }
 		                  },
-			              	addUser : function(){
-			              		var self = this;
-			              		var donvi_id = _.result(self.viewData, 'id');
-			              		var view = new AddUserDialogView({
-									el: self.$el.find("#donvi-chitiet"),
-									viewData : {donvi_id:donvi_id }
-								}).dialog();
-			              		view.on("loaduser", function($event) {
-			              			self.getApp().getRouter().refresh();
-			              			var view = new DonViModelView({
-			            				el: self.$el.find("#donvi-chitiet"),
-			            				viewData : {id:donvi_id, treeView: self }
-			            			}).render();
-			            		});
-			              	}
+//			              	addUser : function(){
+//			              		var self = this;
+//			              		var donvi_id = _.result(self.viewData, 'id');
+//			              		var view = new AddUserDialogView({
+//									el: self.$el.find("#donvi-chitiet"),
+//									viewData : {donvi_id:donvi_id }
+//								}).dialog();
+//			              		view.on("loaduser", function($event) {
+//			              			self.getApp().getRouter().refresh();
+//			              			var view = new DonViModelView({
+//			            				el: self.$el.find("#donvi-chitiet"),
+//			            				viewData : {id:donvi_id, treeView: self }
+//			            			}).render();
+//			            		});
+//			              	}
 	});
 
 	return Gonrin.CollectionView.extend({
