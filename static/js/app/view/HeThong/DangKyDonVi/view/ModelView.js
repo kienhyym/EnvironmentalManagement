@@ -83,7 +83,7 @@ define(function (require) {
 		                            
 		                        },
 		                        error: function (model, xhr, options) {
-		                            self.getApp().notify('Lưu thông tin không thành công!');
+		                            self.getApp().notify('Xin nhập đủ thông tin of chưa chọn trạng thái');
 		                           
 		                        }
 		                    });
@@ -150,7 +150,7 @@ define(function (require) {
 		    	 			    	    }
 		    	 			    	}
 		    	 			    	catch(err) {
-		    	 			    		self.getApp().notify("error");
+		    	 			    		self.getApp().notify("Error");
 		    	 			    		
 		    	 			    	
 		    	 			    	}

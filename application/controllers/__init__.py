@@ -3,6 +3,7 @@ from application.extensions import jinja
 from application.models.model_user import *
 from application.models.model_danhmuc import *
 from application.models.model_baocao import *
+from application.models.model_vesinhgiadinh import *
 
 
 
@@ -12,6 +13,7 @@ def init_controllers(app):
     import application.controllers.donvi_api
     import application.controllers.user
     import application.controllers.baocao_api
+    import application.controllers.vesinhgiadinh_api
 
     @app.route('/')
     def index(request):

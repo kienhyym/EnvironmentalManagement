@@ -1,0 +1,139 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tongsodiabantt": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabangiengdao": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabangiengkhoan": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabanmangtuchay": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabangbenuocmua": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabanloaikhac": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodiabancong": {
+        "type": "string",
+        "length": null
+    },
+    "togsokiemtratt": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtragiengdao": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtragiengkhoan": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtramangtuchay": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtrabenuocmua": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtraloaikhac": {
+        "type": "string",
+        "length": null
+    },
+    "tongsokiemtracong": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodatchuantt": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodattieuchuaniengdao": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodattieuchuangiengkhoan": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodattieuchuanmangtuchay": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodattieuchuangbenuocmua": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodattieuchuanloaikhac": {
+        "type": "string",
+        "length": null
+    },
+    "tongdattieuchuanbancong": {
+        "type": "string",
+        "length": null
+    },
+    "tylett": {
+        "type": "string",
+        "length": null
+    },
+    "tylegiengdao": {
+        "type": "string",
+        "length": null
+    },
+    "tylegiengkhoan": {
+        "type": "string",
+        "length": null
+    },
+    "tylemangtuchay": {
+        "type": "string",
+        "length": null
+    },
+    "tylebenuocmua": {
+        "type": "string",
+        "length": null
+    },
+    "tyleloaikhac": {
+        "type": "string",
+        "length": null
+    },
+    "tylecong": {
+        "type": "string",
+        "length": null
+    }
+}

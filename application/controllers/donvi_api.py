@@ -48,37 +48,67 @@ async def DonVitree(request):
     
 
 # 
-@app.route('/api/donvi/adduser/new', methods=["POST"])
+@app.route('/api/donvi/adduser/new', methods=["GET","POST"])
 async def addUserDonvi(request):
     error_msg = None
-    if request.method == 'POST':
-#         fullname = request.json.get('fullname' None)
-#         donvi_sodienthoai = request.json.get('donvi_sodienthoai' None)
-#         donvi_ten = request.json.get('donvi_ten' None)
-#         donvi_diachi = request.json.get('donvi_diachi' None)
-        password = request.json.get('password', None)
-        cfpassword = request.json.get('password_confirm', None)
-        email = request.json.get('email', None)
-        phone_number = request.json.get('phone', None)
+    if request.method == 'GET':
+        donvi_diachi = request.json.get('donvi_diachi')
+        donvi_sodienthoai = request.json.get('donvi_sodienthoai')
+        captren_id = request.json.get('captren_id',None)        
+        donvi_tuyendonvi_id = request.json.get('donvi_tuyendonvi_id')
+        password = request.json.get('password')
+        cfpassword = request.json.get('password_confirm')
+        email = request.json.get('email')
+        phone = request.json.get('phone')
+        fullname = request.json.get('fullname')
+            
         if ((email is None) or (email == '')):
             error_msg = u"Xin mời nhập email!"
-        if(error_msg is None):
-            if  not valid_phone_number(phone_number):
-                error_msg = u"Số điện thoại không đúng định dạng, xin mời nhập lại!"
-            else:
-                checkphone = await check_user(phone_number)
-                if(checkphone is not None):
-                    error_msg = u"Số điện thoại đã có người sử dụng, xin mời nhập lại!"                     
+        
+    
         if((error_msg is None)):
             if((password is None) or (password == '')) :
                 error_msg = u"Xin mời nhập lại mật khẩu!"
-             
+    
+        if(error_msg is None):
+            checkemail = UserDonvi.query.filter(UserDonvi.email == email).first()
+            if(checkemail is not None):
+                error_msg = u"Email đã có người sử dụng, xin mời nhập lại!"  
+                              
+        if(error_msg is None):
+            if((phone is None) or (phone == '')):
+                error_msg = u"Xin nhập phone!"
+                
+        if(error_msg is None):
+            checkphone = UserDonvi.query.filter(UserDonvi.phone == phone).first()
+            if(checkphone is not None):
+                error_msg = u"Số điện thoại đã có người sử dụng, xin mời nhập lại!"            
+                   
         if((error_msg is None)):
             if(password != cfpassword ) :
                 error_msg = u"Mật khẩu không khớp!"
+                 
+        if((error_msg is None)):
+            if(donvi_tuyendonvi_id is None):
+                error_msg = u"Tham số đơn vị không đúng!"
+                 
+        if (error_msg is None):
+            userinfo = User()
+    
+            userinfo.donvi_diachi = donvi_diachi
+            userinfo.donvi_sodienthoai = donvi_sodienthoai
+            userinfo.fullname = fullname
+            userinfo.email = email
+            userinfo.password = auth.encrypt_password(password)
+            userinfo.phone = phone_number
+            userinfo.donvi_tuyendonvi_id = donvi_tuyendonvi_id
+            userinfo.trangthai = TrangThaiDangKyDonViEnum.taomoi
+            userinfo.macongdan = str(uuid.uuid1())
+            db.session.add(userinfo)
                 
-            return json("OK", status=200)
-    return json({"error_code": "ADD_USER_FAILED", "error_message": error_msg},status=520)
+            print(to_dict(userinfo))
+            return json({"uid": userinfo.id, "name":userinfo.fullname, "phone":userinfo.phone}, status=200)
+        return json({"error_code": "ADD_USER_FAILED", "error_message": error_msg},status=520)
  
 @app.route('/api/donvi/adduser/exist', methods=["POST"])
 async def addUserExistToDonvi(request):

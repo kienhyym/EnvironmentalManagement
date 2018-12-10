@@ -212,7 +212,7 @@ class UserDonvi(CommonModel):
     fullname = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
-    confirm_password = db.Column(db.String(255))
+    cfpassword = db.Column(db.String(255))
     phone = db.Column(db.String(255))
     donvi_sodienthoai = db.Column(db.String(255))
     donvi_diachi = db.Column(db.String(255))

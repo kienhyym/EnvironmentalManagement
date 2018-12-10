@@ -664,7 +664,8 @@
                             "route": "dungchonhatieu2ngan/model",
                             "$ref": "app/view/Vesinhgiadinh/DungChoNhaTieu2Ngan/view/ModelView",
                             "visible": false
-                          },   {
+                          },  
+                          {
                               "text": "Dùng Cho Nhà Tiêu Chìm Có Ống Thông Hơi",
                               "type": "view",
                               "collectionName": "nhatieuthonghoi",
@@ -681,6 +682,91 @@
                               "$ref": "app/view/Vesinhgiadinh/NhaTieuThongHoi/view/ModelView",
                               "visible": false
                             },   
+                            {
+                                "text": "Dùng Cho Trạm Y Tế Xã",
+                                "type": "view",
+                                "collectionName": "ncsachnhatieuhogd",
+                                "route": "ncsachnhatieuhogd/collection",
+                                "$ref": "app/view/Vesinhgiadinh/NcSachNhaTieuHoGD/view/CollectionView",
+                                "visible": function () {
+                                  return this.userHasRole("Admin");
+                                }
+                              },
+                              {
+                                "type": "view",
+                                "collectionName": "ncsachnhatieuhogd",
+                                "route": "ncsachnhatieuhogd/model",
+                                "$ref": "app/view/Vesinhgiadinh/NcSachNhaTieuHoGD/view/ModelView",
+                                "visible": false
+                              },  
+                              {
+                                  "text": "Dùng Cho Trạm Y Tế Dự Phòng Huyện",
+                                  "type": "view",
+                                  "collectionName": "yteduphonghuyen",
+                                  "route": "yteduphonghuyen/collection",
+                                  "$ref": "app/view/Vesinhgiadinh/yTEDuPhongHuyen/view/CollectionView",
+                                  "visible": function () {
+                                    return this.userHasRole("Admin");
+                                  }
+                                },
+                                {
+                                  "type": "view",
+                                  "collectionName": "yteduphonghuyen",
+                                  "route": "yteduphonghuyen/model",
+                                  "$ref": "app/view/Vesinhgiadinh/yTEDuPhongHuyen/view/ModelView",
+                                  "visible": false
+                                },  
+                                {
+                                    "text": "Dùng Cho Trạm Y Tế Dự Phòng Tỉnh",
+                                    "type": "view",
+                                    "collectionName": "yteduphongtinh",
+                                    "route": "yteduphongtinh/collection",
+                                    "$ref": "app/view/Vesinhgiadinh/yTEDuPhongTinh/view/CollectionView",
+                                    "visible": function () {
+                                      return this.userHasRole("Admin");
+                                    }
+                                  },
+                                  {
+                                    "type": "view",
+                                    "collectionName": "yteduphongtinh",
+                                    "route": "yteduphongtinh/model",
+                                    "$ref": "app/view/Vesinhgiadinh/yTEDuPhongTinh/view/ModelView",
+                                    "visible": false
+                                  },  
+                                  {
+                                      "text": "Kiểm Tra Kết Quả Nước Dự Phòng Tỉnh",
+                                      "type": "view",
+                                      "collectionName": "trungtamyteduphong",
+                                      "route": "trungtamyteduphong/collection",
+                                      "$ref": "app/view/Vesinhgiadinh/TrungTamYteDuPhong/view/CollectionView",
+                                      "visible": function () {
+                                        return this.userHasRole("Admin");
+                                      }
+                                    },
+                                    {
+                                      "type": "view",
+                                      "collectionName": "trungtamyteduphong",
+                                      "route": "trungtamyteduphong/model",
+                                      "$ref": "app/view/Vesinhgiadinh/TrungTamYteDuPhong/view/ModelView",
+                                      "visible": false
+                                    },  
+                                    {
+                                        "text": "Dùng cho các Viện chuyên ngành khu vực",
+                                        "type": "view",
+                                        "collectionName": "vienchuyennganhkhuvuc",
+                                        "route": "vienchuyennganhkhuvuc/collection",
+                                        "$ref": "app/view/Vesinhgiadinh/VienChuyenNganhKhuVuc/view/CollectionView",
+                                        "visible": function () {
+                                          return this.userHasRole("Admin");
+                                        }
+                                      },
+                                      {
+                                        "type": "view",
+                                        "collectionName": "vienchuyennganhkhuvuc",
+                                        "route": "vienchuyennganhkhuvuc/model",
+                                        "$ref": "app/view/Vesinhgiadinh/VienChuyenNganhKhuVuc/view/ModelView",
+                                        "visible": false
+                                      },  
                               
                 ],
               },

@@ -36,7 +36,7 @@
         "type": "string",
         "length": 255
     },
-    "confirm_password": {
+    "cfpassword": {
         "type": "string",
         "length": 255
     },
