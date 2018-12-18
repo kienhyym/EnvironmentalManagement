@@ -1,0 +1,151 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "tenphieu": {
+        "type": "string",
+        "length": null
+    },
+    "donvibaocao": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "ngaynaocao": {
+        "type": "datetime"
+    },
+    "tongsonhamay": {
+        "type": "string",
+        "length": null
+    },
+    "tongsonhamaydckt": {
+        "type": "string",
+        "length": null
+    },
+    "tongsoluotkt": {
+        "type": "string",
+        "length": null
+    },
+    "soluotktkodat": {
+        "type": "string",
+        "length": null
+    },
+    "socskt2lankdat": {
+        "type": "string",
+        "length": null
+    },
+    "tongsomaulamxn": {
+        "type": "string",
+        "length": null
+    },
+    "tongsodat": {
+        "type": "string",
+        "length": null
+    },
+    "tyledat": {
+        "type": "string",
+        "length": null
+    },
+    "tongsomaukdat": {
+        "type": "string",
+        "length": null
+    },
+    "tylekodat": {
+        "type": "string",
+        "length": null
+    },
+    "halankodat": {
+        "type": "string",
+        "length": null
+    },
+    "somaukdatvatly": {
+        "type": "string",
+        "length": null
+    },
+    "somaukdatvisinhvat": {
+        "type": "string",
+        "length": null
+    },
+    "cacbienphapsuly": {
+        "type": "string",
+        "length": null
+    },
+    "tramcapnuoc500ng_id": {
+        "type": "string"
+    },
+    "tongsomaulamxetnghiem2": {
+        "type": "string",
+        "length": null
+    },
+    "tongsomaudat2": {
+        "type": "string",
+        "length": null
+    },
+    "tyledat2": {
+        "type": "string",
+        "length": null
+    },
+    "xetnghiemnuoc500ng_id": {
+        "type": "string"
+    },
+    "vsnhatieugd_id": {
+        "type": "string"
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kiennghi": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    },
+    "tramcapnuoc500ng": {
+        "type": "dict"
+    },
+    "xetnghiemnuoc500ng": {
+        "type": "dict"
+    },
+    "vsnhatieugd": {
+        "type": "dict"
+    }
+}

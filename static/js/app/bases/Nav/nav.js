@@ -863,6 +863,23 @@ define(function(require) {
 							"$ref" : "app/view/HoatDongGD/NhaTieuChim/view/ModelView",
 							"visible" : false
 						}, 
+						{
+							"text" : "Mẫu số 5. Cho trường học và trạm y tế",
+							"type" : "view",
+							"collectionName" : "chotruonghoctramyte",
+							"route" : "chotruonghoctramyte/collection",
+							"$ref" : "app/view/HoatDongGD/ChoTruongHocTramYTE/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "chotruonghoctramyte",
+							"route" : "chotruonghoctramyte/model",
+							"$ref" : "app/view/HoatDongGD/ChoTruongHocTramYTE/view/ModelView",
+							"visible" : false
+						}, 
 						
 				],
 			},

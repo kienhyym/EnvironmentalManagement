@@ -1,0 +1,166 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "tenphieu": {
+        "type": "string",
+        "length": null
+    },
+    "tenhogiadinh": {
+        "type": "string",
+        "length": null
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "thonxom_id": {
+        "type": "string"
+    },
+    "diachi": {
+        "type": "string",
+        "length": null
+    },
+    "sonhankhau": {
+        "type": "number"
+    },
+    "hinhthuccungcapnuoc": {
+        "type": "string",
+        "length": null
+    },
+    "thoigiankiemtra": {
+        "type": "datetime"
+    },
+    "nguoikiemtra": {
+        "type": "string",
+        "length": null
+    },
+    "thongtinmau": {
+        "type": "string",
+        "length": null
+    },
+    "nguonnuoctuchay_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengdao_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengkhoantren25m_id": {
+        "type": "string"
+    },
+    "nguonnuocgiengkhoanduoi25m_id": {
+        "type": "string"
+    },
+    "hethongthuhungnuocmua_id": {
+        "type": "string"
+    },
+    "luutrunuocbechumvai_id": {
+        "type": "string"
+    },
+    "gianmua": {
+        "type": "string",
+        "length": null
+    },
+    "beloc": {
+        "type": "string",
+        "length": null
+    },
+    "vatlieutrongbeloc": {
+        "type": "string",
+        "length": null
+    },
+    "dungcuchuanuocsauxuly": {
+        "type": "string",
+        "length": null
+    },
+    "ketluan": {
+        "type": "string",
+        "length": null
+    },
+    "kiennghi": {
+        "type": "string",
+        "length": null
+    },
+    "daidienhogiadinhkyten": {
+        "type": "string",
+        "length": null
+    },
+    "ngaykiemtra": {
+        "type": "datetime"
+    },
+    "nguoikiemtrakyten": {
+        "type": "string",
+        "length": null
+    },
+    "xaphuong": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "thonxom": {
+        "type": "dict"
+    },
+    "nguonuoctuchay": {
+        "type": "dict"
+    },
+    "nguonnuocgiengdao": {
+        "type": "dict"
+    },
+    "nguonnuocgiengkhoantren25m": {
+        "type": "dict"
+    },
+    "nguonnuocgiengkhoanduoi25m": {
+        "type": "dict"
+    },
+    "hethongthuhungnuocmua": {
+        "type": "dict"
+    },
+    "luutrunuocbechumvai": {
+        "type": "dict"
+    },
+    "ktnuochogiadinh": {
+        "type": "list"
+    }
+}

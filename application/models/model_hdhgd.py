@@ -188,7 +188,7 @@ class NhaTieuChim(CommonModel):
     nuocxulikdat = db.Column(db.String)
     vsxungquanh = db.Column(db.String)
     vsxungquanhkdat = db.Column(db.String)
-    
+
     cactieuchiphu = db.Column(db.String)
     cactieuchiphukdat = db.Column(db.String)
     matsannhatieu = db.Column(db.String)
@@ -207,3 +207,43 @@ class NhaTieuChim(CommonModel):
     hopvs = db.Column(db.String)
     kohopvs = db.Column(db.String)
     nhatieukodatbatieuchi = db.Column(db.String)
+
+##Mau 5
+class ChoTruongHocTramYTE(CommonModel):
+    __tablename__ = 'chotruonghoctramyte'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    ctmot = db.Column(db.String)
+    cthai = db.Column(db.String)
+    ctba = db.Column(db.String)
+    ctbon = db.Column(db.String)
+    ctnam = db.Column(db.String)
+    ctsau = db.Column(db.String)
+    ctbay = db.Column(db.String)
+    cttam = db.Column(db.String)
+    ctchin = db.Column(db.String)
+    ctmuoi = db.Column(db.String)
+    ctmuoimot = db.Column(db.String)
+    ctmuoihai = db.Column(db.String)
+    ctmoiba = db.Column(db.String)
+    ctmotbon = db.Column(db.String)
+    ctmotnam = db.Column(db.String)
+    ctmotsau = db.Column(db.String)
+    ctmotbay = db.Column(db.String)
+
+##Mau 6
+class CacHoatDongBBC(CommonModel):
+    __tablename__ = 'cachoatdongbbc'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    ctmot = db.Column(db.String)
+    cthai = db.Column(db.String)
+    ctba = db.Column(db.String)
+    ctbon = db.Column(db.String)
+    ctnam = db.Column(db.String)
+    ctsau = db.Column(db.String)
+    ctbay = db.Column(db.String)
+    cttam = db.Column(db.String)
+    ctchin = db.Column(db.String)
+    ctmuoi = db.Column(db.String)
+    ctmuoimot = db.Column(db.String)
+    ctmuoihai = db.Column(db.String)
+

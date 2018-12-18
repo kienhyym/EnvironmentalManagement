@@ -1,0 +1,42 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "bcketquasuachua_id": {
+        "type": "string"
+    },
+    "stt": {
+        "type": "string",
+        "length": null
+    },
+    "hovaten": {
+        "type": "string",
+        "length": null
+    },
+    "congviecthuchien": {
+        "type": "string",
+        "length": null
+    }
+}

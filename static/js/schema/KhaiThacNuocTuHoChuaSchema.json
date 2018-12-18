@@ -1,0 +1,80 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "tenphieu": {
+        "type": "string",
+        "length": null
+    },
+    "loaiphieu": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "bienbao": {
+        "type": "number"
+    },
+    "chanrac": {
+        "type": "number"
+    },
+    "congtrinhxaydung": {
+        "type": "number"
+    },
+    "duongongkenhmuong": {
+        "type": "number"
+    },
+    "thuyenbeneodau": {
+        "type": "number"
+    },
+    "nguoisinhhoat": {
+        "type": "number"
+    },
+    "nuoitrong": {
+        "type": "number"
+    },
+    "canhtacnongnghiep": {
+        "type": "number"
+    },
+    "vatnuoi": {
+        "type": "number"
+    },
+    "racthai": {
+        "type": "number"
+    }
+}

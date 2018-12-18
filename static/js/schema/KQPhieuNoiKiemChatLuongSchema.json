@@ -1,0 +1,53 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "phieunoikiemchatluong_id": {
+        "type": "string"
+    },
+    "vitrilaymau": {
+        "type": "string",
+        "length": null
+    },
+    "ph": {
+        "type": "string",
+        "length": null
+    },
+    "doduc": {
+        "type": "string",
+        "length": null
+    },
+    "clodu": {
+        "type": "string",
+        "length": null
+    },
+    "tieuchikhac": {
+        "type": "string"
+    },
+    "danhgia": {
+        "type": "string",
+        "length": null
+    }
+}

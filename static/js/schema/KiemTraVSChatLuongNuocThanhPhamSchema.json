@@ -1,0 +1,130 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "tencoso": {
+        "type": "string",
+        "length": null
+    },
+    "so": {
+        "type": "string",
+        "length": null
+    },
+    "ngaytaophieu": {
+        "type": "datetime"
+    },
+    "tenphieu": {
+        "type": "string",
+        "length": null
+    },
+    "loaiphieu": {
+        "type": "string",
+        "length": null
+    },
+    "diachi": {
+        "type": "string",
+        "length": null
+    },
+    "congsuat": {
+        "type": "string",
+        "length": null
+    },
+    "sodan": {
+        "type": "number"
+    },
+    "nguonnguocnguyenlieu": {
+        "type": "string",
+        "length": null
+    },
+    "tinhtrangnguonnuocnguyenlieu": {
+        "type": "string",
+        "length": null
+    },
+    "tinhtrangngoaicanhcoso": {
+        "type": "string",
+        "length": null
+    },
+    "tinhtrangethongsanxuat": {
+        "type": "string",
+        "length": null
+    },
+    "somautansuatxetnghiem": {
+        "type": "string",
+        "length": null
+    },
+    "tongsomaudat": {
+        "type": "number"
+    },
+    "tylemaudat": {
+        "type": "number"
+    },
+    "tongsomaukhongdat": {
+        "type": "number"
+    },
+    "somaukhongdatvelyhoahoc": {
+        "type": "number"
+    },
+    "somaukhongdatvevisinhvat": {
+        "type": "number"
+    },
+    "somaukhongdatlyhoahocvavisinhvat": {
+        "type": "number"
+    },
+    "chitieukhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "chitieua": {
+        "type": "string",
+        "length": null
+    },
+    "chitieub": {
+        "type": "string",
+        "length": null
+    },
+    "khacphuc": {
+        "type": "string",
+        "length": null
+    },
+    "ketluan": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    }
+}

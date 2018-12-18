@@ -1,0 +1,202 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "tenphieu": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "tieuchichinh": {
+        "type": "string",
+        "length": null
+    },
+    "tieuchichinhkdat": {
+        "type": "string",
+        "length": null
+    },
+    "xuly3be": {
+        "type": "string",
+        "length": null
+    },
+    "xuly3bekhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "xulyphan": {
+        "type": "string",
+        "length": null
+    },
+    "xulyphankhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "lapbechuaphan": {
+        "type": "string",
+        "length": null
+    },
+    "lapbechuaphankhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "matsannhan": {
+        "type": "string",
+        "length": null
+    },
+    "matsannhankhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "bexiconutnuoc": {
+        "type": "string",
+        "length": null
+    },
+    "bexiconutnuockhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "coongthonghoi": {
+        "type": "string",
+        "length": null
+    },
+    "coongthonghoikhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "codunuocdoi": {
+        "type": "string",
+        "length": null
+    },
+    "codunuocdoikhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "dungcunuocdoi": {
+        "type": "string",
+        "length": null
+    },
+    "dungcunuocdoikhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "khongcomuihoi": {
+        "type": "string",
+        "length": null
+    },
+    "khongcomuihoikhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "nuoctube": {
+        "type": "string",
+        "length": null
+    },
+    "nuoctubekhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "matsannhatieu": {
+        "type": "string",
+        "length": null
+    },
+    "matsannhatieukhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "giayvesinh": {
+        "type": "string",
+        "length": null
+    },
+    "giayvesinhkhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "khongcoruoi": {
+        "type": "string",
+        "length": null
+    },
+    "khongcoruoikhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "bexisach": {
+        "type": "string",
+        "length": null
+    },
+    "bexisachkhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "dcchekin": {
+        "type": "string",
+        "length": null
+    },
+    "dcchekinkhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "vsxungquanh": {
+        "type": "string",
+        "length": null
+    },
+    "vsxungquanhkhongdat": {
+        "type": "string",
+        "length": null
+    },
+    "danhgiahopvs": {
+        "type": "string",
+        "length": null
+    },
+    "danhgiakhonghopvs": {
+        "type": "string",
+        "length": null
+    },
+    "nhadattieuchuan": {
+        "type": "string",
+        "length": null
+    },
+    "cactieuchiphu": {
+        "type": "string",
+        "length": null
+    },
+    "cactieuchiphukdat": {
+        "type": "string",
+        "length": null
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "conhatieugangieng10m": {
+        "type": "number"
+    },
+    "cobairacgangieng10m": {
+        "type": "number"
+    },
+    "cochuonggiasucgangieng10m": {
+        "type": "number"
+    },
+    "napdaygieng": {
+        "type": "number"
+    },
+    "thanhgieng": {
+        "type": "number"
+    },
+    "vachgieng": {
+        "type": "number"
+    },
+    "sangieng": {
+        "type": "number"
+    },
+    "ranhthoatnuoc": {
+        "type": "number"
+    },
+    "dungculaynuoc": {
+        "type": "number"
+    },
+    "cong": {
+        "type": "number"
+    }
+}

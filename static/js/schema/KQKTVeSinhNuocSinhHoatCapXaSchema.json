@@ -1,0 +1,77 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tenphuluc": {
+        "type": "string",
+        "length": null
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanhthongtu": {
+        "type": "datetime"
+    },
+    "donvibaocao": {
+        "type": "string",
+        "length": null
+    },
+    "sophieu": {
+        "type": "string",
+        "length": null
+    },
+    "ngaytaophieu": {
+        "type": "datetime"
+    },
+    "tenbaocao": {
+        "type": "string",
+        "length": null
+    },
+    "phamvi": {
+        "type": "string",
+        "length": null
+    },
+    "bienphapxuly": {
+        "type": "string",
+        "length": null
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kqvscosocungcapnuochogd_id": {
+        "type": "string"
+    },
+    "kqvscscungcapnuocgdkdat_id": {
+        "type": "string"
+    },
+    "kqvscosocungcapnuochogd": {
+        "type": "dict"
+    },
+    "kqvscscungcapnuocgdkdat": {
+        "type": "dict"
+    }
+}

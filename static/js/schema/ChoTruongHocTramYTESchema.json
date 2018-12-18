@@ -1,0 +1,95 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ctmot": {
+        "type": "string",
+        "length": null
+    },
+    "cthai": {
+        "type": "string",
+        "length": null
+    },
+    "ctba": {
+        "type": "string",
+        "length": null
+    },
+    "ctbon": {
+        "type": "string",
+        "length": null
+    },
+    "ctnam": {
+        "type": "string",
+        "length": null
+    },
+    "ctsau": {
+        "type": "string",
+        "length": null
+    },
+    "ctbay": {
+        "type": "string",
+        "length": null
+    },
+    "cttam": {
+        "type": "string",
+        "length": null
+    },
+    "ctchin": {
+        "type": "string",
+        "length": null
+    },
+    "ctmuoi": {
+        "type": "string",
+        "length": null
+    },
+    "ctmuoimot": {
+        "type": "string",
+        "length": null
+    },
+    "ctmuoihai": {
+        "type": "string",
+        "length": null
+    },
+    "ctmoiba": {
+        "type": "string",
+        "length": null
+    },
+    "ctmotbon": {
+        "type": "string",
+        "length": null
+    },
+    "ctmotnam": {
+        "type": "string",
+        "length": null
+    },
+    "ctmotsau": {
+        "type": "string",
+        "length": null
+    },
+    "ctmotbay": {
+        "type": "string",
+        "length": null
+    }
+}
