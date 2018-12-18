@@ -3,7 +3,7 @@ define(function (require) {
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
 	var template = require('text!app/view/PhuLuc/NhaTieuThonHVS/tpl/model.html'), 
-	schema = require('json!schema/NhaTieuThonHVS.json');
+	schema = require('json!schema/NhaTieuThonHVSSchema.json');
 
 	var maxDate = new Date();
 	return Gonrin.ItemView

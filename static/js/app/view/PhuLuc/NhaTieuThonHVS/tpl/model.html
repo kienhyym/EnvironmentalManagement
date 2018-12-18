@@ -1,0 +1,139 @@
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+
+        }
+        th, td {
+			  padding: 5px;
+			  text-align: center;    
+			}
+		.top{
+			background: #C5DFB5;
+		}	
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th rowspan="2" class="top">STT</th>
+        <th rowspan="2" class="top">Họ và tên chủ hộ</th>
+        <th rowspan="2" class="top">Giới tính</th>
+        <th rowspan="2" class="top">DTTS</th>
+        <th rowspan="2" class="top">Hộ nghèo</th>
+        <th colspan="6" class="top">Loại công trình vệ sinh đang sử dụng</th>
+        <th colspan="3" class="top">Đánh giá tình trạng vệ sinh</th>
+        <th rowspan="2" class="top">Điểm rửa tay có nước, xà phòng</th>
+    </tr>
+    <tr>
+        <th class="top">Tự hoại</th>
+        <th class="top">Thẩm đội</th>
+        <th class="top">2 ngăn</th>
+        <th class="top">Chìm có ống thông hơi</th>
+        <th class="top">Loại khác (ghi rõ)</th>
+        <th class="top">Không có nhà tiêu</th>
+
+        <th class="top">Hợp vệ sinh</th>
+        <th class="top">Không hợp vệ sinh</th>
+        <th class="top">Được cải thiện</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>(1)</td>
+        <td>(2)</td>
+        <td>(3)</td>
+        <td>(4)</td>
+        <td>(5)</td>
+        <td>(6)</td>
+        <td>(7)</td>
+        <td>(8)</td>
+        <td>(9)</td>
+        <td>(10)</td>
+        <td>(11)</td>
+        <td>(12)</td>
+        <td>(13)</td>
+        <td>(14)</td>
+        <td>(15)</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+    </tr>
+     <!-- <tr>
+        <td>2</td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+    </tr>
+     <tr>
+        <td>3</td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+    </tr> -->
+    <tr>
+        <td></td>
+        <td>Tổng</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+
+</table>

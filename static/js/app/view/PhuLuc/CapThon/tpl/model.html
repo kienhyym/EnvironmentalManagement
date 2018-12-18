@@ -1,43 +1,56 @@
-<div style="margin-top: 30px" class="panel panel-success">
-	<div class="panel-heading">Phụ lục 4 : Mẫu 1 Kết quả kiểm tra vệ
-		sinh nước sạch và nhà tiêu hộ gia đình</div>
+<div style="margin-top: 30px" class="panel panel-primary">
+	<div class="panel-heading">PHỤ LỤC 1: CÁC BIỂU MẪU THEO DÕI VÀ
+		THU THẬP SỐ LIỆU</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div class=""
-		style="margin-left: 26px; font-size: 13px; margin-right: 20px; text-align: left;"
+		style="margin-left: 26px; margin-right: 20px; text-align: left;"
 		block-bind="content">
-		<center><b>Biểu mẫu số 1: Cấp thôn</b></center>
-		Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình năm <>
+
+		<div class="title">
+			<p style="text-align: center;">
+				<b>Biểu mẫu số 1: Cấp thôn</b>
+			</p>
+			<div class="md-3">
+				<p style="text-align: center;">
+					<b>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình năm...</b>
+				</p>
+
+				<input type="text" class="form-control" id="from"
+					data-bind="value:danhgianam">
+			</div>
 		</div>
-</div>
 
-<div style="margin-top: 20px"></div>
-<div style="font-family: serif;" class="panel-group">
-	<div class="panel panel-primary">
 
-		<div class="panel-heading">I. Thông tin chung</div>
-		<div class="panel-body">
+
+
+		<div class="table1">
+			<p style="font-weight: bold;">I. Thông tin chung</p>
 			<div class="row">
 				<div class="col-md-12" style="margin-right: 20px">
 					<div data-bind="dict:thongtinthon"></div>
 				</div>
 			</div>
-
 		</div>
-	</div>
-</div>
-<div style="margin-top: 20px"></div>
-<div style="font-family: serif;" class="panel-group">
-	<div class="panel panel-primary">
 
-		<div class="panel-heading">Thông tin về nhà tiêu HVS và Nhà tiêu
-			được Cải Thiện</div>
-		<div class="panel-body">
+		<div class="table2">
+			<p style="font-weight: bold">Thông tin về nhà tiêu HVS và Nhà
+				tiêu được Cải Thiện</p>
 			<div class="row">
 				<div class="col-md-12" style="margin-right: 20px">
 					<div data-bind="dict:nhatieuthonhvs"></div>
 				</div>
 			</div>
-
 		</div>
+
+		<div class="text">
+			<div class="row">
+				<div class="text-justify">Ghi chú: (3) Nam/nữ, (4) Nếu là DTTS
+					ghi là rõ tên dân tộc, (5) nếu là hộ nghèo ghi là 1, (12) & (13) -
+					Theo tiêu chí từng loại nhà tiêu kèm theo, (14)&(15) áp dụng xã
+					trong chương trình SupRSWS</div>
+			</div>
+		</div>
+
+
 	</div>
 </div>
