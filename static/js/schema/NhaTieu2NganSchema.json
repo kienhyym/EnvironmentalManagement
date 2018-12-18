@@ -112,6 +112,14 @@
         "type": "string",
         "length": null
     },
+    "vsxungquanh": {
+        "type": "string",
+        "length": null
+    },
+    "vsxungquanhkdat": {
+        "type": "string",
+        "length": null
+    },
     "cactieuchiphu": {
         "type": "string",
         "length": null

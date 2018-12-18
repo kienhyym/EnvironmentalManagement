@@ -812,6 +812,57 @@ define(function(require) {
 							"$ref" : "app/view/HoatDongGD/KiemTraTinhTrangVS/view/ModelView",
 							"visible" : false
 						}, 
+						{
+							"text" : "Mẫu số 2: Dùng cho nhà tiêu thấm dội nước",
+							"type" : "view",
+							"collectionName" : "nhatieuthamnuoc",
+							"route" : "nhatieuthamnuoc/collection",
+							"$ref" : "app/view/HoatDongGD/NhaTieuThamNuoc/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "nhatieuthamnuoc",
+							"route" : "nhatieuthamnuoc/model",
+							"$ref" : "app/view/HoatDongGD/NhaTieuThamNuoc/view/ModelView",
+							"visible" : false
+						}, 
+						{
+							"text" : "Mẫu số 3: Dùng cho nhà tiêu 2 ngăn",
+							"type" : "view",
+							"collectionName" : "nhatieu2ngan",
+							"route" : "nhatieu2ngan/collection",
+							"$ref" : "app/view/HoatDongGD/NhaTieu2Ngan/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "nhatieu2ngan",
+							"route" : "nhatieu2ngan/model",
+							"$ref" : "app/view/HoatDongGD/NhaTieu2Ngan/view/ModelView",
+							"visible" : false
+						},
+						{
+							"text" : "Mẫu số 4: Dùng cho nhà tiêu chìm",
+							"type" : "view",
+							"collectionName" : "nhatieuchim",
+							"route" : "nhatieuchim/collection",
+							"$ref" : "app/view/HoatDongGD/NhaTieuChim/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "nhatieuchim",
+							"route" : "nhatieuchim/model",
+							"$ref" : "app/view/HoatDongGD/NhaTieuChim/view/ModelView",
+							"visible" : false
+						}, 
 						
 				],
 			},

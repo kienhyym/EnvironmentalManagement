@@ -88,7 +88,9 @@ class NhaTieuThamNuoc(CommonModel):
     kcomuihoikdat = db.Column(db.String)
     nuocxuli = db.Column(db.String)
     nuocxulikdat = db.Column(db.String)
-
+    vsxungquanh = db.Column(db.String)
+    vsxungquanhkdat = db.Column(db.String)
+    
     cactieuchiphu = db.Column(db.String)
     cactieuchiphukdat = db.Column(db.String)
     matsannhatieu = db.Column(db.String)
@@ -135,6 +137,8 @@ class NhaTieu2Ngan(CommonModel):
     kcomuihoikdat = db.Column(db.String)
     nuocxuli = db.Column(db.String)
     nuocxulikdat = db.Column(db.String)
+    vsxungquanh = db.Column(db.String)
+    vsxungquanhkdat = db.Column(db.String)
 
     cactieuchiphu = db.Column(db.String)
     cactieuchiphukdat = db.Column(db.String)
@@ -182,7 +186,9 @@ class NhaTieuChim(CommonModel):
     kcomuihoikdat = db.Column(db.String)
     nuocxuli = db.Column(db.String)
     nuocxulikdat = db.Column(db.String)
-
+    vsxungquanh = db.Column(db.String)
+    vsxungquanhkdat = db.Column(db.String)
+    
     cactieuchiphu = db.Column(db.String)
     cactieuchiphukdat = db.Column(db.String)
     matsannhatieu = db.Column(db.String)
