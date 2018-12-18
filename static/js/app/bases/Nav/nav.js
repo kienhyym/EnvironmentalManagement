@@ -794,7 +794,58 @@ define(function(require) {
 							"route" : "capthon/model",
 							"$ref" : "app/view/PhuLuc/CapThon/view/ModelView",
 							"visible" : false
-						}, 
+						},
+						{
+							"text" : "Biểu mẫu số 2: Cấp xã",
+							"type" : "view",
+							"collectionName" : "capxa",
+							"route" : "capxa/collection",
+							"$ref" : "app/view/PhuLuc/CapXa/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "capxa",
+							"route" : "capxa/model",
+							"$ref" : "app/view/PhuLuc/CapXa/view/ModelView",
+							"visible" : false
+						},
+						{
+							"text" : "Biểu mẫu số 3: Cấp huyện",
+							"type" : "view",
+							"collectionName" : "caphuyen",
+							"route" : "caphuyen/collection",
+							"$ref" : "app/view/PhuLuc/CapHuyen/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "caphuyen",
+							"route" : "caphuyen/model",
+							"$ref" : "app/view/PhuLuc/CapHuyen/view/ModelView",
+							"visible" : false
+						},
+						{
+							"text" : "Biểu mẫu số 4: Cấp tỉnh",
+							"type" : "view",
+							"collectionName" : "captinh",
+							"route" : "captinh/collection",
+							"$ref" : "app/view/PhuLuc/CapTinh/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "captinh",
+							"route" : "captinh/model",
+							"$ref" : "app/view/PhuLuc/CapTinh/view/ModelView",
+							"visible" : false
+						},
 						{
 							"text" : "Mẫu số 1: Dùng cho nhà tiêu tự hoại",
 							"type" : "view",
@@ -811,7 +862,7 @@ define(function(require) {
 							"route" : "kiemtratinhtrangvss/model",
 							"$ref" : "app/view/HoatDongGD/KiemTraTinhTrangVS/view/ModelView",
 							"visible" : false
-						}, 
+						},
 						{
 							"text" : "Mẫu số 2: Dùng cho nhà tiêu thấm dội nước",
 							"type" : "view",
@@ -828,7 +879,7 @@ define(function(require) {
 							"route" : "nhatieuthamnuoc/model",
 							"$ref" : "app/view/HoatDongGD/NhaTieuThamNuoc/view/ModelView",
 							"visible" : false
-						}, 
+						},
 						{
 							"text" : "Mẫu số 3: Dùng cho nhà tiêu 2 ngăn",
 							"type" : "view",
@@ -862,7 +913,7 @@ define(function(require) {
 							"route" : "nhatieuchim/model",
 							"$ref" : "app/view/HoatDongGD/NhaTieuChim/view/ModelView",
 							"visible" : false
-						}, 
+						},
 						{
 							"text" : "Mẫu số 5. Cho trường học và trạm y tế",
 							"type" : "view",
@@ -879,8 +930,8 @@ define(function(require) {
 							"route" : "chotruonghoctramyte/model",
 							"$ref" : "app/view/HoatDongGD/ChoTruongHocTramYTE/view/ModelView",
 							"visible" : false
-						}, 
-						
+						},
+
 				],
 			},
 
