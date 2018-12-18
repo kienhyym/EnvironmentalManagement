@@ -795,6 +795,23 @@ define(function(require) {
 							"$ref" : "app/view/PhuLuc/CapThon/view/ModelView",
 							"visible" : false
 						}, 
+						{
+							"text" : "Mẫu số 1: Dùng cho nhà tiêu tự hoại",
+							"type" : "view",
+							"collectionName" : "kiemtratinhtrangvss",
+							"route" : "kiemtratinhtrangvss/collection",
+							"$ref" : "app/view/HoatDongGD/KiemTraTinhTrangVS/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "kiemtratinhtrangvss",
+							"route" : "kiemtratinhtrangvss/model",
+							"$ref" : "app/view/HoatDongGD/KiemTraTinhTrangVS/view/ModelView",
+							"visible" : false
+						}, 
 						
 				],
 			},

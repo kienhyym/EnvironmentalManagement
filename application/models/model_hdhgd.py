@@ -1,0 +1,203 @@
+import uuid
+
+from application.database import db
+from application.database.model import CommonModel
+from PIL.JpegImagePlugin import COM
+from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
+from sqlalchemy.dialects.postgresql import  UUID
+from sqlalchemy.orm import *
+# from sqlalchemy import *
+from sqlalchemy.orm import backref, relationship
+from sqlalchemy.orm.collections import attribute_mapped_collection
+
+def default_uuid():
+    return str(uuid.uuid4())
+
+
+##Mau 1:
+class KiemTraTinhTrangVSS(CommonModel):
+    __tablename__ = 'kiemtratinhtrangvss'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    tenphuluc = db.Column(db.String)
+    thongtu = db.Column(db.String)
+    tieuchichinh = db.Column(db.String)
+    tieuchichinhkdat = db.Column(db.String)
+    babexuly = db.Column(db.String)
+    baexulykdat = db.Column(db.String)
+    lapbechuaphan = db.Column(db.String)
+    lapbechuaphankdat = db.Column(db.String)
+    matsannhan = db.Column(db.String)
+    matsannhankdat = db.Column(db.String)
+    besiconutnuoc = db.Column(db.String)
+    besiconutnuockdat = db.Column(db.String)
+    coongthonghoi = db.Column(db.String)
+    coongthonghoikdat = db.Column(db.String)
+    codunuocdoi = db.Column(db.String)
+    codunuocdoikdat = db.Column(db.String)
+    dungcuchuanuocdoi = db.Column(db.String)
+    dungcuchuanuocdoikdat = db.Column(db.String)
+    kcomuihoi = db.Column(db.String)
+    kcomuihoikdat = db.Column(db.String)
+    nuocxuli = db.Column(db.String)
+    nuocxulikdat = db.Column(db.String)
+    vsxungquanh = db.Column(db.String)
+    vsxungquanhkdat = db.Column(db.String)
+
+    cactieuchiphu = db.Column(db.String)
+    cactieuchiphukdat = db.Column(db.String)
+    matsannhatieu = db.Column(db.String)
+    matsannhatieukdat = db.Column(db.String)
+    giayvesinh = db.Column(db.String)
+    giayvesinhkdat = db.Column(db.String)
+    kcoruoi = db.Column(db.String)
+    kcoruoikdat = db.Column(db.String)
+    bexinuoc = db.Column(db.String)
+    bexinuockdat = db.Column(db.String)
+    dcchekin = db.Column(db.String)
+    dcchekinkdat = db.Column(db.String)
+    vesinhxungquanh = db.Column(db.String)
+    vesinhxungquanhkdat = db.Column(db.String)
+
+    hopvs = db.Column(db.String)
+    kohopvs = db.Column(db.String)
+    nhatieukodatbatieuchi = db.Column(db.String)
+
+##Mau 2
+class NhaTieuThamNuoc(CommonModel):
+    __tablename__ = 'nhatieuthamnuoc'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    tenphuluc = db.Column(db.String)
+    thongtu = db.Column(db.String)
+    tieuchichinh = db.Column(db.String)
+    tieuchichinhkdat = db.Column(db.String)
+    babexuly = db.Column(db.String)
+    baexulykdat = db.Column(db.String)
+    lapbechuaphan = db.Column(db.String)
+    lapbechuaphankdat = db.Column(db.String)
+    matsannhan = db.Column(db.String)
+    matsannhankdat = db.Column(db.String)
+    besiconutnuoc = db.Column(db.String)
+    besiconutnuockdat = db.Column(db.String)
+    coongthonghoi = db.Column(db.String)
+    coongthonghoikdat = db.Column(db.String)
+    codunuocdoi = db.Column(db.String)
+    codunuocdoikdat = db.Column(db.String)
+    dungcuchuanuocdoi = db.Column(db.String)
+    dungcuchuanuocdoikdat = db.Column(db.String)
+    kcomuihoi = db.Column(db.String)
+    kcomuihoikdat = db.Column(db.String)
+    nuocxuli = db.Column(db.String)
+    nuocxulikdat = db.Column(db.String)
+
+    cactieuchiphu = db.Column(db.String)
+    cactieuchiphukdat = db.Column(db.String)
+    matsannhatieu = db.Column(db.String)
+    matsannhatieukdat = db.Column(db.String)
+    giayvesinh = db.Column(db.String)
+    giayvesinhkdat = db.Column(db.String)
+    kcoruoi = db.Column(db.String)
+    kcoruoikdat = db.Column(db.String)
+    bexinuoc = db.Column(db.String)
+    bexinuockdat = db.Column(db.String)
+    dcchekin = db.Column(db.String)
+    dcchekinkdat = db.Column(db.String)
+    vesinhxungquanh = db.Column(db.String)
+    vesinhxungquanhkdat = db.Column(db.String)
+
+    hopvs = db.Column(db.String)
+    kohopvs = db.Column(db.String)
+    nhatieukodatbatieuchi = db.Column(db.String)
+
+
+##Mau 3
+class NhaTieu2Ngan(CommonModel):
+    __tablename__ = 'nhatieu2ngan'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    tenphuluc = db.Column(db.String)
+    thongtu = db.Column(db.String)
+    tieuchichinh = db.Column(db.String)
+    tieuchichinhkdat = db.Column(db.String)
+    babexuly = db.Column(db.String)
+    baexulykdat = db.Column(db.String)
+    lapbechuaphan = db.Column(db.String)
+    lapbechuaphankdat = db.Column(db.String)
+    matsannhan = db.Column(db.String)
+    matsannhankdat = db.Column(db.String)
+    besiconutnuoc = db.Column(db.String)
+    besiconutnuockdat = db.Column(db.String)
+    coongthonghoi = db.Column(db.String)
+    coongthonghoikdat = db.Column(db.String)
+    codunuocdoi = db.Column(db.String)
+    codunuocdoikdat = db.Column(db.String)
+    dungcuchuanuocdoi = db.Column(db.String)
+    dungcuchuanuocdoikdat = db.Column(db.String)
+    kcomuihoi = db.Column(db.String)
+    kcomuihoikdat = db.Column(db.String)
+    nuocxuli = db.Column(db.String)
+    nuocxulikdat = db.Column(db.String)
+
+    cactieuchiphu = db.Column(db.String)
+    cactieuchiphukdat = db.Column(db.String)
+    matsannhatieu = db.Column(db.String)
+    matsannhatieukdat = db.Column(db.String)
+    giayvesinh = db.Column(db.String)
+    giayvesinhkdat = db.Column(db.String)
+    kcoruoi = db.Column(db.String)
+    kcoruoikdat = db.Column(db.String)
+    bexinuoc = db.Column(db.String)
+    bexinuockdat = db.Column(db.String)
+    dcchekin = db.Column(db.String)
+    dcchekinkdat = db.Column(db.String)
+    vesinhxungquanh = db.Column(db.String)
+    vesinhxungquanhkdat = db.Column(db.String)
+
+    hopvs = db.Column(db.String)
+    kohopvs = db.Column(db.String)
+    nhatieukodatbatieuchi = db.Column(db.String)
+
+
+##Mau 4
+class NhaTieuChim(CommonModel):
+    __tablename__ = 'nhatieuchim'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    tenphuluc = db.Column(db.String)
+    thongtu = db.Column(db.String)
+    tieuchichinh = db.Column(db.String)
+    tieuchichinhkdat = db.Column(db.String)
+    babexuly = db.Column(db.String)
+    baexulykdat = db.Column(db.String)
+    lapbechuaphan = db.Column(db.String)
+    lapbechuaphankdat = db.Column(db.String)
+    matsannhan = db.Column(db.String)
+    matsannhankdat = db.Column(db.String)
+    besiconutnuoc = db.Column(db.String)
+    besiconutnuockdat = db.Column(db.String)
+    coongthonghoi = db.Column(db.String)
+    coongthonghoikdat = db.Column(db.String)
+    codunuocdoi = db.Column(db.String)
+    codunuocdoikdat = db.Column(db.String)
+    dungcuchuanuocdoi = db.Column(db.String)
+    dungcuchuanuocdoikdat = db.Column(db.String)
+    kcomuihoi = db.Column(db.String)
+    kcomuihoikdat = db.Column(db.String)
+    nuocxuli = db.Column(db.String)
+    nuocxulikdat = db.Column(db.String)
+
+    cactieuchiphu = db.Column(db.String)
+    cactieuchiphukdat = db.Column(db.String)
+    matsannhatieu = db.Column(db.String)
+    matsannhatieukdat = db.Column(db.String)
+    giayvesinh = db.Column(db.String)
+    giayvesinhkdat = db.Column(db.String)
+    kcoruoi = db.Column(db.String)
+    kcoruoikdat = db.Column(db.String)
+    bexinuoc = db.Column(db.String)
+    bexinuockdat = db.Column(db.String)
+    dcchekin = db.Column(db.String)
+    dcchekinkdat = db.Column(db.String)
+    vesinhxungquanh = db.Column(db.String)
+    vesinhxungquanhkdat = db.Column(db.String)
+
+    hopvs = db.Column(db.String)
+    kohopvs = db.Column(db.String)
+    nhatieukodatbatieuchi = db.Column(db.String)
