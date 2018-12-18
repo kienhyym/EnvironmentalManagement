@@ -25,9 +25,9 @@
     <thead>
     <tr>
         <th rowspan="2" class="top">STT</th>
-        <th rowspan="2" class="top">Họ và tên chủ hộ</th>
-        <th rowspan="2" class="top">Giới tính</th>
-        <th rowspan="2" class="top">DTTS</th>
+        <th rowspan="2" class="top">Tên huyện</th>
+        <th rowspan="2" class="top">Tổng Hộ có nữ là chủ hộ</th>
+        <th rowspan="2" class="top">Tổng số hộ DTTS</th>
         <th rowspan="2" class="top">Hộ nghèo</th>
         <th colspan="6" class="top">Loại công trình vệ sinh đang sử dụng</th>
         <th colspan="3" class="top">Đánh giá tình trạng vệ sinh</th>
@@ -68,54 +68,54 @@
     </tr>
     <tr>
         <td>1</td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tenhuyen"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:sonuchuho"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:sohodtts"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:sohongheo"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:diemruatay"/></td>
     </tr>
      <!-- <tr>
         <td>2</td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tenchuho"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:gioitinh"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:dtts"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:hongheo"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:diemruatay"/></td>
     </tr>
      <tr>
         <td>3</td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tenchuho"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:gioitinh"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:dtts"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hongheo"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:tuhoai"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:thamdoi"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:haingan"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:coongthong"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:loaikhac"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:kconhatieu"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:hopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:khopvs"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:caithien"/></td>
-        <td><input type="text" class="form-control" data-thonhvs-bind="value:diemruatay"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tenchuho"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:gioitinh"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:dtts"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:hongheo"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:tuhoai"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:thamdoi"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:haingan"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:coongthong"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:loaikhac"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:kconhatieu"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:hopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:khopvs"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:caithien"/></td>
+        <td><input type="text" class="form-control" data-tinhhvs-bind="value:diemruatay"/></td>
     </tr> -->
     <tr>
         <td></td>

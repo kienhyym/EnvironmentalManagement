@@ -27,16 +27,16 @@
     "danhgianam": {
         "type": "datetime"
     },
-    "thongtinxa_id": {
+    "thongtintinh_id": {
         "type": "string"
     },
-    "nhatieuxahvs_id": {
+    "nhatieutinhhvs_id": {
         "type": "string"
     },
-    "thongtinxa": {
+    "thongtintinh": {
         "type": "dict"
     },
-    "nhatieuxahvs": {
+    "nhatieutinhhvs": {
         "type": "dict"
     }
 }

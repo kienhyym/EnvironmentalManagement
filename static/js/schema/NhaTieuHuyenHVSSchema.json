@@ -1,0 +1,80 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "stt": {
+        "type": "number"
+    },
+    "tenxa": {
+        "type": "string",
+        "length": null
+    },
+    "sonuchuho": {
+        "type": "number"
+    },
+    "sohodtts": {
+        "type": "string",
+        "length": null
+    },
+    "sohongheo": {
+        "type": "number"
+    },
+    "tuhoai": {
+        "type": "number"
+    },
+    "thamdoi": {
+        "type": "number"
+    },
+    "haingan": {
+        "type": "number"
+    },
+    "coongthong": {
+        "type": "number"
+    },
+    "loaikhac": {
+        "type": "string",
+        "length": null
+    },
+    "kconhatieu": {
+        "type": "number"
+    },
+    "hopvs": {
+        "type": "number"
+    },
+    "khopvs": {
+        "type": "number"
+    },
+    "caithien": {
+        "type": "string",
+        "length": null
+    },
+    "diemruatay": {
+        "type": "string",
+        "length": null
+    },
+    "tong": {
+        "type": "number"
+    }
+}

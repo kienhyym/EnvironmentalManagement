@@ -2,8 +2,8 @@ define(function (require) {
 	"use strict";
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/ThongTinThon/tpl/model.html'), 
-	schema = require('json!schema/ThongTinThonSchema.json');
+	var template = require('text!app/view/PhuLuc/ThongTinXa/tpl/model.html'), 
+	schema = require('json!schema/ThongTinXaSchema.json');
 
 	var maxDate = new Date();
 	return Gonrin.ItemView
@@ -11,8 +11,8 @@ define(function (require) {
 			template: template,
 			modelSchema: schema,
 			urlPrefix: "/api/v1/",
-			bindings:"data-thon-bind",
-			collectionName: "thongtinthon",										
+			bindings:"data-xa-bind",
+			collectionName: "thongtinxa",										
 
 			render: function () {
 				var self = this;

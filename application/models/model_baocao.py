@@ -1288,8 +1288,8 @@ class CapXa(CommonModel):
     __tablename__ = 'capxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     danhgianam = db.Column(db.DateTime())
-    thongtinthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thongtinxa.id'), nullable=True)
-    thongtinthon = relationship('ThongTinXa')
+    thongtinxa_id = db.Column(UUID(as_uuid=True), ForeignKey('thongtinxa.id'), nullable=True)
+    thongtinxa = relationship('ThongTinXa')
     nhatieuxahvs_id = db.Column(UUID(as_uuid=True), ForeignKey('nhatieuxahvs.id'), nullable=True)
     nhatieuxahvs = relationship('NhaTieuXaHVS')
     

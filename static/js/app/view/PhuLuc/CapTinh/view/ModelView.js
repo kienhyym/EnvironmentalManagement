@@ -2,18 +2,18 @@ define(function (require) {
 	"use strict";
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/CapThon/tpl/model.html'),
-	schema = require('json!schema/CapThonSchema.json');
+	var template = require('text!app/view/PhuLuc/CapTinh/tpl/model.html'),
+	schema = require('json!schema/CapTinhSchema.json');
 		
-	var ThongTinThon = require('app/view/PhuLuc/ThongTinThon/view/ModelView'); 
-	var NhaTieuThonHVS = require('app/view/PhuLuc/NhaTieuThonHVS/view/ModelView'); 
+	var ThongTinThon = require('app/view/PhuLuc/ThongTinTinh/view/ModelView'); 
+	var NhaTieuThonHVS = require('app/view/PhuLuc/NhaTieuTinhHVS/view/ModelView'); 
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 			template: template,
 			modelSchema: schema,
 			urlPrefix: "/api/v1/",
-			collectionName: "capthon",
+			collectionName: "captinh",
 
 			uiControl: {
 				fields: [
@@ -24,14 +24,14 @@ define(function (require) {
 						maxDate:currentDate,
 					},
 					{
-			        	field:"thongtinthon",
+			        	field:"thongtintinh",
 			        	uicontrol:false,
-			        	itemView:ThongTinThon
+			        	itemView:ThongTinTinh
 			        },
 			        {
-			        	field:"nhatieuthonhvs",
+			        	field:"nhatieutinhhvs",
 			        	uicontrol:false,
-			        	itemView:NhaTieuThonHVS
+			        	itemView:NhaTieuTinhHVS
 			        },
 				],
 			},
@@ -102,8 +102,8 @@ define(function (require) {
 
 			render: function () {
 				var self = this;
-				var ThongTinThonView = new ThongTinThon();
-				var NhaTieuThonHVSView = new NhaTieuThonHVS();
+				var ThongTinTinhView = new ThongTinTinh();
+				var NhaTieuTinhHVSView = new NhaTieuTinhHVS();
 				var id = this.getApp().getRouter().getParam("id");
 				if (id) {
 					this.model.set('id', id);
