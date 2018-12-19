@@ -6,7 +6,8 @@ define(function (require) {
 	schema = require('json!schema/CapThonSchema.json');
 		
 	var ThongTinThon = require('app/view/PhuLuc/ThongTinThon/view/ModelView'); 
-	var NhaTieuThonHVS = require('app/view/PhuLuc/NhaTieuThonHVS/view/ModelView'); 
+	var NhaTieuThonHVS = require('app/view/PhuLuc/NhaTieuThonHVS/view/ModelView');
+//	var NhaTieuThonHVSView = require('app/view/PhuLuc/NhaTieuThonHVS/view/ModelDialogView');
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -33,6 +34,73 @@ define(function (require) {
 			        	uicontrol:false,
 			        	itemView:NhaTieuThonHVS
 			        },
+//			        {
+//	    				field: "nhatieuthonhvs",
+//	    				uicontrol: "grid",
+//	    				refresh: true,
+//	    				primaryField: "id",
+//	    				fields:[
+//	    				          {field:"stt", label:"STT"},
+//	                	          {field:"tenchuho", label:"Họ và tên chủ hộ"},
+//	                	          {field:"gioitinh", label: "Giới tính"},
+//	                	          {field:"dtts", label: "DTTS"},
+//	                	          {field:"hongheo", label: "Hộ nghèo"},
+//	                	          {
+//	                     	    	 field: "command", 
+//	                     	    	 label:"Command",
+//	                     	    	 width:"50px", 
+//	                     	    	 command: [
+////	                     	    	     {"label":"Delete",
+////	                     	    	        	"action": "delete",
+////	                     	    	        	"class": "btn-sm",
+////	                     	    	     },
+//	                     	    	     {
+//	                     	    	       "label":"Delete",
+//	                        	    	        "action": function(params, args){
+//	                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
+//	                        	    	        },
+//	                        	    	        "class": "btn-danger btn-sm"
+//	                        	    	     },   
+//	                     	    	 ],
+//	                     	   	 },
+//	                	        ],
+//	                	        
+//	                	tools:[
+//        	                 {
+//        	                	 name: "create",
+//        	                	 buttonClass:"btn-success",
+//        	                	 label: "Thêm",
+//        	                	 command: function(){
+//        	                		 var self = this;
+//                	    			 var view = new NhaTieuThonHVSView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
+//        	                		 view.dialog();
+//        	                		 view.on('close',function(data){
+//        	                			 var nhatieuthonhvs = self.model.get('nhatieuthonhvs');
+//        	                			 nhatieuthonhvs.push(data);
+//        	                			 self.model.set("nhatieuthonhvs",nhatieuthonhvs);
+//        	                			 self.applyBindings();
+//        	                		 });
+//        	                	 }
+//        	                 }
+//          	                 ],
+//	                	onRowClick: function(event){
+//	                		var self= this;
+//            	    		if(event.rowId){
+//            	    			 var view = new NhaTieuThonHVSView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
+//    	                		 view.dialog();
+//    	                		 view.on('close',function(data){
+//    	                			 var str = self.model.get('nhatieuthonhvs');
+//    	                			    for(var i=0 ;i<str.length;i++){
+//    	                			    	if(str[i].id == data.id){	    	                			    
+//	    	                					str.splice(i,1);	    	              	  	    	                			 
+//	    	                				 }		    	                			    	 
+//    	                			    } 	   
+//    	                			    str.push(data);  
+//	  	    	                		self.applyBindings();                				  	    	                			
+//    	                		 });	
+//            	        	}
+//            	    	}
+//	    			},
 				],
 			},
 						
