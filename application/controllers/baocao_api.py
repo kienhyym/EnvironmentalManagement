@@ -359,11 +359,7 @@ apimanager.create_api(CapThon,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='capthon')
-apimanager.create_api(ThongTinThon,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='thongtinthon')
+
 apimanager.create_api(NhaTieuThonHVS,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',

@@ -27,16 +27,55 @@
     "danhgianam": {
         "type": "datetime"
     },
-    "thongtinthon_id": {
+    "stt": {
+        "type": "number"
+    },
+    "tentinh_id": {
         "type": "string"
     },
-    "nhatieuthonhvs_id": {
+    "tenhuyen_id": {
         "type": "string"
     },
-    "thongtinthon": {
-        "type": "dict"
+    "tenxa_id": {
+        "type": "string"
+    },
+    "tenthon_id": {
+        "type": "string"
+    },
+    "hotrongthon": {
+        "type": "number"
+    },
+    "chuholanu": {
+        "type": "number"
+    },
+    "sohongheo": {
+        "type": "number"
+    },
+    "sohodtts": {
+        "type": "number"
+    },
+    "dantrongthon": {
+        "type": "number"
+    },
+    "sonam": {
+        "type": "number"
+    },
+    "sonu": {
+        "type": "number"
     },
     "nhatieuthonhvs": {
+        "type": "list"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "tenthon": {
         "type": "dict"
     }
 }

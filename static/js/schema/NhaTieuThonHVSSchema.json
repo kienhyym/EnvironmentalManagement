@@ -24,6 +24,9 @@
         "type": "string",
         "primary": true
     },
+    "capthon_id": {
+        "type": "string"
+    },
     "stt": {
         "type": "number"
     },
@@ -32,12 +35,10 @@
         "length": null
     },
     "gioitinh": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "dtts": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "hongheo": {
         "type": "number"
@@ -55,8 +56,7 @@
         "type": "number"
     },
     "loaikhac": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "kconhatieu": {
         "type": "number"
@@ -68,12 +68,10 @@
         "type": "number"
     },
     "caithien": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "diemruatay": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "tong": {
         "type": "number"

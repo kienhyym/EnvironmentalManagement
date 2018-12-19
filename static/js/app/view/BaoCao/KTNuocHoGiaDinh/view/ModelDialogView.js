@@ -81,10 +81,7 @@ define(function (require) {
 			    	    	}
 			    	    },
 	    	    	],
-	    	    }],
-	    	
-	        	
-	        	
+	    	    }],        		        	
     	render:function(){
     		var self = this;
     		

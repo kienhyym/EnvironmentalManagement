@@ -6,8 +6,7 @@ define(function (require) {
 	schema = require('json!schema/CoSoCapNuocDuoi1000mSchema.json');
 
 	var maxDate = new Date();
-	return Gonrin.ItemView
-		.extend({
+	return Gonrin.ItemView.extend({
 			template: template,
 			modelSchema: schema,
 			urlPrefix: "/api/v1/",

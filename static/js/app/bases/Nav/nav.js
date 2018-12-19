@@ -931,6 +931,23 @@ define(function(require) {
 							"$ref" : "app/view/HoatDongGD/ChoTruongHocTramYTE/view/ModelView",
 							"visible" : false
 						},
+						{
+							"text" : "Mẫu số 6. Các hoạt động BCC cốt lõi",
+							"type" : "view",
+							"collectionName" : "cachoatdongbbc",
+							"route" : "cachoatdongbbc/collection",
+							"$ref" : "app/view/HoatDongGD/CacHoatDongBBC/view/CollectionView",
+							"visible" : function() {
+								return this.userHasRole("Admin");
+							}
+						},
+						{
+							"type" : "view",
+							"collectionName" : "cachoatdongbbc",
+							"route" : "cachoatdongbbc/model",
+							"$ref" : "app/view/HoatDongGD/CacHoatDongBBC/view/ModelView",
+							"visible" : false
+						},
 
 				],
 			},

@@ -24,51 +24,67 @@
         "type": "string",
         "primary": true
     },
-    "ctmot": {
+    "hoatdongtinh": {
         "type": "string",
         "length": null
     },
-    "cthai": {
+    "hophoinhgi": {
         "type": "string",
         "length": null
     },
-    "ctba": {
+    "taphuan": {
         "type": "string",
         "length": null
     },
-    "ctbon": {
+    "cachoatdong": {
         "type": "string",
         "length": null
     },
-    "ctnam": {
+    "thanhlapcuahang": {
         "type": "string",
         "length": null
     },
-    "ctsau": {
+    "taphuantruyenthong": {
         "type": "string",
         "length": null
     },
-    "ctbay": {
+    "hdcaphuyen": {
         "type": "string",
         "length": null
     },
-    "cttam": {
+    "hoptrienkhai": {
         "type": "string",
         "length": null
     },
-    "ctchin": {
+    "vschocanbo": {
         "type": "string",
         "length": null
     },
-    "ctmuoi": {
+    "hdcapxa": {
         "type": "string",
         "length": null
     },
-    "ctmuoimot": {
+    "hopcapxa": {
         "type": "string",
         "length": null
     },
-    "ctmuoihai": {
+    "camketdat": {
+        "type": "string",
+        "length": null
+    },
+    "vstx": {
+        "type": "string",
+        "length": null
+    },
+    "truyenthongthon": {
+        "type": "string",
+        "length": null
+    },
+    "truonghoc": {
+        "type": "string",
+        "length": null
+    },
+    "bancamket": {
         "type": "string",
         "length": null
     }

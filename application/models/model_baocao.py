@@ -1242,14 +1242,7 @@ class CapThon(CommonModel):
     __tablename__ = 'capthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     danhgianam = db.Column(db.DateTime())
-    thongtinthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thongtinthon.id'), nullable=True)
-    thongtinthon = relationship('ThongTinThon')
-    nhatieuthonhvs_id = db.Column(UUID(as_uuid=True), ForeignKey('nhatieuthonhvs.id'), nullable=True)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
-    
-class ThongTinThon(CommonModel):
-    __tablename__ = 'thongtinthon'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1271,21 +1264,22 @@ class ThongTinThon(CommonModel):
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    capthon_id = db.Column(UUID(as_uuid=True), ForeignKey('capthon.id'), nullable=True)
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
-    gioitinh = db.Column(db.String)
-    dtts = db.Column(db.String)
+    gioitinh = db.Column(db.Integer)
+    dtts = db.Column(db.Integer)
     hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
     tuhoai = db.Column(db.Integer)
     thamdoi = db.Column(db.Integer)
     haingan = db.Column(db.Integer)
     coongthong = db.Column(db.Integer)
-    loaikhac = db.Column(db.String)
+    loaikhac = db.Column(db.Integer)
     kconhatieu = db.Column(db.Integer)
     hopvs = db.Column(db.Integer)
     khopvs = db.Column(db.Integer)
-    caithien = db.Column(db.String)
-    diemruatay = db.Column(db.String)
+    caithien = db.Column(db.Integer)
+    diemruatay = db.Column(db.Integer)
     tong = db.Column(db.Integer)
     
 #Biểu mẫu số 2: Cấp xã

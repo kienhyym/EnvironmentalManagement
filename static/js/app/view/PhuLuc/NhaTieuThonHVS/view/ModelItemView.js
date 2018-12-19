@@ -4,15 +4,17 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/PhuLuc/NhaTieuThonHVS/tpl/model.html'),
+    var template 			= require('text!app/view/PhuLuc/NhaTieuThonHVS/tpl/itemView.html'),
 	schema 				    = require('json!schema/NhaTieuThonHVSSchema.json');
     
 	var currentDate = new Date();
-    return Gonrin.ModelDialogView.extend({
+    return Gonrin.ItemView.extend({
     	template : template,
     	modelSchema	: schema,
-    	urlPrefix: "/api/v1/",
+		urlPrefix: "/api/v1/",
+		tagName: 'tr',
 		collectionName: "nhatieuthonhvs",
+		bindings:"bind-item-data",
 		// uiControl: {
 		// 	fields: [
 		// 		{
@@ -77,7 +79,7 @@ define(function (require) {
 		// 			textField: "text",
 		// 			valueField: "value",
 		// 			dataSource: [
-		// 				{ "value": 1, "text": "Có" },
+		// applyBindings				{ "value": 1, "text": "Có" },
 		// 				{ "value": 0, "text": "Không" },
 		// 			],
 		// 		},
@@ -138,94 +140,16 @@ define(function (require) {
 		// 		},
 		// 	]
 		// },
-    	tools : [
-	    	    {
-	    	    	name: "defaultgr",
-	    	    	type: "group",
-	    	    	groupClass: "toolbar-group",
-	    	    	buttons: [
-						{
-							name: "back",
-							type: "button",
-							buttonClass: "btn-default btn-sm",
-							label: "TRANSLATE:BACK",
-							command: function(){
-								var self = this;
-								self.close();
-							}
-						},
-						{
-			    	    	name: "save",
-			    	    	type: "button",
-			    	    	buttonClass: "btn-success btn-sm",
-			    	    	label: "TRANSLATE:SAVE",
-			    	    	command: function(){
-			    	    		var self = this;
-			    	    		
-			                    self.model.save(null,{
-			                        success: function (model, respose, options) {
-			                            self.getApp().notify("Lưu thông tin thành công");
-			                            self.trigger("close",self.model.toJSON());
-			                            self.close();
-			                            
-			                            
-			                        },
-			                        error: function (model, xhr, options) {
-			                            self.getApp().notify('Lưu thông tin không thành công!');
-			                           
-			                        }
-			                    });
-			    	    	}
-			    	    },
-						{
-			    	    	name: "delete",
-			    	    	type: "button",
-			    	    	buttonClass: "btn-danger btn-sm",
-			    	    	label: "TRANSLATE:DELETE",
-			    	    	visible: function(){
-			    	    		return this.getApp().getRouter().getParam("id") !== null;
-			    	    	},
-			    	    	command: function(){
-			    	    		var self = this;
-			                    self.model.destroy({
-			                        success: function(model, response) {
-			                        	self.getApp().notify('Xoá dữ liệu thành công');
-			                        	self.trigger("delete",self.model.toJSON());
-			                        	self.close();
-			                        	
-			                        	
-			                        },
-			                        error: function (model, xhr, options) {
-			                            self.getApp().notify('Xoá dữ liệu không thành công!');
-			                            
-			                        }
-			                    });
-			    	    	}
-			    	    },
-	    	    	],
-	    	    }],	    		        		        	
+    	 		        		        	
     	render:function(){
-    		var self = this;
-    		
-    		var id = null;
-    		if (self.viewData!==null){
-    			id = self.viewData.id;
-    			var capthon_id = self.viewData.capthon_id;
-    			self.model.set("capthon_id",capthon_id);
-    		}
-    		if(id){
-    			this.model.set('id',id);
-        		this.model.fetch({
-        			success: function(data){
-        				self.applyBindings();
-        			},
-        			error:function(){
-    					self.getApp().notify("Get data Eror");
-    				},
-        		});
-    		}else{
-    			self.applyBindings();
-    		}
+			var self = this; 	
+			
+			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
+				self.remove(true);
+	 		 });
+			// var el = $stt.text();
+			// console.log("el : "+el);		
+    		self.applyBindings();
     		
     	},
     });

@@ -27,21 +27,17 @@
     "stt": {
         "type": "number"
     },
-    "tentinh": {
-        "type": "string",
-        "length": null
+    "tentinh_id": {
+        "type": "string"
     },
-    "tenhuyen": {
-        "type": "string",
-        "length": null
+    "tenhuyen_id": {
+        "type": "string"
     },
-    "tenxa": {
-        "type": "string",
-        "length": null
+    "tenxa_id": {
+        "type": "string"
     },
-    "tenthon": {
-        "type": "string",
-        "length": null
+    "tenthon_id": {
+        "type": "string"
     },
     "hotrongthon": {
         "type": "number"
@@ -63,5 +59,17 @@
     },
     "sonu": {
         "type": "number"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "tenthon": {
+        "type": "dict"
     }
 }
