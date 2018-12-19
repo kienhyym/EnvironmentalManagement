@@ -120,6 +120,14 @@
         "type": "string",
         "length": null
     },
+    "chekinnangmua": {
+        "type": "string",
+        "length": null
+    },
+    "chekinnangmuakdat": {
+        "type": "string",
+        "length": null
+    },
     "cactieuchiphu": {
         "type": "string",
         "length": null

@@ -3,6 +3,15 @@
   <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
   <div class="" style="margin-left: 26px;font-size:13px; margin-right: 20px; text-align: left;" block-bind="content">
 
+    <div class="row">
+      <div style="text-align: center" class="col-md-12">
+        <h5 style="font-weight: bold">Bảng kiểm tình trạng vệ sinh
+          <p>
+          (Dùng cho nhà tiêu chìm có ống thông hơi)
+          </p>
+        </h5>
+      </div>
+    </div>
     <div style="margin-top: 15px" class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -18,9 +27,9 @@
       </div>
     </div>
     <div>
-      <p>(Dùng cho nhà tiêu chim)</p>
+      <p>(Dùng cho nhà tiêu chìm)</p>
       <table class="table table-hover">
-        <thead>
+        <thead class="background-colorTR">
           <tr>
             <th>TT</th>
             <th>Các tiêu chí</th>
@@ -38,19 +47,19 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Bể xử lý gồm 3 bể</td>
+            <td>Không xây dựng ở nơi thường bị ngập úng</td>
             <td><input type="text" style="width: 100px" class="form-control" data-bind="value:babexuly" /></td>
             <td><input type="text" style="width: 100px" class="form-control" data-bind="value:baexulykdat" /></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Bể xử lý phân không lún sụt</td>
+            <td>Cách nguồn nước, sinh hoạt từ 10 m trở lên</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:lapbechuaphan" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:lapbechuaphankdat" /></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Lắp bể chứa phân được trát kín không rạn nứt</td>
+            <td>Miệng hố phân cao hơn mặt đất ít nhất 20 cm</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:matsannhan" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:matsannhankdat" /></td>
           </tr>
@@ -62,7 +71,7 @@
           </tr>
           <tr>
             <td>5</td>
-            <td>Bệ xí có nút nước</td>
+            <td>Có nắp đậy kín lỗ tiêu</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:coongthonghoi" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:coongthonghoikdat" /></td>
           </tr>
@@ -74,25 +83,25 @@
           </tr>
           <tr>
             <td>7</td>
-            <td>Có đủ nước dội</td>
+            <td>Có đủ chất độn và thường xuyên đổ chất độn sau mỗi lần đi đại tiện</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:dungcuchuanuocdoi" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:dungcuchuanuocdoikdat" /></td>
           </tr>
           <tr>
             <td>8</td>
-            <td>Dụng cụ chứa nước dội không có bọ gậy</td>
+            <td>Không có mùi hôi, thối</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:kcomuihoi" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:kcomuihoikdat" /></td>
           </tr>
           <tr>
             <td>9</td>
-            <td>Không có mùi hôi</td>
+            <td>Không có bọ gậy trong dụng cụ chứa nước dội, nước tiểu</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:nuocxuli" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:nuocxulikdat" /></td>
           </tr>
           <tr>
             <td>10</td>
-            <td>Nước từ bể xử lý chảy vào cống hoặc hố thấm không chảy tự do ra xung quanh</td>
+            <td>ống thông hơi có đường kính từ 90mm trở lên, đặt cao hơn mái 40cm trở lên</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:cactieuchiphu" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:cactieuchiphukdat" /></td>
           </tr>
@@ -105,31 +114,31 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Mặt sàn nhà tiêu không trơn, không đọng nước, không có rác, giấy bẩn</td>
+            <td>Mặt sàn và rãnh dẫn nước tiểu sạch, không đọng nước</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:giayvesinh" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:giayvesinhkdat" /></td>
           </tr>
           <tr>
             <td>2</td>
-            <td>Giấy vệ sinh bỏ vào lỗ tiêu (giấy tự tiêu) hoặc bỏ vào dụng cụ chứa giấy bẩn có nắp đậy</td>
+            <td>Lỗ tiêu được đậy kín</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:kcoruoi" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:kcoruoikdat" /></td>
           </tr>
           <tr>
             <td>3</td>
-            <td>Không có ruồi, côn trùng trong nhà tiêu</td>
+            <td>Giấy bẩn được bỏ vào lỗ tiêu hoặc thùng chứa có nắp đậy</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:bexinuoc" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:bexinuockdat" /></td>
           </tr>
           <tr>
             <td>4</td>
-            <td>Bệ xí sạch, không dính đọng phân</td>
+            <td>Không có ruồi, côn trùng trong nhà tiêu</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:dcchekin" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:dcchekinkdat" /></td>
           </tr>
           <tr>
             <td>5</td>
-            <td>Được che chắn kín đáo, ngăn được nước mưa, nắng</td>
+            <td>Miệng lỗ tiêu không dính phân</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:vesinhxungquanh" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:vesinhxungquanhkdat" /></td>
           </tr>
@@ -138,6 +147,12 @@
             <td>Vệ sinh xung quanh sạch sẽ</td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:vsxungquanh" /></td>
             <td><input style="width: 100px" type="text" class="form-control" data-bind="value:vsxungquanhkdat" /></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Được che chắn kín đáo, ngăn được mưa nắng</td>
+            <td><input style="width: 100px" type="text" class="form-control" data-bind="value:chekinnangmua" /></td>
+            <td><input style="width: 100px" type="text" class="form-control" data-bind="value:chekinnangmuakdat" /></td>
           </tr>
         </tbody>
       </table>

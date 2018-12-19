@@ -47,7 +47,8 @@ define(function (require) {
 						buttonClass: "btn-success btn-sm",
 						label: "TRANSLATE:SAVE",
 						command: function () {
-							var self = this;						                				                			 
+							var self = this;
+													                				                			 
 							self.model.save(null,
 									{
 										success: function (model, respose,options) {	

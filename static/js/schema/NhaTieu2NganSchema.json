@@ -176,6 +176,22 @@
         "type": "string",
         "length": null
     },
+    "ongthonghoi": {
+        "type": "string",
+        "length": null
+    },
+    "ongthonghoikdat": {
+        "type": "string",
+        "length": null
+    },
+    "nganmua": {
+        "type": "string",
+        "length": null
+    },
+    "nganmuakdat": {
+        "type": "string",
+        "length": null
+    },
     "hopvs": {
         "type": "string",
         "length": null
