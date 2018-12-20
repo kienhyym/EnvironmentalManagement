@@ -1265,6 +1265,9 @@ class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     capthon_id = db.Column(UUID(as_uuid=True), ForeignKey('capthon.id'), nullable=True)
+    
+    dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True)
+    dantoc = relationship('DanToc')
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
     gioitinh = db.Column(db.Integer)

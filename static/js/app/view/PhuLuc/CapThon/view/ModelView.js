@@ -17,6 +17,7 @@ define(function (require) {
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 
 
+
 	function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
 	}
@@ -47,33 +48,34 @@ define(function (require) {
 					extraFormats: ["YYYY"],
 					maxDate: currentDate,
 				},
+				
 				{
-					field:"tenxa",
-					uicontrol:"ref",
+					field: "tenxa",
+					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
 					foreignField: "tenxa_id",
 					dataSource: XaPhuongSelectView
 				},
 				{
-					field:"tenthon",
-					uicontrol:"ref",
+					field: "tenthon",
+					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
 					foreignField: "tenthon_id",
 					dataSource: ThonXomSelectView
 				},
 				{
-					field:"tentinh",
-					uicontrol:"ref",
+					field: "tentinh",
+					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
 					foreignField: "tentinh_id",
 					dataSource: TinhThanhSelectView
 				},
 				{
-					field:"tenhuyen",
-					uicontrol:"ref",
+					field: "tenhuyen",
+					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
 					foreignField: "tenhuyen_id",
@@ -92,126 +94,7 @@ define(function (require) {
 					}, ],
 					toolEl: "#addItem"
 				},
-				{
-					field: "gioitinh",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Nam" },
-						{ "value": 2, "text": "Nữ" },
-						
-					],
-				},
-				{
-					field: "hongheo",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Là hộ nghèo" },
-						{ "value": 0, "text": "Không là hộ nghèo" },
-					],
-				},
-				
-				{
-					field: "tuhoai",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "thamdoi",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "haingan",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "thamdoi",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "coongthong",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "kconhatieu",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "hopvs",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "khopvs",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
-				
-				{
-					field: "caithien",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ "value": 1, "text": "Có" },
-						{ "value": 0, "text": "Không" },
-					],
-				},
+
 			],
 		},
 
@@ -285,23 +168,27 @@ define(function (require) {
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
-						if (self.model.get("nhatieuthonhvs").lenght = 0) {
+						
+
+						
+						console.log(self.model.get("nhatieuthonhvs").length);
+						if (self.model.get("nhatieuthonhvs").length = 0) {
 							self.$el.find("#addItem button").click();
 						}
-
-
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
 					},
 				});
 			} else {
-				self.applyBindings();
-				self.$el.find("#addItem button").click();
+				
+				
 				//self.$el.find("#itemRemove").attr('disabled', 'disabled');
-				self.model.set("nhatieuthonhvs", []);
+				//self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
 				self.registerTinhTong();
+				self.applyBindings();
+				self.$el.find("#addItem button").click();
 
 			}
 
@@ -309,35 +196,13 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
-			self.model.on("change:nhatieuthonhvs", function () {
+			self.model.off("change:nhatieuthonhvs").on("change:nhatieuthonhvs", function () {
 				self.renderTinhTongI();
+				console.log(self.model.get('nhatieuthonhvs'));
+
+				
 			});
-			var sohongheo = self.tongViewi.model.get("hongheo");
-			console.log("Ho ngheo : ", sohongheo);
-			self.model.set("sohongheo", sohongheo);
 
-			var sohodtts = self.tongViewi.model.get("dtts");
-			console.log("Ho ngheo : ", sohodtts);
-			self.model.set("sohodtts", sohodtts);
-			
-			
-
-			var giotinhnu = 0;
-			var giotinhnam = 0;
-
-			var nu = self.tongViewi.model.get("gioitinh");
-			if(nu == 1){
-				giotinhnu++;
-			}else if(nu == 2){
-				giotinhnam++;
-			}
-			console.log("Ho ngheo : ", nu);
-			self.model.set("sonu", giotinhnu);
-			self.model.set("sonam", giotinhnam);
-
-			// var chunu = self.tongViewi.model.get("gioitinh");
-			// console.log("Ho ngheo : ", chunu);
-			// self.model.set("chuholanu", chunu);
 
 		},
 		renderTinhTongI: function () {
@@ -350,13 +215,13 @@ define(function (require) {
 			}
 
 			var data = Gonrin.getDefaultModel(tongischema);
-
+			
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
 					//console.log("j",typeof data[key], data[key]);
 					//console.log(typeof self.model.get('nhatieuthonhvs')[j][key] , self.model.get('nhatieuthonhvs')[j][key]);
-					var nhatieuthonhvs = parseInt();
+					//var nhatieuthonhvs = parseInt();
 					data[key] = toInt(data[key]) + toInt(self.model.get('nhatieuthonhvs')[j][key]);
 
 					//data[key] = !data[key] ? self.model.get('nhatieuthonhvs')[j][key] : self.model.get('nhatieuthonhvs')[j][key] + data[key];
@@ -366,6 +231,28 @@ define(function (require) {
 
 			console.log("data : ", data);
 			self.tongViewi.model.set(data);
+			var sohongheo = self.tongViewi.model.get("hongheo");
+				console.log("Ho ngheo : ", sohongheo);
+				self.model.set("sohongheo", sohongheo);
+				var sohodtts = self.tongViewi.model.get("dtts");
+				console.log("Ho ngheo : ", sohodtts);
+				self.model.set("sohodtts", sohodtts);
+
+
+
+				var giotinhnu = 0;
+				var giotinhnam = 0;
+			    var nu = self.tongViewi.model.get("gioitinh");
+				// if (nu == 0) {
+				// 	giotinhnu++;
+				// 	self.model.set("sonu", giotinhnu);
+				// 	console.log("Nu : ", giotinhnu);
+				// } else if (nu == 1) {
+				// 	giotinhnam++;
+				// 	self.model.set("sonam", giotinhnam);
+				// 	console.log("Nam : ", giotinhnam);
+				// }
+				
 		},
 		renderCongDon: function (data) {
 			console.log(data);

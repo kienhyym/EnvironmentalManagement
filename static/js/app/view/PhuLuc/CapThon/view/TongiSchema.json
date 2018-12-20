@@ -3,40 +3,52 @@
         "type": "number"
     },
     "dtts": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "hongheo": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "tuhoai": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "thamdoi": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "haingan": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
-    "thonghoi": {
-        "type": "number"
+    "coongthong": {
+        "type": "number",
+        "default":0
     },
     "loaikhac": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
-    "nhatieu": {
-        "type": "number"
+    "kconhatieu": {
+        "type": "number",
+        "default":0
     },
     "hopvs": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "khopvs": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
-    "dccaithien": {
-        "type": "number"
+    "caithien": {
+        "type": "number",
+        "default":0
     },
-    "ruatay": {
-        "type": "number"
+    "diemruatay": {
+        "type": "number",
+        "default":0
     }
 
 }

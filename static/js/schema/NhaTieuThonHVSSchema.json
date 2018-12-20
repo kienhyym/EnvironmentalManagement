@@ -27,6 +27,9 @@
     "capthon_id": {
         "type": "string"
     },
+    "dantoc_id": {
+        "type": "string"
+    },
     "stt": {
         "type": "number"
     },
@@ -75,5 +78,8 @@
     },
     "tong": {
         "type": "number"
+    },
+    "dantoc": {
+        "type": "dict"
     }
 }
