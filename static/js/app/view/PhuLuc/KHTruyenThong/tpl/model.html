@@ -1,0 +1,271 @@
+
+<div style="margin-top: 30px" class="panel panel-success">
+	<div class="panel-heading">Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1 - Kế Hoạch Truyền Thông</div>
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div class=""
+		style="margin-left: 26px; margin-right: 20px; text-align: left;"
+		block-bind="content">
+
+		<style type="text/css">
+table {
+	table-layout: fixed;
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	display: table;
+}
+
+th, td {
+	padding: 5px;
+	text-align: center;
+	display: table-cell;
+}
+
+.top {
+	background: #C5DFB5;
+}
+.custom {
+	background: #F0F0F0;
+}
+</style>
+		<div class="row" style = "padding-top: 20px; margin-left: 10px; margin-right: 10px">
+			<table align="center">
+				<thead>
+					<tr>
+						<th class="top">Hoạt động</th>
+						<th class="top">Mục tiêu</th>
+						<th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
+						</th>
+						<th colspan="3" class="top">Số người tham gia</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="top">
+						<td>(1)</td>
+						<td>(2)</td>
+						<td>(3)</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr class="custom">
+						<td colspan="3" >
+							<p>DLI 1.1 Kế hoạch Truyền thông Thay đổi Hành vi đã phê
+								duyệt được thực hiện ở tỉnh:</p> <input type="text"
+							data-bind="dict:diadiempd" />
+							<p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
+						</td>
+						<td>Tổng số người tham gia</td>
+						<td>Số người tham gia là nữ</td>
+						<td>Số người tham gia là DTTS</td>
+					</tr>
+
+					<tr class="custom">
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">NGÀNH Y TẾ
+						<td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp tỉnh
+						<td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:hoatdong_yttinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:muctieu_yttinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tiendo_yttinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngthamgia_yttinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_yttinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_yttinh"></td>
+					</tr>
+
+					<!-- <tr>
+						<td>- Hoạt động 2:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>- Hoạt động 3:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>- Hoạt động 4:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>- Hoạt động 5:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr> -->
+
+					<tr>
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp huyện</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:hoatdong_ythuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:muctieu_ythuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tiendo_ythuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngthamgia_ythuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_ythuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_ythuyen"></td>
+					</tr>
+
+					<!-- <tr>
+						<td>- Hoạt động 7:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr> -->
+					<tr>
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:hoatdong_ytxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:muctieu_ytxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tiendo_ytxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngthamgia_ytxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_ytxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_ytxa"></td>
+					</tr>
+
+					<!-- <tr>
+						<td>- Hoạt động 9:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>- Hoạt động 10:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr> -->
+
+					<tr>
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:hoatdong_ytthon"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:muctieu_ytthon"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tiendo_ytthon"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngthamgia_ytthon"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_ytthon"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_ytthon"></td>
+					</tr>
+
+					<!-- <tr>
+						<td>- Hoạt động 12:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>- Hoạt động 13:</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr> -->
+
+					<tr class="custom">
+						<td colspan="3" class="text-left" style="color: red; font-weight: bold;">NGÀNH GIÁO DỤC</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:hoatdong_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:muctieu_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tiendo_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_gd"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div class="text" style="margin-left: 10px">
+			<div class="row">
+				<div class="text-justify">
+				<p style="text-decoration: underline;">Ghi chú:</p>
+- (1) Hoạt động: ghi tên hoạt động, có thể bổ sung các hoạt động khác mà tỉnh đã triển khai<br>
+- (2) Cột “Mục tiêu”: điền số lượng các hoạt động<br>
+- (3) Cột “Kết quả”: điền theo số hoạt động</div>
+			</div>
+		</div>
+	</div>
+</div>

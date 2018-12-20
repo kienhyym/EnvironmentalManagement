@@ -1,0 +1,79 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "matrgtram": {
+        "type": "string",
+        "length": null
+    },
+    "tentrgtram": {
+        "type": "string",
+        "length": null
+    },
+    "tenkhu": {
+        "type": "string",
+        "length": null
+    },
+    "kho1ngan": {
+        "type": "string",
+        "length": null
+    },
+    "kho2ngan": {
+        "type": "string",
+        "length": null
+    },
+    "khochim": {
+        "type": "string",
+        "length": null
+    },
+    "tuhoai": {
+        "type": "string",
+        "length": null
+    },
+    "thamdoi": {
+        "type": "string",
+        "length": null
+    },
+    "doincbiogas": {
+        "type": "string",
+        "length": null
+    },
+    "doinuocthai": {
+        "type": "string",
+        "length": null
+    },
+    "cautom": {
+        "type": "string",
+        "length": null
+    },
+    "khac": {
+        "type": "string",
+        "length": null
+    },
+    "kquansat": {
+        "type": "string",
+        "length": null
+    }
+}

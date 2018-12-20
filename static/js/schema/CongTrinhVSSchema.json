@@ -1,0 +1,42 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "khuvstrg": {
+        "type": "number"
+    },
+    "khuvsnam": {
+        "type": "number"
+    },
+    "khuvsnu": {
+        "type": "number"
+    },
+    "khuvsgvnam": {
+        "type": "number"
+    },
+    "khuvsgvnu": {
+        "type": "number"
+    }
+}

@@ -1,0 +1,133 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "diadiempd_id": {
+        "type": "string"
+    },
+    "hoatdong_yttinh": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_yttinh": {
+        "type": "number"
+    },
+    "tiendo_yttinh": {
+        "type": "string",
+        "length": null
+    },
+    "ngthamgia_yttinh": {
+        "type": "number"
+    },
+    "nuthamgia_yttinh": {
+        "type": "number"
+    },
+    "dttsthamgia_yttinh": {
+        "type": "number"
+    },
+    "hoatdong_ythuyen": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_ythuyen": {
+        "type": "number"
+    },
+    "tiendo_ythuyen": {
+        "type": "string",
+        "length": null
+    },
+    "ngthamgia_ythuyen": {
+        "type": "number"
+    },
+    "nuthamgia_ythuyen": {
+        "type": "number"
+    },
+    "dttsthamgia_ythuyen": {
+        "type": "number"
+    },
+    "hoatdong_ytxa": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_ytxa": {
+        "type": "number"
+    },
+    "tiendo_ytxa": {
+        "type": "string",
+        "length": null
+    },
+    "ngthamgia_ytxa": {
+        "type": "number"
+    },
+    "nuthamgia_ytxa": {
+        "type": "number"
+    },
+    "dttsthamgia_ytxa": {
+        "type": "number"
+    },
+    "hoatdong_ytthon": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_ytthon": {
+        "type": "number"
+    },
+    "tiendo_ytthon": {
+        "type": "string",
+        "length": null
+    },
+    "ngthamgia_ytthon": {
+        "type": "number"
+    },
+    "nuthamgia_ytthon": {
+        "type": "number"
+    },
+    "dttsthamgia_ytthon": {
+        "type": "number"
+    },
+    "hoatdong_gd": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_gd": {
+        "type": "number"
+    },
+    "tiendo_gd": {
+        "type": "string",
+        "length": null
+    },
+    "ngthamgia_gd": {
+        "type": "number"
+    },
+    "nuthamgia_gd": {
+        "type": "number"
+    },
+    "dttsthamgia_gd": {
+        "type": "number"
+    },
+    "diadiempd": {
+        "type": "dict"
+    }
+}

@@ -1379,6 +1379,164 @@ class NhaTieuHuyenHVS(CommonModel):
     caithien = db.Column(db.Integer)
     diemruatay = db.Column(db.Integer)
     tong = db.Column(db.Integer)
+    
+# Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1
+class KHTruyenThong(CommonModel):
+    __tablename__ = 'khtruyenthong'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    diadiempd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    diadiempd = relationship('TinhThanh')
+   
+    hoatdong_yttinh = db.Column(db.String)
+    muctieu_yttinh = db.Column(db.Integer)
+    tiendo_yttinh = db.Column(db.String)
+    ngthamgia_yttinh = db.Column(db.Integer)
+    nuthamgia_yttinh = db.Column(db.Integer)
+    dttsthamgia_yttinh = db.Column(db.Integer)
+   
+    hoatdong_ythuyen = db.Column(db.String)
+    muctieu_ythuyen = db.Column(db.Integer)
+    tiendo_ythuyen = db.Column(db.String)
+    ngthamgia_ythuyen = db.Column(db.Integer)
+    nuthamgia_ythuyen = db.Column(db.Integer)
+    dttsthamgia_ythuyen = db.Column(db.Integer)
+   
+    hoatdong_ytxa = db.Column(db.String)
+    muctieu_ytxa = db.Column(db.Integer)
+    tiendo_ytxa = db.Column(db.String)
+    ngthamgia_ytxa = db.Column(db.Integer)
+    nuthamgia_ytxa = db.Column(db.Integer)
+    dttsthamgia_ytxa = db.Column(db.Integer)
+   
+    hoatdong_ytthon = db.Column(db.String)
+    muctieu_ytthon = db.Column(db.Integer)
+    tiendo_ytthon = db.Column(db.String)
+    ngthamgia_ytthon = db.Column(db.Integer)
+    nuthamgia_ytthon = db.Column(db.Integer)
+    dttsthamgia_ytthon = db.Column(db.Integer)
+   
+    hoatdong_gd = db.Column(db.String)
+    muctieu_gd = db.Column(db.Integer)
+    tiendo_gd = db.Column(db.String)
+    ngthamgia_gd = db.Column(db.Integer)
+    nuthamgia_gd = db.Column(db.Integer)
+    dttsthamgia_gd = db.Column(db.Integer)
+   
+   
+# Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
+class VSToanXa(CommonModel):
+    __tablename__ = 'vstoanxa'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    tinhhuyen = db.Column(db.String)
+    tenxa = db.Column(db.String)
+    nhatieu = db.Column(db.Integer)
+    diemruatay =  db.Column(db.Integer)
+    truonghvs = db.Column(db.Integer)
+    sohocsinh = db.Column(db.Integer)
+    tramytehvs = db.Column(db.Integer)
+    sohogd = db.Column(db.Integer)
+    danso = db.Column(db.Integer)
+    nuchuho = db.Column(db.Integer)
+    dtts = db.Column(db.Integer)
+    tong = db.Column(db.Integer)
+   
+#Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
+class DuyTriVS(CommonModel):
+    __tablename__ = 'duytrivs'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    tinhhuyen = db.Column(db.String)
+    tenxa = db.Column(db.String)
+    namdatvstx = db.Column(db.DateTime())
+    truongvs = db.Column(db.Integer)
+    tramytevs = db.Column(db.Integer)
+   
+#Biểu mẫu số 4: Giới và Dân tộc thiểu số
+class DTThieuSo(CommonModel):
+    __tablename__ = 'dtthieuso'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    ngdaotao_yte = db.Column(db.Integer)
+    nuthamgia_yte = db.Column(db.Integer)
+    ptnuthamgia_yte = db.Column(db.Integer)
+    dttsthamgia_yte = db.Column(db.Integer)
+    ptdttsthamgia_yte = db.Column(db.Integer)
+   
+   
+    ngdaotao_gd = db.Column(db.Integer)
+    nuthamgia_gd = db.Column(db.Integer)
+    ptnuthamgia_gd = db.Column(db.Integer)
+    dttsthamgia_gd = db.Column(db.Integer)
+    ptdttsthamgia_gd = db.Column(db.Integer)
+   
+   
+    ngdaotao_tong = db.Column(db.Integer)
+    nuthamgia_tong = db.Column(db.Integer)
+    ptnuthamgia_tong = db.Column(db.Integer)
+    dttsthamgia_tong = db.Column(db.Integer)
+    ptdttsthamgia_tong = db.Column(db.Integer)
+   
+# Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học, trạm y tế
+class DTTruongHoc(CommonModel):
+    __tablename__ = 'dttruonghoc'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    tentinh = db.Column(db.String)
+    tenhuyen = db.Column(db.String)
+    tenxa = db.Column(db.String)
+    tentrgtram = db.Column(db.String)
+    matrgtram = db.Column(db.String)
+    maugiao = db.Column(db.Integer)
+    tieuhoc = db.Column(db.Integer)
+    trunghoccs = db.Column(db.Integer)
+    trunghocpt = db.Column(db.Integer)
+    trunghocdn = db.Column(db.Integer)
+    noitru = db.Column(db.Integer)
+    tramyte = db.Column(db.Integer)
+    so = db.Column(db.Integer)
+    sobuoihoc = db.Column(db.Integer)
+    hsmoibuoi = db.Column(db.Integer)
+    hsnam = db.Column(db.Integer)
+    hsnu = db.Column(db.Integer)
+    trgchinh = db.Column(db.String)
+    trgphu = db.Column(db.String)
+    ngtraloi = db.Column(db.String)
+    vitrichuvu = db.Column(db.String)
+    thongtinll = db.Column(db.Integer)
+   
+class AnUongTruongTram(CommonModel):
+    __tablename__ = 'anuongtruongtram'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    nuocmay = db.Column(db.Integer)
+    giengkhoan = db.Column(db.Integer)
+    giengbv = db.Column(db.Integer)
+    giengkbv = db.Column(db.Integer)
+    nuocmua = db.Column(db.Integer)
+    nuocdongchai = db.Column(db.Integer)
+    nguonnckhac = db.Column(db.String)
+   
+class CongTrinhVS(CommonModel):
+    __tablename__ = 'congtrinhvs'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    khuvstrg = db.Column(db.Integer)
+    khuvsnam = db.Column(db.Integer)
+    khuvsnu = db.Column(db.Integer)
+    khuvsgvnam = db.Column(db.Integer)
+    khuvsgvnu = db.Column(db.Integer)
+   
+class CapNcTruongTram(CommonModel):
+    __tablename__ = 'capnctruongtram'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    matrgtram = db.Column(db.String)
+    tentrgtram = db.Column(db.String)
+    tenkhu = db.Column(db.String)
+    kho1ngan = db.Column(db.String)
+    kho2ngan = db.Column(db.String)
+    khochim = db.Column(db.String)
+    tuhoai = db.Column(db.String)
+    thamdoi = db.Column(db.String)
+    doincbiogas = db.Column(db.String)
+    doinuocthai = db.Column(db.String)
+    cautom = db.Column(db.String)
+    khac = db.Column(db.String)
+    kquansat = db.Column(db.String)
 
     
     

@@ -39,8 +39,8 @@ require(['jquery', 'gonrin', 'app/router',
    	});
 	
 	var app = new Gonrin.Application({
-		//serviceURL: 'http://127.0.0.1:9070',
-		serviceURL: 'http://103.74.120.56:9070',
+		serviceURL: 'http://127.0.0.1:9070',
+//		serviceURL: 'http://103.74.120.56:9070',
 		staticURL: static_url,
 		router: new Router(),
 		lang: lang,

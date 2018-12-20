@@ -1,0 +1,104 @@
+<div style="margin-top: 30px" class="panel panel-success">
+	<div class="panel-heading">Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh (Chỉ số 1.2)</div>
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div class=""
+		style="margin-left: 26px; margin-right: 20px; text-align: left;"
+		block-bind="content">
+
+		<style type="text/css">
+table {
+	table-layout: fixed;
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	display: table;
+}
+
+th, td {
+	padding: 5px;
+	text-align: center;
+	display: table-cell;
+}
+
+.top {
+	background: #C5DFB5;
+}
+</style>
+
+
+		<div class="row"
+			style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
+			<table align="center">
+				<thead>
+					<tr>
+						<th class="top">Tỉnh/Huyện</th>
+						<th class="top">Tên Xã</th>
+						<th class="top">% HGĐ có nhà tiêu cải thiện</th>
+						<th class="top">Tỷ lệ % HGĐ có điểm rửa tay</th>
+						<th class="top">% Trường học có nước sạch và nhà tiêu HVS</th>
+						<th class="top">Tống số học sinh</th>
+						<th class="top">% Trạm y tế có nước sạch và nhà tiêu HVS</th>
+						<th class="top">Tổng số Hộ gia đình trong xã</th>
+						<th class="top">Tổng dân số của xã</th>
+						<th class="top">% Hộ gia đình có chủ hộ là nữ</th>
+						<th class="top">% Hộ gia đình là DTTS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tinhhuyen"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tenxa"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nhatieu"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:diemruatay"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:truonghvs"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:sohocsinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:tramytehvs"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:sohogd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:danso"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuchuho"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dtts"></td>
+					</tr>
+
+					<tr>
+						<td>Tổng cộng</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div class="text" style="margin-left: 20px">
+			<div class="row">
+				<div class="text-justify">
+					<p style="text-decoration: underline;">Ghi chú:</p>
+
+					Điểm rửa tay: có thể là (cố định) riêng, có xà phòng (hoặc sản phẩm
+					thay thế xà phòng) và nước
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,109 @@
+
+<div style="margin-top: 30px" class="panel panel-success">
+	<div class="panel-heading">Biểu mẫu số 4: Giới và Dân tộc thiểu số</div>
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div class=""
+		style="margin-left: 26px; margin-right: 20px; text-align: left;"
+		block-bind="content">
+
+		<style type="text/css">
+table {
+	table-layout: fixed;
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	display: table;
+}
+
+th, td {
+	padding: 5px;
+	text-align: center;
+	display: table-cell;
+}
+
+.top {
+	background: #C5DFB5;
+}
+</style>
+		</head>
+
+		<body>
+			<table align="center">
+				<thead>
+					<tr>
+						<th class="top">#</th>
+						<th class="top">Kết quả mong đợi</th>
+						<th class="top">Chỉ số</th>
+						<th class="top">Ngành y tế</th>
+						<th class="top">Ngành giáo dục</th>
+						<th class="top">Tổng</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td> </td>
+						<td rowspan="6">NÂNG CAO NĂNG LỰC</td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+
+					<tr>
+						<td>1</td>
+						<td>Số người được đào tạo</td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngdaotao_yte"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngdaotao_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ngdaotao_tong"></td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td>Số người tham gia là nữ</td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_yte"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:nuthamgia_tong"></td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+						<td>% người tham gia là nữ</td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptnuthamgia_yte"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptnuthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptnuthamgia_tong"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Số người tham gia là DTTS</td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_yte"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:dttsthamgia_tong"></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>% người tham gia là DTTS</td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptdttsthamgia_yte"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptdttsthamgia_gd"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="value:ptdttsthamgia_tong"></td>
+					</tr>
+
+				</tbody>
+			</table>

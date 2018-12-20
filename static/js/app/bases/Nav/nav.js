@@ -893,6 +893,96 @@ define(function(require) {
 							"$ref" : "app/view/PhuLuc/CapTinh/view/ModelView",
 							"visible" : false
 						},
+						 {
+                            "text" : "Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1 - Kế Hoạch Truyền Thông",
+                            "icon" : "glyphicon glyphicon-tasks",
+                            "type" : "view",
+                            "collectionName" : "khtruyenthong",
+                            "route" : "khtruyenthong/collection",
+                            "$ref" : "app/view/PhuLuc/KHTruyenThong/view/CollectionView",
+                            "visible" : function() {
+                                return this.userHasRole("Admin");
+                            }
+                        },
+                        {
+                            "type" : "view",
+                            "collectionName" : "khtruyenthong",
+                            "route" : "khtruyenthong/model",
+                            "$ref" : "app/view/PhuLuc/KHTruyenThong/view/ModelView",
+                            "visible" : false
+                        },
+                        {
+                            "text" : "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh (Chỉ số 1.2)",
+                            "icon" : "glyphicon glyphicon-tasks",
+                            "type" : "view",
+                            "collectionName" : "vstoanxa",
+                            "route" : "vstoanxa/collection",
+                            "$ref" : "app/view/PhuLuc/VSToanXa/view/CollectionView",
+                            "visible" : function() {
+                                return this.userHasRole("Admin");
+                            }
+                        },
+                        {
+                            "type" : "view",
+                            "collectionName" : "vstoanxa",
+                            "route" : "vstoanxa/model",
+                            "$ref" : "app/view/PhuLuc/VSToanXa/view/ModelView",
+                            "visible" : false
+                        },
+                        {
+                            "text" : "Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững (Chỉ số 2.2)",
+                            "icon" : "glyphicon glyphicon-tasks",
+                            "type" : "view",
+                            "collectionName" : "duytrivs",
+                            "route" : "duytrivs/collection",
+                            "$ref" : "app/view/PhuLuc/DuyTriVS/view/CollectionView",
+                            "visible" : function() {
+                                return this.userHasRole("Admin");
+                            }
+                        },
+                        {
+                            "type" : "view",
+                            "collectionName" : "duytrivs",
+                            "route" : "duytrivs/model",
+                            "$ref" : "app/view/PhuLuc/DuyTriVS/view/ModelView",
+                            "visible" : false
+                        },
+                        {
+                            "text" : "Biểu mẫu số 4: Giới và Dân tộc thiểu số*",
+                            "icon" : "glyphicon glyphicon-tasks",
+                            "type" : "view",
+                            "collectionName" : "dtthieuso",
+                            "route" : "dtthieuso/collection",
+                            "$ref" : "app/view/PhuLuc/DTThieuSo/view/CollectionView",
+                            "visible" : function() {
+                                return this.userHasRole("Admin");
+                            }
+                        },
+                        {
+                            "type" : "view",
+                            "collectionName" : "dtthieuso",
+                            "route" : "dtthieuso/model",
+                            "$ref" : "app/view/PhuLuc/DTThieuSo/view/ModelView",
+                            "visible" : false
+                        },
+                        {
+                            "text" : "Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học, trạm y tế - Phiếu điều tra trường học/ TYT",
+                            "icon" : "glyphicon glyphicon-tasks",
+                            "type" : "view",
+                            "collectionName" : "dttruonghoc",
+                            "route" : "dttruonghoc/collection",
+                            "$ref" : "app/view/PhuLuc/DTTruongHoc/view/CollectionView",
+                            "visible" : function() {
+                                return this.userHasRole("Admin");
+                            }
+                        },
+                        {
+                            "type" : "view",
+                            "collectionName" : "dttruonghoc",
+                            "route" : "dttruonghoc/model",
+                            "$ref" : "app/view/PhuLuc/DTTruongHoc/view/ModelView",
+                            "visible" : false
+                        },
 						{
 							"text" : "Mẫu số 1: Dùng cho nhà tiêu tự hoại",
 							"icon" : "glyphicon glyphicon-tasks",

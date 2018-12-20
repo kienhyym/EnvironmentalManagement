@@ -1,0 +1,102 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "tentinh": {
+        "type": "string",
+        "length": null
+    },
+    "tenhuyen": {
+        "type": "string",
+        "length": null
+    },
+    "tenxa": {
+        "type": "string",
+        "length": null
+    },
+    "tentrgtram": {
+        "type": "string",
+        "length": null
+    },
+    "matrgtram": {
+        "type": "string",
+        "length": null
+    },
+    "maugiao": {
+        "type": "number"
+    },
+    "tieuhoc": {
+        "type": "number"
+    },
+    "trunghoccs": {
+        "type": "number"
+    },
+    "trunghocpt": {
+        "type": "number"
+    },
+    "trunghocdn": {
+        "type": "number"
+    },
+    "noitru": {
+        "type": "number"
+    },
+    "tramyte": {
+        "type": "number"
+    },
+    "so": {
+        "type": "number"
+    },
+    "sobuoihoc": {
+        "type": "number"
+    },
+    "hsmoibuoi": {
+        "type": "number"
+    },
+    "hsnam": {
+        "type": "number"
+    },
+    "hsnu": {
+        "type": "number"
+    },
+    "trgchinh": {
+        "type": "string",
+        "length": null
+    },
+    "trgphu": {
+        "type": "string",
+        "length": null
+    },
+    "ngtraloi": {
+        "type": "string",
+        "length": null
+    },
+    "vitrichuvu": {
+        "type": "string",
+        "length": null
+    },
+    "thongtinll": {
+        "type": "number"
+    }
+}
