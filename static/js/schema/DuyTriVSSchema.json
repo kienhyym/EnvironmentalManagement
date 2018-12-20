@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -20,17 +24,11 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
+    "tinhhuyen_id": {
+        "type": "string"
     },
-    "tinhhuyen": {
-        "type": "string",
-        "length": null
-    },
-    "tenxa": {
-        "type": "string",
-        "length": null
+    "tenxa_id": {
+        "type": "string"
     },
     "namdatvstx": {
         "type": "datetime"
@@ -40,5 +38,11 @@
     },
     "tramytevs": {
         "type": "number"
+    },
+    "tinhhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
     }
 }

@@ -15,8 +15,18 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     
-	    	    	{ field: "tinhhuyen",label:"Tỉnh/Huyện"},
-	    	    	{ field: "tenxa",label:"Tên Xã"},  
+	    	    	{ 	field: "tinhhuyen_id",
+	    	    		label:"Tỉnh/Huyện",
+						foreign: "tinhhuyen",
+						foreignValueField: "id",
+						foreignTextField: "ten"},
+						
+	    	    	{ 	field: "tenxa_id",
+						label:"Tên Xã",
+						foreign: "tenxa",
+						foreignValueField: "id",
+						foreignTextField: "ten"}, 
+						
 	    	    	{ field: "sohogd",label:"Tổng số Hộ gia đình trong xã"},
 	    	    	{ field: "danso",label:"Tổng dân số của xã"},
 	    	     				  

@@ -1426,9 +1426,10 @@ class KHTruyenThong(CommonModel):
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
 class VSToanXa(CommonModel):
     __tablename__ = 'vstoanxa'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    tinhhuyen = db.Column(db.String)
-    tenxa = db.Column(db.String)
+    tinhhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhhuyen = relationship('TinhThanh')
+    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    tenxa = relationship('XaPhuong')
     nhatieu = db.Column(db.Integer)
     diemruatay =  db.Column(db.Integer)
     truonghvs = db.Column(db.Integer)
@@ -1443,9 +1444,10 @@ class VSToanXa(CommonModel):
 #Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
 class DuyTriVS(CommonModel):
     __tablename__ = 'duytrivs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    tinhhuyen = db.Column(db.String)
-    tenxa = db.Column(db.String)
+    tinhhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhhuyen = relationship('TinhThanh')
+    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    tenxa = relationship('XaPhuong')
     namdatvstx = db.Column(db.DateTime())
     truongvs = db.Column(db.Integer)
     tramytevs = db.Column(db.Integer)

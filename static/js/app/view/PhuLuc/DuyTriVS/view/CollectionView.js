@@ -15,8 +15,18 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     
-	    	    	{ field: "tinhhuyen",label:"Tỉnh/Huyện"},
-	    	    	{ field: "tenxa",label:"Xã"},  	
+	    		{ 	field: "tinhhuyen_id",
+    	    		label:"Tỉnh/Huyện",
+					foreign: "tinhhuyen",
+					foreignValueField: "id",
+					foreignTextField: "ten"},
+					
+    	    	{ 	field: "tenxa_id",
+					label:"Tên Xã",
+					foreign: "tenxa",
+					foreignValueField: "id",
+					foreignTextField: "ten"},
+					
 	    	    	{ field: "namdatvstx",label:"Năm đạt VSTX"},
 	    	    	{ field: "truongvs",label:"% trường duy trì được tình trạng vệ sinh"},
 	    	    	{ field: "tramytevs",label:"% trạm y tế duy trì được tình trạng vệ sinh"},

@@ -5,6 +5,7 @@ define(function (require) {
 	var template = require('text!app/view/PhuLuc/DuyTriVS/tpl/model.html'),
 	schema = require('json!schema/DuyTriVSSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 		
 	
 	var currentDate = new Date();
@@ -15,15 +16,28 @@ define(function (require) {
 			collectionName: "duytrivs",
 			uiControl:{
 	    		fields:[
-//	        		{
-//	    				field:"diadiempd",
-//	    				uicontrol:"ref",
-//	    				textField: "ten",
-//	    				//chuyen sang thanh object
-//	    				foreignRemoteField: "id",
-//	    				foreignField: "diadiempd_id",
-//	    				dataSource: TinhThanhSelectView
-//	    			},
+	    			{
+						field: "namdatvstx",
+						textFormat: "YYYY",
+						extraFormats: ["YYYY"],
+						maxDate: currentDate,
+					},
+	    			{
+						field: "tinhhuyen",
+						uicontrol: "ref",
+						textField: "ten",
+						foreignRemoteField: "id",
+						foreignField: "tinhhuyen_id",
+						dataSource: TinhThanhSelectView
+					},
+					{
+						field: "tenxa",
+						uicontrol: "ref",
+						textField: "ten",
+						foreignRemoteField: "id",
+						foreignField: "tenxa_id",
+						dataSource: XaPhuongSelectView
+					},
 	        	]
 	    	},
 			
