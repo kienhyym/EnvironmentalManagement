@@ -4,7 +4,8 @@ define(function(require) {
 	return [
 			{
 				"text" : "Hệ thống",
-				"icon" : "fa fa-user",
+				"icon" : "glyphicon glyphicon-file",
+			//"icon":"http://103.74.120.71/baocaoydct/images/icons/task_120.png",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -12,6 +13,7 @@ define(function(require) {
 				"entries" : [
 						{
 							"text" : "Đơn vị thành viên",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "donvi",
 							"route" : "donvi/collectiontree",
@@ -31,6 +33,7 @@ define(function(require) {
 							"text" : "Tuyến đơn vị",
 							"type" : "view",
 							"collectionName" : "tuyendonvi",
+							"icon" : "glyphicon glyphicon-file",
 							"route" : "tuyendonvi/collection",
 							"$ref" : "app/view/DanhMuc/TuyenDonVi/view/CollectionView",
 							"visible" : function() {
@@ -46,6 +49,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Đăng ký đơn vị",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "user_donvi",
 							"route" : "user_donvi/collection",
@@ -63,6 +67,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Quản trị người dùng",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "user",
 							"route" : "user/collection",
@@ -81,6 +86,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Quản trị người dùng",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "user",
 							"route" : "user/changepwd",
@@ -96,6 +102,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Quản trị vai trò",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "role",
 							"route" : "role/collection",
@@ -113,7 +120,7 @@ define(function(require) {
 			},
 			{
 				"text" : "Danh Mục",
-				"icon" : "fa fa-book",
+				"icon" : "glyphicon glyphicon-menu-hamburger",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -122,6 +129,7 @@ define(function(require) {
 
 						{
 							"text" : "Dân Tộc",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "dantoc",
 							"route" : "dantoc/collection",
@@ -139,6 +147,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Quốc Gia",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "quocgia",
 							"route" : "quocgia/collection",
@@ -156,6 +165,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Tỉnh Thành",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "tinhthanh",
 							"route" : "tinhthanh/collection",
@@ -173,6 +183,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Quận Huyện",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "quanhuyen",
 							"route" : "quanhuyen/collection",
@@ -190,6 +201,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Xã Phường",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "xaphuong",
 							"route" : "xaphuong/collection",
@@ -207,6 +219,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Thôn Xóm",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "thonxom",
 							"route" : "thonxom/collection",
@@ -224,6 +237,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Trình độ học vấn",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "trinhdohocvan",
 							"route" : "trinhdohocvan/collection",
@@ -241,6 +255,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Nghề Nghiệp",
+							"icon" : "glyphicon glyphicon-file",
 							"type" : "view",
 							"collectionName" : "nghenghiep",
 							"route" : "nghenghiep/collection",
@@ -260,7 +275,7 @@ define(function(require) {
 
 			{
 				"text" : "Báo Cáo - Phụ Lục IV",
-				"icon" : "fa fa-book",
+				"icon" : "glyphicon glyphicon-tasks",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -269,6 +284,7 @@ define(function(require) {
 
 						{
 							"text" : "Mẫu 1: Khai Thác Nước Ngầm",
+								"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "khaithacnuocngam",
 							"route" : "khaithacnuocngam/collection",
@@ -286,6 +302,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 2: Khai Thác Nước Sông",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "khaithacnuocsong",
 							"route" : "khaithacnuocsong/collection",
@@ -303,6 +320,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 3: Khai Thác Nước Từ Hồ Chứa",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "khaithacnuoctuhochua",
 							"route" : "khaithacnuoctuhochua/collection",
@@ -320,6 +338,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 4: Phiếu Nội Kiểm Tra Chất Lượng",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "phieunoikiemchatluong",
 							"route" : "phieunoikiemchatluong/collection",
@@ -338,6 +357,7 @@ define(function(require) {
 
 						{
 							"text" : "Mẫu 5: Phiếu Ngoại Kiểm Vệ Sinh Chất Lượng",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "phieungoaikiemchatluong",
 							"route" : "phieungoaikiemchatluong/collection",
@@ -355,6 +375,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 6: Kiểm Tra Nguồn Nước Gia Đình",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kiemtranguonnuochogiadinh",
 							"route" : "kiemtranguonnuochogiadinh/collection",
@@ -372,6 +393,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 7: Kiểm Tra Chất Lượng Nước Thành Phẩm",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kiemtrachatluongnuocthanhpham",
 							"route" : "kiemtrachatluongnuocthanhpham/collection",
@@ -389,6 +411,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 8: Kết Quả Kiểm Tra Vệ Sinh Nước Ăn Uống Sinh Hoạt",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kqktvesinhnuocsinhhoatcapxa",
 							"route" : "kqktvesinhnuocsinhhoatcapxa/collection",
@@ -406,6 +429,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 9: Kết Quả Kiểm Tra Vệ Sinh Nước Ăn Uống Sinh Hoạt",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kqktchatluongnuocsinhhoatcaphuyen",
 							"route" : "kqktchatluongnuocsinhhoatcaphuyen/collection",
@@ -423,6 +447,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 10: Kết Quả Ngoại Kiểm Vệ Sinh",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kqngoaikiemnuocsinhhoat",
 							"route" : "kqngoaikiemnuocsinhhoat/collection",
@@ -441,6 +466,7 @@ define(function(require) {
 
 						{
 							"text" : "Mẫu 11: Kết Quả Nước Ăn Uống Sinh Hoạt",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kqchatluongnuocanuong",
 							"route" : "kqchatluongnuocanuong/collection",
@@ -459,6 +485,7 @@ define(function(require) {
 
 						{
 							"text" : "Mẫu 12: Tổng Kết Quả Nội Kiểm Vệ Sinh",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "tonghopkqnuocsinhhoattren1000m",
 							"route" : "tonghopkqnuocsinhhoattren1000m/collection",
@@ -478,7 +505,7 @@ define(function(require) {
 
 			{
 				"text" : "Báo Cáo - Phụ Lục V",
-				"icon" : "fa fa-book",
+				"icon" : "glyphicon glyphicon-tasks",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -486,6 +513,7 @@ define(function(require) {
 				"entries" : [
 						{
 							"text" : "Mẫu 1: Báo Cáo Thu Thập Dữ Liệu",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bcthuthapdulieu",
 							"route" : "bcthuthapdulieu/collection",
@@ -503,6 +531,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 2: Bàn Giao Dữ Liệu Thu Thập",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bangiaodulieudathuthap",
 							"route" : "bangiaodulieudathuthap/collection",
@@ -520,6 +549,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 3: Phân Loại Đánh Giá Dữ Liệu",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "phanloaivadanhgiadulieu",
 							"route" : "phanloaivadanhgiadulieu/collection",
@@ -537,6 +567,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 4: Báo Cáo Xây Cấu Trúc Dữ Liệu Đặc Tả",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bcxaydungdulieudacta",
 							"route" : "bcxaydungdulieudacta/collection",
@@ -554,6 +585,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 5: Báo Cáo Kết Quả Sửa Chữa",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bcketquasuachua",
 							"route" : "bcketquasuachua/collection",
@@ -571,6 +603,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 6: Báo Cáo Kết Quả Kiểm Tra",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bcketquakiemtra",
 							"route" : "bcketquakiemtra/collection",
@@ -588,6 +621,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu 7: Biên Bản Bàn Giao Sản Phẩm",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "bienbanbangiaosanpham",
 							"route" : "bienbanbangiaosanpham/collection",
@@ -607,7 +641,7 @@ define(function(require) {
 
 			{
 				"text" : "Vệ Sinh Gia Đình",
-				"icon" : "fa fa-book",
+				"icon" : "glyphicon glyphicon-tasks",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -615,6 +649,7 @@ define(function(require) {
 				"entries" : [
 						{
 							"text" : "Dùng Cho Nhà Tiêu Tự Hoại",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieutuhoai",
 							"route" : "nhatieutuhoai/collection",
@@ -632,6 +667,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Nhà Tiêu Thấm Dội Nước",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieuthamdoinuoc",
 							"route" : "nhatieuthamdoinuoc/collection",
@@ -649,6 +685,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Nhà Tiêu 2 Ngăn",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "dungchonhatieu2ngan",
 							"route" : "dungchonhatieu2ngan/collection",
@@ -666,6 +703,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Nhà Tiêu Chìm Có Ống Thông Hơi",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieuthonghoi",
 							"route" : "nhatieuthonghoi/collection",
@@ -683,6 +721,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Trạm Y Tế Xã",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "ncsachnhatieuhogd",
 							"route" : "ncsachnhatieuhogd/collection",
@@ -700,6 +739,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Trạm Y Tế Dự Phòng Huyện",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "yteduphonghuyen",
 							"route" : "yteduphonghuyen/collection",
@@ -717,6 +757,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng Cho Trạm Y Tế Dự Phòng Tỉnh",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "yteduphongtinh",
 							"route" : "yteduphongtinh/collection",
@@ -734,6 +775,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Kiểm Tra Kết Quả Nước Dự Phòng Tỉnh",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "trungtamyteduphong",
 							"route" : "trungtamyteduphong/collection",
@@ -751,6 +793,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Dùng cho các Viện chuyên ngành khu vực",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "vienchuyennganhkhuvuc",
 							"route" : "vienchuyennganhkhuvuc/collection",
@@ -772,7 +815,7 @@ define(function(require) {
 
 			{
 				"text" : "Phụ Lục - Biểu Mẫu",
-				"icon" : "fa fa-book",
+				"icon" : "glyphicon glyphicon-tasks",
 				"type" : "category",
 				"visible" : function() {
 					return this.userHasRole("Admin");
@@ -780,6 +823,7 @@ define(function(require) {
 				"entries" : [
 						{
 							"text" : "Biểu mẫu số 1: Cấp thôn",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "capthon",
 							"route" : "capthon/collection",
@@ -797,6 +841,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Biểu mẫu số 2: Cấp xã",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "capxa",
 							"route" : "capxa/collection",
@@ -814,6 +859,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Biểu mẫu số 3: Cấp huyện",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "caphuyen",
 							"route" : "caphuyen/collection",
@@ -831,6 +877,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Biểu mẫu số 4: Cấp tỉnh",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "captinh",
 							"route" : "captinh/collection",
@@ -848,6 +895,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 1: Dùng cho nhà tiêu tự hoại",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "kiemtratinhtrangvss",
 							"route" : "kiemtratinhtrangvss/collection",
@@ -865,6 +913,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 2: Dùng cho nhà tiêu thấm dội nước",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieuthamnuoc",
 							"route" : "nhatieuthamnuoc/collection",
@@ -882,6 +931,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 3: Dùng cho nhà tiêu 2 ngăn",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieu2ngan",
 							"route" : "nhatieu2ngan/collection",
@@ -899,6 +949,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 4: Dùng cho nhà tiêu chìm",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "nhatieuchim",
 							"route" : "nhatieuchim/collection",
@@ -916,6 +967,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 5. Cho trường học và trạm y tế",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "chotruonghoctramyte",
 							"route" : "chotruonghoctramyte/collection",
@@ -933,6 +985,7 @@ define(function(require) {
 						},
 						{
 							"text" : "Mẫu số 6. Các hoạt động BCC cốt lõi",
+							"icon" : "glyphicon glyphicon-tasks",
 							"type" : "view",
 							"collectionName" : "cachoatdongbbc",
 							"route" : "cachoatdongbbc/collection",

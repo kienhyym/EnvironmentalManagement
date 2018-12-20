@@ -168,3 +168,16 @@ th, td {
     padding: 5px;
     text-align: left;    
   }
+.{
+    background: #DDDD;
+}
+
+.pannelMain{
+    background: #DDDD;
+}
+.grid-header{
+    background: #DDDD;
+}
+.classSize14{
+    font-size: 14px;
+}
