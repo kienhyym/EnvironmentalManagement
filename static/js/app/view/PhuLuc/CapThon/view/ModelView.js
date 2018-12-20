@@ -169,10 +169,8 @@ define(function (require) {
 						self.renderTinhTongI();
 						self.registerTinhTong();
 						
-
-						
-						console.log(self.model.get("nhatieuthonhvs").length);
-						if (self.model.get("nhatieuthonhvs").length = 0) {
+						console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
+						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem button").click();
 						}
 					},
@@ -181,13 +179,13 @@ define(function (require) {
 					},
 				});
 			} else {
-				
+				self.applyBindings();
 				
 				//self.$el.find("#itemRemove").attr('disabled', 'disabled');
 				//self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
 				self.registerTinhTong();
-				self.applyBindings();
+				
 				self.$el.find("#addItem button").click();
 
 			}
@@ -196,10 +194,9 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
-			self.model.off("change:nhatieuthonhvs").on("change:nhatieuthonhvs", function () {
+			self.model.on("change:nhatieuthonhvs", function () {
+				console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
 				self.renderTinhTongI();
-				console.log(self.model.get('nhatieuthonhvs'));
-
 				
 			});
 
@@ -208,6 +205,7 @@ define(function (require) {
 		renderTinhTongI: function () {
 			var self = this;
 			if (!self.tongViewi) {
+				console.log("init tong view======================");
 				self.tongViewi = new TongViewI({
 					el: self.$el.find("#tongcongi")
 				});
@@ -215,7 +213,7 @@ define(function (require) {
 			}
 
 			var data = Gonrin.getDefaultModel(tongischema);
-			
+			console.log(self.model.get('nhatieuthonhvs'));
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
@@ -231,12 +229,11 @@ define(function (require) {
 
 			console.log("data : ", data);
 			self.tongViewi.model.set(data);
+			self.tongViewi.applyBindings();
 			var sohongheo = self.tongViewi.model.get("hongheo");
-				console.log("Ho ngheo : ", sohongheo);
-				self.model.set("sohongheo", sohongheo);
-				var sohodtts = self.tongViewi.model.get("dtts");
-				console.log("Ho ngheo : ", sohodtts);
-				self.model.set("sohodtts", sohodtts);
+			self.model.set("sohongheo", sohongheo);
+				// var sohodtts = self.tongViewi.model.get("danso");
+				// self.model.set("sohodtts", sohodtts);
 
 
 

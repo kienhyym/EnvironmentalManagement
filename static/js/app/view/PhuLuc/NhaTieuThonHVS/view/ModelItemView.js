@@ -17,8 +17,6 @@ define(function (require) {
 		tagName: 'tr',
 		collectionName: "nhatieuthonhvs",
 		bindings: "bind-item-data",
-		foreignRemoteField: "id",
-    	foreignField: "capthon_id",
 		uiControl: {
 			fields: [{
 					field: "gioitinh",
@@ -33,7 +31,6 @@ define(function (require) {
 							"value": 0,
 							"text": "Nữ"
 						},
-
 					],
 				},
 				{
@@ -59,7 +56,6 @@ define(function (require) {
 						},
 					],
 				},
-
 				{
 					field: "tuhoai",
 					uicontrol: "checkbox",
@@ -224,13 +220,17 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
-			self.model.get("dantoc_id");
-			console.log(self.model.get("dantoc"));
+			// this.setElement(this.el.innerHTML);
+			// self.model.get("dantoc_id");
+			
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});
 			self.applyBindings();
 
+			// self.model.on("change",function(event) {
+			// 	console.log("toJSON ", self.model.toJSON());
+			// });
 		},
 	});
 
