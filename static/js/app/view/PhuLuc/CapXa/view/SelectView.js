@@ -38,7 +38,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "capxa_filter"
+    			sessionKey: "capthon_filter"
     		});
     		filter.render();
     		

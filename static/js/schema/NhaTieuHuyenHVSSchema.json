@@ -24,21 +24,26 @@
         "type": "string",
         "primary": true
     },
+    "caphuyen_id": {
+        "type": "string"
+    },
+    "tenxa_id": {
+        "type": "string"
+    },
     "stt": {
         "type": "number"
     },
-    "tenxa": {
+    "tenchuho": {
         "type": "string",
         "length": null
     },
-    "sonuchuho": {
+    "gioitinh": {
         "type": "number"
     },
-    "sohodtts": {
-        "type": "string",
-        "length": null
+    "dtts": {
+        "type": "number"
     },
-    "sohongheo": {
+    "hongheo": {
         "type": "number"
     },
     "tuhoai": {
@@ -67,14 +72,15 @@
         "type": "number"
     },
     "caithien": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "diemruatay": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "tong": {
         "type": "number"
+    },
+    "tenxa": {
+        "type": "dict"
     }
 }

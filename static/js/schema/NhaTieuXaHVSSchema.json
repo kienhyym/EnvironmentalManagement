@@ -24,19 +24,24 @@
         "type": "string",
         "primary": true
     },
+    "capxa_id": {
+        "type": "string"
+    },
+    "tenthon_id": {
+        "type": "string"
+    },
     "stt": {
         "type": "number"
     },
-    "tenthon": {
+    "tenchuho": {
         "type": "string",
         "length": null
     },
-    "nuchuho": {
+    "gioitinh": {
         "type": "number"
     },
     "dtts": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "hongheo": {
         "type": "number"
@@ -67,14 +72,15 @@
         "type": "number"
     },
     "caithien": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "diemruatay": {
-        "type": "string",
-        "length": null
+        "type": "number"
     },
     "tong": {
         "type": "number"
+    },
+    "tenthon": {
+        "type": "dict"
     }
 }

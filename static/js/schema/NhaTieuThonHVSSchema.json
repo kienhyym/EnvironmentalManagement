@@ -59,7 +59,8 @@
         "type": "number"
     },
     "loaikhac": {
-        "type": "number"
+        "type": "string",
+        "length": null
     },
     "kconhatieu": {
         "type": "number"

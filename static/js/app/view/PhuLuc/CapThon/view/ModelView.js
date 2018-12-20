@@ -169,7 +169,7 @@ define(function (require) {
 						self.renderTinhTongI();
 						self.registerTinhTong();
 						
-						console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
+						//console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem button").click();
 						}
@@ -180,12 +180,9 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				
-				//self.$el.find("#itemRemove").attr('disabled', 'disabled');
-				//self.model.set("nhatieuthonhvs", []);
+				self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
-				self.registerTinhTong();
-				
+				self.registerTinhTong();			
 				self.$el.find("#addItem button").click();
 
 			}
@@ -195,7 +192,7 @@ define(function (require) {
 		registerTinhTong: function () {
 			var self = this;
 			self.model.on("change:nhatieuthonhvs", function () {
-				console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
+				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
 				self.renderTinhTongI();
 				
 			});
@@ -205,7 +202,6 @@ define(function (require) {
 		renderTinhTongI: function () {
 			var self = this;
 			if (!self.tongViewi) {
-				console.log("init tong view======================");
 				self.tongViewi = new TongViewI({
 					el: self.$el.find("#tongcongi")
 				});
@@ -217,9 +213,6 @@ define(function (require) {
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
-					//console.log("j",typeof data[key], data[key]);
-					//console.log(typeof self.model.get('nhatieuthonhvs')[j][key] , self.model.get('nhatieuthonhvs')[j][key]);
-					//var nhatieuthonhvs = parseInt();
 					data[key] = toInt(data[key]) + toInt(self.model.get('nhatieuthonhvs')[j][key]);
 
 					//data[key] = !data[key] ? self.model.get('nhatieuthonhvs')[j][key] : self.model.get('nhatieuthonhvs')[j][key] + data[key];
@@ -227,28 +220,22 @@ define(function (require) {
 				});
 			}
 
-			console.log("data : ", data);
+			//console.log("data : ", data);
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
-				// var sohodtts = self.tongViewi.model.get("danso");
-				// self.model.set("sohodtts", sohodtts);
 
+				var soNu = self.tongViewi.model.get("gioitinh");	
+				var tongSoDan = self.model.get("nhatieuthonhvs").length;
+				var result = tongSoDan - soNu;
+				self.model.set("chuholanu", result);
 
-
-				var giotinhnu = 0;
-				var giotinhnam = 0;
-			    var nu = self.tongViewi.model.get("gioitinh");
-				// if (nu == 0) {
-				// 	giotinhnu++;
-				// 	self.model.set("sonu", giotinhnu);
-				// 	console.log("Nu : ", giotinhnu);
-				// } else if (nu == 1) {
-				// 	giotinhnam++;
-				// 	self.model.set("sonam", giotinhnam);
-				// 	console.log("Nam : ", giotinhnam);
-				// }
+				// self.model.on("click:addItem", function () {
+				// 	alert("ac");
+				// });
+				// console.log("abc : ", stt);
+				// self.tongViewi.model.set("stt",stt);
 				
 		},
 		renderCongDon: function (data) {
@@ -271,8 +258,6 @@ define(function (require) {
 			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
 			$nhatieuthonhvs.empty();
 			self.model.set("nhatieuthonhvs", []);
-
-
 			self.applyBindings();
 			self.renderTinhTongI();
 
