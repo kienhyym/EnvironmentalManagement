@@ -1,5 +1,26 @@
 <style type="text/css">
-	
+	table {
+		width: 100%;
+	}
+
+	table,
+	th,
+	td {
+		border: 1px solid black;
+		border-collapse: collapse;
+
+
+	}
+
+	th,
+	td {
+		padding: 5px;
+		text-align: center;
+	}
+
+	.top {
+		background: #C5DFB5;
+	}
 </style>
 <div style="margin-top: 30px;font-size: 13px" class="panel panel-default">
 	<div class="panel-heading">PHỤ LỤC 1: CÁC BIỂU MẪU THEO DÕI VÀ
@@ -9,7 +30,7 @@
 
 		<div class="title">
 			<p style="padding-top: 20px">
-				<b>Biểu mẫu số 3: Cấp huyện</b>
+				<b>Biểu mẫu số 1: Cấp thôn</b>
 			</p>
 			<div class="row" style="text-align: center;">
 				<div>
@@ -51,7 +72,7 @@
 							</tr>
 							<tr>
 								<td rowspan="3">5</td>
-								<td rowspan="3">Tổng số hộ trong xã</td>
+								<td rowspan="3">Tổng số hộ trong thôn</td>
 								<th rowspan="3"><input type="text" class="form-control" data-bind="value:hotrongthon" /></th>
 								<td>Hộ có nữ là chủ</td>
 								<td><input type="text" class="form-control" data-bind="value:chuholanu" disabled /></td>
@@ -70,7 +91,7 @@
 
 							<tr>
 								<td rowspan="2">6</td>
-								<td rowspan="2">Tổng số dân trong xã</td>
+								<td rowspan="2">Tổng số dân trong thôn</td>
 								<td rowspan="2"><input type="text" class="form-control" data-bind="value:dantrongthon" /></td>
 								<td>Nam</td>
 								<td><input type="text" class="form-control" data-bind="value:sonam" /></td>
@@ -96,7 +117,7 @@
 			<table>
 				<tr>
 					<th rowspan="2" class="top">STT</th>
-					<th rowspan="2" class="top">Tên xã</th>
+					<th rowspan="2" class="top">Họ và tên chủ hộ</th>
 					<th rowspan="2" class="top">Giới tính</th>
 					<th rowspan="2" class="top">DTTS</th>
 					<th rowspan="2" class="top">Hộ nghèo</th>
@@ -119,12 +140,12 @@
 				</tr>
 				</thead>
 
-				<tbody id="nhatieuhuyenhvs" data-bind="list:nhatieuhuyenhvs">
+				<tbody id="nhatieutinhvs" data-bind="list:nhatieutinhvs">
 				</tbody>
 				<tfoot id="tongcongi"></tfoot>
 			</table>
 			<!-- <div class="col-md-12" style="margin-right: 20px">
-					<div data-bind="list:nhatieuhuyenhvs"></div>
+					<div data-bind="list:nhatieutinhvs"></div>
 				</div> -->
 		</div>
 		<div class="text">

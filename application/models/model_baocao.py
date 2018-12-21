@@ -1379,6 +1379,54 @@ class NhaTieuHuyenHVS(CommonModel):
     caithien = db.Column(db.Integer)
     diemruatay = db.Column(db.Integer)
     tong = db.Column(db.Integer)
+
+#Biểu mẫu số 4: Cấp tinh
+class CapTinh(CommonModel):
+    __tablename__ = 'captinh'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    danhgianam = db.Column(db.DateTime())
+    nhatieutinhvs = relationship('NhaTieuTinhHVS')
+    stt = db.Column(db.Integer)
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh')
+    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    tenhuyen = relationship('QuanHuyen')
+    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    tenxa = relationship('XaPhuong')
+    tenthon = db.Column(db.String)
+    tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+    tenthon = relationship('ThonXom')
+    hotrongthon = db.Column(db.Integer)
+    chuholanu = db.Column(db.Integer)
+    sohongheo = db.Column(db.Integer)
+    sohodtts = db.Column(db.Integer)
+    dantrongthon = db.Column(db.Integer)
+    sonam = db.Column(db.Integer)
+    sonu = db.Column(db.Integer)
+    
+class NhaTieuTinhHVS(CommonModel):
+    __tablename__ = 'nhatieutinhhvs'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    captinh_id = db.Column(UUID(as_uuid=True), ForeignKey('captinh.id'), nullable=True) 
+
+    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    tenhuyen = relationship('QuanHuyen')
+    stt = db.Column(db.Integer)
+    tenchuho = db.Column(db.String)
+    gioitinh = db.Column(db.Integer)
+    dtts = db.Column(db.Integer)
+    hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
+    tuhoai = db.Column(db.Integer)
+    thamdoi = db.Column(db.Integer)
+    haingan = db.Column(db.Integer)
+    coongthong = db.Column(db.Integer)
+    loaikhac = db.Column(db.String)
+    kconhatieu = db.Column(db.Integer)
+    hopvs = db.Column(db.Integer)
+    khopvs = db.Column(db.Integer)
+    caithien = db.Column(db.Integer)
+    diemruatay = db.Column(db.Integer)
+    tong = db.Column(db.Integer)
     
 # Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1
 class KHTruyenThong(CommonModel):

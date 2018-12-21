@@ -1,0 +1,57 @@
+{
+    "gioitinh": {
+        "type": "number"
+    },
+    "stt": {
+        "type": "number"
+    },
+    "dtts": {
+        "type": "number",
+        "default":0
+    },
+    "hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "tuhoai": {
+        "type": "number",
+        "default":0
+    },
+    "thamdoi": {
+        "type": "number",
+        "default":0
+    },
+    "haingan": {
+        "type": "number",
+        "default":0
+    },
+    "coongthong": {
+        "type": "number",
+        "default":0
+    },
+    "loaikhac": {
+        "type": "number",
+        "default":0
+    },
+    "kconhatieu": {
+        "type": "number",
+        "default":0
+    },
+    "hopvs": {
+        "type": "number",
+        "default":0
+    },
+    "khopvs": {
+        "type": "number",
+        "default":0
+    },
+    "caithien": {
+        "type": "number",
+        "default":0
+    },
+    "diemruatay": {
+        "type": "number",
+        "default":0
+    }
+
+}
