@@ -2,15 +2,13 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<style type="text/css">
+<!-- <style type="text/css">
     table {
         /* table-layout: fixed;
         width: 100%; */
     }
 
-    .full {
-        width: 100%;
-    }
+   
 
     table,
     td,
@@ -33,7 +31,7 @@
 
 
     .top {
-        width: 2%
+        width: 2%;
     }
 
     .mid {
@@ -43,20 +41,43 @@
     .bot {
         width: 60%;
     }
+</style> -->
+<style type="text/css">
+	.top {
+        width: 2%;
+    }
+
+    .mid {
+        width: 38%;
+    }
+
+    .bot {
+        width: 60%;
+    }
+    table,th,td {
+    border-collapse: collapse;
+    border: 2px solid #E6E6E6;
+    }
 </style>	
-<h4>
-    <center>PHIẾU THU THẬP THÔNG TIN VỀ CẤP NƯỚC VÀ VỆ SINH CỦA TRƯỜNG HỌC/TRẠM Y TẾ</center>
+	<h4>
+    	<center>PHIẾU THU THẬP THÔNG TIN VỀ CẤP NƯỚC VÀ VỆ SINH CỦA TRƯỜNG HỌC/TRẠM Y TẾ</center> 
+    </h4>
+    
+    <h5>
     <b>Hướng dẫn:</b>Hoàn thiện bảng hỏi này cho <b>TỪNG KHU</b> vệ sinh ở trường học. Khu vệ sinh ở đây được định
     nghĩa là
     công trình có lối đi riêng. Ví dụ, nếu có một khu vực gồm một lối đi dẫn đến những chậu cho nam và một lối đi riêng
     khác dẫn đến các chậu xí cho nữ thì sẽ tính là 2 khu vệ sinh
-</h4>
+    </h5>
+
 <table>
-    <tr class="color">
-        <td colspan="3">3. MÃ TRƯỜNG HỌC/TRẠM Y TẾ: <input type="text" class="form-control" data-bind="value:matrgtram" /><br>
-            TÊN: <input type="text" class="form-control" data-bind="value:tentrgtram" /><br>
+    <tr>
+        <td colspan="3">3. MÃ TRƯỜNG HỌC/TRẠM Y TẾ:
+        	<input type="text" class="form-control" data-bind="value:matrgtram"  style="width:100%"/>
+            TÊN: <input type="text" class="form-control" data-bind="value:tentrgtram" style="width:100%"/>
             TÊN KHU CHO HỌC SINH NAM, HỌC SINH NỮ, GIÁO VIÊN NAM, HOẶC GIÁO VIÊN NỮ: 
-            <input type="text" class="form-control" data-bind="value:tenkhu" /></td>
+            <input type="text" class="form-control" data-bind="value:tenkhu" style="width:100%" />
+            </td>
     </tr>
 
     <tr>

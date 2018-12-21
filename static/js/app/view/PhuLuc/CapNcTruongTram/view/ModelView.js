@@ -407,12 +407,12 @@ define(function (require) {
 			var self = this;
 			self.applyBindings();
 
-			self.$el.find('.qscongtrinh input').each(abc, function() {
-				$(this).unbind('click').bind('click', function(event) {
-					console.log(this);
-					console.log(event);
-				});
-			})
+//			self.$el.find('.qscongtrinh input').each(abc, function() {
+//				$(this).unbind('click').bind('click', function(event) {
+//					console.log(this);
+//					console.log(event);
+//				});
+//			})
 		},
 	});
 });

@@ -5,7 +5,7 @@
 		style="margin-left: 26px; margin-right: 20px; text-align: left;"
 		block-bind="content">
 
-		<style type="text/css">
+		<!-- <style type="text/css">
 table {
 	table-layout: fixed;
 	width: 100%;
@@ -26,8 +26,12 @@ th, td {
 .top {
 	background: #C5DFB5;
 }
+</style> -->
+<style type="text/css">
+.css {
+	width: 20%;
+}
 </style>
-
 
 		<div class="row"
 			style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
@@ -43,15 +47,15 @@ th, td {
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" class="form-control" id="from"
+						<td class="css"><input type="text" class="form-control" id="from"
 							data-bind="dict:tinhhuyen"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td class = "css"><input type="text" class="form-control" id="from"
 							data-bind="dict:tenxa"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td class="css"><input type="text" class="form-control" id="from"
 							data-bind="value:namdatvstx"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td class="css"><input type="text" class="form-control" id="from"
 							data-bind="value:truongvs"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td class="css"><input type="text" class="form-control" id="from"
 							data-bind="value:tramytevs"></td>
 					</tr>
 
