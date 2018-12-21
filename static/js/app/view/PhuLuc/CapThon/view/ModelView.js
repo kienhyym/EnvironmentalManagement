@@ -164,7 +164,6 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
-
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();

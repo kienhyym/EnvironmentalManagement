@@ -36,43 +36,74 @@
         "type": "string",
         "length": null
     },
-    "kho1ngan": {
-        "type": "string",
-        "length": null
-    },
-    "kho2ngan": {
-        "type": "string",
-        "length": null
-    },
-    "khochim": {
-        "type": "string",
-        "length": null
-    },
-    "tuhoai": {
-        "type": "string",
-        "length": null
-    },
-    "thamdoi": {
-        "type": "string",
-        "length": null
-    },
-    "doincbiogas": {
-        "type": "string",
-        "length": null
-    },
-    "doinuocthai": {
-        "type": "string",
-        "length": null
-    },
-    "cautom": {
-        "type": "string",
-        "length": null
+    "qskhuvs": {
+        "type": "number"
     },
     "khac": {
         "type": "string",
         "length": null
     },
-    "kquansat": {
+    "chauxi": {
+        "type": "number"
+    },
+    "sannhanut": {
+        "type": "number"
+    },
+    "daykincua": {
+        "type": "number"
+    },
+    "bechuanut": {
+        "type": "number"
+    },
+    "kcbechua": {
+        "type": "number"
+    },
+    "hoatdongbt": {
+        "type": "number"
+    },
+    "nuocsach": {
+        "type": "number"
+    },
+    "ctruatay": {
+        "type": "number"
+    },
+    "qscongtrinh": {
+        "type": "number"
+    },
+    "mailop": {
+        "type": "number"
+    },
+    "dinhdong": {
+        "type": "number"
+    },
+    "ctsachse": {
+        "type": "number"
+    },
+    "sansach": {
+        "type": "number"
+    },
+    "nangmui": {
+        "type": "number"
+    },
+    "nuocthaichay": {
+        "type": "number"
+    },
+    "bexicao": {
+        "type": "number"
+    },
+    "ngaplut": {
+        "type": "number"
+    },
+    "khuditieu": {
+        "type": "number"
+    },
+    "tt_dientich": {
+        "type": "number"
+    },
+    "tt_sochau": {
+        "type": "number"
+    },
+    "decapquantrong": {
         "type": "string",
         "length": null
     }

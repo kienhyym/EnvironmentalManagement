@@ -24,17 +24,14 @@
         "type": "string",
         "primary": true
     },
-    "tentinh": {
-        "type": "string",
-        "length": null
+    "tentinh_id": {
+        "type": "string"
     },
-    "tenhuyen": {
-        "type": "string",
-        "length": null
+    "tenhuyen_id": {
+        "type": "string"
     },
-    "tenxa": {
-        "type": "string",
-        "length": null
+    "tenxa_id": {
+        "type": "string"
     },
     "tentrgtram": {
         "type": "string",
@@ -44,28 +41,7 @@
         "type": "string",
         "length": null
     },
-    "maugiao": {
-        "type": "number"
-    },
-    "tieuhoc": {
-        "type": "number"
-    },
-    "trunghoccs": {
-        "type": "number"
-    },
-    "trunghocpt": {
-        "type": "number"
-    },
-    "trunghocdn": {
-        "type": "number"
-    },
-    "noitru": {
-        "type": "number"
-    },
-    "tramyte": {
-        "type": "number"
-    },
-    "so": {
+    "loaitrgtram": {
         "type": "number"
     },
     "sobuoihoc": {
@@ -80,13 +56,8 @@
     "hsnu": {
         "type": "number"
     },
-    "trgchinh": {
-        "type": "string",
-        "length": null
-    },
-    "trgphu": {
-        "type": "string",
-        "length": null
+    "loaitrg": {
+        "type": "number"
     },
     "ngtraloi": {
         "type": "string",
@@ -98,5 +69,26 @@
     },
     "thongtinll": {
         "type": "number"
+    },
+    "nguonnccongtrinh_id": {
+        "type": "string"
+    },
+    "capnctruongtram_id": {
+        "type": "string"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "nguonnccongtrinh": {
+        "type": "dict"
+    },
+    "capnctruongtram": {
+        "type": "dict"
     }
 }

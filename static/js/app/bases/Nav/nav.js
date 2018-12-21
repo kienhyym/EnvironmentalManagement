@@ -894,7 +894,7 @@ define(function(require) {
 							"visible" : false
 						},
 						 {
-                            "text" : "Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1 - Kế Hoạch Truyền Thông",
+                            "text" : "Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân",
                             "icon" : "glyphicon glyphicon-tasks",
                             "type" : "view",
                             "collectionName" : "khtruyenthong",
@@ -912,7 +912,7 @@ define(function(require) {
                             "visible" : false
                         },
                         {
-                            "text" : "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh (Chỉ số 1.2)",
+                            "text" : "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh",
                             "icon" : "glyphicon glyphicon-tasks",
                             "type" : "view",
                             "collectionName" : "vstoanxa",
@@ -930,7 +930,7 @@ define(function(require) {
                             "visible" : false
                         },
                         {
-                            "text" : "Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững (Chỉ số 2.2)",
+                            "text" : "Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững",
                             "icon" : "glyphicon glyphicon-tasks",
                             "type" : "view",
                             "collectionName" : "duytrivs",
@@ -948,7 +948,7 @@ define(function(require) {
                             "visible" : false
                         },
                         {
-                            "text" : "Biểu mẫu số 4: Giới và Dân tộc thiểu số*",
+                            "text" : "Biểu mẫu số 4: Giới và Dân tộc thiểu số",
                             "icon" : "glyphicon glyphicon-tasks",
                             "type" : "view",
                             "collectionName" : "dtthieuso",
@@ -966,7 +966,7 @@ define(function(require) {
                             "visible" : false
                         },
                         {
-                            "text" : "Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học, trạm y tế - Phiếu điều tra trường học/ TYT",
+                            "text" : "Biểu mẫu số 5: Phiếu điều tra trường học/ TYT",
                             "icon" : "glyphicon glyphicon-tasks",
                             "type" : "view",
                             "collectionName" : "dttruonghoc",

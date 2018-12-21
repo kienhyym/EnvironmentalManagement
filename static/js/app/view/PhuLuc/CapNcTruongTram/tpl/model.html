@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+    table {
+        /* table-layout: fixed;
+        width: 100%; */
+    }
+
+    .full {
+        width: 100%;
+    }
+
+    table,
+    td,
+    th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        display: table;
+    }
+
+    td,
+    th {
+        padding: 5px;
+        text-align: left;
+        display: table-cell;
+    }
+
+    .color {
+        background: #C5DFB5;
+    }
+
+
+    .top {
+        width: 2%
+    }
+
+    .mid {
+        width: 38%;
+    }
+
+    .bot {
+        width: 60%;
+    }
+</style>	
+<h4>
+    <center>PHIẾU THU THẬP THÔNG TIN VỀ CẤP NƯỚC VÀ VỆ SINH CỦA TRƯỜNG HỌC/TRẠM Y TẾ</center>
+    <b>Hướng dẫn:</b>Hoàn thiện bảng hỏi này cho <b>TỪNG KHU</b> vệ sinh ở trường học. Khu vệ sinh ở đây được định
+    nghĩa là
+    công trình có lối đi riêng. Ví dụ, nếu có một khu vực gồm một lối đi dẫn đến những chậu cho nam và một lối đi riêng
+    khác dẫn đến các chậu xí cho nữ thì sẽ tính là 2 khu vệ sinh
+</h4>
+<table>
+    <tr class="color">
+        <td colspan="3">3. MÃ TRƯỜNG HỌC/TRẠM Y TẾ: <input type="text" class="form-control" data-bind="value:matrgtram" /><br>
+            TÊN: <input type="text" class="form-control" data-bind="value:tentrgtram" /><br>
+            TÊN KHU CHO HỌC SINH NAM, HỌC SINH NỮ, GIÁO VIÊN NAM, HOẶC GIÁO VIÊN NỮ: 
+            <input type="text" class="form-control" data-bind="value:tenkhu" /></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.1</td>
+        <td class="mid">Quan sát khu vệ sinh của trường học/trạm được không?<br>
+            Quan sát loại nhà vệ sinh<br>
+            Khu vệ sinh có thể có 1 hoặc nhiều nhà vệ sinh-toilet, mỗi nhà vệ sinh có 01 chậu xí</td>
+        <td class="bot">
+        <input class="form-check-input" type="radio" data-bind="value:qskhuvs">
+        Khác: <input type="text" class="form-control" data-bind="value:khac"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="top">3.2</td>
+        <td class="mid">Có bao nhiêu chậu xí?<br>
+            Quan sát các chậu xí</td>
+        <td class="bot"><input type="text" class="form-control" data-bind="value:chauxi"/></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.3</td>
+        <td class="mid">Sàn nhà tiêu có bị rạn nứt, sụt lún</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:sannhanut"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.4</td>
+        <td class="mid">Các lỗ đi tiêu và cửa lấy phân có luôn được đậy kín khi không sử dụng không (hoặc bằng nắp,
+            nút, hoặc nút
+            nước)?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:daykincua"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.5</td>
+        <td class="mid">Bể chứa phân có bị rạn nứt, sụt lún hoặc rò rỉ (Phân/phân bùn không bị rò rỉ hoặc tràn ra bên
+            ngoài bể
+            chứa) không?
+        </td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:bechuanut"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.6</td>
+        <td class="mid">Nguồn nước uống chính của trường học cách bể chứa phân hoặc hố thấm bao xa? (không yêu cầu về
+            khoảng cách
+            đối với bể tự hoại)</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:kcbechua"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.7</td>
+        <td class="mid">"Công trình vệ sinh trường học có hoạt động bình thường không?<br>
+            Đối với nhà vệ sinh dội nước: phải có đủ nước để xả, nhà vệ sinh có thể xả được nước, và không có vật nào
+            cản trở việc xả nước.<br>
+            Đối với nhà vệ sinh khô: phải có tro hoặc chất thay thế tro để cho vào hố tiêu.
+        </td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:hoatdongbt"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.8</td>
+        <td class="mid">Trường học/trạm y tế có được cấp nước sạch để ăn uống, nước sinh hoạt đảm bảo không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:nuocsach"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.9</td>
+        <td class="mid">Có công trình rửa tay trong hoặc gần nhà vệ sinh, hoặc ở khu vực công cộng không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:ctruatay"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.9.1</td>
+        <td class="mid">Nếu có, đề nghị được quan sát công trình rửa tay<br>
+            (chọn tất cả các câu trả lời phù hợp)<br>
+            ghi lại kết quả quan sát</td>
+        <td class="bot qscongtrinh">
+	        <input class="form-check-input" type="checkbox" data-bind="value:qscongtrinh">Chỉ có nước sạch<br>
+	        <input class="form-check-input" type="checkbox" data-bind="value:qscongtrinh">Chỉ có xà phòng<br>
+	        <input class="form-check-input" type="checkbox" data-bind="value:qscongtrinh">Có cả nước sạch và xà phòng<br>
+	        <input class="form-check-input" type="checkbox" data-bind="value:qscongtrinh">Không có cả nước sạch và xà phòng<br>
+	        <input class="form-check-input" type="checkbox" data-bind="value:qscongtrinh">Không quan sát được<br>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="top">3.10</td>
+        <td class="mid">Phần trên nhà vệ sinh có mái lợp đảm bảo che được mưa nắng không?cửa và xung quanh đảm bảo sự
+            riêng tư, kín
+            đáo không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:mailop"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.11</td>
+        <td class="mid">Phân có bị dính đọng ở bệ xí/lỗ đi tiêu hoặc ở trên sàn nhà tiêu không?
+        </td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:dinhdong"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.12</td>
+        <td class="mid">Công trình vệ sinh có sạch sẽ không?<br>
+            (Giấy chùi sau khi sử dụng phải bỏ vào hố tiêu hoặc bỏ vào dụng cụ chứa có nắp đậy)</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:ctsachse"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.13</td>
+        <td class="mid">Sàn nhà vệ sinh khô sạch không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:sansach"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.14</td>
+        <td class="mid">Có cảm thấy nặng mùi phân và/hoặc nước tiểu trong nhà vệ sinh không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:nangmui"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.15</td>
+        <td class="mid">Nước thải từ bể tự hoại hoặc bể biogas được thải chảy đi đâu?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:nuocthaichay"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.16</td>
+        <td class="mid">Nắp bệ xí cao hơn mặt đất xung quanh tối thiểu 20 cm không?</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:bexicao"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.17</td>
+        <td class="mid">Nhà vệ sinh có bị ngập lụt khi gặp mưa lớn không?<br>
+            Quan sát các chậu xí</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:ngaplut"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.18</td>
+        <td class="mid">Có khu đi tiểu không</td>
+        <td class="bot"><input class="form-check-input" type="radio" data-bind="value:khuditieu"></td>
+    </tr>
+
+    <tr>
+        <td class="top">3.19</td>
+        <td class="mid">Thông tin về khu đi tiểu</td>
+        <td class="bot">Diện tích (m2): <input type="text" class="form-control" data-bind="value:tt_dientich" /><br>
+            Số chậu: <input type="text" class="form-control" data-bind="value:tt_sochau" /></td>
+    </tr>
+</table>
+<h3>CÁC NHẬN XÉT BỔ SUNG</h3>
+<p>Có điều gì không được đề cập trong cuộc khảo sát nhưng bạn cho là quan trọng cần báo cáo không?</p>
+<textarea class="form-control" rows="5" id="comment" name="text" data-bind="value:decapquantrong"></textarea>	
