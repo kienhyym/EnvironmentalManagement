@@ -6,7 +6,19 @@ define(function (require) {
 	schema = require('json!schema/VSToanXaSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	var tongitemplate = require('text!app/view/PhuLuc/VSToanXa/tpl/tongcongi.html');
 		
+	var TongViewI = Gonrin.ModelView.extend({
+		template: tongitemplate,
+		modelSchema: tongischema,
+		bindings: 'tongi-bind',
+		urlPrefix: "/api/v1/",
+		collectionName: "tong",
+		uiControl: [],
+		render: function () {
+			this.applyBindings();
+		}
+	});
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -31,6 +43,19 @@ define(function (require) {
 						foreignRemoteField: "id",
 						foreignField: "tenxa_id",
 						dataSource: XaPhuongSelectView
+					},
+					{
+						field: "nhatieuthonhvs",
+						uicontrol: false,
+						itemView: NhaTieuThonHVSItemView,
+						tools: [{
+							name: "create",
+							type: "button",
+							buttonClass: "btn btn-success btn-sm",
+							label: "<span class='fa fa-plus'>Thêm</span>",
+							command: "create"
+						}, ],
+						toolEl: "#addItem"
 					},
 	        	]
 	    	},
@@ -102,8 +127,6 @@ define(function (require) {
 
 			render: function () {
 				var self = this;
-//				var ThongTinThonView = new ThongTinThon();
-//				var NhaTieuThonHVSView = new NhaTieuThonHVS();
 				var id = this.getApp().getRouter().getParam("id");
 				if (id) {
 					this.model.set('id', id);

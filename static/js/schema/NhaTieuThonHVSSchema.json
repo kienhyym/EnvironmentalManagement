@@ -58,10 +58,6 @@
     "coongthong": {
         "type": "number"
     },
-    "loaikhac": {
-        "type": "string",
-        "length": null
-    },
     "kconhatieu": {
         "type": "number"
     },
