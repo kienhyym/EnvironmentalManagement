@@ -132,7 +132,7 @@ require(['jquery', 'gonrin', 'app/router',
 					self.currentUser = null;
 					$.ajax({
 						url: "/logout",
-						
+
 						dataType: "json",
 						contentType: "application/json",
 						success: function (data) {
@@ -143,8 +143,22 @@ require(['jquery', 'gonrin', 'app/router',
 						}
 					});
 					if (self.router.currentRoute().route === "login") {
+
 						self.router.refresh();
 					} else {
+						//self.currentUser = null;
+						// $.ajax({
+						// 	url: "/logout",
+
+						// 	dataType: "json",
+						// 	contentType: "application/json",
+						// 	success: function (data) {
+						// 		console.log("data : ", data);
+						// 	},
+						// 	error: function (xhr, status, error) {
+
+						// 	}
+						// });
 						self.router.navigate("login");
 					}
 

@@ -335,17 +335,7 @@ def valid_phone(phone):
     return False
 
 
-async def set_user_passwd(data=None,**kw):
-    if (data is not None) and ('password' in data) and ('confirmpassword' in data):
-        if(data['password']  == data['confirmpassword']):
-            data['password'] = auth.encrypt_password(data['password'])
-            del data['confirmpassword']
-            print(to_dict(data))
-        else:
-            return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
-     
-    return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
-         
+
 async def pre_post_user(data, **kw):
 #     and ('macongdan' in data)
     if ('phone' in data) and ('email' in data) :
@@ -356,25 +346,33 @@ async def pre_post_user(data, **kw):
     else:
         return json({"error_code":"PARRAM_ERROR","error_message":'parameter is incorrect'},status=520)
 
-def reset_user_passwd(instance_id=None, data=None,**kw):
+async def reset_user_passwd(instance_id=None, data=None,**kw):
     if (data is not None) and ('password' in data) and ('confirmpassword' in data):
         if (data['password'] is not None):
             if(data['password'] == data['confirmpassword']):
-                #user = user_datastore.find_user(id=instance_id)
-                #if verify_password(data['password'], user.password):
-                data['password'] =encrypt_password(data['password'])
-                    #del data['newpassword']
+                data['password'] = auth.encrypt_password(data['password'])
+            
                 del data['confirmpassword']
-                #else:
-                #    raise ProcessingException(description='Password is not correct',code=401)
             else:
-                raise ProcessingException(description='Confirm password is not match',code=401)
+                 return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
         else:
             del data['confirmpassword']
             del data['password']
     else:
-        raise ProcessingException(description='Parameters are not correct',code=401)
-    
+        return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
+
+async def set_user_passwd(data=None,**kw):
+    if (data is not None) and ('password' in data) and ('confirmpassword' in data):
+        if(data['password']  == data['confirmpassword']):
+            data['password'] = auth.encrypt_password(data['password'])
+            del data['confirmpassword']
+            print('DATA : ', to_dict(data))
+        else:
+            return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
+    else:
+
+        return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
+         
 
 def user_pregetmany(search_params=None, **kw):
     apply_donvi_filter(search_params)
@@ -392,13 +390,11 @@ apimanager.create_api(User,
         PUT_SINGLE=[auth_func,set_user_passwd]),
     collection_name='user',
     include_columns=['id', 'fullname', 'phone', 'email','active', 'roles', 'roles.id', 'roles.name', 'donvi_id', 'donvi', 'donvi.id', 'donvi.ten'])
-  
-   
  
 apimanager.create_api(User,
     methods=['PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], PUT_SINGLE=[auth_func, set_user_passwd]),
+    preprocess=dict(GET_SINGLE=[auth_func], PUT_SINGLE=[auth_func, reset_user_passwd]),
     collection_name='user_resetpw',
     include_columns=['id', 'name'])
 

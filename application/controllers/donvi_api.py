@@ -246,7 +246,8 @@ async def addDonViWillUser(request):
         if(dangky is not None):
             checkdonvi = DonVi.query.filter(DonVi.ten == dangky.fullname).first()            
             checkuser = User.query.filter(User.email == dangky.email).first()
-            if((checkdonvi is None) or (checkuser is None)):                
+            checkphone = User.query.filter(User.phone == dangky.phone).first()
+            if((checkdonvi is None) and (checkuser is None) and (checkphone is None)):                
                 donvi = DonVi(
                     ten = dangky.donvi_ten,
                     captren = dangky.captren,
@@ -260,17 +261,17 @@ async def addDonViWillUser(request):
                   
                 db.session.add(donvi)
                 db.session.flush()
-                  
-                # user
+                role = Role.query.get(2)
                 user = User(
                     email = dangky.email,
                     fullname = dangky.fullname,
                     active = True,
                     phone = dangky.phone,
                     password = auth.encrypt_password(dangky.password),
-                    donvi_id = donvi.id
-                    
+                    donvi_id = donvi.id,
+                    roles = [role]
                 )
+                
                 db.session.add(user)
                 db.session.flush()
                   
@@ -285,12 +286,12 @@ async def addDonViWillUser(request):
                 return json({"user_id": str(user.id),"donvi_id": str(donvi.id)},status=200)
               
             else:
-                error_msg = u"Tên đơn vị hoặc email đã được sử dụng, xin mời nhập lại!"
+                error_msg = u"Tên đơn vị hoặc email hoặc số điện thoại đã được sử dụng, xin mời nhập lại!"
         else:
             error_msg = u"Không tìm thấy đăng ký!"
                   
       
-    return json({"error_code": "AddUserDonViWillUser_Fail", "error_message": error_msg},status=520)
+    return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
 
                                                     
 apimanager.create_api(UserDonvi,

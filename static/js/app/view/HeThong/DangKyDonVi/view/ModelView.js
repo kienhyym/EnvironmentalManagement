@@ -72,23 +72,19 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;
-							var phone = self.model.get("phone");
-							console.log(phone);
-							if (phone == null) {
-								self.getApp.notify("Phone is null");
-							} else {
-								self.model.save(null, {
-									success: function (model, respose, options) {
-										self.getApp().notify("Lưu thông tin thành công");
-										self.getApp().getRouter().navigate("login");
 
-									},
-									error: function (model, xhr, options) {
-										self.getApp().notify('Xin nhập đủ thông tin of chưa chọn trạng thái');
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(self.collectionName + "/collection");
 
-									}
-								});
-							}
+								},
+								error: function (model, xhr, options) {
+									self.getApp().notify('Xin nhập đủ thông tin of chưa chọn trạng thái');
+
+								}
+							});
+
 
 						}
 					},
@@ -137,7 +133,6 @@ define(function (require) {
 
 						var id = self.model.get('id');
 						var url = "/api/v1/adddonviwilluser?id=" + id;
-						//
 						$.ajax({
 							url: url,
 							success: function (data) {
@@ -145,10 +140,14 @@ define(function (require) {
 								self.getApp().notify("Thêm tài khoản thành công");
 							},
 							error: function (xhr, status, error) {
+								console.log(xhr);
+								console.log(status);
+								console.log(error);
+
 								try {
 									var msgJson = $.parseJSON(xhr.responseText);
 									if (msgJson) {
-										self.getApp().notify(msgJson.error_message);
+										self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
 									}
 								} catch (err) {
 									self.getApp().notify("Error");

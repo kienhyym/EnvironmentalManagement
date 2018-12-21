@@ -107,10 +107,13 @@ def create_test_models():
     db.session.add(role2)
     role3 = Role(id=3,name='User')
     db.session.add(role3)
+    
                
             
     user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user1.roles.append(role1)
+    user4 = User(email='cuongnd', fullname='Cuong Souciu', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user4.roles.append(role1)
     db.session.add(user1)
     user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user2.roles.append(role2)
