@@ -226,16 +226,12 @@ table {
     width: 100%;
 }
 
-table,
-th,
-td {
-  
+table,th,td {
     border-collapse: collapse;
-
+    border: 2px solid #E6E6E6;
 
 }
-th,
-td {
+th,td {
     padding: 5px;
     text-align: left;
 }
@@ -243,3 +239,4 @@ td {
 .top {
     background: #C5DFB5;
 }
+#grid tr:nth-child(even){background-color: #f2f2f2;}

@@ -17,18 +17,18 @@ define(function (require) {
 
 				{
 					field: "tenthon_id",
-					label: "Thôn xóm",
+					label: "Tên huyện",
 					foreign: "tenthon",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
 					field: "hotrongthon",
-					label: "Tổng số hộ trong thôn"
+					label: "Tổng số hộ trong tỉnh"
 				},
 				{
 					field: "dantrongthon",
-					label: "Tổng số dân trong thôn"
+					label: "Tổng số dân trong tỉnh"
 				},
 				{
 					field: "sohongheo",
