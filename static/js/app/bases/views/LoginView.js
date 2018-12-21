@@ -5,7 +5,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin            	= require('gonrin'),
         storejs				= require('store'),
-        tpl                 = require('text!app/bases/tpl/Login.html'),
+        tpl                 = require('text!app/bases/tpl/login.html'),
         template = _.template(tpl);
     return Gonrin.View.extend({
         render: function () {
@@ -60,7 +60,9 @@ define(function (require) {
         },
        	processLogin: function(){
        		var username = this.$('[name=username]').val();
-       		var password = this.$('[name=password]').val();
+			   var password = this.$('[name=password]').val();
+			   console.log(name);
+			   console.log(password);
 //       		var qrcode = this.getApp().getRouter().getParam("qr");
        		var qrcode = this.getApp().getParameterUrl("qr", window.location.href);
        		var data;
@@ -105,11 +107,11 @@ define(function (require) {
        		    	}
        		    },
        		    error: function(request, textStatus, errorThrown) {
-       		    	console.log(request);
+       		    	//console.log(request);
        		    	try {
        		    		self.getApp().notify($.parseJSON(request.responseJSON).error_message);
        		    	} catch(err) {
-       		    		self.getApp().notify('Có lỗi xảy ra, vui lòng thử lại sau');
+       		    		self.getApp().notify({message: 'Có lỗi xảy ra, vui lòng thử lại sau'},{type: "danger"});
        		    	}
        		    }
        		});

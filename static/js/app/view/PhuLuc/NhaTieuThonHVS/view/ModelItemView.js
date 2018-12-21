@@ -7,7 +7,7 @@ define(function (require) {
 	var template = require('text!app/view/PhuLuc/NhaTieuThonHVS/tpl/itemView.html'),
 		schema = require('json!schema/NhaTieuThonHVSSchema.json');
 	var DanTocSelectView = require('app/view/DanhMuc/DanToc/view/SelectView');
-	
+
 
 	var currentDate = new Date();
 	return Gonrin.ItemView.extend({
@@ -217,20 +217,13 @@ define(function (require) {
 				},
 			]
 		},
-
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML);
-			// self.model.get("dantoc_id");
-			
+			// this.setElement(this.el.innerHTML)			
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});
 			self.applyBindings();
-
-			// self.model.on("change",function(event) {
-			// 	console.log("toJSON ", self.model.toJSON());
-			// });
 		},
 	});
 

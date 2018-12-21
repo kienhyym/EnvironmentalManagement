@@ -167,6 +167,7 @@ define(function (require) {
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
+						console.log("success");
 						
 						//console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -190,8 +191,10 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
+			console.log("registerTinhTong");
 			self.model.on("change:nhatieuthonhvs", function () {
 				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
+				console.log("registerTinhTong 111");
 				self.renderTinhTongI();
 				
 			});
@@ -209,6 +212,7 @@ define(function (require) {
 
 			var data = Gonrin.getDefaultModel(tongischema);
 			console.log(self.model.get('nhatieuthonhvs'));
+			
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
@@ -229,12 +233,6 @@ define(function (require) {
 				var tongSoDan = self.model.get("nhatieuthonhvs").length;
 				var result = tongSoDan - soNu;
 				self.model.set("chuholanu", result);
-
-				// self.model.on("click:addItem", function () {
-				// 	alert("ac");
-				// });
-				// console.log("abc : ", stt);
-				// self.tongViewi.model.set("stt",stt);
 				
 		},
 		renderCongDon: function (data) {
