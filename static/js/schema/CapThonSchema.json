@@ -39,6 +39,9 @@
     "tenxa_id": {
         "type": "string"
     },
+    "suprsws": {
+        "type": "number"
+    },
     "tenthon_id": {
         "type": "string"
     },

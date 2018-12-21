@@ -16,8 +16,36 @@ define(function (require) {
 			fields: [
 
 				{
+					field: "tentinh_id",
+					label: "Tên tỉnh",
+					foreign: "tentinh",
+					foreignValueField: "id",
+					foreignTextField: "ten",
+				},
+				{
+					field: "tenhuyen_id",
+					label: "Tên huyện",
+					foreign: "tenhuyen",
+					foreignValueField: "id",
+					foreignTextField: "ten",
+				},
+				{
 					field: "tenthon_id",
 					label: "Thôn xóm",
+					foreign: "tenthon",
+					foreignValueField: "id",
+					foreignTextField: "ten",
+				},
+				{
+					field: "tenxa_id",
+					label: "Tên xã",
+					foreign: "tenxa",
+					foreignValueField: "id",
+					foreignTextField: "ten",
+				},
+				{
+					field: "tenthon_id",
+					label: "Tên thôn",
 					foreign: "tenthon",
 					foreignValueField: "id",
 					foreignTextField: "ten",
@@ -27,24 +55,29 @@ define(function (require) {
 					label: "Tổng số hộ trong thôn"
 				},
 				{
-					field: "dantrongthon",
-					label: "Tổng số dân trong thôn"
+					field: "chuholanu",
+					label: "Số hộ có nữ là chủ hộ"
 				},
 				{
 					field: "sohongheo",
 					label: "Số hộ nghèo"
 				},
+				
 				{
 					field: "sohodtts",
 					label: "Số hộ là DTTS"
 				},
 				{
-					field: "sonam",
-					label: "Nam"
+					field: "dantrongthon",
+					label: "Tổng số dân trong thôn"
 				},
 				{
 					field: "sonu",
-					label: "Nữ"
+					label: "Số nữ"
+				},
+				{
+					field: "sonam",
+					label: "Số nam "
 				},
 
 			],

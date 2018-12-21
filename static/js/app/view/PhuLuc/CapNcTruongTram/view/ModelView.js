@@ -405,6 +405,27 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			var list = [];
+			var a = [];
+			
+//			self.$el.find(".qscongtrinh").unbind("click").bind("click", function () {
+//				console.log("========checkbox==========");
+//			});
+			
+			self.$el.find(".qscongtrinh:checked").each(function () {
+//				list += "(" + $(this).val() + "-" + (this.checked ? "checked" : "not checked") + ")";
+				self.$el.find(".qscongtrinh:checked").change(function() {
+				    if(this.checked) {
+//				    	 list+= list.push($(this).val());
+				    	 var returnVal = confirm("Are you sure?");
+				         $(this).prop("checked", returnVal);
+				    }
+					alert("Hello! I am an alert box!!");
+					list+= list.push($(this).val());
+				});
+				
+			});
+			console.log("day la list===>>"+ list);
 			self.applyBindings();
 
 //			self.$el.find('.qscongtrinh input').each(abc, function() {
