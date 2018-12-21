@@ -40,8 +40,8 @@ require(['jquery', 'gonrin', 'app/router',
 		});
 
 		var app = new Gonrin.Application({
-			serviceURL: 'http://127.0.0.1:9070',
-			//serviceURL: 'http://103.74.120.56:9070',
+			//serviceURL: 'http://127.0.0.1:9070',
+			serviceURL: 'http://103.74.120.56:9070',
 			staticURL: static_url,
 			router: new Router(),
 			lang: lang,
@@ -143,22 +143,8 @@ require(['jquery', 'gonrin', 'app/router',
 						}
 					});
 					if (self.router.currentRoute().route === "login") {
-
 						self.router.refresh();
 					} else {
-						//self.currentUser = null;
-						// $.ajax({
-						// 	url: "/logout",
-
-						// 	dataType: "json",
-						// 	contentType: "application/json",
-						// 	success: function (data) {
-						// 		console.log("data : ", data);
-						// 	},
-						// 	error: function (xhr, status, error) {
-
-						// 	}
-						// });
 						self.router.navigate("login");
 					}
 

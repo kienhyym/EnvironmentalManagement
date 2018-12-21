@@ -139,18 +139,14 @@ define(function (require) {
 								self.getApp().getRouter().navigate(self.collectionName + "/collection");
 								self.getApp().notify("Thêm tài khoản thành công");
 							},
-							error: function (xhr, status, error) {
-								console.log(xhr);
-								console.log(status);
-								console.log(error);
-
+							error: function (xhr, status, error) {								
 								try {
 									var msgJson = $.parseJSON(xhr.responseText);
 									if (msgJson) {
 										self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
 									}
 								} catch (err) {
-									self.getApp().notify("Error");
+									self.getApp().notify({message: "Thêm đơn vị không thành công"}, {type: "danger"});
 
 
 								}
