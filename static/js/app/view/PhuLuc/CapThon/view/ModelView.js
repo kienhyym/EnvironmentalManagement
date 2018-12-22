@@ -239,14 +239,15 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
 			
-			var dantoc = self.tongViewi.model.get("dantoc");
-			self.model.set("sohodtts", dantoc);
+			var dantoc333 = self.tongViewi.model.get("dantoc");
+			self.model.set("sohodtts", dantoc333);
 			
-			var soNu = self.tongViewi.model.get("gioitinh");	
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
 			self.model.set("hotrongthon", tongSoDan);
-			var result = tongSoDan - soNu;
-			self.model.set("chuholanu", result);
+			
+			var sonam = self.tongViewi.model.get("gioitinh");	
+			var sonu = tongSoDan - sonam;
+			self.model.set("chuholanu", sonu);
 				
 		},
 //		renderCongDon: function (data) {
