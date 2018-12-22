@@ -238,38 +238,41 @@ define(function (require) {
 			self.tongViewi.applyBindings();
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
-
-				var soNu = self.tongViewi.model.get("gioitinh");	
-				var tongSoDan = self.model.get("nhatieuthonhvs").length;
-				self.model.set("hotrongthon", tongSoDan);
-				var result = tongSoDan - soNu;
-				self.model.set("chuholanu", result);
+			
+			var dantoc = self.tongViewi.model.get("dantoc");
+			self.model.set("sohodtts", dantoc);
+			
+			var soNu = self.tongViewi.model.get("gioitinh");	
+			var tongSoDan = self.model.get("nhatieuthonhvs").length;
+			self.model.set("hotrongthon", tongSoDan);
+			var result = tongSoDan - soNu;
+			self.model.set("chuholanu", result);
 				
 		},
-		renderCongDon: function (data) {
-			console.log(data);
-			var self = this;
-			var id = this.getApp().getRouter().getParam("id");
-			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
-			$nhatieuthonhvs.empty();
-			self.model.set("nhatieuthonhvs", []);
-			for (var i = 0; i < data.nhatieuthonhvs.length; i++) {
-				if (id) {
-					data.nhatieuthonhvs[i]["capthon_id"] = id;
-				} else {
-					data.nhatieuthonhvs[i]["capthon_id"] = null;
-				}
-				data.nhatieuthonhvs[i]["stt"] = i + 1;
-				data.nhatieuthonhvs[i]["id"] = null;
-				self.model.get("nhatieuthonhvs").push(data.nhatieuthonhvs[i])
-			}
-			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
-			$nhatieuthonhvs.empty();
-			self.model.set("nhatieuthonhvs", []);
-			self.applyBindings();
-			self.renderTinhTongI();
-
-		}
+//		renderCongDon: function (data) {
+//			console.log(data);
+//			var self = this;
+//			var id = this.getApp().getRouter().getParam("id");
+//			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
+//			$nhatieuthonhvs.empty();
+//			self.model.set("nhatieuthonhvs", []);
+//			for (var i = 0; i < data.nhatieuthonhvs.length; i++) {
+//				if (id) {
+//					data.nhatieuthonhvs[i]["capthon_id"] = id;
+//				} else {
+//					data.nhatieuthonhvs[i]["capthon_id"] = null;
+//				}
+//				data.nhatieuthonhvs[i]["stt"] = i + 1;
+//				data.nhatieuthonhvs[i]["id"] = null;
+//				self.model.get("nhatieuthonhvs").push(data.nhatieuthonhvs[i])
+//			}
+//			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
+//			$nhatieuthonhvs.empty();
+//			self.model.set("nhatieuthonhvs", []);
+//			self.applyBindings();
+//			self.renderTinhTongI();
+//
+//		}
 
 	});
 

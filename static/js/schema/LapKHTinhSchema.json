@@ -24,56 +24,46 @@
         "type": "string",
         "primary": true
     },
-    "capthon_id": {
-        "type": "string"
-    },
-    "dantoc": {
-        "type": "number"
-    },
-    "stt": {
-        "type": "number"
-    },
-    "tenchuho": {
+    "nganh": {
         "type": "string",
         "length": null
     },
-    "gioitinh": {
+    "hoatdong_tinh": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_tinh": {
         "type": "number"
     },
-    "dtts": {
+    "ketqua_tinh": {
+        "type": "string",
+        "length": null
+    },
+    "songtg_tinh": {
         "type": "number"
     },
-    "hongheo": {
+    "sonutg_tinh": {
         "type": "number"
     },
-    "tuhoai": {
+    "dttstg_tinh": {
         "type": "number"
     },
-    "thamdoi": {
-        "type": "number"
+    "tiendo": {
+        "type": "string",
+        "length": null
     },
-    "haingan": {
-        "type": "number"
+    "vihema": {
+        "type": "string",
+        "length": null
     },
-    "coongthong": {
-        "type": "number"
+    "khpheduyet": {
+        "type": "string",
+        "length": null
     },
-    "kconhatieu": {
-        "type": "number"
+    "tgpheduyetroi": {
+        "type": "datetime"
     },
-    "hopvs": {
-        "type": "number"
-    },
-    "khopvs": {
-        "type": "number"
-    },
-    "caithien": {
-        "type": "number"
-    },
-    "diemruatay": {
-        "type": "number"
-    },
-    "tong": {
-        "type": "number"
+    "tgpheduyet": {
+        "type": "datetime"
     }
 }

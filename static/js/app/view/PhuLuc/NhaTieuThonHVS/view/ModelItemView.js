@@ -33,14 +33,23 @@ define(function (require) {
 						},
 					],
 				},
+				
 				{
 					field: "dantoc",
-					uicontrol: "ref",
-					textField: "ten",
-					foreignRemoteField: "id",
-					foreignField: "dantoc_id",
-					dataSource: DanTocSelectView
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							"value": 0,
+							"text": "Kinh"
+						},
+						{
+							"value": 1,
+							"text": "DTTS"
+						},
+					],
 				},
+				
 				{
 					field: "hongheo",
 					uicontrol: "checkbox",

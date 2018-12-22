@@ -1266,12 +1266,13 @@ class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     capthon_id = db.Column(UUID(as_uuid=True), ForeignKey('capthon.id'), nullable=True) 
-    dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True)
-    dantoc = relationship('DanToc')
+#     dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True)
+#     dantoc = relationship('DanToc')
+    dantoc = db.Column(db.Integer)
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
     gioitinh = db.Column(db.Integer)
-    dtts = db.Column(db.Integer)
+#     dtts = db.Column(db.Integer)
     hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
     tuhoai = db.Column(db.Integer)
     thamdoi = db.Column(db.Integer)
@@ -1316,6 +1317,7 @@ class NhaTieuXaHVS(CommonModel):
 
 #     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
 #     tenthon = relationship('ThonXom')
+    tenthon = db.Column(db.String)
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
     gioitinh = db.Column(db.Integer)
@@ -1429,47 +1431,70 @@ class NhaTieuTinhHVS(CommonModel):
     diemruatay = db.Column(db.Integer)
     tong = db.Column(db.Integer)
     
-# Biểu mẫu số 1: Tiến độ thực hiện chỉ số giải ngân 1.1
-class KHTruyenThong(CommonModel):
-    __tablename__ = 'khtruyenthong'
+# Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
+class LapKHTinh(CommonModel):
+    __tablename__ =  'lapkhtinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    diadiempd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    diadiempd = relationship('TinhThanh')
-   
-    hoatdong_yttinh = db.Column(db.String)
-    muctieu_yttinh = db.Column(db.Integer)
-    tiendo_yttinh = db.Column(db.String)
-    ngthamgia_yttinh = db.Column(db.Integer)
-    nuthamgia_yttinh = db.Column(db.Integer)
-    dttsthamgia_yttinh = db.Column(db.Integer)
-   
-    hoatdong_ythuyen = db.Column(db.String)
-    muctieu_ythuyen = db.Column(db.Integer)
-    tiendo_ythuyen = db.Column(db.String)
-    ngthamgia_ythuyen = db.Column(db.Integer)
-    nuthamgia_ythuyen = db.Column(db.Integer)
-    dttsthamgia_ythuyen = db.Column(db.Integer)
-   
-    hoatdong_ytxa = db.Column(db.String)
-    muctieu_ytxa = db.Column(db.Integer)
-    tiendo_ytxa = db.Column(db.String)
-    ngthamgia_ytxa = db.Column(db.Integer)
-    nuthamgia_ytxa = db.Column(db.Integer)
-    dttsthamgia_ytxa = db.Column(db.Integer)
-   
-    hoatdong_ytthon = db.Column(db.String)
-    muctieu_ytthon = db.Column(db.Integer)
-    tiendo_ytthon = db.Column(db.String)
-    ngthamgia_ytthon = db.Column(db.Integer)
-    nuthamgia_ytthon = db.Column(db.Integer)
-    dttsthamgia_ytthon = db.Column(db.Integer)
-   
-    hoatdong_gd = db.Column(db.String)
-    muctieu_gd = db.Column(db.Integer)
-    tiendo_gd = db.Column(db.String)
-    ngthamgia_gd = db.Column(db.Integer)
-    nuthamgia_gd = db.Column(db.Integer)
-    dttsthamgia_gd = db.Column(db.Integer)
+    nganh = db.Column(db.String)
+    hoatdong_tinh = db.Column(db.String)
+    muctieu_tinh = db.Column(db.Integer)
+    ketqua_tinh = db.Column(db.String)
+    songtg_tinh = db.Column(db.Integer)
+    sonutg_tinh = db.Column(db.Integer)
+    dttstg_tinh = db.Column(db.Integer)
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    tgpheduyetroi = db.Column(db.DateTime())
+    tgpheduyet = db.Column(db.DateTime())
+    
+class LapKHHuyen(CommonModel):
+    __tablename__ =  'lapkhhuyen'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    nganh = db.Column(db.String)
+    hoatdong_huyen = db.Column(db.String)
+    muctieu_huyen = db.Column(db.Integer)
+    ketqua_huyen = db.Column(db.String)
+    songtg_huyen = db.Column(db.Integer)
+    sonutg_huyen = db.Column(db.Integer)
+    dttstg_huyen = db.Column(db.Integer)
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    tgpheduyetroi = db.Column(db.DateTime())
+    tgpheduyet = db.Column(db.DateTime())
+    
+class LapKHXa(CommonModel):
+    __tablename__ =  'lapkhxa'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    nganh = db.Column(db.String)
+    hoatdong_xa = db.Column(db.String)
+    muctieu_xa = db.Column(db.Integer)
+    ketqua_xa = db.Column(db.String)
+    songtg_xa = db.Column(db.Integer)
+    sonutg_xa = db.Column(db.Integer)
+    dttstg_xa = db.Column(db.Integer)
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    tgpheduyetroi = db.Column(db.DateTime())
+    tgpheduyet = db.Column(db.DateTime())
+    
+class LapKHThon(CommonModel):
+    __tablename__ =  'lapkhthon'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    nganh = db.Column(db.String)
+    hoatdong_thon = db.Column(db.String)
+    muctieu_thon = db.Column(db.Integer)
+    ketqua_thon = db.Column(db.String)
+    songtg_thon = db.Column(db.Integer)
+    sonutg_thon = db.Column(db.Integer)
+    dttstg_thon = db.Column(db.Integer)
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    tgpheduyetroi = db.Column(db.DateTime())
+    tgpheduyet = db.Column(db.DateTime())
    
    
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh

@@ -27,6 +27,10 @@
     "capxa_id": {
         "type": "string"
     },
+    "tenthon": {
+        "type": "string",
+        "length": null
+    },
     "stt": {
         "type": "number"
     },

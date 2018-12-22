@@ -2,6 +2,14 @@
     "stt": {
         "type": "number"
     },
+     "gioitinh": {
+        "type": "number",
+        "default":0
+    },
+    "dantoc": {
+        "type": "number",
+        "default":0
+    },
     "dtts": {
         "type": "number",
         "default":0
