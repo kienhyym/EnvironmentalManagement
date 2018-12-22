@@ -69,7 +69,6 @@ define(function (require) {
 								self.getApp().notify($.parseJSON(xhr.responseText).message);
 
 							}
-<<<<<<< HEAD
 						});
 					}
 				}
@@ -176,97 +175,3 @@ define(function (require) {
 	});
 
 });
-=======
-							html_content.append('<tr>' +
-								'<td><input id="bckhamchuabenh" ' + isCheckedBC1 + ' type="checkbox"></input></td>' +
-								'<td>bckhamchuabenh</td>' +
-								'<td>01: Khám chữa bệnh</td>' +
-								'</tr>');
-
-							//self.applyBindings();
-						},
-						renderCombobox: function () {
-							var self = this;
-							var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
-							var url = '/api/v1/tuyendonvi';
-							$.ajax({
-								url: self.getApp().serviceURL + url,
-								dataType: "json",
-								contentType: "application/json",
-								success: function (data) {
-									console.log("get tuyendonvi====",data)
-									if (!!data && !!data.id) {
-										var $comboboxEl = self.$el.find("#tuyendonvi_combobox");
-										$comboboxEl.val(JSON.stringify({
-											"id": data.id,
-											"ten": data.ten
-										}));
-
-										$comboboxEl.ref({
-											textField: "ten",
-											foreignRemoteField: "id",
-											foreignField: "tuyendonvi_id",
-											value: "currentUser.donvi.tuyendonvi",
-											dataSource: TuyenDonViSelectView,
-										});
-										console.log($comboboxEl);
-
-										$comboboxEl.on('change.gonrin', function (e) {
-											var path = self.collectionName + '/model?tuyendonvi_id=' + e.value.id;
-											self.getApp().getRouter().navigate(path);
-										});
-
-									}
-								},
-								error: function (xhr, status, error) {
-									self.getApp().notify({
-										message: "Get tuyendonvi Error"
-									}, {
-										type: "danger"
-									});
-								},
-
-							});
-						},
-						render: function () {
-							var self = this;
-							var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
-							self.renderCombobox();
-							var url = '/api/v1/bctuyendonvi';
-							// progresbar quay quay
-							var filters = {
-								"tuyendonvi_id": {
-									"$eq": 1
-								}
-							};
-							$.ajax({
-								url: self.getApp().serviceURL + url,
-								data: {
-									"q": JSON.stringify({
-										"filters": filters,
-										"single": true
-									})
-								},
-								dataType: "json",
-								contentType: "application/json",
-								success: function (data) {
-									if (!!data && !!data.id) {
-										self.model.set("id", data.id);
-										var arrayCollectionName = data.collectionNames.split(',');
-										self.renderContentTable(arrayCollectionName);
-									}
-								},
-								error: function (xhr, status, error) {
-									try {
-										var arrayCollectionName = "";
-										self.renderContentTable(arrayCollectionName);
-									} catch (e) {
-										// error
-									}
-								},
-							});
-						}
-					});
-
-			});
->>>>>>> 8336b1e1345c1c1750204dfde3d50d858f99d272
