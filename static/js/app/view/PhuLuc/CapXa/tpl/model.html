@@ -27,27 +27,30 @@
 					<table>
 						<thead>
 							<tr>
-								<th class="top">STT</th>
 								<th colspan="4" class="top">Thông Tin</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>1</td>
 								<td>Tên Tỉnh</td>
 								<td><input type="text" class="form-control" data-bind="dict:tentinh" /></td>
 								<td>Tên Huyện</td>
 								<td><input type="text" class="form-control" data-bind="dict:tenhuyen" /></td>
 							</tr>
 							<tr>
-								<td>4</td>
-								<td>Tên xã</td>
+								<td rowspan="2">Tên xã</td>
 								<td><input type="text" class="form-control" data-bind="dict:tenxa" /></td>
-								<td>Tên thôn</td>
-								<td><input type="text" class="form-control" data-bind="dict:tenthon" /></td>
+								<td rowspan="2">Tên thôn</td>
+								<td rowspan="2"><input type="text" class="form-control" data-bind="dict:tenthon" /></td>
 							</tr>
+							
 							<tr>
-								<td rowspan="3">5</td>
+
+								<td><b>Có thuộc chương trình SupRSWS không?</b><input
+									type="text" class="form-control" data-bind="value:suprsws" /></td>
+							</tr>
+							
+							<tr>
 								<td rowspan="3">Tổng số hộ trong xã</td>
 								<th rowspan="3"><input type="text" class="form-control" data-bind="value:hotrongthon" /></th>
 								<td>Hộ có nữ là chủ</td>
@@ -66,7 +69,6 @@
 
 
 							<tr>
-								<td rowspan="2">6</td>
 								<td rowspan="2">Tổng số dân trong xã</td>
 								<td rowspan="2"><input type="text" class="form-control" data-bind="value:dantrongthon" /></td>
 								<td>Nam</td>

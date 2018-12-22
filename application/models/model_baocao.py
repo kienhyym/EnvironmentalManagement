@@ -1299,6 +1299,7 @@ class CapXa(CommonModel):
     tenhuyen = relationship('QuanHuyen')
     tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     tenxa = relationship('XaPhuong')
+    suprsws = db.Column(db.Integer)
     tenthon = db.Column(db.String)
     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
     tenthon = relationship('ThonXom')
