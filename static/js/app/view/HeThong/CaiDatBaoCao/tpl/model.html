@@ -1,0 +1,88 @@
+<style>
+	.table-wrapper-scroll-y {
+		display: block;
+		max-height: 500px;
+		overflow-y: auto;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+	}
+
+	#mytable {
+        overflow: auto;
+        width: 100%;
+        height: 50px;
+    }
+
+    td,
+    th {
+        border: 1px solid #000;
+        width: 100px;
+    }
+
+    th {
+        background-color:bisque;
+    }
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    td:first-child,
+    th:first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+       
+    }
+
+    td:last-child,
+    th:last-child {
+        position: sticky;
+        right: 0;
+        z-index: 1;
+       
+    }
+
+    thead tr th {
+        position: sticky;
+        top: 0;
+    }
+
+    th:first-child,
+    th:last-child {
+        z-index: 2;
+        /* background-color: red; */
+    }
+</style>
+
+
+
+<div block-bind="toolbar"></div>
+<div block-bind="content">
+	<div class="row text-center" style="margin:0px 0px 10px 0px">
+
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<label>Tuyến Đơn Vị</label>
+			<input id="tuyendonvi_combobox" data-bind="dict:tuyendonvi" type="text" />
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12 table-wrapper-scroll-y" style="margin: auto">
+			<hr>
+			<table class="table table-bordered table-striped table-striped table-bordered table-sm" id="mytable" cellspacing="0"
+			 width="100%">
+				<thead>
+					<tr>
+						<th style="max-width: 150px;">#</th>
+						<th>Mã Báo Cáo</th>
+						<th>Tên Báo Cáo</th>
+					</tr>
+				</thead>
+				<tbody id="content_table">
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

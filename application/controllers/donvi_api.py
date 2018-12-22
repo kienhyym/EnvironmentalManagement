@@ -156,7 +156,7 @@ async def apply_DonVi_filter(search_params, request=None, **kw ):
 async def entity_pregetmany(search_params=None,request=None, **kw):
     await apply_DonVi_filter(search_params, request)
     
-#def donvi_pregetmany(search_params=None, **kw):
+async def donvi_pregetmany(search_params=None, **kw):
     request = kw.get("request", None)
     currentUser = current_user(request)
     if currentUser is not None:
@@ -168,18 +168,17 @@ async def entity_pregetmany(search_params=None,request=None, **kw):
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
                                         
-async def donvi_predelete(instance_id=None):
-    """Accepts a single argument, `instance_id`, which is the primary key
-    of the instance which will be deleted.
-
-    """
-    donvi = db.session.query(DonVi).filter(DonVi.id == instance_id).first()
+def donvi_predelete(instance_id=None, **kw):
+    donvi = DonVi.query.filter(DonVi.id == instance_id).first()
     if donvi is not None:
         donvichildids = []
         donvi.get_children_ids(donvichildids)
         if len(donvichildids) > 1:
             return json({"error_message":u'Không thể xoá đơn vị có đơn vị con'},
                                       status=520)
+    else:
+        return json({"error_message":u'Không thể xoá đơn vị nay'},
+                                      status=500)
 
 async def donvi_prepput_children(request=None, instance_id=None, data=None, **kw):
     if 'children' in data :
@@ -294,7 +293,15 @@ async def addDonViWillUser(request):
       
     return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
 
-                                                    
+def tuyendonvi_pregetmany(search_params=None, **kw):
+    currdonvi = current_user.donvi_id
+    if(currdonvi is not None) and currdonvi.tuyendonvi_id == 1:
+        pass
+    else:
+        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
+                                or {"id":{"$gt": 1}}
+
+
 apimanager.create_api(UserDonvi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
@@ -305,12 +312,18 @@ apimanager.create_api(UserDonvi,
 apimanager.create_api(TuyenDonVi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, tuyendonvi_pregetmany], PUT_SINGLE=[auth_func]),
     collection_name='tuyendonvi')
+
+apimanager.create_api(BaoCaoTuyenDonVi,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    collection_name='bctuyendonvi')
 
 apimanager.create_api(DonVi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func, donvi_prepput_children], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, donvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func, donvi_prepput_children], DELETE_SINGLE=[auth_func, donvi_predelete]),
     collection_name='donvi',
-    exclude_columns= ["children","password_mevabe"])
+    exclude_columns= ["children","user.password"])

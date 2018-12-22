@@ -1,0 +1,15 @@
+{
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "tuyendonvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "collectionNames": {
+        "type": "string",
+        "required": true,
+        "length": null
+    }
+}

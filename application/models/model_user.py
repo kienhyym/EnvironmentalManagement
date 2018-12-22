@@ -180,31 +180,12 @@ class TuyenDonVi(CommonModel):
     ten = db.Column(String(255))
     mota = db.Column(String(255))
 
-
-# class DangKyDonVi(CommonModel):
-#     __tablename__ = 'dangkydonvi'
-#     id = db.Column(db.Integer, primary_key=True)
-#     madangky = db.Column(db.String(36), index=True)
-#     user_name = db.Column(db.String(255))
-#     user_email = db.Column(db.String(255))
-#     user_password = db.Column(db.String(255))
-#     user_phone = db.Column(db.String(255))
-#     donvi_ten = db.Column(db.String(255))
-#     captren_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
-#     donvi_diachi = db.Column(db.String(255))
-#     donvi_sodienthoai = db.Column(db.String(255))
-#     #donvi_tuyendonvi = db.Column(db.SmallInteger)
-#     donvi_tuyendonvi_id = db.Column(db.Integer, db.ForeignKey('tuyendonvi.id', onupdate="SET NULL"), nullable=True)
-#     donvi_tuyendonvi = db.relationship('TuyenDonVi')
-#      
-#     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
-#     user_id = db.Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=True)
-#     trangthai = db.Column(db.SmallInteger)
-#     donvi = db.relationship('DonVi', foreign_keys=[donvi_id], viewonly=True)
-#     captren = db.relationship('DonVi', foreign_keys=[captren_id],backref=db.backref('dangkydonvi',
-#                                                          lazy='dynamic'), viewonly=True)
-#     user = db.relationship('User', viewonly=True)
-       
+class BaoCaoTuyenDonVi(CommonModel):
+    __tablename__ = 'bctuyendonvi'
+    id = db.Column(db.Integer, primary_key=True)
+    tuyendonvi_id = db.Column(db.SmallInteger, db.ForeignKey('tuyendonvi.id'), unique=True, index=True, nullable=False)
+    #tuyendonvi = db.relationship('TuyenDonVi')
+    collectionNames = db.Column(db.String(), nullable=False)
     
 class UserDonvi(CommonModel):
     __tablename__ = 'user_donvi'
