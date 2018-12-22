@@ -119,7 +119,7 @@ define(function (require) {
 				},
 
 				{
-					"text": "Cài đặt Báo Cáo",
+					"text": "Cài đặt Báo Cáo*",
 					"type": "view",
 					"collectionName": "bctuyendonvi",
 					"route": "bctuyendonvi/collection",
