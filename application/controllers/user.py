@@ -18,7 +18,7 @@ async def get_user_with_permission(user):
     roles = [{"id":str(role.id),"description":role.description,"role_name":role.name} for role in user.roles]
     roleids = [role.id for role in user.roles]
     user_info["roles"] = roles
-    del(user_info["password"])
+    user_info['donvi'] = to_dict(user.donvi)
      
     #permission:
     perms = Permission.query.filter(Permission.role_id.in_(roleids)).order_by(Permission.subject).all()
@@ -33,7 +33,13 @@ async def get_user_with_permission(user):
         elif not permobj[perm.subject][perm.permission]:
             permobj[perm.subject][perm.permission] = perm.value        
     user_info["permission"] = permobj
-     
+    exclude_attr = ["password", "confirmpassword", "created_at", "created_by", "updated_at", "updated_by",\
+                        "deleted_by", "deleted_at", "deleted",\
+                        "confirmed_at","last_login_at","current_login_at",\
+                        "last_login_ip","current_login_ip","login_count"]
+        
+    for attr in exclude_attr:
+        del(user_info[attr])
     return user_info
  
  
@@ -52,9 +58,6 @@ async def login(request):
     username = request.json.get("data", None)
     password = request.json.get("password", None)
     user = db.session.query(User).filter(or_(User.email == username, User.phone == username)).first()
-    print(password)
-    print(auth.encrypt_password(password))
-    print(to_dict(user))
     if (user is not None) and auth.verify_password(password, user.password):
         auth.login_user(request, user)
         
