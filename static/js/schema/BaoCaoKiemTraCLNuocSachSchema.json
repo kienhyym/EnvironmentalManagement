@@ -61,6 +61,9 @@
     "chiemtile": {
         "type": "number"
     },
+    "tentinh_id": {
+        "type": "string"
+    },
     "baocaokiemtraclnuocsach": {
         "type": "number"
     },
@@ -135,5 +138,15 @@
     "kyten": {
         "type": "string",
         "length": null
+    },
+    "thongsokdat": {
+        "type": "string",
+        "length": null
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tonghopchatluongnuoctinhneuco": {
+        "type": "list"
     }
 }

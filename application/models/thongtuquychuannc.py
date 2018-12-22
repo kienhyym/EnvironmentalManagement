@@ -96,6 +96,8 @@ class BaoCaoKiemTraCLNuocSach(CommonModel):
     tonghgd = db.Column(db.Integer)
     chiemtile = db.Column(db.Integer)
 
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh')
     baocaokiemtraclnuocsach = db.Column(db.Integer)
     tongsodonvicapnuoc = db.Column(db.Integer)
     tongsomau = db.Column(db.Integer)
@@ -120,17 +122,14 @@ class BaoCaoKiemTraCLNuocSach(CommonModel):
     nghiencuu = db.Column(db.String)
     denghi = db.Column(db.String)
     kyten = db.Column(db.String)
-##item 2 1
-class TongHopChatLuongNuocTinh(CommonModel):
-    __tablename__ = 'tonghopchatluongnuoctinh'
-    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tentinh = relationship('TinhThanh')
+    thongsokdat = db.Column(db.String)
+    tonghopchatluongnuoctinhneuco = relationship('TongHopChatLuongNuocTinhNeuCo')
 
 ##item 2 2
 class TongHopChatLuongNuocTinhNeuCo(CommonModel):
     __tablename__ = 'tonghopchatluongnuoctinhneuco'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+    baocaokiemtraclnuocsach = db.Column(UUID(as_uuid=True), ForeignKey('baocaokiemtraclnuocsach.id'), nullable=True) 
     tt = db.Column(db.Integer)
     tendonvi = db.Column(db.String)
     thoigiankiemtra = db.Column(db.DateTime())
@@ -138,5 +137,6 @@ class TongHopChatLuongNuocTinhNeuCo(CommonModel):
     ketluan = db.Column(db.String)
     bienphap = db.Column(db.String)
     ketqua = db.Column(db.String)
+    ketqua2 = db.Column(db.String)
 
     

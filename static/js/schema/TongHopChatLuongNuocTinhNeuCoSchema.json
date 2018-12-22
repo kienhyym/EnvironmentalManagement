@@ -24,6 +24,9 @@
         "type": "string",
         "primary": true
     },
+    "baocaokiemtraclnuocsach": {
+        "type": "string"
+    },
     "tt": {
         "type": "number"
     },
@@ -47,6 +50,10 @@
         "length": null
     },
     "ketqua": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua2": {
         "type": "string",
         "length": null
     }

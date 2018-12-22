@@ -1249,7 +1249,25 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "baocaonuocsachOne",
 					"route": "baocaonuocsachOne/model",
-					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/ModelView",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Mẫu số 02: Kết quả kiểm tra chất lượng nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "baocaokiemtraclnuocsach",
+					"route": "baocaokiemtraclnuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "baocaokiemtraclnuocsach",
+					"route": "baocaokiemtraclnuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
 					"visible": false
 				},
 			],

@@ -290,11 +290,12 @@ def tuyendonvi_pregetmany(search_params=None, **kw):
     else:
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
                                 or {"id":{"$gt": 1}}
+                                
 async def donvi_pregetmany(search_params=None, **kw):
     request = kw.get("request", None)
-    currentUser = current_user(request)
+    currentUser = await current_user(request)
     if currentUser is not None:
-        currdonvi = currentUser.donvi
+        currentDonvi = currentUser.donvi
         donvichildids = []
         if(currdonvi is not None):
             currdonvi.get_children_ids(donvichildids)
