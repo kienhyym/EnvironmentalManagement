@@ -1,4 +1,25 @@
 {
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
     "id": {
         "type": "number",
         "primary": true
@@ -11,5 +32,8 @@
         "type": "string",
         "required": true,
         "length": null
+    },
+    "tuyendonvi": {
+        "type": "dict"
     }
 }

@@ -156,17 +156,7 @@ async def apply_DonVi_filter(search_params, request=None, **kw ):
 async def entity_pregetmany(search_params=None,request=None, **kw):
     await apply_DonVi_filter(search_params, request)
     
-async def donvi_pregetmany(search_params=None, **kw):
-    request = kw.get("request", None)
-    currentUser = current_user(request)
-    if currentUser is not None:
-        currdonvi = currentUser.donvi
-        donvichildids = []
-        if(currdonvi is not None):
-            currdonvi.get_children_ids(donvichildids)
-            
-        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
-                                or {"id":{"$in": donvichildids}}
+
                                         
 def donvi_predelete(instance_id=None, **kw):
     donvi = DonVi.query.filter(DonVi.id == instance_id).first()
@@ -293,6 +283,7 @@ async def addDonViWillUser(request):
       
     return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
 
+<<<<<<< HEAD
 def tuyendonvi_pregetmany(search_params=None, **kw):
     currdonvi = current_user.donvi
     if(currdonvi is not None) and currdonvi.tuyendonvi_id == 1:
@@ -300,6 +291,31 @@ def tuyendonvi_pregetmany(search_params=None, **kw):
     else:
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
                                 or {"id":{"$gt": 1}}
+async def donvi_pregetmany(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = current_user(request)
+    if currentUser is not None:
+        currdonvi = currentUser.donvi
+        donvichildids = []
+        if(currdonvi is not None):
+            currdonvi.get_children_ids(donvichildids)
+            
+        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
+                                or {"id":{"$in": donvichildids}}
+
+
+async def tuyendonvi_pregetmany(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        currentDonvi = currentUser.donvi
+        if(currentDonvi is not None) and currentDonvi.tuyendonvi_id == 1:
+            pass
+            print(currentDonvi)
+        else:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
+                                    or {"id":{"$gt": 1}}
+            print(search_params)
 
 
 apimanager.create_api(UserDonvi,
@@ -312,7 +328,7 @@ apimanager.create_api(UserDonvi,
 apimanager.create_api(TuyenDonVi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, tuyendonvi_pregetmany], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, tuyendonvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='tuyendonvi')
 
 apimanager.create_api(BaoCaoTuyenDonVi,

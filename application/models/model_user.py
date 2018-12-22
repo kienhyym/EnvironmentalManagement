@@ -184,7 +184,7 @@ class BaoCaoTuyenDonVi(CommonModel):
     __tablename__ = 'bctuyendonvi'
     id = db.Column(db.Integer, primary_key=True)
     tuyendonvi_id = db.Column(db.SmallInteger, db.ForeignKey('tuyendonvi.id'), unique=True, index=True, nullable=False)
-    #tuyendonvi = db.relationship('TuyenDonVi')
+    tuyendonvi = db.relationship('TuyenDonVi')
     collectionNames = db.Column(db.String(), nullable=False)
     
 class UserDonvi(CommonModel):
