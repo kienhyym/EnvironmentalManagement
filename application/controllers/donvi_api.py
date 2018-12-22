@@ -294,7 +294,7 @@ async def addDonViWillUser(request):
     return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
 
 def tuyendonvi_pregetmany(search_params=None, **kw):
-    currdonvi = current_user.donvi_id
+    currdonvi = current_user.donvi
     if(currdonvi is not None) and currdonvi.tuyendonvi_id == 1:
         pass
     else:
