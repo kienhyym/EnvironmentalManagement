@@ -201,7 +201,6 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
-			console.log("registerTinhTong");
 			self.model.on("change:nhatieuthonhvs", function () {
 				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
 				console.log("registerTinhTong 111");
@@ -220,9 +219,7 @@ define(function (require) {
 				self.tongViewi.render();
 			}
 
-			var data = Gonrin.getDefaultModel(tongischema);
-			console.log("xxxxx" +self.model.get('nhatieuthonhvs'));
-			
+			var data = Gonrin.getDefaultModel(tongischema);	
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
@@ -242,11 +239,16 @@ define(function (require) {
 			var dantoc = self.tongViewi.model.get("dantoc");
 			self.model.set("sohodtts", dantoc);
 			
-			var soNu = self.tongViewi.model.get("gioitinh");	
+			var soNu = self.tongViewi.model.get("gioitinh");
+			self.model.set("chuholanu", soNu);
+
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
 			self.model.set("hotrongthon", tongSoDan);
-			var result = tongSoDan - soNu;
-			self.model.set("chuholanu", result);
+			// var soNu = self.tongViewi.model.get("gioitinh");	
+			// var tongSoDan = self.model.get("nhatieuthonhvs").length;
+			// self.model.set("hotrongthon", tongSoDan);
+			// var result = tongSoDan - soNu;
+			// self.model.set("chuholanu", result);
 				
 		},
 //		renderCongDon: function (data) {

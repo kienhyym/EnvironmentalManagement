@@ -24,11 +24,11 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": 1,
+							"value": 0,
 							"text": "Nam"
 						},
 						{
-							"value": 0,
+							"value": 1,
 							"text": "Nữ"
 						},
 					],

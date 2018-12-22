@@ -40,9 +40,6 @@
     "gioitinh": {
         "type": "number"
     },
-    "dtts": {
-        "type": "number"
-    },
     "hongheo": {
         "type": "number"
     },

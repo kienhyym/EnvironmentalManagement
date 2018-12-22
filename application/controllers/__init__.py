@@ -5,6 +5,7 @@ from application.models.model_danhmuc import *
 from application.models.model_baocao import *
 from application.models.model_vesinhgiadinh import *
 from application.models.model_hdhgd import *
+from application.models.thongtuquychuannc import *
 
 
 
@@ -16,6 +17,7 @@ def init_controllers(app):
     import application.controllers.baocao_api
     import application.controllers.vesinhgiadinh_api
     import application.controllers.model_hdhgd_api
+    import application.controllers.thongtuquychuannc_api
 
     @app.route('/')
     def index(request):

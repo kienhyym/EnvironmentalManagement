@@ -138,6 +138,45 @@ define(function (require) {
 			]
 		},
 		{
+			"text": "Thong tu quy chuan nuoc",
+			"icon": "glyphicon glyphicon-file",
+			"type": "category",
+			"visible": function () {
+				return this.userHasRole("Admin");
+			},
+			"entries": [{
+					"text": "Đơn vị thành viên",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "donvi",
+					"route": "donvi/collectiontree",
+					"$ref": "app/view/HeThong/DonVi/view/CollectionTreeView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"text": "Dân Tộc",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "dantoc",
+					"route": "dantoc/collection",
+					"$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "dantoc",
+					"route": "dantoc/model",
+					"$ref": "app/view/DanhMuc/DanToc/view/ModelView",
+					"visible": false
+				},
+			],
+		},
+
+		{
 			"text": "Danh Mục",
 			"icon": "glyphicon glyphicon-menu-hamburger",
 			"type": "category",
