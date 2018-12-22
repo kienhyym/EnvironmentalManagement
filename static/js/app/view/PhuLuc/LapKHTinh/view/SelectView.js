@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/PhuLuc/CapXa/tpl/collection.html'),
-    	schema 				= require('json!schema/CapXaSchema.json');
+    var template 			= require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
+    	schema 				= require('json!schema/LapKHTinhSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "capxa",
+    	collectionName: "lapkhtinh",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -38,7 +38,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "capxa_filter"
+    			sessionKey: "lapkhtinh_filter"
     		});
     		filter.render();
     		
@@ -46,7 +46,7 @@ define(function (require) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
 					{"id": {"$like": text }},
-					{"danhgianam": {"$like": text }},
+					{"nganh": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -59,7 +59,7 @@ define(function (require) {
 					if (text !== null){
 						var filters = { "$or": [
 							{"id": {"$like": text }},
-							{"danhgianam": {"$like": text }},
+							{"nganh": {"$like": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

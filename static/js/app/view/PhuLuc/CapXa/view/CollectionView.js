@@ -31,28 +31,28 @@ define(function (require) {
 				},
 				
 				{
-					field: "hotrongthon",
+					field: "sothon",
 					label: "Số thôn trong xã"
 				},
 				{
-					field: "chuholanu",
+					field: "hotrongxa",
 					label: "Tổng Số hộ trong xã"
 				},
 				{
-					field: "sohongheo",
+					field: "chuholanu",
 					label: "Hộ có nữ là chủ hộ"
 				},
 				
 				{
-					field: "sohodtts",
+					field: "sohongheo",
 					label: "Số hộ nghèo là"
 				},
 				{
-					field: "dantrongthon",
+					field: "sohodtts",
 					label: "Số hộ là DTTS"
 				},
 				{
-					field: "dantrongthon",
+					field: "dantrongxa",
 					label: "Tổng dân số trong xã"
 				},
 				{

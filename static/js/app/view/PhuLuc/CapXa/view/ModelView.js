@@ -57,14 +57,14 @@ define(function (require) {
 					foreignField: "tenxa_id",
 					dataSource: XaPhuongSelectView
 				},
-				{
-					field: "tenthon",
-					uicontrol: "ref",
-					textField: "ten",
-					foreignRemoteField: "id",
-					foreignField: "tenthon_id",
-					dataSource: ThonXomSelectView
-				},
+//				{
+//					field: "tenthon",
+//					uicontrol: "ref",
+//					textField: "ten",
+//					foreignRemoteField: "id",
+//					foreignField: "tenthon_id",
+//					dataSource: ThonXomSelectView
+//				},
 				{
 					field: "tentinh",
 					uicontrol: "ref",

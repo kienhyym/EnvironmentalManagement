@@ -1251,7 +1251,7 @@ class CapThon(CommonModel):
     tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     tenxa = relationship('XaPhuong')
     suprsws = db.Column(db.Integer)
-    tenthon = db.Column(db.String)
+#     tenthon = db.Column(db.String)
     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
     tenthon = relationship('ThonXom')
     hotrongthon = db.Column(db.Integer)
@@ -1435,6 +1435,8 @@ class LapKHTinh(CommonModel):
     __tablename__ =  'lapkhtinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
+    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinhpd = relationship('TinhThanh') 
     hoatdong_tinh = db.Column(db.String)
     muctieu_tinh = db.Column(db.Integer)
     ketqua_tinh = db.Column(db.String)

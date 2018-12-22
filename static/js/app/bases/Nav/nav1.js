@@ -131,17 +131,54 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "bctuyendonvi",
 					"route": "bctuyendonvi/model(/:id)",
-					"href": "bctuyendonvi/model?tuyendonvi_id=1",
+					"href":"bctuyendonvi/model?tuyendonvi_id=1",
 					"$ref": "app/view/HeThong/CaiDatBaoCao/view/ModelView",
 					"icon": "glyphicon glyphicon-cog",
 					"visible": function () {
 						return this.userHasRole("Admin");
 					}
-
+					
 				},
 			]
 		},
-
+		{
+			"text": "Thong tu quy chuan nuoc",
+			"icon": "glyphicon glyphicon-file",
+			"type": "category",
+			"visible": function () {
+				return this.userHasRole("Admin");
+			},
+			"entries": [{
+					"text": "Đơn vị thành viên",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "donvi",
+					"route": "donvi/collectiontree",
+					"$ref": "app/view/HeThong/DonVi/view/CollectionTreeView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"text": "Dân Tộc",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "dantoc",
+					"route": "dantoc/collection",
+					"$ref": "app/view/DanhMuc/DanToc/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "dantoc",
+					"route": "dantoc/model",
+					"$ref": "app/view/DanhMuc/DanToc/view/ModelView",
+					"visible": false
+				},
+			],
+		},
 
 		{
 			"text": "Danh Mục",
@@ -937,60 +974,6 @@ define(function (require) {
 					"visible": false
 				},
 				{
-					"text": "Biểu mẫu số 1.2: Tiến độ lập kế hoạch - Hoạt động cấp huyện",
-					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "lapkhhuyen",
-					"route": "lapkhhuyen/collection",
-					"$ref": "app/view/PhuLuc/LapKHHuyen/view/CollectionView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "lapkhhuyen",
-					"route": "lapkhhuyen/model",
-					"$ref": "app/view/PhuLuc/LapKHHuyen/view/ModelView",
-					"visible": false
-				},
-				{
-					"text": "Biểu mẫu số 1.3: Tiến độ lập kế hoạch - Hoạt động cấp xã",
-					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "lapkhxa",
-					"route": "lapkhxa/collection",
-					"$ref": "app/view/PhuLuc/LapKHXa/view/CollectionView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "lapkhxa",
-					"route": "lapkhxa/model",
-					"$ref": "app/view/PhuLuc/LapKHXa/view/ModelView",
-					"visible": false
-				},
-				{
-					"text": "Biểu mẫu số 1.4: Tiến độ lập kế hoạch - Hoạt động cấp thôn",
-					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "lapkhthon",
-					"route": "lapkhthon/collection",
-					"$ref": "app/view/PhuLuc/LapKHThon/view/CollectionView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "lapkhthon",
-					"route": "lapkhthon/model",
-					"$ref": "app/view/PhuLuc/LapKHThon/view/ModelView",
-					"visible": false
-				},
-				{
 					"text": "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "view",
@@ -1227,34 +1210,6 @@ define(function (require) {
 
 			],
 		},
-		{
-			"text": "Báo Cáo - Phụ Lục II",
-			"icon": "glyphicon glyphicon-tasks",
-			"type": "category",
-			"visible": function () {
-				return this.userHasRole("Admin");
-			},
-			"entries": [{
-					"text": "Kết quả ngoại kiểm chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "baocaonuocsachOne",
-					"route": "baocaonuocsachOne/collection",
-					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/CollectionView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "baocaonuocsachOne",
-					"route": "baocaonuocsachOne/model",
-					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/ModelView",
-					"visible": false
-				},
-			],
-		},
-
 
 	];
 
