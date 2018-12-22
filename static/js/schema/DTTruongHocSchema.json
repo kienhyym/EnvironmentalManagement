@@ -68,7 +68,8 @@
         "length": null
     },
     "thongtinll": {
-        "type": "number"
+        "type": "string",
+        "length": null
     },
     "nguonnccongtrinh_id": {
         "type": "string"

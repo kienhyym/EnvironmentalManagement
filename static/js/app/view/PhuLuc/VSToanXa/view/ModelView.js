@@ -6,19 +6,21 @@ define(function (require) {
 	schema = require('json!schema/VSToanXaSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
-	var tongitemplate = require('text!app/view/PhuLuc/VSToanXa/tpl/tongcongi.html');
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+	
+//	var tongitemplate = require('text!app/view/PhuLuc/VSToanXa/tpl/tongcongi.html');
 		
-	var TongViewI = Gonrin.ModelView.extend({
-		template: tongitemplate,
-		modelSchema: tongischema,
-		bindings: 'tongi-bind',
-		urlPrefix: "/api/v1/",
-		collectionName: "tong",
-		uiControl: [],
-		render: function () {
-			this.applyBindings();
-		}
-	});
+//	var TongViewI = Gonrin.ModelView.extend({
+//		template: tongitemplate,
+//		modelSchema: tongischema,
+//		bindings: 'tongi-bind',
+//		urlPrefix: "/api/v1/",
+//		collectionName: "tong",
+//		uiControl: [],
+//		render: function () {
+//			this.applyBindings();
+//		}
+//	});
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -29,12 +31,20 @@ define(function (require) {
 			uiControl:{
 	    		fields:[
 					{
-						field: "tinhhuyen",
+						field: "tentinh",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tinhhuyen_id",
+						foreignField: "tentinh_id",
 						dataSource: TinhThanhSelectView
+					},
+					{
+						field: "tenhuyen",
+						uicontrol: "ref",
+						textField: "ten",
+						foreignRemoteField: "id",
+						foreignField: "tenhuyen_id",
+						dataSource: QuanHuyenSelectView
 					},
 					{
 						field: "tenxa",
@@ -43,19 +53,6 @@ define(function (require) {
 						foreignRemoteField: "id",
 						foreignField: "tenxa_id",
 						dataSource: XaPhuongSelectView
-					},
-					{
-						field: "nhatieuthonhvs",
-						uicontrol: false,
-						itemView: NhaTieuThonHVSItemView,
-						tools: [{
-							name: "create",
-							type: "button",
-							buttonClass: "btn btn-success btn-sm",
-							label: "<span class='fa fa-plus'>Thêm</span>",
-							command: "create"
-						}, ],
-						toolEl: "#addItem"
 					},
 	        	]
 	    	},

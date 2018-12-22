@@ -29,7 +29,7 @@ th, td {
 </style> -->
 <style type="text/css">
 .css {
-	width: 20%;
+	width: 15%;
 }
 </style>
 
@@ -38,29 +38,33 @@ th, td {
 			<table align="center">
 				<thead>
 					<tr>
-						<th class="top">Tỉnh/Huyện</th>
+						<th class="top">Tên Tỉnh</th>
+						<th class="top">Tên Huyện</th>
 						<th class="top">Xã</th>
-						<th class="top">Năm đạt VSTX</th>
-						<th class="top">% trường duy trì được tình trạng vệ sinh</th>
-						<th class="top">% trạm y tế duy trì được tình trạng vệ sinh</th>
+						<th class="top css">Năm đạt VSTX</th>
+						<th class="top css">% trường duy trì được tình trạng vệ sinh</th>
+						<th class="top css">% trạm y tế duy trì được tình trạng vệ sinh</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td class="css"><input type="text" class="form-control" id="from"
-							data-bind="dict:tinhhuyen"></td>
-						<td class = "css"><input type="text" class="form-control" id="from"
+						<td><input type="text" class="form-control" id="from"
+							data-bind="dict:tentinh"></td>
+						<td><input type="text" class="form-control" id="from"
+							data-bind="dict:tenhuyen"></td>
+						<td><input type="text" class="form-control" id="from"
 							data-bind="dict:tenxa"></td>
-						<td class="css"><input type="text" class="form-control" id="from"
+						<td><input type="text" class="form-control" id="from"
 							data-bind="value:namdatvstx"></td>
-						<td class="css"><input type="text" class="form-control" id="from"
+						<td><input type="text" class="form-control" id="from"
 							data-bind="value:truongvs"></td>
-						<td class="css"><input type="text" class="form-control" id="from"
+						<td><input type="text" class="form-control" id="from"
 							data-bind="value:tramytevs"></td>
 					</tr>
 
 					<tr>
 						<td>Tổng cộng</td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>

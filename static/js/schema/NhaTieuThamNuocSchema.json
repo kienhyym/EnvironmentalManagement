@@ -32,6 +32,31 @@
         "type": "string",
         "length": null
     },
+    "tentinh_id": {
+        "type": "string"
+    },
+    "tenhuyen_id": {
+        "type": "string"
+    },
+    "tenxa_id": {
+        "type": "string"
+    },
+    "tenthon_id": {
+        "type": "string"
+    },
+    "dantoc_id": {
+        "type": "string"
+    },
+    "gioitinh": {
+        "type": "number"
+    },
+    "chuho": {
+        "type": "string",
+        "length": null
+    },
+    "hongheo": {
+        "type": "number"
+    },
     "tieuchichinh": {
         "type": "string",
         "length": null
@@ -187,5 +212,20 @@
     "nhatieukodatbatieuchi": {
         "type": "string",
         "length": null
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "tenthon": {
+        "type": "dict"
+    },
+    "dantoc": {
+        "type": "dict"
     }
 }

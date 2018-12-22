@@ -24,7 +24,10 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "tinhhuyen_id": {
+    "tentinh_id": {
+        "type": "string"
+    },
+    "tenhuyen_id": {
         "type": "string"
     },
     "tenxa_id": {
@@ -60,7 +63,10 @@
     "tong": {
         "type": "number"
     },
-    "tinhhuyen": {
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
         "type": "dict"
     },
     "tenxa": {

@@ -5,6 +5,11 @@ define(function (require) {
 	var template = require('text!app/view/HoatDongGD/NhaTieuChim/tpl/model.html'),
 	schema = require('json!schema/NhaTieuChimSchema.json');
 		
+	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
+	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+	var DanTocSelectView = require('app/view/DanhMuc/DanToc/view/SelectView');
 	
 	var curenDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -14,14 +19,80 @@ define(function (require) {
 			collectionName: "nhatieuchim",
 
 			uiControl: {
-				// fields: [
-				// 	{
-				// 		field:"ngaybanhanh",
-				// 		textFormat:"DD/MM/YYYY",
-				// 		extraFormats:["DDMMYYYY"],
-				// 		maxDate:curenDate,
-				// 		},
-				// 	],
+				 fields: [
+					 {
+							field: "gioitinh",
+							uicontrol: "combobox",
+							textField: "text",
+							valueField: "value",
+							dataSource: [{
+									"value": 0,
+									"text": "Nam"
+								},
+								{
+									"value": 1,
+									"text": "Nữ"
+								},
+							],
+						},
+						 {
+							field: "hongheo",
+							uicontrol: "combobox",
+							textField: "text",
+							valueField: "value",
+							dataSource: [{
+									"value": 1,
+									"text": "Thuộc diện hộ nghèo"
+								},
+								{
+									"value": 0,
+									"text": "Không thuộc diện hộ nghèo"
+								},
+							],
+						},
+						
+						{
+							field: "tenxa",
+							uicontrol: "ref",
+							textField: "ten",
+							foreignRemoteField: "id",
+							foreignField: "tenxa_id",
+							dataSource: XaPhuongSelectView
+						},
+						{
+							field: "tenthon",
+							uicontrol: "ref",
+							textField: "ten",
+							foreignRemoteField: "id",
+							foreignField: "tenthon_id",
+							dataSource: ThonXomSelectView
+						},
+						{
+							field: "tentinh",
+							uicontrol: "ref",
+							textField: "ten",
+							foreignRemoteField: "id",
+							foreignField: "tentinh_id",
+							dataSource: TinhThanhSelectView
+						},
+						{
+							field: "tenhuyen",
+							uicontrol: "ref",
+							textField: "ten",
+							foreignRemoteField: "id",
+							foreignField: "tenhuyen_id",
+							dataSource: QuanHuyenSelectView
+						},
+						{
+							field: "dantoc",
+							uicontrol: "ref",
+							textField: "ten",
+							foreignRemoteField: "id",
+							foreignField: "dantoc_id",
+							dataSource: DanTocSelectView
+						},
+						
+				 	],
 			},
 						
 			tools: [

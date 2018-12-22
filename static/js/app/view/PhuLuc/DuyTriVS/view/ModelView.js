@@ -6,7 +6,7 @@ define(function (require) {
 	schema = require('json!schema/DuyTriVSSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
-		
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -22,14 +22,6 @@ define(function (require) {
 						extraFormats: ["YYYY"],
 						maxDate: currentDate,
 					},
-	    			{
-						field: "tinhhuyen",
-						uicontrol: "ref",
-						textField: "ten",
-						foreignRemoteField: "id",
-						foreignField: "tinhhuyen_id",
-						dataSource: TinhThanhSelectView
-					},
 					{
 						field: "tenxa",
 						uicontrol: "ref",
@@ -37,6 +29,23 @@ define(function (require) {
 						foreignRemoteField: "id",
 						foreignField: "tenxa_id",
 						dataSource: XaPhuongSelectView
+					},
+					{
+						field: "tenhuyen",
+						uicontrol: "ref",
+						textField: "ten",
+						foreignRemoteField: "id",
+						foreignField: "tenhuyen_id",
+						dataSource: QuanHuyenSelectView
+					},
+					
+					{
+						field: "tentinh",
+						uicontrol: "ref",
+						textField: "ten",
+						foreignRemoteField: "id",
+						foreignField: "tentinh_id",
+						dataSource: TinhThanhSelectView
 					},
 	        	]
 	    	},

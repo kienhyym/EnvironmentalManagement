@@ -1507,8 +1507,10 @@ class LapKHThon(CommonModel):
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
 class VSToanXa(CommonModel):
     __tablename__ = 'vstoanxa'
-    tinhhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhhuyen = relationship('TinhThanh')
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh')
+    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    tenhuyen = relationship('QuanHuyen')
     tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     tenxa = relationship('XaPhuong')
     nhatieu = db.Column(db.Integer)
@@ -1525,8 +1527,10 @@ class VSToanXa(CommonModel):
 #Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
 class DuyTriVS(CommonModel):
     __tablename__ = 'duytrivs'
-    tinhhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhhuyen = relationship('TinhThanh')
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh')
+    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    tenhuyen = relationship('QuanHuyen')
     tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     tenxa = relationship('XaPhuong')
     namdatvstx = db.Column(db.DateTime())
@@ -1586,12 +1590,11 @@ class DTTruongHoc(CommonModel):
     loaitrg = db.Column(db.Integer)
     ngtraloi = db.Column(db.String)
     vitrichuvu = db.Column(db.String)
-    thongtinll = db.Column(db.Integer)
-    nguonnccongtrinh_id = db.Column(UUID(as_uuid=True), ForeignKey('nguonnccongtrinh.id'), nullable=True)
+    thongtinll = db.Column(db.String)
     nguonnccongtrinh = relationship('NguocNcCongTrinh')
-    capnctruongtram_id = db.Column(UUID(as_uuid=True), ForeignKey('capnctruongtram.id'), nullable=True)
+    nguonnccongtrinh_id = db.Column(UUID(as_uuid=True), ForeignKey('nguonnccongtrinh.id'), nullable=True)
     capnctruongtram = relationship('CapNcTruongTram')
-   
+    capnctruongtram_id = db.Column(UUID(as_uuid=True), ForeignKey('capnctruongtram.id'), nullable=True)
 class NguocNcCongTrinh(CommonModel):
     __tablename__ = 'nguonnccongtrinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)

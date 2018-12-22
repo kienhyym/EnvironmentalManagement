@@ -19,6 +19,7 @@ define(function (require) {
     				foreign: "tentinh",
     				foreignValueField: "id",
 					foreignTextField: "ten"},
+					
     		     { 	field: "tenhuyen_id",
 					label: "Tên huyện",
 		    	    foreign: "tenhuyen",

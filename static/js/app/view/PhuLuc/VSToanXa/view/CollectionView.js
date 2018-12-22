@@ -15,11 +15,17 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     
-	    	    	{ 	field: "tinhhuyen_id",
-	    	    		label:"Tỉnh/Huyện",
-						foreign: "tinhhuyen",
+	    	    	{ 	field: "tentinh_id",
+	    	    		label:"Tên Tỉnh",
+						foreign: "tentinh",
 						foreignValueField: "id",
 						foreignTextField: "ten"},
+						
+					{ 	field: "tenhuyen_id",
+		    	    		label:"Tên Huyện",
+							foreign: "tenhuyen",
+							foreignValueField: "id",
+							foreignTextField: "ten"},
 						
 	    	    	{ 	field: "tenxa_id",
 						label:"Tên Xã",
