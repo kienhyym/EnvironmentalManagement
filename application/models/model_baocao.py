@@ -1314,8 +1314,8 @@ class NhaTieuXaHVS(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True) 
 
-    tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
-    tenthon = relationship('ThonXom')
+#     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+#     tenthon = relationship('ThonXom')
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
     gioitinh = db.Column(db.Integer)

@@ -94,6 +94,16 @@ define(function (require) {
 					}, ],
 					toolEl: "#addItem"
 				},
+				{
+    				field: "suprsws",
+    				uicontrol: "combobox",
+    				textField: "text",
+    				valueField: "value",
+    				dataSource: [
+    					{ "value": 1, "text": "Có" },
+    					{ "value": 0, "text": "Không" },
+					],
+    			},
 
 			],
 		},
@@ -211,7 +221,7 @@ define(function (require) {
 			}
 
 			var data = Gonrin.getDefaultModel(tongischema);
-			console.log(self.model.get('nhatieuthonhvs'));
+			console.log("xxxxx" +self.model.get('nhatieuthonhvs'));
 			
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
@@ -231,6 +241,7 @@ define(function (require) {
 
 				var soNu = self.tongViewi.model.get("gioitinh");	
 				var tongSoDan = self.model.get("nhatieuthonhvs").length;
+				self.model.set("hotrongthon", tongSoDan);
 				var result = tongSoDan - soNu;
 				self.model.set("chuholanu", result);
 				

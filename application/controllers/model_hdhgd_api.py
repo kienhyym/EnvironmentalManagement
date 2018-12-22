@@ -44,8 +44,32 @@ apimanager.create_api(ChoTruongHocTramYTE,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='chotruonghoctramyte')
 
-apimanager.create_api(CacHoatDongBBC,
+# apimanager.create_api(CacHoatDongBBC,
+#     methods=['GET', 'POST', 'DELETE', 'PUT'],
+#     url_prefix='/api/v1',
+#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+#     collection_name='cachoatdongbbc')
+
+apimanager.create_api(HoatDongBCCTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='cachoatdongbbc')
+    collection_name='hoatdongbcctinh')
+
+apimanager.create_api(HoatDongBCCHuyen,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='hoatdongbcchuyen')
+
+apimanager.create_api(HoatDongBCCXaThon,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='hoatdongbccxathon')
+
+apimanager.create_api(HoatDongBCCTruongHoc,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='hoatdongbcctruonghoc')

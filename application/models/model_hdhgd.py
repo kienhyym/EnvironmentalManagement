@@ -237,23 +237,51 @@ class ChoTruongHocTramYTE(CommonModel):
     ctmotbay = db.Column(db.String)
 
 ##Mau 6
-class CacHoatDongBBC(CommonModel):
-    __tablename__ = 'cachoatdongbbc'
+# class CacHoatDongBBC(CommonModel):
+#     __tablename__ = 'cachoatdongbbc'
+#     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+#     hoatdongtinh = db.Column(db.String)
+#     hophoinhgi = db.Column(db.String)
+#     taphuan = db.Column(db.String)
+#     cachoatdong = db.Column(db.String)
+#     thanhlapcuahang = db.Column(db.String)
+#     taphuantruyenthong = db.Column(db.String)
+#     hdcaphuyen = db.Column(db.String)
+#     hoptrienkhai = db.Column(db.String)
+#     vschocanbo = db.Column(db.String)
+#     hdcapxa = db.Column(db.String)
+#     hopcapxa = db.Column(db.String)
+#     camketdat = db.Column(db.String)
+#     vstx = db.Column(db.String)
+#     truyenthongthon = db.Column(db.String)
+#     truonghoc = db.Column(db.String)
+#     bancamket = db.Column(db.String)
+    
+class HoatDongBCCTinh(CommonModel):
+    __tablename__ = 'hoatdongbcctinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    hoatdongtinh = db.Column(db.String)
     hophoinhgi = db.Column(db.String)
     taphuan = db.Column(db.String)
     cachoatdong = db.Column(db.String)
     thanhlapcuahang = db.Column(db.String)
     taphuantruyenthong = db.Column(db.String)
-    hdcaphuyen = db.Column(db.String)
+    
+class HoatDongBCCHuyen(CommonModel):
+    __tablename__ = 'hoatdongbcchuyen'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     hoptrienkhai = db.Column(db.String)
     vschocanbo = db.Column(db.String)
-    hdcapxa = db.Column(db.String)
+    
+class HoatDongBCCXaThon(CommonModel):
+    __tablename__ = 'hoatdongbccxathon'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     hopcapxa = db.Column(db.String)
     camketdat = db.Column(db.String)
     vstx = db.Column(db.String)
     truyenthongthon = db.Column(db.String)
-    truonghoc = db.Column(db.String)
+    
+class HoatDongBCCTruongHoc(CommonModel):
+    __tablename__ = 'hoatdongbcctruonghoc'
+    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     bancamket = db.Column(db.String)
     

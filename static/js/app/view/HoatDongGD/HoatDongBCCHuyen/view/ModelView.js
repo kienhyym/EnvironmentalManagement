@@ -2,8 +2,8 @@ define(function (require) {
 	"use strict";
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-	var template = require('text!app/view/HoatDongGD/CacHoatDongBBC/tpl/model.html'),
-	schema = require('json!schema/CacHoatDongBBCSchema.json');
+	var template = require('text!app/view/HoatDongGD/HoatDongBCCHuyen/tpl/model.html'),
+	schema = require('json!schema/HoatDongBCCHuyenSchema.json');
 		
 	
 	var curenDate = new Date();
@@ -11,17 +11,33 @@ define(function (require) {
 			template: template,
 			modelSchema: schema,
 			urlPrefix: "/api/v1/",
-			collectionName: "cachoatdongbbc",
+			collectionName: "hoatdongbcchuyen",
 
 			uiControl: {
-				// fields: [
-				// 	{
-				// 		field:"ngaybanhanh",
-				// 		textFormat:"DD/MM/YYYY",
-				// 		extraFormats:["DDMMYYYY"],
-				// 		maxDate:curenDate,
-				// 		},
-				// 	],
+				 fields: [
+					 {
+		    				field:"hoptrienkhai",
+		    				uicontrol: "combobox",
+		    				textField: "text",
+		    				valueField: "value",
+		    				dataSource: [
+		    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
+		    					{"value": "chuathuchien", "text": "Đang thực hiện" },
+		    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+							]
+		    			},
+		    			{
+		    				field:"vschocanbo",
+		    				uicontrol: "combobox",
+		    				textField: "text",
+		    				valueField: "value",
+		    				dataSource: [
+		    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
+		    					{"value": "chuathuchien", "text": "Đang thực hiện" },
+		    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+							]
+		    			},
+				 	],
 			},
 						
 			tools: [

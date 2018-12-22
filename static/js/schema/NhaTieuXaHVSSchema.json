@@ -27,9 +27,6 @@
     "capxa_id": {
         "type": "string"
     },
-    "tenthon_id": {
-        "type": "string"
-    },
     "stt": {
         "type": "number"
     },
@@ -79,8 +76,5 @@
     },
     "tong": {
         "type": "number"
-    },
-    "tenthon": {
-        "type": "dict"
     }
 }

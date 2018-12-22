@@ -1,7 +1,4 @@
 {
-    "gioitinh": {
-        "type": "number"
-    },
     "stt": {
         "type": "number"
     },
@@ -26,10 +23,6 @@
         "default":0
     },
     "coongthong": {
-        "type": "number",
-        "default":0
-    },
-    "loaikhac": {
         "type": "number",
         "default":0
     },

@@ -4,20 +4,18 @@ define(function (require) {
         _                   = require('underscore'),
 		Gonrin				= require('gonrin');
 
-    var template 			= require('text!app/view/HoatDongGD/CacHoatDongBBC/tpl/collection.html'),
-    	schema 				= require('json!schema/CacHoatDongBBCSchema.json');
+    var template 			= require('text!app/view/HoatDongGD/HoatDongBCCTruongHoc/tpl/collection.html'),
+    	schema 				= require('json!schema/HoatDongBCCTruongHocSchema.json');
 
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "cachoatdongbbc",
+    	collectionName: "hoatdongbcctruonghoc",
     	uiControl:{
     		fields: [
-    			 { field: "hoatdongtinh", label: "Hoạt động cấp tỉnh", width:250,},
-				 { field: "hdcaphuyen", label: "Hoạt động cấp huyện", width:250},
-				 { field: "hdcapxa", label: "Hoạt động cấp xã, thôn", width:250},
-				 { field: "truonghoc", label: "Trường học", width:250},
+    			 { field: "id", label: "ID", width:250,},
+				 { field: "bancamket", label: "Bản cam kết của Hiệu trưởng", width:250}
 				
 				
 				 
