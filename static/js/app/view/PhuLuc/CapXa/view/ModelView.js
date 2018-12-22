@@ -94,6 +94,16 @@ define(function (require) {
 					}, ],
 					toolEl: "#addItem"
 				},
+				{
+    				field: "suprsws",
+    				uicontrol: "combobox",
+    				textField: "text",
+    				valueField: "value",
+    				dataSource: [
+    					{ "value": 1, "text": "Có" },
+    					{ "value": 0, "text": "Không" },
+					],
+    			},
 
 			],
 		},

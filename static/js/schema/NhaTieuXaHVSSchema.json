@@ -27,24 +27,20 @@
     "capxa_id": {
         "type": "string"
     },
+    "stt": {
+        "type": "number"
+    },
     "tenthon": {
         "type": "string",
         "length": null
     },
-    "stt": {
+    "nuchuho": {
         "type": "number"
     },
-    "tenchuho": {
-        "type": "string",
-        "length": null
-    },
-    "gioitinh": {
+    "sodtts": {
         "type": "number"
     },
-    "dtts": {
-        "type": "number"
-    },
-    "hongheo": {
+    "sohongheo": {
         "type": "number"
     },
     "tuhoai": {
@@ -58,10 +54,6 @@
     },
     "coongthong": {
         "type": "number"
-    },
-    "loaikhac": {
-        "type": "string",
-        "length": null
     },
     "kconhatieu": {
         "type": "number"

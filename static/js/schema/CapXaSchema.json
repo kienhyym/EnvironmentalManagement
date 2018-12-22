@@ -39,10 +39,13 @@
     "tenxa_id": {
         "type": "string"
     },
-    "tenthon_id": {
-        "type": "string"
+    "sothon": {
+        "type": "number"
     },
-    "hotrongthon": {
+    "suprsws": {
+        "type": "number"
+    },
+    "hotrongxa": {
         "type": "number"
     },
     "chuholanu": {
@@ -54,7 +57,7 @@
     "sohodtts": {
         "type": "number"
     },
-    "dantrongthon": {
+    "dantrongxa": {
         "type": "number"
     },
     "sonam": {
@@ -73,9 +76,6 @@
         "type": "dict"
     },
     "tenxa": {
-        "type": "dict"
-    },
-    "tenthon": {
         "type": "dict"
     }
 }
