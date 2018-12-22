@@ -91,6 +91,7 @@ define(function (require) {
 								dataType: "json",
 								contentType: "application/json",
 								success: function (data) {
+									console.log("get tuyendonvi====",data)
 									if (!!data && !!data.id) {
 										var $comboboxEl = self.$el.find("#tuyendonvi_combobox");
 										$comboboxEl.val(JSON.stringify({
