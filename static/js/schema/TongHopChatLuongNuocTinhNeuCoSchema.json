@@ -24,52 +24,30 @@
         "type": "string",
         "primary": true
     },
-    "nganh": {
-        "type": "string",
-        "length": null
-    },
-    "tentinhpd_id": {
-        "type": "string"
-    },
-    "hoatdong_thon": {
-        "type": "string",
-        "length": null
-    },
-    "muctieu_thon": {
+    "tt": {
         "type": "number"
     },
-    "ketqua_thon": {
+    "tendonvi": {
         "type": "string",
         "length": null
     },
-    "songtg_thon": {
-        "type": "number"
-    },
-    "sonutg_thon": {
-        "type": "number"
-    },
-    "dttstg_thon": {
-        "type": "number"
-    },
-    "tiendo": {
-        "type": "string",
-        "length": null
-    },
-    "vihema": {
-        "type": "string",
-        "length": null
-    },
-    "khpheduyet": {
-        "type": "string",
-        "length": null
-    },
-    "tgpheduyetroi": {
+    "thoigiankiemtra": {
         "type": "datetime"
     },
-    "tgpheduyet": {
-        "type": "datetime"
+    "noidung": {
+        "type": "string",
+        "length": null
     },
-    "tentinhpd": {
-        "type": "dict"
+    "ketluan": {
+        "type": "string",
+        "length": null
+    },
+    "bienphap": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua": {
+        "type": "string",
+        "length": null
     }
 }

@@ -1453,6 +1453,8 @@ class LapKHHuyen(CommonModel):
     __tablename__ =  'lapkhhuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
+    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinhpd = relationship('TinhThanh') 
     hoatdong_huyen = db.Column(db.String)
     muctieu_huyen = db.Column(db.Integer)
     ketqua_huyen = db.Column(db.String)
@@ -1469,6 +1471,8 @@ class LapKHXa(CommonModel):
     __tablename__ =  'lapkhxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
+    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinhpd = relationship('TinhThanh') 
     hoatdong_xa = db.Column(db.String)
     muctieu_xa = db.Column(db.Integer)
     ketqua_xa = db.Column(db.String)
@@ -1485,6 +1489,8 @@ class LapKHThon(CommonModel):
     __tablename__ =  'lapkhthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
+    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinhpd = relationship('TinhThanh') 
     hoatdong_thon = db.Column(db.String)
     muctieu_thon = db.Column(db.Integer)
     ketqua_thon = db.Column(db.String)

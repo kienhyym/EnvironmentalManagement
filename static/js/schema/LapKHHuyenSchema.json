@@ -28,6 +28,9 @@
         "type": "string",
         "length": null
     },
+    "tentinhpd_id": {
+        "type": "string"
+    },
     "hoatdong_huyen": {
         "type": "string",
         "length": null
@@ -65,5 +68,8 @@
     },
     "tgpheduyet": {
         "type": "datetime"
+    },
+    "tentinhpd": {
+        "type": "dict"
     }
 }
