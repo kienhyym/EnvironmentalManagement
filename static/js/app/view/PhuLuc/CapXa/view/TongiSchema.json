@@ -1,15 +1,17 @@
 {
-    "gioitinh": {
-        "type": "number"
-    },
+    
     "stt": {
         "type": "number"
     },
-    "dtts": {
+    "nuchuho": {
         "type": "number",
         "default":0
     },
-    "hongheo": {
+    "sodtts": {
+        "type": "number",
+        "default":0
+    },
+    "sohongheo": {
         "type": "number",
         "default":0
     },

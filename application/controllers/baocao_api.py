@@ -391,12 +391,12 @@ apimanager.create_api(NhaTieuHuyenHVS,
     collection_name='nhatieuhuyenhvs')
 
 #BM#
- 
-apimanager.create_api(KHTruyenThong,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='khtruyenthong')
+#  
+# apimanager.create_api(KHTruyenThong,
+#     methods=['GET', 'POST', 'DELETE', 'PUT'],
+#     url_prefix='/api/v1',
+#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+#     collection_name='khtruyenthong')
  
 apimanager.create_api(VSToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

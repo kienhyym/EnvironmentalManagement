@@ -201,7 +201,6 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
-			console.log("registerTinhTong");
 			self.model.on("change:nhatieuthonhvs", function () {
 				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
 				console.log("registerTinhTong 111");
@@ -220,9 +219,7 @@ define(function (require) {
 				self.tongViewi.render();
 			}
 
-			var data = Gonrin.getDefaultModel(tongischema);
-			console.log("xxxxx" +self.model.get('nhatieuthonhvs'));
-			
+			var data = Gonrin.getDefaultModel(tongischema);	
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
@@ -238,38 +235,23 @@ define(function (require) {
 			self.tongViewi.applyBindings();
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
+			
+			var dantoc333 = self.tongViewi.model.get("dantoc");
+			self.model.set("sohodtts", dantoc333);
+			
+			var soNu = self.tongViewi.model.get("gioitinh");
+			self.model.set("chuholanu", soNu);
 
-				var soNu = self.tongViewi.model.get("gioitinh");	
-				var tongSoDan = self.model.get("nhatieuthonhvs").length;
-				self.model.set("hotrongthon", tongSoDan);
-				var result = tongSoDan - soNu;
-				self.model.set("chuholanu", result);
-				
+			var tongSoDan = self.model.get("nhatieuthonhvs").length;
+			self.model.set("hotrongthon", tongSoDan);
+
+			var tongSoDan = self.model.get("nhatieuthonhvs").length;
+			self.model.set("hotrongthon", tongSoDan);
+			
+			// var sonam = self.tongViewi.model.get("gioitinh");	
+			// var sonu = tongSoDan - sonam;
+			// self.model.set("chuholanu", sonu);			
 		},
-		renderCongDon: function (data) {
-			console.log(data);
-			var self = this;
-			var id = this.getApp().getRouter().getParam("id");
-			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
-			$nhatieuthonhvs.empty();
-			self.model.set("nhatieuthonhvs", []);
-			for (var i = 0; i < data.nhatieuthonhvs.length; i++) {
-				if (id) {
-					data.nhatieuthonhvs[i]["capthon_id"] = id;
-				} else {
-					data.nhatieuthonhvs[i]["capthon_id"] = null;
-				}
-				data.nhatieuthonhvs[i]["stt"] = i + 1;
-				data.nhatieuthonhvs[i]["id"] = null;
-				self.model.get("nhatieuthonhvs").push(data.nhatieuthonhvs[i])
-			}
-			var $nhatieuthonhvs = this.$el.find('#nhatieuthonhvs');
-			$nhatieuthonhvs.empty();
-			self.model.set("nhatieuthonhvs", []);
-			self.applyBindings();
-			self.renderTinhTongI();
-
-		}
 
 	});
 

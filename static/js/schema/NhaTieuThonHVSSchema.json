@@ -27,8 +27,8 @@
     "capthon_id": {
         "type": "string"
     },
-    "dantoc_id": {
-        "type": "string"
+    "dantoc": {
+        "type": "number"
     },
     "stt": {
         "type": "number"
@@ -38,9 +38,6 @@
         "length": null
     },
     "gioitinh": {
-        "type": "number"
-    },
-    "dtts": {
         "type": "number"
     },
     "hongheo": {
@@ -75,8 +72,5 @@
     },
     "tong": {
         "type": "number"
-    },
-    "dantoc": {
-        "type": "dict"
     }
 }
