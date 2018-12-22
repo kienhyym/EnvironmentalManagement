@@ -1,0 +1,77 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "thongtu": {
+        "type": "string",
+        "length": null
+    },
+    "so": {
+        "type": "string",
+        "length": null
+    },
+    "tentochuc": {
+        "type": "string",
+        "length": null
+    },
+    "diachi": {
+        "type": "string",
+        "length": null
+    },
+    "sdt": {
+        "type": "string",
+        "length": null
+    },
+    "fax": {
+        "type": "string",
+        "length": null
+    },
+    "email": {
+        "type": "string",
+        "length": null
+    },
+    "sanpham": {
+        "type": "string",
+        "length": null
+    },
+    "phuhop": {
+        "type": "string",
+        "length": null
+    },
+    "camket": {
+        "type": "string",
+        "length": null
+    },
+    "ngataobaocao": {
+        "type": "datetime"
+    },
+    "daidienkyten": {
+        "type": "string",
+        "length": null
+    }
+}

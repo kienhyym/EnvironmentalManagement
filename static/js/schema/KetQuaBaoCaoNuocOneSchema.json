@@ -1,0 +1,85 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "baocaonuocsachOne": {
+        "type": "string"
+    },
+    "mamau": {
+        "type": "number"
+    },
+    "gioihanchophep1": {
+        "type": "number"
+    },
+    "danhgia": {
+        "type": "number"
+    },
+    "cacthongso": {
+        "type": "string",
+        "length": null
+    },
+    "gioihanchophep2": {
+        "type": "number"
+    },
+    "gioihanchophep3": {
+        "type": "number"
+    },
+    "gioihanchophep4": {
+        "type": "number"
+    },
+    "gioihanchophep5": {
+        "type": "number"
+    },
+    "gioihanchophep6": {
+        "type": "number"
+    },
+    "gioihanchophep7": {
+        "type": "number"
+    },
+    "gioihanchophep8": {
+        "type": "number"
+    },
+    "gioihanchophep9": {
+        "type": "number"
+    },
+    "gioihanchophep10": {
+        "type": "number"
+    },
+    "gioihanchophep11": {
+        "type": "number"
+    },
+    "gioihanchophep12": {
+        "type": "number"
+    },
+    "gioihanchophep13": {
+        "type": "number"
+    },
+    "gioihanchophep14": {
+        "type": "number"
+    },
+    "gioihanchophep15": {
+        "type": "number"
+    }
+}

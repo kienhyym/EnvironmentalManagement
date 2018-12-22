@@ -125,23 +125,19 @@ define(function (require) {
 					"route": "bctuyendonvi/collection",
 					"$ref": "app/view/HeThong/CaiDatBaoCao/view/CollectionView",
 					"icon": "glyphicon glyphicon-cog",
-					"visible": false
-				}, {
-					"text": "Cài đặt Báo Cáo",
-					"type": "view",
-					"collectionName": "bctuyendonvi",
-					"route": "bctuyendonvi/model(/:id)",
-					"href": "bctuyendonvi/model?tuyendonvi_id=1",
-					"$ref": "app/view/HeThong/CaiDatBaoCao/view/ModelView",
-					"icon": "glyphicon glyphicon-cog",
 					"visible": function () {
 						return this.userHasRole("Admin");
 					}
-
+				}, {
+					"type": "view",
+					"collectionName": "bctuyendonvi",
+					"route": "bctuyendonvi/model(/:id)",
+					"$ref": "app/view/HeThong/CaiDatBaoCao/view/ModelView",
+					"visible": false
 				},
 			]
 		},
-
+		
 
 		{
 			"text": "Danh Mục",
@@ -1173,6 +1169,7 @@ define(function (require) {
 
 			],
 		},
+
 		{
 			"text": "Báo Cáo - Phụ Lục II",
 			"icon": "glyphicon glyphicon-tasks",
@@ -1180,7 +1177,8 @@ define(function (require) {
 			"visible": function () {
 				return this.userHasRole("Admin");
 			},
-			"entries": [{
+			"entries": [
+				{
 					"text": "Kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
@@ -1200,7 +1198,6 @@ define(function (require) {
 				},
 			],
 		},
-
 
 	];
 

@@ -284,4 +284,6 @@ class HoatDongBCCTruongHoc(CommonModel):
     __tablename__ = 'hoatdongbcctruonghoc'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     bancamket = db.Column(db.String)
+
+
     
