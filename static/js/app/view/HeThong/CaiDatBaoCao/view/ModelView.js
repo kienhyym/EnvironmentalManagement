@@ -63,7 +63,7 @@ define(function (require) {
 					}],
 					uiControl: {
 						filters: [
-
+								fil
 							],
 						},
 						renderContentTable: function (arrayCollectionName) {
@@ -86,11 +86,8 @@ define(function (require) {
 							var self = this;
 							var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
 							var url = '/api/v1/tuyendonvi';
-							console.log(url);
-							console.log(tuyendonvi_id);
 							$.ajax({
 								url: self.getApp().serviceURL + url,
-								//data: {"q": JSON.stringify({"filters": filters,"single":true})},
 								dataType: "json",
 								contentType: "application/json",
 								success: function (data) {
@@ -105,8 +102,10 @@ define(function (require) {
 											textField: "ten",
 											foreignRemoteField: "id",
 											foreignField: "tuyendonvi_id",
+											value: "currentUser.donvi.tuyendonvi",
 											dataSource: TuyenDonViSelectView,
 										});
+										console.log($comboboxEl);
 
 										$comboboxEl.on('change.gonrin', function (e) {
 											var path = self.collectionName + '/model?tuyendonvi_id=' + e.value.id;
@@ -133,7 +132,7 @@ define(function (require) {
 							// progresbar quay quay
 							var filters = {
 								"tuyendonvi_id": {
-									"$eq": tuyendonvi_id
+									"$eq": 1
 								}
 							};
 							$.ajax({
