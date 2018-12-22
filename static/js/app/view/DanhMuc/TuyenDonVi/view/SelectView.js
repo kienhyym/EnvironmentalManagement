@@ -21,18 +21,18 @@ define(function (require) {
 			fields: [{
 					field: "id",
 					label: "ID",
-					width: 100,
+					width: "80px",
 					readonly: true,
 				},
 				{
 					field: "ma",
 					label: "Mã",
-					width: 150
+					width: "150px"
 				},
 				{
 					field: "ten",
 					label: "Tên",
-					width: 350
+					width: "350px"
 				}
 			],
 			onRowClick: function (event) {

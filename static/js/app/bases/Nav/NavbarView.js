@@ -116,10 +116,6 @@ define(function (require) {
 						self.loadEntries(_nav_list, entry_entries, false);
 					}
 					self.loadView(entry);
-					var month = 0;
-					if(!!entry_viewData && entry_viewData.month>0){
-						month = entry_viewData.month;
-					}
 					
 					if(self.isEntryVisible(entry)){
 						self.handleEntryClick($entry, entry);
@@ -233,7 +229,9 @@ define(function (require) {
 		            	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 		            		 $('.menu-toggler').trigger("click");
 		            	}
-		            	self.getApp().getRouter().navigate(entry.route, {trigger:true});
+		            	var link = _.result(entry, 'href') || _.result(entry, 'route') ;
+		            	self.getApp().getRouter().navigate(link, {trigger:true});
+//		            	self.getApp().getRouter().navigate(entry.route, {trigger:true});
 		            	
 		            }
 				});

@@ -125,15 +125,19 @@ define(function (require) {
 					"route": "bctuyendonvi/collection",
 					"$ref": "app/view/HeThong/CaiDatBaoCao/view/CollectionView",
 					"icon": "glyphicon glyphicon-cog",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
+					"visible": false
 				}, {
+					"text": "Cài đặt Báo Cáo",
 					"type": "view",
 					"collectionName": "bctuyendonvi",
 					"route": "bctuyendonvi/model(/:id)",
+					"href":"bctuyendonvi/model?tuyendonvi_id=1",
 					"$ref": "app/view/HeThong/CaiDatBaoCao/view/ModelView",
-					"visible": false
+					"icon": "glyphicon glyphicon-cog",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+					
 				},
 			]
 		},
