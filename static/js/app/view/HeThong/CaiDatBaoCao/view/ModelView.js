@@ -8,7 +8,7 @@ define(function (require) {
 		schema = require('json!schema/BaoCaoTuyenDonViSchema.json');
 
     var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
-    
+    var DanhMucCollectionName = require('json!app/view/HeThong/CaiDatBaoCao/danhmucbaocao.json');
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -65,160 +65,18 @@ define(function (require) {
     		var self = this;
     		var html_content = $("#content_table");
 			html_content.html("");
-			var isCheckedBC1 = "";
-			if (arrayCollectionName.indexOf("bckhamchuabenh")>=0){
-				isCheckedBC1 = "checked";
+			for (var i=0; i<DanhMucCollectionName.length; i++){
+				var dm = DanhMucCollectionName[i];
+				var isChecked = "";
+				if (arrayCollectionName.indexOf(dm.collection)>=0){
+					isChecked = "checked";
+				}
+				html_content.append('<tr>'+
+				        '<td><input id="'+dm.collection+'" '+isChecked+' type="checkbox"></input></td>'+
+				        '<td>'+dm.collection+'</td>'+
+				        '<td>'+dm.text+'</td>'+
+				      '</tr>');
 			}
-			html_content.append('<tr>'+
-			        '<td><input id="bckhamchuabenh" '+isCheckedBC1+' type="checkbox"></input></td>'+
-			        '<td>bckhamchuabenh</td>'+
-			        '<td>01: Khám chữa bệnh</td>'+
-			      '</tr>');
-			var isCheckedBC2 = "";
-			if (arrayCollectionName.indexOf("bccocaunhanluc")>=0){
-				isCheckedBC2 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bccocaunhanluc" '+isCheckedBC2+' type="checkbox"></input></td>'+
-			        '<td>bccocaunhanluc</td>'+
-			        '<td>02: Cơ cấu nhân lực</td>'+
-			      '</tr>');
-			var isCheckedBC3 = "";
-			if (arrayCollectionName.indexOf("bccocaunhanluctggiangday")>=0){
-				isCheckedBC3 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bccocaunhanluctggiangday" '+isCheckedBC3+' type="checkbox"></input></td>'+
-			        '<td>bccocaunhanluctggiangday</td>'+
-			        '<td>03: Cơ cấu nhân lực tham gia giảng dạy</td>'+
-			      '</tr>');
-			var isCheckedBC4 = "";
-			if (arrayCollectionName.indexOf("bcdaotaonhanluc")>=0){
-				isCheckedBC4 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcdaotaonhanluc" '+isCheckedBC4+' type="checkbox"></input></td>'+
-			        '<td>bcdaotaonhanluc</td>'+
-			        '<td>04: Đào tạo nhân lực</td>'+
-			      '</tr>');
-			
-			var isCheckedBC5 = "";
-			if (arrayCollectionName.indexOf("bcnghiencuukhoahoc")>=0){
-				isCheckedBC5 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcnghiencuukhoahoc" '+isCheckedBC5+' type="checkbox"></input></td>'+
-			        '<td>bcnghiencuukhoahoc</td>'+
-			        '<td>05: Nghiên cứu khoa học</td>'+
-			      '</tr>');
-			var isCheckedBC6 = "";
-			if (arrayCollectionName.indexOf("bcquanlyydct")>=0){
-				isCheckedBC6 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcquanlyydct" '+isCheckedBC6+' type="checkbox"></input></td>'+
-			        '<td>bcquanlyydct</td>'+
-			        '<td>06: Quản lý y dược cổ truyền tại địa phương</td>'+
-			      '</tr>');
-			var isCheckedBC7 = "";
-			if (arrayCollectionName.indexOf("bchtkhamchuabenhydct")>=0){
-				isCheckedBC7 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bchtkhamchuabenhydct" '+isCheckedBC7+' type="checkbox"></input></td>'+
-			        '<td>bchtkhamchuabenhydct</td>'+
-			        '<td>07: Hệ thống khám chữa y dược cổ truyền</td>'+
-			      '</tr>');
-			var isCheckedBC8 = "";
-			if (arrayCollectionName.indexOf("bcytecoso")>=0){
-				isCheckedBC8 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcytecoso" '+isCheckedBC8+' type="checkbox"></input></td>'+
-			        '<td>bcytecoso</td>'+
-			        '<td>08: Y tế cơ sở</td>'+
-			      '</tr>');
-			var isCheckedBC9 = "";
-			if (arrayCollectionName.indexOf("bchanhngheytetunhan")>=0){
-				isCheckedBC9 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bchanhngheytetunhan" '+isCheckedBC9+' type="checkbox"></input></td>'+
-			        '<td>bchanhngheytetunhan</td>'+
-			        '<td>09: Hành nghề y tế tư nhân</td>'+
-			      '</tr>');
-			var isCheckedBC10 = "";
-			if (arrayCollectionName.indexOf("bcchungchihanhnghe")>=0){
-				isCheckedBC10 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcchungchihanhnghe" '+isCheckedBC10+' type="checkbox"></input></td>'+
-			        '<td>bcchungchihanhnghe</td>'+
-			        '<td>10: Cấp chứng chỉ hành nghề</td>'+
-			      '</tr>');
-			var isCheckedBC11 = "";
-			if (arrayCollectionName.indexOf("bckhamchuabenhdiaphuong")>=0){
-				isCheckedBC11 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bckhamchuabenhdiaphuong" '+isCheckedBC11+' type="checkbox"></input></td>'+
-			        '<td>bckhamchuabenhdiaphuong</td>'+
-			        '<td>11: Khám chữa bệnh tại đia phương</td>'+
-			      '</tr>');
-			var isCheckedBC12 = "";
-			if (arrayCollectionName.indexOf("bctrinhdonhanlucytediaphuong")>=0){
-				isCheckedBC12 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bctrinhdonhanlucytediaphuong" '+isCheckedBC12+' type="checkbox"></input></td>'+
-			        '<td>bctrinhdonhanlucytediaphuong</td>'+
-			        '<td>12: Trình độ nhân lực y tế địa phương</td>'+
-			      '</tr>');
-			var isCheckedBC13 = "";
-			if (arrayCollectionName.indexOf("bcdaotaonhanlucdiaphuong")>=0){
-				isCheckedBC13 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcdaotaonhanlucdiaphuong" '+isCheckedBC13+' type="checkbox"></input></td>'+
-			        '<td>bcdaotaonhanlucdiaphuong</td>'+
-			        '<td>13: Đào tạo nhân lực tại địa phương</td>'+
-			      '</tr>');
-			var isCheckedBC14 = "";
-			if (arrayCollectionName.indexOf("bcthanhkiemtra")>=0){
-				isCheckedBC14 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcthanhkiemtra" '+isCheckedBC14+' type="checkbox"></input></td>'+
-			        '<td>bcthanhkiemtra</td>'+
-			        '<td>14: Thanh kiểm tra</td>'+
-			      '</tr>');
-			var isCheckedBC15 = "";
-			if (arrayCollectionName.indexOf("bccongtacxahoi")>=0){
-				isCheckedBC15 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bccongtacxahoi" '+isCheckedBC15+' type="checkbox"></input></td>'+
-			        '<td>bccongtacxahoi</td>'+
-			        '<td>15: Công tác xã hội hóa</td>'+
-			      '</tr>');
-			var isCheckedBC16 = "";
-			if (arrayCollectionName.indexOf("bcsudungduoclieu")>=0){
-				isCheckedBC16 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcsudungduoclieu" '+isCheckedBC16+' type="checkbox"></input></td>'+
-			        '<td>bcsudungduoclieu</td>'+
-			        '<td>16: Sử Dụng Dược Liệu</td>'+
-			      '</tr>');
-			var isCheckedBC17 = "";
-			if (arrayCollectionName.indexOf("bcduanptduoclieu")>=0){
-				isCheckedBC17 = "checked";
-			}
-			html_content.append('<tr>'+
-			        '<td><input id="bcduanptduoclieu" '+isCheckedBC17+' type="checkbox"></input></td>'+
-			        '<td>bcduanptduoclieu</td>'+
-			        '<td>17: Dự án phát triển dược liệu</td>'+
-			      '</tr>');
 			//self.applyBindings();
     	},
     	renderCombobox: function(){
@@ -258,7 +116,9 @@ define(function (require) {
     	render:function(){
     		console.log("render cai dat bao cao");
     		var self = this;
-    		var tuyendonvi_id = self.getApp().currentUser.donvi.tuyendonvi_id;
+    		var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
+
+//    		var tuyendonvi_id = self.getApp().currentUser.donvi.tuyendonvi_id;
     		self.renderCombobox();
     		var url = '/api/v1/bctuyendonvi';
     		var filters = {"tuyendonvi_id": {"$eq":tuyendonvi_id}};
