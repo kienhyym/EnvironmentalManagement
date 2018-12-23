@@ -1,0 +1,137 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "kqnoikiemnuocsach_id": {
+        "type": "string"
+    },
+    "tt": {
+        "type": "number"
+    },
+    "coliform1": {
+        "type": "number"
+    },
+    "ecoli1": {
+        "type": "number"
+    },
+    "arsenic1": {
+        "type": "number"
+    },
+    "clo1": {
+        "type": "number"
+    },
+    "doduc1": {
+        "type": "number"
+    },
+    "mausac1": {
+        "type": "string",
+        "length": null
+    },
+    "muivi1": {
+        "type": "string",
+        "length": null
+    },
+    "ph1": {
+        "type": "number"
+    },
+    "coliform2": {
+        "type": "number"
+    },
+    "ecoli2": {
+        "type": "number"
+    },
+    "arsenic2": {
+        "type": "number"
+    },
+    "clo2": {
+        "type": "number"
+    },
+    "doduc2": {
+        "type": "number"
+    },
+    "mausac2": {
+        "type": "string",
+        "length": null
+    },
+    "muivi2": {
+        "type": "string",
+        "length": null
+    },
+    "ph2": {
+        "type": "number"
+    },
+    "coliform3": {
+        "type": "number"
+    },
+    "ecoli3": {
+        "type": "number"
+    },
+    "arsenic3": {
+        "type": "number"
+    },
+    "clo3": {
+        "type": "number"
+    },
+    "doduc3": {
+        "type": "number"
+    },
+    "mausac3": {
+        "type": "string",
+        "length": null
+    },
+    "muivi3": {
+        "type": "string",
+        "length": null
+    },
+    "ph3": {
+        "type": "number"
+    },
+    "coliform_dg": {
+        "type": "number"
+    },
+    "ecoli_dg": {
+        "type": "number"
+    },
+    "arsenic_dg": {
+        "type": "number"
+    },
+    "clo_dg": {
+        "type": "number"
+    },
+    "doduc_dg": {
+        "type": "number"
+    },
+    "mausac_dg": {
+        "type": "string",
+        "length": null
+    },
+    "muivi_dg": {
+        "type": "string",
+        "length": null
+    },
+    "ph_dg": {
+        "type": "number"
+    }
+}

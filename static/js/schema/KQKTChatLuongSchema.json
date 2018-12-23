@@ -34,7 +34,22 @@
     "donvibcso": {
         "type": "number"
     },
+    "ngaybc": {
+        "type": "datetime"
+    },
     "bcdinhky": {
+        "type": "string",
+        "length": null
+    },
+    "baocaoquy": {
+        "type": "string",
+        "length": null
+    },
+    "bc6thang": {
+        "type": "string",
+        "length": null
+    },
+    "bc1nam": {
         "type": "string",
         "length": null
     },
@@ -53,11 +68,23 @@
     "kinhphi": {
         "type": "number"
     },
-    "kinhphicu": {
+    "tang": {
         "type": "string",
         "length": null
     },
-    "thuchienbc": {
+    "giam": {
+        "type": "string",
+        "length": null
+    },
+    "bang": {
+        "type": "string",
+        "length": null
+    },
+    "dungqd": {
+        "type": "string",
+        "length": null
+    },
+    "kdungqd": {
         "type": "string",
         "length": null
     },
@@ -93,6 +120,22 @@
         "length": null
     },
     "kyten": {
+        "type": "string",
+        "length": null
+    },
+    "thongso1": {
+        "type": "string",
+        "length": null
+    },
+    "thongso2": {
+        "type": "string",
+        "length": null
+    },
+    "thongso3": {
+        "type": "string",
+        "length": null
+    },
+    "thongso4": {
         "type": "string",
         "length": null
     },
