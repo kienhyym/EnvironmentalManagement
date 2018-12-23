@@ -1,0 +1,41 @@
+{
+    "tt": {
+        "type": "number"
+    },
+     "tendonvi": {
+        "type": "String",
+        "default":null
+    },
+    "sohogd": {
+        "type": "number",
+        "default":0
+    },
+    "laphoso": {
+        "type": "number",
+        "default":0
+    },
+    "hsdaydu": {
+        "type": "number",
+        "default":0
+    },
+    "kdaydu": {
+        "type": "number",
+        "default":0
+    },
+    "slmau": {
+        "type": "number",
+        "default":0
+    },
+    "tsthuchien": {
+        "type": "number",
+        "default":0
+    },
+    "ttbaocao": {
+        "type": "number",
+        "default":0
+    },
+    "bpkhacphuc": {
+        "type": "number",
+        "default":0
+    },
+}

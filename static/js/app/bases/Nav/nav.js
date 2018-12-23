@@ -1270,6 +1270,24 @@ define(function (require) {
 					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
 					"visible": false
 				},
+				{
+					"text": "Mẫu số 03: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "kqkiemtranuocsach",
+					"route": "kqkiemtranuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "kqkiemtranuocsach",
+					"route": "kqkiemtranuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/ModelView",
+					"visible": false
+				},
 			],
 		},
 

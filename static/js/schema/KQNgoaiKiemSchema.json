@@ -1,0 +1,75 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "hosodat": {
+        "type": "string",
+        "length": null
+    },
+    "hosokdat": {
+        "type": "string",
+        "length": null
+    },
+    "thunghiemdat": {
+        "type": "string",
+        "length": null
+    },
+    "thunghiemkdat": {
+        "type": "string",
+        "length": null
+    },
+    "thuchiendat": {
+        "type": "string",
+        "length": null
+    },
+    "thuchienkdat": {
+        "type": "string",
+        "length": null
+    },
+    "bienphatdat": {
+        "type": "string",
+        "length": null
+    },
+    "bienphapkdat": {
+        "type": "string",
+        "length": null
+    },
+    "ketquadat": {
+        "type": "string",
+        "length": null
+    },
+    "ketquakdat": {
+        "type": "string",
+        "length": null
+    },
+    "congkhaidat": {
+        "type": "string",
+        "length": null
+    },
+    "congkhaikdat": {
+        "type": "string",
+        "length": null
+    }
+}

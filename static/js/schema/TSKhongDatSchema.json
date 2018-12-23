@@ -1,0 +1,56 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "kqkiemtranuocsach_id": {
+        "type": "string"
+    },
+    "kqktchatluong_id": {
+        "type": "string"
+    },
+    "tencoso": {
+        "type": "string",
+        "length": null
+    },
+    "thongso1": {
+        "type": "string",
+        "length": null
+    },
+    "thongso2": {
+        "type": "string",
+        "length": null
+    },
+    "thongso3": {
+        "type": "string",
+        "length": null
+    },
+    "thongso4": {
+        "type": "string",
+        "length": null
+    },
+    "tong": {
+        "type": "number"
+    }
+}

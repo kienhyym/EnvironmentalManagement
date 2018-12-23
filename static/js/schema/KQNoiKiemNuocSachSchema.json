@@ -1,0 +1,86 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "thongtuso": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "tendv": {
+        "type": "string",
+        "length": null
+    },
+    "diachi": {
+        "type": "string",
+        "length": null
+    },
+    "congsuat": {
+        "type": "number"
+    },
+    "tonghgd": {
+        "type": "number"
+    },
+    "ncnguyenlieu": {
+        "type": "string",
+        "length": null
+    },
+    "tgkiemtra": {
+        "type": "datetime"
+    },
+    "ngkiemtra": {
+        "type": "string",
+        "length": null
+    },
+    "somauvavitri": {
+        "type": "string",
+        "length": null
+    },
+    "hosotheodoi": {
+        "type": "string",
+        "length": null
+    },
+    "ghichuketqua": {
+        "type": "string",
+        "length": null
+    },
+    "bienphap": {
+        "type": "string",
+        "length": null
+    },
+    "ketluan": {
+        "type": "string",
+        "length": null
+    },
+    "ngayky": {
+        "type": "datetime"
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    }
+}

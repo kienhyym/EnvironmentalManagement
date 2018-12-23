@@ -1,0 +1,111 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "thongtuso": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "donvibcso": {
+        "type": "number"
+    },
+    "bcdinhky": {
+        "type": "string",
+        "length": null
+    },
+    "tongdv": {
+        "type": "number"
+    },
+    "tonghgd": {
+        "type": "number"
+    },
+    "dvduocktra": {
+        "type": "number"
+    },
+    "csngoaikiem": {
+        "type": "number"
+    },
+    "kinhphi": {
+        "type": "number"
+    },
+    "kinhphicu": {
+        "type": "string",
+        "length": null
+    },
+    "thuchienbc": {
+        "type": "string",
+        "length": null
+    },
+    "mauthunghiem": {
+        "type": "number"
+    },
+    "maudatchuan": {
+        "type": "number"
+    },
+    "tyledatchuan": {
+        "type": "number"
+    },
+    "maukdatchuan": {
+        "type": "number"
+    },
+    "tylekdatchuan": {
+        "type": "number"
+    },
+    "dvngoaikiem": {
+        "type": "number"
+    },
+    "tyle": {
+        "type": "number"
+    },
+    "solandv": {
+        "type": "number"
+    },
+    "kqngoaikiem_id": {
+        "type": "string"
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    },
+    "hosotheodoi": {
+        "type": "list"
+    },
+    "tskhongdat": {
+        "type": "list"
+    },
+    "lietkedonvi": {
+        "type": "list"
+    },
+    "kqngoaikiem": {
+        "type": "dict"
+    }
+}

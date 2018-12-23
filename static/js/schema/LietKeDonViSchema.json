@@ -24,10 +24,31 @@
         "type": "string",
         "primary": true
     },
-    "tentinh_id": {
+    "kqkiemtranuocsach_id": {
         "type": "string"
     },
-    "tentinh": {
-        "type": "dict"
+    "kqktchatluong_id": {
+        "type": "string"
+    },
+    "thkqnoikiemnuocsach_id": {
+        "type": "string"
+    },
+    "tt": {
+        "type": "number"
+    },
+    "tendv": {
+        "type": "string",
+        "length": null
+    },
+    "lanngoaikiem": {
+        "type": "number"
+    },
+    "noidung": {
+        "type": "string",
+        "length": null
+    },
+    "thunghiemts": {
+        "type": "string",
+        "length": null
     }
 }

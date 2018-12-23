@@ -6,7 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/BaoCaoNuoc/KetQuaBaoCaoNuocOne/tpl/itemView.html'),
 		schema = require('json!schema/KetQuaBaoCaoNuocOneSchema.json');
-	var DanTocSelectView = require('app/view/DanhMuc/DanToc/view/SelectView');
+	//var DanTocSelectView = require('app/view/DanhMuc/DanToc/view/SelectView');
 
 
 	var currentDate = new Date();
@@ -31,17 +31,17 @@ define(function (require) {
 						{
 							value: 0,
 							text: "không đạt",
-							
+
 						},
 					],
 				},
-				
-			
+
+
 			]
 		},
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML)			
+			// this.setElement(this.el.innerHTML)
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});

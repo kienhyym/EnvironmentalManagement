@@ -30,7 +30,7 @@ class BanCongBoQuyHop(CommonModel):
     ngataobaocao = db.Column(db.DateTime())
     daidienkyten  = db.Column(db.String)
 
-##MauSo 1 
+##MauSo 1
 class BapCaoNuocSachOne(CommonModel):
     __tablename__ = 'baocaonuocsachOne'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
@@ -60,7 +60,7 @@ class BapCaoNuocSachOne(CommonModel):
 class KetQuaBaoCaoNuocOne(CommonModel):
     __tablename__ = 'ketquabaocaonuocone'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    baocaonuocsachOne = db.Column(UUID(as_uuid=True), ForeignKey('baocaonuocsachOne.id'), nullable=True) 
+    baocaonuocsachOne = db.Column(UUID(as_uuid=True), ForeignKey('baocaonuocsachOne.id'), nullable=True)
     mamau = db.Column(db.Integer)
     gioihanchophep1 = db.Column(db.Integer)
     danhgia = db.Column(db.Integer)
@@ -129,7 +129,7 @@ class BaoCaoKiemTraCLNuocSach(CommonModel):
 class TongHopChatLuongNuocTinhNeuCo(CommonModel):
     __tablename__ = 'tonghopchatluongnuoctinhneuco'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    baocaokiemtraclnuocsach = db.Column(UUID(as_uuid=True), ForeignKey('baocaokiemtraclnuocsach.id'), nullable=True) 
+    baocaokiemtraclnuocsach = db.Column(UUID(as_uuid=True), ForeignKey('baocaokiemtraclnuocsach.id'), nullable=True)
     tt = db.Column(db.Integer)
     tendonvi = db.Column(db.String)
     thoigiankiemtra = db.Column(db.DateTime())
@@ -148,6 +148,8 @@ class KQKiemTraNuocSach(CommonModel):
     ngaybanhanh = db.Column(db.DateTime())
     donvibcso =  db.Column(db.Integer)
     ngaybc = db.Column(db.DateTime())
+    bc6thang = db.Column(db.String)
+    bc12thang = db.Column(db.String)
     bcdinhky = db.Column(db.String)
     tongdv = db.Column(db.Integer)
     tonghgd = db.Column(db.Integer)
@@ -155,47 +157,50 @@ class KQKiemTraNuocSach(CommonModel):
     dvduocktra = db.Column(db.Integer)
     csngoaikiem = db.Column(db.Integer)
     kinhphi = db.Column(db.Integer)
-    kinhphitrc = db.Column(db.String)
-    thuchienbc = db.Column(db.String)
-    hosotheodoi = relationship('HoSoTheoDoi',viewonly=True)
+    tang = db.Column(db.String)
+    giam = db.Column(db.String)
+    bang = db.Column(db.String)
+    dungquydinh = db.Column(db.String)
+    kodungquydinh = db.Column(db.String)
+    hosotheodoi = relationship('HoSoTheoDoi')
     mauxn = db.Column(db.Integer)
     maudatchuan = db.Column(db.Integer)
     tylemaudat = db.Column(db.Integer)
     maukdatchuan = db.Column(db.Integer)
     tylemaukdat = db.Column(db.Integer)
-    tskhongdat = relationship('TSKhongDat',viewonly=True)
+    tskhongdat = relationship('TSKhongDat')
     dvngoaikiem = db.Column(db.Integer)
     tylenk = db.Column(db.Integer)
     lannk = db.Column(db.Integer)
-    lietkedonvi = relationship('LietKeDonVi',viewonly=True)
+    lietkedonvi = relationship('LietKeDonVi')
     kqngoaikiem_id = db.Column(UUID(as_uuid=True), ForeignKey('kqngoaikiem.id'), nullable=True)
     kqngoaikiem = relationship('KQNgoaiKiem')
     nhanxet = db.Column(db.String)
     kyten = db.Column(db.String)
-    
-    
+
+
 class HoSoTheoDoi(CommonModel):
     __tablename__ = 'hosotheodoi'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'),index=True, nullable=True)
-    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'),index=True, nullable=True)
+    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'), nullable=True)
+    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'), nullable=True)
     tt = db.Column(db.Integer)
     tendonvi = db.Column(db.String)
     sohogd = db.Column(db.Integer)
-    laphoso = db.Column(db.String)
-    hsdaydu = db.Column(db.String)
-    kdaydu = db.Column(db.String)
-    slmau = db.Column(db.String)
-    tsthuchien = db.Column(db.String)
-    ttbaocao = db.Column(db.String)
-    bpkhacphuc = db.Column(db.String)
+    laphoso = db.Column(db.Integer)
+    hsdaydu = db.Column(db.Integer)
+    kdaydu = db.Column(db.Integer)
+    slmau = db.Column(db.Integer)
+    tsthuchien = db.Column(db.Integer)
+    ttbaocao = db.Column(db.Integer)
+    bpkhacphuc = db.Column(db.Integer)
     tong = db.Column(db.Integer)
-    
+
 class TSKhongDat(CommonModel):
     __tablename__ = 'tskhongdat'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'),index=True, nullable=True)
-    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'),index=True, nullable=True)
+    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'), nullable=True)
+    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'), nullable=True)
     tencoso = db.Column(db.String)
     thongso1 = db.Column(db.String)
     thongso2 = db.Column(db.String)
@@ -203,17 +208,19 @@ class TSKhongDat(CommonModel):
     thongso4 = db.Column(db.String)
     thongso4 = db.Column(db.String)
     tong = db.Column(db.Integer)
-    
+
 class LietKeDonVi(CommonModel):
     __tablename__ = 'lietkedonvi'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'),index=True, nullable=True)
-    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'),index=True, nullable=True)
+    kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'), nullable=True)
+    kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'), nullable=True)
+    thkqnoikiemnuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('thkqnoikiemnuocsach.id'), nullable=True)
     tt = db.Column(db.Integer)
     tendv = db.Column(db.String)
     lanngoaikiem = db.Column(db.Integer)
     noidung = db.Column(db.String)
     thunghiemts = db.Column(db.String)
+
 class KQNgoaiKiem(CommonModel):
     __tablename__ = 'kqngoaikiem'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
@@ -229,7 +236,7 @@ class KQNgoaiKiem(CommonModel):
     ketquakdat = db.Column(db.String)
     congkhaidat = db.Column(db.String)
     congkhaikdat = db.Column(db.String)
-    
+
 #Mẫu số 04
 class KQKTChatLuong(CommonModel):
     __tablename__ = 'kqktchatluong'
@@ -246,23 +253,23 @@ class KQKTChatLuong(CommonModel):
     kinhphi = db.Column(db.Integer)
     kinhphicu = db.Column(db.String)
     thuchienbc = db.Column(db.String)
-    hosotheodoi = relationship('HoSoTheoDoi',viewonly=True)
+    hosotheodoi = relationship('HoSoTheoDoi')
     nhanxet = db.Column(db.String)
     mauthunghiem = db.Column(db.Integer)
     maudatchuan = db.Column(db.Integer)
     tyledatchuan = db.Column(db.Integer)
     maukdatchuan = db.Column(db.Integer)
     tylekdatchuan = db.Column(db.Integer)
-    tskhongdat = relationship('TSKhongDat',viewonly=True)
+    tskhongdat = relationship('TSKhongDat')
     dvngoaikiem = db.Column(db.Integer)
     tyle = db.Column(db.Integer)
     solandv = db.Column(db.Integer)
-    lietkedonvi = relationship('LietKeDonVi',viewonly=True)
+    lietkedonvi = relationship('LietKeDonVi')
     kqngoaikiem_id = db.Column(UUID(as_uuid=True), ForeignKey('kqngoaikiem.id'), nullable=True)
     kqngoaikiem = relationship('KQNgoaiKiem')
     nhanxet = db.Column(db.String)
     kyten = db.Column(db.String)
-      
+
 # Mẫu số 06
 
 class THKQNoiKiemNuocSach(CommonModel):
@@ -276,7 +283,7 @@ class THKQNoiKiemNuocSach(CommonModel):
     congsuat = db.Column(db.Integer)
     tonghgd = db.Column(db.Integer)
     ncnglieu = db.Column(db.String)
-    
+
     laphoso = db.Column(db.String)
     hsdaydu = db.Column(db.String)
     kdaydu = db.Column(db.String)
@@ -284,7 +291,7 @@ class THKQNoiKiemNuocSach(CommonModel):
     tsthuchien = db.Column(db.String)
     ttbaocao = db.Column(db.String)
     bpkhacphuc = db.Column(db.String)
-    
+
     nhanxet = db.Column(db.String)
     mauthunghiem = db.Column(db.Integer)
     maudatchuan = db.Column(db.Integer)
@@ -292,13 +299,13 @@ class THKQNoiKiemNuocSach(CommonModel):
     maukdatchuan = db.Column(db.Integer)
     tylekdatchuan = db.Column(db.Integer)
     chitieukdat = db.Column(db.String)
-    lietkedonvi = relationship('LietKeDonVi',viewonly=True)
+    lietkedonvi = relationship('LietKeDonVi')
     kqngoaikiem_id = db.Column(UUID(as_uuid=True), ForeignKey('kqngoaikiem.id'), nullable=True)
     kqngoaikiem = relationship('KQNgoaiKiem')
     dexuat = db.Column(db.String)
     ketluan = db.Column(db.String)
     thutruong = db.Column(db.String)
-    
+
 # Mẫu số 05
 class KQNoiKiemNuocSach(CommonModel):
     __tablename__ = 'kqnoikiemnuocsach'
@@ -320,8 +327,3 @@ class KQNoiKiemNuocSach(CommonModel):
     ketluan = db.Column(db.String)
     ngayky = db.Column(db.DateTime())
     kyten = db.Column(db.String)
-
-    
-    
-
-    

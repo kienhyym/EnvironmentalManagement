@@ -1,0 +1,137 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "thongtuso": {
+        "type": "string",
+        "length": null
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "donvibcso": {
+        "type": "number"
+    },
+    "ngaybc": {
+        "type": "datetime"
+    },
+    "bc6thang": {
+        "type": "string",
+        "length": null
+    },
+    "bc12thang": {
+        "type": "string",
+        "length": null
+    },
+    "bcdinhky": {
+        "type": "string",
+        "length": null
+    },
+    "tongdv": {
+        "type": "number"
+    },
+    "tonghgd": {
+        "type": "number"
+    },
+    "tyle": {
+        "type": "number"
+    },
+    "dvduocktra": {
+        "type": "number"
+    },
+    "csngoaikiem": {
+        "type": "number"
+    },
+    "kinhphi": {
+        "type": "number"
+    },
+    "tang": {
+        "type": "string",
+        "length": null
+    },
+    "giam": {
+        "type": "string",
+        "length": null
+    },
+    "bang": {
+        "type": "string",
+        "length": null
+    },
+    "dungquydinh": {
+        "type": "string",
+        "length": null
+    },
+    "kodungquydinh": {
+        "type": "string",
+        "length": null
+    },
+    "mauxn": {
+        "type": "number"
+    },
+    "maudatchuan": {
+        "type": "number"
+    },
+    "tylemaudat": {
+        "type": "number"
+    },
+    "maukdatchuan": {
+        "type": "number"
+    },
+    "tylemaukdat": {
+        "type": "number"
+    },
+    "dvngoaikiem": {
+        "type": "number"
+    },
+    "tylenk": {
+        "type": "number"
+    },
+    "lannk": {
+        "type": "number"
+    },
+    "kqngoaikiem_id": {
+        "type": "string"
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kyten": {
+        "type": "string",
+        "length": null
+    },
+    "hosotheodoi": {
+        "type": "list"
+    },
+    "tskhongdat": {
+        "type": "list"
+    },
+    "lietkedonvi": {
+        "type": "list"
+    },
+    "kqngoaikiem": {
+        "type": "dict"
+    }
+}
