@@ -82,5 +82,8 @@
     "kyten": {
         "type": "string",
         "length": null
+    },
+    "tnchatluongnc": {
+        "type": "list"
     }
 }

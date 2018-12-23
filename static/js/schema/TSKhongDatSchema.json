@@ -30,6 +30,9 @@
     "kqktchatluong_id": {
         "type": "string"
     },
+    "thkqnoikiemnuocsach_id": {
+        "type": "string"
+    },
     "tencoso": {
         "type": "string",
         "length": null

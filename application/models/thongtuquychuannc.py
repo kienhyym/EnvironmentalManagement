@@ -188,6 +188,7 @@ class HoSoTheoDoi(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'), nullable=True)
     kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'), nullable=True)
+    thkqnoikiemnuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('thkqnoikiemnuocsach.id'), nullable=True)
     tt = db.Column(db.Integer)
     tendonvi = db.Column(db.String)
     sohogd = db.Column(db.Integer)
@@ -206,6 +207,7 @@ class TSKhongDat(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     kqkiemtranuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('kqkiemtranuocsach.id'), nullable=True)
     kqktchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqktchatluong.id'), nullable=True)
+    thkqnoikiemnuocsach_id = db.Column(UUID(as_uuid=True), ForeignKey('thkqnoikiemnuocsach.id'), nullable=True)
     tencoso = db.Column(db.String)
     thongso1 = db.Column(db.String)
     thongso2 = db.Column(db.String)
@@ -297,15 +299,7 @@ class THKQNoiKiemNuocSach(CommonModel):
     congsuat = db.Column(db.Integer)
     tonghgd = db.Column(db.Integer)
     ncnglieu = db.Column(db.String)
-
-    laphoso = db.Column(db.String)
-    hsdaydu = db.Column(db.String)
-    kdaydu = db.Column(db.String)
-    slmau = db.Column(db.String)
-    tsthuchien = db.Column(db.String)
-    ttbaocao = db.Column(db.String)
-    bpkhacphuc = db.Column(db.String)
-
+    hosotheodoi = relationship('HoSoTheoDoi')
     nhanxet = db.Column(db.String)
     mauthunghiem = db.Column(db.Integer)
     maudatchuan = db.Column(db.Integer)
@@ -319,6 +313,7 @@ class THKQNoiKiemNuocSach(CommonModel):
     dexuat = db.Column(db.String)
     ketluan = db.Column(db.String)
     thutruong = db.Column(db.String)
+
 
 # Mẫu số 05
 class KQNoiKiemNuocSach(CommonModel):

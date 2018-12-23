@@ -52,34 +52,6 @@
         "type": "string",
         "length": null
     },
-    "laphoso": {
-        "type": "string",
-        "length": null
-    },
-    "hsdaydu": {
-        "type": "string",
-        "length": null
-    },
-    "kdaydu": {
-        "type": "string",
-        "length": null
-    },
-    "slmau": {
-        "type": "string",
-        "length": null
-    },
-    "tsthuchien": {
-        "type": "string",
-        "length": null
-    },
-    "ttbaocao": {
-        "type": "string",
-        "length": null
-    },
-    "bpkhacphuc": {
-        "type": "string",
-        "length": null
-    },
     "nhanxet": {
         "type": "string",
         "length": null
@@ -117,6 +89,9 @@
     "thutruong": {
         "type": "string",
         "length": null
+    },
+    "hosotheodoi": {
+        "type": "list"
     },
     "lietkedonvi": {
         "type": "list"

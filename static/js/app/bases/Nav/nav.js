@@ -1307,6 +1307,24 @@ define(function (require) {
 					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/ModelView",
 					"visible": false
 				},
+				{
+					"text": "Mẫu số 06: Tổng hợp kết quả nội kiểm chất lượng nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "thkqnoikiemnuocsach",
+					"route": "thkqnoikiemnuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "thkqnoikiemnuocsach",
+					"route": "thkqnoikiemnuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/ModelView",
+					"visible": false
+				},
 			],
 		},
 
