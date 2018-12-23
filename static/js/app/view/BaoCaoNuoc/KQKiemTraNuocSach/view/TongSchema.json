@@ -2,10 +2,6 @@
     "tt": {
         "type": "number"
     },
-     "tendonvi": {
-        "type": "String",
-        "default":null
-    },
     "sohogd": {
         "type": "number",
         "default":0
@@ -37,5 +33,5 @@
     "bpkhacphuc": {
         "type": "number",
         "default":0
-    },
+    }
 }

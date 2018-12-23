@@ -127,7 +127,7 @@
 					<tr>
 						<th>TT</th>
 						<th style="min-width: 180px">Tên đơn vị cấp nước</th>
-						<th>Số hộ gia đình được cung cấp nước sạch hoặc công suất</th>
+						<th style="min-width: 100px">Số hộ gia đình được cung cấp nước sạch hoặc công suất</th>
 						<th colspan="3">Hồ sơ theo dõi, quản lý chất lượng nước</th>
 
 						<th style="min-width: 90px">Số lượng mẫu và các thông số thử nghiệm nội kiểm trong kỳ báo cáo (đầy đủ theo quy định hay không)</th>
@@ -188,17 +188,175 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="formGroupExampleInput">Tỷ lệ mẫu không đạt quy chuẩn</label>
-					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tskhongdat" />
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tylemaukdat" />
 				</div>
 			</div>
-
+		</div>
+		<div style="margin-top: 20px;" class="row" id="addItem2"></div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							<p>
+								Thông số không đạt
+							</p>
+							Tên cơ sở
+							cấp nước
+						</th>
+						<th><input type="text" data-bind="value:thongso1"></th>
+						<th><input type="text" data-bind="value:thongso2" </th> <th><input type="text" data-bind="value:thongso3" </th> <th><input type="text" data-bind="value:thongso4" </th> </tr> </thead> <tbody id="tskhongdat" data-bind="list:tskhongdat">
+							</tbody>
+			</table>
 		</div>
 
+		<div style="margin-bottom: 20px;margin-top: 10px;">
+			<h5>D. KẾT QUẢ NGOẠI KIỂM NƯỚC SẠCH CỦA CƠ QUAN CÓ THẨM QUYỀN (NẾU CÓ).</h5>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="formGroupExampleInput">1. Số đơn vị cấp nước được ngoại kiểm/ Tổng số đơn vị cấp nước</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:dvngoaikiem" />
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="formGroupExampleInput">Tỷ lệ</label> <input style="margin-top: 18px" type="text" class="form-control" id="formGroupExampleInput" data-bind="value:tylenk" />
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="formGroupExampleInput">2. Số lần ngoại kiểm/ Số đơn vị cấp nước được ngoại kiểm</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:lannk" />
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: 20px;" class="row" id="addItem3"></div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>TT</th>
+						<th>Tên đơn vị thực hiện ngoại kiểm</th>
+						<th>Số lần ngoại kiểm</th>
+						<th>Nội dung ngoại kiểm</th>
+						<th>Thử nghiệm các thông số chất lượng nước (có, không)</th>
+					</tr>
+				</thead>
+				<tbody id="lietkedonvi" data-bind="list:lietkedonvi"></tbody>
+			</table>
+		</div>
+		<div class="row">
+			<p>4. Kết quả ngoại kiểm</p>
+		</div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>TT</th>
+						<th>Nội dung ngoại kiểm</th>
+						<th>Đạt
+							(Số lượng, tỷ lệ%)
+						</th>
+						<th>Không đạt
+							(Số lượng, tỷ lệ%)</th>
 
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>
+							<p>Hồ sơ theo dõi, quản lý chất lượng nước
+								<br />
+								• Lập hồ sơ
+								<br>
+								• Hồ sơ đầy đủ theo quy định</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>
+							<p>Thử nghiệm các thông số chất lượng nước nội kiểm
+								<br>• Số mẫu
+								<br>• Kết quả (số mẫu, tỷ lệ %)
+								<br>• Các thông số không đạt</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>
+							<p>Thực hiện báo cáo, công khai thông tin
+								<br>• Báo cáo
+								<br>• Công khai thông tin</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>
+							<p>Thực hiện các biện pháp khắc phục</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>
+							<p>Kết quả thử nghiệm thông số chất lượng nước của cơ quan ngoại kiểm
+								<br>• Số mẫu
+								<br>• Kết quả (số mẫu, tỷ lệ %)
+								<br>• Các thông số không đạt</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td>
+							<p>Hồ sơ theo dõi, quản lý chất lượng nước
+								• Lập hồ sơ
+								• Hồ sơ đầy đủ theo quy định</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<p>Công khai thông tin chất lượng nước
+								<br>• Thông báo cho đơn vị cấp nước
+								<br>• Công khai trên trang thông tin của cơ quan ngoại kiểm
+								<br>• Thông báo cho cơ quan có thẩm quyền
+								<br>• Thông báo cho đơn vị chủ quản</p>
+						</td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+						<td><input type="text" class="form-control disabled data-bind="value: "></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<p>E. NHẬN XÉT, KIẾN NGHỊ</p>
+			<div class="col-md-6>
+				<div class="form-group">
+					<textarea class="form-control" id="formGroupExampleInput" data-bind="value:nhanxet"></textarea
+			</div>
+			<div class="col-md-6>
+				<div class="form-group">
+					<label for="formGroupExampleInput">Ký tên, đóng dấu</label>
+					<input class="form-control" id="formGroupExampleInput" data-bind="value:kyten">
+			</div>
+		</div>
+		</div>
 	</div>
 </div>
-
 </div>
-
 </div>
 </div>

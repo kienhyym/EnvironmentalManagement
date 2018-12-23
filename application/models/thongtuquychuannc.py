@@ -177,6 +177,10 @@ class KQKiemTraNuocSach(CommonModel):
     kqngoaikiem = relationship('KQNgoaiKiem')
     nhanxet = db.Column(db.String)
     kyten = db.Column(db.String)
+    thongso1 = db.Column(db.String)
+    thongso2 = db.Column(db.String)
+    thongso3 = db.Column(db.String)
+    thongso4 = db.Column(db.String)
 
 
 class HoSoTheoDoi(CommonModel):
@@ -196,6 +200,7 @@ class HoSoTheoDoi(CommonModel):
     bpkhacphuc = db.Column(db.Integer)
     tong = db.Column(db.Integer)
 
+
 class TSKhongDat(CommonModel):
     __tablename__ = 'tskhongdat'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
@@ -205,7 +210,6 @@ class TSKhongDat(CommonModel):
     thongso1 = db.Column(db.String)
     thongso2 = db.Column(db.String)
     thongso3 = db.Column(db.String)
-    thongso4 = db.Column(db.String)
     thongso4 = db.Column(db.String)
     tong = db.Column(db.Integer)
 

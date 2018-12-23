@@ -9,8 +9,11 @@ define(function(require) {
 
   var maxDate = new Date();
   var HoSoTheoDoi = require('app/view/BaoCaoNuoc/HoSoTheoDoi/view/ModelItemView');
-  var tongischema = require('json!app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/tongSchema.json');
-  var tongitemplate = require('text!app/view/BaoCaoNuoc/KQKiemTraNuocSach/tpl/tong.html');
+  var TSKhongDat = require('app/view/BaoCaoNuoc/TSKhongDat/view/ModelItemView');
+  var LietKeDonVi = require('app/view/BaoCaoNuoc/LietKeDonVi/view/ModelItemView');
+
+  var tongischema = require('json!app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/TongSchema.json');
+  var tongitemplate = require('text!app/view/BaoCaoNuoc/KQKiemTraNuocSach/tpl/tongcongi.html');
 
 
   function toInt(x) {
@@ -53,6 +56,32 @@ define(function(require) {
             command: "create"
           }, ],
           toolEl: "#addItem"
+        },
+        {
+          field: "tskhongdat",
+          uicontrol: false,
+          itemView: TSKhongDat,
+          tools: [{
+            name: "create",
+            type: "button",
+            buttonClass: "btn btn-success btn-sm",
+            label: "<span class='fa fa-plus'>Thêm</span>",
+            command: "create"
+          }, ],
+          toolEl: "#addItem2"
+        },
+        {
+          field: "lietkedonvi",
+          uicontrol: false,
+          itemView: LietKeDonVi,
+          tools: [{
+            name: "create",
+            type: "button",
+            buttonClass: "btn btn-success btn-sm",
+            label: "<span class='fa fa-plus'>Thêm</span>",
+            command: "create"
+          }, ],
+          toolEl: "#addItem3"
         },
 
       ],
@@ -134,6 +163,9 @@ define(function(require) {
             if (self.model.get("hosotheodoi").length === 0) {
               self.$el.find("#addItem button").click();
             }
+            // if (self.model.get("tskhongdat").length === 0) {
+            //   self.$el.find("#addItem2 button").click();
+            // }
           },
           error: function() {
             self.getApp().notify("Get data Eror");
@@ -145,6 +177,8 @@ define(function(require) {
         self.renderTinhTongI();
         self.registerTinhTong();
         self.$el.find("#addItem button").click();
+        self.$el.find("#addItem2 button").click();
+        self.$el.find("#addItem3 button").click();
 
       }
 
@@ -153,6 +187,7 @@ define(function(require) {
       var self = this;
       self.model.on("change:hosotheodoi", function() {
         //console.log("hosotheodoi ", self.model.get('hosotheodoi'));
+        console.log("this change event");
         self.renderTinhTongI();
 
       });
@@ -179,27 +214,14 @@ define(function(require) {
         });
       }
 
-      //console.log("data : ", data);
-      // self.tongViewi.model.set(data);
-      // self.tongViewi.applyBindings();
+      console.log("data : ", data);
+      self.tongViewi.model.set(data);
+      self.tongViewi.applyBindings();
       // var sohongheo = self.tongViewi.model.get("hongheo");
       // self.model.set("sohongheo", sohongheo);
-      //
-      // var dantoc333 = self.tongViewi.model.get("dantoc");
-      // self.model.set("sohodtts", dantoc333);
-      //
-      // var soNu = self.tongViewi.model.get("gioitinh");
-      // self.model.set("chuholanu", soNu);
-      //
-      // var tongSoDan = self.model.get("hosotheodoi").length;
-      // self.model.set("hotrongthon", tongSoDan);
-      //
-      // var tongSoDan = self.model.get("hosotheodoi").length;
-      // self.model.set("hotrongthon", tongSoDan);
+      // var sohogd = self.tongViewi.model.get("sohogd");
+      // console.log(sohogd);
 
-      // var sonam = self.tongViewi.model.get("gioitinh");
-      // var sonu = tongSoDan - sonam;
-      // self.model.set("chuholanu", sonu);
     },
 
   });

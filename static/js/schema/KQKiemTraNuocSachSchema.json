@@ -122,6 +122,22 @@
         "type": "string",
         "length": null
     },
+    "thongso1": {
+        "type": "string",
+        "length": null
+    },
+    "thongso2": {
+        "type": "string",
+        "length": null
+    },
+    "thongso3": {
+        "type": "string",
+        "length": null
+    },
+    "thongso4": {
+        "type": "string",
+        "length": null
+    },
     "hosotheodoi": {
         "type": "list"
     },

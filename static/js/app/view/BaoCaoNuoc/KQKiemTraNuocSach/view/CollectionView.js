@@ -20,25 +20,26 @@ define(function (require) {
 					width: 250
 				},
 				{
-					field: "tongsotinh",
-					label: "Tổng số tỉnh trên khu vực phụ trách",
+					field: "tongdv",
+					label: "Tổng số đơn vị cấp nước",
 					width: 250
 				},
 				{
-					field: "tongdonvicapnuoc",
-					label: "Tổng số đơn vị cấp nước trên khu vực phụ trách",
+					field: "tyle",
+					label: "Chiếm tỷ lệ",
 					width: 250
 				},
 				{
-					field: "sotinhcobaocao",
-					label: "Số tỉnh có báo cáo",
+					field: "csngoaikiem",
+					label: "Số cơ sở thực hiện ngoại kiểm",
 					width: 250
 				},
 				{
-					field: "chiemtile",
-					label: "Chiếm tỷ lệ:......%",
+					field: "kinhphi",
+					label: "Số kinh phí được cấp cho công tác ngoại kiểm",
 					width: 250
 				},
+
 
 
 			],
