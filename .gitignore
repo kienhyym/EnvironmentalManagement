@@ -5,3 +5,5 @@ alembic/**/__pycache__
 application/**/__pycache__
 /**/*.DS_Store
 alembic/versions/**
+/**/*.pydevinfo
+/*.pydevinfo

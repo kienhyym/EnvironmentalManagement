@@ -228,7 +228,7 @@ define(function(require) {
         _.each(tongischema, function(props, key) {
           data[key] = toInt(data[key]) + toInt(self.model.get('hosotheodoi')[j][key]);
 
-          data[key] = !data[key] ? self.model.get('hosotheodoi')[j][key] : self.model.get('hosotheodoi')[j][key] + data[key];
+//          data[key] = !data[key] ? self.model.get('hosotheodoi')[j][key] : self.model.get('hosotheodoi')[j][key] + data[key];
 
         });
       }

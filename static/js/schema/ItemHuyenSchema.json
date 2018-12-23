@@ -1,0 +1,68 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "lapkhhuyen_id": {
+        "type": "string"
+    },
+    "hoatdong_huyen": {
+        "type": "string",
+        "length": null
+    },
+    "muctieu_huyen": {
+        "type": "number"
+    },
+    "ketqua_huyen": {
+        "type": "string",
+        "length": null
+    },
+    "songtg_huyen": {
+        "type": "number"
+    },
+    "sonutg_huyen": {
+        "type": "number"
+    },
+    "dttstg_huyen": {
+        "type": "number"
+    },
+    "tiendo": {
+        "type": "string",
+        "length": null
+    },
+    "vihema": {
+        "type": "string",
+        "length": null
+    },
+    "khpheduyet": {
+        "type": "string",
+        "length": null
+    },
+    "tgpheduyetroi": {
+        "type": "datetime"
+    },
+    "tgpheduyet": {
+        "type": "datetime"
+    }
+}

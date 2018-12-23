@@ -5,7 +5,7 @@ define(function (require) {
 	var template = require('text!app/view/PhuLuc/LapKHXa/tpl/model.html'),
 	schema = require('json!schema/LapKHXaSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
-//	var LapKHHuyenView = require('app/view/PhuLuc/LapKHHuyen/view/ModelItemView');
+	var ItemXaView = require('app/view/PhuLuc/ItemXa/view/ModelItemView');
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -72,19 +72,19 @@ define(function (require) {
 						],
 	    			},
 	    			
-//	    			{
-//						field: "lapkhhuyen",
-//						uicontrol: false,
-//						itemView: LapKHHuyenView,
-//						tools: [{
-//							name: "create",
-//							type: "button",
-//							buttonClass: "btn btn-success btn-sm",
-//							label: "<span class='fa fa-plus'>Thêm</span>",
-//							command: "create"
-//						}, ],
-//						toolEl: "#addItem"
-//					},
+	    			{
+						field: "itemxa",
+						uicontrol: false,
+						itemView: ItemXaView,
+						tools: [{
+							name: "create",
+							type: "button",
+							buttonClass: "btn btn-success btn-sm",
+							label: "<span class='fa fa-plus'>Thêm</span>",
+							command: "create"
+						}, ],
+						toolEl: "#addItem"
+					},
 	        	]
 	    	},
 			
@@ -168,7 +168,7 @@ define(function (require) {
 					});
 				} else {
 					self.applyBindings();
-//					self.$el.find("#addItem button").click();
+					self.$el.find("#addItem button").click();
 				}
 
 			},
