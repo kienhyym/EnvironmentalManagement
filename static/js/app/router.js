@@ -8,14 +8,10 @@ define(function (require) {
     var Login		= require('app/bases/views/LoginView');
     var RegisterView	= require('app/bases/views/RegisterView');
     var ForgotPasswordView	= require('app/bases/views/ForgotPasswordView');
-    var NotifyVersionAndroid	= require('app/bases/views/NotifyVersionAndroidView');
-    var NotifyVersionIOS	= require('app/bases/views/NotifyVersionIOSView');
     return Gonrin.Router.extend({
         routes: {
         	"index" : "index",
             "login":"login",
-            "notify_android":"check_version_android",
-            "notify_ios":"check_version_ios",
             "logout": "logout",
             "forgot":"forgotPassword",
             "dangky":"dangky",
@@ -23,12 +19,7 @@ define(function (require) {
             "*path":  "defaultRoute"
         },
         defaultRoute:function(){
-        	var qrcode = this.getApp().getRouter().getParam("qr");
-	    	if(qrcode !== undefined && qrcode!== null && qrcode !==""){
-            	this.navigate("index?qr="+qrcode,true);
-            } else {
             	this.navigate("index",true);
-            }
         },
         index:function(){
         	//check storejs session
@@ -50,14 +41,6 @@ define(function (require) {
 	    	}else{
 	    		this.navigate("login");
 	    	}*/
-        },
-        check_version_android: function(){
-        	var checkVersion = new NotifyVersionAndroid({el: $('body')});
-        	checkVersion.render();
-        },
-        check_version_ios: function(){
-        	var checkVersion = new NotifyVersionIOS({el: $('body')});
-        	checkVersion.render();
         },
         logout: function(){
         	var self = this;

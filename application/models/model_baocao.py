@@ -1241,6 +1241,13 @@ class NhaTieuThongHoi(CommonModel):
 class CapThon(CommonModel):
     __tablename__ = 'capthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
+    
     danhgianam = db.Column(db.DateTime())
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
     stt = db.Column(db.Integer)
@@ -1251,9 +1258,9 @@ class CapThon(CommonModel):
     tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     tenxa = relationship('XaPhuong')
     suprsws = db.Column(db.Integer)
-#     tenthon = db.Column(db.String)
-    tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
-    tenthon = relationship('ThonXom')
+    tenthon = db.Column(db.String)
+    thon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+    thon = relationship('ThonXom', viewonly=True)
     hotrongthon = db.Column(db.Integer)
     chuholanu = db.Column(db.Integer)
     sohongheo = db.Column(db.Integer)
@@ -1268,6 +1275,7 @@ class NhaTieuThonHVS(CommonModel):
     capthon_id = db.Column(UUID(as_uuid=True), ForeignKey('capthon.id'), nullable=True) 
 #     dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True)
 #     dantoc = relationship('DanToc')
+
     dantoc = db.Column(db.Integer)
     stt = db.Column(db.Integer)
     tenchuho = db.Column(db.String)
@@ -1290,18 +1298,24 @@ class NhaTieuThonHVS(CommonModel):
 class CapXa(CommonModel):
     __tablename__ = 'capxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    
     danhgianam = db.Column(db.DateTime())
-    nhatieuxahvs = relationship('NhaTieuXaHVS')
+    capthon = relationship('CapThon')
+#     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
     tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
     tenhuyen = relationship('QuanHuyen')
-    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=False)
     tenxa = relationship('XaPhuong')
     sothon = db.Column(db.Integer)
     suprsws = db.Column(db.Integer)
-#     tenthon = db.Column(db.String)
     hotrongxa = db.Column(db.Integer)
     chuholanu = db.Column(db.Integer)
     sohongheo = db.Column(db.Integer)
@@ -1309,15 +1323,18 @@ class CapXa(CommonModel):
     dantrongxa = db.Column(db.Integer)
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
+    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapXa_donvi_id_danhgianam'),)
+
     
 class NhaTieuXaHVS(CommonModel):
     __tablename__ = 'nhatieuxahvs'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True) 
+    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False) 
 
 #     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
 #     tenthon = relationship('ThonXom')
     stt = db.Column(db.Integer)
+    capthon_id = db.Column(UUID(as_uuid=True), nullable=True) 
     tenthon = db.Column(db.String)
     nuchuho = db.Column(db.Integer)
     sodtts = db.Column(db.Integer)

@@ -25,10 +25,14 @@
         "primary": true
     },
     "capxa_id": {
-        "type": "string"
+        "type": "string",
+        "required": true
     },
     "stt": {
         "type": "number"
+    },
+    "capthon_id": {
+        "type": "string"
     },
     "tenthon": {
         "type": "string",

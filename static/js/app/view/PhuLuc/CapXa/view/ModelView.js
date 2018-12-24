@@ -8,13 +8,15 @@ define(function (require) {
 		schema = require('json!schema/CapXaSchema.json');
 
 
-	var nhatieuxahvsItemView = require('app/view/PhuLuc/NhaTieuXaHVS/view/ModelItemView');
+//	var capthonItemView = require('app/view/PhuLuc/capthon/view/ModelItemView');
 	var tongischema = require('json!app/view/PhuLuc/CapXa/view/TongiSchema.json');
 	var tongitemplate = require('text!app/view/PhuLuc/CapXa/tpl/tongcongi.html');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+
+	var CapThonModelView = require('app/view/PhuLuc/CapThon/view/ModelView');
 
 
 
@@ -48,7 +50,6 @@ define(function (require) {
 					extraFormats: ["YYYY"],
 					maxDate: currentDate,
 				},
-				
 				{
 					field: "tenxa",
 					uicontrol: "ref",
@@ -81,19 +82,19 @@ define(function (require) {
 					foreignField: "tenhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-				{
-					field: "nhatieuxahvs",
-					uicontrol: false,
-					itemView: nhatieuxahvsItemView,
-					tools: [{
-						name: "create",
-						type: "button",
-						buttonClass: "btn btn-success btn-sm",
-						label: "<span class='fa fa-plus'>Thêm</span>",
-						command: "create"
-					}, ],
-					toolEl: "#addItem"
-				},
+//				{
+//					field: "capthon",
+//					uicontrol: false,
+//					itemView: capthonItemView,
+//					tools: [{
+//						name: "create",
+//						type: "button",
+//						buttonClass: "btn btn-success btn-sm",
+//						label: "<span class='fa fa-plus'>Thêm</span>",
+//						command: "create"
+//					}, ],
+//					toolEl: "#addItem"
+//				},
 				{
     				field: "suprsws",
     				uicontrol: "combobox",
@@ -104,6 +105,46 @@ define(function (require) {
     					{ "value": 0, "text": "Không" },
 					],
     			},
+    			{
+					field: "capthon",
+					uicontrol: "grid",
+					refresh: true,
+					primaryField: "id",
+					fields: [
+						{
+							field: "tenthon",
+							label: "Tên Thôn",
+							textField: "ten"
+						},
+						{
+							label: "Tổng số hộ là Nữ",
+							field: "chuholanu"
+						},
+						{
+							field: "sohodtts",
+							label: "Số hộ DTTS"
+						},
+						{
+							field: "sohongheo",
+							label: "Tổng số hộ nghèo"
+						},
+
+					],
+					tools: [{
+						name: "create",
+						buttonClass: "btn-success",
+						label: "Thêm Thôn",
+						command: function () {
+							this.addcapthon();
+						}
+					}],
+					onRowClick: function (event) {
+						if (event.rowId) {
+							var path = 'capthon/model?id=' + event.rowId;
+							this.getApp().getRouter().navigate(path);
+						}
+					}
+				},
 
 			],
 		},
@@ -167,6 +208,21 @@ define(function (require) {
 				},
 			],
 		}],
+		addcapthon: function () {
+			var self = this;
+			var viewData = {
+					"tentinh_id":self.model.get("tentinh_id"),
+					"tentinh":self.model.get("tentinh"),
+					"tenhuyen_id":self.model.get("tenhuyen_id"),
+					"tenhuyen":self.model.get("tenhuyen"),
+					"tenxa_id":self.model.get("tenxa_id"),
+					"tenxa":self.model.get("tenxa"),
+					"capxa_id":self.model.get("id"),
+					"danhgianam":self.model.get("danhgianam")
+			}
+			var viewCapThon = new CapThonModelView({el: self.getApp().$content, viewData:viewData});
+			viewCapThon.render();
+		},
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
@@ -179,10 +235,10 @@ define(function (require) {
 						self.renderTinhTongI();
 						self.registerTinhTong();
 						
-						//console.log("nhatieuxahvs ", self.model.get("nhatieuxahvs").length);
-						if (self.model.get("nhatieuxahvs").length === 0) {
-							self.$el.find("#addItem button").click();
-						}
+						//console.log("capthon ", self.model.get("capthon").length);
+//						if (self.model.get("capthon").length === 0) {
+//							self.$el.find("#addItem button").click();
+//						}
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -190,7 +246,7 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				self.model.set("nhatieuxahvs", []);
+				self.model.set("capthon", []);
 				self.renderTinhTongI();
 				self.registerTinhTong();			
 				self.$el.find("#addItem button").click();
@@ -201,11 +257,11 @@ define(function (require) {
 
 		registerTinhTong: function () {
 			var self = this;
-			self.model.on("change:nhatieuxahvs", function () {
-				//console.log("nhatieuxahvs ", self.model.get('nhatieuxahvs'));
-				self.renderTinhTongI();
-				
-			});
+//			self.model.on("change:capthon", function () {
+//				//console.log("capthon ", self.model.get('capthon'));
+//				self.renderTinhTongI();
+//				
+//			});
 
 
 		},
@@ -219,13 +275,13 @@ define(function (require) {
 			}
 
 			var data = Gonrin.getDefaultModel(tongischema);
-			console.log(self.model.get('nhatieuxahvs'));
-			for (var j = 0; j < self.model.get('nhatieuxahvs').length; j++) {
-				var chitiet = self.model.get('nhatieuxahvs')[j];
+			console.log(self.model.get('capthon'));
+			for (var j = 0; j < self.model.get('capthon').length; j++) {
+				var chitiet = self.model.get('capthon')[j];
 				_.each(tongischema, function (props, key) {
-					data[key] = toInt(data[key]) + toInt(self.model.get('nhatieuxahvs')[j][key]);
+					data[key] = toInt(data[key]) + toInt(self.model.get('capthon')[j][key]);
 
-					//data[key] = !data[key] ? self.model.get('nhatieuxahvs')[j][key] : self.model.get('nhatieuxahvs')[j][key] + data[key];
+					//data[key] = !data[key] ? self.model.get('capthon')[j][key] : self.model.get('capthon')[j][key] + data[key];
 
 				});
 			}
@@ -237,41 +293,12 @@ define(function (require) {
 			self.model.set("sohongheo", sohongheo);
 
 				var soNu = self.tongViewi.model.get("gioitinh");	
-				var tongSoDan = self.model.get("nhatieuxahvs").length;
+				var tongSoDan = self.model.get("capthon").length;
 				var result = tongSoDan - soNu;
 				self.model.set("chuholanu", result);
 
-				// self.model.on("click:addItem", function () {
-				// 	alert("ac");
-				// });
-				// console.log("abc : ", stt);
-				// self.tongViewi.model.set("stt",stt);
 				
 		},
-		// renderCongDon: function (data) {
-		// 	console.log(data);
-		// 	var self = this;
-		// 	var id = this.getApp().getRouter().getParam("id");
-		// 	var $nhatieuxahvs = this.$el.find('#nhatieuxahvs');
-		// 	$nhatieuxahvs.empty();
-		// 	self.model.set("nhatieuxahvs", []);
-		// 	for (var i = 0; i < data.nhatieuxahvs.length; i++) {
-		// 		if (id) {
-		// 			data.nhatieuxahvs[i]["capxa_id"] = id;
-		// 		} else {
-		// 			data.nhatieuxahvs[i]["capxa_id"] = null;
-		// 		}
-		// 		data.nhatieuxahvs[i]["stt"] = i + 1;
-		// 		data.nhatieuxahvs[i]["id"] = null;
-		// 		self.model.get("nhatieuxahvs").push(data.nhatieuxahvs[i])
-		// 	}
-		// 	var $nhatieuxahvs = this.$el.find('#nhatieuxahvs');
-		// 	$nhatieuxahvs.empty();
-		// 	self.model.set("nhatieuxahvs", []);
-		// 	self.applyBindings();
-		// 	self.renderTinhTongI();
-
-		// }
 
 	});
 

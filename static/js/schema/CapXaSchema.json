@@ -1,28 +1,18 @@
 {
-    "created_at": {
-        "type": "datetime"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
     "id": {
         "type": "string",
         "primary": true
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
     },
     "danhgianam": {
         "type": "datetime"
@@ -37,7 +27,8 @@
         "type": "string"
     },
     "tenxa_id": {
-        "type": "string"
+        "type": "string",
+        "required": true
     },
     "sothon": {
         "type": "number"
@@ -66,7 +57,7 @@
     "sonu": {
         "type": "number"
     },
-    "nhatieuxahvs": {
+    "capthon": {
         "type": "list"
     },
     "tentinh": {

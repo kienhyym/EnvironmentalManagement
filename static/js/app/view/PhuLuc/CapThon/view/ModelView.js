@@ -170,6 +170,10 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
+			var viewData = self.viewData;
+			if (viewData !== null && viewData!==undefined){
+				id =null;
+			}
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -189,6 +193,17 @@ define(function (require) {
 					},
 				});
 			} else {
+				
+				console.log("chay vao capthon-----viewData==",viewData);
+
+				self.model.set("tentinh_id", viewData.tentinh_id);
+				self.model.set("tentinh", viewData.tentinh);
+				self.model.set("tenhuyen_id", viewData.tenhuyen_id);
+				self.model.set("tenhuyen", viewData.tenhuyen);
+				self.model.set("tenxa_id", viewData.tenxa_id);
+				self.model.set("tenxa", viewData.tenxa);
+				self.model.set("capxa_id", viewData.capxa_id);
+				self.model.set("danhgianam", viewData.danhgianam);
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
@@ -245,8 +260,6 @@ define(function (require) {
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
 			self.model.set("hotrongthon", tongSoDan);
 
-			var tongSoDan = self.model.get("nhatieuthonhvs").length;
-			self.model.set("hotrongthon", tongSoDan);
 			
 			// var sonam = self.tongViewi.model.get("gioitinh");	
 			// var sonu = tongSoDan - sonam;

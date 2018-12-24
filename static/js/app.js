@@ -154,24 +154,6 @@ require(['jquery', 'gonrin', 'app/router',
 				});
 			}
 		});
-		app.isMobile = false;
-		app.registerScrollToolbar = function (view) {
-			if (!!app.isMobile) {
-				Backbone.off("window:scroll").on("window:scroll", function (evt) {
-					var toolwrap = view.$el.find(".toolbar-wraper");
-					if (evt.direction === "up") {
-						if ($(window).scrollTop() > 30) {
-							toolwrap.addClass("autofix fix");
-						} else {
-							toolwrap.removeClass("autofix fix");
-						}
-					} else if (evt.direction === "down") {
-						toolwrap.removeClass("autofix fix");
-					}
-				});
-			}
-
-		};
 		Backbone.history.start();
 
 		var iScrollPos = 0;
