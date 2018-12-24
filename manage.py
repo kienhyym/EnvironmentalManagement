@@ -115,7 +115,7 @@ def create_test_models():
         db.session.add(dmTuyenDonVi)
         
     tuyendonvi = TuyenDonVi.query.filter(TuyenDonVi.ma == "TW").first()
-    donvi = DonVi( ten=u'Cục quản lý YDCT', captren = None, tuyendonvi_id = tuyendonvi.id)
+    donvi = DonVi( ten=u'Cục quản lý Môi Trường Y Tế', captren = None, tuyendonvi_id = tuyendonvi.id)
     db.session.add(donvi)
     db.session.flush()
     
@@ -128,7 +128,7 @@ def create_test_models():
       
     user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user1.roles.append(role1)
-    user4 = User(email='cuongnd', fullname='Cuong Souciu', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user4 = User(email='cuongnd', fullname='Cuong', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user4.roles.append(role1)
     db.session.add(user1)
     user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
