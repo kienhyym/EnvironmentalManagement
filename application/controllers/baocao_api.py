@@ -14,7 +14,7 @@ from sqlalchemy import or_
 from application.client import HTTPClient 
 
 from application.controllers.preprocess_baocao import post_capthon, pre_post_capxa,baocao_prepost_thon,\
-reponse_capxa_single,baocao_preput_thon,reponse_caphuyen_single
+reponse_capxa_single,baocao_preput_thon,reponse_caphuyen_single,pre_post_huyen
 
 
    
@@ -381,7 +381,7 @@ apimanager.create_api(CapXa,
 apimanager.create_api(CapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_post_huyen], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_caphuyen_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='caphuyen')
 
@@ -417,7 +417,6 @@ apimanager.create_api(CapTinh,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='captinh')
- 
 
 apimanager.create_api(DTTruongHoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

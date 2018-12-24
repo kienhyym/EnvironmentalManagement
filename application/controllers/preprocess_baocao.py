@@ -24,6 +24,22 @@ async def reponse_caphuyen_single(request=None, Model=None, result=None, **kw):
     result = obj
     print(result)
 
+async def pre_post_huyen(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "tenhuyen_id" not in data or data["tenhuyen_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn cấp huyện"}, status=520)
+    if "danhgianam" not in data or data["danhgianam"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    
+    record = db.session.query(CapHuyen).filter(and_(CapHuyen.tenhuyen_id == data['tenhuyen_id'], CapHuyen.danhgianam == data['danhgianam'])).first()
+    if record is not None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+    data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
+    data['donvi_id'] = currentuser.donvi_id
+    data['nguoibaocao_id'] = currentuser.id
 
 async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
     obj = to_dict(result)

@@ -28,9 +28,22 @@
         "type": "string",
         "length": null
     },
+<<<<<<< HEAD
     "kybaocao": {
         "type": "string",
         "length": null
+=======
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+>>>>>>> 90d62ea194fb06c6c834c3171af4b0dc84c2bf0a
     },
     "stt": {
         "type": "number"
@@ -71,6 +84,15 @@
     "loaikhac": {
         "type": "number"
     },
+<<<<<<< HEAD
+=======
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+>>>>>>> 90d62ea194fb06c6c834c3171af4b0dc84c2bf0a
     "tentinh": {
         "type": "dict"
     },

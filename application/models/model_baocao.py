@@ -1249,7 +1249,6 @@ class CapThon(CommonModel):
     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True)
     
     danhgianam = db.Column(db.String)
-    kybaocao = db.Column(db.String)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1374,6 +1373,7 @@ class CapHuyen(CommonModel):
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
+    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapHuyen_donvi_id_danhgianam'),)
 
 
 #Biểu mẫu số 4: Cấp tinh
@@ -1382,6 +1382,12 @@ class CapTinh(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     danhgianam = db.Column(db.String)
     kybaocao = db.Column(db.String)
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1400,7 +1406,7 @@ class CapTinh(CommonModel):
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
-    
+    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapTinh_donvi_id_danhgianam'),)
     
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 
