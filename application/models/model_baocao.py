@@ -1246,7 +1246,7 @@ class CapThon(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-#     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
+    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True)
     
     danhgianam = db.Column(db.String)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
@@ -1316,8 +1316,9 @@ class CapXa(CommonModel):
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     
+    caphuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('caphuyen.id'), nullable=True)
     danhgianam = db.Column(db.String)
-#     capthon = relationship('CapThon')
+    capthon = relationship('CapThon')
 #     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1338,38 +1339,19 @@ class CapXa(CommonModel):
     loaikhac = db.Column(db.Integer)
     __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapXa_donvi_id_danhgianam'),)
 
-    
-class NhaTieuXaHVS(CommonModel):
-    __tablename__ = 'nhatieuxahvs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False) 
-
-#     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
-#     tenthon = relationship('ThonXom')
-    stt = db.Column(db.Integer)
-    capthon_id = db.Column(UUID(as_uuid=True), nullable=True) 
-    tenthon = db.Column(db.String)
-    nuchuho = db.Column(db.Integer)
-    sodtts = db.Column(db.Integer)
-    sohongheo = db.Column(db.Integer) # la ho ngheo ghi 1
-    tuhoai = db.Column(db.Integer)
-    thamdoi = db.Column(db.Integer)
-    haingan = db.Column(db.Integer)
-    coongthong = db.Column(db.Integer)
-#     loaikhac = db.Column(db.String)
-    kconhatieu = db.Column(db.Integer)
-    hopvs = db.Column(db.Integer)
-    khopvs = db.Column(db.Integer)
-    caithien = db.Column(db.Integer)
-    diemruatay = db.Column(db.Integer)
-    tong = db.Column(db.Integer)
-
 #Biểu mẫu số 3: Cấp huyen
 class CapHuyen(CommonModel):
     __tablename__ = 'caphuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+
+    capxa = relationship('CapXa')
+
     danhgianam = db.Column(db.String)
-    nhatieuhuyenhvs = relationship('NhaTieuHuyenHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1380,38 +1362,16 @@ class CapHuyen(CommonModel):
     tenthon = db.Column(db.String)
     tenthon_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
     tenthon = relationship('ThonXom')
-    hotrongthon = db.Column(db.Integer)
+
+    tonghotronghuyen = db.Column(db.Integer)
     chuholanu = db.Column(db.Integer)
     sohongheo = db.Column(db.Integer)
     sohodtts = db.Column(db.Integer)
-    dantrongthon = db.Column(db.Integer)
+    tongdantronghuyen = db.Column(db.Integer)
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
-    
-class NhaTieuHuyenHVS(CommonModel):
-    __tablename__ = 'nhatieuhuyenhvs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    caphuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('caphuyen.id'), nullable=True) 
 
-    tenxa_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    tenxa = relationship('XaPhuong')
-    stt = db.Column(db.Integer)
-    tenchuho = db.Column(db.String)
-    gioitinh = db.Column(db.Integer)
-    dtts = db.Column(db.Integer)
-    hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
-    tuhoai = db.Column(db.Integer)
-    thamdoi = db.Column(db.Integer)
-    haingan = db.Column(db.Integer)
-    coongthong = db.Column(db.Integer)
-    loaikhac = db.Column(db.String)
-    kconhatieu = db.Column(db.Integer)
-    hopvs = db.Column(db.Integer)
-    khopvs = db.Column(db.Integer)
-    caithien = db.Column(db.Integer)
-    diemruatay = db.Column(db.Integer)
-    tong = db.Column(db.Integer)
 
 #Biểu mẫu số 4: Cấp tinh
 class CapTinh(CommonModel):

@@ -9,9 +9,20 @@ import ujson
 import asyncio
 import aiohttp
 from application.models.model_danhmuc import XaPhuong
-from application.models.model_baocao import CapXa, CapThon
+from application.models.model_baocao import CapXa, CapThon, CapHuyen, CapTinh
 from application.models.model_user import TinhTrangBaocaoEnum
 from .helpers import *
+
+
+async def reponse_caphuyen_single(request=None, Model=None, result=None, **kw):
+    obj = to_dict(result)
+    capxa = db.session.query(CapXa).filter(CapXa.tenxa_id == obj['tenhuyen_id']).all()
+    capxas = []
+    for xas in capxa:
+        capxas.append(to_dict(xas))
+    obj['capxa'] = capxas
+    result = obj
+    print(result)
 
 
 async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
