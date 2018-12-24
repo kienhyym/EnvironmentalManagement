@@ -1246,7 +1246,7 @@ class CapThon(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
+#     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
     
     danhgianam = db.Column(db.DateTime())
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
@@ -1305,7 +1305,7 @@ class CapXa(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     
     danhgianam = db.Column(db.DateTime())
-    capthon = relationship('CapThon')
+#     capthon = relationship('CapThon')
 #     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)

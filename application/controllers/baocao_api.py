@@ -14,7 +14,7 @@ from sqlalchemy import or_
 from application.client import HTTPClient 
 
 from application.controllers.preprocess_baocao import post_capthon, pre_post_capxa,baocao_prepost_thon,\
-reponse_capxa_single,baocao_preput
+reponse_capxa_single,baocao_preput_thon
 
 
    
@@ -360,8 +360,8 @@ apimanager.create_api(NhaTieuThongHoi,
 apimanager.create_api(CapThon,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, baocao_prepost_thon], PUT_SINGLE=[auth_func, baocao_preput], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(POST=[post_capthon], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, baocao_prepost_thon], PUT_SINGLE=[auth_func, baocao_preput_thon], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='capthon')
 
 apimanager.create_api(NhaTieuThonHVS,

@@ -84,9 +84,6 @@
     "nguoibaocao": {
         "type": "dict"
     },
-    "capthon": {
-        "type": "list"
-    },
     "tentinh": {
         "type": "dict"
     },

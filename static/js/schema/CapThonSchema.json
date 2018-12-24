@@ -35,10 +35,6 @@
         "type": "number",
         "required": true
     },
-    "capxa_id": {
-        "type": "string",
-        "required": true
-    },
     "danhgianam": {
         "type": "datetime"
     },

@@ -194,15 +194,17 @@ define(function (require) {
 				});
 			} else {
 				
-
-				self.model.set("tentinh_id", viewData.tentinh_id);
-				self.model.set("tentinh", viewData.tentinh);
-				self.model.set("tenhuyen_id", viewData.tenhuyen_id);
-				self.model.set("tenhuyen", viewData.tenhuyen);
-				self.model.set("tenxa_id", viewData.tenxa_id);
-				self.model.set("tenxa", viewData.tenxa);
-				self.model.set("capxa_id", viewData.capxa_id);
-				self.model.set("danhgianam", viewData.danhgianam);
+				if (viewData !== null && viewData!==undefined){
+					self.model.set("tentinh_id", viewData.tentinh_id);
+					self.model.set("tentinh", viewData.tentinh);
+					self.model.set("tenhuyen_id", viewData.tenhuyen_id);
+					self.model.set("tenhuyen", viewData.tenhuyen);
+					self.model.set("tenxa_id", viewData.tenxa_id);
+					self.model.set("tenxa", viewData.tenxa);
+//					self.model.set("capxa_id", viewData.capxa_id);
+					self.model.set("danhgianam", viewData.danhgianam);
+				}
+				
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
