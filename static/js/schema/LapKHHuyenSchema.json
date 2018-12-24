@@ -28,10 +28,28 @@
         "type": "string",
         "length": null
     },
-    "tentinhpd_id": {
+    "tiendo": {
+        "type": "string",
+        "length": null
+    },
+    "vihema": {
+        "type": "string",
+        "length": null
+    },
+    "khpheduyet": {
+        "type": "string",
+        "length": null
+    },
+    "ngaypheduyet": {
+        "type": "datetime"
+    },
+    "ngaytinhpheduyet": {
+        "type": "datetime"
+    },
+    "tentinh_id": {
         "type": "string"
     },
-    "tentinhpd": {
+    "tentinh": {
         "type": "dict"
     },
     "itemhuyen": {

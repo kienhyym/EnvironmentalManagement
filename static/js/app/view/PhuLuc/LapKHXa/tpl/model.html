@@ -1,11 +1,10 @@
-
 <div style="margin-top: 30px" class="panel panel-default">
     <div class="panel-heading">Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông
-tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div>
+        tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-     <!--    <style type="text/css">
+        <!--    <style type="text/css">
             table {
                 table-layout: fixed;
                 width: 100%;
@@ -34,6 +33,28 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div
                 background: #F0F0F0;
             }
         </style> -->
+       <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
+        <table align="center">
+            <thead>
+                <tr>
+                    <th class="top">Tiến độ</th>
+                    <th class="top">VIHEMA và WB rà soát, chấp thuận </th>
+                    <th class="top">Kế hoạch BCC được phê duyệt</th>
+                    <th class="top">Tỉnh phê duyệt</th>
+                    <th class="top">Ngày phê duyệt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" data-bind="value:tiendo" /></td>
+                    <td><input type="text" data-bind="value:vihema" /></td>
+                    <td><input type="text" data-bind="value:khpheduyet" /></td>
+                    <td><input type="text" data-bind="dict:tentinh" /></td>
+                    <td><input type="text" data-bind="value:ngaytinhpheduyet" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
         <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
             <table align="center">
                 <thead>
@@ -43,10 +64,7 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div
                         <th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
                         </th>
                         <th colspan="3" class="top">Số người tham gia</th>
-                        <th class="top">Tiến độ</th>
-                        <th class="top">VIHEMA và WB rà soát</th>
-                        <th class="top">Kế hoạch BCC được phê duyệt</th>
-                        <th class="top">Ngày/tháng/năm tỉnh phê duyệt</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -55,55 +73,42 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div
                         <td>(2)</td>
                         <td>(3)</td>
                         <td colspan="3"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+
 
 
                     </tr>
 
                     <tr class="custom" style="background: #F0F0F0;;">
                         <td colspan="3">
-                            <p>DLI 1.1 Kế hoạch Truyền thông Thay đổi Hành vi đã phê
-                                duyệt được thực hiện ở tỉnh:</p> <input type="text" data-bind="dict:tentinhpd" />
+
                             <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                         </td>
                         <td>Tổng số người tham gia</td>
                         <td>Số người tham gia là nữ</td>
                         <td>Số người tham gia là DTTS</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+
 
 
                     </tr>
 
                     <tr class="custom">
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Chọn ngành: 
-                        <input type="text" class="form-control" id="from" data-bind="value:nganh">
+                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Chọn ngành:
+                            <input type="text" class="form-control" id="from" data-bind="value:nganh">
                         <td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+
 
 
                     </tr>
-			
+
                     <tr>
                         <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã
                         <td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                       
+
+
 
                     </tr>
 
@@ -121,9 +126,9 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp xã</div
                     </tr> -->
 
 
-			
+
                 </tbody>
-                 <div class="row" id="addItem"></div>
+                <div class="row" id="addItem"></div>
                 <tfoot id="itemxa" data-bind="list:itemxa"></tfoot>
             </table>
         </div>

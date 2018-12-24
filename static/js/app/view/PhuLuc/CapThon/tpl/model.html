@@ -8,23 +8,15 @@
 		THU THẬP SỐ LIỆU</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		
 		<div class="title">
 			<p style="padding-top: 20px">
 				<b>Biểu mẫu số 1: Cấp thôn</b>
 			</p>
-			<div class="row" style="text-align: center;">
-				<div>
-					<div class="col-md-7">
-						<p style="float: left; margin-right: 5px; padding-top: 13px;">Đánh
-							giá hiện trạng sử dụng vệ sinh hộ gia đình năm :</p>
-						<input style="width: 200px" type="text" placeholder="YYYY" class="form-control" id="from" data-bind="value:danhgianam">
-					</div>
-				</div>
+			<div class="col-md-12 form-inline">
+				<label>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình năm :</label>
+				<input type="text" placeholder="Năm : " class="form-control" id="from" data-bind="value:danhgianam">
 			</div>
-
 		</div>
-
 		<div class="table1">
 			<p style="font-weight: bold;">I. Thông tin chung</p>
 			<div class="row">
@@ -40,13 +32,13 @@
 								<td>Tên Tỉnh</td>
 								<td><input type="text" class="form-control" data-bind="dict:tentinh" /></td>
 								<td>Tên Huyện</td>
-								<td><input type="text" class="form-control" data-bind="dict:tenhuyen" /></td>
+								<td><input type="text" class="form-control" id="idHuyen" data-bind="dict:tenhuyen" /></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Tên xã</td>
-								<td><input type="text" class="form-control" data-bind="dict:tenxa" /></td>
+								<td><input type="text" class="form-control" id="idXa" data-bind="dict:tenxa" /></td>
 								<td rowspan="2">Tên thôn</td>
-								<td rowspan="2"><input type="text" class="form-control" data-bind="dict:thon" /></td>
+								<td rowspan="2"><input type="text" class="form-control" id="idThon" data-bind="dict:thon" /></td>
 							</tr>
 
 							<tr>

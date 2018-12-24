@@ -130,20 +130,42 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(
-									self.collectionName + "/collection");
+						var ktDate = self.model.get("danhgianam");
+						var ten_tinh = self.model.get("tentinh");
+						var ten_huyen = self.model.get("tenhuyen");
+						var ten_xa = self.model.get("tenxa");
+						var ten_thon = self.model.get("thon");
 
-							},
-							error: function (model, xhr, options) {
-								var msgJson = $.parseJSON(xhr.responseText);
-									if (msgJson) {
-										self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
-									}
-							}
-						});
+						if(ktDate === null){
+							self.getApp().notify({message: "Ngày tháng không đuợc để trống"},{type: "danger"});
+							//self.$el.find("#idHuyen").css("background-color", "yellow");
+						}else if(ten_tinh === null){
+							self.getApp().notify({message: "Tên tỉnh không đuợc để trống"},{type: "danger"});
+						}else if(ten_huyen === null){
+							self.getApp().notify({message: "Tên huyện không đuợc để trống"},{type: "danger"});
+						}else if(ten_xa === null){
+							self.getApp().notify({message: "Tên xã không đuợc để trống"},{type: "danger"});
+						}else if(ten_thon === null){
+							self.getApp().notify({message: "Tên thôn không đuợc để trống"},{type: "danger"});
+						}else {
+
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(
+										self.collectionName + "/collection");
+	
+								},
+								error: function (model, xhr, options) {
+									var msgJson = $.parseJSON(xhr.responseText);
+										if (msgJson) {
+											self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
+										}
+								}
+							});
+						}	
+
+
 					}
 				},
 				{
@@ -184,7 +206,6 @@ define(function (require) {
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
-						self.valiDateFrom();
 						console.log("success");		
 						//console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -213,7 +234,7 @@ define(function (require) {
 				self.renderTinhTongI();
 				self.registerTinhTong();			
 				self.$el.find("#addItem button").click();
-				self.valiDateFrom();
+		
 
 			}
 
@@ -261,15 +282,34 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
 			
-			var dantoc333 = self.tongViewi.model.get("dantoc");
-			self.model.set("sohodtts", dantoc333);
+			var tong_dtts = self.tongViewi.model.get("dantoc");
+			self.model.set("sohodtts", tong_dtts);
 			
 			var soNu = self.tongViewi.model.get("gioitinh");
 			self.model.set("chuholanu", soNu);
 
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
 			self.model.set("hotrongthon", tongSoDan);	
-			var tongTuhoai = self.tongViewi.model.get("tuhoai");	
+
+			var tongTuhoai = self.tongViewi.model.get("tuhoai");
+			self.model.set("tong_tuhoai", tongTuhoai)
+			var tongThamdoi = self.tongViewi.model.get("thamdoi");
+			self.model.set("tong_thamdoi", tongThamdoi)
+			var tong2ngan = self.tongViewi.model.get("haingan");
+			self.model.set("tong_2ngan", tong2ngan)
+			var tongOngthonghoi = self.tongViewi.model.get("coongthong");	
+			self.model.set("tong_ongthonghoi", tongOngthonghoi)
+			var tongKhongconhatieu = self.tongViewi.model.get("kconhatieu");
+			self.model.set("tong_khongnhatieu", tongKhongconhatieu)
+			var tongHopvs = self.tongViewi.model.get("hopvs");
+			self.model.set("tong_hopvs", tongHopvs)
+			var tongKhopvs = self.tongViewi.model.get("khopvs");
+			self.model.set("tong_khonghopvs", tongKhopvs)
+			var tongDuocaithien = self.tongViewi.model.get("caithien");
+			self.model.set("tong_dccaithien", tongDuocaithien)
+			var tongRuatay = self.tongViewi.model.get("diemruatay");
+			self.model.set("tong_diemruatay", tongRuatay)
+
 		},
 
 		checkDate: function(dateInput){  
@@ -280,27 +320,6 @@ define(function (require) {
 				self.getApp().notify({message: "Ngay thang khong dung"},{type: "danger"})
 			}
 		},
-		
-		valiDateFrom: function() {
-			var self = this;
-			var ktDate = self.model.get("danhgianam");
-			var ten_tinh = self.model.get("tentinh");
-			var ten_huyen = self.model.get("tenhuyen");
-			var ten_xa = self.model.get("tenxa");
-			var ten_thon = self.model.get("thon");
-
-			if(ktDate === null || self.checkDate(ktDate)){
-				self.getApp().notify({message: "Ngay thang khong duoc de trong"},{type: "danger"});
-			}else if(ten_tinh === null){
-				self.getApp().notify({message: "Ten tinh khong duoc de trong"},{type: "danger"});
-			}else if(ten_huyen){
-				self.getApp().notify({message: "Ten huyen khong duoc de trong"},{type: "danger"});
-			}else if(ten_xa){
-				self.getApp().notify({message: "Ten xa khong duoc de trong"},{type: "danger"});
-			}else if(ten_thon){
-				self.getApp().notify({message: "Ten thon khong duoc de trong"},{type: "danger"});
-			}	
-		},	
 	});
 
 });

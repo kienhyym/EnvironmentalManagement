@@ -1314,7 +1314,7 @@ class CapXa(CommonModel):
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     
-    danhgianam = db.Column(db.DateTime())
+    danhgianam = db.Column(db.String)
 #     capthon = relationship('CapThon')
 #     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
@@ -1365,7 +1365,7 @@ class NhaTieuXaHVS(CommonModel):
 class CapHuyen(CommonModel):
     __tablename__ = 'caphuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    danhgianam = db.Column(db.DateTime())
+    danhgianam = db.Column(db.String)
     nhatieuhuyenhvs = relationship('NhaTieuHuyenHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1413,7 +1413,7 @@ class NhaTieuHuyenHVS(CommonModel):
 class CapTinh(CommonModel):
     __tablename__ = 'captinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    danhgianam = db.Column(db.DateTime())
+    danhgianam = db.Column(db.String)
     nhatieutinhvs = relationship('NhaTieuTinhHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1458,12 +1458,18 @@ class NhaTieuTinhHVS(CommonModel):
     tong = db.Column(db.Integer)
     
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
+
 class LapKHTinh(CommonModel):
     __tablename__ =  'lapkhtinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tentinhpd = relationship('TinhThanh') 
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    ngaypheduyet = db.Column(db.DateTime())
+    ngaytinhpheduyet = db.Column(db.DateTime())
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh') 
     itemtinh = relationship('ItemTinh')
     
 class ItemTinh(CommonModel):
@@ -1476,18 +1482,19 @@ class ItemTinh(CommonModel):
     songtg_tinh = db.Column(db.Integer)
     sonutg_tinh = db.Column(db.Integer)
     dttstg_tinh = db.Column(db.Integer)
-    tiendo = db.Column(db.String)
-    vihema = db.Column(db.String)
-    khpheduyet = db.Column(db.String)
-    tgpheduyetroi = db.Column(db.DateTime())
-    tgpheduyet = db.Column(db.DateTime())
+
     
 class LapKHHuyen(CommonModel):
     __tablename__ =  'lapkhhuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tentinhpd = relationship('TinhThanh') 
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    ngaypheduyet = db.Column(db.DateTime())
+    ngaytinhpheduyet = db.Column(db.DateTime())
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh') 
     itemhuyen = relationship('ItemHuyen')
     
 class ItemHuyen(CommonModel):
@@ -1500,19 +1507,20 @@ class ItemHuyen(CommonModel):
     songtg_huyen = db.Column(db.Integer)
     sonutg_huyen = db.Column(db.Integer)
     dttstg_huyen = db.Column(db.Integer)
-    tiendo = db.Column(db.String)
-    vihema = db.Column(db.String)
-    khpheduyet = db.Column(db.String)
-    tgpheduyetroi = db.Column(db.DateTime())
-    tgpheduyet = db.Column(db.DateTime())
     
 class LapKHXa(CommonModel):
     __tablename__ =  'lapkhxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tentinhpd = relationship('TinhThanh') 
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    ngaypheduyet = db.Column(db.DateTime())
+    ngaytinhpheduyet = db.Column(db.DateTime())
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh')  
     itemxa = relationship('ItemXa')
+    
     
 class ItemXa(CommonModel):
     __tablename__ = 'itemxa'
@@ -1524,18 +1532,18 @@ class ItemXa(CommonModel):
     songtg_xa = db.Column(db.Integer)
     sonutg_xa = db.Column(db.Integer)
     dttstg_xa = db.Column(db.Integer)
-    tiendo = db.Column(db.String)
-    vihema = db.Column(db.String)
-    khpheduyet = db.Column(db.String)
-    tgpheduyetroi = db.Column(db.DateTime())
-    tgpheduyet = db.Column(db.DateTime())
     
 class LapKHThon(CommonModel):
     __tablename__ =  'lapkhthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tentinhpd = relationship('TinhThanh') 
+    tiendo = db.Column(db.String)
+    vihema = db.Column(db.String)
+    khpheduyet = db.Column(db.String)
+    ngaypheduyet = db.Column(db.DateTime())
+    ngaytinhpheduyet = db.Column(db.DateTime())
+    tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinh = relationship('TinhThanh') 
     itemthon = relationship('ItemThon') 
 
 class ItemThon(CommonModel):
@@ -1548,11 +1556,6 @@ class ItemThon(CommonModel):
     songtg_thon = db.Column(db.Integer)
     sonutg_thon = db.Column(db.Integer)
     dttstg_thon = db.Column(db.Integer)
-    tiendo = db.Column(db.String)
-    vihema = db.Column(db.String)
-    khpheduyet = db.Column(db.String)
-    tgpheduyetroi = db.Column(db.DateTime())
-    tgpheduyet = db.Column(db.DateTime())
     
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
 class VSToanXa(CommonModel):
