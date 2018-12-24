@@ -6,7 +6,6 @@ define(function (require) {
 	schema = require('json!schema/LapKHHuyenSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var ItemHuyenView = require('app/view/PhuLuc/ItemHuyen/view/ModelItemView');
-	var TienDoLapKHView = require('app/view/PhuLuc/TienDoLapKH/view/ModelView');
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 			template: template,
@@ -22,12 +21,12 @@ define(function (require) {
 						maxDate: currentDate,
 					},
 	        		{
-	    				field:"tentinhpd",
+	    				field:"tentinh",
 	    				uicontrol:"ref",
 	    				textField: "ten",
 	    				//chuyen sang thanh object
 	    				foreignRemoteField: "id",
-	    				foreignField: "tentinhpd_id",
+	    				foreignField: "tentinh_id",
 	    				dataSource: TinhThanhSelectView
 	    			},
 	    			{
@@ -46,8 +45,8 @@ define(function (require) {
 	    				textField: "text",
 	    				valueField: "value",
 	    				dataSource: [
-	    					{ "value": "chualap", "text": "Chưa lập kế hoạch BCC" },
-	    					{ "value": "danglap", "text": "Đang lập kế hoach" },
+	    					{ "value": "Chưa lập kế hoạch BCC", "text": "Chưa lập kế hoạch BCC" },
+	    					{ "value": "Đang lập kế hoach", "text": "Đang lập kế hoach" },
 						],
 	    			},
 	    			{
@@ -56,9 +55,9 @@ define(function (require) {
 	    				textField: "text",
 	    				valueField: "value",
 	    				dataSource: [
-	    					{ "value": "chuars", "text": "Chưa rà soát" },
-	    					{ "value": "dangrs", "text": "Đang rà soát" },
-	    					{ "value": "dachapthuan", "text": "Đã chấp thuận" },
+	    					{ "value": "Chưa rà soát", "text": "Chưa rà soát" },
+	    					{ "value": "Đang rà soát", "text": "Đang rà soát" },
+	    					{ "value": "Đã chấp thuận", "text": "Đã chấp thuận" },
 						],
 	    			},
 	    			{
@@ -67,15 +66,10 @@ define(function (require) {
 	    				textField: "text",
 	    				valueField: "value",
 	    				dataSource: [
-	    					{ "value": "chua", "text": "Chưa" },
-	    					{ "value": "roi", "text": "Rồi" },
+	    					{ "value": "Chưa", "text": "Chưa" },
+	    					{ "value": "Rồi", "text": "Rồi" },
 						],
 	    			},
-	    			{
-			        	field:"tiendolapkh",
-			        	uicontrol:false,
-			        	itemView:TienDoLapKHView
-			        },
 	    			
 	    			{
 						field: "itemhuyen",

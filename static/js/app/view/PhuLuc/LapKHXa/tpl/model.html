@@ -33,11 +33,28 @@
                 background: #F0F0F0;
             }
         </style> -->
-        <div class="row">
-            <div class="col-md-12" style="margin-right: 20px">
-                <div data-bind="dict:tiendolapkh"></div>
-            </div>
-        </div>
+       <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
+        <table align="center">
+            <thead>
+                <tr>
+                    <th class="top">Tiến độ</th>
+                    <th class="top">VIHEMA và WB rà soát, chấp thuận </th>
+                    <th class="top">Kế hoạch BCC được phê duyệt</th>
+                    <th class="top">Tỉnh phê duyệt</th>
+                    <th class="top">Ngày/tháng/năm tỉnh phê duyệt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" data-bind="value:tiendo" /></td>
+                    <td><input type="text" data-bind="value:vihema" /></td>
+                    <td><input type="text" data-bind="value:khpheduyet" /></td>
+                    <td><input type="text" data-bind="dict:tentinh" /></td>
+                    <td><input type="text" data-bind="value:ngaytinhpheduyet" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
         <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
             <table align="center">
                 <thead>

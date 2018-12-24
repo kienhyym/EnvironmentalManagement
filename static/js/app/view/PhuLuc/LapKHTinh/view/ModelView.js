@@ -8,7 +8,6 @@ define(function (require) {
 		schema = require('json!schema/LapKHTinhSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
-	var TienDoLapKHView = require('app/view/PhuLuc/TienDoLapKH/view/ModelView');
 
 
 	var currentDate = new Date();
@@ -19,7 +18,13 @@ define(function (require) {
 		collectionName: "lapkhtinh",
 		uiControl: {
 			fields: [{
-					field: "tgpheduyet",
+					field: "ngaypheduyet",
+					textFormat: 'DD-MM-YYYY',
+					extraFormats: ['DDMMYYYY'],
+					maxDate: currentDate,
+				},
+				{
+					field: "ngaytinhpheduyet",
 					textFormat: 'DD-MM-YYYY',
 					extraFormats: ['DDMMYYYY'],
 					maxDate: currentDate,
@@ -54,12 +59,12 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "chualap",
+							"value": "Chưa lập kế hoạch BCC",
 							"text": "Chưa lập kế hoạch BCC"
 						},
 						{
-							"value": "danglap",
-							"text": "Đang lập kế hoach"
+							"value": "Đang lập kế hoạch",
+							"text": "Đang lập kế hoạch"
 						},
 					],
 				},
@@ -69,15 +74,15 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "chuars",
+							"value": "Chưa rà soát",
 							"text": "Chưa rà soát"
 						},
 						{
-							"value": "dangrs",
+							"value": "Đang rà soát",
 							"text": "Đang rà soát"
 						},
 						{
-							"value": "dachapthuan",
+							"value": "Đã chấp thuận",
 							"text": "Đã chấp thuận"
 						},
 					],
@@ -88,20 +93,15 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "chua",
+							"value": "Chưa",
 							"text": "Chưa"
 						},
 						{
-							"value": "roi",
+							"value": "Rồi",
 							"text": "Rồi"
 						},
 					],
 				},
-		        {
-		        	field:"tiendolapkh",
-		        	uicontrol:false,
-		        	itemView:TienDoLapKHView
-		        },
 
 				{
 					field: "itemtinh",

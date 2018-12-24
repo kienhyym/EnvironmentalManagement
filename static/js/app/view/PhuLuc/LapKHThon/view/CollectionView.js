@@ -15,17 +15,16 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     
-	    	    	{ 	field: "tentinhpd_id",
-	    	    		label:"Tỉnh phê duyệt",
-	    	    		foreign: "tentinhpd",
-						foreignValueField: "id",
-						foreignTextField: "ten"},
-						
-	    	    	{ field: "hoatdong_thon",label:"Hoạt động cấp tỉnh"},
-	    	    	{ field: "tiendo",label:"Tiến độ"},
-	    	    	{ field: "vihema",label:"VIHEMA và WB  rà soát, chấp thuận"},
-	    	    	{ field: "khpheduyet",label:"Kế hoạch BCC được phê duyệt"},
-	    	    	{ field: "tgpheduyet",label:"Ngày/tháng/năm tỉnh phê duyệt"},  	    	   	    
+	    		{ 	field: "tentinh_id",
+    	    		label:"Tỉnh phê duyệt",
+    	    		foreign: "tentinh",
+					foreignValueField: "id",
+					foreignTextField: "ten"},
+					
+    	    	{ field: "tiendo",label:"Tiến độ"},
+    	    	{ field: "vihema",label:"VIHEMA và WB"},
+    	    	{ field: "khpheduyet",label:"Kế hoạch BCC"},
+    	    	{ field: "tgpheduyet",label:"Ngày phê duyệt"},  	    	   	    
 	    	     				  
 		     ],
 		     onRowClick: function(event){
