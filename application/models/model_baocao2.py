@@ -1246,7 +1246,8 @@ class CapThon(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-#     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
+
+    capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True)
     
     danhgianam = db.Column(db.String)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
@@ -1278,7 +1279,6 @@ class CapThon(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_dccaithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
-    loaikhac = db.Column(db.Integer)
     
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
@@ -1297,7 +1297,7 @@ class NhaTieuThonHVS(CommonModel):
     thamdoi = db.Column(db.Integer)
     haingan = db.Column(db.Integer)
     coongthong = db.Column(db.Integer)
-#     loaikhac = db.Column(db.String)
+    loaikhac = db.Column(db.String)
     kconhatieu = db.Column(db.Integer)
     hopvs = db.Column(db.Integer)
     khopvs = db.Column(db.Integer)
@@ -1316,7 +1316,8 @@ class CapXa(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     
     danhgianam = db.Column(db.String)
-#     capthon = relationship('CapThon')
+    capthon = relationship('CapThon')
+    loaikhac = db.Column(db.Integer)
 #     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1334,7 +1335,6 @@ class CapXa(CommonModel):
     dantrongxa = db.Column(db.Integer)
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
-    loaikhac = db.Column(db.Integer)
     __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapXa_donvi_id_danhgianam'),)
 
     
@@ -1404,7 +1404,7 @@ class NhaTieuHuyenHVS(CommonModel):
     thamdoi = db.Column(db.Integer)
     haingan = db.Column(db.Integer)
     coongthong = db.Column(db.Integer)
-    loaikhac = db.Column(db.String)
+    loaikhac = db.Column(db.Integer)
     kconhatieu = db.Column(db.Integer)
     hopvs = db.Column(db.Integer)
     khopvs = db.Column(db.Integer)
@@ -1564,15 +1564,6 @@ class ItemThon(CommonModel):
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
 class VSToanXa(CommonModel):
     __tablename__ = 'vstoanxa'
-    
-    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
-    donvi = db.relationship('DonVi', viewonly=True)
-    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
-    nguoibaocao = db.relationship('User', viewonly=True)
-    tinhtrang = db.Column(db.SmallInteger,nullable=True)
-    
-    nambaocao = db.Column(db.SmallInteger(),nullable=False)
-    kybaocao = db.Column(db.SmallInteger(),nullable=False)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
     tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -1588,6 +1579,7 @@ class VSToanXa(CommonModel):
     danso = db.Column(db.Integer)
     nuchuho = db.Column(db.Integer)
     dtts = db.Column(db.Integer)
+    tong = db.Column(db.Integer)
    
 #Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
 class DuyTriVS(CommonModel):

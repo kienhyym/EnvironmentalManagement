@@ -33,7 +33,17 @@ define(function (require) {
 						},
 					],
 				},
-				
+				{
+    				field: "loaikhac",
+    				uicontrol: "combobox",
+    				textField: "text",
+    				valueField: "value",
+    				dataSource: [
+    					{ "value": 1, "text": "Dùng chung" },
+						{ "value": 2, "text": "Một ngăn" },
+						{ "value": 3, "text": " Chìm không OTH" }
+					],
+    			},
 				{
 					field: "dantoc",
 					uicontrol: "combobox",

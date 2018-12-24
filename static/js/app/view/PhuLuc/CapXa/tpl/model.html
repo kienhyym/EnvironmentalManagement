@@ -38,7 +38,7 @@
 								<td rowspan="2">Tên xã</td>
 								<td><input type="text" class="form-control" data-bind="dict:tenxa" /></td>
 								<td rowspan="2">Số thôn trong xã</td>
-								<td rowspan="2"><input type="text" class="form-control" data-bind="value:sothon" /></td>
+								<td rowspan="2"><input type="text" disabled class="form-control" data-bind="value:sothon" /></td>
 							</tr>
 
 							<tr>
@@ -66,11 +66,11 @@
 								<td rowspan="2">Tổng dân số trong xã</td>
 								<td rowspan="2"><input type="text" class="form-control" data-bind="value:dantrongxa" /></td>
 								<td>Nữ</td>
-								<td><input type="text" class="form-control" data-bind="value:sonu" /></td>
+								<td><input type="text" disabled class="form-control" data-bind="value:sonu" /></td>
 							</tr>
 							<tr>
 								<td>Nam</td>
-								<td><input type="text" class="form-control" data-bind="value:sonam" /></td>
+								<td><input type="text" disabled class="form-control" data-bind="value:sonam" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -114,6 +114,7 @@
 					</tr>
 				</thead>
 				<tbody id="itemThon"></tbody>
+				<tfoot id="tongcongi"></tfoot>
 		</div>
 
 		<div>

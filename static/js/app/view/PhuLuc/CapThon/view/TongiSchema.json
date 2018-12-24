@@ -30,6 +30,10 @@
         "type": "number",
         "default":0
     },
+    "loaikhac": {
+        "type": "number",
+        "default":0
+    },
     "kconhatieu": {
         "type": "number",
         "default":0
@@ -50,5 +54,6 @@
         "type": "number",
         "default":0
     }
+
 
 }

@@ -64,6 +64,9 @@
     "sonu": {
         "type": "number"
     },
+    "loaikhac": {
+        "type": "number"
+    },
     "nhatieuhuyenhvs": {
         "type": "list"
     },

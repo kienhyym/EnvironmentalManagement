@@ -109,6 +109,9 @@
     "tong_diemruatay": {
         "type": "number"
     },
+    "loaikhac": {
+        "type": "number"
+    },
     "donvi": {
         "type": "dict"
     },

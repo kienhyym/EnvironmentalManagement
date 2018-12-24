@@ -103,7 +103,8 @@ define(function (require) {
     					{ "value": 1, "text": "Có" },
     					{ "value": 0, "text": "Không" },
 					],
-    			},
+				},
+				
 
 			],
 		},
@@ -258,18 +259,15 @@ define(function (require) {
 				});
 				self.tongViewi.render();
 			}
-
 			var data = Gonrin.getDefaultModel(tongischema);	
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
 				_.each(tongischema, function (props, key) {
 					data[key] = toInt(data[key]) + toInt(self.model.get('nhatieuthonhvs')[j][key]);
-
 					//data[key] = !data[key] ? self.model.get('nhatieuthonhvs')[j][key] : self.model.get('nhatieuthonhvs')[j][key] + data[key];
 
 				});
 			}
-
 			//console.log("data : ", data);
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
@@ -282,6 +280,11 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
 			
+			var tong_nu = self.model.get("sonu");
+			var tong_nam = self.model.get("sonam");
+			var tong_dantrongthon = tong_nam + tong_nu;
+			self.model.set("dantrongthon" , tong_dantrongthon)
+
 			var tong_dtts = self.tongViewi.model.get("dantoc");
 			self.model.set("sohodtts", tong_dtts);
 			

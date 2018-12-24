@@ -79,6 +79,9 @@
     "sonu": {
         "type": "number"
     },
+    "loaikhac": {
+        "type": "number"
+    },
     "donvi": {
         "type": "dict"
     },
