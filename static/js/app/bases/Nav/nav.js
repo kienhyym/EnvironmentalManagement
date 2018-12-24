@@ -304,7 +304,8 @@ define(function (require) {
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
 			"visible": function () {
-				return this.userHasRole("Admin");
+				return false;
+//				return this.userHasRole("Admin");
 			},
 			"entries": [
 
@@ -535,7 +536,8 @@ define(function (require) {
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
 			"visible": function () {
-				return this.userHasRole("Admin");
+				return false;
+//				return this.userHasRole("Admin");
 			},
 			"entries": [{
 					"text": "Mẫu 1: Báo Cáo Thu Thập Dữ Liệu",
@@ -671,7 +673,8 @@ define(function (require) {
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
 			"visible": function () {
-				return this.userHasRole("Admin");
+				return false;
+//				return this.userHasRole("Admin");
 			},
 			"entries": [{
 					"text": "Dùng Cho Nhà Tiêu Tự Hoại",
