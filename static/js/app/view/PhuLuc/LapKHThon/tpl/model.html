@@ -1,136 +1,122 @@
-
 <div style="margin-top: 30px" class="panel panel-default">
-	<div class="panel-heading">Biểu mẫu số 1: Tiến độ lập kế hoạch và
-		thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt -
-		Hoạt động cấp thôn</div>
-	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div class=""
-		style="margin-left: 26px; margin-right: 20px; text-align: left;"
-		block-bind="content">
+    <div class="panel-heading">Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông
+        tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp tỉnh</div>
+    <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+    <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-		<!--    <style type="text/css">
-            table {
-                table-layout: fixed;
-                width: 100%;
-            }
-
-            table,
-            th,
-            td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                display: table;
-            }
-
-            th,
-            td {
-                padding: 5px;
-                text-align: center;
-                display: table-cell;
-            }
-
-            .top {
-                background: #C5DFB5;
-            }
-
-            .custom {
-                background: #F0F0F0;
-            }
-        </style> -->
-		<div class="row"
-			style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
-			<table align="center">
-				<thead>
-					<tr>
-						<th class="top">Hoạt động</th>
-						<th class="top">Mục tiêu</th>
-						<th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
-						</th>
-						<th colspan="3" class="top">Số người tham gia</th>
-						<th class="top">Tiến độ</th>
-						<th class="top">VIHEMA và WB rà soát</th>
-						<th class="top">Kế hoạch BCC được phê duyệt</th>
-						<th class="top">Ngày/tháng/năm tỉnh phê duyệt</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="top">
-						<td>(1)</td>
-						<td>(2)</td>
-						<td>(3)</td>
-						<td colspan="3"></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+        <!--    <style type="text/css">
+           table {
+               table-layout: fixed;
+               width: 100%;
+           }
+ 
+           table,
+           th,
+           td {
+               border: 1px solid black;
+               border-collapse: collapse;
+               display: table;
+           }
+ 
+           th,
+           td {
+               padding: 5px;
+               text-align: center;
+               display: table-cell;
+           }
+ 
+           .top {
+               background: #C5DFB5;
+           }
+ 
+           .custom {
+               background: #F0F0F0;
+           }
+       </style> -->
+        <div class="row">
+            <div class="col-md-12" style="margin-right: 20px">
+                <div data-bind="dict:tiendolapkh"></div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th class="top">Hoạt động</th>
+                        <th class="top">Mục tiêu</th>
+                        <th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
+                        </th>
+                        <th colspan="3" class="top">Số người tham gia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="top">
+                        <td>(1)</td>
+                        <td>(2)</td>
+                        <td>(3)</td>
+                        <td colspan="3"></td>
 
 
-					</tr>
 
-					<tr class="custom" style="background: #F0F0F0;">
-						<td colspan="3">
-							<p>DLI 1.1 Kế hoạch Truyền thông Thay đổi Hành vi đã phê
-								duyệt được thực hiện ở tỉnh:</p> <input type="text"
-							data-bind="dict:tentinhpd" />
-							<p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
-						</td>
-						<td>Tổng số người tham gia</td>
-						<td>Số người tham gia là nữ</td>
-						<td>Số người tham gia là DTTS</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+                    </tr>
+
+                    <tr class="custom" style="background: #F0F0F0;;">
+                        <td colspan="3">
+                            <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
+                        </td>
+                        <td>Tổng số người tham gia</td>
+                        <td>Số người tham gia là nữ</td>
+                        <td>Số người tham gia là DTTS</td>
 
 
-					</tr>
+                    </tr>
 
-					<tr class="custom">
-						<td colspan="3" class="text-left"
-							style="color: red; font-weight: bold;">Chọn ngành: <input
-							type="text" class="form-control" id="from"
-							data-bind="value:nganh">
-						<td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+                    <tr class="custom">
+                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Chọn ngành:
+                            <input type="text" class="form-control" id="from" data-bind="value:nganh">
+                        <td>
+                        <td></td>
+                        <td></td>
 
-			<div style="margin-top:20px;" class="row" id="addItem"></div>
-			<div class="row">
-				<table class="table">
-					<thead>
-						<tr>
-							<td colspan="3" class="text-left"
-								style="color: red; font-weight: bold;">Hoạt động cấp thôn
-							<td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody id="itemthon" data-bind="list:itemthon"></tbody>
-				</table>
-			</div>
-		</div>
-		<div class="text" style="margin-left: 10px">
-			<div class="row">
-				<div class="text-justify">
-					<p style="text-decoration: underline;">Ghi chú:</p>
-					- (1) Hoạt động: ghi tên hoạt động, có thể bổ sung các hoạt động
-					khác mà tỉnh đã triển khai<br> - (2) Cột “Mục tiêu”: điền số
-					lượng các hoạt động<br> - (3) Cột “Kết quả”: điền theo số hoạt
-					động
-				</div>
-			</div>
-		</div>
-	</div>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn
+                        <td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+
+                    <!-- <tr>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:hoatdong_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:muctieu_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:ketqua_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:songtg_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:sonutg_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:dttstg_tinh"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:tiendo"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:vihema"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:khpheduyet"></td>
+                       <td><input type="text" class="form-control" id="from" data-bind="value:tgpheduyet"></td>
+                   </tr> -->
+                </tbody>
+                <div class="row" id="addItem"></div>
+                <tfoot id="itemthon" data-bind="list:itemthon"></tfoot>
+            </table>
+        </div>
+        <br>
+        <div class="text" style="margin-left: 10px">
+            <div class="row">
+                <div class="text-justify">
+                    <p style="text-decoration: underline;">Ghi chú:</p>
+                    - (1) Hoạt động: ghi tên hoạt động, có thể bổ sung các hoạt động khác mà tỉnh đã triển khai<br>
+                    - (2) Cột “Mục tiêu”: điền số lượng các hoạt động<br>
+                    - (3) Cột “Kết quả”: điền theo số hoạt động
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

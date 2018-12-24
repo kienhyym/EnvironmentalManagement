@@ -8,6 +8,7 @@ define(function (require) {
 		schema = require('json!schema/LapKHTinhSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
+	var TienDoLapKHView = require('app/view/PhuLuc/TienDoLapKH/view/ModelView');
 
 
 	var currentDate = new Date();
@@ -24,12 +25,12 @@ define(function (require) {
 					maxDate: currentDate,
 				},
 				{
-					field: "tentinhpd",
+					field: "tentinh",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tentinhpd_id",
+					foreignField: "tentinh_id",
 					dataSource: TinhThanhSelectView
 				},
 				{
@@ -96,9 +97,14 @@ define(function (require) {
 						},
 					],
 				},
+		        {
+		        	field:"tiendolapkh",
+		        	uicontrol:false,
+		        	itemView:TienDoLapKHView
+		        },
 
 				{
-					field: "ItemTinh",
+					field: "itemtinh",
 					uicontrol: false,
 					itemView: ItemTinhView,
 					tools: [{
@@ -114,11 +120,13 @@ define(function (require) {
 		},
 
 
-		tools: [{
+		tools: [
+			{
 			name: "defaultgr",
 			type: "group",
 			groupClass: "toolbar-group",
-			buttons: [{
+			buttons: [
+				{
 					name: "back",
 					type: "button",
 					buttonClass: "btn-default btn-sm",
@@ -135,18 +143,19 @@ define(function (require) {
 					buttonClass: "btn-success btn-sm",
 					label: "TRANSLATE:SAVE",
 					command: function () {
-						var self = this;
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(
-									self.collectionName + "/collection");
+						var self = this;						                				                			 
+						self.model.save(null,
+								{
+									success: function (model, respose,options) {	
+										self.getApp().notify("Lưu thông tin thành công");
+										self.getApp().getRouter().navigate(
+										self.collectionName+ "/collection");
 
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Lưu thông tin không thành công!');
-							}
-						});
+									},
+									error: function (model,xhr, options) {
+										self.getApp().notify('Lưu thông tin không thành công!');
+									}
+								});
 					}
 				},
 				{
@@ -157,53 +166,32 @@ define(function (require) {
 					visible: function () {
 						return this.getApp().getRouter().getParam("id") !== null;
 					},
-					command: function () {
-						var self = this;
-						self.model.destroy({
-							success: function (model, response) {
-								self.getApp().notify('Xoá dữ liệu thành công');
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Xoá dữ liệu không thành công!');
-
-							}
-						});
-					}
+					command: function(){
+	    	    		var self = this;
+	                    self.model.destroy({
+	                        success: function(model, response) {
+	                        	self.getApp().notify('Xoá dữ liệu thành công');
+	                        	self.getApp().getRouter().navigate(self.collectionName+ "/collection");		                        		                        	
+	                        },
+	                        error: function (model, xhr, options) {
+	                            self.getApp().notify('Xoá dữ liệu không thành công!');
+	                            
+	                        }
+	                    });
+	    	    	}
 				},
 			],
-		}],
-		todayNow: function (today) {
-			var now = new Date();
-			var dd = now.getDate();
-			var mm = now.getMonth() + 1;
+		}
+	],
 
-			var yyyy = now.getFullYear();
-			if (dd < 10) {
-				dd = '0' + dd;
-			}
-			if (mm < 10) {
-				mm = '0' + mm;
-			}
-			today = dd + '/' + mm + '/' + yyyy;
-			return today;
-		},
-		
 		render: function () {
 			var self = this;
-			var nows = self.todayNow();
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-						var now = self.model.get("khpheduyet");
-						console.log(now);
-						if (now == "roi") {			
-						self.model.set("ngaythanghientai", nows);
-						console.log(nows);
-						}
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -211,7 +199,7 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				//self.$el.find("#addItem button").click();
+				self.$el.find("#addItem button").click();
 			}
 
 		},

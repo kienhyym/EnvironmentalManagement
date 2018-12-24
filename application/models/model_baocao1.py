@@ -1248,7 +1248,7 @@ class CapThon(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
 #     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
     
-    danhgianam = db.Column(db.String)
+    danhgianam = db.Column(db.DateTime())
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1465,7 +1465,7 @@ class TienDoLapKH(CommonModel):
     vihema = db.Column(db.String)
     khpheduyet = db.Column(db.String)
     ngaypheduyet = db.Column(db.DateTime())
-    ngaytinhpheduyet = db.Column(db.DateTime())
+    tinhpheduyet = db.Column(db.DateTime())
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh') 
     
@@ -1473,8 +1473,6 @@ class LapKHTinh(CommonModel):
     __tablename__ =  'lapkhtinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tiendolapkh_id = db.Column(UUID(as_uuid=True), ForeignKey('tiendolapkh.id'), nullable=True)
-    tiendolapkh = relationship('TienDoLapKH') 
 #     tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
 #     tentinhpd = relationship('TinhThanh') 
     itemtinh = relationship('ItemTinh')
@@ -1495,8 +1493,6 @@ class LapKHHuyen(CommonModel):
     __tablename__ =  'lapkhhuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tiendolapkh_id = db.Column(UUID(as_uuid=True), ForeignKey('tiendolapkh.id'), nullable=True)
-    tiendolapkh = relationship('TienDoLapKH') 
 #     tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
 #     tentinhpd = relationship('TinhThanh') 
     itemhuyen = relationship('ItemHuyen')
@@ -1516,8 +1512,6 @@ class LapKHXa(CommonModel):
     __tablename__ =  'lapkhxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tiendolapkh_id = db.Column(UUID(as_uuid=True), ForeignKey('tiendolapkh.id'), nullable=True)
-    tiendolapkh = relationship('TienDoLapKH') 
 #     tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
 #     tentinhpd = relationship('TinhThanh') 
     itemxa = relationship('ItemXa')
@@ -1538,10 +1532,8 @@ class LapKHThon(CommonModel):
     __tablename__ =  'lapkhthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     nganh = db.Column(db.String)
-    tiendolapkh_id = db.Column(UUID(as_uuid=True), ForeignKey('tiendolapkh.id'), nullable=True)
-    tiendolapkh = relationship('TienDoLapKH') 
-#     tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-#     tentinhpd = relationship('TinhThanh') 
+    tentinhpd_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tentinhpd = relationship('TinhThanh') 
     itemthon = relationship('ItemThon') 
 
 class ItemThon(CommonModel):

@@ -24,27 +24,28 @@
         "type": "string",
         "primary": true
     },
-    "lapkhthon_id": {
+    "tiendo": {
+        "type": "string",
+        "length": null
+    },
+    "vihema": {
+        "type": "string",
+        "length": null
+    },
+    "khpheduyet": {
+        "type": "string",
+        "length": null
+    },
+    "ngaypheduyet": {
+        "type": "datetime"
+    },
+    "ngaytinhpheduyet": {
+        "type": "datetime"
+    },
+    "tentinh_id": {
         "type": "string"
     },
-    "hoatdong_thon": {
-        "type": "string",
-        "length": null
-    },
-    "muctieu_thon": {
-        "type": "number"
-    },
-    "ketqua_thon": {
-        "type": "string",
-        "length": null
-    },
-    "songtg_thon": {
-        "type": "number"
-    },
-    "sonutg_thon": {
-        "type": "number"
-    },
-    "dttstg_thon": {
-        "type": "number"
+    "tentinh": {
+        "type": "dict"
     }
 }

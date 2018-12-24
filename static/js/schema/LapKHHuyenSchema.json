@@ -28,10 +28,10 @@
         "type": "string",
         "length": null
     },
-    "tentinhpd_id": {
+    "tiendolapkh_id": {
         "type": "string"
     },
-    "tentinhpd": {
+    "tiendolapkh": {
         "type": "dict"
     },
     "itemhuyen": {

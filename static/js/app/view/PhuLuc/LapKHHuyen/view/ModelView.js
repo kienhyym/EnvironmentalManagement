@@ -6,7 +6,7 @@ define(function (require) {
 	schema = require('json!schema/LapKHHuyenSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var ItemHuyenView = require('app/view/PhuLuc/ItemHuyen/view/ModelItemView');
-	
+	var TienDoLapKHView = require('app/view/PhuLuc/TienDoLapKH/view/ModelView');
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 			template: template,
@@ -71,6 +71,11 @@ define(function (require) {
 	    					{ "value": "roi", "text": "Rồi" },
 						],
 	    			},
+	    			{
+			        	field:"tiendolapkh",
+			        	uicontrol:false,
+			        	itemView:TienDoLapKHView
+			        },
 	    			
 	    			{
 						field: "itemhuyen",
