@@ -1249,7 +1249,6 @@ class CapThon(CommonModel):
     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=True)
     
     danhgianam = db.Column(db.String)
-    kybaocao = db.Column(db.String)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -1372,6 +1371,7 @@ class CapHuyen(CommonModel):
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
+    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapHuyen_donvi_id_danhgianam'),)
 
 
 #Biểu mẫu số 4: Cấp tinh
@@ -1379,7 +1379,12 @@ class CapTinh(CommonModel):
     __tablename__ = 'captinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     danhgianam = db.Column(db.String)
-    nhatieutinhvs = relationship('NhaTieuTinhHVS')
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1398,30 +1403,7 @@ class CapTinh(CommonModel):
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
-    
-class NhaTieuTinhHVS(CommonModel):
-    __tablename__ = 'nhatieutinhhvs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    captinh_id = db.Column(UUID(as_uuid=True), ForeignKey('captinh.id'), nullable=True) 
-
-    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    tenhuyen = relationship('QuanHuyen')
-    stt = db.Column(db.Integer)
-    tenchuho = db.Column(db.String)
-    gioitinh = db.Column(db.Integer)
-    dtts = db.Column(db.Integer)
-    hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
-    tuhoai = db.Column(db.Integer)
-    thamdoi = db.Column(db.Integer)
-    haingan = db.Column(db.Integer)
-    coongthong = db.Column(db.Integer)
-    loaikhac = db.Column(db.String)
-    kconhatieu = db.Column(db.Integer)
-    hopvs = db.Column(db.Integer)
-    khopvs = db.Column(db.Integer)
-    caithien = db.Column(db.Integer)
-    diemruatay = db.Column(db.Integer)
-    tong = db.Column(db.Integer)
+    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapTinh_donvi_id_danhgianam'),)
     
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 

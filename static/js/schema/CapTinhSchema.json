@@ -28,6 +28,17 @@
         "type": "string",
         "length": null
     },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
     "stt": {
         "type": "number"
     },
@@ -67,8 +78,11 @@
     "loaikhac": {
         "type": "number"
     },
-    "nhatieutinhvs": {
-        "type": "list"
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
     },
     "tentinh": {
         "type": "dict"
