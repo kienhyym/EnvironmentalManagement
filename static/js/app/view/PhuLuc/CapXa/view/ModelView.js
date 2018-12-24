@@ -193,7 +193,9 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
-	
+			self.$el.find('#addThon').unbind("click").bind('click', function () {
+				self.addcapthon();
+			});		
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
@@ -205,9 +207,7 @@ define(function (require) {
 						var dataSourceCapThon = data.attributes.capthon;
 						console.log(dataSourceCapThon);
 						self.model.set("sothon", dataSourceCapThon.length);
-						self.$el.find('#addThon').unbind("click").bind('click', function () {
-							self.addcapthon();
-						});		
+						
 	
 						var total_hoconualachu = 0;
 						var total_sohongheo = 0;

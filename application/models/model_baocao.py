@@ -1319,6 +1319,7 @@ class CapXa(CommonModel):
     
     caphuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('caphuyen.id'), nullable=True)
     danhgianam = db.Column(db.String)
+    kybaocao = db.Column(db.String)
     capthon = relationship('CapThon')
 #     nhatieuxahvs = relationship('NhaTieuXaHVS')
     stt = db.Column(db.Integer)
@@ -1353,6 +1354,7 @@ class CapHuyen(CommonModel):
     capxa = relationship('CapXa')
 
     danhgianam = db.Column(db.String)
+    kybaocao = db.Column(db.String)
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1379,7 +1381,7 @@ class CapTinh(CommonModel):
     __tablename__ = 'captinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     danhgianam = db.Column(db.String)
-    nhatieutinhvs = relationship('NhaTieuTinhHVS')
+    kybaocao = db.Column(db.String)
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
@@ -1399,29 +1401,6 @@ class CapTinh(CommonModel):
     sonu = db.Column(db.Integer)
     loaikhac = db.Column(db.Integer)
     
-class NhaTieuTinhHVS(CommonModel):
-    __tablename__ = 'nhatieutinhhvs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    captinh_id = db.Column(UUID(as_uuid=True), ForeignKey('captinh.id'), nullable=True) 
-
-    tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    tenhuyen = relationship('QuanHuyen')
-    stt = db.Column(db.Integer)
-    tenchuho = db.Column(db.String)
-    gioitinh = db.Column(db.Integer)
-    dtts = db.Column(db.Integer)
-    hongheo = db.Column(db.Integer) # la ho ngheo ghi 1
-    tuhoai = db.Column(db.Integer)
-    thamdoi = db.Column(db.Integer)
-    haingan = db.Column(db.Integer)
-    coongthong = db.Column(db.Integer)
-    loaikhac = db.Column(db.String)
-    kconhatieu = db.Column(db.Integer)
-    hopvs = db.Column(db.Integer)
-    khopvs = db.Column(db.Integer)
-    caithien = db.Column(db.Integer)
-    diemruatay = db.Column(db.Integer)
-    tong = db.Column(db.Integer)
     
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 

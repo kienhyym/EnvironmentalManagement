@@ -28,6 +28,10 @@
         "type": "string",
         "length": null
     },
+    "kybaocao": {
+        "type": "string",
+        "length": null
+    },
     "stt": {
         "type": "number"
     },
@@ -66,9 +70,6 @@
     },
     "loaikhac": {
         "type": "number"
-    },
-    "nhatieutinhvs": {
-        "type": "list"
     },
     "tentinh": {
         "type": "dict"

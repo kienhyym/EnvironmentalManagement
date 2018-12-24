@@ -31,5 +31,9 @@
     "vschocanbo": {
         "type": "string",
         "length": null
+    },
+    "daotaotunhan": {
+        "type": "string",
+        "length": null
     }
 }

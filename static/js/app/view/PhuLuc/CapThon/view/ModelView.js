@@ -48,7 +48,21 @@ define(function (require) {
 					extraFormats: ["YYYY"],
 					maxDate: currentDate,
 				},
-				
+				{
+					field: "kybaocao",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							"value": 1,
+							"text": "6 tháng đầu năm"
+						},
+						{
+							"value": 2,
+							"text": "6 tháng cuối năm"
+						},
+					],
+				},
 				{
 					field: "tenxa",
 					uicontrol: "ref",

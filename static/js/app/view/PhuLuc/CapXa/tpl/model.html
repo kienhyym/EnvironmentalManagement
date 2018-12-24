@@ -3,37 +3,25 @@
 		width: 6%;
 	}
 </style>
-<div style="margin-top: 30px; font-size: 13px" class="panel panel-default">
-	<div class="panel-heading">PHỤ LỤC 1: CÁC BIỂU MẪU THEO DÕI VÀ
-		THU THẬP SỐ LIỆU</div>
+<div style="margin-top: 30px;" class="panel panel-default">
+	<div class="panel-heading">Biểu mẫu đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp xã</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 		
-		<div class="title">
-			<p style="padding-top: 20px">
-				<b>Biểu mẫu số 2: Cấp xã</b>
-			</p>
-			<div class="form-inline">
-				<div class="col-md-6 form-group">
-					<label>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình năm :</label>
-					<input type="text" placeholder="YYYY" class="form-control" id="from" data-bind="value:danhgianam">
-				</div>
-				<div class="col-md-6 form-group">
-					<label>Kỳ đánh giá:</label>
-					<input type="text" class="form-control" id="from" data-bind="value:kybaocao">
-				</div>
+		<div class="row" style="margin-top: 30px;">
+			<div class="col-md-6 form-group">
+				<label>Năm đánh giá:</label>
+				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:danhgianam">
+			</div>
+			<div class="col-md-6 form-group">
+				<label>Kỳ đánh giá:</label>
+				<input type="text" class="form-control" data-bind="value:kybaocao">
 			</div>
 		</div>
 		<div class="table1">
-			<p style="font-weight: bold;">I. Thông tin chung</p>
+			<h3 style="padding-bottom:10px;">I. Thông tin chung</h3>
 			<div class="row">
-				<div class="col-md-12">
 					<table>
-						<thead>
-							<tr>
-								<th colspan="4" class="top">Thông Tin</th>
-							</tr>
-						</thead>
 						<tbody>
 							<tr>
 								<td>Tên Tỉnh</td>
@@ -81,17 +69,14 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
 			</div>
 		</div>
 		<div class="table2">
-			<p style="font-weight: bold">II. Thông tin về nhà tiêu HVS</p>
+			<h3>II. Thông tin về nhà tiêu HVS</h3>
 		</div>
 	
 			
-		<div class="row">
-				<button style="float: left; margin-top: 15px;" id="addThon" class="btn-success btn-sm"><span class="fa fa-plus"></span>Thêm thôn</button>
-		</div>
+		
 		<div id="capthon">
 			
 		</div>
@@ -122,6 +107,9 @@
 				<tbody id="itemThon"></tbody>
 				<tfoot id="tongcongi"></tfoot>
 			</table>
+			<div class="col-md-12">
+				<button style="float: left; margin-top: 15px;" id="addThon" class="btn-success btn-sm"><span class="fa fa-plus"></span>Thêm thôn</button>
+			</div>
 		</div>
 
 		<div>
