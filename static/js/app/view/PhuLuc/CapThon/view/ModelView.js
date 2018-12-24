@@ -281,8 +281,8 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
 			
-			var dantoc333 = self.tongViewi.model.get("dantoc");
-			self.model.set("sohodtts", dantoc333);
+			var tong_dtts = self.tongViewi.model.get("dantoc");
+			self.model.set("sohodtts", tong_dtts);
 			
 			var soNu = self.tongViewi.model.get("gioitinh");
 			self.model.set("chuholanu", soNu);

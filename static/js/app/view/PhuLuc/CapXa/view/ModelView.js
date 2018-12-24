@@ -136,7 +136,10 @@ define(function (require) {
 
 							},
 							error: function (model, xhr, options) {
-								self.getApp().notify('Lưu thông tin không thành công!');
+								var msgJson = $.parseJSON(xhr.responseText);
+										if (msgJson) {
+											self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
+										}
 							}
 						});
 					}
@@ -193,11 +196,14 @@ define(function (require) {
 					success: function (data) {
 						self.applyBindings();
 						var dataSourceCapThon = data.attributes.capthon;
-						console.log(dataSourceCapThon);
+						console.log(dataSourceCapThon.length);
+						self.model.set("", dataSourceCapThon.length);
 						self.$el.find('#addThon').unbind("click").bind('click', function(){
 							self.addcapthon();	
 						});
 						dataSourceCapThon.forEach(element => {
+							var hotrongthon = element.hotrongthon;
+							//self.model.set("hotrongxa", hotrongthon);
 							var tr = $('<tr id="idThon">').attr({"id":element.id});
 							tr.append("<td>" + element.tenthon + "</td>");
 							tr.append("<td>" + element.chuholanu + "</td>");
