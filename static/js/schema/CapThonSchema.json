@@ -36,7 +36,8 @@
         "required": true
     },
     "danhgianam": {
-        "type": "datetime"
+        "type": "string",
+        "length": null
     },
     "stt": {
         "type": "number"
@@ -79,6 +80,33 @@
         "type": "number"
     },
     "sonu": {
+        "type": "number"
+    },
+    "tong_tuhoai": {
+        "type": "number"
+    },
+    "tong_thamdoi": {
+        "type": "number"
+    },
+    "tong_2ngan": {
+        "type": "number"
+    },
+    "tong_ongthonghoi": {
+        "type": "number"
+    },
+    "tong_khongnhatieu": {
+        "type": "number"
+    },
+    "tong_hopvs": {
+        "type": "number"
+    },
+    "tong_khonghopvs": {
+        "type": "number"
+    },
+    "tong_dccaithien": {
+        "type": "number"
+    },
+    "tong_diemruatay": {
         "type": "number"
     },
     "donvi": {

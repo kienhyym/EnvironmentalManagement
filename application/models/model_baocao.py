@@ -1248,7 +1248,7 @@ class CapThon(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
 #     capxa_id = db.Column(UUID(as_uuid=True), ForeignKey('capxa.id'), nullable=False)
     
-    danhgianam = db.Column(db.DateTime())
+    danhgianam = db.Column(db.String)
     nhatieuthonhvs = relationship('NhaTieuThonHVS')
     stt = db.Column(db.Integer)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)

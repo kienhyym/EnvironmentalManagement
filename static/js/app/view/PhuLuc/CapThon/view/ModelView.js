@@ -138,7 +138,10 @@ define(function (require) {
 
 							},
 							error: function (model, xhr, options) {
-								self.getApp().notify('Lưu thông tin không thành công!');
+								var msgJson = $.parseJSON(xhr.responseText);
+									if (msgJson) {
+										self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
+									}
 							}
 						});
 					}
@@ -181,8 +184,8 @@ define(function (require) {
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
-						console.log("success");
-						
+						self.valiDateFrom();
+						console.log("success");		
 						//console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem button").click();
@@ -210,6 +213,7 @@ define(function (require) {
 				self.renderTinhTongI();
 				self.registerTinhTong();			
 				self.$el.find("#addItem button").click();
+				self.valiDateFrom();
 
 			}
 
@@ -219,7 +223,6 @@ define(function (require) {
 			var self = this;
 			self.model.on("change:nhatieuthonhvs", function () {
 				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
-				console.log("registerTinhTong 111");
 				self.renderTinhTongI();
 				
 			});
@@ -249,6 +252,12 @@ define(function (require) {
 			//console.log("data : ", data);
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
+			self.changeTong();
+
+					
+		},
+		changeTong: function() {
+			var self = this;
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("sohongheo", sohongheo);
 			
@@ -259,14 +268,39 @@ define(function (require) {
 			self.model.set("chuholanu", soNu);
 
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
-			self.model.set("hotrongthon", tongSoDan);
-
-			
-			// var sonam = self.tongViewi.model.get("gioitinh");	
-			// var sonu = tongSoDan - sonam;
-			// self.model.set("chuholanu", sonu);			
+			self.model.set("hotrongthon", tongSoDan);	
+			var tongTuhoai = self.tongViewi.model.get("tuhoai");	
 		},
 
+		checkDate: function(dateInput){  
+			var self = this;
+			var re = /(2[0-9]{4})\b/g;
+			var OK = re.exec(dateInput);  
+			if(!OK){
+				self.getApp().notify({message: "Ngay thang khong dung"},{type: "danger"})
+			}
+		},
+		
+		valiDateFrom: function() {
+			var self = this;
+			var ktDate = self.model.get("danhgianam");
+			var ten_tinh = self.model.get("tentinh");
+			var ten_huyen = self.model.get("tenhuyen");
+			var ten_xa = self.model.get("tenxa");
+			var ten_thon = self.model.get("thon");
+
+			if(ktDate === null || self.checkDate(ktDate)){
+				self.getApp().notify({message: "Ngay thang khong duoc de trong"},{type: "danger"});
+			}else if(ten_tinh === null){
+				self.getApp().notify({message: "Ten tinh khong duoc de trong"},{type: "danger"});
+			}else if(ten_huyen){
+				self.getApp().notify({message: "Ten huyen khong duoc de trong"},{type: "danger"});
+			}else if(ten_xa){
+				self.getApp().notify({message: "Ten xa khong duoc de trong"},{type: "danger"});
+			}else if(ten_thon){
+				self.getApp().notify({message: "Ten thon khong duoc de trong"},{type: "danger"});
+			}	
+		},	
 	});
 
 });

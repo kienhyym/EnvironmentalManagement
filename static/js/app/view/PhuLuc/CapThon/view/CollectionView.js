@@ -14,70 +14,58 @@ define(function (require) {
 		collectionName: "capthon",
 		uiControl: {
 			fields: [
-
+				{
+					field: "danhgianam",
+					label: "Ngày báo cáo"
+				},
 				{
 					field: "tentinh_id",
-					label: "Tên tỉnh",
+					label: "Tỉnh",
 					foreign: "tentinh",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
 					field: "tenhuyen_id",
-					label: "Tên huyện",
+					label: "Huyện",
 					foreign: "tenhuyen",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "tenthon_id",
-					label: "Thôn xóm",
-					foreign: "tenthon",
-					foreignValueField: "id",
-					foreignTextField: "ten",
-				},
-				{
 					field: "tenxa_id",
-					label: "Tên xã",
+					label: "Xã",
 					foreign: "tenxa",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
 					field: "thon_id",
-					label: "Tên thôn",
+					label: "Thôn",
 					foreign: "thon",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
 					field: "hotrongthon",
-					label: "Tổng số hộ trong thôn"
+					label: "Tổng số hộ"
 				},
 				{
 					field: "chuholanu",
-					label: "Số hộ có nữ là chủ hộ"
+					label: "Số hộ nữ là chủ hộ"
 				},
 				{
 					field: "sohongheo",
 					label: "Số hộ nghèo"
 				},
-				
+
 				{
 					field: "sohodtts",
 					label: "Số hộ là DTTS"
 				},
 				{
 					field: "dantrongthon",
-					label: "Tổng số dân trong thôn"
-				},
-				{
-					field: "sonu",
-					label: "Số nữ"
-				},
-				{
-					field: "sonam",
-					label: "Số nam "
+					label: "Tổng số dân"
 				},
 
 			],
