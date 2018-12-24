@@ -1557,6 +1557,15 @@ class ItemThon(CommonModel):
 # Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
 class VSToanXa(CommonModel):
     __tablename__ = 'vstoanxa'
+    
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=True)
+    
+    nambaocao = db.Column(db.SmallInteger(),nullable=False)
+    kybaocao = db.Column(db.SmallInteger(),nullable=False)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
     tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -1572,7 +1581,6 @@ class VSToanXa(CommonModel):
     danso = db.Column(db.Integer)
     nuchuho = db.Column(db.Integer)
     dtts = db.Column(db.Integer)
-    tong = db.Column(db.Integer)
    
 #Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
 class DuyTriVS(CommonModel):

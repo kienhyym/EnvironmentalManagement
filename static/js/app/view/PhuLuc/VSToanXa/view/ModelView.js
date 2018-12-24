@@ -97,13 +97,10 @@ define(function (require) {
 						}
 					},
 					{
-						name: "delete",
+						name: "calculator",
 						type: "button",
-						buttonClass: "btn-danger btn-sm",
-						label: "TRANSLATE:DELETE",
-						visible: function () {
-							return this.getApp().getRouter().getParam("id") !== null;
-						},
+						buttonClass: "btn-primary btn-sm",
+						label: "Cộng dồn",
 						command: function(){
 		    	    		var self = this;
 		                    self.model.destroy({

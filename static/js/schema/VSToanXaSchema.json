@@ -24,6 +24,24 @@
     "deleted_at": {
         "type": "datetime"
     },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true
+    },
     "tentinh_id": {
         "type": "string"
     },
@@ -60,8 +78,11 @@
     "dtts": {
         "type": "number"
     },
-    "tong": {
-        "type": "number"
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
     },
     "tentinh": {
         "type": "dict"

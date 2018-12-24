@@ -1,49 +1,35 @@
-<div style="margin-top: 30px" class="panel panel-default">
-	<div class="panel-heading">Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh (Chỉ số 1.2)</div>
-	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div class=""
-		style="margin-left: 26px; margin-right: 20px; text-align: left;"
-		block-bind="content">
-
-<!-- 		<style type="text/css">
-table {
-	table-layout: fixed;
-	width: 100%;
-}
-
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	display: table;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-	display: table-cell;
-}
-
-.top {
-	background: #C5DFB5;
-}
-</style> -->
 <style type="text/css">
 .css {
-	width: 6%;
+	width: 7%;
 }
 
 .css1 {
-	width: 11%;
+	width: 15%;
 }
 </style>
+<div  class="panel panel-default">
+	<div class="panel-heading">Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh (Chỉ số 1.2)</div>
+	<div class="row" style="margin: 30px">
+		<div class="col-md-12" block-bind="toolbar"></div>
+		
+		<div class="col-md-12" style="padding-top: 10px;">
+			
+			<div class="form-group col-md-6">
+				<label>Tỉnh/Thành phố</label>
+				<input type="text" class="form-control" data-bind="dict:tentinh">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Năm báo cáo</label>
+				<input type="text" class="form-control"
+				data-bind="value:nambaocao">
+			</div>
+		</div>
+		</div>
+	<div style="padding-top: 10px;" block-bind="content">
 
-
-		<div class="row"
-			style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
 			<table align="center">
 				<thead>
 					<tr>
-						<th class="top css1">Tên Tỉnh</th>
 						<th class="top css1">Tên Huyện</th>
 						<th class="top css1">Tên Xã</th>
 						<th class="top css">% HGĐ có nhà tiêu cải thiện</th>
@@ -59,30 +45,19 @@ th, td {
 				</thead>
 				<tbody>
 					<tr>
-					<td><input type="text" class="form-control" id="from"
-							data-bind="dict:tentinh"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td><input readonly  type="text" class="form-control" id="from"
 							data-bind="dict:tenhuyen"></td>
-						<td><input type="text" class="form-control" id="from"
+						<td><input readonly type="text" class="form-control" id="from"
 							data-bind="dict:tenxa"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:nhatieu"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:diemruatay"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:truonghvs"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:sohocsinh"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:tramytehvs"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:sohogd"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:danso"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:nuchuho"></td>
-						<td><input type="text" class="form-control" id="from"
-							data-bind="value:dtts"></td>
+						<td data-bind="text:nhatieu"></td>
+						<td data-bind="text:diemruatay"></td>
+						<td data-bind="text:truonghvs"></td>
+						<td data-bind="text:sohocsinh"></td>
+						<td data-bind="text:tramytehvs"></td>
+						<td data-bind="text:sohogd"></td>
+						<td data-bind="text:danso"></td>
+						<td data-bind="text:nuchuho"></td>
+						<td data-bind="text:dtts"></td>
 					</tr>
 
 					<tr>
@@ -97,11 +72,9 @@ th, td {
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
 		<br>
 		<div class="text" style="margin-left: 20px">
 			<div class="row">
