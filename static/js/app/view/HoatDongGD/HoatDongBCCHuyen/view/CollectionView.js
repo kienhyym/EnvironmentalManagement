@@ -14,11 +14,9 @@ define(function (require) {
     	collectionName: "hoatdongbcchuyen",
     	uiControl:{
     		fields: [
-    			 { field: "hoptrienkhai", label: "Họp triển khai cấp huyện", width:250,},
-				 { field: "vschocanbo", label: "Tập huấn truyền thông", width:250}
-				
-				
-				 
+    			 { field: "hoptrienkhai", label: "Họp triển khai cấp huyện"},
+				 { field: "vschocanbo", label: "Tập huấn truyền thông"},
+				 { field: "daotaotunhan", label: "Đào tạo tư nhân"}
 
 		     ],
 		     onRowClick: function(event){

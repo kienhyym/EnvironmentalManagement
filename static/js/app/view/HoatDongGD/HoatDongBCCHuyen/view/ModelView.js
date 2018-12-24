@@ -21,9 +21,9 @@ define(function (require) {
 		    				textField: "text",
 		    				valueField: "value",
 		    				dataSource: [
-		    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-		    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-		    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+		    					{"value": "0", "text": "Chưa thực hiện" },
+		    					{"value": "1", "text": "Đang thực hiện" },
+		    					{"value": "2", "text": "Đã thực hiện" }
 							]
 		    			},
 		    			{
@@ -32,9 +32,20 @@ define(function (require) {
 		    				textField: "text",
 		    				valueField: "value",
 		    				dataSource: [
-		    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-		    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-		    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+		    					{"value": "0", "text": "Chưa thực hiện" },
+		    					{"value": "1", "text": "Đang thực hiện" },
+		    					{"value": "2", "text": "Đã thực hiện" }
+							]
+		    			},
+		    			{
+		    				field:"daotaotunhan",
+		    				uicontrol: "combobox",
+		    				textField: "text",
+		    				valueField: "value",
+		    				dataSource: [
+		    					{"value": "0", "text": "Chưa thực hiện" },
+		    					{"value": "1", "text": "Đang thực hiện" },
+		    					{"value": "2", "text": "Đã thực hiện" }
 							]
 		    			},
 				 	],
@@ -114,7 +125,7 @@ define(function (require) {
 							self.applyBindings();
 						},
 						error: function () {
-							self.getApp().notify("Get data Eror");
+							self.getApp().notify("Lỗi lấy dữ liệu");
 						},
 					});
 				} else {

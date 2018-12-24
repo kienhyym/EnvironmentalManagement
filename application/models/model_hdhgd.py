@@ -333,6 +333,7 @@ class HoatDongBCCHuyen(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     hoptrienkhai = db.Column(db.String)
     vschocanbo = db.Column(db.String)
+    daotaotunhan = db.Column(db.String)
     
 class HoatDongBCCXaThon(CommonModel):
     __tablename__ = 'hoatdongbccxathon'

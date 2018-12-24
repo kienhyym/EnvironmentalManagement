@@ -32,11 +32,11 @@ define(function (require) {
 				
 				{
 					field: "sothon",
-					label: "Số thôn trong xã"
+					label: "Tổng Số thôn"
 				},
 				{
 					field: "hotrongxa",
-					label: "Tổng Số hộ trong xã"
+					label: "Tổng Số hộ"
 				},
 				{
 					field: "chuholanu",
@@ -45,7 +45,7 @@ define(function (require) {
 				
 				{
 					field: "sohongheo",
-					label: "Số hộ nghèo là"
+					label: "Tổng số hộ nghèo"
 				},
 				{
 					field: "sohodtts",
@@ -53,15 +53,15 @@ define(function (require) {
 				},
 				{
 					field: "dantrongxa",
-					label: "Tổng dân số trong xã"
+					label: "Tổng dân số"
 				},
 				{
 					field: "sonu",
-					label: "Số nữ"
+					label: "Số Nữ"
 				},
 				{
 					field: "sonam",
-					label: "Số nam "
+					label: "Số Nam "
 				},
 
 			],
