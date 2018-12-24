@@ -31,7 +31,7 @@ async def pre_post_capxa(request=None, data=None, Model=None, **kw):
     data['nguoibaocao_id'] = currentuser.id
     
     
-async def baocao_prepost(request=None, data=None, Model=None, **kw):
+async def baocao_prepost_thon(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
@@ -44,14 +44,21 @@ async def baocao_prepost(request=None, data=None, Model=None, **kw):
     record = db.session.query(CapThon).filter(and_(CapThon.tenthon_id == data['tenthon_id'], CapThon.danhgianam == data['danhgianam'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+    data['tenthon'] = data['thon']['ten']
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     
+async def baocao_preput(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    data['tenthon'] = data['thon']['ten']
+      
 async def post_capthon(request=None, Model=None, result=None, **kw):
     obj = to_dict(result)
-    obj['tenthon'] = obj['thon']['ten']
-    result = obj
+#     obj['tenthon'] = obj['thon']['ten']
+#     result = obj
 #     nhatieuxa = NhaTieuXaHVS()
 #     nhatieuxa.capxa_id = obj['capxa_id']
 #     nhatieuxa.capthon_id = obj['id']

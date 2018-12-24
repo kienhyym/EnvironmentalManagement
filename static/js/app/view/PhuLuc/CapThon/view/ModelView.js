@@ -58,11 +58,11 @@ define(function (require) {
 					dataSource: XaPhuongSelectView
 				},
 				{
-					field: "tenthon",
+					field: "thon",
 					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
-					foreignField: "tenthon_id",
+					foreignField: "thon_id",
 					dataSource: ThonXomSelectView
 				},
 				{
