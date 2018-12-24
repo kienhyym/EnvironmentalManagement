@@ -1235,7 +1235,7 @@ define(function (require) {
 				return this.userHasRole("Admin");
 			},
 			"entries": [{
-					"text": "Kết quả ngoại kiểm chất lượng nước sạch",
+					"text": "Mẫu số 01: Kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
 					"collectionName": "baocaonuocsachOne",
@@ -1249,7 +1249,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "baocaonuocsachOne",
 					"route": "baocaonuocsachOne/model",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
+					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/ModelView",
 					"visible": false
 				},
 				{
@@ -1288,7 +1288,7 @@ define(function (require) {
 					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/ModelView",
 					"visible": false
 				},
-				
+
 				{
 					"text": "Mẫu số 04: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",

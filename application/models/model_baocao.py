@@ -1269,6 +1269,15 @@ class CapThon(CommonModel):
     sonam = db.Column(db.Integer)
     sonu = db.Column(db.Integer)
     #bo sung them tong cua cac truong can thong ke
+    tong_tuhoai = db.Column(db.Integer)
+    tong_thamdoi = db.Column(db.Integer)
+    tong_2ngan = db.Column(db.Integer)
+    tong_ongthonghoi = db.Column(db.Integer)
+    tong_khongnhatieu = db.Column(db.Integer)
+    tong_hopvs = db.Column(db.Integer)
+    tong_khonghopvs = db.Column(db.Integer)
+    tong_dccaithien = db.Column(db.Integer)
+    tong_diemruatay = db.Column(db.Integer)
     
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'

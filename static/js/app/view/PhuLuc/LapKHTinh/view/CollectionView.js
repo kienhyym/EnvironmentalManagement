@@ -24,7 +24,7 @@ define(function (require) {
 	    	    	{ field: "hoatdong_tinh",label:"Hoạt động cấp tỉnh"},
 	    	    	{ field: "tiendo",label:"Tiến độ"},
 	    	    	{ field: "vihema",label:"VIHEMA và WB  rà soát, chấp thuận"},
-	    	    	{ field: "khpheduyet",label:"Kế hoạch BCC được phê duyệt"},
+	    	    	{ field: "ngaythanghientai",label:"Kế hoạch BCC được phê duyệt"},
 	    	    	{ field: "tgpheduyet",label:"Ngày/tháng/năm tỉnh phê duyệt"},  	    	   	    
 	    	     				  
 		     ],
