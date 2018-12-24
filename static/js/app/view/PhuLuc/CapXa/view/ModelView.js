@@ -113,8 +113,7 @@ define(function (require) {
 					fields: [
 						{
 							field: "tenthon",
-							label: "Tên Thôn",
-							textField: "ten"
+							label: "Tên Thôn"
 						},
 						{
 							label: "Tổng số hộ là Nữ",
