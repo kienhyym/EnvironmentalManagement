@@ -216,8 +216,7 @@ define(function (require) {
 						var total_soNu = 0;
 						var total_hotrongthon = 0;
 						dataSourceCapThon.forEach(element => {
-
-							self.model.set("hotrongxa", hotrongthon);
+							
 							total_hoconualachu += toInt(element.chuholanu);
 							total_sohongheo += toInt(element.sohongheo);
 							total_dtts += toInt(element.sohodtts);

@@ -24,6 +24,17 @@
         "type": "string",
         "primary": true
     },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
     "danhgianam": {
         "type": "string",
         "length": null
@@ -43,7 +54,7 @@
     "tenthon_id": {
         "type": "string"
     },
-    "hotrongthon": {
+    "tonghotronghuyen": {
         "type": "number"
     },
     "chuholanu": {
@@ -55,7 +66,7 @@
     "sohodtts": {
         "type": "number"
     },
-    "dantrongthon": {
+    "tongdantronghuyen": {
         "type": "number"
     },
     "sonam": {
@@ -67,7 +78,13 @@
     "loaikhac": {
         "type": "number"
     },
-    "nhatieuhuyenhvs": {
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "capxa": {
         "type": "list"
     },
     "tentinh": {

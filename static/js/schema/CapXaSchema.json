@@ -35,6 +35,9 @@
         "type": "number",
         "required": true
     },
+    "caphuyen_id": {
+        "type": "string"
+    },
     "danhgianam": {
         "type": "string",
         "length": null
@@ -87,6 +90,9 @@
     },
     "nguoibaocao": {
         "type": "dict"
+    },
+    "capthon": {
+        "type": "list"
     },
     "tentinh": {
         "type": "dict"
