@@ -138,6 +138,7 @@ define(function (require) {
 
 						if(ktDate === null){
 							self.getApp().notify({message: "Ngày tháng không đuợc để trống"},{type: "danger"});
+							//self.$el.find("#idHuyen").css("background-color", "yellow");
 						}else if(ten_tinh === null){
 							self.getApp().notify({message: "Tên tỉnh không đuợc để trống"},{type: "danger"});
 						}else if(ten_huyen === null){

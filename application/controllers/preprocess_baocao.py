@@ -54,10 +54,14 @@ async def baocao_prepost_thon(request=None, data=None, Model=None, **kw):
     record = db.session.query(CapThon).filter(and_(CapThon.thon_id == data['thon_id'], CapThon.danhgianam == data['danhgianam'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+    else:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn lần lượt theo Tỉnh, Huyện, Xã, Thôn!!!"}, status=520)
+        
     data['tenthon'] = data['thon']['ten']
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+
     
 async def baocao_preput_thon(request=None, data=None, Model=None, **kw):
     data['tenthon'] = data['thon']['ten']
