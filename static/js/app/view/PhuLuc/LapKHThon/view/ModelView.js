@@ -67,8 +67,8 @@ define(function (require) {
 	    				textField: "text",
 	    				valueField: "value",
 	    				dataSource: [
-	    					{ "value": "Chưa", "text": "Chưa" },
-	    					{ "value": "Rồi", "text": "Rồi" },
+	    					{ "value": "Chưa phê duyệt", "text": "Chưa phê duyệt" },
+	    					{ "value": "Đã phê duyệt", "text": "Đã phê duyệt" },
 						],
 	    			},
 	    			

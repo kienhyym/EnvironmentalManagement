@@ -23,7 +23,7 @@ define(function (require) {
 					
     	    	{ field: "tiendo",label:"Tiến độ"},
     	    	{ field: "vihema",label:"VIHEMA và WB"},
-    	    	{ field: "khpheduyet",label:"Kế hoạch BCC"},
+    	    	{ field: "khpheduyet",label:"Phê duyệt BCC"},
     	    	{ field: "tgpheduyet",label:"Ngày phê duyệt"},  	    	   	    
 	    	     				  
 		     ],

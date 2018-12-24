@@ -93,12 +93,12 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "Chưa",
-							"text": "Chưa"
+							"value": "Chưa phê duyệt",
+							"text": "Chưa phê duyệt"
 						},
 						{
-							"value": "Rồi",
-							"text": "Rồi"
+							"value": "Đã phê duyệt",
+							"text": "Đã phê duyệt"
 						},
 					],
 				},
