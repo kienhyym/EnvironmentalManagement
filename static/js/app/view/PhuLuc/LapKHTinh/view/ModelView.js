@@ -5,7 +5,7 @@ define(function (require) {
 	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/model.html'),
 	schema = require('json!schema/LapKHTinhSchema.json');
 	var TinhThanhSelectView   = require('app/view/DanhMuc/TinhThanh/view/SelectView');
-	var LapKHTinhView = require('app/view/PhuLuc/LapKHTinh/view/ModelItemView');
+	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
 	
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -73,9 +73,9 @@ define(function (require) {
 	    			},
 	    			
 	    			{
-						field: "lapkhtinh",
+						field: "itemtinh",
 						uicontrol: false,
-						itemView: LapKHTinhView,
+						itemView: ItemTinhView,
 						tools: [{
 							name: "create",
 							type: "button",

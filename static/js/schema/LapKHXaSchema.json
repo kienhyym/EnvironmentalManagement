@@ -31,45 +31,10 @@
     "tentinhpd_id": {
         "type": "string"
     },
-    "hoatdong_xa": {
-        "type": "string",
-        "length": null
-    },
-    "muctieu_xa": {
-        "type": "number"
-    },
-    "ketqua_xa": {
-        "type": "string",
-        "length": null
-    },
-    "songtg_xa": {
-        "type": "number"
-    },
-    "sonutg_xa": {
-        "type": "number"
-    },
-    "dttstg_xa": {
-        "type": "number"
-    },
-    "tiendo": {
-        "type": "string",
-        "length": null
-    },
-    "vihema": {
-        "type": "string",
-        "length": null
-    },
-    "khpheduyet": {
-        "type": "string",
-        "length": null
-    },
-    "tgpheduyetroi": {
-        "type": "datetime"
-    },
-    "tgpheduyet": {
-        "type": "datetime"
-    },
     "tentinhpd": {
         "type": "dict"
+    },
+    "itemxa": {
+        "type": "list"
     }
 }

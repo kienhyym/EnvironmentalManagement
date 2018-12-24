@@ -4,9 +4,10 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/itemView.html'),
-		schema = require('json!schema/LapKHTinhSchema.json');
-
+	var template = require('text!app/view/PhuLuc/ItemXa/tpl/itemView.html'),
+		schema = require('json!schema/ItemXaSchema.json');
+	var DanTocSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	
 
 	var currentDate = new Date();
 	return Gonrin.ItemView.extend({
@@ -14,7 +15,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		tagName: 'tr',
-		collectionName: "lapkhtinh",
+		collectionName: "itemxa",
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [
@@ -51,13 +52,20 @@ define(function (require) {
     			},
 			]
 		},
+
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML)			
+			// this.setElement(this.el.innerHTML);
+			// self.model.get("dantoc_id");
+			
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});
 			self.applyBindings();
+
+			// self.model.on("change",function(event) {
+			// 	console.log("toJSON ", self.model.toJSON());
+			// });
 		},
 	});
 
