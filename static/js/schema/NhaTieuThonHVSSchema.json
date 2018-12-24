@@ -72,5 +72,8 @@
     },
     "tong": {
         "type": "number"
+    },
+    "loaikhac": {
+        "type": "number"
     }
 }

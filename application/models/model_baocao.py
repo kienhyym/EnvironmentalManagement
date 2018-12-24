@@ -1278,7 +1278,7 @@ class CapThon(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_dccaithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
-    loaikhac = db.Column(db.Integer)
+    
     
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
@@ -1304,6 +1304,7 @@ class NhaTieuThonHVS(CommonModel):
     caithien = db.Column(db.Integer)
     diemruatay = db.Column(db.Integer)
     tong = db.Column(db.Integer)
+    loaikhac = db.Column(db.Integer)
     
 #Biểu mẫu số 2: Cấp xã
 class CapXa(CommonModel):
