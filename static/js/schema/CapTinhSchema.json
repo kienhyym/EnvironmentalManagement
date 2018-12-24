@@ -25,7 +25,8 @@
         "primary": true
     },
     "danhgianam": {
-        "type": "datetime"
+        "type": "string",
+        "length": null
     },
     "stt": {
         "type": "number"

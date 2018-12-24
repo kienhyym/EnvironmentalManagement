@@ -1,32 +1,22 @@
-<div style="margin-top: 30px; font-size: 13px"
-	class="panel panel-default">
+<div style="margin-top: 30px; font-size: 13px" class="panel panel-default">
 	<div class="panel-heading">PHỤ LỤC 1: CÁC BIỂU MẪU THEO DÕI VÀ
 		THU THẬP SỐ LIỆU</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;"
-		block-bind="content">
+	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 		<style type="text/css">
-.sd {
-	width: 6%;
-}
-</style>
+			.sd {
+				width: 6%;
+			}
+		</style>
 		<div class="title">
 			<p style="padding-top: 20px">
 				<b>Biểu mẫu số 2: Cấp xã</b>
 			</p>
-			<div class="row" style="text-align: center;">
-				<div>
-					<div class="col-md-7">
-						<p style="float: left; margin-right: 5px; padding-top: 13px;">Đánh
-							giá hiện trạng sử dụng vệ sinh hộ gia đình năm :</p>
-						<input type="text" class="form-control" id="from"
-							data-bind="value:danhgianam">
-					</div>
-				</div>
+			<div class="col-md-12 form-inline">
+				<label>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình năm :</label>
+				<input type="text" placeholder="YYYY" disabled class="form-control" id="from" data-bind="value:danhgianam">
 			</div>
-
 		</div>
-
 		<div class="table1">
 			<p style="font-weight: bold;">I. Thông tin chung</p>
 			<div class="row">
@@ -40,123 +30,98 @@
 						<tbody>
 							<tr>
 								<td>Tên Tỉnh</td>
-								<td><input type="text" class="form-control"
-									data-bind="dict:tentinh" /></td>
+								<td><input type="text" class="form-control" data-bind="dict:tentinh" /></td>
 								<td>Tên Huyện</td>
-								<td><input type="text" class="form-control"
-									data-bind="dict:tenhuyen" /></td>
+								<td><input type="text" class="form-control" data-bind="dict:tenhuyen" /></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Tên xã</td>
-								<td><input type="text" class="form-control"
-									data-bind="dict:tenxa" /></td>
+								<td><input type="text" class="form-control" data-bind="dict:tenxa" /></td>
 								<td rowspan="2">Số thôn trong xã</td>
-								<td rowspan="2"><input type="text" class="form-control"
-									data-bind="value:sothon" /></td>
+								<td rowspan="2"><input type="text" class="form-control" data-bind="value:sothon" /></td>
 							</tr>
 
 							<tr>
 
-								<td><b>Có thuộc chương trình SupRSWS không?</b><input
-									type="text" class="form-control" data-bind="value:suprsws" /></td>
+								<td><b>Có thuộc chương trình SupRSWS không?</b><input type="text" class="form-control" data-bind="value:suprsws" /></td>
 							</tr>
 
 							<tr>
 								<td rowspan="3">Tổng số hộ trong xã</td>
-								<th rowspan="3"><input type="text" class="form-control"
-									data-bind="value:hotrongxa" disabled /></th>
+								<th rowspan="3"><input type="text" class="form-control" data-bind="value:hotrongxa" disabled /></th>
 								<td>Hộ có nữ là chủ</td>
-								<td><input type="text" class="form-control"
-									data-bind="value:chuholanu" disabled /></td>
+								<td><input type="text" class="form-control" data-bind="value:chuholanu" disabled /></td>
 							</tr>
 							<tr>
 
 								<td>Số hộ nghèo</td>
-								<td><input type="text" class="form-control"
-									data-bind="value:sohongheo" disabled /></td>
+								<td><input type="text" class="form-control" data-bind="value:sohongheo" disabled /></td>
 							</tr>
 							<tr>
 
 								<td>Số hộ là DTTS</td>
-								<td><input type="text" class="form-control"
-									data-bind="value:sohodtts" disabled /></td>
+								<td><input type="text" class="form-control" data-bind="value:sohodtts" disabled /></td>
 							</tr>
-
-
 							<tr>
 								<td rowspan="2">Tổng dân số trong xã</td>
-								<td rowspan="2"><input type="text" class="form-control"
-									data-bind="value:dantrongxa" /></td>
+								<td rowspan="2"><input type="text" class="form-control" data-bind="value:dantrongxa" /></td>
 								<td>Nữ</td>
-								<td><input type="text" class="form-control"
-									data-bind="value:sonu" /></td>
+								<td><input type="text" class="form-control" data-bind="value:sonu" /></td>
 							</tr>
 							<tr>
 								<td>Nam</td>
-								<td><input type="text" class="form-control"
-									data-bind="value:sonam" /></td>
+								<td><input type="text" class="form-control" data-bind="value:sonam" /></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-
 		<div class="table2">
 			<p style="font-weight: bold">II. Thông tin về nhà tiêu HVS</p>
 		</div>
-
-		<div class="row" id="addItem"></div>
+	
+			
+		<div class="row">
+				<button style="float: left; margin-top: 15px;" id="addThon" class="btn-success btn-sm"><span class="fa fa-plus"></span>Thêm thôn</button>
+		</div>
+		<div id="capthon">
+			
+		</div>
+		<!-- <div class="row" id="addItem"></div> -->
 		<div class="row">
 			<table>
-				<tr>
-					<th rowspan="2" class="top">STT</th>
-					<th rowspan="2" class="top" style="width: 20%">Tên thôn</th>
-					<th rowspan="2" class="top">Hộ có nữ là chủ hộ</th>
-					<th rowspan="2" class="top">Tổng số hộ DTTS</th>
-					<th rowspan="2" class="top sd">Tổng số hộ nghèo</th>
-					<th colspan="5" class="top">Loại công trình vệ sinh đang sử
-						dụng</th>
-					<th colspan="3" class="top">Đánh giá tình trạng vệ sinh</th>
-					<th rowspan="2" class="top sd">Điểm rửa tay có nước, xà phòng</th>
-					<th rowspan="2" class="top"></th>
-				</tr>
-				<tr>
-					<th class="top sd">Tự hoại</th>
-					<th class="top sd">Thẩm đội</th>
-					<th class="top sd">2 ngăn</th>
-					<th class="top sd">Chìm có ống thông hơi</th>
-					<th class="top sd">Không có nhà tiêu</th>
-
-					<th class="top sd">Hợp vệ sinh</th>
-					<th class="top sd">Không hợp vệ sinh</th>
-					<th class="top sd">Được cải thiện</th>
-				</tr>
+				<thead>
+					<tr>
+						<th rowspan="2" class="top" style="width: 20%">Tên thôn</th>
+						<th rowspan="2" class="top">Hộ có nữ là chủ hộ</th>
+						<th rowspan="2" class="top">Tổng số hộ DTTS</th>
+						<th rowspan="2" class="top sd">Tổng số hộ nghèo</th>
+						<th colspan="5" class="top">Loại công trình vệ sinh đang sử
+							dụng</th>
+						<th colspan="3" class="top">Đánh giá tình trạng vệ sinh</th>
+						<th rowspan="2" class="top sd">Điểm rửa tay có nước, xà phòng</th>
+					</tr>
+					<tr>
+						<th class="top sd">Tự hoại</th>
+						<th class="top sd">Thẩm đội</th>
+						<th class="top sd">2 ngăn</th>
+						<th class="top sd">Chìm có ống thông hơi</th>
+						<th class="top sd">Không có nhà tiêu</th>
+						<th class="top sd">Hợp vệ sinh</th>
+						<th class="top sd">Không hợp vệ sinh</th>
+						<th class="top sd">Được cải thiện</th>
+					</tr>
 				</thead>
-
-				<!-- <tbody id="nhatieuxahvs" data-bind="list:nhatieuxahvs">
-				</tbody> -->
-				
-				<!-- <tbody id="capthon" data-bind="list:capthon">
-				
-				</tbody> -->
-				
-				<tfoot id="tongcongi"></tfoot>
-			</table>
-			<div id="capthon"></div>
-			<!-- <div class="col-md-12" style="margin-right: 20px">
-					<div data-bind="list:nhatieuxahvs"></div>
-				</div> -->
-		</div>
-		<div class="text">
-			<div class="row">
-				<div class="text-justify">Ghi chú: (3) theo tổng từng thôn,
-					(4) số hộ DTTS: tổng số hộ DTTS, (5) tổng số hộ nghèo, (12)&(13)
-					theo tổng số từng thôn, (14) và (15) áp dụng xã trong chương trình
-					SupRSWS</div>
-			</div>
+				<tbody id="itemThon"></tbody>
 		</div>
 
-
+		<div>
+			<div class="text-justify">Ghi chú: (3) theo tổng từng thôn,
+				(4) số hộ DTTS: tổng số hộ DTTS, (5) tổng số hộ nghèo, (12)&(13)
+				theo tổng số từng thôn, (14) và (15) áp dụng xã trong chương trình
+				SupRSWS</div>
+		</div>
 	</div>
+
 </div>

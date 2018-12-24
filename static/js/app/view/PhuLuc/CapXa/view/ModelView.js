@@ -8,7 +8,7 @@ define(function (require) {
 		schema = require('json!schema/CapXaSchema.json');
 
 
-//	var capthonItemView = require('app/view/PhuLuc/capthon/view/ModelItemView');
+	//	var capthonItemView = require('app/view/PhuLuc/capthon/view/ModelItemView');
 	var tongischema = require('json!app/view/PhuLuc/CapXa/view/TongiSchema.json');
 	var tongitemplate = require('text!app/view/PhuLuc/CapXa/tpl/tongcongi.html');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
@@ -58,14 +58,6 @@ define(function (require) {
 					foreignField: "tenxa_id",
 					dataSource: XaPhuongSelectView
 				},
-//				{
-//					field: "tenthon",
-//					uicontrol: "ref",
-//					textField: "ten",
-//					foreignRemoteField: "id",
-//					foreignField: "tenthon_id",
-//					dataSource: ThonXomSelectView
-//				},
 				{
 					field: "tentinh",
 					uicontrol: "ref",
@@ -82,29 +74,34 @@ define(function (require) {
 					foreignField: "tenhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-//				{
-//					field: "capthon",
-//					uicontrol: false,
-//					itemView: capthonItemView,
-//					tools: [{
-//						name: "create",
-//						type: "button",
-//						buttonClass: "btn btn-success btn-sm",
-//						label: "<span class='fa fa-plus'>Thêm</span>",
-//						command: "create"
-//					}, ],
-//					toolEl: "#addItem"
-//				},
+				//				{
+				//					field: "capthon",
+				//					uicontrol: false,
+				//					itemView: capthonItemView,
+				//					tools: [{
+				//						name: "create",
+				//						type: "button",
+				//						buttonClass: "btn btn-success btn-sm",
+				//						label: "<span class='fa fa-plus'>Thêm</span>",
+				//						command: "create"
+				//					}, ],
+				//					toolEl: "#addItem"
+				//				},
 				{
-    				field: "suprsws",
-    				uicontrol: "combobox",
-    				textField: "text",
-    				valueField: "value",
-    				dataSource: [
-    					{ "value": 1, "text": "Có" },
-    					{ "value": 0, "text": "Không" },
+					field: "suprsws",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							"value": 1,
+							"text": "Có"
+						},
+						{
+							"value": 0,
+							"text": "Không"
+						},
 					],
-    			},
+				},
 
 			],
 		},
@@ -171,18 +168,22 @@ define(function (require) {
 		addcapthon: function () {
 			var self = this;
 			var viewData = {
-					"tentinh_id":self.model.get("tentinh_id"),
-					"tentinh":self.model.get("tentinh"),
-					"tenhuyen_id":self.model.get("tenhuyen_id"),
-					"tenhuyen":self.model.get("tenhuyen"),
-					"tenxa_id":self.model.get("tenxa_id"),
-					"tenxa":self.model.get("tenxa"),
-					"capxa_id":self.model.get("id"),
-					"danhgianam":self.model.get("danhgianam")
+				"tentinh_id": self.model.get("tentinh_id"),
+				"tentinh": self.model.get("tentinh"),
+				"tenhuyen_id": self.model.get("tenhuyen_id"),
+				"tenhuyen": self.model.get("tenhuyen"),
+				"tenxa_id": self.model.get("tenxa_id"),
+				"tenxa": self.model.get("tenxa"),
+				"capxa_id": self.model.get("id"),
+				"danhgianam": self.model.get("danhgianam")
 			}
-			var viewCapThon = new CapThonModelView({el: self.getApp().$content, viewData:viewData});
+			var viewCapThon = new CapThonModelView({
+				el: self.getApp().$content,
+				viewData: viewData
+			});
 			viewCapThon.render();
 		},
+
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
@@ -190,52 +191,79 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
-
 						self.applyBindings();
 						var dataSourceCapThon = data.attributes.capthon;
-						self.renderTinhTongI(dataSourceCapThon);
-						self.$el.find("#capthon").grid({
-							refresh: true,
-							primaryField: "id",
-							dataSource:dataSourceCapThon,
-							fields: [
-								{
-									field: "tenthon",
-									label: "Tên Thôn"
-								},
-								{
-									label: "Tổng số hộ là Nữ",
-									field: "chuholanu"
-								},
-								{
-									field: "sohodtts",
-									label: "Số hộ DTTS"
-								},
-								{
-									field: "sohongheo",
-									label: "Tổng số hộ nghèo"
-								},
-
-							],
-							tools: [{
-								name: "create",
-								buttonClass: "btn-success",
-								label: "Thêm Thôn",
-								command: function () {
-									self.addcapthon();
-								}
-							}],
-							onRowClick: function (event) {
-								if (event.rowId) {
-									var path = 'capthon/model?id=' + event.rowId;
-									self.getApp().getRouter().navigate(path);
-								}
-							}
+						console.log(dataSourceCapThon);
+						self.$el.find('#addThon').unbind("click").bind('click', function(){
+							self.addcapthon();	
 						});
+						dataSourceCapThon.forEach(element => {
+							var tr = $('<tr id="idThon">').attr({"id":element.id});
+							tr.append("<td>" + element.tenthon + "</td>");
+							tr.append("<td>" + element.chuholanu + "</td>");
+							tr.append("<td>" + element.sohodtts + "</td>");
+							tr.append("<td>" + element.sohongheo + "</td>");
+							tr.append("<td>" + element.tong_tuhoai + "</td>");
+							tr.append("<td>" + element.tong_thamdoi + "</td>");
+							tr.append("<td>" + element.tong_2ngan + "</td>");
+							tr.append("<td>" + element.tong_ongthonghoi + "</td>");
+							tr.append("<td>" + element.tong_khongnhatieu + "</td>");
+							tr.append("<td>" + element.tong_hopvs + "</td>");
+							tr.append("<td>" + element.tong_khonghopvs + "</td>");
+							tr.append("<td>" + element.tong_dccaithien + "</td>");
+							tr.append("<td>" + element.tong_diemruatay + "</td>");
+							self.$el.find("#itemThon").append(tr);
+							tr.unbind('click').bind('click', function(){
+								var id = $(this).attr('id');
+								console.log("id : "+id);
+								var path = 'capthon/model?id=' + id;
+								self.getApp().getRouter().navigate(path);
+							});
+
+						});
+						self.renderTinhTongI(dataSourceCapThon);
+
+						// self.$el.find("#capthon").grid({
+						// 	refresh: true,
+						// 	primaryField: "id",
+						// 	dataSource: dataSourceCapThon,
+						// 	fields: [{
+						// 			field: "tenthon",
+						// 			label: "Tên Thôn"
+						// 		},
+						// 		{
+						// 			label: "Tổng số hộ là Nữ",
+						// 			field: "chuholanu"
+						// 		},
+						// 		{
+						// 			field: "sohodtts",
+						// 			label: "Số hộ DTTS"
+						// 		},
+						// 		{
+						// 			field: "sohongheo",
+						// 			label: "Tổng số hộ nghèo"
+						// 		},
+
+						// 	],
+							// tools: [{
+							// 	name: "create",
+							// 	buttonClass: "btn-success",
+							// 	label: "Thêm Thôn",
+							// 	command: function () {
+							// 		self.addcapthon();
+							// 	}
+							// }],
+						// 	onRowClick: function (event) {
+						// 		if (event.rowId) {
+						// 			var path = 'capthon/model?id=' + event.rowId;
+						// 			self.getApp().getRouter().navigate(path);
+						// 		}
+						// 	}
+						// });
 						//console.log("capthon ", self.model.get("capthon").length);
-//						if (self.model.get("capthon").length === 0) {
-//							self.$el.find("#addItem button").click();
-//						}
+						//						if (self.model.get("capthon").length === 0) {
+						//							self.$el.find("#addItem button").click();
+						//						}
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -243,44 +271,43 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				self.$el.find("#capthon").grid({
-					refresh: true,
-					primaryField: "id",
-					dataSource:[],
-					fields: [
-						{
-							field: "tenthon",
-							label: "Tên Thôn"
-						},
-						{
-							label: "Tổng số hộ là Nữ",
-							field: "chuholanu"
-						},
-						{
-							field: "sohodtts",
-							label: "Số hộ DTTS"
-						},
-						{
-							field: "sohongheo",
-							label: "Tổng số hộ nghèo"
-						},
+				// self.$el.find("#capthon").grid({
+				// 	refresh: true,
+				// 	primaryField: "id",
+				// 	dataSource: [],
+				// 	fields: [{
+				// 			field: "tenthon",
+				// 			label: "Tên Thôn"
+				// 		},
+				// 		{
+				// 			label: "Tổng số hộ là Nữ",
+				// 			field: "chuholanu"
+				// 		},
+				// 		{
+				// 			field: "sohodtts",
+				// 			label: "Số hộ DTTS"
+				// 		},
+				// 		{
+				// 			field: "sohongheo",
+				// 			label: "Tổng số hộ nghèo"
+				// 		},
 
-					],
-					tools: [{
-						name: "create",
-						buttonClass: "btn-success",
-						label: "Thêm Thôn",
-						command: function () {
-							self.addcapthon();
-						}
-					}],
-					onRowClick: function (event) {
-						if (event.rowId) {
-							var path = 'capthon/model?id=' + event.rowId;
-							self.getApp().getRouter().navigate(path);
-						}
-					}
-				});
+				// 	],
+					// tools: [{
+					// 	name: "create",
+					// 	buttonClass: "btn-success",
+					// 	label: "Thêm Thôn",
+					// 	command: function () {
+					// 		self.addcapthon();
+					// 	}
+					// }],
+				// 	onRowClick: function (event) {
+				// 		if (event.rowId) {
+				// 			var path = 'capthon/model?id=' + event.rowId;
+				// 			self.getApp().getRouter().navigate(path);
+				// 		}
+				// 	}
+				// });
 			}
 
 		},
@@ -301,19 +328,6 @@ define(function (require) {
 					data[key] = toInt(data[key]) + toInt(chitiet[key]);
 				});
 			}
-
-			//console.log("data : ", data);
-			self.tongViewi.model.set(data);
-			self.tongViewi.applyBindings();
-			var sohongheo = self.tongViewi.model.get("hongheo");
-			self.model.set("sohongheo", sohongheo);
-
-				var soNu = self.tongViewi.model.get("gioitinh");	
-				var tongSoDan = dataSourceCapThon.length;
-				var result = tongSoDan - soNu;
-				self.model.set("chuholanu", result);
-
-				
 		},
 
 	});
