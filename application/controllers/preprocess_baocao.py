@@ -50,6 +50,8 @@ async def baocao_prepost(request=None, data=None, Model=None, **kw):
     
 async def post_capthon(request=None, Model=None, result=None, **kw):
     obj = to_dict(result)
+    obj['tenthon'] = obj['thon']['ten']
+    result = obj
 #     nhatieuxa = NhaTieuXaHVS()
 #     nhatieuxa.capxa_id = obj['capxa_id']
 #     nhatieuxa.capthon_id = obj['id']
@@ -66,8 +68,8 @@ async def post_capthon(request=None, Model=None, result=None, **kw):
 async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
     obj = to_dict(result)
     print("result.tenthon)=====",result)
-    obj['tenthon'] = to_dict(result.tenthon)
-    result = obj
+#     obj['tenthon'] = to_dict(result.tenthon)
+#     result = obj
 
     
       

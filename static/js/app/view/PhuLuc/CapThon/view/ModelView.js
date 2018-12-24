@@ -194,7 +194,6 @@ define(function (require) {
 				});
 			} else {
 				
-				console.log("chay vao capthon-----viewData==",viewData);
 
 				self.model.set("tentinh_id", viewData.tentinh_id);
 				self.model.set("tentinh", viewData.tentinh);

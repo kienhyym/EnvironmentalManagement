@@ -1,4 +1,25 @@
 {
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
     "id": {
         "type": "string",
         "primary": true
@@ -36,7 +57,11 @@
     "suprsws": {
         "type": "number"
     },
-    "tenthon_id": {
+    "tenthon": {
+        "type": "string",
+        "length": null
+    },
+    "thon_id": {
         "type": "string"
     },
     "hotrongthon": {
@@ -60,6 +85,12 @@
     "sonu": {
         "type": "number"
     },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
     "nhatieuthonhvs": {
         "type": "list"
     },
@@ -72,7 +103,7 @@
     "tenxa": {
         "type": "dict"
     },
-    "tenthon": {
+    "thon": {
         "type": "dict"
     }
 }
