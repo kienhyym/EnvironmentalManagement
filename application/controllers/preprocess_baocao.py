@@ -60,9 +60,6 @@ async def baocao_prepost_thon(request=None, data=None, Model=None, **kw):
     data['nguoibaocao_id'] = currentuser.id
     
 async def baocao_preput_thon(request=None, data=None, Model=None, **kw):
-    currentuser = await current_user(request)
-    if currentuser is None:
-        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     data['tenthon'] = data['thon']['ten']
       
 async def post_capthon(request=None, Model=None, result=None, **kw):
