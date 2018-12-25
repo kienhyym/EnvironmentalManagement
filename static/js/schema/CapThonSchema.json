@@ -42,10 +42,6 @@
         "type": "string",
         "length": null
     },
-    "kybaocao": {
-        "type": "string",
-        "length": null
-    },
     "stt": {
         "type": "number"
     },
@@ -115,6 +111,10 @@
     },
     "tong_diemruatay": {
         "type": "number"
+    },
+    "kybaocao": {
+        "type": "string",
+        "length": null
     },
     "donvi": {
         "type": "dict"

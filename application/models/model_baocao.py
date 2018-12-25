@@ -1278,6 +1278,8 @@ class CapThon(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_dccaithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
+    kybaocao = db.Column(db.String)
+
     
     
 class NhaTieuThonHVS(CommonModel):
