@@ -350,33 +350,7 @@ apimanager.create_api(NhaTieuThongHoi,
     collection_name='nhatieuthonghoi')
 
 #BM
-apimanager.create_api(CapThon,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, baocao_prepost_thon], PUT_SINGLE=[auth_func, baocao_preput_thon], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
-    collection_name='capthon')
 
-apimanager.create_api(NhaTieuThonHVS,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='nhatieuthonhvs')
-
-apimanager.create_api(CapXa,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_post_capxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[reponse_capxa_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
-    collection_name='capxa')
-
-
-apimanager.create_api(CapHuyen,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_post_huyen], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[reponse_caphuyen_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
-    collection_name='caphuyen')
 
 
 #BM#

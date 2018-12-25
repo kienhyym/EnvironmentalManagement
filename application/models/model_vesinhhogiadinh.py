@@ -13,8 +13,8 @@ def default_uuid():
 
 # Biểu mẫu số 1: Cấp thôn
 # Bang 1:
-class CapThon(CommonModel):
-    __tablename__ = 'capthon'
+class VSCapThon(CommonModel):
+    __tablename__ = 'vscapthon'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
@@ -65,7 +65,7 @@ class CapThon(CommonModel):
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    capthon_id = db.Column(UUID(as_uuid=True), ForeignKey('capthon.id'), nullable=True) 
+    vscapthon_id = db.Column(UUID(as_uuid=True), ForeignKey('vscapthon.id'), nullable=True) 
     dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True) 
     dantoc = relationship('DanToc')
     tendantoc = db.Column(db.String)
@@ -85,9 +85,8 @@ class NhaTieuThonHVS(CommonModel):
     
     
 #Biểu mẫu số 2: Cấp xã
-
-class CapXa(CommonModel):
-    __tablename__ = 'capxa'
+class VSCapXa(CommonModel):
+    __tablename__ = 'vscapxa'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
@@ -113,11 +112,11 @@ class CapXa(CommonModel):
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
     tong_loaikhac = db.Column(db.Integer)
-    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapXa_donvi_id_danhgianam'),)
+    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
 
 #Biểu mẫu số 3: Cấp huyen
-class CapHuyen(CommonModel):
-    __tablename__ = 'caphuyen'
+class VSCapHuyen(CommonModel):
+    __tablename__ = 'vscaphuyen'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
@@ -143,12 +142,12 @@ class CapHuyen(CommonModel):
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
     tong_loaikhac = db.Column(db.Integer)
-    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapHuyen_donvi_id_danhgianam'),)
+    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
 
 
 #Biểu mẫu số 4: Cấp tinh
-class CapTinh(CommonModel):
-    __tablename__ = 'captinh'
+class VSCapTinh(CommonModel):
+    __tablename__ = 'vscaptinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
@@ -174,5 +173,5 @@ class CapTinh(CommonModel):
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
     tong_loaikhac = db.Column(db.Integer)
-    __table_args__ = (UniqueConstraint('donvi_id', 'danhgianam', name='uq_CapTinh_donvi_id_danhgianam'),)
+    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
     
