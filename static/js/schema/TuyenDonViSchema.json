@@ -1,39 +1,39 @@
 {
-    "created_at": {
-        "type": "datetime"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
-    },
     "deleted": {
         "type": "boolean"
     },
     "deleted_by": {
         "type": "string"
     },
+    "id": {
+        "primary": true,
+        "type": "number"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "mota": {
+        "length": 255,
+        "type": "string"
+    },
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "number",
-        "primary": true
-    },
     "ma": {
-        "type": "string",
-        "length": 255
+        "length": 255,
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
     },
     "ten": {
-        "type": "string",
-        "length": 255
+        "length": 255,
+        "type": "string"
     },
-    "mota": {
-        "type": "string",
-        "length": 255
+    "updated_by": {
+        "type": "string"
     }
 }

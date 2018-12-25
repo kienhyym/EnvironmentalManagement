@@ -1,63 +1,21 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
+    "quanhuyen_id": {
         "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "tentinh_id": {
-        "type": "string"
-    },
-    "tenhuyen_id": {
-        "type": "string"
-    },
-    "tenxa_id": {
-        "type": "string"
-    },
-    "tenthon_id": {
-        "type": "string"
-    },
-    "xaydungduthao": {
-        "type": "number"
-    },
-    "nganh": {
-        "type": "number"
-    },
-    "vihema": {
-        "type": "number"
-    },
-    "ngay_tinhpheduyen": {
-        "type": "datetime"
     },
     "trangthai_tinhpheduyen": {
         "type": "number"
     },
-    "sohd_tinhduyet": {
-        "type": "string",
-        "length": null
-    },
-    "sohoatdong": {
-        "type": "string",
-        "length": null
+    "itemhuyen": {
+        "type": "list"
     },
     "itemthon": {
         "type": "list"
@@ -65,22 +23,58 @@
     "itemxa": {
         "type": "list"
     },
-    "itemhuyen": {
-        "type": "list"
+    "created_at": {
+        "type": "datetime"
+    },
+    "vihema_chapthuan": {
+        "type": "number"
+    },
+    "ngay_pheduyet": {
+        "type": "datetime"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "tinhthanh_id": {
+        "type": "string"
     },
     "itemtinh": {
         "type": "list"
     },
-    "tentinh": {
+    "deleted": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "quanhuyen": {
         "type": "dict"
     },
-    "tenhuyen": {
-        "type": "dict"
+    "xaydungduthao_bcc": {
+        "type": "number"
     },
-    "tenxa": {
-        "type": "dict"
+    "nganh": {
+        "type": "number"
     },
-    "tenthon": {
-        "type": "dict"
+    "sohoatdong_bcc": {
+        "length": null,
+        "type": "string"
+    },
+    "tinhpheduyet_bcc": {
+        "length": null,
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
     }
 }

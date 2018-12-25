@@ -1,44 +1,44 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "deleted": {
+        "type": "boolean"
+    },
+    "thonxom": {
+        "type": "list"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
     },
     "created_by": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "ten": {
+        "length": 255,
         "type": "string"
     },
     "updated_at": {
         "type": "datetime"
     },
-    "updated_by": {
-        "type": "string"
+    "quanhuyen": {
+        "type": "dict"
     },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
+    "created_at": {
+        "type": "datetime"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "ma": {
-        "type": "string",
-        "length": 255
-    },
-    "ten": {
-        "type": "string",
-        "length": 255
-    },
-    "quanhuyen_id": {
+    "updated_by": {
         "type": "string"
     },
-    "quanhuyen": {
-        "type": "dict"
+    "deleted_by": {
+        "type": "string"
     },
-    "thonxom": {
-        "type": "list"
+    "ma": {
+        "length": 255,
+        "type": "string"
     }
 }

@@ -1,78 +1,72 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "ketqua_datduoc": {
+        "length": null,
+        "type": "string"
+    },
+    "hoatdong": {
+        "length": null,
+        "type": "string"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
+    "muctieu": {
+        "length": null,
         "type": "string"
     },
-    "deleted": {
-        "type": "boolean"
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "created_at": {
+        "type": "datetime"
     },
     "deleted_by": {
         "type": "string"
     },
-    "deleted_at": {
+    "updated_by": {
+        "type": "string"
+    },
+    "songuoi_lanu": {
+        "type": "number"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "updated_at": {
         "type": "datetime"
     },
     "id": {
-        "type": "string",
-        "primary": true
-    },
-    "kehoachthuchien_id": {
+        "primary": true,
         "type": "string"
-    },
-    "hoatdong_huyen": {
-        "type": "string",
-        "length": null
-    },
-    "muctieu_huyen": {
-        "type": "string",
-        "length": null
-    },
-    "ketqua_huyen": {
-        "type": "string",
-        "length": null
-    },
-    "songtg_huyen": {
-        "type": "number"
-    },
-    "sonutg_huyen": {
-        "type": "number"
-    },
-    "dttstg_huyen": {
-        "type": "number"
     },
     "nganh": {
         "type": "number"
     },
-    "tentinh_id": {
-        "type": "string"
-    },
-    "tenhuyen_id": {
-        "type": "string"
-    },
-    "tenxa_id": {
-        "type": "string"
-    },
-    "tenthon_id": {
-        "type": "string"
-    },
-    "tentinh": {
+    "xaphuong": {
         "type": "dict"
     },
-    "tenhuyen": {
+    "songuoi_dantocthieuso": {
+        "type": "number"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen": {
         "type": "dict"
     },
-    "tenxa": {
+    "kehoachthuchien_id": {
+        "type": "string"
+    },
+    "tinhthanh": {
         "type": "dict"
     },
-    "tenthon": {
-        "type": "dict"
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "tongsonguoi_thamgia": {
+        "type": "number"
     }
 }

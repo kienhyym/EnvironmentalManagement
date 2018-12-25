@@ -1,30 +1,8 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "ptnuthamgia_gd": {
+        "type": "number"
     },
-    "created_by": {
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "ngdaotao_yte": {
+    "nuthamgia_gd": {
         "type": "number"
     },
     "nuthamgia_yte": {
@@ -33,7 +11,10 @@
     "ptnuthamgia_yte": {
         "type": "number"
     },
-    "dttsthamgia_yte": {
+    "created_by": {
+        "type": "string"
+    },
+    "ptdttsthamgia_gd": {
         "type": "number"
     },
     "ptdttsthamgia_yte": {
@@ -42,31 +23,50 @@
     "ngdaotao_gd": {
         "type": "number"
     },
-    "nuthamgia_gd": {
+    "created_at": {
+        "type": "datetime"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "ptnuthamgia_tong": {
         "type": "number"
     },
-    "ptnuthamgia_gd": {
+    "dttsthamgia_yte": {
         "type": "number"
     },
-    "dttsthamgia_gd": {
+    "ngdaotao_yte": {
         "type": "number"
     },
-    "ptdttsthamgia_gd": {
-        "type": "number"
+    "deleted": {
+        "type": "boolean"
     },
-    "ngdaotao_tong": {
+    "ptdttsthamgia_tong": {
         "type": "number"
     },
     "nuthamgia_tong": {
         "type": "number"
     },
-    "ptnuthamgia_tong": {
+    "ngdaotao_tong": {
+        "type": "number"
+    },
+    "dttsthamgia_gd": {
         "type": "number"
     },
     "dttsthamgia_tong": {
         "type": "number"
     },
-    "ptdttsthamgia_tong": {
-        "type": "number"
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
     }
 }

@@ -1,36 +1,36 @@
 {
+    "tuyendonvi_id": {
+        "required": true,
+        "type": "number"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "collectionNames": {
+        "required": true,
+        "length": null,
+        "type": "string"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "id": {
+        "primary": true,
+        "type": "number"
+    },
     "created_at": {
         "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
+    "deleted_at": {
+        "type": "datetime"
+    },
     "updated_at": {
         "type": "datetime"
     },
     "updated_by": {
         "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "id": {
-        "type": "number",
-        "primary": true
-    },
-    "tuyendonvi_id": {
-        "type": "number",
-        "required": true
-    },
-    "collectionNames": {
-        "type": "string",
-        "required": true,
-        "length": null
     }
 }

@@ -1,12 +1,43 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "users": {
+        "type": "dict"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
+    "fullname": {
+        "length": 255,
+        "type": "string"
+    },
+    "donvi_diachi": {
+        "length": 255,
+        "type": "string"
+    },
+    "donvi_tuyendonvi_id": {
+        "type": "number"
+    },
+    "user_id": {
+        "type": "string"
+    },
+    "captren_id": {
+        "type": "number"
+    },
+    "created_at": {
         "type": "datetime"
+    },
+    "phone": {
+        "length": 255,
+        "type": "string"
+    },
+    "cfpassword": {
+        "length": 255,
+        "type": "string"
+    },
+    "trangthai": {
+        "type": "number"
+    },
+    "donvi_tuyendonvi": {
+        "type": "dict"
     },
     "updated_by": {
         "type": "string"
@@ -14,75 +45,44 @@
     "deleted": {
         "type": "boolean"
     },
+    "donvi_id": {
+        "type": "number"
+    },
     "deleted_by": {
+        "type": "string"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "password": {
+        "length": 255,
+        "type": "string"
+    },
+    "donvi_ten": {
+        "length": 255,
+        "type": "string"
+    },
+    "email": {
+        "length": 255,
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "macongdan": {
+        "length": 200,
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "fullname": {
-        "type": "string",
-        "length": 255
-    },
-    "email": {
-        "type": "string",
-        "length": 255
-    },
-    "password": {
-        "type": "string",
-        "length": 255
-    },
-    "cfpassword": {
-        "type": "string",
-        "length": 255
-    },
-    "phone": {
-        "type": "string",
-        "length": 255
+    "updated_at": {
+        "type": "datetime"
     },
     "donvi_sodienthoai": {
-        "type": "string",
-        "length": 255
-    },
-    "donvi_diachi": {
-        "type": "string",
-        "length": 255
-    },
-    "donvi_ten": {
-        "type": "string",
-        "length": 255
-    },
-    "macongdan": {
-        "type": "string",
-        "length": 200
-    },
-    "donvi_id": {
-        "type": "number"
-    },
-    "user_id": {
+        "length": 255,
         "type": "string"
-    },
-    "trangthai": {
-        "type": "number"
-    },
-    "captren_id": {
-        "type": "number"
-    },
-    "donvi_tuyendonvi_id": {
-        "type": "number"
-    },
-    "donvi": {
-        "type": "dict"
-    },
-    "users": {
-        "type": "dict"
-    },
-    "donvi_tuyendonvi": {
-        "type": "dict"
     },
     "captren": {
         "type": "dict"

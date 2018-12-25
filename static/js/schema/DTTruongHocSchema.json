@@ -1,12 +1,45 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "matrgtram": {
+        "length": null,
+        "type": "string"
+    },
+    "nguonnccongtrinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenhuyen_id": {
+        "type": "string"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
+    "tentrgtram": {
+        "length": null,
+        "type": "string"
+    },
+    "ngtraloi": {
+        "length": null,
+        "type": "string"
+    },
+    "capnctruongtram": {
+        "type": "dict"
+    },
+    "sobuoihoc": {
+        "type": "number"
+    },
+    "hsnu": {
+        "type": "number"
+    },
+    "created_at": {
         "type": "datetime"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "deleted_by": {
+        "type": "string"
     },
     "updated_by": {
         "type": "string"
@@ -14,82 +47,49 @@
     "deleted": {
         "type": "boolean"
     },
-    "deleted_by": {
+    "nguonnccongtrinh_id": {
         "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
     },
     "id": {
-        "type": "string",
-        "primary": true
-    },
-    "tentinh_id": {
+        "primary": true,
         "type": "string"
     },
-    "tenhuyen_id": {
+    "thongtinll": {
+        "length": null,
         "type": "string"
     },
-    "tenxa_id": {
-        "type": "string"
+    "tenxa": {
+        "type": "dict"
     },
-    "tentrgtram": {
-        "type": "string",
-        "length": null
-    },
-    "matrgtram": {
-        "type": "string",
-        "length": null
-    },
-    "loaitrgtram": {
-        "type": "number"
-    },
-    "sobuoihoc": {
+    "loaitrg": {
         "type": "number"
     },
     "hsmoibuoi": {
         "type": "number"
     },
-    "hsnam": {
-        "type": "number"
-    },
-    "hsnu": {
-        "type": "number"
-    },
-    "loaitrg": {
-        "type": "number"
-    },
-    "ngtraloi": {
-        "type": "string",
-        "length": null
-    },
     "vitrichuvu": {
-        "type": "string",
-        "length": null
-    },
-    "thongtinll": {
-        "type": "string",
-        "length": null
-    },
-    "nguonnccongtrinh_id": {
+        "length": null,
         "type": "string"
+    },
+    "loaitrgtram": {
+        "type": "number"
+    },
+    "tentinh_id": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
     },
     "capnctruongtram_id": {
         "type": "string"
     },
-    "tentinh": {
-        "type": "dict"
+    "tenxa_id": {
+        "type": "string"
     },
-    "tenhuyen": {
-        "type": "dict"
+    "updated_at": {
+        "type": "datetime"
     },
-    "tenxa": {
-        "type": "dict"
-    },
-    "nguonnccongtrinh": {
-        "type": "dict"
-    },
-    "capnctruongtram": {
-        "type": "dict"
+    "hsnam": {
+        "type": "number"
     }
 }

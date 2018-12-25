@@ -1,41 +1,29 @@
 {
-    "created_at": {
-        "type": "datetime"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
+    "khuvsnam": {
+        "type": "number"
     },
     "deleted": {
         "type": "boolean"
     },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
     "id": {
-        "type": "string",
-        "primary": true
+        "primary": true,
+        "type": "string"
     },
     "ncchinh": {
         "type": "number"
     },
+    "created_by": {
+        "type": "string"
+    },
     "nguonnckhac": {
-        "type": "string",
-        "length": null
+        "length": null,
+        "type": "string"
     },
-    "khuvstrg": {
+    "khuvsgvnu": {
         "type": "number"
     },
-    "khuvsnam": {
-        "type": "number"
+    "updated_at": {
+        "type": "datetime"
     },
     "khuvsnu": {
         "type": "number"
@@ -43,7 +31,19 @@
     "khuvsgvnam": {
         "type": "number"
     },
-    "khuvsgvnu": {
+    "created_at": {
+        "type": "datetime"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "khuvstrg": {
         "type": "number"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "updated_by": {
+        "type": "string"
     }
 }

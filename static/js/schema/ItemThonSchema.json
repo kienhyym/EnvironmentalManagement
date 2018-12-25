@@ -1,78 +1,78 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "ketqua_datduoc": {
+        "length": null,
+        "type": "string"
+    },
+    "hoatdong": {
+        "length": null,
+        "type": "string"
+    },
+    "thonxom": {
+        "type": "dict"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
+    "muctieu": {
+        "length": null,
         "type": "string"
     },
-    "deleted": {
-        "type": "boolean"
+    "thonxom_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "created_at": {
+        "type": "datetime"
     },
     "deleted_by": {
         "type": "string"
     },
-    "deleted_at": {
+    "updated_by": {
+        "type": "string"
+    },
+    "songuoi_lanu": {
+        "type": "number"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "updated_at": {
         "type": "datetime"
     },
     "id": {
-        "type": "string",
-        "primary": true
-    },
-    "kehoachthuchien_id": {
+        "primary": true,
         "type": "string"
     },
-    "hoatdong_thon": {
-        "type": "string",
-        "length": null
+    "quanhuyen": {
+        "type": "dict"
     },
-    "muctieu_thon": {
-        "type": "string",
-        "length": null
+    "xaphuong": {
+        "type": "dict"
     },
-    "ketqua_thon": {
-        "type": "string",
-        "length": null
-    },
-    "songtg_thon": {
+    "songuoi_dantocthieuso": {
         "type": "number"
     },
-    "sonutg_thon": {
-        "type": "number"
-    },
-    "dttstg_thon": {
-        "type": "number"
+    "tinhthanh_id": {
+        "type": "string"
     },
     "nganh": {
         "type": "number"
     },
-    "tentinh_id": {
+    "kehoachthuchien_id": {
         "type": "string"
     },
-    "tenhuyen_id": {
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "xaphuong_id": {
         "type": "string"
     },
-    "tenxa_id": {
-        "type": "string"
-    },
-    "tenthon_id": {
-        "type": "string"
-    },
-    "tentinh": {
-        "type": "dict"
-    },
-    "tenhuyen": {
-        "type": "dict"
-    },
-    "tenxa": {
-        "type": "dict"
-    },
-    "tenthon": {
-        "type": "dict"
+    "tongsonguoi_thamgia": {
+        "type": "number"
     }
 }

@@ -1,79 +1,80 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "diemruataycoxaphong": {
+        "type": "number"
+    },
+    "tenchuho": {
+        "length": null,
+        "type": "string"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
+    "dantoc": {
+        "type": "dict"
     },
-    "updated_by": {
-        "type": "string"
+    "hongheo": {
+        "type": "number"
     },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
+    "dantoc_id": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "capthon_id": {
-        "type": "string"
-    },
-    "dantoc": {
-        "type": "number"
-    },
-    "stt": {
-        "type": "number"
-    },
-    "tenchuho": {
-        "type": "string",
-        "length": null
-    },
-    "gioitinh": {
-        "type": "number"
-    },
-    "hongheo": {
-        "type": "number"
-    },
-    "tuhoai": {
-        "type": "number"
-    },
-    "thamdoi": {
+    "caithien": {
         "type": "number"
     },
     "haingan": {
         "type": "number"
     },
-    "coongthong": {
-        "type": "number"
-    },
-    "kconhatieu": {
-        "type": "number"
-    },
-    "hopvs": {
-        "type": "number"
-    },
-    "khopvs": {
-        "type": "number"
-    },
-    "caithien": {
-        "type": "number"
-    },
-    "diemruatay": {
-        "type": "number"
-    },
-    "tong": {
-        "type": "number"
+    "created_at": {
+        "type": "datetime"
     },
     "loaikhac": {
+        "type": "number"
+    },
+    "khongconhatieu": {
+        "type": "number"
+    },
+    "gioitinh": {
+        "type": "number"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "chimco_oth": {
+        "type": "number"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "tendantoc": {
+        "length": null,
+        "type": "string"
+    },
+    "hopvesinh": {
+        "type": "number"
+    },
+    "vscapthon_id": {
+        "type": "string"
+    },
+    "thamdoi": {
+        "type": "number"
+    },
+    "tuhoai": {
+        "type": "number"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "khonghopvesinh": {
         "type": "number"
     }
 }

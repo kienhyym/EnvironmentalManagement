@@ -1,42 +1,42 @@
 {
-    "created_at": {
-        "type": "datetime"
+    "deleted": {
+        "type": "boolean"
+    },
+    "value": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "number"
     },
     "created_by": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
+    "permission": {
+        "length": null,
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "number",
-        "primary": true
+    "updated_at": {
+        "type": "datetime"
     },
     "role_id": {
-        "type": "number",
-        "required": true
+        "required": true,
+        "type": "number"
+    },
+    "created_at": {
+        "type": "datetime"
     },
     "subject": {
-        "type": "string",
-        "length": null
+        "length": null,
+        "type": "string"
     },
-    "permission": {
-        "type": "string",
-        "length": null
+    "deleted_by": {
+        "type": "string"
     },
-    "value": {
-        "type": "boolean"
+    "updated_by": {
+        "type": "string"
     }
 }

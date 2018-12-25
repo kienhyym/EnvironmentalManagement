@@ -97,7 +97,7 @@ def create_test_models():
         db.session.add(dmTuyenDonVi)
         
     tuyendonvi = TuyenDonVi.query.filter(TuyenDonVi.ma == "TW").first()
-    donvi = DonVi( ten=u'Cục quản lý YDCT', captren = None, tuyendonvi_id = tuyendonvi.id)
+    donvi = DonVi( ten=u'Cục MTYT', captren = None, tuyendonvi_id = tuyendonvi.id)
     db.session.add(donvi)
     db.session.flush()
     
