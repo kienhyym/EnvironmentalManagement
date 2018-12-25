@@ -21,9 +21,9 @@ define(function (require) {
     				textField: "text",
     				valueField: "value",
     				dataSource: [
-    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+    					{"value": 0, "text": "Chưa thực hiện" },
+    					{"value": 1, "text": "Đang thực hiện" },
+    					{"value": 2, "text": "Đã thực hiện" }
 					]
     			},
     			{
@@ -32,9 +32,9 @@ define(function (require) {
     				textField: "text",
     				valueField: "value",
     				dataSource: [
-    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+    					{"value": 0, "text": "Chưa thực hiện" },
+    					{"value": 1, "text": "Đang thực hiện" },
+    					{"value": 2, "text": "Đã thực hiện" }
 					]
     			},
     			{
@@ -43,9 +43,9 @@ define(function (require) {
     				textField: "text",
     				valueField: "value",
     				dataSource: [
-    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+    					{"value": 0, "text": "Chưa thực hiện" },
+    					{"value": 1, "text": "Đang thực hiện" },
+    					{"value": 2, "text": "Đã thực hiện" }
 					]
     			},
     			{
@@ -54,9 +54,9 @@ define(function (require) {
     				textField: "text",
     				valueField: "value",
     				dataSource: [
-    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-    					{"value": "chuathuchien", "text": "Đang thực hiện" },
-    					{"value": "chuathuchien", "text": "Đã thực hiện" }
+    					{"value": 0, "text": "Chưa thực hiện" },
+    					{"value": 1, "text": "Đang thực hiện" },
+    					{"value": 2, "text": "Đã thực hiện" }
 					]
     			},
     			{
@@ -65,9 +65,9 @@ define(function (require) {
     				textField: "text",
     				valueField: "value",
     				dataSource: [
-    					{"value": "chuathuchien", "text": "Chưa thực hiện" },
-    					{"value": "dangthuchien", "text": "Đang thực hiện" },
-    					{"value": "dathuchien", "text": "Đã thực hiện" }
+    					{"value": 0, "text": "Chưa thực hiện" },
+    					{"value": 1, "text": "Đang thực hiện" },
+    					{"value": 2, "text": "Đã thực hiện" }
 					]
     			},
     			]

@@ -298,35 +298,15 @@ class ChoTruongHocTramYTE(CommonModel):
     ctmotsau = db.Column(db.String)
     ctmotbay = db.Column(db.String)
 
-##Mau 6
-# class CacHoatDongBBC(CommonModel):
-#     __tablename__ = 'cachoatdongbbc'
-#     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-#     hoatdongtinh = db.Column(db.String)
-#     hophoinhgi = db.Column(db.String)
-#     taphuan = db.Column(db.String)
-#     cachoatdong = db.Column(db.String)
-#     thanhlapcuahang = db.Column(db.String)
-#     taphuantruyenthong = db.Column(db.String)
-#     hdcaphuyen = db.Column(db.String)
-#     hoptrienkhai = db.Column(db.String)
-#     vschocanbo = db.Column(db.String)
-#     hdcapxa = db.Column(db.String)
-#     hopcapxa = db.Column(db.String)
-#     camketdat = db.Column(db.String)
-#     vstx = db.Column(db.String)
-#     truyenthongthon = db.Column(db.String)
-#     truonghoc = db.Column(db.String)
-#     bancamket = db.Column(db.String)
     
 class HoatDongBCCTinh(CommonModel):
     __tablename__ = 'hoatdongbcctinh'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    hophoinhgi = db.Column(db.String)
+    hop_hoi_nghi = db.Column(db.String)
     taphuan = db.Column(db.String)
     cachoatdong = db.Column(db.String)
-    thanhlapcuahang = db.Column(db.String)
-    taphuantruyenthong = db.Column(db.String)
+    thanhlap_cuahang = db.Column(db.String)
+    taphuantruyen_thong = db.Column(db.String)
     
 class HoatDongBCCHuyen(CommonModel):
     __tablename__ = 'hoatdongbcchuyen'
@@ -340,8 +320,8 @@ class HoatDongBCCXaThon(CommonModel):
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
     hopcapxa = db.Column(db.String)
     camketdat = db.Column(db.String)
-    vstx = db.Column(db.String)
-    truyenthongthon = db.Column(db.String)
+    vesinh_thuongxuyen = db.Column(db.String)
+    truyenthong_thon = db.Column(db.String)
     
 class HoatDongBCCTruongHoc(CommonModel):
     __tablename__ = 'hoatdongbcctruonghoc'
