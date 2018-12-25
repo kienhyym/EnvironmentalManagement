@@ -75,7 +75,6 @@ class ItemTinh(CommonModel):
     tongsonguoi_thamgia = db.Column(db.Integer)
     songuoi_lanu = db.Column(db.Integer)
     songuoi_dantocthieuso = db.Column(db.Integer)
-
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -85,12 +84,10 @@ class ItemTinh(CommonModel):
 
 class KeHoachThucHien(CommonModel):
     __tablename__ =  'kehoachthuchien'
-
     itemthon = relationship("ItemThon")
     itemxa = relationship("ItemXa")
     itemhuyen = relationship("ItemHuyen")
     itemtinh = relationship("ItemTinh")
-
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -155,20 +152,17 @@ class DuyTriVS(CommonModel):
 #Biểu mẫu số 4: Giới và Dân tộc thiểu số
 class DTThieuSo(CommonModel):
     __tablename__ = 'dtthieuso'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     ngdaotao_yte = db.Column(db.Integer)
     nuthamgia_yte = db.Column(db.Integer)
     ptnuthamgia_yte = db.Column(db.Integer)
     dttsthamgia_yte = db.Column(db.Integer)
     ptdttsthamgia_yte = db.Column(db.Integer)
-   
-   
+
     ngdaotao_gd = db.Column(db.Integer)
     nuthamgia_gd = db.Column(db.Integer)
     ptnuthamgia_gd = db.Column(db.Integer)
     dttsthamgia_gd = db.Column(db.Integer)
     ptdttsthamgia_gd = db.Column(db.Integer)
-   
    
     ngdaotao_tong = db.Column(db.Integer)
     nuthamgia_tong = db.Column(db.Integer)
@@ -179,7 +173,6 @@ class DTThieuSo(CommonModel):
 # Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học, trạm y tế
 class DTTruongHoc(CommonModel):
     __tablename__ = 'dttruonghoc'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     tentinh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tentinh = relationship('TinhThanh')
     tenhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -213,7 +206,6 @@ class DTTruongHoc(CommonModel):
 
 class NguocNcCongTrinh(CommonModel):
     __tablename__ = 'nguonnccongtrinh'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     ncchinh = db.Column(db.Integer)
     nguonnckhac = db.Column(db.String)
     
@@ -226,7 +218,6 @@ class NguocNcCongTrinh(CommonModel):
    
 class CapNcTruongTram(CommonModel):
     __tablename__ = 'capnctruongtram'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     matrgtram = db.Column(db.String)
     tentrgtram = db.Column(db.String)
     tenkhu = db.Column(db.String)
