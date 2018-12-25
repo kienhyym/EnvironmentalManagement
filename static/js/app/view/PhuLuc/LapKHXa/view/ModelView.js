@@ -21,18 +21,6 @@ define(function (require) {
 		collectionName: "itemxa",
 		uiControl: {
 			fields: [
-				// {
-				// 	field: "ngaypheduyet",
-				// 	textFormat: 'DD-MM-YYYY',
-				// 	extraFormats: ['DDMMYYYY'],
-				// 	maxDate: currentDate,
-				// },
-				// {
-				// 	field: "ngaytinhpheduyet",
-				// 	textFormat: 'DD-MM-YYYY',
-				// 	extraFormats: ['DDMMYYYY'],
-				// 	maxDate: currentDate,
-				// },
 				{
 					field: "tentinh",
 					uicontrol: "ref",
@@ -60,15 +48,6 @@ define(function (require) {
 					foreignField: "tenhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-				// {
-				// 	field: "tenthon",
-				// 	uicontrol: "ref",
-				// 	textField: "ten",
-				// 	//chuyen sang thanh object
-				// 	foreignRemoteField: "id",
-				// 	foreignField: "tenthon_id",
-				// 	dataSource: ThonXomSelectView
-				// },
 				{
 					field: "nganh",
 					uicontrol: "combobox",
