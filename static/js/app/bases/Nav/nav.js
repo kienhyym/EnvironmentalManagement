@@ -736,15 +736,15 @@ define(function (require) {
 					"text": "Mẫu số 01: Kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "baocaonuocsachOne",
-					"route": "baocaonuocsachOne/collection",
-					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/CollectionView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "baocaonuocsachOne",
-					"route": "baocaonuocsachOne/model",
-					"$ref": "app/view/BaoCaoNuoc/BapCaoNuocSachOne/view/ModelView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{

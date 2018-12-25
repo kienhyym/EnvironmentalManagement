@@ -9,7 +9,7 @@ import ujson
 import asyncio
 import aiohttp
 from application.models.model_danhmuc import XaPhuong
-from application.models.model_baocao import CapXa, CapThon, CapHuyen, CapTinh
+#from application.models.model_baocao import CapXa, CapThon, CapHuyen, CapTinh
 from application.models.model_user import TinhTrangBaocaoEnum
 from .helpers import *
 
