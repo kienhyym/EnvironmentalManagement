@@ -299,7 +299,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "capthon",
 					"route": "capthon/collection",
-					"$ref": "app/view/PhuLuc/CapThon/view/CollectionView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
@@ -309,7 +309,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "capthon",
 					"route": "capthon/model",
-					"$ref": "app/view/PhuLuc/CapThon/view/ModelView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
 					"visible": false
 				},
 				{
@@ -318,7 +318,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "capxa",
 					"route": "capxa/collection",
-					"$ref": "app/view/PhuLuc/CapXa/view/CollectionView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
@@ -328,7 +328,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "capxa",
 					"route": "capxa/model",
-					"$ref": "app/view/PhuLuc/CapXa/view/ModelView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
 					"visible": false
 				},
 				{
@@ -337,7 +337,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "caphuyen",
 					"route": "caphuyen/collection",
-					"$ref": "app/view/PhuLuc/CapHuyen/view/CollectionView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
 					"tuyendonvi": 3,
 					"visible": function () {
 						return this.checkTuyendonvi(3);
@@ -347,7 +347,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "caphuyen",
 					"route": "caphuyen/model",
-					"$ref": "app/view/PhuLuc/CapHuyen/view/ModelView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
 					"visible": false
 				},
 				{
@@ -356,7 +356,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "captinh",
 					"route": "captinh/collection",
-					"$ref": "app/view/PhuLuc/CapTinh/view/CollectionView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi(2);
@@ -366,7 +366,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "captinh",
 					"route": "captinh/model",
-					"$ref": "app/view/PhuLuc/CapTinh/view/ModelView",
+					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
 					"visible": false
 				},
 
