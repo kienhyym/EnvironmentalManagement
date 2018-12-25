@@ -49,6 +49,10 @@ define(function (require) {
 						{
 							"value": 3,
 							"text": " Chìm không OTH"
+						},
+						{
+							"value": 0,
+							"text": "Không có"
 						}
 					],
 				},

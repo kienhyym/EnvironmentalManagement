@@ -964,7 +964,7 @@ Page sidebar
   position: relative;
   margin: 0;
   border: 0px;
-  padding: 10px 15px;
+  padding: 10px 5px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
@@ -1116,7 +1116,7 @@ img.nav-menu-icon{
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu li > a {
   display: block;
   margin: 0;
-  padding: 6px 15px 6px 43px;
+  padding: 6px 6px 6px 20px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
@@ -1136,7 +1136,7 @@ img.nav-menu-icon{
 }
 .page-navbar .page-navbar-menu .sub-menu li > .sub-menu > li > a,
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu li > .sub-menu > li > a {
-  padding-left: 60px;
+  padding-left: 35px;
 }
 .page-navbar .page-navbar-menu .sub-menu li > .sub-menu > li > .sub-menu,
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu li > .sub-menu > li > .sub-menu {
@@ -1144,7 +1144,7 @@ img.nav-menu-icon{
 }
 .page-navbar .page-navbar-menu .sub-menu li > .sub-menu > li > .sub-menu > li > a,
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu li > .sub-menu > li > .sub-menu > li > a {
-  padding-left: 80px;
+  padding-left: 45px;
 }
 /*.page-navbar .page-navbar-menu li.active > .sub-menu,
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu li.active > .sub-menu {

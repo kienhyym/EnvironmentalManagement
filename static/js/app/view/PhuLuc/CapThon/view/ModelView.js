@@ -54,11 +54,11 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": 1,
+							"value": "1",
 							"text": "6 tháng đầu năm"
 						},
 						{
-							"value": 2,
+							"value": "2",
 							"text": "6 tháng cuối năm"
 						},
 					],
@@ -218,6 +218,11 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
+						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
+						for(var i=0; i< nhatieuthonhvs.length; i++){
+							nhatieuthonhvs[i].stt = i+1;
+						}
+						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
@@ -228,7 +233,7 @@ define(function (require) {
 						}
 					},
 					error: function () {
-						self.getApp().notify("Get data Eror");
+						self.getApp().notify("Lỗi lấy thông tin cấp thôn");
 					},
 				});
 			} else {
@@ -276,8 +281,11 @@ define(function (require) {
 			var data = Gonrin.getDefaultModel(tongischema);	
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
+				if (toInt(chitiet['loaikhac'])>0){
+					chitiet['loaikhac'] = 1;
+				}
 				_.each(tongischema, function (props, key) {
-					data[key] = toInt(data[key]) + toInt(self.model.get('nhatieuthonhvs')[j][key]);
+					data[key] = toInt(data[key]) + toInt(chitiet[key]);
 					//data[key] = !data[key] ? self.model.get('nhatieuthonhvs')[j][key] : self.model.get('nhatieuthonhvs')[j][key] + data[key];
 
 				});
@@ -296,7 +304,7 @@ define(function (require) {
 			
 			var tong_nu = self.model.get("sonu");
 			var tong_nam = self.model.get("sonam");
-			var tong_dantrongthon = tong_nam + tong_nu;
+			var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 			self.model.set("dantrongthon" , tong_dantrongthon)
 
 			var tong_dtts = self.tongViewi.model.get("dantoc");
@@ -309,23 +317,25 @@ define(function (require) {
 			self.model.set("hotrongthon", tongSoDan);	
 
 			var tongTuhoai = self.tongViewi.model.get("tuhoai");
-			self.model.set("tong_tuhoai", tongTuhoai)
+			self.model.set("tong_tuhoai", tongTuhoai);
 			var tongThamdoi = self.tongViewi.model.get("thamdoi");
-			self.model.set("tong_thamdoi", tongThamdoi)
+			self.model.set("tong_thamdoi", tongThamdoi);
 			var tong2ngan = self.tongViewi.model.get("haingan");
-			self.model.set("tong_2ngan", tong2ngan)
+			self.model.set("tong_2ngan", tong2ngan);
+			var tong_loaikhac = self.tongViewi.model.get("loaikhac");
+			self.model.set("tong_loaikhac", tong_loaikhac);
 			var tongOngthonghoi = self.tongViewi.model.get("coongthong");	
-			self.model.set("tong_ongthonghoi", tongOngthonghoi)
+			self.model.set("tong_ongthonghoi", tongOngthonghoi);
 			var tongKhongconhatieu = self.tongViewi.model.get("kconhatieu");
-			self.model.set("tong_khongnhatieu", tongKhongconhatieu)
+			self.model.set("tong_khongnhatieu", tongKhongconhatieu);
 			var tongHopvs = self.tongViewi.model.get("hopvs");
-			self.model.set("tong_hopvs", tongHopvs)
+			self.model.set("tong_hopvs", tongHopvs);
 			var tongKhopvs = self.tongViewi.model.get("khopvs");
-			self.model.set("tong_khonghopvs", tongKhopvs)
+			self.model.set("tong_khonghopvs", tongKhopvs);
 			var tongDuocaithien = self.tongViewi.model.get("caithien");
-			self.model.set("tong_dccaithien", tongDuocaithien)
+			self.model.set("tong_dccaithien", tongDuocaithien);
 			var tongRuatay = self.tongViewi.model.get("diemruatay");
-			self.model.set("tong_diemruatay", tongRuatay)
+			self.model.set("tong_diemruatay", tongRuatay);
 
 		},
 
@@ -334,7 +344,7 @@ define(function (require) {
 			var re = /(2[0-9]{4})\b/g;
 			var OK = re.exec(dateInput);  
 			if(!OK){
-				self.getApp().notify({message: "Ngay thang khong dung"},{type: "danger"})
+				self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
 			}
 		},
 	});

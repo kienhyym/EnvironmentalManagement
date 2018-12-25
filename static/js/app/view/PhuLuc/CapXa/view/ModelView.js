@@ -56,11 +56,11 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": 1,
+							"value": "1",
 							"text": "6 tháng đầu năm"
 						},
 						{
-							"value": 2,
+							"value": "2",
 							"text": "6 tháng cuối năm"
 						},
 					],
@@ -202,10 +202,8 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-						self.registerTinhTong();
 
 						var dataSourceCapThon = data.attributes.capthon;
-						console.log(dataSourceCapThon);
 						self.model.set("sothon", dataSourceCapThon.length);
 						
 	
@@ -216,14 +214,13 @@ define(function (require) {
 						var total_soNu = 0;
 						var total_hotrongthon = 0;
 						dataSourceCapThon.forEach(element => {
-							
+							console.log("element======",element);
 							total_hoconualachu += toInt(element.chuholanu);
 							total_sohongheo += toInt(element.sohongheo);
 							total_dtts += toInt(element.sohodtts);
 							total_soNam += toInt(element.sonam);
 							total_soNu += toInt(element.sonu);
 							total_hotrongthon += toInt(element.hotrongthon);
-
 							var tr = $('<tr id="idThon">').attr({
 								"id": element.id
 							});
@@ -235,6 +232,7 @@ define(function (require) {
 							tr.append("<td>" + element.tong_thamdoi + "</td>");
 							tr.append("<td>" + element.tong_2ngan + "</td>");
 							tr.append("<td>" + element.tong_ongthonghoi + "</td>");
+							tr.append("<td>" + toInt(element.tong_loaikhac) + "</td>");
 							tr.append("<td>" + element.tong_khongnhatieu + "</td>");
 							tr.append("<td>" + element.tong_hopvs + "</td>");
 							tr.append("<td>" + element.tong_khonghopvs + "</td>");
@@ -243,7 +241,6 @@ define(function (require) {
 							self.$el.find("#itemThon").append(tr);
 							tr.unbind('click').bind('click', function () {
 								var id = $(this).attr('id');
-								console.log("id : " + id);
 								var path = 'capthon/model?id=' + id;
 								self.getApp().getRouter().navigate(path);
 							});
@@ -257,35 +254,19 @@ define(function (require) {
 						var total_sodan = total_soNam + total_soNu;
 						self.model.set("dantrongxa", total_sodan);
 						self.model.set("hotrongxa", total_hotrongthon);
-						console.log(total_hoconualachu);	
-
-
 
 						self.renderTinhTongI(dataSourceCapThon);
-						var a = self.$el.find("#c").val();
-						
+						self.model.trigger("change");
 					},
 					error: function () {
-						self.getApp().notify("Get data Eror");
+						self.getApp().notify("Lỗi không lấy được dữ liệu");
 					},
 				});
 			} else {
 				self.applyBindings();
-				self.registerTinhTong();
 			}
 
 		},
-		registerTinhTong: function () {
-			var self = this;
-			self.model.on("change:dataSourceCapThon", function () {
-				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
-				self.renderTinhTongI();
-
-			});
-
-
-		},
-
 		renderTinhTongI: function (dataSourceCapThon) {
 			var self = this;
 			if (!self.tongViewi) {

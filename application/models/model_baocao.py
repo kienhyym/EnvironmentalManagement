@@ -1273,6 +1273,7 @@ class CapThon(CommonModel):
     tong_thamdoi = db.Column(db.Integer)
     tong_2ngan = db.Column(db.Integer)
     tong_ongthonghoi = db.Column(db.Integer)
+    tong_loaikhac = db.Column(db.Integer)
     tong_khongnhatieu = db.Column(db.Integer)
     tong_hopvs = db.Column(db.Integer)
     tong_khonghopvs = db.Column(db.Integer)

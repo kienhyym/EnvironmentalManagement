@@ -97,6 +97,9 @@
     "tong_ongthonghoi": {
         "type": "number"
     },
+    "tong_loaikhac": {
+        "type": "number"
+    },
     "tong_khongnhatieu": {
         "type": "number"
     },

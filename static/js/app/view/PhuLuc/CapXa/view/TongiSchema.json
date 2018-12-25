@@ -3,11 +3,11 @@
     "stt": {
         "type": "number"
     },
-    "nuchuho": {
+    "chuholanu": {
         "type": "number",
         "default":0
     },
-    "sodtts": {
+    "sohodtts": {
         "type": "number",
         "default":0
     },
@@ -15,43 +15,43 @@
         "type": "number",
         "default":0
     },
-    "tuhoai": {
+    "tong_tuhoai": {
         "type": "number",
         "default":0
     },
-    "thamdoi": {
+    "tong_thamdoi": {
         "type": "number",
         "default":0
     },
-    "haingan": {
+    "tong_2ngan": {
         "type": "number",
         "default":0
     },
-    "coongthong": {
+    "tong_ongthonghoi": {
         "type": "number",
         "default":0
     },
-    "loaikhac": {
+    "tong_loaikhac": {
         "type": "number",
         "default":0
     },
-    "kconhatieu": {
+    "tong_khongnhatieu": {
         "type": "number",
         "default":0
     },
-    "hopvs": {
+    "tong_hopvs": {
         "type": "number",
         "default":0
     },
-    "khopvs": {
+    "tong_khonghopvs": {
         "type": "number",
         "default":0
     },
-    "caithien": {
+    "tong_dccaithien": {
         "type": "number",
         "default":0
     },
-    "diemruatay": {
+    "tong_diemruatay": {
         "type": "number",
         "default":0
     }

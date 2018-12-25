@@ -13,6 +13,10 @@ define(function (require) {
     	    var isUser = gonrinApp().currentUser != null ? gonrinApp().currentUser.hasRole('User'): false;
     	    return isUser;
     	},
+    	checkTuyendonvi:function(){
+    		var currentUser = gonrinApp().currentUser;
+    		return true;
+    	},
     	userHasRole: function(role){
     	    var is = gonrinApp().currentUser != null ? gonrinApp().currentUser.hasRole(role): false;
     	    return is;
