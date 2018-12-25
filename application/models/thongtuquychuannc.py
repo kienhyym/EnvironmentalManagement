@@ -34,7 +34,7 @@ class BanCongBoQuyHop(CommonModel):
 class BapCaoNuocSachOne(CommonModel):
     __tablename__ = 'baocaonuocsachOne'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    ketquabaocaonuocone = relationship('KetQuaBaoCaoNuocOne')
+    kqngoaikiemchatluong = relationship('KQNgoaiKiemChatLuong', viewonly=True)
     thongtu = db.Column(db.String)
     phamvi = db.Column(db.String)
     ten = db.Column(db.String)
@@ -56,31 +56,41 @@ class BapCaoNuocSachOne(CommonModel):
     kyten = db.Column(db.String)
     ngaybaocao = db.Column(db.DateTime())
 
-#Item View 1
-class KetQuaBaoCaoNuocOne(CommonModel):
-    __tablename__ = 'ketquabaocaonuocone'
-    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    baocaonuocsachOne = db.Column(UUID(as_uuid=True), ForeignKey('baocaonuocsachOne.id'), nullable=True)
-    mamau = db.Column(db.Integer)
-    gioihanchophep1 = db.Column(db.Integer)
-    danhgia = db.Column(db.Integer)
-    cacthongso = db.Column(db.String)
-    gioihanchophep2 = db.Column(db.Integer)
-    gioihanchophep3 = db.Column(db.Integer)
-    gioihanchophep4 = db.Column(db.Integer)
-    gioihanchophep5 = db.Column(db.Integer)
-    gioihanchophep6 = db.Column(db.Integer)
-    gioihanchophep7 = db.Column(db.Integer)
-    gioihanchophep8 = db.Column(db.Integer)
-    gioihanchophep9 = db.Column(db.Integer)
-    gioihanchophep10 = db.Column(db.Integer)
-    gioihanchophep11 = db.Column(db.Integer)
-    gioihanchophep12 = db.Column(db.Integer)
-    gioihanchophep13 = db.Column(db.Integer)
-    gioihanchophep14 = db.Column(db.Integer)
-    gioihanchophep15 = db.Column(db.Integer)
+class KQNgoaiKiemChatLuong(CommonModel):
+    __tablename__ = 'kqngoaikiemchatluong'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    baocaonuocsachOne_id = db.Column(UUID(as_uuid=True), ForeignKey('baocaonuocsachOne.id'),index=True, nullable=True)
+    coliform_ten = db.Column(db.Integer)
+    coli_ten = db.Column(db.Integer)
+    doduc_ten = db.Column(db.Integer)
+    aresen_ten = db.Column(db.Integer)
+    clodu_ten = db.Column(db.Integer)
+    mausac_ten = db.Column(db.Integer)
+    muivi_ten = db.Column(db.Integer)
+    ph_ten = db.Column(db.Integer)
+    vitrilaymau = db.Column(db.String)
+    # coliform_vitri = db.Column(db.Integer)
+    # coli_vitri = db.Column(db.Integer)
+    # doduc_vitri = db.Column(db.Integer)
+    # aresen_vitri = db.Column(db.Integer)
+    # clodu_vitri = db.Column(db.Integer)
+    # mausac_vitri = db.Column(db.Integer)
+    # muivi_vitri = db.Column(db.Integer)
+    # ph_vitri = db.Column(db.Integer)
 
-##mau 2
+    ##
+    coliform_dat = db.Column(db.Integer)
+    coli_dat = db.Column(db.Integer)
+    doduc_dat = db.Column(db.Integer)
+    aresen_dat = db.Column(db.Integer)
+    clodu_dat = db.Column(db.Integer)
+    mausac_dat = db.Column(db.Integer)
+    muivi_dat = db.Column(db.Integer)
+    ph_dat = db.Column(db.Integer)
+    tong_dat = db.Column(db.String)
+
+
+
 class BaoCaoKiemTraCLNuocSach(CommonModel):
     __tablename__ = 'baocaokiemtraclnuocsach'
     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)

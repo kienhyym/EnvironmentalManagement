@@ -36,7 +36,7 @@ define(function (require) {
 				},
 				{
 					field: "somauvavitri",
-					label: "Số mẫu và vị trí lấy mẫu nước",
+					label: "Số mẫu vị trí lấy mẫu nước",
 					width: 250
 				},
 				

@@ -24,62 +24,62 @@
         "type": "string",
         "primary": true
     },
-    "baocaonuocsachOne": {
+    "baocaonuocsachOne_id": {
         "type": "string"
     },
-    "mamau": {
+    "coliform_ten": {
         "type": "number"
     },
-    "gioihanchophep1": {
+    "coli_ten": {
         "type": "number"
     },
-    "danhgia": {
+    "doduc_ten": {
         "type": "number"
     },
-    "cacthongso": {
+    "aresen_ten": {
+        "type": "number"
+    },
+    "clodu_ten": {
+        "type": "number"
+    },
+    "mausac_ten": {
+        "type": "number"
+    },
+    "muivi_ten": {
+        "type": "number"
+    },
+    "ph_ten": {
+        "type": "number"
+    },
+    "vitrilaymau": {
         "type": "string",
         "length": null
     },
-    "gioihanchophep2": {
+    "coliform_dat": {
         "type": "number"
     },
-    "gioihanchophep3": {
+    "coli_dat": {
         "type": "number"
     },
-    "gioihanchophep4": {
+    "doduc_dat": {
         "type": "number"
     },
-    "gioihanchophep5": {
+    "aresen_dat": {
         "type": "number"
     },
-    "gioihanchophep6": {
+    "clodu_dat": {
         "type": "number"
     },
-    "gioihanchophep7": {
+    "mausac_dat": {
         "type": "number"
     },
-    "gioihanchophep8": {
+    "muivi_dat": {
         "type": "number"
     },
-    "gioihanchophep9": {
+    "ph_dat": {
         "type": "number"
     },
-    "gioihanchophep10": {
-        "type": "number"
-    },
-    "gioihanchophep11": {
-        "type": "number"
-    },
-    "gioihanchophep12": {
-        "type": "number"
-    },
-    "gioihanchophep13": {
-        "type": "number"
-    },
-    "gioihanchophep14": {
-        "type": "number"
-    },
-    "gioihanchophep15": {
+    "tong_dat": {
         "type": "number"
     }
 }

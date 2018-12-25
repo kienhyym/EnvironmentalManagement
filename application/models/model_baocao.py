@@ -165,20 +165,20 @@ class PhieuNgoaiKiemChatLuong(CommonModel):
     ngaykiemtra = db.Column(db.DateTime())
     nguoikiemtrakyten = db.Column(db.String)
 #     kqphieungoaikiemtrachatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('kqphieungoaikiemtrachatluong.id'), nullable=True)
-    kqphieungoaikiemtrachatluong = relationship('KQPhieuNgoaiKiemChatLuong',viewonly=True)
+    #kqphieungoaikiemtrachatluong = relationship('KQPhieuNgoaiKiemChatLuong',viewonly=True)
 
 
 #Table 4.5
-class KQPhieuNgoaiKiemChatLuong(CommonModel):
-    __tablename__ = 'kqphieungoaikiemtrachatluong'
-    id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
-    phieungoaikiemchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('phieungoaikiemchatluong.id'),index=True, nullable=True)
-    vitrilaymau = db.Column(db.String)
-    ph = db.Column(db.String)
-    doduc = db.Column(db.String)
-    clodu = db.Column(db.String)
-    tieuchikhac = db.Column(JSON)
-    danhgia = db.Column(db.String)
+# class KQPhieuNgoaiKiemChatLuong(CommonModel):
+#     __tablename__ = 'kqphieungoaikiemtrachatluong'
+#     id = db.Column(UUID(as_uuid=True), primary_key=True,default=default_uuid)
+#     phieungoaikiemchatluong_id = db.Column(UUID(as_uuid=True), ForeignKey('phieungoaikiemchatluong.id'),index=True, nullable=True)
+#     vitrilaymau = db.Column(db.String)
+#     ph = db.Column(db.String)
+#     doduc = db.Column(db.String)
+#     clodu = db.Column(db.String)
+#     tieuchikhac = db.Column(JSON)
+#     danhgia = db.Column(db.String)
 
 
 #Mau 4.6.

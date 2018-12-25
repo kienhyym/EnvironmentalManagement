@@ -59,13 +59,6 @@ apimanager.create_api(PhieuNgoaiKiemChatLuong,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='phieungoaikiemchatluong')
 
-apimanager.create_api(KQPhieuNgoaiKiemChatLuong,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='kqphieungoaikiemtrachatluong')
-
-
 apimanager.create_api(KiemTraNguonNuocHoGiaDinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',

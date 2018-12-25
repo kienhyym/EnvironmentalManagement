@@ -304,8 +304,8 @@ define(function (require) {
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
 			"visible": function () {
-				return false;
-//				return this.userHasRole("Admin");
+				//return false;
+				return this.userHasRole("Admin");
 			},
 			"entries": [
 

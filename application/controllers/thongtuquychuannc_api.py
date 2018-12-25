@@ -26,12 +26,11 @@ apimanager.create_api(BapCaoNuocSachOne,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='baocaonuocsachOne')
 
-
-apimanager.create_api(KetQuaBaoCaoNuocOne,
+apimanager.create_api(KQNgoaiKiemChatLuong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ketquabaocaonuocone')
+    collection_name='kqngoaikiemchatluong')
 
 apimanager.create_api(BaoCaoKiemTraCLNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
