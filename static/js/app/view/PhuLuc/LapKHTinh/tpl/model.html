@@ -1,62 +1,93 @@
 <div style="margin-top: 30px" class="panel panel-default">
     <div class="panel-heading">Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông
-        tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp tỉnh</div>
+        tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp thôn</div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-    <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+    <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-        <!--    <style type="text/css">
-           table {
-               table-layout: fixed;
-               width: 100%;
-           }
- 
-           table,
-           th,
-           td {
-               border: 1px solid black;
-               border-collapse: collapse;
-               display: table;
-           }
- 
-           th,
-           td {
-               padding: 5px;
-               text-align: center;
-               display: table-cell;
-           }
- 
-           .top {
-               background: #C5DFB5;
-           }
- 
-           .custom {
-               background: #F0F0F0;
-           }
-       </style> -->
-           <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
-        <table align="center">
-            <thead>
-                <tr>
-                    <th class="top">Tiến độ</th>
-                    <th class="top">VIHEMA và WB rà soát, chấp thuận </th>
-                    <th class="top">Kế hoạch BCC được phê duyệt</th>
-                    <th class="top">Tỉnh phê duyệt</th>
-                    <th class="top">Ngày phê duyệt</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" data-bind="value:tiendo" /></td>
-                    <td><input type="text" data-bind="value:vihema" /></td>
-                    <td><input type="text" data-bind="value:khpheduyet" /></td>
-                    <td><input type="text" data-bind="dict:tentinh" /></td>
-                    <td><input type="text" data-bind="value:ngaytinhpheduyet" /></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
-            <table align="center">
+        <div class="row" style="margin-top: 20px;">
+
+            <table class="table">
+                <thead class="background-colorTR">
+                    <tr>
+                        <th>Nội dung</th>
+                        <th>Tiến độ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1. Xây dựng dự thảo kế hoạch BCC</th>
+                        <th><input type="text" class="form-control" data-bind="value:xaydungduthao" /></th>
+                    </tr>
+                    <tr>
+                        <th>2. VIHEMA và WB rà soát, chấp thuận bản kế hoạch BCC</th>
+                        <th><input type="text" class="form-control" data-bind="value:vihema" /></th>
+                    </tr>
+                    <tr>
+                        <th>3. Tỉnh phê duyệt kế hoạch BCC</th>
+                        <th><input type="text" class="form-control" data-bind="value:trangthai_tinhpheduyen" /></th>
+
+                    </tr>
+                    <tr>
+                        <th>Ngày phê duyệt</th>
+                        <th><input type="text" class="form-control" data-bind="value:ngay_tinhpheduyen" /></th>
+
+                    </tr>
+                    <tr>
+                        <th>Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt</th>
+                        <th><input type="text" class="form-control" data-bind="value:sohd_tinhduyet" /></th>
+
+                    </tr>
+                    <tr>
+                        <th>4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</th>
+                        <th><input type="text" class="form-control" data-bind="value:sohoatdong" /></th>
+
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label>Chọn xã</label>
+                        <th><input type="text" class="form-control" data-bind="dict:tenxa" /></th>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Chọn thôn</label>
+                        <th><input type="text" class="form-control" data-bind="dict:tenthon" /></th>
+
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Chọn tỉnh</label>
+                            <th><input type="text" class="form-control" data-bind="dict:tentinh" /></th>
+
+                        </div>
+                        <!-- <div class="col-md-6">
+                                    <label>Chọn huyện</label>
+                                    <th><input type="text" class="form-control" data-bind="dict:tenhuyen" /></th>
+            
+                                </div> -->
+                    </div>  
+                    <div class="col-md-6">
+                        <label style="color: red">Chọn ngành</label>
+                        <th><input type="text" class="form-control" data-bind="value:nganh" /></th>
+
+                    </div>
+                    <div class="col-md-1">
+                        <div style="margin-top: 24px;" id="addItem"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <table class="table">
                 <thead>
                     <tr>
                         <th class="top">Hoạt động</th>
@@ -64,6 +95,7 @@
                         <th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
                         </th>
                         <th colspan="3" class="top">Số người tham gia</th>
+                        <th class="top"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,11 +104,8 @@
                         <td>(2)</td>
                         <td>(3)</td>
                         <td colspan="3"></td>
-
-
-
+                        <td></td>
                     </tr>
-
                     <tr class="custom" style="background: #F0F0F0;;">
                         <td colspan="3">
                             <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
@@ -84,43 +113,16 @@
                         <td>Tổng số người tham gia</td>
                         <td>Số người tham gia là nữ</td>
                         <td>Số người tham gia là DTTS</td>
-
-
-                    </tr>
-
-                    <tr class="custom">
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Chọn ngành:
-                            <input type="text" class="form-control" id="from" data-bind="value:nganh">
-                        <td>
                         <td></td>
-                        <td></td>
-
-
                     </tr>
-
                     <tr>
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp tỉnh
-                        <td>
+                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động
+                            cấp tỉnh</td>
                         <td></td>
                         <td></td>
-
-
                     </tr>
-
-                    <!-- <tr>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:hoatdong_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:muctieu_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:ketqua_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:songtg_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:sonutg_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:dttstg_tinh"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:tiendo"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:vihema"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:khpheduyet"></td>
-                       <td><input type="text" class="form-control" id="from" data-bind="value:tgpheduyet"></td>
-                   </tr> -->
                 </tbody>
-                <div class="row" id="addItem"></div>
+
                 <tfoot id="itemtinh" data-bind="list:itemtinh"></tfoot>
             </table>
         </div>

@@ -4,8 +4,8 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/ItemThon/tpl/itemView.html'),
-		schema = require('json!schema/ItemThonSchema.json');
+	var template = require('text!app/view/PhuLuc/ItemTinh/tpl/itemView.html'),
+		schema = require('json!schema/ItemTinhSchema.json');
 	var DanTocSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	
 
@@ -15,7 +15,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		tagName: 'tr',
-		collectionName: "itemthon",
+		collectionName: "itemtinh",
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [

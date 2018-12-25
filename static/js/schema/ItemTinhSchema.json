@@ -24,27 +24,28 @@
         "type": "string",
         "primary": true
     },
-    "lapkhtinh_id": {
+    "kehoachthuchien_id": {
         "type": "string"
     },
-    "hoatdong_tinh": {
+    "hoatdong_thon": {
         "type": "string",
         "length": null
     },
-    "muctieu_tinh": {
-        "type": "number"
-    },
-    "ketqua_tinh": {
+    "muctieu_thon": {
         "type": "string",
         "length": null
     },
-    "songtg_tinh": {
+    "ketqua_thon": {
+        "type": "string",
+        "length": null
+    },
+    "songtg_thon": {
         "type": "number"
     },
-    "sonutg_tinh": {
+    "sonutg_thon": {
         "type": "number"
     },
-    "dttstg_tinh": {
+    "dttstg_thon": {
         "type": "number"
     }
 }

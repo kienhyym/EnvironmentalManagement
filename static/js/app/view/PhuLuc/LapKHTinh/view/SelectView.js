@@ -5,14 +5,14 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
-    	schema 				= require('json!schema/LapKHTinhSchema.json');
+    	schema 				= require('json!schema/KeHoachThucHienSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "lapkhtinh",
+    	collectionName: "kehoachthuchien",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -38,7 +38,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "lapkhtinh_filter"
+    			sessionKey: "lapkhthon_filter"
     		});
     		filter.render();
     		

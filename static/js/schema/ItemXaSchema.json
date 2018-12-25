@@ -24,7 +24,7 @@
         "type": "string",
         "primary": true
     },
-    "lapkhxa_id": {
+    "kehoachthuchien_id": {
         "type": "string"
     },
     "hoatdong_xa": {
@@ -32,7 +32,8 @@
         "length": null
     },
     "muctieu_xa": {
-        "type": "number"
+        "type": "string",
+        "length": null
     },
     "ketqua_xa": {
         "type": "string",
@@ -46,5 +47,32 @@
     },
     "dttstg_xa": {
         "type": "number"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "tentinh_id": {
+        "type": "string"
+    },
+    "tenhuyen_id": {
+        "type": "string"
+    },
+    "tenxa_id": {
+        "type": "string"
+    },
+    "tenthon_id": {
+        "type": "string"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "tenthon": {
+        "type": "dict"
     }
 }

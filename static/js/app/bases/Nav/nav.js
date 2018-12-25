@@ -205,7 +205,7 @@ define(function (require) {
 					"collectionName": "quanhuyen",
 					"route": "quanhuyen/collection",
 					"$ref": "app/view/DanhMuc/QuanHuyen/view/CollectionView",
-					"tuyendonvi":3,
+					"tuyendonvi": 3,
 					"visible": function () {
 						return this.checkTuyendonvi(3);
 					}
@@ -223,7 +223,7 @@ define(function (require) {
 					"collectionName": "xaphuong",
 					"route": "xaphuong/collection",
 					"$ref": "app/view/DanhMuc/XaPhuong/view/CollectionView",
-					"tuyendonvi":4,
+					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
 					}
@@ -241,7 +241,7 @@ define(function (require) {
 					"collectionName": "thonxom",
 					"route": "thonxom/collection",
 					"$ref": "app/view/DanhMuc/ThonXom/view/CollectionView",
-					"tuyendonvi":4,
+					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
 					}
@@ -300,7 +300,7 @@ define(function (require) {
 					"collectionName": "capthon",
 					"route": "capthon/collection",
 					"$ref": "app/view/PhuLuc/CapThon/view/CollectionView",
-					"tuyendonvi":4,
+					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
 					}
@@ -319,7 +319,7 @@ define(function (require) {
 					"collectionName": "capxa",
 					"route": "capxa/collection",
 					"$ref": "app/view/PhuLuc/CapXa/view/CollectionView",
-					"tuyendonvi":4,
+					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
 					}
@@ -338,7 +338,7 @@ define(function (require) {
 					"collectionName": "caphuyen",
 					"route": "caphuyen/collection",
 					"$ref": "app/view/PhuLuc/CapHuyen/view/CollectionView",
-					"tuyendonvi":3,
+					"tuyendonvi": 3,
 					"visible": function () {
 						return this.checkTuyendonvi(3);
 					}
@@ -357,7 +357,7 @@ define(function (require) {
 					"collectionName": "captinh",
 					"route": "captinh/collection",
 					"$ref": "app/view/PhuLuc/CapTinh/view/CollectionView",
-					"tuyendonvi":2,
+					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi(2);
 					}
@@ -369,57 +369,55 @@ define(function (require) {
 					"$ref": "app/view/PhuLuc/CapTinh/view/ModelView",
 					"visible": false
 				},
-				
+
 			],
 		},
 		{
 			"text": "Chương trình SUPRSWS",
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
-			"entries": [
-				{
+			"entries": [{
 					"text": "Kế hoạch BCC",
 					"icon": "glyphicon glyphicon-file",
 					"type": "category",
 					"collectionName": "kehoachbcc",
 					"route": "kehoachbcc/collection",
 					"$ref": "app/view/kehoachbcc/KeHoachBCCView",
-					"entries":[
-						{
-							"text": "Hoạt động cấp tỉnh",
+					"entries": [{
+							"text": "Hoạt động cấp thôn",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "lapkhtinh",
-							"route": "lapkhtinh/collection",
-							"$ref": "app/view/PhuLuc/LapKHTinh/view/CollectionView",
-							"tuyendonvi":2,
+							"collectionName": "itemthon",
+							"route": "itemthon/collection",
+							"$ref": "app/view/PhuLuc/LapKHThon/view/CollectionView",
+							"tuyendonvi": 2,
 							"visible": function () {
 								return this.checkTuyendonvi(2);
 							}
 						},
 						{
 							"type": "view",
-							"collectionName": "lapkhtinh",
-							"route": "lapkhtinh/model",
-							"$ref": "app/view/PhuLuc/LapKHTinh/view/ModelView",
+							"collectionName": "itemthon",
+							"route": "itemthon/model",
+							"$ref": "app/view/PhuLuc/LapKHThon/view/ModelView",
 							"visible": false
 						},
 						{
 							"text": "Hoạt động cấp huyện",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "lapkhhuyen",
-							"route": "lapkhhuyen/collection",
+							"collectionName": "itemhuyen",
+							"route": "itemhuyen/collection",
 							"$ref": "app/view/PhuLuc/LapKHHuyen/view/CollectionView",
-							"tuyendonvi":3,
+							"tuyendonvi": 3,
 							"visible": function () {
 								return this.checkTuyendonvi(3);
 							}
 						},
 						{
 							"type": "view",
-							"collectionName": "lapkhhuyen",
-							"route": "lapkhhuyen/model",
+							"collectionName": "itemhuyen",
+							"route": "itemhuyen/model",
 							"$ref": "app/view/PhuLuc/LapKHHuyen/view/ModelView",
 							"visible": false
 						},
@@ -427,38 +425,38 @@ define(function (require) {
 							"text": "Hoạt động cấp xã",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "lapkhxa",
-							"route": "lapkhxa/collection",
+							"collectionName": "itemxa",
+							"route": "itemxa/collection",
 							"$ref": "app/view/PhuLuc/LapKHXa/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
 						},
 						{
 							"type": "view",
-							"collectionName": "lapkhxa",
-							"route": "lapkhxa/model",
+							"collectionName": "itemxa",
+							"route": "itemxa/model",
 							"$ref": "app/view/PhuLuc/LapKHXa/view/ModelView",
 							"visible": false
 						},
 						{
-							"text": "Hoạt động cấp thôn",
+							"text": "Hoạt động cấp tỉnh",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "lapkhthon",
-							"route": "lapkhthon/collection",
-							"$ref": "app/view/PhuLuc/LapKHThon/view/CollectionView",
-							"tuyendonvi":4,
+							"collectionName": "kehoachthuchien",
+							"route": "kehoachthuchien/collection",
+							"$ref": "app/view/PhuLuc/LapKHTinh/view/CollectionView",
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
 						},
 						{
 							"type": "view",
-							"collectionName": "lapkhthon",
-							"route": "lapkhthon/model",
-							"$ref": "app/view/PhuLuc/LapKHThon/view/ModelView",
+							"collectionName": "kehoachthuchien",
+							"route": "kehoachthuchien/model",
+							"$ref": "app/view/PhuLuc/LapKHTinh/view/ModelView",
 							"visible": false
 						},
 						{
@@ -468,7 +466,7 @@ define(function (require) {
 							"collectionName": "hoatdongbcctinh",
 							"route": "hoatdongbcctinh/collection",
 							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/CollectionView",
-							"tuyendonvi":2,
+							"tuyendonvi": 2,
 							"visible": function () {
 								return this.checkTuyendonvi(2);
 							}
@@ -487,7 +485,7 @@ define(function (require) {
 							"collectionName": "hoatdongbcchuyen",
 							"route": "hoatdongbcchuyen/collection",
 							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/CollectionView",
-							"tuyendonvi":3,
+							"tuyendonvi": 3,
 							"visible": function () {
 								return this.checkTuyendonvi(3);
 							}
@@ -506,7 +504,7 @@ define(function (require) {
 							"collectionName": "hoatdongbccxathon",
 							"route": "hoatdongbccxathon/collection",
 							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -525,7 +523,7 @@ define(function (require) {
 							"collectionName": "hoatdongbcctruonghoc",
 							"route": "hoatdongbcctruonghoc/collection",
 							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -546,15 +544,14 @@ define(function (require) {
 					"collectionName": "xavesinhtoanxa",
 					"route": "xavesinhtoanxa/collection",
 					"$ref": "app/view/xavesinhtoanxa/XaVeSinhToanXaView",
-					"entries":[
-						{
+					"entries": [{
 							"text": "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vstoanxa",
 							"route": "vstoanxa/collection",
 							"$ref": "app/view/PhuLuc/VSToanXa/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -573,7 +570,7 @@ define(function (require) {
 							"collectionName": "duytrivs",
 							"route": "duytrivs/collection",
 							"$ref": "app/view/PhuLuc/DuyTriVS/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -594,15 +591,14 @@ define(function (require) {
 					"collectionName": "truonghoctramyte",
 					"route": "truonghoctramyte/collection",
 					"$ref": "app/view/truonghoctramyte/TruongHocTramYTeView",
-					"entries":[
-						{
+					"entries": [{
 							"text": "Biểu mẫu số 4: Giới và Dân tộc thiểu số",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "dtthieuso",
 							"route": "dtthieuso/collection",
 							"$ref": "app/view/PhuLuc/DTThieuSo/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -621,7 +617,7 @@ define(function (require) {
 							"collectionName": "dttruonghoc",
 							"route": "dttruonghoc/collection",
 							"$ref": "app/view/PhuLuc/DTTruongHoc/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -640,7 +636,7 @@ define(function (require) {
 							"collectionName": "kiemtratinhtrangvss",
 							"route": "kiemtratinhtrangvss/collection",
 							"$ref": "app/view/HoatDongGD/KiemTraTinhTrangVS/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -659,7 +655,7 @@ define(function (require) {
 							"collectionName": "nhatieuthamnuoc",
 							"route": "nhatieuthamnuoc/collection",
 							"$ref": "app/view/HoatDongGD/NhaTieuThamNuoc/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -678,7 +674,7 @@ define(function (require) {
 							"collectionName": "nhatieu2ngan",
 							"route": "nhatieu2ngan/collection",
 							"$ref": "app/view/HoatDongGD/NhaTieu2Ngan/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -697,7 +693,7 @@ define(function (require) {
 							"collectionName": "nhatieuchim",
 							"route": "nhatieuchim/collection",
 							"$ref": "app/view/HoatDongGD/NhaTieuChim/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -716,7 +712,7 @@ define(function (require) {
 							"collectionName": "chotruonghoctramyte",
 							"route": "chotruonghoctramyte/collection",
 							"$ref": "app/view/HoatDongGD/ChoTruongHocTramYTE/view/CollectionView",
-							"tuyendonvi":4,
+							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
 							}
@@ -730,7 +726,7 @@ define(function (require) {
 						}
 					]
 				}
-				]
+			]
 		},
 		{
 			"text": "Chất lượng nước sạch",
