@@ -1,43 +1,91 @@
 define(function (require) {
-    "use strict";
-    var $                   = require('jquery'),
-        _                   = require('underscore'),
-		Gonrin				= require('gonrin');
+	"use strict";
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Gonrin = require('gonrin');
 
-    var template 			= require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
-    	schema 				= require('json!schema/LapKHTinhSchema.json');
+	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
+		schema = require('json!schema/KeHoachThucHienSchema.json');
 
-    return Gonrin.CollectionView.extend({
-    	template : template,
-    	modelSchema	: schema,
-    	urlPrefix: "/api/v1/",
-    	collectionName: "lapkhtinh",
-		uiControl:{
-	    	fields: [
-	    	     
-	    	    	{ 	field: "tentinh_id",
-	    	    		label:"Tỉnh phê duyệt",
-	    	    		foreign: "tentinh",
-						foreignValueField: "id",
-						foreignTextField: "ten"},
-						
-	    	    	{ field: "tiendo",label:"Tiến độ"},
-	    	    	{ field: "vihema",label:"VIHEMA và WB"},
-	    	    	{ field: "khpheduyet",label:"Kế hoạch BCC"},
-	    	    	{ field: "tgpheduyet",label:"Ngày phê duyệt"},  	    	   	    
-	    	     				  
-		     ],
-		     onRowClick: function(event){
-		    		if(event.rowId){
-		        		var path = this.collectionName + '/model?id='+ event.rowId;
-		        		this.getApp().getRouter().navigate(path);
-		        	}
-		    	}
-    	},
-	    render:function(){
-	    	 this.applyBindings();
-	    	 return this;
-    	},
-    });
+	return Gonrin.CollectionView.extend({
+		template: template,
+		modelSchema: schema,
+		urlPrefix: "/api/v1/",
+		collectionName: "kehoachthuchien",
+		uiControl: {
+			fields: [{
+					field: "nganh",
+					label: "Ngành",
+					template: function (rowData) {
+						if (rowData.nganh === 1) {
+							return "NGÀNH Y TẾ";
+						} else {
+							return "NGÀNH GIÁO DỤC";
+						}
+					},
+				},
+				// {
+				// 	field: "tenxa_id",
+				// 	label: "Ngày phê duyệt",
+				// },
+				{
+					field: "ngay_tinhpheduyen",
+					label: "Ngày phê duyệt",
+				},
+				{
+					field: "xaydungduthao",
+					label: "Xây dựng dự thảo kế hoạch BCC",
+					template: function (rowData) {
+						if (rowData.xaydungduthao === 2) {
+							return "Đã hooàn thành dự thảo";
+						} else if (rowData.xaydungduthao === 1) {
+							return "Đang xây dựng";
+						} else {
+							return "Chưa xây dựng";
+						}
+					},
+				},
+				{
+					field: "vihema",
+					label: "VIHEMA và WB",
+					template: function (rowData) {
+						if (rowData.vihera === 2) {
+							return "Đã chấp thuận";
+						} else if (rowData.vihera === 1) {
+							return "Đang rà soát";
+						} else {
+							return "Chưa rà soát";
+						}
+					},
+				},
+				{
+					field: "sohoatdong",
+					label: "Số hoạt động BCC cốt lõi"
+				},
+				{
+					field: "trangthai_tinhpheduyen",
+					label: "Trạng thái phê duyệt",
+					template: function (rowData) {
+						if (rowData.trangthai_tinhpheduyen === 1) {
+							return "Đã phê duyệt";
+						} else {
+							return "Chưa phê duyệt";
+						}
+					},
+				},
+
+			],
+			onRowClick: function (event) {
+				if (event.rowId) {
+					var path = this.collectionName + '/model?id=' + event.rowId;
+					this.getApp().getRouter().navigate(path);
+				}
+			}
+		},
+		render: function () {
+			this.applyBindings();
+			return this;
+		},
+	});
 
 });

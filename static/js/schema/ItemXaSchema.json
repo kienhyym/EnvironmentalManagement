@@ -24,27 +24,55 @@
         "type": "string",
         "primary": true
     },
-    "lapkhxa_id": {
+    "kehoachthuchien_id": {
         "type": "string"
     },
-    "hoatdong_xa": {
+    "hoatdong_thon": {
         "type": "string",
         "length": null
     },
-    "muctieu_xa": {
-        "type": "number"
-    },
-    "ketqua_xa": {
+    "muctieu_thon": {
         "type": "string",
         "length": null
     },
-    "songtg_xa": {
+    "ketqua_thon": {
+        "type": "string",
+        "length": null
+    },
+    "songtg_thon": {
         "type": "number"
     },
-    "sonutg_xa": {
+    "sonutg_thon": {
         "type": "number"
     },
-    "dttstg_xa": {
+    "dttstg_thon": {
         "type": "number"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "tentinh_id": {
+        "type": "string"
+    },
+    "tenhuyen_id": {
+        "type": "string"
+    },
+    "tenxa_id": {
+        "type": "string"
+    },
+    "tenthon_id": {
+        "type": "string"
+    },
+    "tentinh": {
+        "type": "dict"
+    },
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "tenthon": {
+        "type": "dict"
     }
 }

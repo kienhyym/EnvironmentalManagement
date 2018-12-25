@@ -19,37 +19,7 @@ define(function (require) {
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [
-				{
-    				field: "tiendo",
-    				uicontrol: "combobox",
-    				textField: "text",
-    				valueField: "value",
-    				dataSource: [
-    					{ "value": "chualap", "text": "Chưa lập kế hoạch BCC" },
-    					{ "value": "danglap", "text": "Đang lập kế hoach" },
-					],
-    			},
-    			{
-    				field: "vihema",
-    				uicontrol: "combobox",
-    				textField: "text",
-    				valueField: "value",
-    				dataSource: [
-    					{ "value": "chuars", "text": "Chưa rà soát" },
-    					{ "value": "dangrs", "text": "Đang rà soát" },
-    					{ "value": "dachapthuan", "text": "Đã chấp thuận" },
-					],
-    			},
-    			{
-    				field: "khpheduyet",
-    				uicontrol: "combobox",
-    				textField: "text",
-    				valueField: "value",
-    				dataSource: [
-    					{ "value": "chua", "text": "Chưa" },
-    					{ "value": "roi", "text": "Rồi" },
-					],
-    			},
+				
 			]
 		},
 

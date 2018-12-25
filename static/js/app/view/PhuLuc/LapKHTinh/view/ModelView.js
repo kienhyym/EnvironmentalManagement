@@ -5,26 +5,23 @@ define(function (require) {
 		Gonrin = require('gonrin');
 
 	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/model.html'),
-		schema = require('json!schema/LapKHTinhSchema.json');
+		schema = require('json!schema/KeHoachThucHienSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
-	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
+	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 
+	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
 
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "lapkhtinh",
+		collectionName: "kehoachthuchien",
 		uiControl: {
 			fields: [{
-					field: "ngaypheduyet",
-					textFormat: 'DD-MM-YYYY',
-					extraFormats: ['DDMMYYYY'],
-					maxDate: currentDate,
-				},
-				{
-					field: "ngaytinhpheduyet",
+					field: "ngay_tinhpheduyen",
 					textFormat: 'DD-MM-YYYY',
 					extraFormats: ['DDMMYYYY'],
 					maxDate: currentDate,
@@ -39,32 +36,60 @@ define(function (require) {
 					dataSource: TinhThanhSelectView
 				},
 				{
+					field: "tenxa",
+					uicontrol: "ref",
+					textField: "ten",
+					//chuyen sang thanh object
+					foreignRemoteField: "id",
+					foreignField: "tenxa_id",
+					dataSource: XaPhuongSelectView
+				},
+				{
+					field: "tenhuyen",
+					uicontrol: "ref",
+					textField: "ten",
+					//chuyen sang thanh object
+					foreignRemoteField: "id",
+					foreignField: "tenhuyen_id",
+					dataSource: QuanHuyenSelectView
+				},
+				{
+					field: "tenthon",
+					uicontrol: "ref",
+					textField: "ten",
+					//chuyen sang thanh object
+					foreignRemoteField: "id",
+					foreignField: "tenthon_id",
+					dataSource: ThonXomSelectView
+				},
+
+				{
 					field: "nganh",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "yte",
+							"value": 1,
 							"text": "NGÀNH Y TẾ"
 						},
 						{
-							"value": "gd",
+							"value": 0,
 							"text": "NGÀNH GIÁO DỤC"
 						},
 					],
 				},
 				{
-					field: "tiendo",
+					field: "trangthai_tinhpheduyen",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "Chưa lập kế hoạch BCC",
-							"text": "Chưa lập kế hoạch BCC"
+							"value": 1,
+							"text": "Đã phê duyệt"
 						},
 						{
-							"value": "Đang lập kế hoạch",
-							"text": "Đang lập kế hoạch"
+							"value": 0,
+							"text": "Chưa phê duyệt"
 						},
 					],
 				},
@@ -74,31 +99,35 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "Chưa rà soát",
+							"value": 0,
 							"text": "Chưa rà soát"
 						},
 						{
-							"value": "Đang rà soát",
+							"value": 1,
 							"text": "Đang rà soát"
 						},
 						{
-							"value": "Đã chấp thuận",
+							"value": 2,
 							"text": "Đã chấp thuận"
 						},
 					],
 				},
 				{
-					field: "khpheduyet",
+					field: "xaydungduthao",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "Chưa phê duyệt",
-							"text": "Chưa phê duyệt"
+							"value": 2,
+							"text": "Đã hooàn thành dự thảo"
 						},
 						{
-							"value": "Đã phê duyệt",
-							"text": "Đã phê duyệt"
+							"value": 1,
+							"text": "Đang xây dựng"
+						},
+						{
+							"value": 0,
+							"text": "Chưa xây dựng"
 						},
 					],
 				},
@@ -111,7 +140,7 @@ define(function (require) {
 						name: "create",
 						type: "button",
 						buttonClass: "btn btn-success btn-sm",
-						label: "<span class='fa fa-plus'>Thêm</span>",
+						label: "<span class='fa fa-plus'>Thêm hoạt động</span>",
 						command: "create"
 					}, ],
 					toolEl: "#addItem"
@@ -120,20 +149,17 @@ define(function (require) {
 		},
 
 
-		tools: [
-			{
+		tools: [{
 			name: "defaultgr",
 			type: "group",
 			groupClass: "toolbar-group",
-			buttons: [
-				{
+			buttons: [{
 					name: "back",
 					type: "button",
 					buttonClass: "btn-default btn-sm",
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-
 						Backbone.history.history.back();
 					}
 				},
@@ -143,19 +169,18 @@ define(function (require) {
 					buttonClass: "btn-success btn-sm",
 					label: "TRANSLATE:SAVE",
 					command: function () {
-						var self = this;						                				                			 
-						self.model.save(null,
-								{
-									success: function (model, respose,options) {	
-										self.getApp().notify("Lưu thông tin thành công");
-										self.getApp().getRouter().navigate(
-										self.collectionName+ "/collection");
+						var self = this;
+						self.model.save(null, {
+							success: function (model, respose, options) {
+								self.getApp().notify("Lưu thông tin thành công");
+								self.getApp().getRouter().navigate(
+									self.collectionName + "/collection");
 
-									},
-									error: function (model,xhr, options) {
-										self.getApp().notify('Lưu thông tin không thành công!');
-									}
-								});
+							},
+							error: function (model, xhr, options) {
+								self.getApp().notify('Lưu thông tin không thành công!');
+							}
+						});
 					}
 				},
 				{
@@ -166,23 +191,22 @@ define(function (require) {
 					visible: function () {
 						return this.getApp().getRouter().getParam("id") !== null;
 					},
-					command: function(){
-	    	    		var self = this;
-	                    self.model.destroy({
-	                        success: function(model, response) {
-	                        	self.getApp().notify('Xoá dữ liệu thành công');
-	                        	self.getApp().getRouter().navigate(self.collectionName+ "/collection");		                        		                        	
-	                        },
-	                        error: function (model, xhr, options) {
-	                            self.getApp().notify('Xoá dữ liệu không thành công!');
-	                            
-	                        }
-	                    });
-	    	    	}
+					command: function () {
+						var self = this;
+						self.model.destroy({
+							success: function (model, response) {
+								self.getApp().notify('Xoá dữ liệu thành công');
+								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+							},
+							error: function (model, xhr, options) {
+								self.getApp().notify('Xoá dữ liệu không thành công!');
+
+							}
+						});
+					}
 				},
 			],
-		}
-	],
+		}],
 
 		render: function () {
 			var self = this;

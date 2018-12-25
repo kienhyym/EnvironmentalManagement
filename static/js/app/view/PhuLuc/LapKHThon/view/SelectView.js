@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/PhuLuc/LapKHThon/tpl/collection.html'),
-    	schema 				= require('json!schema/LapKHThonSchema.json');
+    var template 			= require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
+    	schema 				= require('json!schema/ItemThonSchema.json');
     var CustomFilterView      = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "lapkhthon",
+    	collectionName: "itemthon",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -38,7 +38,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "lapkhthon_filter"
+    			sessionKey: "lapkhtinh_filter"
     		});
     		filter.render();
     		

@@ -24,33 +24,6 @@
         "type": "string",
         "primary": true
     },
-    "kehoachthuchien_id": {
-        "type": "string"
-    },
-    "hoatdong_thon": {
-        "type": "string",
-        "length": null
-    },
-    "muctieu_thon": {
-        "type": "string",
-        "length": null
-    },
-    "ketqua_thon": {
-        "type": "string",
-        "length": null
-    },
-    "songtg_thon": {
-        "type": "number"
-    },
-    "sonutg_thon": {
-        "type": "number"
-    },
-    "dttstg_thon": {
-        "type": "number"
-    },
-    "nganh": {
-        "type": "number"
-    },
     "tentinh_id": {
         "type": "string"
     },
@@ -62,6 +35,41 @@
     },
     "tenthon_id": {
         "type": "string"
+    },
+    "xaydungduthao": {
+        "type": "number"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "vihema": {
+        "type": "number"
+    },
+    "ngay_tinhpheduyen": {
+        "type": "datetime"
+    },
+    "trangthai_tinhpheduyen": {
+        "type": "number"
+    },
+    "sohd_tinhduyet": {
+        "type": "string",
+        "length": null
+    },
+    "sohoatdong": {
+        "type": "string",
+        "length": null
+    },
+    "itemthon": {
+        "type": "list"
+    },
+    "itemxa": {
+        "type": "list"
+    },
+    "itemhuyen": {
+        "type": "list"
+    },
+    "itemtinh": {
+        "type": "list"
     },
     "tentinh": {
         "type": "dict"
