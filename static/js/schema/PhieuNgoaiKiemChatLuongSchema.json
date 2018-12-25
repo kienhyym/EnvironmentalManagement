@@ -163,8 +163,5 @@
     "nguoikiemtrakyten": {
         "type": "string",
         "length": null
-    },
-    "kqphieungoaikiemtrachatluong": {
-        "type": "list"
     }
 }

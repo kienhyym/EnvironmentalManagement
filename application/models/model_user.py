@@ -201,7 +201,7 @@ class UserDonvi(CommonModel):
     macongdan = db.Column(String(200))
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)
     user_id =  db.Column(UUID(as_uuid=True), db.ForeignKey('user.id', onupdate="CASCADE", ondelete="SET NULL"),nullable=True)
-    trangthai = db.Column(db.SmallInteger)
+    trangthai = db.Column(db.SmallInteger ,default=2)
     donvi = db.relationship('DonVi', foreign_keys=[donvi_id], viewonly=True)
     users = db.relationship('User', viewonly=True)
     captren_id = db.Column(db.Integer, db.ForeignKey('donvi.id', onupdate="CASCADE", ondelete="SET NULL"), nullable=True)

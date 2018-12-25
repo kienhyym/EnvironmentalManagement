@@ -8,7 +8,7 @@ define(function (require) {
 		schema = require('json!schema/BapCaoNuocSachOneSchema.json');
 
 	var maxDate = new Date();
-	var KetQuaBaoCaoNuocOne = require('app/view/BaoCaoNuoc/KetQuaBaoCaoNuocOne/view/ModelItemView');
+	var KQNgoaiKiemChatLuong = require('app/view/BaoCaoNuoc/KQNgoaiKiemChatLuong/view/ModelItemView');
 
 	return Gonrin.ModelView.extend({
 		template: template,
@@ -23,21 +23,149 @@ define(function (require) {
 					maxDate,
 				},
 				{
-					field: "ketquabaocaonuocone",
-					uicontrol: false,
-					itemView: KetQuaBaoCaoNuocOne,
+					field: "kqngoaikiemchatluong",
+					uicontrol: "grid",
+					refresh: true,
+					primaryField: "id",
+					fields: [{
+							field: "vitrilaymau",
+							label: "Vị trí lấy mẫu"
+						},
+						{
+							field: "coliform_ten",
+							label: "Coliform (CFU/100 mL)"
+						},
+						{
+							field: "coli_ten",
+							label: "E.Coli hoặc Coliform chịu nhiệt (CFU/100 mL)"
+						},
+						{
+							field: "aresen_ten",
+							label: "Arsenic (As)(*)mg/L"
+						},
+						{
+							field: "clodu_ten",
+							label: "Clo dư tự do (**) (mg/L)"
+						},
+						{
+							field: "doduc_ten",
+							label: "Độ đục( NTU)"
+						},
+						{
+							field: "mausac_ten",
+							label: "Màu sắc (TCU)"
+						},
+						{
+							field: "muivi_ten",
+							label: "Mùi,vị"
+						},
+						{
+							field: "ph_ten",
+							label: "PH"
+						},
+						{
+							field: "tong_dat",
+							label: "Đánh giá",
+							template:function(rowData){
+								if(rowData.ph_dat === 1){
+									return "Dat";
+
+								}else{
+									return "Khong dat";
+								}
+							}
+						},
+						// {
+						// 	field: "command",
+						// 	label: "Thao tác",
+						// 	width: "50px",
+						// 	command: [{
+						// 			"label": "Delete",
+						// 			"action": "delete",
+						// 			"class": "btn-sm",
+						// 			"id": "itemRemove",
+						// 		},
+						// 		// {
+						// 		// 	"label": "Delete",
+						// 		// 	"action": function (params, args) {
+						// 		// 		$("#grid").data('gonrin').deleteRow(params.el);
+						// 		// 	},
+						// 		// 	"class": "btn-danger btn-sm"
+						// 		// },
+						// 	],
+						// },
+					],
 					tools: [{
 						name: "create",
-						type: "button",
-						buttonClass: "btn btn-success btn-sm",
-						label: "<span class='fa fa-plus'>Thêm</span>",
-						command: "create"
-					}, ],
-					toolEl: "#addItem"
+						buttonClass: "btn-success",
+						label: "Thêm",
+						command: function () {
+							var self = this;
+							var view = new KQNgoaiKiemChatLuong({
+								"viewData": {
+									"id": null,
+									"baocao_id": self.model.get("id")
+								}
+							});
+							view.dialog();
+							view.on('close', function (data) {
+								var kqngoaikiemchatluong = self.model.get('kqngoaikiemchatluong');
+								kqngoaikiemchatluong.push(data);
+								self.model.set("kqngoaikiemchatluong", kqngoaikiemchatluong);
+								self.applyBindings();
+							});
+						}
+					}],
+					onRowClick: function (event) {
+						var self = this;
+						var coliform_dat = 0
+						var coli_dat = 0;
+						var doduc_dat = 0;
+						var aresen_dat = 0;
+						var clodu_dat = 0;
+						var mausac_dat = 0;
+						var muivi_dat = 0;
+						var ph_dat = 0;
+						self.model.get("kqngoaikiemchatluong").forEach(element => {
+							coliform_dat = element.coliform_dat;
+							coli_dat = element.coli_dat;
+							doduc_dat = element.doduc_dat;
+							aresen_dat = element.aresen_dat;
+							clodu_dat = element.clodu_dat;
+							mausac_dat = element.mausac_dat;
+							muivi_dat = element.muivi_dat;
+							ph_dat = element.ph_dat;
+						});
+						console.log(coliform_dat);
+						console.log(coli_dat);
+						console.log(doduc_dat);
+						console.log(aresen_dat);
+						console.log(clodu_dat);
+						console.log(mausac_dat);
+						console.log(muivi_dat);
+						console.log(ph_dat);
+
+						if (event.rowId) {
+							var view = new KQNgoaiKiemChatLuong({
+								"viewData": {
+									"id": event.rowId,
+									"baocao_id": self.model.get("id")
+								}
+							});
+							view.dialog();
+							view.on('close', function (data) {
+								var str = self.model.get('kqngoaikiemchatluong');
+								for (var i = 0; i < str.length; i++) {
+									if (str[i].id == data.id) {
+										str.splice(i, 1);
+									}
+								}
+								str.push(data);
+								self.applyBindings();
+							});
+						}
+					}
 				},
-
-			
-
 			],
 		},
 		tools: [{
@@ -111,9 +239,6 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-						if (self.model.get("ketquabaocaonuocone").length === 0) {
-							self.$el.find("#addItem button").click();
-						}
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -121,7 +246,7 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				self.$el.find("#addItem button").click();
+
 			}
 
 		},

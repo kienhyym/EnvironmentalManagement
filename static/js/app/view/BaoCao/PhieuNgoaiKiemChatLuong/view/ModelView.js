@@ -1,10 +1,12 @@
 define(function (require) {
 	"use strict";
-	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Gonrin = require('gonrin');
 
 	var template = require('text!app/view/BaoCao/PhieuNgoaiKiemChatLuong/tpl/model.html'),
-	schema = require('json!schema/PhieuNgoaiKiemChatLuongSchema.json');
-	var KQNgoaiKiemNuocDialogView = require('app/view/BaoCao/KQPhieuNgoaiKiemChatLuong/view/ModelDialogView');
+		schema = require('json!schema/PhieuNgoaiKiemChatLuongSchema.json');
+	var KQNgoaiKiemChatLuong = require('app/view/BaoCaoNuoc/KQNgoaiKiemChatLuong/view/ModelDialogView');
 
 	var currentDate = new Date();
 	return Gonrin.ModelView
@@ -15,81 +17,102 @@ define(function (require) {
 			collectionName: "phieungoaikiemchatluong",
 
 			uiControl: {
-				fields: [
-					{
-					field:"ngaybanhanhthongtu",
-					textFormat:"DD/MM/YYYY",
-					extraFormats:["DDMMYYYY"],
-					maxDate:currentDate,
+				fields: [{
+						field: "ngaybanhanhthongtu",
+						textFormat: "DD/MM/YYYY",
+						extraFormats: ["DDMMYYYY"],
+						maxDate: currentDate,
 					},
 					{
-					field:"thoigiankiemtra",
-					textFormat:"DD/MM/YYYY",
-					extraFormats:["DDMMYYYY"],
-					maxDate:currentDate,
+						field: "thoigiankiemtra",
+						textFormat: "DD/MM/YYYY",
+						extraFormats: ["DDMMYYYY"],
+						maxDate: currentDate,
 					},
 					{
-					field:"ngaykiemtra",
-					textFormat:"DD/MM/YYYY",
-					extraFormats:["DDMMYYYY"],
-					maxDate:currentDate,
+						field: "ngaykiemtra",
+						textFormat: "DD/MM/YYYY",
+						extraFormats: ["DDMMYYYY"],
+						maxDate: currentDate,
 					},
 					{
-	    				field: "kqphieungoaikiemtrachatluong",
-	    				uicontrol: "grid",
-	    				refresh: true,
-	    				primaryField: "id",
-	    				fields:[
-	    				          {field:"vitrilaymau", label:"Vị trí lấy mẫu"},
-	                	          {field:"ph", label:"pH"},
-	                	          {field:"doduc", label: "Độ đục (NTU)"},
-	                	          {field:"clodu", label: "Clo dư"},
-	                	          {field:"danhgia", label: "Đánh giá"},
-	                	          {
-	                     	    	 field: "command", 
-	                     	    	 label:"Command",
-	                     	    	 width:"50px", 
-	                     	    	 command: [
-//	                     	    	     {"label":"Delete",
-//	                     	    	        	"action": "delete",
-//	                     	    	        	"class": "btn-sm",
-//	                     	    	     },
-	                     	    	     {
-	                     	    	       "label":"Delete",
-	                        	    	        "action": function(params, args){
-	                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
-	                        	    	        },
-	                        	    	        "class": "btn-danger btn-sm"
-	                        	    	     },   
-	                     	    	 ],
-	                     	   	 },
-	                	        ],
-	                	tools:[
-        	                 {
-        	                	 name: "create",
-        	                	 buttonClass:"btn-success",
-        	                	 label: "Thêm",
-        	                	 command: function(){
-        	                		 var self = this;
-                	    			 var view = new KQNgoaiKiemNuocDialogView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
-        	                		 view.dialog();
-        	                		 view.on('close',function(data){
-        	                			 var kqphieungoaikiemtrachatluong = self.model.get('kqphieungoaikiemtrachatluong');
-        	                			 kqphieungoaikiemtrachatluong.push(data);
-        	                			 self.model.set("kqphieungoaikiemtrachatluong",kqphieungoaikiemtrachatluong);
-        	                			 self.applyBindings();
-        	                		 });
-        	                	 }
-        	                 }
-          	                 ],
-	                	onRowClick: function(event){
-	                		var self= this;
-            	    		if(event.rowId){
-            	    			 var view = new KQNgoaiKiemNuocDialogView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
-    	                		 view.dialog();
-            	        	}
-            	    	}
-	    			},
+						field: "kqphieungoaikiemtrachatluong",
+						uicontrol: "grid",
+						refresh: true,
+						primaryField: "id",
+						fields: [{
+								field: "vitrilaymau",
+								label: "Vị trí lấy mẫu"
+							},
+							{
+								field: "ph",
+								label: "pH"
+							},
+							{
+								field: "doduc",
+								label: "Độ đục (NTU)"
+							},
+							{
+								field: "clodu",
+								label: "Clo dư"
+							},
+							{
+								field: "danhgia",
+								label: "Đánh giá"
+							},
+							{
+								field: "command",
+								label: "Command",
+								width: "50px",
+								command: [
+									//	                     	    	     {"label":"Delete",
+									//	                     	    	        	"action": "delete",
+									//	                     	    	        	"class": "btn-sm",
+									//	                     	    	     },
+									{
+										"label": "Delete",
+										"action": function (params, args) {
+											$("#grid").data('gonrin').deleteRow(params.el);
+										},
+										"class": "btn-danger btn-sm"
+									},
+								],
+							},
+						],
+						tools: [{
+							name: "create",
+							buttonClass: "btn-success",
+							label: "Thêm",
+							command: function () {
+								var self = this;
+								var view = new KQNgoaiKiemNuocDialogView({
+									"viewData": {
+										"id": null,
+										"baocao_id": self.model.get("id")
+									}
+								});
+								view.dialog();
+								view.on('close', function (data) {
+									var kqphieungoaikiemtrachatluong = self.model.get('kqphieungoaikiemtrachatluong');
+									kqphieungoaikiemtrachatluong.push(data);
+									self.model.set("kqphieungoaikiemtrachatluong", kqphieungoaikiemtrachatluong);
+									self.applyBindings();
+								});
+							}
+						}],
+						onRowClick: function (event) {
+							var self = this;
+							if (event.rowId) {
+								var view = new KQNgoaiKiemNuocDialogView({
+									"viewData": {
+										"id": event.rowId,
+										"baocao_id": self.model.get("id")
+									}
+								});
+								view.dialog();
+							}
+						}
+					},
 
 
 				],
@@ -99,8 +122,7 @@ define(function (require) {
 				name: "defaultgr",
 				type: "group",
 				groupClass: "toolbar-group",
-				buttons: [
-					{
+				buttons: [{
 						name: "back",
 						type: "button",
 						buttonClass: "btn-default btn-sm",
@@ -121,8 +143,7 @@ define(function (require) {
 
 							self.model
 								.save(
-									null,
-									{
+									null, {
 										success: function (
 											model, respose,
 											options) {
@@ -134,8 +155,8 @@ define(function (require) {
 												.getApp()
 												.getRouter()
 												.navigate(
-													self.collectionName
-													+ "/collection");
+													self.collectionName +
+													"/collection");
 
 										},
 										error: function (model,
@@ -171,8 +192,8 @@ define(function (require) {
 											.getApp()
 											.getRouter()
 											.navigate(
-												self.collectionName
-												+ "/collection");
+												self.collectionName +
+												"/collection");
 									},
 									error: function (model, xhr,
 										options) {
@@ -184,7 +205,8 @@ define(function (require) {
 									}
 								});
 						}
-					},],
+					},
+				],
 			}],
 
 			render: function () {
