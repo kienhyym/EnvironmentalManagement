@@ -80,6 +80,7 @@
         "type": "number"
     },
     "tong_dat": {
-        "type": "number"
+        "type": "string",
+        "length": null
     }
 }
