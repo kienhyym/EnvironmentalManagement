@@ -16,7 +16,7 @@ define(function (require) {
 			fields: [
 				{
 					field: "danhgianam",
-					label: "Ngày báo cáo"
+					label: "Năm báo cáo"
 				},
 				{
 					field: "tentinh_id",

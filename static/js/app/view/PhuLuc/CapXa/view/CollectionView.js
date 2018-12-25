@@ -29,7 +29,6 @@ define(function (require) {
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
-				
 				{
 					field: "sothon",
 					label: "Tổng Số thôn"

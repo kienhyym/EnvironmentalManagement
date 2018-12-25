@@ -13,9 +13,12 @@ define(function (require) {
     	    var isUser = gonrinApp().currentUser != null ? gonrinApp().currentUser.hasRole('User'): false;
     	    return isUser;
     	},
-    	checkTuyendonvi:function(){
+    	checkTuyendonvi:function(tuyendonvi){
     		var currentUser = gonrinApp().currentUser;
-    		return true;
+    		if (currentUser !==null && (currentUser.donvi.tuyendonvi === tuyendonvi || currentUser.hasRole('Admin'))){
+    			return true;
+    		}
+    		return false;
     	},
     	userHasRole: function(role){
     	    var is = gonrinApp().currentUser != null ? gonrinApp().currentUser.hasRole(role): false;

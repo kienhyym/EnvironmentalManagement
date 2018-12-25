@@ -67,6 +67,7 @@ define(function (require) {
 							field: "tong_dat",
 							label: "Đánh giá",
 							template: function (rowData) {
+								console.log("rowData====",rowData);
 								if (rowData.ph_dat === 1 || rowData.coliform_dat === 1 || 
 									rowData.coli_dat === 1 || rowData.aresen_dat === 1 || 
 									rowData.clodu_dat === 1 || rowData.mausac_dat === 1|| 

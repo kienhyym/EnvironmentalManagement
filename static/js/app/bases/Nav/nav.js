@@ -207,7 +207,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/QuanHuyen/view/CollectionView",
 					"tuyendonvi":3,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(3);
 					}
 				},
 				{
@@ -225,7 +225,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/XaPhuong/view/CollectionView",
 					"tuyendonvi":4,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(4);
 					}
 				},
 				{
@@ -243,7 +243,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/ThonXom/view/CollectionView",
 					"tuyendonvi":4,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(4);
 					}
 				},
 				{
@@ -302,7 +302,7 @@ define(function (require) {
 					"$ref": "app/view/PhuLuc/CapThon/view/CollectionView",
 					"tuyendonvi":4,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(4);
 					}
 				},
 				{
@@ -321,7 +321,7 @@ define(function (require) {
 					"$ref": "app/view/PhuLuc/CapXa/view/CollectionView",
 					"tuyendonvi":4,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(4);
 					}
 				},
 				{
@@ -340,7 +340,7 @@ define(function (require) {
 					"$ref": "app/view/PhuLuc/CapHuyen/view/CollectionView",
 					"tuyendonvi":3,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(3);
 					}
 				},
 				{
@@ -359,7 +359,7 @@ define(function (require) {
 					"$ref": "app/view/PhuLuc/CapTinh/view/CollectionView",
 					"tuyendonvi":2,
 					"visible": function () {
-						return this.checkTuyendonvi();
+						return this.checkTuyendonvi(2);
 					}
 				},
 				{
@@ -394,7 +394,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHTinh/view/CollectionView",
 							"tuyendonvi":2,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(2);
 							}
 						},
 						{
@@ -413,7 +413,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHHuyen/view/CollectionView",
 							"tuyendonvi":3,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(3);
 							}
 						},
 						{
@@ -432,7 +432,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHXa/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -451,7 +451,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHThon/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -470,7 +470,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/CollectionView",
 							"tuyendonvi":2,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(2);
 							}
 						},
 						{
@@ -489,7 +489,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/CollectionView",
 							"tuyendonvi":3,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(3);
 							}
 						},
 						{
@@ -508,7 +508,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -527,7 +527,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -556,7 +556,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/VSToanXa/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -575,7 +575,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/DuyTriVS/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -604,7 +604,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/DTThieuSo/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -623,7 +623,7 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/DTTruongHoc/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -642,7 +642,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/KiemTraTinhTrangVS/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -661,7 +661,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/NhaTieuThamNuoc/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -680,7 +680,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/NhaTieu2Ngan/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -699,7 +699,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/NhaTieuChim/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -718,7 +718,7 @@ define(function (require) {
 							"$ref": "app/view/HoatDongGD/ChoTruongHocTramYTE/view/CollectionView",
 							"tuyendonvi":4,
 							"visible": function () {
-								return this.checkTuyendonvi();
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
