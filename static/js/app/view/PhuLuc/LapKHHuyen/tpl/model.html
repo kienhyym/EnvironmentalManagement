@@ -1,63 +1,49 @@
-
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading">Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông
-tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp huyện</div>
+    <div class="panel-heading">Hoạt động cấp xã</div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-     <!--    <style type="text/css">
-            table {
-                table-layout: fixed;
-                width: 100%;
-            }
 
-            table,
-            th,
-            td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                display: table;
-            }
+        <div style="margin-top: 20px" class="row">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label>Chọn tỉnh</label>
+                        <input type="text" class="form-control" data-bind="dict:tentinh" />
 
-            th,
-            td {
-                padding: 5px;
-                text-align: center;
-                display: table-cell;
-            }
+                    </div>
+                    <div class="col-md-6">
+                        <label>Chọn huyện</label>
+                        <input type="text" class="form-control" data-bind="dict:tenhuyen" />
 
-            .top {
-                background: #C5DFB5;
-            }
+                    </div>
+                </div>
 
-            .custom {
-                background: #F0F0F0;
-            }
-        </style> -->
-         <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
-        <table align="center">
-            <thead>
-                <tr>
-                    <th class="top">Tiến độ</th>
-                    <th class="top">VIHEMA và WB rà soát, chấp thuận </th>
-                    <th class="top">Kế hoạch BCC được phê duyệt</th>
-                    <th class="top">Tỉnh phê duyệt</th>
-                    <th class="top">Ngày phê duyệt</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" data-bind="value:tiendo" /></td>
-                    <td><input type="text" data-bind="value:vihema" /></td>
-                    <td><input type="text" data-bind="value:khpheduyet" /></td>
-                    <td><input type="text" data-bind="dict:tentinh" /></td>
-                    <td><input type="text" data-bind="value:ngaytinhpheduyet" /></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        <div class="row" style="padding-top: 20px; margin-left: 10px; margin-right: 10px">
-            <table align="center">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <!-- <div class="col-md-6">
+                    <label>Chọn thôn</label>
+                    <input type="text" class="form-control" data-bind="dict:tenthon" />
+
+                </div> -->
+                <div class="col-md-6">
+                    <label>Chọn xã</label>
+                    <th><input type="text" class="form-control" data-bind="dict:tenxa" />
+
+                </div>
+                <div class="col-md-6">
+                    <label style="color: red">Chọn ngành</label>
+                    <input type="text" class="form-control" data-bind="value:nganh" />
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <table class="table">
                 <thead>
                     <tr>
                         <th class="top">Hoạt động</th>
@@ -65,7 +51,7 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp huyện<
                         <th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
                         </th>
                         <th colspan="3" class="top">Số người tham gia</th>
-                       
+                        <th class="top"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,62 +60,36 @@ tiến độ lập kế hoạch và phê duyệt - Hoạt động cấp huyện<
                         <td>(2)</td>
                         <td>(3)</td>
                         <td colspan="3"></td>
-                       
-
-
+                        <td></td>
                     </tr>
-
                     <tr class="custom" style="background: #F0F0F0;;">
-                        <td colspan="3"> 
+                        <td colspan="3">
                             <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                         </td>
                         <td>Tổng số người tham gia</td>
                         <td>Số người tham gia là nữ</td>
                         <td>Số người tham gia là DTTS</td>
-                        
-
-
-                    </tr>
-
-                    <tr class="custom">
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Chọn ngành: 
-                        <input type="text" class="form-control" id="from" data-bind="value:nganh">
-                        <td>
                         <td></td>
-                        <td></td>
-                        
-
-
                     </tr>
-			
                     <tr>
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp huyện
-                        <td>
+                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động
+                            cấp xã</td>
                         <td></td>
                         <td></td>
-                        
-                       
-
                     </tr>
-
-                   <!--  <tr>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:hoatdong_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:muctieu_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:ketqua_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:songtg_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:sonutg_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:dttstg_huyen"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:tiendo"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:vihema"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:khpheduyet"></td>
-                        <td><input type="text" class="form-control" id="from" data-bind="value:tgpheduyet"></td>
-                    </tr> -->
-
-
-			
                 </tbody>
-                <div class="row" id="addItem"></div>
-                <tfoot id="itemhuyen" data-bind="list:itemhuyen"></tfoot>
+
+                <tfoot>
+
+                    <td style="min-width: 125px;"><input style="margin-bottom: 10px;" type="text" class="form-control"
+                            data-bind="value:hoatdong_xa" /></td>
+                    <td style="min-width: 111px;"><input type="text" class="form-control" data-bind="value:muctieu_xa" /></td>
+                    <td style="min-width: 100px;"><input type="text" class="form-control" data-bind="value:ketqua_xa" /></td>
+                    <td><input type="text" class="form-control" data-bind="value:songtg_xa" /></td>
+                    <td><input type="text" class="form-control" data-bind="value:sonutg_xa" /></td>
+                    <td><input type="text" class="form-control" data-bind="value:dttstg_xa" /></td>
+
+                </tfoot>
             </table>
         </div>
         <br>

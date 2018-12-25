@@ -27,25 +27,25 @@
     "kehoachthuchien_id": {
         "type": "string"
     },
-    "hoatdong_thon": {
+    "hoatdong_xa": {
         "type": "string",
         "length": null
     },
-    "muctieu_thon": {
+    "muctieu_xa": {
         "type": "string",
         "length": null
     },
-    "ketqua_thon": {
+    "ketqua_xa": {
         "type": "string",
         "length": null
     },
-    "songtg_thon": {
+    "songtg_xa": {
         "type": "number"
     },
-    "sonutg_thon": {
+    "sonutg_xa": {
         "type": "number"
     },
-    "dttstg_thon": {
+    "dttstg_xa": {
         "type": "number"
     },
     "nganh": {

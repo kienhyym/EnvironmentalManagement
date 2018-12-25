@@ -32,23 +32,23 @@ define(function (require) {
 					foreignTextField: "ten"
 				},
 				{
-					field: "hoatdong_thon",
+					field: "hoatdong_xa",
 					label: "Hoạt động"
 				},
 				{
-					field: "muctieu_thon",
+					field: "muctieu_xa",
 					label: "Mục tiêu"
 				},
 				{
-					field: "sonutg_thon",
+					field: "sonutg_xa",
 					label: "Số người tham gia là nữ"
 				},
 				{
-					field: "songtg_thon",
+					field: "songtg_xa",
 					label: "Tổng số người tham gia"
 				},
 				{
-					field: "dttstg_thon",
+					field: "dttstg_xa",
 					label: "Số người tham gia là DTTS"
 				},
 

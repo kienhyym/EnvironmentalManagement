@@ -3,7 +3,6 @@
 import sys
 import json
 import os
-import uuid
 
 from os.path import abspath, dirname
 sys.path.insert(0, dirname(abspath(__file__)))
@@ -17,7 +16,6 @@ from application import run_app
 from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
-from application.models.model_danhmuc import DanToc
 
 
 # Instance
@@ -41,7 +39,11 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             continue
         schema = {}
         for col in cls.__table__.c:
-            col_type = str(col.type)
+            col_type = 'VARCHAR'
+            try:
+                col_type = str(col.type)
+            except:
+                print("unsupport type===",col)
             schema_type = ''
             if 'DECIMAL' in col_type:
                 schema_type = 'number'
@@ -55,8 +57,6 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema_type = 'string'
             if col_type in ['VARCHAR', 'UUID', 'TEXT']:
                 schema_type = 'string'
-            if col_type in ['JSON', 'JSONB']:
-                schema_type = 'json'
             if 'BOOLEAN' in col_type:
                 schema_type = 'boolean'
             
@@ -68,20 +68,8 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             if (not col.nullable) and (not col.primary_key):
                 schema[col.name]["required"] = True
                 
-            if hasattr(col.type, "length") and (col.type.length is not None):
+            if hasattr(col.type, "length"):
                 schema[col.name]["length"] = col.type.length
-            
-            #default
-            if (col.default is not None) and (col.default.arg is not None) and (not callable(col.default.arg)):
-                #print(col.default, col.default.arg, callable(col.default.arg))
-                schema[col.name]["default"] = col.default.arg
-                
-            #User confirm_password
-            if (classname == "User") and ("password" in col.name):
-                schema["confirm_password"] = {"type": schema_type}
-                schema["confirm_password"]["length"] = col.type.length
-                
-                
         
         relations = inspect(cls).relationships
         for rel in relations:
@@ -97,22 +85,6 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile,)
 
-
-def default_uuid():
-    return str(uuid.uuid4())
-
-@manager.command
-def create_test_dantoc_enum():
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json");
-    data_Dantoc = json.load(open(json_dantoc))
-    for item_Dantoc in data_Dantoc:
-        print(item_Dantoc)
-        listDantoc = DanToc(id = default_uuid,ma = item_Dantoc["value"],ten = item_Dantoc["text"])
-        print(listDantoc)
-        db.session.add(listDantoc)
-        
-
 #@app.route('/createdata', methods=['GET'])
 @manager.command
 def create_test_models():    
@@ -125,7 +97,7 @@ def create_test_models():
         db.session.add(dmTuyenDonVi)
         
     tuyendonvi = TuyenDonVi.query.filter(TuyenDonVi.ma == "TW").first()
-    donvi = DonVi( ten=u'Cục quản lý Môi Trường Y Tế', captren = None, tuyendonvi_id = tuyendonvi.id)
+    donvi = DonVi( ten=u'Cục quản lý YDCT', captren = None, tuyendonvi_id = tuyendonvi.id)
     db.session.add(donvi)
     db.session.flush()
     
@@ -135,15 +107,18 @@ def create_test_models():
     db.session.add(role2)
     role3 = Role(id=3,name='User')
     db.session.add(role3)
-      
+    
+               
+            
     user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user1.roles.append(role1)
-    user4 = User(email='cuongnd', fullname='Cuong', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user4 = User(email='cuongnd', fullname='Cuong Souciu', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user4.roles.append(role1)
     db.session.add(user1)
     user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
     user2.roles.append(role2)
     db.session.add(user2)
+
          
     db.session.commit()
 
@@ -151,13 +126,6 @@ def create_test_models():
     
 @manager.command
 def run():
-    # dantoc = db.session.query(DanToc).filter().first();
-    # if dantoc is None:
-    #     create_test_dantoc_enum()
-    #     print("Khoi tao Dan toc")
-    # else:
-    #     print("Khoi tao Dan Toc That Bai")    
-   
     role = db.session.query(Role).filter(Role.name == 'User').first()
     if role is None:
         create_test_models()
