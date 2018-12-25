@@ -15,7 +15,6 @@ def default_uuid():
 # Bang 1:
 class VSCapThon(CommonModel):
     __tablename__ = 'vscapthon'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
@@ -64,7 +63,6 @@ class VSCapThon(CommonModel):
     
 class NhaTieuThonHVS(CommonModel):
     __tablename__ = 'nhatieuthonhvs'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     vscapthon_id = db.Column(UUID(as_uuid=True), ForeignKey('vscapthon.id'), nullable=True) 
     dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True) 
     dantoc = relationship('DanToc')
@@ -87,7 +85,6 @@ class NhaTieuThonHVS(CommonModel):
 #Biểu mẫu số 2: Cấp xã
 class VSCapXa(CommonModel):
     __tablename__ = 'vscapxa'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
@@ -117,7 +114,6 @@ class VSCapXa(CommonModel):
 #Biểu mẫu số 3: Cấp huyen
 class VSCapHuyen(CommonModel):
     __tablename__ = 'vscaphuyen'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
