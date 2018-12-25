@@ -1,79 +1,85 @@
 <div style="margin-left: 15px" block-bind="toolbar"></div>
 <hr>
 <div block-bind="content">
-	<div>
-		<label><input type="text" data-item-bind="value:vitrilaymau" class="form-control"  placeholder="Vị trí lấy mẫu : "  /></label>
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-md-5 form-group">
+			<label>Vị trí lấy mẫu:</label>
+			<input type="text" class="form-control" data-item-bind="value:vitrilaymau">
+		</div>
+
 	</div>
-		<table class="table">
-				<thead class="background-colorTR">
-					<tr>
-						<th scope="col">STT</th>
-						<th scope="col">Các thông số</th>
-						<th style="min-width: 130px" scope="col">Mã số mẫu,
-							vị trí lấy mẫu</th>
-						<th scope="col">Giới hạn tối đa cho phép</th>
-						<th style="width: 150px" scope="col">Đánh giá
-							(đạt/không đạt)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Coliform (CFU/100 mL)</td>
-						<td><input type="text" class="form-control" data-item-bind="value:coliform_ten"  /></td>
-						<td><3</td>
-						<td><input type="text" class="form-control" data-item-bind="value:coliform_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>E.Coli hoặc Coliform chịu nhiệt (CFU/100 mL)</td>
-						<td><input type="text" class="form-control" data-item-bind="value:coli_ten"  /></td>
-						<td><1</td>
-						<td><input type="text" class="form-control" data-item-bind="value:coli_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Arsenic (As)(*)
-							mg/L</td>
-						<td><input type="text" class="form-control" data-item-bind="value:aresen_ten"  /></td>
-						<td>0,01</td>
-						<td><input type="text" class="form-control" data-item-bind="value:aresen_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">4</th>
-						<td>Clo dư tự do (**) (mg/L)</td>
-						<td><input type="text" class="form-control" data-item-bind="value:clodu_ten"  /></td>
-						<td>Trong khoảng 0,2 - 1,0</td>
-						<td><input type="text" class="form-control" data-item-bind="value:clodu_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">5</th>
-						<td>Độ đục( NTU)</td>
-						<td><input type="text" class="form-control" data-item-bind="value:doduc_ten"  /></td>
-						<td>2</td>
-						<td><input type="text" class="form-control" data-item-bind="value:doduc_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">6</th>
-						<td>Màu sắc (TCU)</td>
-						<td><input type="text" class="form-control" data-item-bind="value:mausac_ten"  /></td>
-						<td>15</td>
-						<td><input type="text" class="form-control" data-item-bind="value:mausac_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">7</th>
-						<td>Mùi,vị</td>
-						<td><input type="text" class="form-control" data-item-bind="value:muivi_ten"  /></td>
-						<td>Không có mùi, vị lạ</td>
-						<td><input type="text" class="form-control" data-item-bind="value:muivi_dat"  /></td>
-					</tr>
-					<tr>
-						<th scope="row">8</th>
-						<td>PH</td>
-						<td><input type="text" class="form-control" data-item-bind="value:ph_ten"  /></td>
-						<td>Trong khoảng 6,0-8,5</td>
-						<td><input type="text" class="form-control" data-item-bind="value:ph_dat"  /></td>
-					</tr>
-				</tbody>
-			</table>
+	<table class="table">
+		<thead class="background-colorTR">
+			<tr>
+				<th scope="col">STT</th>
+				<th scope="col">Các thông số</th>
+				<th style="min-width: 130px" scope="col">Mã số mẫu,
+					vị trí lấy mẫu</th>
+				<th scope="col">Giới hạn tối đa cho phép</th>
+				<th style="width: 150px" scope="col">Đánh giá
+					(đạt/không đạt)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">1</th>
+				<td>Coliform (CFU/100 mL)</td>
+				<td><input type="text" class="form-control" data-item-bind="value:coliform_ten" /></td>
+				<td>
+					<3</td> <td><input type="text" class="form-control" data-item-bind="value:coliform_dat" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td>E.Coli hoặc Coliform chịu nhiệt (CFU/100 mL)</td>
+				<td><input type="text" class="form-control" data-item-bind="value:coli_ten" /></td>
+				<td>
+					<1</td> <td><input type="text" class="form-control" data-item-bind="value:coli_dat" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td>Arsenic (As)(*)
+					mg/L</td>
+				<td><input type="text" class="form-control" data-item-bind="value:aresen_ten" /></td>
+				<td>0,01</td>
+				<td><input type="text" class="form-control" data-item-bind="value:aresen_dat" /></td>
+			</tr>
+			<tr>
+				<th scope="row">4</th>
+				<td>Clo dư tự do (**) (mg/L)</td>
+				<td><input type="text" class="form-control" data-item-bind="value:clodu_ten" /></td>
+				<td>Trong khoảng 0,2 - 1,0</td>
+				<td><input type="text" class="form-control" data-item-bind="value:clodu_dat" /></td>
+			</tr>
+			<tr>
+				<th scope="row">5</th>
+				<td>Độ đục( NTU)</td>
+				<td><input type="text" class="form-control" data-item-bind="value:doduc_ten" /></td>
+				<td>2</td>
+				<td><input type="text" class="form-control" data-item-bind="value:doduc_dat" /></td>
+			</tr>
+			<tr>
+				<th scope="row">6</th>
+				<td>Màu sắc (TCU)</td>
+				<td><input type="text" class="form-control" data-item-bind="value:mausac_ten" /></td>
+				<td>15</td>
+				<td><input type="text" class="form-control" data-item-bind="value:mausac_dat" /></td>
+			</tr>
+			<tr>
+				<th scope="row">7</th>
+				<td>Mùi,vị</td>
+				<td><input type="text" class="form-control" data-item-bind="value:muivi_ten" /></td>
+				<td>Không có mùi, vị lạ</td>
+				<td><input type="text" class="form-control" data-item-bind="value:muivi_dat" /></td>
+			</tr>
+			<tr>
+				<th scope="row">8</th>
+				<td>PH</td>
+				<td><input type="text" class="form-control" data-item-bind="value:ph_ten" /></td>
+				<td>Trong khoảng 6,0-8,5</td>
+				<td><input type="text" class="form-control" data-item-bind="value:ph_dat" /></td>
+			</tr>
+		</tbody>
+	</table>
 </div>

@@ -66,34 +66,18 @@ define(function (require) {
 						{
 							field: "tong_dat",
 							label: "Đánh giá",
-							template:function(rowData){
-								if(rowData.ph_dat === 1){
-									return "Dat";
+							template: function (rowData) {
+								if (rowData.ph_dat === 1 || rowData.coliform_dat === 1 || 
+									rowData.coli_dat === 1 || rowData.aresen_dat === 1 || 
+									rowData.clodu_dat === 1 || rowData.mausac_dat === 1|| 
+									rowData.muivi_dat === 1) {
+									return "Đạt";
 
-								}else{
-									return "Khong dat";
+								} else {
+									return "Không đạt";
 								}
 							}
 						},
-						// {
-						// 	field: "command",
-						// 	label: "Thao tác",
-						// 	width: "50px",
-						// 	command: [{
-						// 			"label": "Delete",
-						// 			"action": "delete",
-						// 			"class": "btn-sm",
-						// 			"id": "itemRemove",
-						// 		},
-						// 		// {
-						// 		// 	"label": "Delete",
-						// 		// 	"action": function (params, args) {
-						// 		// 		$("#grid").data('gonrin').deleteRow(params.el);
-						// 		// 	},
-						// 		// 	"class": "btn-danger btn-sm"
-						// 		// },
-						// 	],
-						// },
 					],
 					tools: [{
 						name: "create",
@@ -118,33 +102,6 @@ define(function (require) {
 					}],
 					onRowClick: function (event) {
 						var self = this;
-						var coliform_dat = 0
-						var coli_dat = 0;
-						var doduc_dat = 0;
-						var aresen_dat = 0;
-						var clodu_dat = 0;
-						var mausac_dat = 0;
-						var muivi_dat = 0;
-						var ph_dat = 0;
-						self.model.get("kqngoaikiemchatluong").forEach(element => {
-							coliform_dat = element.coliform_dat;
-							coli_dat = element.coli_dat;
-							doduc_dat = element.doduc_dat;
-							aresen_dat = element.aresen_dat;
-							clodu_dat = element.clodu_dat;
-							mausac_dat = element.mausac_dat;
-							muivi_dat = element.muivi_dat;
-							ph_dat = element.ph_dat;
-						});
-						console.log(coliform_dat);
-						console.log(coli_dat);
-						console.log(doduc_dat);
-						console.log(aresen_dat);
-						console.log(clodu_dat);
-						console.log(mausac_dat);
-						console.log(muivi_dat);
-						console.log(ph_dat);
-
 						if (event.rowId) {
 							var view = new KQNgoaiKiemChatLuong({
 								"viewData": {

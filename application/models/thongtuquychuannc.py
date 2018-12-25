@@ -79,14 +79,14 @@ class KQNgoaiKiemChatLuong(CommonModel):
     # ph_vitri = db.Column(db.Integer)
 
     ##
-    coliform_dat = db.Column(db.Integer)
-    coli_dat = db.Column(db.Integer)
-    doduc_dat = db.Column(db.Integer)
-    aresen_dat = db.Column(db.Integer)
-    clodu_dat = db.Column(db.Integer)
-    mausac_dat = db.Column(db.Integer)
-    muivi_dat = db.Column(db.Integer)
-    ph_dat = db.Column(db.Integer)
+    coliform_dat = db.Column(db.Integer ,default=0)
+    coli_dat = db.Column(db.Integer, default=0)
+    doduc_dat = db.Column(db.Integer, default=0)
+    aresen_dat = db.Column(db.Integer, default=0)
+    clodu_dat = db.Column(db.Integer, default=0)
+    mausac_dat = db.Column(db.Integer, default=0)
+    muivi_dat = db.Column(db.Integer, default=0)
+    ph_dat = db.Column(db.Integer, default=0)
     tong_dat = db.Column(db.String)
 
 

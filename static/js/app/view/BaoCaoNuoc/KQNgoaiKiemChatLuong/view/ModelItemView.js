@@ -139,7 +139,7 @@ define(function (require) {
 						}, 
 						{
 							"value": 0,
-							"text": "Đạt không"
+							"text": "Không đạt"
 						},
 					
 					],
