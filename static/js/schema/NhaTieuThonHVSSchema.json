@@ -1,80 +1,80 @@
 {
+    "updated_by": {
+        "type": "string"
+    },
+    "caithien": {
+        "type": "number"
+    },
     "diemruataycoxaphong": {
+        "type": "number"
+    },
+    "dantoc": {
+        "type": "dict"
+    },
+    "hopvesinh": {
         "type": "number"
     },
     "tenchuho": {
         "length": null,
         "type": "string"
     },
-    "created_by": {
-        "type": "string"
-    },
-    "dantoc": {
-        "type": "dict"
-    },
-    "hongheo": {
-        "type": "number"
-    },
-    "dantoc_id": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "caithien": {
-        "type": "number"
-    },
-    "haingan": {
-        "type": "number"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
-    "loaikhac": {
-        "type": "number"
-    },
-    "khongconhatieu": {
-        "type": "number"
-    },
     "gioitinh": {
         "type": "number"
+    },
+    "created_by": {
+        "type": "string"
     },
     "deleted_by": {
         "type": "string"
     },
-    "chimco_oth": {
+    "tuhoai": {
         "type": "number"
     },
     "deleted": {
         "type": "boolean"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
+    "khonghopvesinh": {
+        "type": "number"
+    },
+    "haingan": {
+        "type": "number"
+    },
+    "khongconhatieu": {
+        "type": "number"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "thamdoi": {
+        "type": "number"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "chimco_oth": {
+        "type": "number"
     },
     "tendantoc": {
         "length": null,
         "type": "string"
     },
-    "hopvesinh": {
-        "type": "number"
+    "deleted_at": {
+        "type": "datetime"
     },
     "vscapthon_id": {
         "type": "string"
     },
-    "thamdoi": {
-        "type": "number"
-    },
-    "tuhoai": {
-        "type": "number"
-    },
-    "updated_by": {
+    "dantoc_id": {
         "type": "string"
     },
-    "updated_at": {
-        "type": "datetime"
+    "id": {
+        "primary": true,
+        "type": "string"
     },
-    "khonghopvesinh": {
+    "hongheo": {
+        "type": "number"
+    },
+    "loaikhac": {
         "type": "number"
     }
 }

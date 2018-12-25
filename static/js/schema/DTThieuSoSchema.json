@@ -1,72 +1,72 @@
 {
-    "ptnuthamgia_gd": {
-        "type": "number"
-    },
-    "nuthamgia_gd": {
-        "type": "number"
-    },
     "nuthamgia_yte": {
         "type": "number"
     },
-    "ptnuthamgia_yte": {
-        "type": "number"
-    },
-    "created_by": {
+    "updated_by": {
         "type": "string"
+    },
+    "ptdttsthamgia_tong": {
+        "type": "number"
     },
     "ptdttsthamgia_gd": {
-        "type": "number"
-    },
-    "ptdttsthamgia_yte": {
-        "type": "number"
-    },
-    "ngdaotao_gd": {
-        "type": "number"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "ptnuthamgia_tong": {
-        "type": "number"
-    },
-    "dttsthamgia_yte": {
         "type": "number"
     },
     "ngdaotao_yte": {
         "type": "number"
     },
-    "deleted": {
-        "type": "boolean"
+    "created_by": {
+        "type": "string"
     },
-    "ptdttsthamgia_tong": {
+    "ptnuthamgia_yte": {
         "type": "number"
+    },
+    "deleted_by": {
+        "type": "string"
     },
     "nuthamgia_tong": {
-        "type": "number"
-    },
-    "ngdaotao_tong": {
         "type": "number"
     },
     "dttsthamgia_gd": {
         "type": "number"
     },
+    "ngdaotao_tong": {
+        "type": "number"
+    },
+    "dttsthamgia_yte": {
+        "type": "number"
+    },
+    "nuthamgia_gd": {
+        "type": "number"
+    },
     "dttsthamgia_tong": {
         "type": "number"
     },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "updated_by": {
-        "type": "string"
+    "ptdttsthamgia_yte": {
+        "type": "number"
     },
     "updated_at": {
         "type": "datetime"
     },
+    "ptnuthamgia_gd": {
+        "type": "number"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
     "id": {
         "primary": true,
         "type": "string"
+    },
+    "ptnuthamgia_tong": {
+        "type": "number"
+    },
+    "ngdaotao_gd": {
+        "type": "number"
     }
 }

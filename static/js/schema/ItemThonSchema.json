@@ -1,11 +1,16 @@
 {
-    "ketqua_datduoc": {
+    "updated_by": {
+        "type": "string"
+    },
+    "songuoi_dantocthieuso": {
+        "type": "number"
+    },
+    "muctieu": {
         "length": null,
         "type": "string"
     },
-    "hoatdong": {
-        "length": null,
-        "type": "string"
+    "xaphuong": {
+        "type": "dict"
     },
     "thonxom": {
         "type": "dict"
@@ -13,66 +18,61 @@
     "created_by": {
         "type": "string"
     },
-    "muctieu": {
+    "deleted_by": {
+        "type": "string"
+    },
+    "songuoi_lanu": {
+        "type": "number"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "hoatdong": {
+        "length": null,
+        "type": "string"
+    },
+    "tongsonguoi_thamgia": {
+        "type": "number"
+    },
+    "ketqua_datduoc": {
         "length": null,
         "type": "string"
     },
     "thonxom_id": {
         "type": "string"
     },
-    "quanhuyen_id": {
+    "xaphuong_id": {
         "type": "string"
     },
     "created_at": {
         "type": "datetime"
     },
-    "deleted_by": {
-        "type": "string"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "songuoi_lanu": {
-        "type": "number"
-    },
     "deleted": {
         "type": "boolean"
-    },
-    "updated_at": {
-        "type": "datetime"
     },
     "id": {
         "primary": true,
         "type": "string"
     },
+    "kehoachthuchien_id": {
+        "type": "string"
+    },
     "quanhuyen": {
         "type": "dict"
-    },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "songuoi_dantocthieuso": {
-        "type": "number"
     },
     "tinhthanh_id": {
         "type": "string"
     },
-    "nganh": {
-        "type": "number"
-    },
-    "kehoachthuchien_id": {
-        "type": "string"
-    },
     "tinhthanh": {
         "type": "dict"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "xaphuong_id": {
-        "type": "string"
-    },
-    "tongsonguoi_thamgia": {
-        "type": "number"
     }
 }

@@ -1,22 +1,6 @@
 {
-    "tinhthanh_id": {
+    "updated_by": {
         "type": "string"
-    },
-    "tinhthanh": {
-        "type": "dict"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "xaphuong": {
-        "type": "list"
     },
     "ten": {
         "length": 255,
@@ -25,20 +9,36 @@
     "updated_at": {
         "type": "datetime"
     },
+    "ma": {
+        "length": 255,
+        "type": "string"
+    },
+    "xaphuong": {
+        "type": "list"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
     "created_at": {
         "type": "datetime"
     },
-    "deleted_at": {
-        "type": "datetime"
+    "created_by": {
+        "type": "string"
     },
-    "updated_by": {
+    "id": {
+        "primary": true,
         "type": "string"
     },
     "deleted_by": {
         "type": "string"
     },
-    "ma": {
-        "length": 255,
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tinhthanh_id": {
         "type": "string"
+    },
+    "tinhthanh": {
+        "type": "dict"
     }
 }

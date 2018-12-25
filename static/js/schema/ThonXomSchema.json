@@ -1,15 +1,5 @@
 {
-    "xaphuong": {
-        "type": "dict"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "created_by": {
+    "updated_by": {
         "type": "string"
     },
     "ten": {
@@ -19,23 +9,33 @@
     "updated_at": {
         "type": "datetime"
     },
-    "created_at": {
-        "type": "datetime"
+    "ma": {
+        "length": 255,
+        "type": "string"
     },
-    "deleted_at": {
-        "type": "datetime"
+    "xaphuong": {
+        "type": "dict"
     },
     "xaphuong_id": {
         "type": "string"
     },
-    "updated_by": {
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "id": {
+        "primary": true,
         "type": "string"
     },
     "deleted_by": {
         "type": "string"
     },
-    "ma": {
-        "length": 255,
-        "type": "string"
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_at": {
+        "type": "datetime"
     }
 }

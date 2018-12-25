@@ -1,90 +1,90 @@
 {
-    "users": {
-        "type": "dict"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "fullname": {
-        "length": 255,
-        "type": "string"
-    },
-    "donvi_diachi": {
-        "length": 255,
-        "type": "string"
-    },
-    "donvi_tuyendonvi_id": {
-        "type": "number"
-    },
-    "user_id": {
-        "type": "string"
-    },
-    "captren_id": {
-        "type": "number"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
-    "phone": {
-        "length": 255,
-        "type": "string"
-    },
     "cfpassword": {
         "length": 255,
         "type": "string"
     },
-    "trangthai": {
-        "type": "number"
-    },
-    "donvi_tuyendonvi": {
-        "type": "dict"
-    },
     "updated_by": {
         "type": "string"
     },
-    "deleted": {
-        "type": "boolean"
-    },
-    "donvi_id": {
-        "type": "number"
-    },
-    "deleted_by": {
+    "user_id": {
         "type": "string"
     },
-    "id": {
-        "primary": true,
+    "captren": {
+        "type": "dict"
+    },
+    "users": {
+        "type": "dict"
+    },
+    "phone": {
+        "length": 255,
         "type": "string"
     },
     "password": {
         "length": 255,
         "type": "string"
     },
-    "donvi_ten": {
-        "length": 255,
+    "created_by": {
         "type": "string"
     },
-    "email": {
+    "donvi_diachi": {
         "length": 255,
         "type": "string"
     },
     "donvi": {
         "type": "dict"
     },
-    "macongdan": {
-        "length": 200,
+    "deleted_by": {
+        "type": "string"
+    },
+    "donvi_id": {
+        "type": "number"
+    },
+    "donvi_tuyendonvi": {
+        "type": "dict"
+    },
+    "trangthai": {
+        "type": "number"
+    },
+    "fullname": {
+        "length": 255,
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "captren_id": {
+        "type": "number"
+    },
+    "email": {
+        "length": 255,
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "updated_at": {
-        "type": "datetime"
+    "deleted": {
+        "type": "boolean"
     },
     "donvi_sodienthoai": {
         "length": 255,
         "type": "string"
     },
-    "captren": {
-        "type": "dict"
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "macongdan": {
+        "length": 200,
+        "type": "string"
+    },
+    "donvi_ten": {
+        "length": 255,
+        "type": "string"
+    },
+    "donvi_tuyendonvi_id": {
+        "type": "number"
     }
 }

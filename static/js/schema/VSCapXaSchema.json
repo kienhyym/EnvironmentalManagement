@@ -2,12 +2,23 @@
     "updated_by": {
         "type": "string"
     },
-    "ky_baocao": {
-        "required": true,
+    "tong_nu": {
         "type": "number"
     },
-    "xaphuong_id": {
-        "type": "string"
+    "donvi": {
+        "type": "dict"
+    },
+    "tong_sohongheo": {
+        "type": "number"
+    },
+    "tong_nam": {
+        "type": "number"
+    },
+    "tong_loaikhac": {
+        "type": "number"
+    },
+    "ngaybaocao": {
+        "type": "datetime"
     },
     "nguoibaocao": {
         "type": "dict"
@@ -16,10 +27,11 @@
         "type": "string"
     },
     "tinhtrang": {
+        "required": true,
         "type": "number"
     },
-    "donvi": {
-        "type": "dict"
+    "tong_danso": {
+        "type": "number"
     },
     "deleted_by": {
         "type": "string"
@@ -28,13 +40,17 @@
         "required": true,
         "type": "number"
     },
+    "xaphuong": {
+        "type": "dict"
+    },
     "quanhuyen_id": {
         "type": "string"
     },
-    "dantoc_thieuso": {
+    "nambaocao": {
+        "required": true,
         "type": "number"
     },
-    "soho_giadinh": {
+    "tong_sothon": {
         "type": "number"
     },
     "updated_at": {
@@ -43,45 +59,32 @@
     "created_at": {
         "type": "datetime"
     },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "diemruatay": {
+    "tong_hotrongxa": {
         "type": "number"
     },
     "nguoibaocao_id": {
         "type": "string"
     },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "nhatieu": {
+    "thuocsuprsws": {
         "type": "number"
     },
-    "danso": {
-        "type": "number"
-    },
-    "tramyte_hop_vesinh": {
-        "type": "number"
-    },
-    "sohocsinh": {
-        "type": "number"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "ho_nula_chu": {
-        "type": "number"
-    },
-    "id": {
-        "primary": true,
+    "xaphuong_id": {
         "type": "string"
     },
     "tinhthanh": {
         "type": "dict"
     },
-    "nam_baocao": {
-        "required": true,
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "tong_sohodtts": {
         "type": "number"
     },
     "quanhuyen": {
@@ -90,7 +93,7 @@
     "tinhthanh_id": {
         "type": "string"
     },
-    "truonghvs": {
+    "tong_chuholanu": {
         "type": "number"
     }
 }

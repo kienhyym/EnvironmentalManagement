@@ -1,80 +1,80 @@
 {
-    "tinhthanh": {
-        "type": "dict"
-    },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "created_by": {
+    "updated_by": {
         "type": "string"
     },
-    "quanhuyen_id": {
-        "type": "string"
+    "itemxa": {
+        "type": "list"
     },
-    "trangthai_tinhpheduyen": {
+    "nganh": {
         "type": "number"
     },
     "itemhuyen": {
         "type": "list"
     },
-    "itemthon": {
-        "type": "list"
-    },
-    "itemxa": {
-        "type": "list"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
-    "vihema_chapthuan": {
-        "type": "number"
-    },
-    "ngay_pheduyet": {
-        "type": "datetime"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "tinhthanh_id": {
-        "type": "string"
-    },
     "itemtinh": {
         "type": "list"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "quanhuyen": {
-        "type": "dict"
-    },
-    "xaydungduthao_bcc": {
-        "type": "number"
-    },
-    "nganh": {
-        "type": "number"
-    },
-    "sohoatdong_bcc": {
-        "length": null,
-        "type": "string"
     },
     "tinhpheduyet_bcc": {
         "length": null,
         "type": "string"
     },
-    "deleted_at": {
+    "created_by": {
+        "type": "string"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "trangthai_tinhpheduyen": {
+        "type": "number"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaydungduthao_bcc": {
+        "type": "number"
+    },
+    "updated_at": {
         "type": "datetime"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "sohoatdong_bcc": {
+        "length": null,
+        "type": "string"
+    },
+    "xaphuong": {
+        "type": "dict"
     },
     "xaphuong_id": {
         "type": "string"
     },
-    "updated_at": {
+    "vihema_chapthuan": {
+        "type": "number"
+    },
+    "deleted_at": {
         "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "ngay_pheduyet": {
+        "type": "datetime"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "itemthon": {
+        "type": "list"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "tinhthanh": {
+        "type": "dict"
     }
 }

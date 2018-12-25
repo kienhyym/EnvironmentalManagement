@@ -1,110 +1,110 @@
 {
+    "updated_by": {
+        "type": "string"
+    },
     "matrgtram": {
         "length": null,
         "type": "string"
     },
-    "tt_dientich": {
+    "bexicao": {
         "type": "number"
-    },
-    "tenkhu": {
-        "length": null,
-        "type": "string"
-    },
-    "created_by": {
-        "type": "string"
     },
     "tentrgtram": {
         "length": null,
         "type": "string"
     },
-    "sansach": {
+    "ctsachse": {
         "type": "number"
     },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "chauxi": {
+    "qskhuvs": {
         "type": "number"
     },
-    "mailop": {
+    "created_by": {
+        "type": "string"
+    },
+    "khuditieu": {
         "type": "number"
     },
-    "hoatdongbt": {
+    "nuocthaichay": {
         "type": "number"
-    },
-    "bexicao": {
-        "type": "number"
-    },
-    "created_at": {
-        "type": "datetime"
     },
     "deleted_by": {
         "type": "string"
     },
-    "bechuanut": {
+    "sansach": {
         "type": "number"
     },
-    "ngaplut": {
-        "type": "number"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "tt_sochau": {
-        "type": "number"
-    },
-    "nangmui": {
+    "chauxi": {
         "type": "number"
     },
     "qscongtrinh": {
         "type": "number"
     },
-    "daykincua": {
-        "type": "number"
-    },
-    "kcbechua": {
-        "type": "number"
-    },
-    "nuocsach": {
-        "type": "number"
-    },
-    "ctsachse": {
+    "ngaplut": {
         "type": "number"
     },
     "khac": {
         "length": null,
         "type": "string"
     },
-    "khuditieu": {
+    "bechuanut": {
         "type": "number"
     },
-    "dinhdong": {
+    "daykincua": {
         "type": "number"
     },
-    "ctruatay": {
-        "type": "number"
+    "updated_at": {
+        "type": "datetime"
     },
-    "qskhuvs": {
-        "type": "number"
+    "created_at": {
+        "type": "datetime"
     },
-    "sannhanut": {
+    "tt_dientich": {
         "type": "number"
-    },
-    "updated_by": {
-        "type": "string"
     },
     "decapquantrong": {
         "length": null,
         "type": "string"
     },
-    "updated_at": {
+    "mailop": {
+        "type": "number"
+    },
+    "ctruatay": {
+        "type": "number"
+    },
+    "hoatdongbt": {
+        "type": "number"
+    },
+    "deleted_at": {
         "type": "datetime"
     },
-    "nuocthaichay": {
+    "deleted": {
+        "type": "boolean"
+    },
+    "nuocsach": {
+        "type": "number"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "dinhdong": {
+        "type": "number"
+    },
+    "kcbechua": {
+        "type": "number"
+    },
+    "tt_sochau": {
+        "type": "number"
+    },
+    "tenkhu": {
+        "length": null,
+        "type": "string"
+    },
+    "nangmui": {
+        "type": "number"
+    },
+    "sannhanut": {
         "type": "number"
     }
 }

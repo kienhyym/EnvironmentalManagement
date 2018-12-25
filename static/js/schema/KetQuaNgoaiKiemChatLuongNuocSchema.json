@@ -1,13 +1,10 @@
 {
-    "nguonnckhac": {
-        "length": null,
-        "type": "string"
-    },
     "updated_by": {
         "type": "string"
     },
-    "khuvsnu": {
-        "type": "number"
+    "tenthongso": {
+        "length": null,
+        "type": "string"
     },
     "updated_at": {
         "type": "datetime"
@@ -15,11 +12,8 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "khuvstrg": {
-        "type": "number"
-    },
-    "khuvsnam": {
-        "type": "number"
+    "thongso_id": {
+        "type": "string"
     },
     "deleted": {
         "type": "boolean"
@@ -30,6 +24,9 @@
     "created_by": {
         "type": "string"
     },
+    "tinhtrang": {
+        "type": "boolean"
+    },
     "id": {
         "primary": true,
         "type": "string"
@@ -37,13 +34,7 @@
     "deleted_by": {
         "type": "string"
     },
-    "khuvsgvnam": {
-        "type": "number"
-    },
-    "ncchinh": {
-        "type": "number"
-    },
-    "khuvsgvnu": {
+    "vitrimau": {
         "type": "number"
     }
 }

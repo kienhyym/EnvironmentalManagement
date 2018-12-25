@@ -1,35 +1,35 @@
 {
-    "deleted": {
-        "type": "boolean"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
     "created_at": {
         "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "ma": {
-        "length": 255,
-        "type": "string"
-    },
     "updated_at": {
         "type": "datetime"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted_by": {
+        "type": "string"
     },
     "ten": {
         "length": 255,
         "type": "string"
     },
-    "updated_by": {
+    "deleted": {
+        "type": "boolean"
+    },
+    "ma": {
+        "length": 255,
         "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
     }
 }

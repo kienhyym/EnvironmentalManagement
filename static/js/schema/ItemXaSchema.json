@@ -1,72 +1,72 @@
 {
-    "ketqua_datduoc": {
-        "length": null,
+    "updated_by": {
         "type": "string"
     },
-    "hoatdong": {
+    "songuoi_dantocthieuso": {
+        "type": "number"
+    },
+    "muctieu": {
         "length": null,
         "type": "string"
     },
     "created_by": {
         "type": "string"
     },
-    "muctieu": {
-        "length": null,
-        "type": "string"
-    },
-    "quanhuyen_id": {
-        "type": "string"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
     "deleted_by": {
-        "type": "string"
-    },
-    "updated_by": {
         "type": "string"
     },
     "songuoi_lanu": {
         "type": "number"
     },
-    "deleted": {
-        "type": "boolean"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "id": {
-        "primary": true,
+    "quanhuyen_id": {
         "type": "string"
     },
     "nganh": {
         "type": "number"
     },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "hoatdong": {
+        "length": null,
+        "type": "string"
+    },
+    "tongsonguoi_thamgia": {
+        "type": "number"
+    },
+    "ketqua_datduoc": {
+        "length": null,
+        "type": "string"
+    },
     "xaphuong": {
         "type": "dict"
     },
-    "songuoi_dantocthieuso": {
-        "type": "number"
+    "xaphuong_id": {
+        "type": "string"
     },
-    "tinhthanh_id": {
+    "created_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "kehoachthuchien_id": {
         "type": "string"
     },
     "quanhuyen": {
         "type": "dict"
     },
-    "kehoachthuchien_id": {
+    "tinhthanh_id": {
         "type": "string"
     },
     "tinhthanh": {
         "type": "dict"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "xaphuong_id": {
-        "type": "string"
-    },
-    "tongsonguoi_thamgia": {
-        "type": "number"
     }
 }

@@ -1,18 +1,5 @@
 {
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "quocgia_id": {
-        "type": "string"
-    },
-    "quocgia": {
-        "type": "dict"
-    },
-    "created_by": {
+    "updated_by": {
         "type": "string"
     },
     "ten": {
@@ -22,23 +9,36 @@
     "updated_at": {
         "type": "datetime"
     },
+    "ma": {
+        "length": 255,
+        "type": "string"
+    },
+    "quocgia": {
+        "type": "dict"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "quocgia_id": {
+        "type": "string"
+    },
     "quanhuyen": {
         "type": "list"
     },
     "created_at": {
         "type": "datetime"
     },
-    "deleted_at": {
-        "type": "datetime"
+    "created_by": {
+        "type": "string"
     },
-    "updated_by": {
+    "id": {
+        "primary": true,
         "type": "string"
     },
     "deleted_by": {
         "type": "string"
     },
-    "ma": {
-        "length": 255,
-        "type": "string"
+    "deleted_at": {
+        "type": "datetime"
     }
 }
