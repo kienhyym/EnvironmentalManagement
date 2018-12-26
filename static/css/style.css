@@ -398,6 +398,10 @@ a:hover {
   border: 1px solid #ae3c33;
 }
 
+table.data-table-no-border, table.data-table-no-border tbody tr td {
+	border: 0px solid #FFF !important;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
