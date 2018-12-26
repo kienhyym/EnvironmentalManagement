@@ -5,35 +5,34 @@
     "created_by": {
         "type": "string"
     },
+    "mathongso": {
+        "length": null,
+        "type": "string"
+    },
     "updated_at": {
         "type": "datetime"
+    },
+    "baocaoapdung": {
+        "type": ""
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
     },
     "updated_by": {
         "type": "string"
     },
-    "deleted": {
-        "type": "boolean",
-        "default": false
+    "tenthongso": {
+        "length": null,
+        "type": "string"
     },
     "deleted_by": {
         "type": "string"
     },
+    "deleted": {
+        "type": "boolean"
+    },
     "deleted_at": {
         "type": "datetime"
-    },
-    "id": {
-        "type": "number",
-        "primary": true
-    },
-    "name": {
-        "type": "string",
-        "length": 80
-    },
-    "description": {
-        "type": "string",
-        "length": 255
-    },
-    "users": {
-        "type": "list"
     }
 }

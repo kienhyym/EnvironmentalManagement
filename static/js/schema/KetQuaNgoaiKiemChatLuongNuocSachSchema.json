@@ -1,0 +1,89 @@
+{
+    "updated_by": {
+        "type": "string"
+    },
+    "kiennghi": {
+        "length": null,
+        "type": "string"
+    },
+    "nhanxet": {
+        "length": null,
+        "type": "string"
+    },
+    "tinhhinhchatluongnuoc": {
+        "length": null,
+        "type": "string"
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "hosotheodoi": {
+        "length": null,
+        "type": "string"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "thanhphan_doankiemtra": {
+        "length": null,
+        "type": "string"
+    },
+    "donvi_id": {
+        "type": "string"
+    },
+    "somauvavitri": {
+        "type": "number"
+    },
+    "thoigiankiemtra": {
+        "type": "datetime"
+    },
+    "nguonnuoc": {
+        "length": null,
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "tansuatthuchien_chedonoikiem": {
+        "length": null,
+        "type": "string"
+    },
+    "thuchien_chedo": {
+        "length": null,
+        "type": "string"
+    },
+    "tendonvi": {
+        "length": null,
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "ketluan": {
+        "length": null,
+        "type": "string"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "congxuat": {
+        "type": "number"
+    },
+    "tongso_hogiadinh": {
+        "type": "number"
+    },
+    "diachi_donvi": {
+        "length": null,
+        "type": "string"
+    }
+}

@@ -13,7 +13,7 @@ def init_controllers(app):
 #     import application.controllers.baocao_api
 #     import application.controllers.vesinhgiadinh_api
 #     import application.controllers.model_hdhgd_api
-#     import application.controllers.thongtuquychuannc_api
+    import application.controllers.thongtuquychuannuoc_api
     import application.controllers.kehoachbcc_api
 
     @app.route('/')

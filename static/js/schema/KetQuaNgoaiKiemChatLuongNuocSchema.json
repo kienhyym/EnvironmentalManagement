@@ -1,0 +1,40 @@
+{
+    "updated_by": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "length": null,
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "thongso_id": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "boolean"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "vitrimau": {
+        "type": "number"
+    }
+}
