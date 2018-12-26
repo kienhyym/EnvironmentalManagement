@@ -127,6 +127,15 @@ class VSToanXa(CommonModel):
     xaphuong = relationship('XaPhuong')
 
     pt_hogiadinh_nhatieucaithien = db.Column(db.Integer)
+    tyle_hogiadinh_diemruatay = db.Column(db.Integer)
+    pt_truonghoc_conuocsach = db.Column(db.Integer)
+    tonso_hocsinh = db.Column(db.Integer)
+    pt_tramyte_conuocsach = db.Column(db.Integer)
+    tongso_hogiadinh = db.Column(db.Integer)
+    tong_danso_xa = db.Column(db.Integer)
+    pt_giadinh_chulanu = db.Column(db.Integer)
+    pt_hogiadinh_dtts = db.Column(db.Integer)
+
     
    
 #Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững

@@ -8,7 +8,6 @@ from os.path import abspath, dirname
 sys.path.insert(0, dirname(abspath(__file__)))
 
 from sqlalchemy.inspection import inspect
-import sqlalchemy
 
 from manager import Manager
 from application.server import app
@@ -17,7 +16,8 @@ from application import run_app
 from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
-from application.models.model_danhmuc import DanToc
+from application.models.model_danhmuc import DanToc, QuocGia, TinhThanh
+
 
 # Instance
 manager = Manager()
@@ -40,7 +40,11 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             continue
         schema = {}
         for col in cls.__table__.c:
-            col_type = str(col.type)
+            col_type = 'VARCHAR'
+            try:
+                col_type = str(col.type)
+            except:
+                print("unsupport type===",col)
             schema_type = ''
             if 'DECIMAL' in col_type:
                 schema_type = 'number'
@@ -54,8 +58,6 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema_type = 'string'
             if col_type in ['VARCHAR', 'UUID', 'TEXT']:
                 schema_type = 'string'
-            if col_type in ['JSON', 'JSONB']:
-                schema_type = 'json'
             if 'BOOLEAN' in col_type:
                 schema_type = 'boolean'
             
@@ -67,21 +69,8 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             if (not col.nullable) and (not col.primary_key):
                 schema[col.name]["required"] = True
                 
-            if hasattr(col.type, "length") and (col.type.length is not None):
+            if hasattr(col.type, "length"):
                 schema[col.name]["length"] = col.type.length
-            
-            #default
-            if (col.default is not None) and (col.default.arg is not None) \
-                and (not callable(col.default.arg)) and not isinstance(col.default.arg, sqlalchemy.sql.functions.GenericFunction):
-                #print(col.default, col.default.arg, callable(col.default.arg))
-                schema[col.name]["default"] = col.default.arg
-                
-            #User confirm_password
-            if (classname == "User") and ("password" in col.name):
-                schema["confirm_password"] = {"type": schema_type}
-                schema["confirm_password"]["length"] = col.type.length
-                
-                
         
         relations = inspect(cls).relationships
         for rel in relations:
@@ -89,7 +78,7 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema[rel.key] = {"type": "list"}
             if rel.direction.name in ['MANYTOONE']:
                 schema[rel.key] = {"type": "dict"}
-        
+            
         if prettyprint:
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile, indent=4,)
@@ -97,9 +86,24 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile,)
 
+@manager.command
+def create_quocgia_tinhthanh():
+    quocgias = QuocGia(ma = "VN", ten = "Việt nam")
+    db.session.add(quocgias)
+    db.session.flush() 
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url_tinhthanh = os.path.join(SITE_ROOT, "static/js/app/enum", "TinhThanhEnum.json")
+    data_tinhthanh = json.load(open(json_url_tinhthanh))
+    for item_tinhthanh in data_tinhthanh:
+        print(item_tinhthanh)
+        tinhthanhs = TinhThanh(ma = item_tinhthanh["slug"], ten = item_tinhthanh["name"], quocgia_id = quocgias.id)
+        #tinhthanhs.quocgia.append(quocgias) 
+        db.session.add(tinhthanhs)
+        db.session.commit()
 
 @manager.command
 def create_dantoc_model():
+<<<<<<< HEAD
     check_exist_dantoc = db.session.query(DanToc).count()
     if (check_exist_dantoc == 0):
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -108,6 +112,16 @@ def create_dantoc_model():
         for item_dantoc in data_dantoc:
             dantoc = DanToc(ma = item_dantoc["value"], ten = item_dantoc["text"])
             db.session.add(dantoc)
+=======
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json")
+    
+    data_dantoc = json.load(open(json_url_dantoc))
+    for item_dantoc in data_dantoc:
+        print(item_dantoc)
+        dantoc = DanToc(ma = item_dantoc["value"], ten = item_dantoc["text"])
+        db.session.add(dantoc)
+>>>>>>> e47c4d5c10a807ae57f0c627c5bab318ca36ade6
         db.session.commit()
 
 
@@ -116,7 +130,7 @@ def create_dantoc_model():
 @manager.command
 def create_test_models():    
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url_tuyendonvi = os.path.join(SITE_ROOT, "static/js/app/enum", "TuyenDonViEnum.json");
+    json_url_tuyendonvi = os.path.join(SITE_ROOT, "static/js/app/enum", "TuyenDonViEnum.json")
     data_tuyendonvi = json.load(open(json_url_tuyendonvi))
     for item_tdv in data_tuyendonvi:
         print (item_tdv)
@@ -153,7 +167,16 @@ def create_test_models():
     
 @manager.command
 def run():
-    create_dantoc_model();
+    quocgia = db.session.query(QuocGia).filter().first()
+    tinhthanhs = db.session.query(TinhThanh).filter().first()
+    if tinhthanhs is None and quocgia is None:
+        create_quocgia_tinhthanh()
+        print("Khoi tao quoc gia , tinh thanh ...")
+
+    dantocs = db.session.query(DanToc).filter().first()
+    if dantocs is None:
+        create_dantoc_model()
+        print("Khoi Tao Dan Toc ....")
 
     role = db.session.query(Role).filter(Role.name == 'User').first()
     if role is None:
