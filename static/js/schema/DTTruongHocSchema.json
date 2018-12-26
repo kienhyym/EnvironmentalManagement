@@ -25,55 +25,67 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "ngaybaocao": {
-        "type": "datetime"
-    },
-    "tendonvi": {
+    "tentinh_id": {
         "type": "string"
     },
-    "donvi_id": {
+    "tenhuyen_id": {
         "type": "string"
     },
-    "diachi_donvi": {
+    "tenxa_id": {
         "type": "string"
     },
-    "congxuat": {
+    "tentrgtram": {
+        "type": "string"
+    },
+    "matrgtram": {
+        "type": "string"
+    },
+    "loaitrgtram": {
         "type": "number"
     },
-    "tongso_hogiadinh": {
+    "sobuoihoc": {
         "type": "number"
     },
-    "nguonnuoc": {
-        "type": "string"
-    },
-    "thoigiankiemtra": {
-        "type": "datetime"
-    },
-    "thanhphan_doankiemtra": {
-        "type": "string"
-    },
-    "somauvavitri": {
+    "hsmoibuoi": {
         "type": "number"
     },
-    "hosotheodoi": {
+    "hsnam": {
+        "type": "number"
+    },
+    "hsnu": {
+        "type": "number"
+    },
+    "loaitrg": {
+        "type": "number"
+    },
+    "ngtraloi": {
         "type": "string"
     },
-    "tansuatthuchien_chedonoikiem": {
+    "vitrichuvu": {
         "type": "string"
     },
-    "tinhhinhchatluongnuoc": {
+    "thongtinll": {
         "type": "string"
     },
-    "thuchien_chedo": {
+    "nguonnccongtrinh_id": {
         "type": "string"
     },
-    "nhanxet": {
+    "capnctruongtram_id": {
         "type": "string"
     },
-    "kiennghi": {
-        "type": "string"
+    "tentinh": {
+        "type": "dict"
     },
-    "ketluan": {
-        "type": "string"
+    "tenhuyen": {
+        "type": "dict"
+    },
+    "tenxa": {
+        "type": "dict"
+    },
+    "nguonnccongtrinh": {
+        "type": "dict"
+    },
+    "capnctruongtram": {
+        "type": "dict"
     }
 }

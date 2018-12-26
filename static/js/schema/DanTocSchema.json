@@ -1,8 +1,4 @@
 {
-    "id": {
-        "type": "string",
-        "primary": true
-    },
     "created_at": {
         "type": "datetime"
     },
@@ -25,16 +21,16 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
-        "type": "string"
+    "id": {
+        "type": "string",
+        "primary": true
     },
-    "tenthongso": {
-        "type": "string"
+    "ma": {
+        "type": "string",
+        "length": 255
     },
-    "vitrimau": {
-        "type": "number"
-    },
-    "tinhtrang": {
-        "type": "boolean"
+    "ten": {
+        "type": "string",
+        "length": 255
     }
 }

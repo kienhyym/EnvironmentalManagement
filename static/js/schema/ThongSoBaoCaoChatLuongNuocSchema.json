@@ -1,38 +1,37 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
-    "mathongso": {
-        "length": null,
-        "type": "string"
-    },
     "updated_at": {
         "type": "datetime"
-    },
-    "baocaoapdung": {
-        "type": ""
-    },
-    "id": {
-        "primary": true,
-        "type": "string"
     },
     "updated_by": {
         "type": "string"
     },
-    "tenthongso": {
-        "length": null,
-        "type": "string"
+    "deleted": {
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
     },
-    "deleted": {
-        "type": "boolean"
-    },
     "deleted_at": {
         "type": "datetime"
+    },
+    "mathongso": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string"
+    },
+    "baocaoapdung": {
+        "type": "json"
     }
 }

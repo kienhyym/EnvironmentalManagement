@@ -1,8 +1,4 @@
 {
-    "id": {
-        "type": "string",
-        "primary": true
-    },
     "created_at": {
         "type": "datetime"
     },
@@ -25,16 +21,22 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "role_id": {
+        "type": "number",
+        "required": true
+    },
+    "subject": {
         "type": "string"
     },
-    "tenthongso": {
+    "permission": {
         "type": "string"
     },
-    "vitrimau": {
-        "type": "number"
-    },
-    "tinhtrang": {
-        "type": "boolean"
+    "value": {
+        "type": "boolean",
+        "default": false
     }
 }

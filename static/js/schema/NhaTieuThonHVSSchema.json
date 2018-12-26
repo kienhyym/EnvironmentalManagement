@@ -25,55 +25,55 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "ngaybaocao": {
-        "type": "datetime"
-    },
-    "tendonvi": {
+    "vscapthon_id": {
         "type": "string"
     },
-    "donvi_id": {
+    "dantoc_id": {
         "type": "string"
     },
-    "diachi_donvi": {
+    "tendantoc": {
         "type": "string"
     },
-    "congxuat": {
+    "tenchuho": {
+        "type": "string"
+    },
+    "gioitinh": {
         "type": "number"
     },
-    "tongso_hogiadinh": {
+    "hongheo": {
         "type": "number"
     },
-    "nguonnuoc": {
-        "type": "string"
-    },
-    "thoigiankiemtra": {
-        "type": "datetime"
-    },
-    "thanhphan_doankiemtra": {
-        "type": "string"
-    },
-    "somauvavitri": {
+    "tuhoai": {
         "type": "number"
     },
-    "hosotheodoi": {
-        "type": "string"
+    "thamdoi": {
+        "type": "number"
     },
-    "tansuatthuchien_chedonoikiem": {
-        "type": "string"
+    "haingan": {
+        "type": "number"
     },
-    "tinhhinhchatluongnuoc": {
-        "type": "string"
+    "chimco_oth": {
+        "type": "number"
     },
-    "thuchien_chedo": {
-        "type": "string"
+    "loaikhac": {
+        "type": "number"
     },
-    "nhanxet": {
-        "type": "string"
+    "khongconhatieu": {
+        "type": "number"
     },
-    "kiennghi": {
-        "type": "string"
+    "hopvesinh": {
+        "type": "number"
     },
-    "ketluan": {
-        "type": "string"
+    "khonghopvesinh": {
+        "type": "number"
+    },
+    "caithien": {
+        "type": "number"
+    },
+    "diemruataycoxaphong": {
+        "type": "number"
+    },
+    "dantoc": {
+        "type": "dict"
     }
 }

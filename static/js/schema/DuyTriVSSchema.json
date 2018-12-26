@@ -25,16 +25,31 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
+    "tinhthanh_id": {
         "type": "string"
     },
-    "tenthongso": {
+    "quanhuyen_id": {
         "type": "string"
     },
-    "vitrimau": {
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "namdat_vesinh_thuongxuyen": {
+        "type": "datetime"
+    },
+    "truong_vesinh": {
         "type": "number"
     },
-    "tinhtrang": {
-        "type": "boolean"
+    "tram_yte": {
+        "type": "number"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
     }
 }

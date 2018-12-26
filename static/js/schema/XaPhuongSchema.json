@@ -1,8 +1,4 @@
 {
-    "id": {
-        "type": "string",
-        "primary": true
-    },
     "created_at": {
         "type": "datetime"
     },
@@ -25,16 +21,25 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ma": {
+        "type": "string",
+        "length": 255
+    },
+    "ten": {
+        "type": "string",
+        "length": 255
+    },
+    "quanhuyen_id": {
         "type": "string"
     },
-    "tenthongso": {
-        "type": "string"
+    "quanhuyen": {
+        "type": "dict"
     },
-    "vitrimau": {
-        "type": "number"
-    },
-    "tinhtrang": {
-        "type": "boolean"
+    "thonxom": {
+        "type": "list"
     }
 }

@@ -25,55 +25,55 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "ngaybaocao": {
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "xaydungduthao_bcc": {
+        "type": "number"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "vihema_chapthuan": {
+        "type": "number"
+    },
+    "ngay_pheduyet": {
         "type": "datetime"
     },
-    "tendonvi": {
-        "type": "string"
-    },
-    "donvi_id": {
-        "type": "string"
-    },
-    "diachi_donvi": {
-        "type": "string"
-    },
-    "congxuat": {
+    "trangthai_tinhpheduyen": {
         "type": "number"
     },
-    "tongso_hogiadinh": {
-        "type": "number"
-    },
-    "nguonnuoc": {
+    "tinhpheduyet_bcc": {
         "type": "string"
     },
-    "thoigiankiemtra": {
-        "type": "datetime"
-    },
-    "thanhphan_doankiemtra": {
+    "sohoatdong_bcc": {
         "type": "string"
     },
-    "somauvavitri": {
-        "type": "number"
+    "itemthon": {
+        "type": "list"
     },
-    "hosotheodoi": {
-        "type": "string"
+    "itemxa": {
+        "type": "list"
     },
-    "tansuatthuchien_chedonoikiem": {
-        "type": "string"
+    "itemhuyen": {
+        "type": "list"
     },
-    "tinhhinhchatluongnuoc": {
-        "type": "string"
+    "itemtinh": {
+        "type": "list"
     },
-    "thuchien_chedo": {
-        "type": "string"
+    "tinhthanh": {
+        "type": "dict"
     },
-    "nhanxet": {
-        "type": "string"
+    "quanhuyen": {
+        "type": "dict"
     },
-    "kiennghi": {
-        "type": "string"
-    },
-    "ketluan": {
-        "type": "string"
+    "xaphuong": {
+        "type": "dict"
     }
 }

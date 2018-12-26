@@ -25,16 +25,25 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
-        "type": "string"
-    },
-    "tenthongso": {
-        "type": "string"
-    },
-    "vitrimau": {
+    "ncchinh": {
         "type": "number"
     },
-    "tinhtrang": {
-        "type": "boolean"
+    "nguonnckhac": {
+        "type": "string"
+    },
+    "khuvstrg": {
+        "type": "number"
+    },
+    "khuvsnam": {
+        "type": "number"
+    },
+    "khuvsnu": {
+        "type": "number"
+    },
+    "khuvsgvnam": {
+        "type": "number"
+    },
+    "khuvsgvnu": {
+        "type": "number"
     }
 }
