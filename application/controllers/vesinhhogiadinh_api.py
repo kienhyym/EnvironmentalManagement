@@ -12,6 +12,7 @@ from .helpers import *
 from application.models.model_vesinhhogiadinh import *
 from sqlalchemy import or_, and_
 from application.client import HTTPClient 
+from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
 
 def congdongTongCong(Baocao, current_user, nambaocao=None):
@@ -21,23 +22,24 @@ def congdongTongCong(Baocao, current_user, nambaocao=None):
     curdonvi_id = current_user.donvi_id
     baocaos = db.session.query(Baocao, DonVi).\
             filter(Baocao.donvi_id == DonVi.id).\
-            filter(DonVi.captren_id == curdonvi_id).\
+            filter(or_(DonVi.captren_id == curdonvi_id, Baocao.donvi_id == curdonvi_id)).\
             filter(Baocao.nambaocao == nambaocao).all()
     
-    resp = {}
+    resp = []
     for baocao, donvi in baocaos:
-        # print(donvi.id)
-        for c in Baocao.__table__.c:
-            if c.name not in notdict:
-                if (c.name not in resp) or (resp[c.name] is None):
-                    resp[c.name] = getattr(baocao, c.name)
-                else:
-                    if (resp[c.name] is None):
-                        resp[c.name] = 0
-                    val = getattr(baocao, c.name)
-                    if (val is None):
-                        val = 0
-                    resp[c.name] = resp[c.name] +  val
+        print("baocathon=====",baocao)
+        resp.append(to_dict(baocao))
+#         for c in Baocao.__table__.c:
+#             if c.name not in notdict:
+#                 if (c.name not in resp) or (resp[c.name] is None):
+#                     resp[c.name] = getattr(baocao, c.name)
+#                 else:
+#                     if (resp[c.name] is None):
+#                         resp[c.name] = 0
+#                     val = getattr(baocao, c.name)
+#                     if (val is None or c.name == "datetime.datetime"):
+#                         val = 0
+#                     resp[c.name] = resp[c.name] +  val
     return resp
 
 async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
@@ -50,7 +52,7 @@ async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     
-    record = db.session.query(VSCapThon).filter(and_(VSCapThon.donvi_id == currentuser.donvi_id, VSCapThon.nambaocao == data['nambaocao'])).first()
+    record = db.session.query(VSCapThon).filter(and_(VSCapThon.donvi_id == currentuser.donvi_id, VSCapThon.thonxom_id == data['thonxom_id'], VSCapThon.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
         

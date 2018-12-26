@@ -50,7 +50,7 @@
         "type": "number",
         "default":0
     },
-    "tong_dccaithien": {
+    "tong_caithien": {
         "type": "number",
         "default":0
     },

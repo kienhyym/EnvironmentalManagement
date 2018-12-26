@@ -111,37 +111,46 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(
-									self.collectionName + "/collection");
-							},
-							error: function (model, xhr, options) {
-								var msgJson = $.parseJSON(xhr.responseText);
-								if (msgJson) {
-									self.getApp().notify({
-										message: msgJson.error_message
-									}, {
-										type: "danger"
-									});
+						var id = this.getApp().getRouter().getParam("id");
+						if (self.getApp().currentUser !==null 
+								&& self.getApp().currentUser.donvi_id === self.model.get("donvi_id")
+								&& id !== null && id.length>0){
+							self.model.unset("danhsachbaocao");
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(
+										self.collectionName + "/collection");
+								},
+								error: function (model, xhr, options) {
+									var msgJson = $.parseJSON(xhr.responseText);
+									if (msgJson) {
+										self.getApp().notify({
+											message: msgJson.error_message
+										}, {
+											type: "danger"
+										});
+									}
 								}
-							}
-						});
+							});
+						}else{
+							self.getApp().notify("Tài khoản hiện tại không có quyền sửa báo cáo này,\n Chỉ có đơn vị tạo báo cáo mới được phép sửa báo cáo này")
+						}
+						
 					}
 				},
-				{
-					name: "count",
-					type: "button",
-					buttonClass: "btn-primary btn-sm",
-					label: "Cộng dồn",
-					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
-					},
-					command: function () {
-						var self = this;
-					}
-				},
+//				{
+//					name: "count",
+//					type: "button",
+//					buttonClass: "btn-primary btn-sm",
+//					label: "Cộng dồn",
+//					visible: function () {
+//						return this.getApp().getRouter().getParam("id") !== null;
+//					},
+//					command: function () {
+//						var self = this;
+//					}
+//				},
 			],
 		}],
 
@@ -152,32 +161,33 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
+						self.$el.find("#nambaocao").attr({"disabled":true});
 						self.applyBindings();
 						console.log("dataxa====",data);
 						var danhsachbaocao = data.attributes.danhsachbaocao;
 						
 	
-						var total_hoconualachu = 0;
+						var total_chuholanu = 0;
 						var total_sohongheo = 0;
 						var total_dtts = 0;
 						var total_soNam = 0;
 						var total_soNu = 0;
-						var total_sodan = 0;
-						var total_hotrongthon = 0;
+						var total_danso = 0;
+						var total_soho = 0;
 						danhsachbaocao.forEach(element => {
 							console.log("element======",element);
-							total_hoconualachu += toInt(element.tong_chuholanu);
+							total_chuholanu += toInt(element.tong_chuholanu);
 							total_sohongheo += toInt(element.tong_sohongheo);
 							total_dtts += toInt(element.tong_sohodtts);
 							total_soNam += toInt(element.tong_nam);
 							total_soNu += toInt(element.tong_nu);
-							total_hotrongthon += toInt(element.tong_soho);
-							total_sodan += toInt(element.total_sodan);
+							total_soho += toInt(element.tong_soho);
+							total_danso += toInt(element.tong_danso);
 							var tr = $('<tr id="danhsachdonvi">').attr({
 								"id": element.id
 							});
 							tr.append("<td>" + element.tenthon + "</td>");
-							tr.append("<td id='c'>" + element.tong_chuholanu + "</td>");
+							tr.append("<td>" + element.tong_chuholanu + "</td>");
 							tr.append("<td>" + element.tong_sohodtts + "</td>");
 							tr.append("<td>" + element.tong_sohongheo + "</td>");
 							tr.append("<td>" + element.tong_tuhoai + "</td>");
@@ -198,15 +208,15 @@ define(function (require) {
 							});
 
 						});
-						self.model.set("tong_chuholanu", total_hoconualachu);
+						self.model.set("tong_chuholanu", total_chuholanu);
 						self.model.set("tong_sohongheo", total_sohongheo);
 						self.model.set("tong_sohodtts", total_dtts);
 						self.model.set("tong_nam", total_soNam);
 						self.model.set("tong_nu", total_soNu);
-						self.model.set("tong_dantrongxa", total_sodan);
-						self.model.set("hotrongxa", total_hotrongthon);
-
-						self.renderTinhTongI(dataSourceCapThon);
+						self.model.set("tong_danso", total_danso);
+						self.model.set("tong_soho", total_soho);
+						self.model.set("tong_sothon", danhsachbaocao.length);
+						self.renderTinhTongI(danhsachbaocao);
 						self.model.trigger("change");
 					},
 					error: function () {
@@ -218,7 +228,7 @@ define(function (require) {
 			}
 
 		},
-		renderTinhTongI: function (dataSourceCapThon) {
+		renderTinhTongI: function (danhsachbaocao) {
 			var self = this;
 			if (!self.tongViewi) {
 				self.tongViewi = new TongViewI({
@@ -228,21 +238,15 @@ define(function (require) {
 			}
 
 			var data = Gonrin.getDefaultModel(tongischema);
-			for (var j = 0; j < dataSourceCapThon.length; j++) {
-				var chitiet = dataSourceCapThon[j];
+			for (var j = 0; j < danhsachbaocao.length; j++) {
+				var chitiet = danhsachbaocao[j];
 				_.each(tongischema, function (props, key) {
-					data[key] = toInt(data[key]) + toInt(dataSourceCapThon[j][key]);
+					data[key] = toInt(data[key]) + toInt(danhsachbaocao[j][key]);
 
 				});
 			}
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
-			self.changeTable();
-		},
-
-		changeTable: function () {
-			var self = this;
-
 		},
 
 	});

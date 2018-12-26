@@ -2,7 +2,7 @@
 		padding-left:2px;
 		padding-right:2px;
 	}
-.table-align tr th, .table-align tr td{
+.table-align tr th, .table-align tr td, .table-align tfoot td{
 	text-align:center;
 }
 

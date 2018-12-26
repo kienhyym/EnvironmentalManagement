@@ -40,38 +40,38 @@ define(function (require) {
 					foreignTextField: "ten",
 				},
 				{
-					field: "sothon",
+					field: "tong_sothon",
 					label: "Tổng Số thôn"
 				},
 				{
-					field: "hotrongxa",
+					field: "tong_soho",
 					label: "Tổng Số hộ"
 				},
 				{
-					field: "chuholanu",
+					field: "tong_chuholanu",
 					label: "Hộ có nữ là chủ hộ"
 				},
 				
 				{
-					field: "sohongheo",
+					field: "tong_sohongheo",
 					label: "Tổng số hộ nghèo"
 				},
 				{
-					field: "sohodtts",
+					field: "tong_sohodtts",
 					label: "Số hộ là DTTS"
 				},
 				{
-					field: "dantrongxa",
+					field: "tong_danso",
 					label: "Tổng dân số"
 				},
-				{
-					field: "sonu",
-					label: "Số Nữ"
-				},
-				{
-					field: "sonam",
-					label: "Số Nam "
-				},
+//				{
+//					field: "tong_nu",
+//					label: "Số Nữ"
+//				},
+//				{
+//					field: "tong_nam",
+//					label: "Số Nam "
+//				},
 
 			],
 			onRowClick: function (event) {
