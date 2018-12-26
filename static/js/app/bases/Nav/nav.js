@@ -287,6 +287,23 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/NgheNghiep/view/ModelView",
 					"visible": false
 				},
+				{
+					"text": "Danh mục hoạt động",
+					"type": "view",
+					"collectionName": "danhmuchoatdong",
+					"route": "danhmuchoatdong/collection",
+					"$ref": "app/view/DanhMuc/DanhMucHD/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "danhmuchoatdong",
+					"route": "danhmuchoatdong/model",
+					"$ref": "app/view/DanhMuc/DanhMucHD/view/ModelView",
+					"visible": false
+				},
 			]
 		},
 		{

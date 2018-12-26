@@ -3,7 +3,7 @@ import uuid
 from application.database import db
 from application.database.model import CommonModel
 from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
-from sqlalchemy.dialects.postgresql import  UUID
+from sqlalchemy.dialects.postgresql import  UUID, JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
 from sqlalchemy.orm.collections import attribute_mapped_collection
@@ -71,10 +71,11 @@ class ItemTinh(CommonModel):
     kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
     hoatdong = db.Column(db.String)
     muctieu = db.Column(db.String)
-    ketqua_datduoc = db.Column(db.String)
+    tiendo_thuchien = db.Column(db.String)
     tongsonguoi_thamgia = db.Column(db.Integer)
     songuoi_lanu = db.Column(db.Integer)
     songuoi_dantocthieuso = db.Column(db.Integer)
+    ketqua_datduoc = db.Column(db.String)
     # tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     # tinhthanh = relationship('TinhThanh')
     # quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -199,6 +200,15 @@ class DTTruongHoc(CommonModel):
     tennguoitraloi = db.Column(db.String)
     chucvu_nguoitraloi = db.Column(db.String)
     sodienthoailienlac = db.Column(db.Integer)
+
+class DanhMucHoatDong(CommonModel):
+    __tablename__ = 'danhmuchoatdong'
+    mahoatdong = db.Column(db.String)
+    tenhoatdong = db.Column(db.String)
+    loai_hoatdong = db.Column(db.String) ##Cap tinh , huyen ,xa,thon
+    muctieu = db.Column(db.String)
+
+
 
 #     sobuoihoc = db.Column(db.Integer)
 #     hsmoibuoi = db.Column(db.Integer)

@@ -194,6 +194,21 @@ define(function (require) {
 					},
 				});
 			} else {
+				
+				$.ajax({
+					url: "/api/v1/danhmuchoatdongbcc?loai_hoatdong=tinh",
+					dataType: "json",
+					contentType: "application/json",
+					success: function (data) {
+						console.log('success ', data);
+						
+	
+					},
+					error: function () {
+	
+					}
+				});
+
 				self.applyBindings();
 				self.$el.find("#addItem button").click();
 			}
