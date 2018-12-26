@@ -297,8 +297,8 @@ define(function (require) {
 					"text": "Cấp thôn",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "view",
-					"collectionName": "capthon",
-					"route": "capthon/collection",
+					"collectionName": "vscapthon",
+					"route": "vscapthon/collection",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
@@ -307,8 +307,8 @@ define(function (require) {
 				},
 				{
 					"type": "view",
-					"collectionName": "capthon",
-					"route": "capthon/model",
+					"collectionName": "vscapthon",
+					"route": "vscapthon/model",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
 					"visible": false
 				},
@@ -316,8 +316,8 @@ define(function (require) {
 					"text": "Cấp xã",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "view",
-					"collectionName": "capxa",
-					"route": "capxa/collection",
+					"collectionName": "vscapxa",
+					"route": "vscapxa/collection",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
@@ -326,7 +326,7 @@ define(function (require) {
 				},
 				{
 					"type": "view",
-					"collectionName": "capxa",
+					"collectionName": "vscapxa",
 					"route": "capxa/model",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
 					"visible": false
@@ -335,8 +335,8 @@ define(function (require) {
 					"text": "Cấp huyện",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "view",
-					"collectionName": "caphuyen",
-					"route": "caphuyen/collection",
+					"collectionName": "vscaphuyen",
+					"route": "vscaphuyen/collection",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
 					"tuyendonvi": 3,
 					"visible": function () {
@@ -345,8 +345,8 @@ define(function (require) {
 				},
 				{
 					"type": "view",
-					"collectionName": "caphuyen",
-					"route": "caphuyen/model",
+					"collectionName": "vscaphuyen",
+					"route": "vscaphuyen/model",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
 					"visible": false
 				},
@@ -354,8 +354,8 @@ define(function (require) {
 					"text": "Cấp tỉnh",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "view",
-					"collectionName": "captinh",
-					"route": "captinh/collection",
+					"collectionName": "vscaptinh",
+					"route": "vscaptinh/collection",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
@@ -364,8 +364,8 @@ define(function (require) {
 				},
 				{
 					"type": "view",
-					"collectionName": "captinh",
-					"route": "captinh/model",
+					"collectionName": "vscaptinh",
+					"route": "vscaptinh/model",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
 					"visible": false
 				},

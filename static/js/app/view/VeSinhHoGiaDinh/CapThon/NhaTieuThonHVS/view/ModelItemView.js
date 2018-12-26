@@ -238,11 +238,25 @@ define(function (require) {
 						},
 					],
 				},
+				{
+					field: "dantoc",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "dantoc_id",
+					dataSource: DanTocSelectView
+				},
 			]
 		},
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML)			
+			// this.setElement(this.el.innerHTML)
+			if (self.model.get("id") === null){
+				self.model.set("id",gonrin.uuid())
+			}
+			self.model.on("change:dantoc",function(){
+				self.model.set("tendantoc",self.model.get("dantoc").ten);
+			});
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});

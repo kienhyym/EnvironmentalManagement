@@ -3,16 +3,20 @@
         "type": "string",
         "primary": true
     },
+    "stt": {
+        "type": "number"
+    },
     "dantoc_id": {
         "type": "string"
     },
+    "dantoc": {
+        "type": "dict"
+    },
     "tendantoc": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "tenchuho": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "gioitinh": {
         "type": "number"

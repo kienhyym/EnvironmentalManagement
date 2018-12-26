@@ -39,11 +39,10 @@ define(function (require) {
 
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "capthon",
+		collectionName: "vscapthon",
 
 		uiControl: {
 			fields: [
-				{
 				{
 					field: "xaphuong",
 					uicontrol: "ref",
@@ -200,7 +199,7 @@ define(function (require) {
 					success: function (data) {
 						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 						for(var i=0; i< nhatieuthonhvs.length; i++){
-							nhatieuthonhvs[i].stt = i+1;
+							nhatieuthonhvs[i]['stt'] = i+1;
 						}
 						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();

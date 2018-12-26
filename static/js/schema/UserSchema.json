@@ -45,6 +45,10 @@
         "type": "string",
         "length": 255
     },
+    "confirm_password": {
+        "type": "string",
+        "length": 255
+    },
     "confirmpassword": {
         "type": "string",
         "length": 255

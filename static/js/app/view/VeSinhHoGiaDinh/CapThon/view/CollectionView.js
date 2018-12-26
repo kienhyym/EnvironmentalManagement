@@ -4,67 +4,67 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/CapThon/tpl/collection.html'),
-		schema = require('json!schema/CapThonSchema.json');
+	var template = require('text!app/view/VeSinhHoGiaDinh/CapThon/tpl/collection.html'),
+		schema = require('json!schema/VSCapThonSchema.json');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "capthon",
+		collectionName: "vscapthon",
 		uiControl: {
 			fields: [
 				{
-					field: "danhgianam",
+					field: "nambaocao",
 					label: "Năm báo cáo"
 				},
 				{
-					field: "tentinh_id",
+					field: "tinhthanh_id",
 					label: "Tỉnh",
-					foreign: "tentinh",
+					foreign: "tinhthanh",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "tenhuyen_id",
+					field: "quanhuyen_id",
 					label: "Huyện",
-					foreign: "tenhuyen",
+					foreign: "quanhuyen",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "tenxa_id",
+					field: "xaphuong_id",
 					label: "Xã",
-					foreign: "tenxa",
+					foreign: "xaphuong",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "thon_id",
+					field: "thonxom_id",
 					label: "Thôn",
-					foreign: "thon",
+					foreign: "thonxom",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "hotrongthon",
+					field: "tong_hotrongthon",
 					label: "Tổng số hộ"
 				},
 				{
-					field: "chuholanu",
+					field: "tong_chuholanu",
 					label: "Số hộ nữ là chủ hộ"
 				},
 				{
-					field: "sohongheo",
+					field: "tong_sohongheo",
 					label: "Số hộ nghèo"
 				},
 
 				{
-					field: "sohodtts",
+					field: "tong_sohodtts",
 					label: "Số hộ là DTTS"
 				},
 				{
-					field: "dantrongthon",
+					field: "tong_dantrongthon",
 					label: "Tổng số dân"
 				},
 
