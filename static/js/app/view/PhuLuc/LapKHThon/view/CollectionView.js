@@ -24,31 +24,35 @@ define(function (require) {
 						}
 					},
 				},
+				// {
+				// 	field: "tinhthanh",
+				// 	label: "Tỉnh phê duyệt",
+				// 	foreign: "tinhthanh_id",
+				// 	foreignValueField: "id",
+				// 	foreignTextField: "ten"
+				// },
 				{
-					field: "tentinh_id",
-					label: "Tỉnh phê duyệt",
-					foreign: "tentinh",
-					foreignValueField: "id",
-					foreignTextField: "ten"
-				},
-				{
-					field: "hoatdong_thon",
+					field: "hoatdong",
 					label: "Hoạt động"
 				},
 				{
-					field: "muctieu_thon",
+					field: "muctieu",
 					label: "Mục tiêu"
 				},
 				{
-					field: "sonutg_thon",
+					field: "ketqua_datduoc",
+					label: "Kết quả đạt được"
+				},
+				{
+					field: "songuoi_lanu",
 					label: "Số người tham gia là nữ"
 				},
 				{
-					field: "songtg_thon",
+					field: "tongsonguoi_thamgia",
 					label: "Tổng số người tham gia"
 				},
 				{
-					field: "dttstg_thon",
+					field: "songuoi_dantocthieuso",
 					label: "Số người tham gia là DTTS"
 				},
 

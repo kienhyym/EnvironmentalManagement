@@ -1,24 +1,7 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "namdat_vesinh_thuongxuyen": {
-        "type": "datetime"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "truong_vesinh": {
-        "type": "number"
-    },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "xaphuong_id": {
-        "type": "string"
+    "id": {
+        "type": "string",
+        "primary": true
     },
     "created_at": {
         "type": "datetime"
@@ -26,29 +9,46 @@
     "created_by": {
         "type": "string"
     },
-    "tram_yte": {
-        "type": "number"
+    "updated_at": {
+        "type": "datetime"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
-    "deleted_by": {
+    "updated_by": {
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
-    "quanhuyen_id": {
+    "deleted_by": {
         "type": "string"
     },
-    "quanhuyen": {
-        "type": "dict"
+    "deleted_at": {
+        "type": "datetime"
     },
     "tinhthanh_id": {
         "type": "string"
     },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "namdat_vesinh_thuongxuyen": {
+        "type": "datetime"
+    },
+    "truong_vesinh": {
+        "type": "number"
+    },
+    "tram_yte": {
+        "type": "number"
+    },
     "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
         "type": "dict"
     }
 }

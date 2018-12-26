@@ -34,39 +34,39 @@ define(function (require) {
 				// 	maxDate: currentDate,
 				// },
 				{
-					field: "tentinh",
+					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tentinh_id",
+					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
 				},
 				{
-					field: "tenxa",
+					field: "xaphuong",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tenxa_id",
+					foreignField: "xaphuong_id",
 					dataSource: XaPhuongSelectView
 				},
 				{
-					field: "tenhuyen",
+					field: "quanhuyen",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tenhuyen_id",
+					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
 				{
-					field: "tenthon",
+					field: "thonxom",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tenthon_id",
+					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
 				},
 				{

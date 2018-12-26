@@ -1,108 +1,108 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "coquanchuquan": {
-        "length": 255,
-        "type": "string"
-    },
-    "users": {
-        "type": "list"
-    },
-    "ma": {
-        "length": 255,
-        "type": "string"
-    },
-    "quocgia": {
-        "type": "dict"
-    },
-    "email": {
-        "length": 255,
-        "type": "string"
-    },
-    "tuyendonvi": {
-        "type": "dict"
+    "created_at": {
+        "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
-    "children": {
-        "type": "list"
+    "updated_at": {
+        "type": "datetime"
     },
-    "deleted_by": {
+    "updated_by": {
         "type": "string"
     },
-    "active": {
+    "deleted": {
         "type": "boolean"
     },
-    "quocgia_id": {
-        "type": "string"
-    },
-    "quanhuyen_id": {
-        "type": "string"
-    },
-    "sodienthoai": {
-        "length": 63,
+    "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
+    "id": {
+        "type": "number",
+        "primary": true
+    },
     "ten": {
+        "type": "string",
         "required": true,
-        "length": 255,
-        "type": "string"
+        "length": 255
     },
-    "captren": {
-        "type": "dict"
+    "ma": {
+        "type": "string",
+        "length": 255
     },
-    "updated_at": {
-        "type": "datetime"
+    "sodienthoai": {
+        "type": "string",
+        "length": 63
     },
     "diachi": {
-        "length": 255,
-        "type": "string"
+        "type": "string",
+        "length": 255
     },
-    "captren_id": {
-        "type": "number"
+    "email": {
+        "type": "string",
+        "length": 255
     },
-    "xaphuong": {
-        "type": "dict"
+    "ghichu": {
+        "type": "string",
+        "length": 255
     },
     "xaphuong_id": {
         "type": "string"
     },
-    "created_at": {
-        "type": "datetime"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "ghichu": {
-        "length": 255,
+    "quanhuyen_id": {
         "type": "string"
     },
-    "id": {
-        "primary": true,
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quocgia_id": {
+        "type": "string"
+    },
+    "tuyendonvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "coquanchuquan": {
+        "type": "string",
+        "length": 255
+    },
+    "captren_id": {
         "type": "number"
     },
     "laysolieu": {
         "type": "boolean"
     },
-    "user_donvi": {
-        "type": "list"
+    "active": {
+        "type": "boolean"
     },
-    "tinhthanh": {
+    "xaphuong": {
         "type": "dict"
     },
     "quanhuyen": {
         "type": "dict"
     },
-    "tinhthanh_id": {
-        "type": "string"
+    "tinhthanh": {
+        "type": "dict"
     },
-    "tuyendonvi_id": {
-        "required": true,
-        "type": "number"
+    "quocgia": {
+        "type": "dict"
+    },
+    "tuyendonvi": {
+        "type": "dict"
+    },
+    "users": {
+        "type": "list"
+    },
+    "children": {
+        "type": "list"
+    },
+    "captren": {
+        "type": "dict"
+    },
+    "user_donvi": {
+        "type": "list"
     }
 }

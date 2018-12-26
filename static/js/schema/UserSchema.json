@@ -1,102 +1,102 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "login_count": {
-        "type": "number"
-    },
-    "phone": {
-        "length": 255,
-        "type": "string"
-    },
-    "password": {
-        "length": 255,
-        "type": "string"
-    },
-    "current_login_at": {
+    "created_at": {
         "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
-    "last_login_at": {
-        "type": "datetime"
-    },
-    "donvi": {
-        "type": "dict"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "active": {
-        "type": "boolean"
-    },
-    "donvi_id": {
-        "required": true,
-        "type": "number"
-    },
-    "last_name": {
-        "length": 255,
-        "type": "string"
-    },
-    "trangthai": {
-        "type": "number"
-    },
-    "confirmpassword": {
-        "length": 255,
-        "type": "string"
-    },
-    "last_login_ip": {
-        "length": 255,
-        "type": "string"
-    },
-    "fullname": {
-        "length": 255,
-        "type": "string"
-    },
     "updated_at": {
         "type": "datetime"
     },
-    "created_at": {
-        "type": "datetime"
-    },
-    "email": {
-        "length": 255,
+    "updated_by": {
         "type": "string"
     },
-    "gender": {
-        "length": 255,
-        "type": "string"
+    "deleted": {
+        "type": "boolean"
     },
-    "first_name": {
-        "length": 255,
+    "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "deleted": {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "first_name": {
+        "type": "string",
+        "length": 255
+    },
+    "last_name": {
+        "type": "string",
+        "length": 255
+    },
+    "fullname": {
+        "type": "string",
+        "length": 255
+    },
+    "email": {
+        "type": "string",
+        "length": 255
+    },
+    "password": {
+        "type": "string",
+        "length": 255
+    },
+    "confirmpassword": {
+        "type": "string",
+        "length": 255
+    },
+    "active": {
         "type": "boolean"
+    },
+    "phone": {
+        "type": "string",
+        "length": 255
     },
     "birthday": {
         "type": "datetime"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
+    "gender": {
+        "type": "string",
+        "length": 255
     },
     "macongdan": {
-        "length": 255,
-        "type": "string"
+        "type": "string",
+        "length": 255
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
     },
     "confirmed_at": {
         "type": "datetime"
     },
+    "last_login_at": {
+        "type": "datetime"
+    },
+    "current_login_at": {
+        "type": "datetime"
+    },
+    "last_login_ip": {
+        "type": "string",
+        "length": 255
+    },
     "current_login_ip": {
-        "length": 255,
-        "type": "string"
+        "type": "string",
+        "length": 255
+    },
+    "login_count": {
+        "type": "number"
+    },
+    "trangthai": {
+        "type": "number"
     },
     "roles": {
         "type": "list"
+    },
+    "donvi": {
+        "type": "dict"
     }
 }

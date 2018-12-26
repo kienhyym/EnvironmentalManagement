@@ -1,96 +1,96 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
     "updated_by": {
         "type": "string"
     },
-    "ky_baocao": {
-        "required": true,
-        "type": "number"
+    "deleted": {
+        "type": "boolean"
     },
-    "xaphuong_id": {
+    "deleted_by": {
         "type": "string"
     },
-    "nguoibaocao": {
-        "type": "dict"
+    "deleted_at": {
+        "type": "datetime"
     },
-    "created_by": {
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
         "type": "string"
     },
     "tinhtrang": {
         "type": "number"
     },
-    "donvi": {
-        "type": "dict"
+    "nam_baocao": {
+        "type": "number",
+        "required": true
     },
-    "deleted_by": {
+    "ky_baocao": {
+        "type": "number",
+        "required": true
+    },
+    "tinhthanh_id": {
         "type": "string"
-    },
-    "donvi_id": {
-        "required": true,
-        "type": "number"
     },
     "quanhuyen_id": {
         "type": "string"
     },
-    "dantoc_thieuso": {
-        "type": "number"
-    },
-    "soho_giadinh": {
-        "type": "number"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "created_at": {
-        "type": "datetime"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "diemruatay": {
-        "type": "number"
-    },
-    "nguoibaocao_id": {
+    "xaphuong_id": {
         "type": "string"
-    },
-    "xaphuong": {
-        "type": "dict"
     },
     "nhatieu": {
         "type": "number"
     },
-    "danso": {
+    "diemruatay": {
         "type": "number"
     },
-    "tramyte_hop_vesinh": {
+    "truonghvs": {
         "type": "number"
     },
     "sohocsinh": {
         "type": "number"
     },
-    "deleted": {
-        "type": "boolean"
+    "tramyte_hop_vesinh": {
+        "type": "number"
+    },
+    "soho_giadinh": {
+        "type": "number"
+    },
+    "danso": {
+        "type": "number"
     },
     "ho_nula_chu": {
         "type": "number"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
+    "dantoc_thieuso": {
+        "type": "number"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
     },
     "tinhthanh": {
         "type": "dict"
     },
-    "nam_baocao": {
-        "required": true,
-        "type": "number"
-    },
     "quanhuyen": {
         "type": "dict"
     },
-    "tinhthanh_id": {
-        "type": "string"
-    },
-    "truonghvs": {
-        "type": "number"
+    "xaphuong": {
+        "type": "dict"
     }
 }

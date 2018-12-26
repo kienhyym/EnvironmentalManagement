@@ -8,31 +8,31 @@
     "updated_at": {
         "type": "datetime"
     },
-    "users": {
-        "type": "list"
-    },
-    "id": {
-        "primary": true,
-        "type": "number"
-    },
     "updated_by": {
-        "type": "string"
-    },
-    "description": {
-        "length": 255,
-        "type": "string"
-    },
-    "name": {
-        "length": 80,
-        "type": "string"
-    },
-    "deleted_by": {
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
+    "deleted_by": {
+        "type": "string"
+    },
     "deleted_at": {
         "type": "datetime"
+    },
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "name": {
+        "type": "string",
+        "length": 80
+    },
+    "description": {
+        "type": "string",
+        "length": 255
+    },
+    "users": {
+        "type": "list"
     }
 }

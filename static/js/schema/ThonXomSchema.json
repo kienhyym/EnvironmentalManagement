@@ -1,41 +1,41 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "ten": {
-        "length": 255,
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "ma": {
-        "length": 255,
-        "type": "string"
-    },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "xaphuong_id": {
-        "type": "string"
-    },
     "created_at": {
         "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
+    "updated_at": {
+        "type": "datetime"
     },
-    "deleted_by": {
+    "updated_by": {
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
+    "deleted_by": {
+        "type": "string"
+    },
     "deleted_at": {
         "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ma": {
+        "type": "string",
+        "length": 255
+    },
+    "ten": {
+        "type": "string",
+        "length": 255
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "xaphuong": {
+        "type": "dict"
     }
 }

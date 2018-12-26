@@ -1,95 +1,90 @@
 {
-    "tentinh": {
-        "type": "dict"
-    },
-    "updated_by": {
-        "type": "string"
-    },
-    "ngtraloi": {
-        "length": null,
-        "type": "string"
-    },
-    "matrgtram": {
-        "length": null,
-        "type": "string"
-    },
-    "loaitrg": {
-        "type": "number"
-    },
-    "tentrgtram": {
-        "length": null,
-        "type": "string"
-    },
-    "capnctruongtram": {
-        "type": "dict"
-    },
-    "tenxa": {
-        "type": "dict"
-    },
-    "capnctruongtram_id": {
-        "type": "string"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "loaitrgtram": {
-        "type": "number"
-    },
-    "tenhuyen": {
-        "type": "dict"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "tenhuyen_id": {
-        "type": "string"
-    },
-    "nguonnccongtrinh_id": {
-        "type": "string"
-    },
-    "tentinh_id": {
-        "type": "string"
-    },
-    "hsmoibuoi": {
-        "type": "number"
-    },
-    "updated_at": {
-        "type": "datetime"
+    "id": {
+        "type": "string",
+        "primary": true
     },
     "created_at": {
         "type": "datetime"
     },
-    "deleted_at": {
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
         "type": "datetime"
     },
-    "thongtinll": {
-        "length": null,
+    "updated_by": {
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
-    "hsnu": {
-        "type": "number"
-    },
-    "sobuoihoc": {
-        "type": "number"
-    },
-    "hsnam": {
-        "type": "number"
-    },
-    "tenxa_id": {
+    "deleted_by": {
         "type": "string"
     },
-    "vitrichuvu": {
-        "length": null,
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tinhthanh_id": {
         "type": "string"
     },
-    "id": {
-        "primary": true,
+    "quanhuyen_id": {
         "type": "string"
     },
-    "nguonnccongtrinh": {
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "truong_tram_yte": {
+        "type": "string",
+        "length": null
+    },
+    "ma_truong": {
+        "type": "number"
+    },
+    "loai_truonghoc_tram": {
+        "type": "number"
+    },
+    "loaidiem_truong": {
+        "type": "number"
+    },
+    "buoihoc_moihocsinh": {
+        "type": "number"
+    },
+    "so_buoihoc": {
+        "type": "number"
+    },
+    "sohocsinh_moibuoi": {
+        "type": "number"
+    },
+    "hocsinh_nam": {
+        "type": "number"
+    },
+    "hocsinh_nu": {
+        "type": "number"
+    },
+    "diemtruong_chinh": {
+        "type": "number"
+    },
+    "diemtruong_phu": {
+        "type": "number"
+    },
+    "tennguoitraloi": {
+        "type": "string",
+        "length": null
+    },
+    "chucvu_nguoitraloi": {
+        "type": "string",
+        "length": null
+    },
+    "sodienthoailienlac": {
+        "type": "number"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
         "type": "dict"
     }
 }

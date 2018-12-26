@@ -1,61 +1,24 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "caithien": {
-        "type": "number"
-    },
-    "diemruataycoxaphong": {
-        "type": "number"
-    },
-    "dantoc": {
-        "type": "dict"
-    },
-    "hopvesinh": {
-        "type": "number"
-    },
-    "tenchuho": {
-        "length": null,
-        "type": "string"
-    },
-    "gioitinh": {
-        "type": "number"
-    },
-    "created_by": {
-        "type": "string"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "tuhoai": {
-        "type": "number"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "khonghopvesinh": {
-        "type": "number"
-    },
-    "haingan": {
-        "type": "number"
-    },
-    "khongconhatieu": {
-        "type": "number"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "thamdoi": {
-        "type": "number"
+    "id": {
+        "type": "string",
+        "primary": true
     },
     "created_at": {
         "type": "datetime"
     },
-    "chimco_oth": {
-        "type": "number"
+    "created_by": {
+        "type": "string"
     },
-    "tendantoc": {
-        "length": null,
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
@@ -67,14 +30,51 @@
     "dantoc_id": {
         "type": "string"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
+    "tendantoc": {
+        "type": "string",
+        "length": null
+    },
+    "tenchuho": {
+        "type": "string",
+        "length": null
+    },
+    "gioitinh": {
+        "type": "number"
     },
     "hongheo": {
         "type": "number"
     },
+    "tuhoai": {
+        "type": "number"
+    },
+    "thamdoi": {
+        "type": "number"
+    },
+    "haingan": {
+        "type": "number"
+    },
+    "chimco_oth": {
+        "type": "number"
+    },
     "loaikhac": {
         "type": "number"
+    },
+    "khongconhatieu": {
+        "type": "number"
+    },
+    "hopvesinh": {
+        "type": "number"
+    },
+    "khonghopvesinh": {
+        "type": "number"
+    },
+    "caithien": {
+        "type": "number"
+    },
+    "diemruataycoxaphong": {
+        "type": "number"
+    },
+    "dantoc": {
+        "type": "dict"
     }
 }

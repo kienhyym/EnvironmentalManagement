@@ -1,78 +1,78 @@
 {
-    "updated_by": {
-        "type": "string"
+    "id": {
+        "type": "string",
+        "primary": true
     },
-    "songuoi_dantocthieuso": {
-        "type": "number"
-    },
-    "muctieu": {
-        "length": null,
-        "type": "string"
-    },
-    "xaphuong": {
-        "type": "dict"
-    },
-    "thonxom": {
-        "type": "dict"
+    "created_at": {
+        "type": "datetime"
     },
     "created_by": {
         "type": "string"
     },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
     "deleted_by": {
         "type": "string"
-    },
-    "songuoi_lanu": {
-        "type": "number"
-    },
-    "quanhuyen_id": {
-        "type": "string"
-    },
-    "nganh": {
-        "type": "number"
     },
     "deleted_at": {
         "type": "datetime"
     },
-    "updated_at": {
-        "type": "datetime"
+    "kehoachthuchien_id": {
+        "type": "string"
     },
     "hoatdong": {
-        "length": null,
-        "type": "string"
+        "type": "string",
+        "length": null
+    },
+    "muctieu": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua_datduoc": {
+        "type": "string",
+        "length": null
     },
     "tongsonguoi_thamgia": {
         "type": "number"
     },
-    "ketqua_datduoc": {
-        "length": null,
+    "songuoi_lanu": {
+        "type": "number"
+    },
+    "songuoi_dantocthieuso": {
+        "type": "number"
+    },
+    "nganh": {
+        "type": "number"
+    },
+    "tinhthanh_id": {
         "type": "string"
     },
-    "thonxom_id": {
+    "quanhuyen_id": {
         "type": "string"
     },
     "xaphuong_id": {
         "type": "string"
     },
-    "created_at": {
-        "type": "datetime"
-    },
-    "deleted": {
-        "type": "boolean"
-    },
-    "id": {
-        "primary": true,
+    "thonxom_id": {
         "type": "string"
     },
-    "kehoachthuchien_id": {
-        "type": "string"
+    "tinhthanh": {
+        "type": "dict"
     },
     "quanhuyen": {
         "type": "dict"
     },
-    "tinhthanh_id": {
-        "type": "string"
+    "xaphuong": {
+        "type": "dict"
     },
-    "tinhthanh": {
+    "thonxom": {
         "type": "dict"
     }
 }

@@ -1,8 +1,4 @@
 {
-    "mota": {
-        "length": 255,
-        "type": "string"
-    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,28 +8,32 @@
     "updated_at": {
         "type": "datetime"
     },
-    "id": {
-        "primary": true,
-        "type": "string"
-    },
     "updated_by": {
-        "type": "string"
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "ten": {
-        "length": 255,
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
-    "ma": {
-        "length": 255,
+    "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ma": {
+        "type": "string",
+        "length": 255
+    },
+    "ten": {
+        "type": "string",
+        "length": 255
+    },
+    "mota": {
+        "type": "string",
+        "length": 255
     }
 }

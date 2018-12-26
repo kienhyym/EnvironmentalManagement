@@ -8,29 +8,29 @@
     "updated_at": {
         "type": "datetime"
     },
-    "id": {
-        "primary": true,
-        "type": "number"
-    },
     "updated_by": {
-        "type": "string"
-    },
-    "collectionNames": {
-        "required": true,
-        "length": null,
-        "type": "string"
-    },
-    "deleted_by": {
         "type": "string"
     },
     "deleted": {
         "type": "boolean"
     },
-    "tuyendonvi_id": {
-        "required": true,
-        "type": "number"
+    "deleted_by": {
+        "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
+    },
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "tuyendonvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "collectionNames": {
+        "type": "string",
+        "required": true,
+        "length": null
     }
 }

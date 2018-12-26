@@ -1,22 +1,7 @@
 {
-    "updated_by": {
-        "type": "string"
-    },
-    "tenthongso": {
-        "length": null,
-        "type": "string"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "thongso_id": {
-        "type": "string"
-    },
-    "deleted": {
-        "type": "boolean"
+    "id": {
+        "type": "string",
+        "primary": true
     },
     "created_at": {
         "type": "datetime"
@@ -24,17 +9,32 @@
     "created_by": {
         "type": "string"
     },
-    "tinhtrang": {
-        "type": "boolean"
+    "updated_at": {
+        "type": "datetime"
     },
-    "id": {
-        "primary": true,
+    "updated_by": {
         "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
     },
     "deleted_by": {
         "type": "string"
     },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "thongso_id": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string",
+        "length": null
+    },
     "vitrimau": {
         "type": "number"
+    },
+    "tinhtrang": {
+        "type": "boolean"
     }
 }

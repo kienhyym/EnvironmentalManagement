@@ -7,9 +7,9 @@ define(function (require) {
 	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/model.html'),
 		schema = require('json!schema/KeHoachThucHienSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
-	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
-	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
-	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
+	// var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	// var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+	// var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 
 	var ItemTinhView = require('app/view/PhuLuc/ItemTinh/view/ModelItemView');
 
@@ -21,48 +21,20 @@ define(function (require) {
 		collectionName: "kehoachthuchien",
 		uiControl: {
 			fields: [{
-					field: "ngay_tinhpheduyen",
+					field: "ngay_pheduyet",
 					textFormat: 'DD-MM-YYYY',
 					extraFormats: ['DDMMYYYY'],
 					maxDate: currentDate,
 				},
 				{
-					field: "tentinh",
+					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
 					//chuyen sang thanh object
 					foreignRemoteField: "id",
-					foreignField: "tentinh_id",
+					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
 				},
-				{
-					field: "tenxa",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "tenxa_id",
-					dataSource: XaPhuongSelectView
-				},
-				{
-					field: "tenhuyen",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "tenhuyen_id",
-					dataSource: QuanHuyenSelectView
-				},
-				{
-					field: "tenthon",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "tenthon_id",
-					dataSource: ThonXomSelectView
-				},
-
 				{
 					field: "nganh",
 					uicontrol: "combobox",
@@ -94,7 +66,7 @@ define(function (require) {
 					],
 				},
 				{
-					field: "vihema",
+					field: "vihema_chapthuan",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
@@ -113,7 +85,7 @@ define(function (require) {
 					],
 				},
 				{
-					field: "xaydungduthao",
+					field: "xaydungduthao_bcc",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
