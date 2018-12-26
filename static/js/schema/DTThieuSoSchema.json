@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,17 +16,14 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
-    },
-    "id": {
-        "type": "string",
-        "primary": true
     },
     "ngdaotao_yte": {
         "type": "number"

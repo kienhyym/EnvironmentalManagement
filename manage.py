@@ -39,11 +39,7 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             continue
         schema = {}
         for col in cls.__table__.c:
-            col_type = 'VARCHAR'
-            try:
-                col_type = str(col.type)
-            except:
-                print("unsupport type===",col)
+            col_type = str(col.type)
             schema_type = ''
             if 'DECIMAL' in col_type:
                 schema_type = 'number'
@@ -57,6 +53,8 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema_type = 'string'
             if col_type in ['VARCHAR', 'UUID', 'TEXT']:
                 schema_type = 'string'
+            if col_type in ['JSON', 'JSONB']:
+                schema_type = 'json'
             if 'BOOLEAN' in col_type:
                 schema_type = 'boolean'
             
@@ -68,8 +66,20 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             if (not col.nullable) and (not col.primary_key):
                 schema[col.name]["required"] = True
                 
-            if hasattr(col.type, "length"):
+            if hasattr(col.type, "length") and (col.type.length is not None):
                 schema[col.name]["length"] = col.type.length
+            
+            #default
+            if (col.default is not None) and (col.default.arg is not None) and (not callable(col.default.arg)):
+                #print(col.default, col.default.arg, callable(col.default.arg))
+                schema[col.name]["default"] = col.default.arg
+                
+            #User confirm_password
+#             if (classname == "User") and ("password" in col.name):
+#                 schema["confirm_password"] = {"type": schema_type}
+#                 schema["confirm_password"]["length"] = col.type.length
+                
+                
         
         relations = inspect(cls).relationships
         for rel in relations:
@@ -79,6 +89,7 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema[rel.key] = {"type": "dict"}
             
         if prettyprint:
+            print("classname======",classname)
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile, indent=4,)
         else:

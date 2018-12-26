@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,7 +16,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -20,28 +25,20 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
     "matrgtram": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "tentrgtram": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "tenkhu": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "qskhuvs": {
         "type": "number"
     },
     "khac": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "chauxi": {
         "type": "number"
@@ -104,7 +101,6 @@
         "type": "number"
     },
     "decapquantrong": {
-        "type": "string",
-        "length": null
+        "type": "string"
     }
 }

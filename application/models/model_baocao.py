@@ -3,8 +3,8 @@ import uuid
 from application.database import db
 from application.database.model import CommonModel
 from PIL.JpegImagePlugin import COM
-from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
-from sqlalchemy.dialects.postgresql import  UUID
+from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text, UniqueConstraint)
+from sqlalchemy.dialects.postgresql import  UUID,JSON,JSONB
 from sqlalchemy.orm import *
 # from sqlalchemy import *
 from sqlalchemy.orm import backref, relationship
@@ -121,7 +121,7 @@ class KQPhieuNoiKiemChatLuong(CommonModel):
     ph = db.Column(db.String)
     doduc = db.Column(db.String)
     clodu = db.Column(db.String)
-    tieuchikhac = db.Column(JSON)
+    tieuchikhac = db.Column(JSONB())
     danhgia = db.Column(db.String)
 
 #Mau 4.5.
@@ -177,7 +177,7 @@ class PhieuNgoaiKiemChatLuong(CommonModel):
 #     ph = db.Column(db.String)
 #     doduc = db.Column(db.String)
 #     clodu = db.Column(db.String)
-#     tieuchikhac = db.Column(JSON)
+#     tieuchikhac = db.Column(JSONB())
 #     danhgia = db.Column(db.String)
 
 
@@ -246,7 +246,7 @@ class KTNuocHoGiaDinh(CommonModel):
     ph = db.Column(db.String)
     doduc = db.Column(db.String)
     clodu = db.Column(db.String)
-    tieuchikhac = db.Column(JSON)
+    tieuchikhac = db.Column(JSONB())
     danhgia = db.Column(db.String)
 
 

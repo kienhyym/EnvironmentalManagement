@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,7 +16,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -20,22 +25,17 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
-    "capthon_id": {
+    "vscapthon_id": {
         "type": "string"
     },
-    "dantoc": {
-        "type": "number"
+    "dantoc_id": {
+        "type": "string"
     },
-    "stt": {
-        "type": "number"
+    "tendantoc": {
+        "type": "string"
     },
     "tenchuho": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "gioitinh": {
         "type": "number"
@@ -52,28 +52,28 @@
     "haingan": {
         "type": "number"
     },
-    "coongthong": {
+    "chimco_oth": {
         "type": "number"
     },
-    "kconhatieu": {
+    "loaikhac": {
         "type": "number"
     },
-    "hopvs": {
+    "khongconhatieu": {
         "type": "number"
     },
-    "khopvs": {
+    "hopvesinh": {
+        "type": "number"
+    },
+    "khonghopvesinh": {
         "type": "number"
     },
     "caithien": {
         "type": "number"
     },
-    "diemruatay": {
+    "diemruataycoxaphong": {
         "type": "number"
     },
-    "tong": {
-        "type": "number"
-    },
-    "loaikhac": {
-        "type": "number"
+    "dantoc": {
+        "type": "dict"
     }
 }

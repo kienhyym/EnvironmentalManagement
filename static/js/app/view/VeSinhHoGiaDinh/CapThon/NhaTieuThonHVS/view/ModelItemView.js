@@ -4,8 +4,8 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/NhaTieuThonHVS/tpl/itemView.html'),
-		schema = require('json!schema/NhaTieuThonHVSSchema.json');
+	var template = require('text!app/view/VeSinhHoGiaDinh/CapThon/NhaTieuThonHVS/tpl/itemView.html'),
+		schema = require('json!app/view/VeSinhHoGiaDinh/CapThon/NhaTieuThonHVS/view/NhaTieuThonHVSSchema.json');
 	var DanTocSelectView = require('app/view/DanhMuc/DanToc/view/SelectView');
 
 
@@ -15,7 +15,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		tagName: 'tr',
-		collectionName: "nhatieuthonhvs",
+		collectionName: "vscapthon",
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [{
@@ -58,18 +58,10 @@ define(function (require) {
 				},
 				{
 					field: "dantoc",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 0,
-							"text": "Kinh"
-						},
-						{
-							"value": 1,
-							"text": "DTTS"
-						},
-					],
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "dantoc_id",
 				},
 
 				{
@@ -153,65 +145,65 @@ define(function (require) {
 				},
 
 				{
-					field: "coongthong",
+					field: "chimco_oth",
 					uicontrol: "checkbox",
-					checkedField: "coongthong",
+					checkedField: "chimco_oth",
 					valueField: "value",
 					dataSource: [{
 							"value": 1,
-							"coongthong": true
+							"chimco_oth": true
 						},
 						{
 							"value": 0,
-							"coongthong": false
+							"chimco_oth": false
 						},
 					],
 				},
 
 				{
-					field: "kconhatieu",
+					field: "khongconhatieu",
 					uicontrol: "checkbox",
-					checkedField: "kconhatieu",
+					checkedField: "khongconhatieu",
 					valueField: "value",
 					dataSource: [{
 							"value": 1,
-							"kconhatieu": true
+							"khongconhatieu": true
 						},
 						{
 							"value": 0,
-							"kconhatieu": false
+							"khongconhatieu": false
 						},
 					],
 				},
 
 				{
-					field: "hopvs",
+					field: "hopvesinh",
 					uicontrol: "checkbox",
-					checkedField: "hopvs",
+					checkedField: "hopvesinh",
 					valueField: "value",
 					dataSource: [{
 							"value": 1,
-							"hopvs": true
+							"hopvesinh": true
 						},
 						{
 							"value": 0,
-							"hopvs": false
+							"hopvesinh": false
 						},
 					],
 				},
 
 				{
-					field: "khopvs",
+					field: "khonghopvesinh",
 					uicontrol: "checkbox",
-					checkedField: "khopvs",
+					checkedField: "khonghopvesinh",
 					valueField: "value",
 					dataSource: [{
 							"value": 1,
-							"khopvs": true
+							"khonghopvesinh": true
 						},
 						{
 							"value": 0,
-							"khopvs": false
+							"khonghopvesinh": false
 						},
 					],
 				},
@@ -232,17 +224,17 @@ define(function (require) {
 					],
 				},
 				{
-					field: "diemruatay",
+					field: "diemruataycoxaphong",
 					uicontrol: "checkbox",
-					checkedField: "diemruatay",
+					checkedField: "diemruataycoxaphong",
 					valueField: "value",
 					dataSource: [{
 							"value": 1,
-							"diemruatay": true
+							"diemruataycoxaphong": true
 						},
 						{
 							"value": 0,
-							"diemruatay": false
+							"diemruataycoxaphong": false
 						},
 					],
 				},

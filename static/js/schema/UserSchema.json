@@ -12,7 +12,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -49,7 +50,8 @@
         "length": 255
     },
     "active": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": true
     },
     "phone": {
         "type": "string",

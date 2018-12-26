@@ -4,13 +4,13 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/CapThon/tpl/model.html'),
-		schema = require('json!schema/CapThonSchema.json');
+	var template = require('text!app/view/VeSinhHoGiaDinh/CapThon/tpl/model.html'),
+		schema = require('json!schema/VSCapThonSchema.json');
 
 
-	var NhaTieuThonHVSItemView = require('app/view/PhuLuc/NhaTieuThonHVS/view/ModelItemView');
-	var tongischema = require('json!app/view/PhuLuc/CapThon/view/TongiSchema.json');
-	var tongitemplate = require('text!app/view/PhuLuc/CapThon/tpl/tongcongi.html');
+	var NhaTieuThonHVSItemView = require('app/view/VeSinhHoGiaDinh/CapThon/NhaTieuThonHVS/view/ModelItemView');
+	var tongischema = require('json!app/view/VeSinhHoGiaDinh/CapThon/view/TongiSchema.json');
+	var tongitemplate = require('text!app/view/VeSinhHoGiaDinh/CapThon/tpl/tongcongi.html');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
@@ -42,57 +42,38 @@ define(function (require) {
 		collectionName: "capthon",
 
 		uiControl: {
-			fields: [{
-					field: "danhgianam",
-					textFormat: "YYYY",
-					extraFormats: ["YYYY"],
-					maxDate: currentDate,
-				},
+			fields: [
 				{
-					field: "kybaocao",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": "1",
-							"text": "6 tháng đầu năm"
-						},
-						{
-							"value": "2",
-							"text": "6 tháng cuối năm"
-						},
-					],
-				},
 				{
-					field: "tenxa",
+					field: "xaphuong",
 					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
-					foreignField: "tenxa_id",
+					foreignField: "xaphuong_id",
 					dataSource: XaPhuongSelectView
 				},
 				{
-					field: "thon",
+					field: "thonxom",
 					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
-					foreignField: "thon_id",
+					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
 				},
 				{
-					field: "tentinh",
+					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
-					foreignField: "tentinh_id",
+					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
 				},
 				{
-					field: "tenhuyen",
+					field: "quanhuyen",
 					uicontrol: "ref",
 					textField: "ten",
 					foreignRemoteField: "id",
-					foreignField: "tenhuyen_id",
+					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
 				{
@@ -103,13 +84,13 @@ define(function (require) {
 						name: "create",
 						type: "button",
 						buttonClass: "btn btn-success btn-sm",
-						label: "<span class='fa fa-plus'>Thêm</span>",
+						label: "<span class='fa fa-plus'>Thêm mới</span>",
 						command: "create"
 					}, ],
 					toolEl: "#addItem"
 				},
 				{
-    				field: "suprsws",
+    				field: "thuocsuprsws",
     				uicontrol: "combobox",
     				textField: "text",
     				valueField: "value",
@@ -145,23 +126,22 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						var ktDate = self.model.get("danhgianam");
-						var ten_tinh = self.model.get("tentinh");
-						var ten_huyen = self.model.get("tenhuyen");
-						var ten_xa = self.model.get("tenxa");
-						var ten_thon = self.model.get("thon");
+						var nambaocao = self.model.get("nambaocao");
+						var tinhthanh = self.model.get("tinhthanh");
+						var quanhuyen = self.model.get("quanhuyen");
+						var xaphuong = self.model.get("xaphuong");
+						var thonxom = self.model.get("thonxom");
 
-						if(ktDate === null){
-							self.getApp().notify({message: "Ngày tháng không đuợc để trống"},{type: "danger"});
-							//self.$el.find("#idHuyen").css("background-color", "yellow");
-						}else if(ten_tinh === null){
-							self.getApp().notify({message: "Tên tỉnh không đuợc để trống"},{type: "danger"});
-						}else if(ten_huyen === null){
-							self.getApp().notify({message: "Tên huyện không đuợc để trống"},{type: "danger"});
-						}else if(ten_xa === null){
-							self.getApp().notify({message: "Tên xã không đuợc để trống"},{type: "danger"});
-						}else if(ten_thon === null){
-							self.getApp().notify({message: "Tên thôn không đuợc để trống"},{type: "danger"});
+						if(nambaocao === null || nambaocao === ""){
+							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						}else if(tinhthanh === null){
+							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
+						}else if(quanhuyen === null){
+							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
+						}else if(xaphuong === null){
+							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phương"},{type: "danger"});
+						}else if(thonxom === null){
+							self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm"},{type: "danger"});
 						}else {
 
 							self.model.save(null, {
@@ -226,8 +206,6 @@ define(function (require) {
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
-						console.log("success");		
-						//console.log("nhatieuthonhvs ", self.model.get("nhatieuthonhvs").length);
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem button").click();
 						}
@@ -239,14 +217,13 @@ define(function (require) {
 			} else {
 				
 				if (viewData !== null && viewData!==undefined){
-					self.model.set("tentinh_id", viewData.tentinh_id);
-					self.model.set("tentinh", viewData.tentinh);
-					self.model.set("tenhuyen_id", viewData.tenhuyen_id);
-					self.model.set("tenhuyen", viewData.tenhuyen);
-					self.model.set("tenxa_id", viewData.tenxa_id);
-					self.model.set("tenxa", viewData.tenxa);
-//					self.model.set("capxa_id", viewData.capxa_id);
-					self.model.set("danhgianam", viewData.danhgianam);
+					self.model.set("tinhthanh_id", viewData.tinhthanh_id);
+					self.model.set("tinhthanh", viewData.tinhthanh);
+					self.model.set("quanhuyen_id", viewData.quanhuyen_id);
+					self.model.set("quanhuyen", viewData.quanhuyen);
+					self.model.set("xaphuong_id", viewData.xaphuong_id);
+					self.model.set("xaphuong", viewData.xaphuong);
+					self.model.set("nambaocao", viewData.nambaocao);
 				}
 				
 				self.applyBindings();
@@ -263,12 +240,8 @@ define(function (require) {
 		registerTinhTong: function () {
 			var self = this;
 			self.model.on("change:nhatieuthonhvs", function () {
-				//console.log("nhatieuthonhvs ", self.model.get('nhatieuthonhvs'));
 				self.renderTinhTongI();
-				
 			});
-
-
 		},
 		renderTinhTongI: function () {
 			var self = this;
@@ -300,21 +273,21 @@ define(function (require) {
 		changeTong: function() {
 			var self = this;
 			var sohongheo = self.tongViewi.model.get("hongheo");
-			self.model.set("sohongheo", sohongheo);
+			self.model.set("tong_sohongheo", sohongheo);
 			
-			var tong_nu = self.model.get("sonu");
-			var tong_nam = self.model.get("sonam");
+			var tong_nu = self.model.get("tong_nu");
+			var tong_nam = self.model.get("tong_nam");
 			var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-			self.model.set("dantrongthon" , tong_dantrongthon)
+			self.model.set("tong_danso" , tong_dantrongthon)
 
 			var tong_dtts = self.tongViewi.model.get("dantoc");
-			self.model.set("sohodtts", tong_dtts);
+			self.model.set("tong_sohodtts", tong_dtts);
 			
 			var soNu = self.tongViewi.model.get("gioitinh");
-			self.model.set("chuholanu", soNu);
+			self.model.set("tong_chuholanu", soNu);
 
 			var tongSoDan = self.model.get("nhatieuthonhvs").length;
-			self.model.set("hotrongthon", tongSoDan);	
+			self.model.set("tong_hotrongthon", tongSoDan);	
 
 			var tongTuhoai = self.tongViewi.model.get("tuhoai");
 			self.model.set("tong_tuhoai", tongTuhoai);
@@ -324,17 +297,17 @@ define(function (require) {
 			self.model.set("tong_2ngan", tong2ngan);
 			var tong_loaikhac = self.tongViewi.model.get("loaikhac");
 			self.model.set("tong_loaikhac", tong_loaikhac);
-			var tongOngthonghoi = self.tongViewi.model.get("coongthong");	
+			var tongOngthonghoi = self.tongViewi.model.get("chimco_oth");	
 			self.model.set("tong_ongthonghoi", tongOngthonghoi);
-			var tongKhongconhatieu = self.tongViewi.model.get("kconhatieu");
+			var tongKhongconhatieu = self.tongViewi.model.get("khongconhatieu");
 			self.model.set("tong_khongnhatieu", tongKhongconhatieu);
-			var tongHopvs = self.tongViewi.model.get("hopvs");
+			var tongHopvs = self.tongViewi.model.get("hopvesinh");
 			self.model.set("tong_hopvs", tongHopvs);
-			var tongKhopvs = self.tongViewi.model.get("khopvs");
+			var tongKhopvs = self.tongViewi.model.get("khonghopvesinh");
 			self.model.set("tong_khonghopvs", tongKhopvs);
 			var tongDuocaithien = self.tongViewi.model.get("caithien");
-			self.model.set("tong_dccaithien", tongDuocaithien);
-			var tongRuatay = self.tongViewi.model.get("diemruatay");
+			self.model.set("tong_caithien", tongDuocaithien);
+			var tongRuatay = self.tongViewi.model.get("diemruataycoxaphong");
 			self.model.set("tong_diemruatay", tongRuatay);
 
 		},

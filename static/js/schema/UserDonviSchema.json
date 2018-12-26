@@ -12,7 +12,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -67,7 +68,8 @@
         "type": "string"
     },
     "trangthai": {
-        "type": "number"
+        "type": "number",
+        "default": 2
     },
     "captren_id": {
         "type": "number"

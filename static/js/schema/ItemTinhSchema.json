@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,7 +16,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -20,32 +25,43 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "id": {
-        "type": "string",
-        "primary": true
-    },
     "kehoachthuchien_id": {
         "type": "string"
     },
-    "hoatdong_thon": {
-        "type": "string",
-        "length": null
+    "hoatdong": {
+        "type": "string"
     },
-    "muctieu_thon": {
-        "type": "string",
-        "length": null
+    "muctieu": {
+        "type": "string"
     },
-    "ketqua_thon": {
-        "type": "string",
-        "length": null
+    "ketqua_datduoc": {
+        "type": "string"
     },
-    "songtg_thon": {
+    "tongsonguoi_thamgia": {
         "type": "number"
     },
-    "sonutg_thon": {
+    "songuoi_lanu": {
         "type": "number"
     },
-    "dttstg_thon": {
+    "songuoi_dantocthieuso": {
         "type": "number"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
     }
 }

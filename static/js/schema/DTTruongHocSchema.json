@@ -1,4 +1,8 @@
 {
+    "id": {
+        "type": "string",
+        "primary": true
+    },
     "created_at": {
         "type": "datetime"
     },
@@ -12,17 +16,14 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
     },
     "deleted_at": {
         "type": "datetime"
-    },
-    "id": {
-        "type": "string",
-        "primary": true
     },
     "tentinh_id": {
         "type": "string"
@@ -34,12 +35,10 @@
         "type": "string"
     },
     "tentrgtram": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "matrgtram": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "loaitrgtram": {
         "type": "number"
@@ -60,16 +59,13 @@
         "type": "number"
     },
     "ngtraloi": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "vitrichuvu": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "thongtinll": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "nguonnccongtrinh_id": {
         "type": "string"

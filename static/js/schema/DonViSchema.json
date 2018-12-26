@@ -12,7 +12,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -73,10 +74,12 @@
         "type": "number"
     },
     "laysolieu": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": true
     },
     "active": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "xaphuong": {
         "type": "dict"

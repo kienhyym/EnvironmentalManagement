@@ -12,7 +12,8 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     },
     "deleted_by": {
         "type": "string"
@@ -29,14 +30,13 @@
         "required": true
     },
     "subject": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "permission": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "value": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": false
     }
 }

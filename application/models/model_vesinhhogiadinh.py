@@ -2,7 +2,7 @@ import uuid
 from application.database import db
 from application.database.model import CommonModel
 from sqlalchemy import (func, DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
-from sqlalchemy.dialects.postgresql import  UUID
+from sqlalchemy.dialects.postgresql import  UUID,JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
 
@@ -15,21 +15,19 @@ def default_uuid():
 # Bang 1:
 class VSCapThon(CommonModel):
     __tablename__ = 'vscapthon'
+    
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    ngaybaocao = db.Column(db.DateTime(),default=func.now())
+    ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
 #     kybaocao = db.Column(db.SmallInteger, nullable=False)
 #     loaikybaocao = db.Column(db.Integer, nullable=False)
 #     tungay = db.Column(db.Date())
 #     denngay = db.Column(db.Date())
-    
-    
-    
-    nhatieuthonhvs = relationship('NhaTieuThonHVS')
+    nhatieuthonhvs = db.Column(JSONB())
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -56,7 +54,7 @@ class VSCapThon(CommonModel):
     tong_khongnhatieu = db.Column(db.Integer)
     tong_hopvs = db.Column(db.Integer)
     tong_khonghopvs = db.Column(db.Integer)
-    tong_dccaithien = db.Column(db.Integer)
+    tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
 
     
@@ -90,7 +88,7 @@ class VSCapXa(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    ngaybaocao = db.Column(db.DateTime(),default=func.now())
+    ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -119,7 +117,7 @@ class VSCapHuyen(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    ngaybaocao = db.Column(db.DateTime(),default=func.now())
+    ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
@@ -150,7 +148,7 @@ class VSCapTinh(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    ngaybaocao = db.Column(db.DateTime(),default=func.now())
+    ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
