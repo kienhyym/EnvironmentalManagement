@@ -14,6 +14,9 @@ define(function (require) {
 					"collectionName": "donvi",
 					"route": "donvi/collectiontree",
 					"$ref": "app/view/HeThong/DonVi/view/CollectionTreeView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
 				},
 				{
 					"type": "view",
@@ -109,7 +112,7 @@ define(function (require) {
 				},
 
 				{
-					"text": "Cài đặt Báo Cáo*",
+					"text": "Cài đặt Báo Cáo",
 					"type": "view",
 					"collectionName": "bctuyendonvi",
 					"route": "bctuyendonvi/collection",
@@ -398,9 +401,9 @@ define(function (require) {
 							"collectionName": "itemthon",
 							"route": "itemthon/collection",
 							"$ref": "app/view/PhuLuc/LapKHThon/view/CollectionView",
-							"tuyendonvi": 2,
+							"tuyendonvi": 4,
 							"visible": function () {
-								return this.checkTuyendonvi(2);
+								return this.checkTuyendonvi(4);
 							}
 						},
 						{
@@ -455,9 +458,9 @@ define(function (require) {
 							"collectionName": "kehoachthuchien",
 							"route": "kehoachthuchien/collection",
 							"$ref": "app/view/PhuLuc/LapKHTinh/view/CollectionView",
-							"tuyendonvi": 4,
+							"tuyendonvi": 2,
 							"visible": function () {
-								return this.checkTuyendonvi(4);
+								return this.checkTuyendonvi(2);
 							}
 						},
 						{
@@ -559,9 +562,9 @@ define(function (require) {
 							"collectionName": "vstoanxa",
 							"route": "vstoanxa/collection",
 							"$ref": "app/view/PhuLuc/VSToanXa/view/CollectionView",
-							"tuyendonvi": 4,
+							"tuyendonvi": 2,
 							"visible": function () {
-								return this.checkTuyendonvi(4);
+								return this.checkTuyendonvi(2);
 							}
 						},
 						{
@@ -572,7 +575,7 @@ define(function (require) {
 							"visible": false
 						},
 						{
-							"text": "Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững",
+							"text": "Duy trì vệ sinh toàn xã bền vững",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "duytrivs",

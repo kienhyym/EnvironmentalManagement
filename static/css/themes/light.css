@@ -1,8 +1,9 @@
 /***********
 Theme Colors
+namdv: color orgi backup #5b9bd1
 ***********/
 .theme-font-color {
-  color: #5b9bd1;
+  color: #619C27;
 }
 
 /***********
@@ -39,7 +40,7 @@ Page Header
   color: #C0CDDC;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle .badge.badge-default {
-  background-color: #5b9bd1;
+  background-color: #619C27;
   color: #ffffff;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown.open .dropdown-toggle {
@@ -67,7 +68,7 @@ Page Header
   color: #62878f;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external > a {
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external > a:hover {
   color: #3175af;
@@ -87,14 +88,14 @@ Page Header
   background: #e4e4e4;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox > .dropdown-toggle > .circle {
-  background-color: #5b9bd1;
+  background-color: #619C27;
   color: #ffffff;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox > .dropdown-toggle > .corner {
-  border-color: transparent transparent transparent #5b9bd1;
+  border-color: transparent transparent transparent #619C27;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox .dropdown-menu .dropdown-menu-list .subject .from {
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-header.navbar .top-menu .navbar-nav > li.dropdown-tasks .dropdown-menu .dropdown-menu-list .progress {
   background-color: #dfe2e9;
@@ -247,12 +248,12 @@ Page Header
 .page-navbar .page-navbar-menu > li:hover > a,
 .page-navbar .page-navbar-menu > li.open > a {
   background: #f2f6f9;
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li:hover > a > i, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.open > a > i,
 .page-navbar .page-navbar-menu > li:hover > a > i,
 .page-navbar .page-navbar-menu > li.open > a > i {
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li:hover > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li:hover > a > .arrow.open:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.open > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.open > a > .arrow.open:before,
 .page-navbar .page-navbar-menu > li:hover > a > .arrow:before,
@@ -265,7 +266,7 @@ Page Header
 .page-navbar .page-navbar-menu > li.active > a,
 .page-navbar .page-navbar-menu > li.active.open > a {
   background: #f2f6f9;
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active > a:hover, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active.open > a:hover,
 .page-navbar .page-navbar-menu > li.active > a:hover,
@@ -275,7 +276,7 @@ Page Header
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active > a > i, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active.open > a > i,
 .page-navbar .page-navbar-menu > li.active > a > i,
 .page-navbar .page-navbar-menu > li.active.open > a > i {
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active > a > .arrow.open:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active.open > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu > li.active.open > a > .arrow.open:before,
 .page-navbar .page-navbar-menu > li.active > a > .arrow:before,
@@ -333,14 +334,14 @@ Page Header
 .page-navbar .page-navbar-menu .sub-menu > li:hover > a,
 .page-navbar .page-navbar-menu .sub-menu > li.open > a,
 .page-navbar .page-navbar-menu .sub-menu > li.active > a {
-  color: #5b9bd1;
+  color: #619C27;
   background: #f2f6f9 !important;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li:hover > a > i, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.open > a > i, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.active > a > i,
 .page-navbar .page-navbar-menu .sub-menu > li:hover > a > i,
 .page-navbar .page-navbar-menu .sub-menu > li.open > a > i,
 .page-navbar .page-navbar-menu .sub-menu > li.active > a > i {
-  color: #5b9bd1;
+  color: #619C27;
 }
 .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li:hover > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li:hover > a > .arrow.open:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.open > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.open > a > .arrow.open:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.active > a > .arrow:before, .page-navbar-closed.page-navbar-fixed .page-navbar:hover .page-navbar-menu .sub-menu > li.active > a > .arrow.open:before,
 .page-navbar .page-navbar-menu .sub-menu > li:hover > a > .arrow:before,
