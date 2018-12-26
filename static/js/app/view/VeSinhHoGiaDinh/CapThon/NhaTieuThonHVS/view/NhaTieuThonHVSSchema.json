@@ -1,0 +1,53 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "dantoc_id": {
+        "type": "string"
+    },
+    "tendantoc": {
+        "type": "string",
+        "length": null
+    },
+    "tenchuho": {
+        "type": "string",
+        "length": null
+    },
+    "gioitinh": {
+        "type": "number"
+    },
+    "hongheo": {
+        "type": "number"
+    },
+    "tuhoai": {
+        "type": "number"
+    },
+    "thamdoi": {
+        "type": "number"
+    },
+    "haingan": {
+        "type": "number"
+    },
+    "chimco_oth": {
+        "type": "number"
+    },
+    "loaikhac": {
+        "type": "number"
+    },
+    "khongconhatieu": {
+        "type": "number"
+    },
+    "hopvesinh": {
+        "type": "number"
+    },
+    "khonghopvesinh": {
+        "type": "number"
+    },
+    "caithien": {
+        "type": "number"
+    },
+    "diemruataycoxaphong": {
+        "type": "number"
+    }
+}
