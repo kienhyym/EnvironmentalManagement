@@ -4,28 +4,38 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/CapXa/tpl/collection.html'),
-		schema = require('json!schema/CapXaSchema.json');
+	var template = require('text!app/view/VeSinhHoGiaDinh/CapXa/tpl/collection.html'),
+		schema = require('json!schema/VSCapXaSchema.json');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "capxa",
+		collectionName: "vscapxa",
 		uiControl: {
 			fields: [
-
 				{
-					field: "tentinh_id",
-					label: "Tên tỉnh",
-					foreign: "tentinh",
+					field: "nambaocao",
+					label: "Năm báo cáo"
+				},
+				{
+					field: "tinhthanh_id",
+					label: "Tỉnh",
+					foreign: "tinhthanh",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "tenhuyen_id",
-					label: "Tên xã",
-					foreign: "tenhuyen",
+					field: "quanhuyen_id",
+					label: "Huyện",
+					foreign: "quanhuyen",
+					foreignValueField: "id",
+					foreignTextField: "ten",
+				},
+				{
+					field: "xaphuong_id",
+					label: "Xã",
+					foreign: "xaphuong",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},

@@ -28,6 +28,7 @@ async def DonVitree(request):
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
       
     is_admin = await hasRole(request, "Admin")
+    data= None
     if(is_admin == True):
         data = db.session.query(DonVi).\
             options(joinedload_all("children", "children",
@@ -35,7 +36,7 @@ async def DonVitree(request):
             filter(DonVi.id == currentuser.donvi_id).\
             first()
     else:
-        ata = db.session.query(DonVi).\
+        data = db.session.query(DonVi).\
             options(joinedload_all("children", "children", "children", "children")).\
             join(TuyenDonVi, DonVi.tuyendonvi).filter(TuyenDonVi.ma == 'TW').first()
                
@@ -191,15 +192,15 @@ async def donvi_prepput(instance_id=None, data=None):
                                       status=520)
  
 ###donvi
-async def dangkydonvi_pregetmany(search_params=None):
-    currdonvi = current_user.donvi
-    donvichildids = []
-    if(currdonvi is not None):
-        currdonvi.get_children_ids(donvichildids)
-         
-         
-    search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"captren_id":{"$in": donvichildids}}]} \
-                                or {"captren_id":{"$in": donvichildids}}
+# async def dangkydonvi_pregetmany(search_params=None):
+#     currdonvi = current_user.donvi
+#     donvichildids = []
+#     if(currdonvi is not None):
+#         currdonvi.get_children_ids(donvichildids)
+#          
+#          
+#     search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"captren_id":{"$in": donvichildids}}]} \
+#                                 or {"captren_id":{"$in": donvichildids}}
                    
 #                                 
 async def reset_user_passwd(instance_id=None, data=None):
@@ -283,13 +284,16 @@ async def addDonViWillUser(request):
       
     return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
 
-def tuyendonvi_pregetmany(search_params=None, **kw):
-    currdonvi = current_user.donvi
-    if(currdonvi is not None) and currdonvi.tuyendonvi_id == 1:
-        pass
-    else:
-        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
-                                or {"id":{"$gt": 1}}
+async def tuyendonvi_pregetmany(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        currdonvi = currentUser.donvi
+        if(currdonvi is not None) and currdonvi.tuyendonvi_id == 1:
+            pass
+        else:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
+                                    or {"id":{"$gt": 1}}
                                 
 async def donvi_pregetmany(search_params=None, **kw):
     request = kw.get("request", None)
@@ -297,31 +301,57 @@ async def donvi_pregetmany(search_params=None, **kw):
     if currentUser is not None:
         currentDonvi = currentUser.donvi
         donvichildids = []
-        if(currdonvi is not None):
-            currdonvi.get_children_ids(donvichildids)
+        if(currentDonvi is not None):
+            currentDonvi.get_children_ids(donvichildids)
             
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
-
-
-async def tuyendonvi_pregetmany(search_params=None, **kw):
+                                
+async def baocao_pregetmany(search_params=None, **kw):
     request = kw.get("request", None)
     currentUser = await current_user(request)
     if currentUser is not None:
         currentDonvi = currentUser.donvi
-        if(currentDonvi is not None) and currentDonvi.tuyendonvi_id == 1:
-            pass
-            print(currentDonvi)
-        else:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
-                                    or {"id":{"$gt": 1}}
-            print(search_params)
+        donvichildids = []
+        if(currentDonvi is not None):
+            currentDonvi.get_children_ids(donvichildids)
+            
+        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
+                                or {"id":{"$in": donvichildids}}
+
+# 
+# async def tuyendonvi_pregetmany(search_params=None, **kw):
+#     request = kw.get("request", None)
+#     currentUser = await current_user(request)
+#     if currentUser is not None:
+#         currentDonvi = currentUser.donvi
+#         if(currentDonvi is not None) and currentDonvi.tuyendonvi_id == 1:
+#             pass
+#             print(currentDonvi)
+#         else:
+#             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
+#                                     or {"id":{"$gt": 1}}
+#             print(search_params)
+            
+            
+async def dangkydonvi_pregetmany(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        currentDonvi = currentUser.donvi
+        donvichildids = []
+        if(currentDonvi is not None):
+            currentDonvi.get_children_ids(donvichildids)
+            
+            
+        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"captren_id":{"$in": donvichildids}}]} \
+                                    or {"captren_id":{"$in": donvichildids}}
 
 
 apimanager.create_api(UserDonvi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, dangkydonvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='user_donvi')
 
 

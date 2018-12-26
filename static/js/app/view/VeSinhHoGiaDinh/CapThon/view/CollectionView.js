@@ -47,7 +47,7 @@ define(function (require) {
 					foreignTextField: "ten",
 				},
 				{
-					field: "tong_hotrongthon",
+					field: "tong_soho",
 					label: "Tổng số hộ"
 				},
 				{

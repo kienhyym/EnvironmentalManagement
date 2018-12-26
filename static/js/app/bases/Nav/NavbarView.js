@@ -15,7 +15,7 @@ define(function (require) {
     	},
     	checkTuyendonvi:function(tuyendonvi){
     		var currentUser = gonrinApp().currentUser;
-    		if (currentUser !==null && (currentUser.donvi.tuyendonvi === tuyendonvi || currentUser.hasRole('Admin'))){
+    		if (currentUser !==null && (currentUser.donvi.tuyendonvi_id === tuyendonvi || currentUser.hasRole('Admin'))){
     			return true;
     		}
     		return false;

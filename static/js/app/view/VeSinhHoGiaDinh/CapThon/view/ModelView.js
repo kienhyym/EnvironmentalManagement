@@ -211,7 +211,6 @@ define(function (require) {
 //						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();
 						self.renderTinhTongI();
-						self.registerTinhTong();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem").click();
 						}
@@ -235,7 +234,6 @@ define(function (require) {
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
-				self.registerTinhTong();			
 				self.$el.find("#addItem").click();
 		
 
@@ -275,13 +273,6 @@ define(function (require) {
                 self.renderTinhTongI();
             });
 		},
-		registerTinhTong: function () {
-//			var self = this;
-//			self.model.on("change:nhatieuthonhvs", function () {
-//				console.log("change nhatieuthonhvs===", self.model.get("nhatieuthonhvs"));
-//				self.renderTinhTongI();
-//			});
-		},
 		renderTinhTongI: function () {
 			var self = this;
 			if (!self.tongViewi) {
@@ -305,8 +296,8 @@ define(function (require) {
 				}
 				_.each(tongischema, function (props, key) {
 					
-					if(key === "dantoc"){
-						data["dtts"] = toInt(data[key]) + toInt(check_dantoc);
+					if(key === "dtts"){
+						data[key] = toInt(data[key]) + toInt(check_dantoc);
 					}else if(key === "loaikhac"){
 						data[key] = toInt(data[key]) + toInt(check_loaikhac);
 					}else{
@@ -336,7 +327,7 @@ define(function (require) {
 			var soNu = self.tongViewi.model.get("gioitinh");
 			self.model.set("tong_chuholanu", soNu);
 
-			self.model.set("tong_sohot", self.model.get("nhatieuthonhvs").length);	
+			self.model.set("tong_soho", self.model.get("nhatieuthonhvs").length);	
 
 			var tongTuhoai = self.tongViewi.model.get("tuhoai");
 			self.model.set("tong_tuhoai", tongTuhoai);

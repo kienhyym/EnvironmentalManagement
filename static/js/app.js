@@ -120,9 +120,7 @@ require(['jquery', 'gonrin', 'app/router',
 				}
 				self.$header.find("span.username").html(data.fullname);
 				this.$toolbox = $('body').find(".tools-area");
-				this.nav = new Nav({
-					el: this.$navbar
-				});
+				this.nav = new Nav({el: this.$navbar});
 				self.nav.render();
 				self.hideloading();
 

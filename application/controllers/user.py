@@ -285,7 +285,7 @@ async def send_reset_password_instructions(request, user):
     token = jwt.encode(payload)
     
     #reset_link = url_for_security('reset_password', token=token, _external=True)
-    reset_link = "http://danso.com/api/reset_password?token=" + token
+    reset_link = app.config.get("DOMAIN_URL")+"/api/reset_password?token=" + token
     subject = app.config.get('EMAIL_SUBJECT_PASSWORD_RESET')
     
     #get template for forgot password
@@ -377,11 +377,8 @@ async def set_user_passwd(data=None,**kw):
         return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
          
 
-def user_pregetmany(search_params=None, **kw):
-    apply_donvi_filter(search_params)
         
-def entity_pregetmany(search_params=None, **kw):
-    apply_donvi_filter(search_params)
+
     
 apimanager.create_api(User,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

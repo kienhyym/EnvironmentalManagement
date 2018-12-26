@@ -11,3 +11,4 @@ class Config(object):
     AUTH_PASSWORD_SALT = 'add_salt'
     SECRET_KEY = 'acndef'
     SESSION_COOKIE_SALT = 'salt_key'
+    DOMAIN_URL = 'http://127.0.0.1:9070'

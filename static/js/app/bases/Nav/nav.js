@@ -7,9 +7,6 @@ define(function (require) {
 			"text": "Hệ thống",
 			"icon": "glyphicon glyphicon-file",
 			"type": "category",
-			"visible": function () {
-				return this.userHasRole("Admin");
-			},
 			"entries": [{
 					"text": "Đơn vị thành viên",
 					"icon": "glyphicon glyphicon-file",
@@ -17,9 +14,6 @@ define(function (require) {
 					"collectionName": "donvi",
 					"route": "donvi/collectiontree",
 					"$ref": "app/view/HeThong/DonVi/view/CollectionTreeView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
 				},
 				{
 					"type": "view",
@@ -53,9 +47,6 @@ define(function (require) {
 					"collectionName": "user_donvi",
 					"route": "user_donvi/collection",
 					"$ref": "app/view/HeThong/DangKyDonVi/view/CollectionView",
-					"visible": function () {
-						return this.userHasRole("Admin");
-					}
 				},
 				{
 					"type": "view",
@@ -327,7 +318,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "vscapxa",
-					"route": "capxa/model",
+					"route": "vscapxa/model",
 					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
 					"visible": false
 				},
