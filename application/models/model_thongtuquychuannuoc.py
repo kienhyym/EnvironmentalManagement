@@ -37,19 +37,22 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     nhanxet = db.Column(db.String)
     kiennghi = db.Column(db.String)
     ketluan = db.Column(db.String)
+    ketquangoaikiemchatluongnuoc = db.Column(JSONB)
     
 class ThongSoBaoCaoChatLuongNuoc(CommonModel):
     __tablename__ = 'thongsobaocaochatluongnuoc'
     mathongso = db.Column(db.String)
     tenthongso = db.Column(db.String)
+    gioihan_toida_txt = db.Column(db.String)
+    gioihan_toida = db.Column(DECIMAL)
     baocaoapdung = db.Column(JSONB)
 
-class KetQuaNgoaiKiemChatLuongNuoc(CommonModel):
-    __tablename__ = 'ketquangoaikiemchatluongnuoc'
-    thongso_id = db.Column(UUID(as_uuid=True))
-    tenthongso = db.Column(db.String)
-    vitrimau = db.Column(db.Integer)
-    tinhtrang = db.Column(db.Boolean) #dat - khong dat
+# class KetQuaNgoaiKiemChatLuongNuoc(CommonModel):
+#     __tablename__ = 'ketquangoaikiemchatluongnuoc'
+#     thongso_id = db.Column(UUID(as_uuid=True))
+#     tenthongso = db.Column(db.String)
+#     vitrimau = db.Column(db.Integer)
+#     tinhtrang = db.Column(db.Boolean) #dat - khong dat
     
 
 

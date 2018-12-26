@@ -6,121 +6,97 @@
 			<h5 style="font-weight: 500">A. THÔNG TIN CHUNG </h5>
 		</div>
 
+		
+
 		<div style="margin-top: 15px" class="row">
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Thông tư</label> <input type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:thongtu" required />
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">1.Tên đơn vị cấp nước</label> <input type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:ten" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">2.Địa chỉ</label>
-					<input type="text" class="form-control" id="formGroupExampleInput" data-bind="value:diachi" />
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">3.Công suất thiết kế</label> <input type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:congxuat" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">4.Tổng số hộ gia đình (HGĐ) được cung cấp nước</label> <input class="form-control"
-					 id="formGroupExampleInput" data-bind="value:tongsohgd" />
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">5.Nguồn nước nguyên liệu (ghi cụ thể)</label> <input type="text" class="form-control"
-					 id="formGroupExampleInput" data-bind="value:nguonnuoc" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">6.Thời gian kiểm tra</label> <input class="form-control" id="formGroupExampleInput"
-					 data-bind="value:thoigiankiemtra" />
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">7.Thành phần đoàn kiểm tra</label> <input type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:thanhphan" />
-				</div>
-			</div>
-		</div>
+			<table class="data-table-no-border">
+				<tr>
+					<td><label>1. Tên đơn vị cấp nước:</label> </td>
+					<td colspan=3><input type="text" class="form-control" data-bind="value:tendonvi" /></td>
+				</tr>
+				<tr>
+					<td><label>2. Địa chỉ:</label> </td>
+					<td colspan=3><input type="text" class="form-control" data-bind="value:diachi_donvi" /></td>
+				</tr>
+				<tr>
+					<td><label>3. Công suất thiết kế:</label> </td>
+					<td><input type="text" class="form-control" data-bind="value:congxuat" /></td>
+					<td><label>/ Tổng số hộ gia đình (HGĐ) được cung cấp nước:</label> </td>
+					<td><input type="text" class="form-control" data-bind="value:tongso_hogiadinh" /></td>
+				</tr>
+				<tr>
+					<td><label>4. Nguồn nước nguyên liệu <i>(ghi cụ thể):</i></label> </td>
+					<td colspan=3><input type="text" class="form-control" data-bind="value:nguonnuoc" /></td>
+				</tr>
+				<tr>
+					<td><label>5. Thời gian kiểm tra:</i></label> </td>
+					<td><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
+				</tr>
+				<tr>
+					<td><label>6. Thành phần đoàn kiểm tra:</i></label> </td>
+					<td colspan=3><textarea class="form-control" data-bind="value:thanhphan_doankiemtra" ></textarea></td>
+				</tr>
+				<tr>
+					<td><label>7. Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label> </td>
+					<td><input type="text" class="form-control" data-bind="value:somauvavitri" /></td>
+				</tr>
+			</table>
+		
 
 
-
-		<div style="margin-bottom: 20px;">
+		<div style="margin-bottom: 20px;margin-top: 20px;">
 			<h5>B. VIỆC THỰC HIỆN NỘI KIỂM CỦA ĐƠN VỊ CẤP NƯỚC</h5>
 		</div>
 
 
 		<div class="row">
-
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="form-group">
-					<label for="formGroupExampleInput">1.Số mẫu và vị trí lấy mẫu nước: (Có biên bản lấy mẫu kèm theo)</label> <input
-					 class="form-control" id="formGroupExampleInput" data-bind="value:somauvavitri" />
+					<label>1. Hồ sơ theo dõi, quản lý chất lượng nước</label> <i>(Đánh giá đơn vị cấp nước có thực hiện đầy đủ các nội dung trong việc lập và quản lý hồ sơ theo dõi, quản lý chất lượng nước không) </i>
+					<textarea type="text" class="form-control" data-bind="value:hosotheodoi"></textarea>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>2.Tần suất thực hiện chế độ nội kiểm</label> <i>(Đánh giá đơn vị cấp nước có thực hiện thử nghiệm các thông số c…</i>
+					<textarea class="form-control" data-bind="value:tansuatthuchien_chedonoikiem"></textarea>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">2.Hồ sơ theo dõi, quản lý chất lượng nước</label> <textarea type="text" class="form-control"
-					 id="formGroupExampleInput" data-bind="value:hstheodoi"></textarea>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">3.Tần suất thực hiện chế độ nội kiểm</label> <textarea class="form-control" id="formGroupExampleInput"
-					 data-bind="value:tansuatthuchien"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">4.Tình hình chất lượng nước</label> <textarea type="text" class="form-control"
-					 id="formGroupExampleInput" data-bind="value:tinhhinh"></textarea>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Thực hiện chế độ công khai thông tin và báo cáo chất lượng nước</label>
-					<textarea class="form-control" id="formGroupExampleInput" data-bind="value:thuchienchedo"></textarea>
-				</div>
-			</div>
-		</div>
-		<div style="margin-bottom: 30px;">
-			<h5>C. KẾT QUẢ NGOẠI KIỂM CHẤT LƯỢNG NƯỚC</h5>
-		</div>
-
-
 		<div class="row">
 			<div class="col-md-12">
-				<div data-bind="list:kqngoaikiemchatluong"></div>
+				<div class="form-group">
+					<label>3.Tình hình chất lượng nước</label> <i>(Trong kỳ kiểm tra có những thông số nào thường xuyên không đạt, lý do và biện pháp khắc phục)</i> 
+					<textarea type="text" class="form-control" data-bind="value:tinhhinhchatluongnuoc"></textarea>
+				</div>
 			</div>
-
+			<div class="col-md-12">
+				<div class="form-group">
+					<label>4. Thực hiện chế độ công khai thông tin và báo cáo chất lượng nước</label> <i>(Đánh giá đơn vị cấp nước có thực hiện nghiêm túc việc công khai thông tin và báo cáo chất lượng nước theo quy định không)</i>
+					<textarea class="form-control" data-bind="value:thuchien_chedo"></textarea>
+				</div>
+			</div>
 		</div>
+		<div style="margin-bottom: 30px;margin-top: 20px;">
+			<h5>C. KẾT QUẢ NGOẠI KIỂM CHẤT LƯỢNG NƯỚC</h5>
+			<table>
+				<thead>
+					<tr>
+						<th rowspan=2>STT</th>
+						<th style="text-align: right">Mã số mẫu, vị trí lấy mẫu</th>
+						<th rowspan=2 id="mauvitri_header_before">Giới hạn tối đa cho phép</th>
+						<th rowspan=2 id="mauvitri_header"></th>
+						<th rowspan=2>Đánh giá (đạt/không đạt)</th>
+					</tr>
+					<tr>
+						<th>Các thông số</th>
+					</tr>
+				</thead>
+				<tbody id="ketquangoaikiemchatluongnuoc"></tbody>
+			</table>
+		</div>
+
+
 
 		<div style="margin-botton: 20px;">
 			<p>- Dấu (*) chỉ áp dụng cho đơn vị cấp nước khai thác nước ngầm.
@@ -128,50 +104,28 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Nhận xét</label> <textarea type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:nhanxet"></textarea>
+					<label>Nhận xét</label> 
+					<textarea type="text" class="form-control" data-bind="value:nhanxet"></textarea>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="form-group">
-					<label for="formGroupExampleInput">D. KẾT LUẬN</label>
-					<textarea class="form-control" id="formGroupExampleInput" data-bind="value:ketluan"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Đ. KIẾN NGHỊ</label> <textarea type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:kiennghi"></textarea>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Ngày tháng năm</label>
-					<input class="form-control" id="formGroupExampleInput" data-bind="value:ngaybaocao"></input>
+					<label>D. KẾT LUẬN</label>
+					<textarea class="form-control" data-bind="value:ketluan"></textarea>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
 				<div class="form-group">
-					<label for="formGroupExampleInput">Đại diện đơn vị cấp nước</label> <input type="text" class="form-control" id="formGroupExampleInput"
-					 data-bind="value:kyten1" />
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="formGroupExampleInput">Trưởng đoàn kiểm tra</label>
-					<input class="form-control" id="formGroupExampleInput" data-bind="value:kyten"></input>
+					<label>Đ. KIẾN NGHỊ</label> 
+					<textarea type="text" class="form-control" data-bind="value:kiennghi"></textarea>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 
-</div>
-
-</div>
 </div>
