@@ -40,8 +40,8 @@ require(['jquery', 'gonrin', 'app/router',
 		});
 
 		var app = new Gonrin.Application({
-//			serviceURL: 'http://127.0.0.1:9070',
-			serviceURL: 'http://103.74.120.56:9070',
+			serviceURL: 'http://127.0.0.1:9070',
+//			serviceURL: 'http://103.74.120.56:9070',
 			serviceURL: location.protocol+'//'+location.hostname+(location.port ? ':'+location.port : ''),
 			staticURL: static_url,
 			router: new Router(),
@@ -107,6 +107,7 @@ require(['jquery', 'gonrin', 'app/router',
 			},
 			postLogin: function (data) {
 				var self = this;
+				$("body").attr({'style':'background-color: #fff !important;'});
 
 				$('body').html(layout);
 				self.showloading();

@@ -3,9 +3,6 @@
     "stt": {
         "type": "number"
     },
-    "tong_huyen":{
-        "type": "number"
-    },
     "tong_soxa":{
         "type": "number"
     },

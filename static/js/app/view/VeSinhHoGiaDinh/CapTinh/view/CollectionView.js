@@ -4,47 +4,50 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/CapTinh/tpl/collection.html'),
-		schema = require('json!schema/CapTinhSchema.json');
+	var template = require('text!app/view/VeSinhHoGiaDinh/CapTinh/tpl/collection.html'),
+		schema = require('json!schema/VSCapTinhSchema.json');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "captinh",
+		collectionName: "vscaptinh",
 		uiControl: {
 			fields: [
-
 				{
-					field: "tenthon_id",
-					label: "Tên huyện",
-					foreign: "tenthon",
+					field: "nambaocao",
+					label: "Năm báo cáo"
+				},
+				{
+					field: "tinhthanh_id",
+					label: "Tỉnh",
+					foreign: "tinhthanh",
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
 				{
-					field: "hotrongthon",
-					label: "Tổng số hộ trong tỉnh"
+					field: "tong_sohuyen",
+					label: "Tổng số huyện"
 				},
 				{
-					field: "dantrongthon",
-					label: "Tổng số dân trong tỉnh"
+					field: "tong_soxa",
+					label: "Tổng số xã"
 				},
 				{
-					field: "sohongheo",
+					field: "tong_soho",
+					label: "Tổng số hộ trong huyện"
+				},
+				{
+					field: "tong_danso",
+					label: "Tổng số dân trong huyện"
+				},
+				{
+					field: "tong_sohongheo",
 					label: "Số hộ nghèo"
 				},
 				{
-					field: "sohodtts",
-					label: "Số hộ là DTTS"
-				},
-				{
-					field: "sonam",
-					label: "Nam"
-				},
-				{
-					field: "sonu",
-					label: "Nữ"
+					field: "tong_sohodtts",
+					label: "Số hộ DTTS"
 				},
 
 			],

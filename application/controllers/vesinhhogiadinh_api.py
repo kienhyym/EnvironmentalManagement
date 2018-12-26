@@ -74,7 +74,8 @@ async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
     record = db.session.query(VSCapXa).filter(and_(VSCapXa.donvi_id == currentuser.donvi_id, VSCapXa.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
-        
+      
+    data['tenxa'] = data['xaphuong']['ten']  
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
@@ -92,6 +93,7 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     record = db.session.query(VSCapHuyen).filter(and_(VSCapHuyen.donvi_id == currentuser.donvi_id, VSCapHuyen.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+    data['tenhuyen'] = data['quanhuyen']['ten']
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
@@ -109,6 +111,7 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     record = db.session.query(VSCapTinh).filter(and_(VSCapTinh.donvi_id == currentuser.donvi_id, VSCapTinh.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+    data['tentinh'] = data['tinhthanh']['ten']
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
@@ -118,6 +121,23 @@ async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
     obj = to_dict(result)
     
     list_baocao = congdongTongCong(VSCapThon,currentuser, obj['nambaocao'])
+    obj['danhsachbaocao'] = list_baocao
+    result = obj
+    
+async def reponse_caphuyen_single(request=None, Model=None, result=None, **kw):
+    currentuser = await current_user(request)
+    obj = to_dict(result)
+    
+    list_baocao = congdongTongCong(VSCapXa,currentuser, obj['nambaocao'])
+    obj['danhsachbaocao'] = list_baocao
+    result = obj
+    print(result)
+    
+async def reponse_captinh_single(request=None, Model=None, result=None, **kw):
+    currentuser = await current_user(request)
+    obj = to_dict(result)
+    
+    list_baocao = congdongTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
     obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
@@ -148,7 +168,7 @@ apimanager.create_api(VSCapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaphuyen], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(GET_SINGLE=[reponse_caphuyen_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='vscaphuyen')
 
 
@@ -156,7 +176,7 @@ apimanager.create_api(VSCapTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaptinh], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(GET_SINGLE=[reponse_captinh_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='vscaptinh')
 
 

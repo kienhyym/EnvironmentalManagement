@@ -97,7 +97,7 @@ class VSCapXa(CommonModel):
     quanhuyen = relationship('QuanHuyen')
     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     xaphuong = relationship('XaPhuong')
-    
+    tenxa = db.Column(db.String)
     thuocsuprsws = db.Column(db.SmallInteger)
     tong_sothon = db.Column(db.Integer)
     tong_soho = db.Column(db.Integer)
@@ -134,7 +134,7 @@ class VSCapHuyen(CommonModel):
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
     quanhuyen = relationship('QuanHuyen')
-    
+    tenhuyen = db.Column(db.String)
     tong_soxa = db.Column(db.Integer)
     tong_sothon = db.Column(db.Integer)
     tong_soho = db.Column(db.Integer)
@@ -171,7 +171,7 @@ class VSCapTinh(CommonModel):
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
-
+    tentinh = db.Column(db.String)
     tong_sohuyen = db.Column(db.Integer)
     tong_soxa = db.Column(db.Integer)
     tong_sothon = db.Column(db.Integer)
