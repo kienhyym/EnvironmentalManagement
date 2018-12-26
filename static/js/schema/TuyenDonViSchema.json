@@ -12,25 +12,6 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
-        "type": "boolean",
-        "default": false
-    },
-    "deleted_by": {
-        "type": "string"
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
-    "id": {
-        "type": "number",
-        "primary": true
-    },
-    "ma": {
-        "type": "string",
-        "length": 255
-    },
-=======
         "type": "boolean"
     },
     "deleted_by": {
@@ -47,7 +28,6 @@
         "type": "string",
         "length": 255
     },
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     "ten": {
         "type": "string",
         "length": 255

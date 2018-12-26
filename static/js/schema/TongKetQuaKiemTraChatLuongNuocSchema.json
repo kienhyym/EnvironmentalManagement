@@ -24,17 +24,34 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
-        "type": "string"
-    },
-    "tenthongso": {
+    "tendonvi": {
         "type": "string",
         "length": null
     },
-    "vitrimau": {
-        "type": "number"
+    "donvi_id": {
+        "type": "string"
     },
-    "tinhtrang": {
-        "type": "boolean"
+    "thoigiankiemtra": {
+        "type": "datetime"
+    },
+    "noidungkiemtra": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua_thunghiem_ngoaikiem": {
+        "type": "string",
+        "length": null
+    },
+    "ketluan": {
+        "type": "string",
+        "length": null
+    },
+    "bienphap_khacphuc": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua_khacphuc": {
+        "type": "string",
+        "length": null
     }
 }

@@ -24,6 +24,9 @@
     "deleted_at": {
         "type": "datetime"
     },
+    "tinhthanh_id": {
+        "type": "string"
+    },
     "thongso_id": {
         "type": "string"
     },
@@ -31,10 +34,19 @@
         "type": "string",
         "length": null
     },
-    "vitrimau": {
+    "tongso_donvicapnuoc": {
         "type": "number"
     },
-    "tinhtrang": {
-        "type": "boolean"
+    "tongso_maunuoc_thinghiem": {
+        "type": "number"
+    },
+    "tongso_maunuoc_quychuan": {
+        "type": "number"
+    },
+    "tongso_maunuoc_khongquychuan": {
+        "type": "number"
+    },
+    "tinhthanh": {
+        "type": "dict"
     }
 }

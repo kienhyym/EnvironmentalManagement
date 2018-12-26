@@ -24,44 +24,37 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "tinhthanh_id": {
-        "type": "string"
-    },
-    "xaydungduthao_bcc": {
-        "type": "number"
-    },
-    "nganh": {
-        "type": "number"
-    },
-    "vihema_chapthuan": {
-        "type": "number"
-    },
-    "ngay_pheduyet": {
+    "ngaybanhanh": {
         "type": "datetime"
     },
-    "trangthai_tinhpheduyen": {
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "loaibaocao": {
+        "type": "boolean"
+    },
+    "tong_donvicapnuoc": {
         "type": "number"
     },
-    "sohoatdong_pheduyet": {
+    "tong_hogiadinh_duoccap": {
         "type": "number"
     },
-    "sohoatdong_bcc": {
-        "type": "string",
-        "length": null
+    "chiemtyle": {
+        "type": "number"
     },
-    "itemthon": {
-        "type": "list"
+    "tong_donvicapnuoc_kybaocao": {
+        "type": "number"
     },
-    "itemxa": {
-        "type": "list"
+    "socoso_thuchien_ngoaikiem": {
+        "type": "number"
     },
-    "itemhuyen": {
-        "type": "list"
+    "sokinhphi_duoccungcap": {
+        "type": "number"
     },
-    "itemtinh": {
-        "type": "list"
+    "kinhphi_sovoi_namtruoc": {
+        "type": "number"
     },
-    "tinhthanh": {
-        "type": "dict"
+    "thuchien_baocao": {
+        "type": "boolean"
     }
 }

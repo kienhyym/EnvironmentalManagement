@@ -16,8 +16,7 @@
         "type": "string"
     },
     "deleted": {
-        "type": "boolean",
-        "default": false
+        "type": "boolean"
     },
     "deleted_by": {
         "type": "string"
@@ -25,25 +24,19 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "ncchinh": {
+    "tongso_mau_lamxn": {
         "type": "number"
     },
-    "nguonnckhac": {
-        "type": "string"
-    },
-    "khuvstrg": {
+    "tongsomau_datquychuan": {
         "type": "number"
     },
-    "khuvsnam": {
+    "tyle_quychuan": {
         "type": "number"
     },
-    "khuvsnu": {
+    "tongsomau_khongdat": {
         "type": "number"
     },
-    "khuvsgvnam": {
-        "type": "number"
-    },
-    "khuvsgvnu": {
+    "tylemau_khongdat": {
         "type": "number"
     }
 }

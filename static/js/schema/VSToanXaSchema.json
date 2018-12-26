@@ -16,12 +16,7 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
-        "type": "boolean",
-        "default": false
-=======
         "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -56,31 +51,31 @@
     "xaphuong_id": {
         "type": "string"
     },
-    "nhatieu": {
+    "pt_hogiadinh_nhatieucaithien": {
         "type": "number"
     },
-    "diemruatay": {
+    "tyle_hogiadinh_diemruatay": {
         "type": "number"
     },
-    "truonghvs": {
+    "pt_truonghoc_conuocsach": {
         "type": "number"
     },
-    "sohocsinh": {
+    "tonso_hocsinh": {
         "type": "number"
     },
-    "tramyte_hop_vesinh": {
+    "pt_tramyte_conuocsach": {
         "type": "number"
     },
-    "soho_giadinh": {
+    "tongso_hogiadinh": {
         "type": "number"
     },
-    "danso": {
+    "tong_danso_xa": {
         "type": "number"
     },
-    "ho_nula_chu": {
+    "pt_giadinh_chulanu": {
         "type": "number"
     },
-    "dantoc_thieuso": {
+    "pt_hogiadinh_dtts": {
         "type": "number"
     },
     "donvi": {

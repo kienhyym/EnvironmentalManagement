@@ -12,12 +12,7 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
-        "type": "boolean",
-        "default": false
-=======
         "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -35,11 +30,7 @@
     },
     "collectionNames": {
         "type": "string",
-<<<<<<< HEAD
-        "required": true
-=======
         "required": true,
         "length": null
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     }
 }

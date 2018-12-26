@@ -24,17 +24,36 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "thongso_id": {
-        "type": "string"
-    },
-    "tenthongso": {
+    "tendonvi": {
         "type": "string",
         "length": null
     },
-    "vitrimau": {
+    "donvi_id": {
+        "type": "string"
+    },
+    "soho_giadinh_duoccapnuoc": {
         "type": "number"
     },
-    "tinhtrang": {
+    "laphoso": {
+        "type": "boolean"
+    },
+    "hoso_daydu": {
+        "type": "boolean"
+    },
+    "thieu_tailieu": {
+        "type": "string",
+        "length": null
+    },
+    "soluongmau_cacthongso": {
+        "type": "boolean"
+    },
+    "tanxuat_thuchien": {
+        "type": "boolean"
+    },
+    "chedo_thongtin": {
+        "type": "boolean"
+    },
+    "cacbienphap": {
         "type": "boolean"
     }
 }

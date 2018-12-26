@@ -24,70 +24,60 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "donvi_id": {
-        "type": "number",
-        "required": true
-    },
-    "nguoibaocao_id": {
-        "type": "string"
-    },
-    "tinhtrang": {
-        "type": "number",
-        "required": true
+    "ngaybanhanh": {
+        "type": "datetime"
     },
     "ngaybaocao": {
         "type": "datetime"
     },
-    "nambaocao": {
-        "type": "number",
-        "required": true
+    "loaibaocao": {
+        "type": "boolean"
     },
-    "tinhthanh_id": {
-        "type": "string"
-    },
-    "quanhuyen_id": {
-        "type": "string"
-    },
-    "tong_soxa": {
+    "tongsotinh_trenkhuvuc": {
         "type": "number"
     },
-    "tong_sothon": {
+    "sotinh_baocao": {
         "type": "number"
     },
-    "tong_ho": {
+    "tongsotinh_khuvuc_phutrach": {
         "type": "number"
     },
-    "tong_chuholanu": {
+    "tongdonvi_duockiemtra": {
         "type": "number"
     },
-    "tong_sohongheo": {
+    "chiemtyle": {
         "type": "number"
     },
-    "tong_sohodtts": {
+    "trungtam_benhtinh": {
+        "type": "string",
+        "length": null
+    },
+    "doivoi_cacdonvi_capnuoc": {
+        "type": "string",
+        "length": null
+    },
+    "tongso_maunuoc_lamxn": {
         "type": "number"
     },
-    "tong_danso": {
+    "tongso_maudatquychuan": {
         "type": "number"
     },
-    "tong_nam": {
+    "tyle_mauquychuan": {
         "type": "number"
     },
-    "tong_nu": {
+    "tongso_maukhongdat_quychuan": {
         "type": "number"
     },
-    "tong_loaikhac": {
-        "type": "number"
+    "cacthongso_khongdat": {
+        "type": "string",
+        "length": null
     },
-    "donvi": {
-        "type": "dict"
+    "nghiencuu_ketluan": {
+        "type": "string",
+        "length": null
     },
-    "nguoibaocao": {
-        "type": "dict"
-    },
-    "tinhthanh": {
-        "type": "dict"
-    },
-    "quanhuyen": {
-        "type": "dict"
+    "ketluan_dexuat": {
+        "type": "string",
+        "length": null
     }
 }
