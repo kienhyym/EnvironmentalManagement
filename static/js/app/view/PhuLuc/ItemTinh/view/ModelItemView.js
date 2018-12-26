@@ -19,23 +19,32 @@ define(function (require) {
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [
-				
+				{
+					field: "ketqua_datduoc",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							"value": 1,
+							"text": "Đạt"
+						},
+						{
+							"value": 0,
+							"text": "Không đạt"
+						},
+					],
+				},
 			]
 		},
 
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML);
-			// self.model.get("dantoc_id");
 			
+
 			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 				self.remove(true);
 			});
 			self.applyBindings();
-
-			// self.model.on("change",function(event) {
-			// 	console.log("toJSON ", self.model.toJSON());
-			// });
 		},
 	});
 
