@@ -1,6 +1,7 @@
 static/js/lib
 static/js/lib1
 static/vendor/GonrinUI
+static/js/schema
 alembic/**/__pycache__
 application/**/__pycache__
 /**/*.DS_Store
