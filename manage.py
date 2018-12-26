@@ -108,7 +108,7 @@ def create_dantoc_model():
         for item_dantoc in data_dantoc:
             dantoc = DanToc(ma = item_dantoc["value"], ten = item_dantoc["text"])
             db.session.add(dantoc)
-            db.session.commit()
+        db.session.commit()
 
 
 

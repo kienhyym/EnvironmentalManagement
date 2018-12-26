@@ -50,7 +50,9 @@ define(function (require) {
     			sessionKey: "Dantoc_filter"
     		});
     		filter.render();
-    		
+    		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
+
+			self.uiControl.orderBy = [{"field": "ma", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
@@ -58,6 +60,7 @@ define(function (require) {
 					{"ten": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
+    			self.uiControl.orderBy = [{"field": "ma", "direction": "asc"}];
     		}
     		self.applyBindings();
     		

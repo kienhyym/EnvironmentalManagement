@@ -12,12 +12,8 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": false
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -44,20 +40,6 @@
     "cfpassword": {
         "type": "string",
         "length": 255
-<<<<<<< HEAD
-    },
-    "phone": {
-        "type": "string",
-        "length": 255
-    },
-    "donvi_sodienthoai": {
-        "type": "string",
-        "length": 255
-    },
-    "donvi_diachi": {
-        "type": "string",
-        "length": 255
-=======
     },
     "phone": {
         "type": "string",
@@ -78,25 +60,10 @@
     "macongdan": {
         "type": "string",
         "length": 200
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
-    },
-    "donvi_ten": {
-        "type": "string",
-        "length": 255
-    },
-<<<<<<< HEAD
-    "macongdan": {
-        "type": "string",
-        "length": 200
-=======
-    "user_id": {
-        "type": "string"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "donvi_id": {
         "type": "number"
     },
-<<<<<<< HEAD
     "user_id": {
         "type": "string"
     },
@@ -104,8 +71,6 @@
         "type": "number",
         "default": 2
     },
-=======
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     "captren_id": {
         "type": "number"
     },

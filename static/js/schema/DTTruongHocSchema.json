@@ -16,12 +16,8 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": false
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -29,34 +25,17 @@
     "deleted_at": {
         "type": "datetime"
     },
-<<<<<<< HEAD
-    "tentinh_id": {
-=======
     "tinhthanh_id": {
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "string"
     },
     "quanhuyen_id": {
         "type": "string"
     },
-<<<<<<< HEAD
-    "tenxa_id": {
-        "type": "string"
-    },
-    "tentrgtram": {
-        "type": "string"
-    },
-    "matrgtram": {
-        "type": "string"
-    },
-    "loaitrgtram": {
-=======
     "xaphuong_id": {
         "type": "string"
     },
     "truong_tram_yte": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "ma_truong": {
         "type": "number"
@@ -77,51 +56,11 @@
         "type": "number"
     },
     "hocsinh_nam": {
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "number"
     },
     "hocsinh_nu": {
         "type": "number"
     },
-<<<<<<< HEAD
-    "hsmoibuoi": {
-        "type": "number"
-    },
-    "hsnam": {
-        "type": "number"
-    },
-    "hsnu": {
-        "type": "number"
-    },
-    "loaitrg": {
-        "type": "number"
-    },
-    "ngtraloi": {
-        "type": "string"
-    },
-    "vitrichuvu": {
-        "type": "string"
-    },
-    "thongtinll": {
-        "type": "string"
-    },
-    "nguonnccongtrinh_id": {
-        "type": "string"
-    },
-    "capnctruongtram_id": {
-        "type": "string"
-    },
-    "tentinh": {
-        "type": "dict"
-    },
-    "tenhuyen": {
-        "type": "dict"
-    },
-    "tenxa": {
-        "type": "dict"
-    },
-    "nguonnccongtrinh": {
-=======
     "diemtruong_chinh": {
         "type": "number"
     },
@@ -129,12 +68,10 @@
         "type": "number"
     },
     "tennguoitraloi": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "chucvu_nguoitraloi": {
-        "type": "string",
-        "length": null
+        "type": "string"
     },
     "sodienthoailienlac": {
         "type": "number"
@@ -146,10 +83,6 @@
         "type": "dict"
     },
     "xaphuong": {
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
-        "type": "dict"
-    },
-    "capnctruongtram": {
         "type": "dict"
     }
 }

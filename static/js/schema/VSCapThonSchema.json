@@ -16,12 +16,8 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": false
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -46,12 +42,9 @@
     "nambaocao": {
         "type": "number",
         "required": true
-<<<<<<< HEAD
     },
     "nhatieuthonhvs": {
         "type": "json"
-=======
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "tinhthanh_id": {
         "type": "string"
@@ -66,12 +59,7 @@
         "type": "number"
     },
     "tenthon": {
-<<<<<<< HEAD
         "type": "string"
-=======
-        "type": "string",
-        "length": null
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "thonxom_id": {
         "type": "string"
@@ -121,11 +109,7 @@
     "tong_khonghopvs": {
         "type": "number"
     },
-<<<<<<< HEAD
     "tong_caithien": {
-=======
-    "tong_dccaithien": {
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "number"
     },
     "tong_diemruatay": {
@@ -136,12 +120,6 @@
     },
     "nguoibaocao": {
         "type": "dict"
-<<<<<<< HEAD
-=======
-    },
-    "nhatieuthonhvs": {
-        "type": "list"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "tinhthanh": {
         "type": "dict"

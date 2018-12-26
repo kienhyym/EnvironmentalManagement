@@ -16,12 +16,8 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": false
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -56,31 +52,7 @@
     "xaphuong_id": {
         "type": "string"
     },
-    "nhatieu": {
-        "type": "number"
-    },
-    "diemruatay": {
-        "type": "number"
-    },
-    "truonghvs": {
-        "type": "number"
-    },
-    "sohocsinh": {
-        "type": "number"
-    },
-    "tramyte_hop_vesinh": {
-        "type": "number"
-    },
-    "soho_giadinh": {
-        "type": "number"
-    },
-    "danso": {
-        "type": "number"
-    },
-    "ho_nula_chu": {
-        "type": "number"
-    },
-    "dantoc_thieuso": {
+    "pt_hogiadinh_nhatieucaithien": {
         "type": "number"
     },
     "donvi": {

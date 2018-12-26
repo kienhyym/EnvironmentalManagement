@@ -6,7 +6,7 @@
         "type": "number",
         "default":0
     },
-    "dantoc": {
+    "dtts": {
         "type": "number",
         "default":0
     },
@@ -26,7 +26,7 @@
         "type": "number",
         "default":0
     },
-    "coongthong": {
+    "chimco_oth": {
         "type": "number",
         "default":0
     },
@@ -34,15 +34,15 @@
         "type": "number",
         "default":0
     },
-    "kconhatieu": {
+    "khongconhatieu": {
         "type": "number",
         "default":0
     },
-    "hopvs": {
+    "hopvesinh": {
         "type": "number",
         "default":0
     },
-    "khopvs": {
+    "khonghopvesinh": {
         "type": "number",
         "default":0
     },
@@ -50,7 +50,7 @@
         "type": "number",
         "default":0
     },
-    "diemruatay": {
+    "diemruataycoxaphong": {
         "type": "number",
         "default":0
     }

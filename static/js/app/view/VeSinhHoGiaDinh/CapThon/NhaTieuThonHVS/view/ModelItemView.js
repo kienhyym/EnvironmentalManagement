@@ -10,7 +10,7 @@ define(function (require) {
 
 
 	var currentDate = new Date();
-	return Gonrin.ItemView.extend({
+	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
@@ -18,7 +18,16 @@ define(function (require) {
 		collectionName: "vscapthon",
 		bindings: "bind-item-data",
 		uiControl: {
-			fields: [{
+			fields: [
+				{
+					field: "dantoc",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "dantoc_id",
+					dataSource: DanTocSelectView
+				},
+				{
 					field: "gioitinh",
 					uicontrol: "combobox",
 					textField: "text",
@@ -56,14 +65,6 @@ define(function (require) {
 						}
 					],
 				},
-				{
-					field: "dantoc",
-					uicontrol: "ref",
-					textField: "ten",
-					foreignRemoteField: "id",
-					foreignField: "dantoc_id",
-				},
-
 				{
 					field: "hongheo",
 					uicontrol: "checkbox",
@@ -238,28 +239,23 @@ define(function (require) {
 						},
 					],
 				},
-				{
-					field: "dantoc",
-					uicontrol: "ref",
-					textField: "ten",
-					foreignRemoteField: "id",
-					foreignField: "dantoc_id",
-					dataSource: DanTocSelectView
-				},
+				
 			]
 		},
 		render: function () {
 			var self = this;
-			// this.setElement(this.el.innerHTML)
-			if (self.model.get("id") === null){
-				self.model.set("id",gonrin.uuid())
-			}
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);
 			});
-			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
-				self.remove(true);
+			self.model.on("change", function () {
+				self.trigger("change", {
+					"oldData": self.model.previousAttributes(),
+					"data": self.model.toJSON()
+				});
 			});
+//			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
+//				self.remove(true);
+//			});
 			self.applyBindings();
 		},
 	});

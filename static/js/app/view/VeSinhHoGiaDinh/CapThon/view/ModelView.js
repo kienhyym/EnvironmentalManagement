@@ -75,19 +75,19 @@ define(function (require) {
 					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-				{
-					field: "nhatieuthonhvs",
-					uicontrol: false,
-					itemView: NhaTieuThonHVSItemView,
-					tools: [{
-						name: "create",
-						type: "button",
-						buttonClass: "btn btn-success btn-sm",
-						label: "<span class='fa fa-plus'>Thêm mới</span>",
-						command: "create"
-					}, ],
-					toolEl: "#addItem"
-				},
+//				{
+//					field: "nhatieuthonhvs",
+//					uicontrol: false,
+//					itemView: NhaTieuThonHVSItemView,
+//					tools: [{
+//						name: "create",
+//						type: "button",
+//						buttonClass: "btn btn-success btn-sm",
+//						label: "<span class='fa fa-plus'>Thêm mới</span>",
+//						command: "create"
+//					}, ],
+//					toolEl: "#addItem"
+//				},
 				{
     				field: "thuocsuprsws",
     				uicontrol: "combobox",
@@ -142,7 +142,6 @@ define(function (require) {
 						}else if(thonxom === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm"},{type: "danger"});
 						}else {
-
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
@@ -193,6 +192,12 @@ define(function (require) {
 			if (viewData !== null && viewData!==undefined){
 				id =null;
 			}
+			self.$el.find("#addItem").unbind("click").bind("click", function () {
+                var view = new NhaTieuThonHVSItemView();
+                view.model.set("id",gonrin.uuid());
+                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+                self.renderItemView(view.model.toJSON());
+            });
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -200,13 +205,15 @@ define(function (require) {
 						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 						for(var i=0; i< nhatieuthonhvs.length; i++){
 							nhatieuthonhvs[i]['stt'] = i+1;
+							self.renderItemView(nhatieuthonhvs[i]);
+							
 						}
-						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
+//						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();
 						self.renderTinhTongI();
 						self.registerTinhTong();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
-							self.$el.find("#addItem button").click();
+							self.$el.find("#addItem").click();
 						}
 					},
 					error: function () {
@@ -229,18 +236,51 @@ define(function (require) {
 				self.model.set("nhatieuthonhvs", []);
 				self.renderTinhTongI();
 				self.registerTinhTong();			
-				self.$el.find("#addItem button").click();
+				self.$el.find("#addItem").click();
 		
 
 			}
-
+			
 		},
-
+		renderItemView:function(data){
+			var self  =this;
+			var view = new NhaTieuThonHVSItemView();
+            view.model.set(data);
+            view.render();
+            self.$el.find("#nhatieuthonhvs").append(view.$el);
+			view.$el.find("#itemRemove").unbind('click').bind('click',{obj:data}, function(e){
+            	var fields = self.model.get("nhatieuthonhvs");
+            	var data = e.data.obj;
+                for( var i = 0; i < fields.length; i++){ 
+                	   if ( fields[i].id === data.id) {
+                		   fields.splice(i, 1); 
+                	   }
+                	}
+                self.model.set("nhatieuthonhvs", fields);
+                self.model.trigger("change");
+                self.renderTinhTongI();
+                view.destroy();
+                view.remove();
+            });
+            view.on("change", function (event) {
+            	console.log("onchange=====",event);	
+                var fields = self.model.get("nhatieuthonhvs");
+                fields.forEach(function (item, idx) {
+                	if (fields[idx].id === event.oldData.id){
+                		fields[idx] = event.data;
+                	}
+                });
+                self.model.set("nhatieuthonhvs", fields);
+                self.model.trigger("change");
+                self.renderTinhTongI();
+            });
+		},
 		registerTinhTong: function () {
-			var self = this;
-			self.model.on("change:nhatieuthonhvs", function () {
-				self.renderTinhTongI();
-			});
+//			var self = this;
+//			self.model.on("change:nhatieuthonhvs", function () {
+//				console.log("change nhatieuthonhvs===", self.model.get("nhatieuthonhvs"));
+//				self.renderTinhTongI();
+//			});
 		},
 		renderTinhTongI: function () {
 			var self = this;
@@ -253,16 +293,27 @@ define(function (require) {
 			var data = Gonrin.getDefaultModel(tongischema);	
 			for (var j = 0; j < self.model.get('nhatieuthonhvs').length; j++) {
 				var chitiet = self.model.get('nhatieuthonhvs')[j];
+				var check_loaikhac = 0;
 				if (toInt(chitiet['loaikhac'])>0){
-					chitiet['loaikhac'] = 1;
+					check_loaikhac = 1;
+				}
+				var check_dantoc = 0;
+				if(chitiet["dantoc"]===null || chitiet["dantoc"].ma==="1"){
+					check_dantoc = 0;
+				}else{
+					check_dantoc = 1;
 				}
 				_.each(tongischema, function (props, key) {
-					data[key] = toInt(data[key]) + toInt(chitiet[key]);
-					//data[key] = !data[key] ? self.model.get('nhatieuthonhvs')[j][key] : self.model.get('nhatieuthonhvs')[j][key] + data[key];
-
+					
+					if(key === "dantoc"){
+						data["dtts"] = toInt(data[key]) + toInt(check_dantoc);
+					}else if(key === "loaikhac"){
+						data[key] = toInt(data[key]) + toInt(check_loaikhac);
+					}else{
+						data[key] = toInt(data[key]) + toInt(chitiet[key]);
+					}
 				});
 			}
-			//console.log("data : ", data);
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 			self.changeTong();
@@ -279,14 +330,13 @@ define(function (require) {
 			var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 			self.model.set("tong_danso" , tong_dantrongthon)
 
-			var tong_dtts = self.tongViewi.model.get("dantoc");
+			var tong_dtts = self.tongViewi.model.get("dtts");
 			self.model.set("tong_sohodtts", tong_dtts);
 			
 			var soNu = self.tongViewi.model.get("gioitinh");
 			self.model.set("tong_chuholanu", soNu);
 
-			var tongSoDan = self.model.get("nhatieuthonhvs").length;
-			self.model.set("tong_hotrongthon", tongSoDan);	
+			self.model.set("tong_sohot", self.model.get("nhatieuthonhvs").length);	
 
 			var tongTuhoai = self.tongViewi.model.get("tuhoai");
 			self.model.set("tong_tuhoai", tongTuhoai);

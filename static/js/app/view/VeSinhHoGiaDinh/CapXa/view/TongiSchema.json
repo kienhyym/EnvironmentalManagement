@@ -3,15 +3,18 @@
     "stt": {
         "type": "number"
     },
-    "chuholanu": {
+    "tong_sothon":{
+        "type": "number"
+    },
+    "tong_chuholanu": {
         "type": "number",
         "default":0
     },
-    "sohodtts": {
+    "tong_sohodtts": {
         "type": "number",
         "default":0
     },
-    "sohongheo": {
+    "tong_sohongheo": {
         "type": "number",
         "default":0
     },

@@ -64,7 +64,7 @@ define(function (require) {
 					label: "Số hộ là DTTS"
 				},
 				{
-					field: "tong_dantrongthon",
+					field: "tong_danso",
 					label: "Tổng số dân"
 				},
 

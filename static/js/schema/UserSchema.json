@@ -12,12 +12,8 @@
         "type": "string"
     },
     "deleted": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": false
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -48,29 +44,18 @@
     "password": {
         "type": "string",
         "length": 255
-<<<<<<< HEAD
     },
     "confirm_password": {
         "type": "string",
         "length": 255
-=======
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "confirmpassword": {
         "type": "string",
         "length": 255
     },
     "active": {
-<<<<<<< HEAD
         "type": "boolean",
         "default": true
-    },
-    "phone": {
-        "type": "string",
-        "length": 255
-=======
-        "type": "boolean"
->>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "phone": {
         "type": "string",
