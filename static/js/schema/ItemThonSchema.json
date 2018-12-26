@@ -16,8 +16,12 @@
         "type": "string"
     },
     "deleted": {
+<<<<<<< HEAD
         "type": "boolean",
         "default": false
+=======
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -29,6 +33,7 @@
         "type": "string"
     },
     "hoatdong": {
+<<<<<<< HEAD
         "type": "string"
     },
     "muctieu": {
@@ -36,6 +41,18 @@
     },
     "ketqua_datduoc": {
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+    },
+    "muctieu": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua_datduoc": {
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "tongsonguoi_thamgia": {
         "type": "number"

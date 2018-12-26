@@ -24,16 +24,19 @@ define(function (require) {
 						}
 					},
 				},
-				// {
-				// 	field: "tenxa_id",
-				// 	label: "Ngày phê duyệt",
-				// },
 				{
-					field: "ngay_tinhpheduyen",
+					field: "tinhthanh",
+					textField: "ten",
+					label: "Tên tỉnh",
+					foreignRemoteField: "id",
+					foreignField: "tinhthanh_id",
+				},
+				{
+					field: "ngay_pheduyet",
 					label: "Ngày phê duyệt",
 				},
 				{
-					field: "xaydungduthao",
+					field: "xaydungduthao_bcc",
 					label: "Xây dựng dự thảo kế hoạch BCC",
 					template: function (rowData) {
 						if (rowData.xaydungduthao === 2) {
@@ -46,7 +49,7 @@ define(function (require) {
 					},
 				},
 				{
-					field: "vihema",
+					field: "vihema_chapthuan",
 					label: "VIHEMA và WB",
 					template: function (rowData) {
 						if (rowData.vihera === 2) {
@@ -59,7 +62,7 @@ define(function (require) {
 					},
 				},
 				{
-					field: "sohoatdong",
+					field: "sohoatdong_bcc",
 					label: "Số hoạt động BCC cốt lõi"
 				},
 				{

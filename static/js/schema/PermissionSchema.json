@@ -1,5 +1,6 @@
 {
     "created_at": {
+<<<<<<< HEAD
         "type": "datetime"
     },
     "created_by": {
@@ -14,10 +15,28 @@
     "deleted": {
         "type": "boolean",
         "default": false
+=======
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
+    },
+    "updated_by": {
+        "type": "string"
+    },
+<<<<<<< HEAD
+=======
+    "deleted": {
+        "type": "boolean"
     },
     "deleted_by": {
         "type": "string"
     },
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     "deleted_at": {
         "type": "datetime"
     },
@@ -30,6 +49,7 @@
         "required": true
     },
     "subject": {
+<<<<<<< HEAD
         "type": "string"
     },
     "permission": {
@@ -38,5 +58,16 @@
     "value": {
         "type": "boolean",
         "default": false
+=======
+        "type": "string",
+        "length": null
+    },
+    "permission": {
+        "type": "string",
+        "length": null
+    },
+    "value": {
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     }
 }

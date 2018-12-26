@@ -16,8 +16,12 @@
         "type": "string"
     },
     "deleted": {
+<<<<<<< HEAD
         "type": "boolean",
         "default": false
+=======
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -46,6 +50,7 @@
     "nuthamgia_gd": {
         "type": "number"
     },
+<<<<<<< HEAD
     "ptnuthamgia_gd": {
         "type": "number"
     },
@@ -53,6 +58,18 @@
         "type": "number"
     },
     "ptdttsthamgia_gd": {
+=======
+    "ptnuthamgia_yt": {
+        "type": "number"
+    },
+    "songuoithamgia_dtts_yt": {
+        "type": "number"
+    },
+    "ptdttsthamgia_gd": {
+        "type": "number"
+    },
+    "phunugiangvien": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "number"
     },
     "ngdaotao_tong": {

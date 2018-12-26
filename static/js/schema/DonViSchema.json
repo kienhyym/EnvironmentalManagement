@@ -7,6 +7,7 @@
     },
     "updated_at": {
         "type": "datetime"
+<<<<<<< HEAD
     },
     "updated_by": {
         "type": "string"
@@ -15,6 +16,15 @@
         "type": "boolean",
         "default": false
     },
+=======
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     "deleted_by": {
         "type": "string"
     },
@@ -78,8 +88,12 @@
         "default": true
     },
     "active": {
+<<<<<<< HEAD
         "type": "boolean",
         "default": false
+=======
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "xaphuong": {
         "type": "dict"

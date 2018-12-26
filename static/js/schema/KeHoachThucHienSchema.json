@@ -2,6 +2,11 @@
     "id": {
         "type": "string",
         "primary": true
+<<<<<<< HEAD
+    },
+    "created_at": {
+        "type": "datetime"
+=======
     },
     "created_at": {
         "type": "datetime"
@@ -14,11 +19,32 @@
     },
     "updated_by": {
         "type": "string"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+<<<<<<< HEAD
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+=======
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tinhthanh_id": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
+        "type": "string"
     },
     "deleted": {
         "type": "boolean",
         "default": false
     },
+<<<<<<< HEAD
     "deleted_by": {
         "type": "string"
     },
@@ -33,19 +59,31 @@
     },
     "xaphuong_id": {
         "type": "string"
+=======
+    "nganh": {
+        "type": "number"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "xaydungduthao_bcc": {
         "type": "number"
     },
+<<<<<<< HEAD
     "nganh": {
         "type": "number"
     },
     "vihema_chapthuan": {
-        "type": "number"
-    },
+=======
     "ngay_pheduyet": {
         "type": "datetime"
     },
+    "trangthai_tinhpheduyen": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
+        "type": "number"
+    },
+    "sohoatdong_pheduyet": {
+        "type": "number"
+    },
+<<<<<<< HEAD
     "trangthai_tinhpheduyen": {
         "type": "number"
     },
@@ -54,6 +92,11 @@
     },
     "sohoatdong_bcc": {
         "type": "string"
+=======
+    "sohoatdong_bcc": {
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "itemthon": {
         "type": "list"

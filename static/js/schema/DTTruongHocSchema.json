@@ -16,8 +16,12 @@
         "type": "string"
     },
     "deleted": {
+<<<<<<< HEAD
         "type": "boolean",
         "default": false
+=======
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -25,12 +29,17 @@
     "deleted_at": {
         "type": "datetime"
     },
+<<<<<<< HEAD
     "tentinh_id": {
+=======
+    "tinhthanh_id": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "string"
     },
-    "tenhuyen_id": {
+    "quanhuyen_id": {
         "type": "string"
     },
+<<<<<<< HEAD
     "tenxa_id": {
         "type": "string"
     },
@@ -41,11 +50,40 @@
         "type": "string"
     },
     "loaitrgtram": {
+=======
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "truong_tram_yte": {
+        "type": "string",
+        "length": null
+    },
+    "ma_truong": {
         "type": "number"
     },
-    "sobuoihoc": {
+    "loai_truonghoc_tram": {
         "type": "number"
     },
+    "loaidiem_truong": {
+        "type": "number"
+    },
+    "buoihoc_moihocsinh": {
+        "type": "number"
+    },
+    "so_buoihoc": {
+        "type": "number"
+    },
+    "sohocsinh_moibuoi": {
+        "type": "number"
+    },
+    "hocsinh_nam": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
+        "type": "number"
+    },
+    "hocsinh_nu": {
+        "type": "number"
+    },
+<<<<<<< HEAD
     "hsmoibuoi": {
         "type": "number"
     },
@@ -83,6 +121,32 @@
         "type": "dict"
     },
     "nguonnccongtrinh": {
+=======
+    "diemtruong_chinh": {
+        "type": "number"
+    },
+    "diemtruong_phu": {
+        "type": "number"
+    },
+    "tennguoitraloi": {
+        "type": "string",
+        "length": null
+    },
+    "chucvu_nguoitraloi": {
+        "type": "string",
+        "length": null
+    },
+    "sodienthoailienlac": {
+        "type": "number"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
         "type": "dict"
     },
     "capnctruongtram": {

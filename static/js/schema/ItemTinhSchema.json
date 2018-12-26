@@ -29,6 +29,7 @@
         "type": "string"
     },
     "hoatdong": {
+<<<<<<< HEAD
         "type": "string"
     },
     "muctieu": {
@@ -36,6 +37,18 @@
     },
     "ketqua_datduoc": {
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+    },
+    "muctieu": {
+        "type": "string",
+        "length": null
+    },
+    "ketqua_datduoc": {
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "tongsonguoi_thamgia": {
         "type": "number"
@@ -45,6 +58,7 @@
     },
     "songuoi_dantocthieuso": {
         "type": "number"
+<<<<<<< HEAD
     },
     "tinhthanh_id": {
         "type": "string"
@@ -63,5 +77,7 @@
     },
     "xaphuong": {
         "type": "dict"
+=======
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     }
 }

@@ -25,30 +25,27 @@ define(function (require) {
 					},
 				},
 				{
-					field: "tentinh_id",
-					label: "Tỉnh phê duyệt",
-					foreign: "tentinh",
-					foreignValueField: "id",
-					foreignTextField: "ten"
-				},
-				{
-					field: "hoatdong_xa",
+					field: "hoatdong",
 					label: "Hoạt động"
 				},
 				{
-					field: "muctieu_xa",
+					field: "muctieu",
 					label: "Mục tiêu"
 				},
 				{
-					field: "sonutg_xa",
+					field: "ketqua_datduoc",
+					label: "Kết quả đạt được"
+				},
+				{
+					field: "songuoi_lanu",
 					label: "Số người tham gia là nữ"
 				},
 				{
-					field: "songtg_xa",
+					field: "tongsonguoi_thamgia",
 					label: "Tổng số người tham gia"
 				},
 				{
-					field: "dttstg_xa",
+					field: "songuoi_dantocthieuso",
 					label: "Số người tham gia là DTTS"
 				},
 

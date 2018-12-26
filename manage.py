@@ -17,7 +17,7 @@ from application import run_app
 from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
-import types
+from application.models.model_danhmuc import DanToc
 
 # Instance
 manager = Manager()
@@ -97,6 +97,21 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile,)
 
+
+@manager.command
+def create_dantoc_model():
+    check_exist_dantoc = db.session.query(DanToc).count()
+    if (check_exist_dantoc == 0):
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json");
+        data_dantoc = json.load(open(json_url_dantoc))
+        for item_dantoc in data_dantoc:
+            dantoc = DanToc(ma = item_dantoc["value"], ten = item_dantoc["text"])
+            db.session.add(dantoc)
+            db.session.commit()
+
+
+
 #@app.route('/createdata', methods=['GET'])
 @manager.command
 def create_test_models():    
@@ -138,6 +153,8 @@ def create_test_models():
     
 @manager.command
 def run():
+    create_dantoc_model();
+
     role = db.session.query(Role).filter(Role.name == 'User').first()
     if role is None:
         create_test_models()

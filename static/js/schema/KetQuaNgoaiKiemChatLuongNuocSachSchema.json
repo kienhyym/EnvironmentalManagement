@@ -16,8 +16,12 @@
         "type": "string"
     },
     "deleted": {
+<<<<<<< HEAD
         "type": "boolean",
         "default": false
+=======
+        "type": "boolean"
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "deleted_by": {
         "type": "string"
@@ -29,13 +33,23 @@
         "type": "datetime"
     },
     "tendonvi": {
+<<<<<<< HEAD
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "donvi_id": {
         "type": "string"
     },
     "diachi_donvi": {
+<<<<<<< HEAD
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "congxuat": {
         "type": "number"
@@ -44,12 +58,18 @@
         "type": "number"
     },
     "nguonnuoc": {
+<<<<<<< HEAD
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     },
     "thoigiankiemtra": {
         "type": "datetime"
     },
     "thanhphan_doankiemtra": {
+<<<<<<< HEAD
         "type": "string"
     },
     "somauvavitri": {
@@ -75,5 +95,40 @@
     },
     "ketluan": {
         "type": "string"
+=======
+        "type": "string",
+        "length": null
+    },
+    "somauvavitri": {
+        "type": "number"
+    },
+    "hosotheodoi": {
+        "type": "string",
+        "length": null
+    },
+    "tansuatthuchien_chedonoikiem": {
+        "type": "string",
+        "length": null
+    },
+    "tinhhinhchatluongnuoc": {
+        "type": "string",
+        "length": null
+    },
+    "thuchien_chedo": {
+        "type": "string",
+        "length": null
+    },
+    "nhanxet": {
+        "type": "string",
+        "length": null
+    },
+    "kiennghi": {
+        "type": "string",
+        "length": null
+    },
+    "ketluan": {
+        "type": "string",
+        "length": null
+>>>>>>> 09939fe63c8b29b77dea583db81116e3b0362f51
     }
 }
