@@ -12,6 +12,8 @@ from .helpers import *
 from application.models.model_thongtuquychuannuoc import *
 from sqlalchemy import or_
 from application.client import HTTPClient
+from application.models.model_user import TinhTrangBaocaoEnum
+
 
 # apimanager.create_api(BanCongBoQuyHop,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -19,7 +21,14 @@ from application.client import HTTPClient
 #     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
 #     collection_name='bancongboquyhop')
 
-
+async def baocao_prepost_chatluongnuocsach(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
+    data['donvi_id'] = currentuser.donvi_id
+    data['nguoibaocao_id'] = currentuser.id
 
 
 apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
@@ -31,7 +40,7 @@ apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
 apimanager.create_api(KetQuaNgoaiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_chatluongnuocsach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='ketqua_ngoaikiem_chatluong_nuocsach')
 
 # apimanager.create_api(KQNgoaiKiemChatLuong,

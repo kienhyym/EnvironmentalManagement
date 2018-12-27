@@ -5,7 +5,7 @@
     "updated_by": {
         "type": "string"
     },
-    "tendonvi": {
+    "tendonvicapnuoc": {
         "length": 255,
         "type": "string"
     },
