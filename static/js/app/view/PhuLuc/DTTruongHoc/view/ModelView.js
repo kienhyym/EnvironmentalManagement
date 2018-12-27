@@ -21,32 +21,32 @@ define(function (require) {
 			uiControl: {
 				fields: [
 					{
-						field: "tenxa",
+						field: "xaphuong",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tenxa_id",
+						foreignField: "xaphuong_id",
 						dataSource: XaPhuongSelectView
 					},
 					{
-						field: "tenhuyen",
+						field: "quanhuyen",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tenhuyen_id",
+						foreignField: "quanhuyen_id",
 						dataSource: QuanHuyenSelectView
 					},
 					
 					{
-						field: "tentinh",
+						field: "tinhthanh",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tentinh_id",
+						foreignField: "tinhthanh_id",
 						dataSource: TinhThanhSelectView
 					},
 					{
-						field: "loaitrgtram",
+						field: "loai_truonghoc_tram",
 						uicontrol: "radio",
 						textField: "text",
 						valueField: "value",
@@ -88,7 +88,7 @@ define(function (require) {
 					},
 					
 					{
-						field: "loaitrg",
+						field: "loaidiem_truong",
 						uicontrol: "radio",
 						textField: "text",
 						valueField: "value",
@@ -192,7 +192,7 @@ define(function (require) {
 							self.applyBindings();
 						},
 						error: function () {
-							self.getApp().notify("Get data Eror");
+							self.getApp().notify("Lỗi lấy dữ liệu");
 						},
 					});
 				} else {

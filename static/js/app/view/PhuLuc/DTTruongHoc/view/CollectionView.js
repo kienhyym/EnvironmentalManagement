@@ -14,25 +14,25 @@ define(function (require) {
     	collectionName: "dttruonghoc",
     	uiControl:{
     		fields: [
-    			 { 	field: "tentinh_id", 
+    			 { 	field: "tinhthanh_id", 
     				label: "Tên tỉnh",
-    				foreign: "tentinh",
+    				foreign: "tinhthanh",
     				foreignValueField: "id",
 					foreignTextField: "ten"},
 					
-    		     { 	field: "tenhuyen_id",
+    		     { 	field: "quanhuyen_id",
 					label: "Tên huyện",
-		    	    foreign: "tenhuyen",
+		    	    foreign: "quanhuyen",
 					foreignValueField: "id",
-					foreignTextField: "ten"},
-				 { 	field: "tenxa_id",
+					foreignTextField: "ten"
+				},
+				 { 	field: "xaphuong_id",
 					label: "Tên xã",
-					width:250,
-			    	foreign: "tenxa",
+			    	foreign: "xaphuong",
 					foreignValueField: "id",
 					foreignTextField: "ten"},
-				 { field: "tentrgtram", label: "Tên Trường học/Trạm y tế", width:250 },
-				 { field: "matrgtram", label: "Mã Trường/Trạm", width:250},
+				 { field: "truong_tram_yte", label: "Tên Trường học/Trạm y tế", width:250 },
+				 { field: "ma_truong", label: "Mã Trường/Trạm", width:250},
 				
 				 
 

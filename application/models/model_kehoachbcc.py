@@ -8,6 +8,8 @@ from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
 from sqlalchemy.orm.collections import attribute_mapped_collection
 
+def default_uuid():
+    return str(uuid.uuid4())
 
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 class ItemXa(CommonModel):
@@ -200,6 +202,54 @@ class DTTruongHoc(CommonModel):
     tennguoitraloi = db.Column(db.String)
     chucvu_nguoitraloi = db.Column(db.String)
     sodienthoailienlac = db.Column(db.Integer)
+    nguonnccongtrinh = relationship('NguocNcCongTrinh')
+    nguonnccongtrinh_id = db.Column(UUID(as_uuid=True), ForeignKey('nguonnccongtrinh.id'), nullable=True)
+    capnctruongtram = relationship('CapNcTruongTram')
+    capnctruongtram_id = db.Column(UUID(as_uuid=True), ForeignKey('capnctruongtram.id'), nullable=True)
+ 
+class NguocNcCongTrinh(CommonModel):
+    __tablename__ = 'nguonnccongtrinh'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    ncchinh = db.Column(db.Integer)
+    nguonnckhac = db.Column(db.String)
+     
+    khuvstrg = db.Column(db.Integer)
+    khuvsnam = db.Column(db.Integer)
+    khuvsnu = db.Column(db.Integer)
+    khuvsgvnam = db.Column(db.Integer)
+    khuvsgvnu = db.Column(db.Integer)
+     
+    
+class CapNcTruongTram(CommonModel):
+    __tablename__ = 'capnctruongtram'
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
+    matrgtram = db.Column(db.String)
+    tentrgtram = db.Column(db.String)
+    tenkhu = db.Column(db.String)
+    qskhuvs = db.Column(db.Integer)
+    khac = db.Column(db.String)
+    chauxi = db.Column(db.Integer)
+    sannhanut = db.Column(db.Integer)
+    daykincua = db.Column(db.Integer)
+    bechuanut = db.Column(db.Integer)
+    kcbechua = db.Column(db.Integer)
+    hoatdongbt = db.Column(db.Integer)
+    nuocsach = db.Column(db.Integer)
+    ctruatay = db.Column(db.Integer)
+    qscongtrinh = db.Column(db.Integer)
+    mailop = db.Column(db.Integer)
+    dinhdong = db.Column(db.Integer)
+    ctsachse = db.Column(db.Integer)
+    sansach = db.Column(db.Integer)
+    nangmui = db.Column(db.Integer)
+    nuocthaichay = db.Column(db.Integer)
+    bexicao = db.Column(db.Integer)
+    ngaplut = db.Column(db.Integer)
+    khuditieu = db.Column(db.Integer)
+    tt_dientich = db.Column(db.Integer)
+    tt_sochau = db.Column(db.Integer)
+    decapquantrong = db.Column(db.String)
+
 
 class DanhMucHoatDong(CommonModel):
     __tablename__ = 'danhmuchoatdong'
