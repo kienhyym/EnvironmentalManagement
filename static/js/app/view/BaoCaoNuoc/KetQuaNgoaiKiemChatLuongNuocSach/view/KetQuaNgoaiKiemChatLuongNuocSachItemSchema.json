@@ -5,7 +5,7 @@
     "updated_by": {
         "type": "string"
     },
-    "ten": {
+    "tendonvi": {
         "length": 255,
         "type": "string"
     },

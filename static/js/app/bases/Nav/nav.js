@@ -298,6 +298,23 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/DanhMucHD/view/ModelView",
 					"visible": false
 				},
+				{
+					"text": "Thông số báo cáo chất lượng nước",
+					"type": "view",
+					"collectionName": "thongsobaocaochatluongnuoc",
+					"route": "thongsobaocaochatluongnuoc/collection",
+					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "thongsobaocaochatluongnuoc",
+					"route": "thongsobaocaochatluongnuoc/model",
+					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/ModelView",
+					"visible": false
+				},
 			]
 		},
 		{

@@ -20,12 +20,12 @@ define(function (require) {
 					width: 250
 				},
 				{
-					field: "ten",
+					field: "tendonvi",
 					label: "Tên đơn vị cấp nước",
 					width: 250
 				},
 				{
-					field: "diachi",
+					field: "diachi_donvi",
 					label: "Địa chỉ",
 					width: 250
 				},

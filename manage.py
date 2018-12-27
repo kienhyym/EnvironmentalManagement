@@ -129,12 +129,12 @@ def create_test_models():
     db.session.add(role3)
     
     #add user test     
-    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=donvi.id,active=True)
     user1.roles.append(role1)
-    user4 = User(email='cuongnd', fullname='Cuong', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user4 = User(email='namdv', fullname='Dang Nam', password=auth.encrypt_password('123456'),donvi_id=donvi.id,active=True)
     user4.roles.append(role1)
     db.session.add(user1)
-    user2 = User(email='canbo', fullname='Can Bo', password=auth.encrypt_password('123456'),donvi_id=1,active=True)
+    user2 = User(email='cucmtyy', fullname='Cục Môi Trường Y Tế', password=auth.encrypt_password('123456'),donvi_id=donvi.id,active=True)
     user2.roles.append(role2)
     db.session.add(user2)
     
