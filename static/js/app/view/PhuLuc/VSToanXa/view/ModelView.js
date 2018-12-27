@@ -31,27 +31,27 @@ define(function (require) {
 			uiControl:{
 	    		fields:[
 					{
-						field: "tentinh",
+						field: "tinhthanh",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tentinh_id",
+						foreignField: "tinhthanh_id",
 						dataSource: TinhThanhSelectView
 					},
 					{
-						field: "tenhuyen",
+						field: "quanhuyen",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tenhuyen_id",
+						foreignField: "quanhuyen_id",
 						dataSource: QuanHuyenSelectView
 					},
 					{
-						field: "tenxa",
+						field: "xaphuong",
 						uicontrol: "ref",
 						textField: "ten",
 						foreignRemoteField: "id",
-						foreignField: "tenxa_id",
+						foreignField: "xaphuong_id",
 						dataSource: XaPhuongSelectView
 					},
 	        	]
@@ -129,7 +129,7 @@ define(function (require) {
 							self.applyBindings();
 						},
 						error: function () {
-							self.getApp().notify("Get data Eror");
+							self.getApp().notify("Lấy dữ liệu lỗi");
 						},
 					});
 				} else {

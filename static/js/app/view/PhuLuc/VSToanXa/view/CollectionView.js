@@ -15,21 +15,21 @@ define(function (require) {
 		uiControl:{
 	    	fields: [
 	    	     
-	    	    	{ 	field: "tentinh_id",
+	    	    	{ 	field: "tinhthanh_id",
 	    	    		label:"Tên Tỉnh",
-						foreign: "tentinh",
+						foreign: "tinhthanh",
 						foreignValueField: "id",
 						foreignTextField: "ten"},
 						
-					{ 	field: "tenhuyen_id",
+					{ 	field: "quanhuyen_id",
 		    	    		label:"Tên Huyện",
-							foreign: "tenhuyen",
+							foreign: "quanhuyen",
 							foreignValueField: "id",
 							foreignTextField: "ten"},
 						
-	    	    	{ 	field: "tenxa_id",
+	    	    	{ 	field: "xaphuong_id",
 						label:"Tên Xã",
-						foreign: "tenxa",
+						foreign: "xaphuong",
 						foreignValueField: "id",
 						foreignTextField: "ten"}, 
 						

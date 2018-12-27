@@ -487,82 +487,82 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHTinh/view/ModelView",
 							"visible": false
 						},
-						{
-							"text": "Mẫu số 6.1. Các hoạt động BCC - Tỉnh",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "hoatdongbcctinh",
-							"route": "hoatdongbcctinh/collection",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/CollectionView",
-							"tuyendonvi": 2,
-							"visible": function () {
-								return this.checkTuyendonvi(2);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "hoatdongbcctinh",
-							"route": "hoatdongbcctinh/model",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/ModelView",
-							"visible": false
-						},
-						{
-							"text": "Mẫu số 6.2. Các hoạt động BCC - Huyện",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "hoatdongbcchuyen",
-							"route": "hoatdongbcchuyen/collection",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/CollectionView",
-							"tuyendonvi": 3,
-							"visible": function () {
-								return this.checkTuyendonvi(3);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "hoatdongbcchuyen",
-							"route": "hoatdongbcchuyen/model",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/ModelView",
-							"visible": false
-						},
-						{
-							"text": "Mẫu số 6.3. Các hoạt động BCC Xã/Thôn",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "hoatdongbccxathon",
-							"route": "hoatdongbccxathon/collection",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/CollectionView",
-							"tuyendonvi": 4,
-							"visible": function () {
-								return this.checkTuyendonvi(4);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "hoatdongbccxathon",
-							"route": "hoatdongbccxathon/model",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/ModelView",
-							"visible": false
-						},
-						{
-							"text": "Mẫu số 6.4. Các hoạt động BCC - Trường học",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "hoatdongbcctruonghoc",
-							"route": "hoatdongbcctruonghoc/collection",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/CollectionView",
-							"tuyendonvi": 4,
-							"visible": function () {
-								return this.checkTuyendonvi(4);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "hoatdongbcctruonghoc",
-							"route": "hoatdongbcctruonghoc/model",
-							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/ModelView",
-							"visible": false
-						},
+//						{
+//							"text": "Mẫu số 6.1. Các hoạt động BCC - Tỉnh",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcctinh",
+//							"route": "hoatdongbcctinh/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/CollectionView",
+//							"tuyendonvi": 2,
+//							"visible": function () {
+//								return this.checkTuyendonvi(2);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcctinh",
+//							"route": "hoatdongbcctinh/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.2. Các hoạt động BCC - Huyện",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcchuyen",
+//							"route": "hoatdongbcchuyen/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/CollectionView",
+//							"tuyendonvi": 3,
+//							"visible": function () {
+//								return this.checkTuyendonvi(3);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcchuyen",
+//							"route": "hoatdongbcchuyen/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.3. Các hoạt động BCC Xã/Thôn",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbccxathon",
+//							"route": "hoatdongbccxathon/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/CollectionView",
+//							"tuyendonvi": 4,
+//							"visible": function () {
+//								return this.checkTuyendonvi(4);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbccxathon",
+//							"route": "hoatdongbccxathon/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.4. Các hoạt động BCC - Trường học",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcctruonghoc",
+//							"route": "hoatdongbcctruonghoc/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/CollectionView",
+//							"tuyendonvi": 4,
+//							"visible": function () {
+//								return this.checkTuyendonvi(4);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcctruonghoc",
+//							"route": "hoatdongbcctruonghoc/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/ModelView",
+//							"visible": false
+//						},
 					]
 				},
 				{
