@@ -48,49 +48,30 @@ apimanager.create_api(DTThieuSo,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],
 #     url_prefix='/api/v1',
 #     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-#     collection_name='captinh')
- 
-apimanager.create_api(DTTruongHoc,
+#     collection_name='captinh') 
+apimanager.create_api(KeHoachBCCXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='dttruonghoc')
- 
-apimanager.create_api(NguocNcCongTrinh,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='nguonnccongtrinh')
-     
-apimanager.create_api(CapNcTruongTram,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='capnctruongtram')
-# 
-apimanager.create_api(ItemThon,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='itemthon')
+    collection_name='kehoach_bcc_xa')
 
-apimanager.create_api(ItemXa,
+apimanager.create_api(KeHoachBCCHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='itemxa')
+    collection_name='kehoach_bcc_huyen')
 
-apimanager.create_api(ItemHuyen,
+apimanager.create_api(KeHoachBCCThon,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='itemhuyen')
+    collection_name='kehoach_bcc_thon')
 
-apimanager.create_api(ItemTinh,
+apimanager.create_api(KeHoachBCCTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='itemtinh')
+    collection_name='kehoach_bcc_tinh')
 
 apimanager.create_api(KeHoachThucHien,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

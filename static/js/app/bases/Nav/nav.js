@@ -642,9 +642,9 @@ define(function (require) {
 							"text": "Biểu mẫu số 5: Phiếu điều tra trường học/ TYT",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "dttruonghoc",
-							"route": "dttruonghoc/collection",
-							"$ref": "app/view/PhuLuc/DTTruongHoc/view/CollectionView",
+							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
+							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection",
+							"$ref": "app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 							"tuyendonvi": 4,
 							"visible": function () {
 								return this.checkTuyendonvi(4);
@@ -652,9 +652,9 @@ define(function (require) {
 						},
 						{
 							"type": "view",
-							"collectionName": "dttruonghoc",
-							"route": "dttruonghoc/model",
-							"$ref": "app/view/PhuLuc/DTTruongHoc/view/ModelView",
+							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
+							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model",
+							"$ref": "app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{

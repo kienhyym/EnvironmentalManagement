@@ -15,6 +15,7 @@ def init_controllers(app):
 #     import application.controllers.model_hdhgd_api
     import application.controllers.thongtuquychuannuoc_api
     import application.controllers.kehoachbcc_api
+    import application.controllers.truong_tramyte_vesinh_capnuoc_api
 
     @app.route('/')
     def index(request):

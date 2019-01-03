@@ -83,10 +83,10 @@ class KeHoachBCCTinh(CommonModel):
 
 class KeHoachThucHien(CommonModel):
     __tablename__ =  'kehoachthuchien'
-    itemthon = relationship("ItemThon")
-    itemxa = relationship("ItemXa")
-    itemhuyen = relationship("ItemHuyen")
-    itemtinh = relationship("ItemTinh")
+#     itemthon = relationship("ItemThon")
+#     itemxa = relationship("ItemXa")
+#     itemhuyen = relationship("ItemHuyen")
+#     itemtinh = relationship("ItemTinh")
 
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
