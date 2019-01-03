@@ -327,6 +327,14 @@ define(function (require) {
                         label: "TRANSLATE:SAVE",
                         command: function () {
                             var self = this;
+                            var tentruongtram = self.model.get("ten_truong_tramyte");
+    						var matruongtram = self.model.get("ma_truong_tramyte");
+    						
+    						if(tentruongtram === null || tentruongtram === ""){
+    							self.getApp().notify({message: "Chưa nhập tên trường học/trạm y tế!"},{type: "danger"});
+    						}else if(matruongtram === null || matruongtram === ""){
+    							self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
+    						} else {
                             self.model.save(null,
                                 {
                                     success: function (model, respose, options) {
@@ -339,6 +347,7 @@ define(function (require) {
                                         self.getApp().notify('Lưu thông tin không thành công!');
                                     }
                                 });
+    						}
                         }
                     },
                     {
