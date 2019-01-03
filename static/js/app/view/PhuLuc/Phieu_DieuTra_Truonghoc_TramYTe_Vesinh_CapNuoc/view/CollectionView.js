@@ -14,19 +14,36 @@ define(function (require) {
         collectionName: "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
         uiControl: {
             fields: [
-
+                {
+                    field: "tinhthanh",
+                    textField: "ten",
+                    label: "Tên Tỉnh",
+                    foreignRemoteField: "id",
+                    foreignField: "tinhthanh_id",
+                    width:250
+                },
+                {
+                    field: "quanhuyen",
+                    textField: "ten",
+                    label: "Tên Huyện",
+                    foreignRemoteField: "id",
+                    foreignField: "quanhuyen_id",
+                    width:250
+                },
                 {
                     field: "xaphuong",
                     textField: "ten",
-                    label: "Tên xã",
+                    label: "Tên Xã",
                     foreignRemoteField: "id",
                     foreignField: "xaphuong_id",
+                    width:250
                 },
-                { field: "ten_truong_tramyte", label: "Tên trường/trạm" },
-                { field: "ma_truong_tramyte", label: "Mã trường/trạm" },
+                { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế", width:250 },
+                { field: "ma_truong_tramyte", label: "Mã trường học/trạm y tế", width:250 },
                 {
                     field: "loai_truong_tramyte",
-                    label: "Loại trường/trạm",
+                    label: "Loại trường học/trạm y tế",
+                    width:250,
                     template: function (dataRow) {
                         if (dataRow.loai_truong_tramyte === 7) {
                             return "Trạm y tế"

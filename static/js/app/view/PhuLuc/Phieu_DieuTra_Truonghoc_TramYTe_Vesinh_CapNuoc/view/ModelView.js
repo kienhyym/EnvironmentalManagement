@@ -141,10 +141,10 @@ define(function (require) {
                     refresh: true,
                     primaryField: "id",
                     fields: [
-                        { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế" },
-                        { field: "ma_truong_tramyte", label: "Mã trường học/trạm y tế" },
-                        { field: "ten_khu_khaosat", label: "Khu khảo sát" },
-                        { field: "ghichu", label: "Nhận xét bổ sung" },
+                        { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế", width:250 },
+                        { field: "ma_truong_tramyte", label: "Mã trường học/trạm y tế", width:250 },
+                        { field: "ten_khu_khaosat", label: "Khu khảo sát", width:250 },
+                        { field: "ghichu", label: "Nhận xét bổ sung", width:250 },
                         {
                             field: "command",
                             label: " ",
