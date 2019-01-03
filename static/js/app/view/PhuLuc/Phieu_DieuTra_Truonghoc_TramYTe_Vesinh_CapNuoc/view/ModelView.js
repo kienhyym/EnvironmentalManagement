@@ -46,36 +46,36 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: '1',
                         text: "Trường mẫu giáo",
                     },
                     {
-                        value: 2,
+                        value: '2',
                         text: "Trường tiểu học",
 
                     },
                     {
-                        value: 3,
+                        value: '3',
                         text: "Trường trung học cơ sở",
 
                     },
                     {
-                        value: 4,
+                        value: '4',
                         text: "Trường trung học phổ thông",
 
                     },
                     {
-                        value: 5,
+                        value: '5',
                         text: "Trường trung học dạy nghề",
 
                     },
                     {
-                        value: 6,
+                        value: '6',
                         text: "Trường nội trú",
 
                     },
                     {
-                        value: 7,
+                        value: '7',
                         text: "Trạm y tế",
 
                     }]
@@ -128,7 +128,12 @@ define(function (require) {
                         value: 6,
                         text: "Nước đóng chai",
 
-                    }]
+                    },
+                    {
+                        value: 96,
+                        text: "Nguồn nước khác (nêu rõ)",
+                    },
+                    ]
                 },
                 {
                     field: "phieuchitiet",
@@ -150,14 +155,14 @@ define(function (require) {
                                     "action": function (params, args) {
                                         var self = this;
                                         var fields = self.model.get("phieuchitiet");
-                                        console.log("arr field===", fields);
-                                        console.log("params===", params);
-                                        console.log("args===", args);
+//                                        console.log("arr field===", fields);
+//                                        console.log("params===", params);
+//                                        console.log("args===", args);
                                         var rowID = params.rowData.id;
-                                        console.log("Row ID", rowID);
+//                                        console.log("Row ID", rowID);
                                         for (var i = 0; i < fields.length; i++) {
                                             if (fields[i].id === rowID) {
-                                                console.log("logid", fields[i].id);
+//                                                console.log("logid", fields[i].id);
                                                 fields.splice(i, 1);
                                             }
                                         }
@@ -182,6 +187,32 @@ define(function (require) {
                                 view.dialog({
                                     size: "large"
                                 });
+                                
+                                view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                                view.model.on("change:quansat_khuvesinh", function () {
+                                	if (view.model.get("quansat_khuvesinh") == 96) {
+                                		view.$el.find("#quansat_khuvesinh_loaikhac").show();
+                                	} else{
+                                		view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                                	}
+                    			});
+                                
+                                view.model.on("change:congtrinh_ruatay", function () {
+                                	if (view.model.get("congtrinh_ruatay") == 2) {
+                                		view.$el.find("#quansat_congtrinh_ruatay").hide();
+                                	} else{
+                                		view.$el.find("#quansat_congtrinh_ruatay").show();
+                                	}
+                    			});
+                                
+                                view.model.on("change:khu_ditieu", function () {
+                                	if (view.model.get("khu_ditieu") == 2) {
+                                		view.$el.find("#thongtinkhuditieu").hide();
+                                	} else{
+                                		view.$el.find("#thongtinkhuditieu").show();
+                                	}
+                    			});
+
                                 var tentruongtram = self.model.get("ten_truong_tramyte");
                                 view.model.set("ten_truong_tramyte", tentruongtram);
                                 var tentruongtram = self.model.get("ma_truong_tramyte");
@@ -197,9 +228,6 @@ define(function (require) {
                                     phieuchitiet.push(view.model.toJSON());
                                     self.model.set("phieuchitiet", phieuchitiet);
                                     self.applyBindings();
-                                    self.model.set("phieuchitiet", phieuchitiet);
-                                    console.log(phieuchitiet);
-                                    self.applyBindings();
                                 });
 
                             }
@@ -208,18 +236,45 @@ define(function (require) {
                     ],
                     onRowClick: function (event) {
                         var self = this;
+                        
                         if (event.rowId) {
                             var view = new Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView();
+                            
+                            view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                            view.model.on("change:quansat_khuvesinh", function () {
+                            	if (view.model.get("quansat_khuvesinh") == 96) {
+                            		view.$el.find("#quansat_khuvesinh_loaikhac").show();
+                            	} else{
+                            		view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                            	}
+                			});
+                            
+                            view.model.on("change:congtrinh_ruatay", function () {
+                            	if (view.model.get("congtrinh_ruatay") == 2) {
+                            		view.$el.find("#quansat_congtrinh_ruatay").hide();
+                            	} else{
+                            		view.$el.find("#quansat_congtrinh_ruatay").show();
+                            	}
+                			});
+                            
+                            view.model.on("change:khu_ditieu", function () {
+                            	if (view.model.get("khu_ditieu") == 2) {
+                            		view.$el.find("#thongtinkhuditieu").hide();
+                            	} else{
+                            		view.$el.find("#thongtinkhuditieu").show();
+                            	}
+                			});
+                            
                             view.model.set(event.rowData);
                             view.dialog({
                                 size: "large"
                             });
 
                             view.on("delete", function (event) {
-                                console.log("event=====", event);
+//                                console.log("event=====", event);
                                 var fields = self.model.get("phieuchitiet");
-                                console.log("ROWID=======", event.id);
-                                console.log("phieu chi tiet", fields);
+//                                console.log("ROWID=======", event.id);
+//                                console.log("phieu chi tiet", fields);
                                 for (var i = 0; i < fields.length; i++) {
                                     if (fields[i].id === event.id) {
                                         fields.splice(i, 1);
@@ -230,10 +285,10 @@ define(function (require) {
                             });
                             view.on('close', function (data) {
                                 var phieuchitiet = self.model.get("phieuchitiet");
-                                console.log("data==========", data);
-                                console.log("phieuchitiet", phieuchitiet);
+//                                console.log("data==========", data);
+//                                console.log("phieuchitiet", phieuchitiet);
                                 for (var i = 0; i < phieuchitiet.length; i++) {
-                                    console.log(phieuchitiet[i].id);
+//                                    console.log(phieuchitiet[i].id);
                                     if (phieuchitiet[i].id == data.id) {
                                         phieuchitiet[i] = data;
                                     }
@@ -314,6 +369,7 @@ define(function (require) {
 
         render: function () {
             var self = this;
+            self.$el.find("#nguonnuocchinh_loaikhac").hide();
             var id = this.getApp().getRouter().getParam("id");
             self.model.on("change:loai_truong_tramyte", function () {
                 if (self.model.get("loai_truong_tramyte") == 7) {
@@ -324,7 +380,14 @@ define(function (require) {
                     self.$el.find("#loaidiemtruong").show();
                 }
             });
-
+            
+            self.model.on("change:nguonnuocchinh", function () {
+            	if (self.model.get("nguonnuocchinh") == 96) {
+            		self.$el.find("#nguonnuocchinh_loaikhac").show();
+            	} else{
+            		self.$el.find("#nguonnuocchinh_loaikhac").hide();
+            	}
+			});
             var viewData = self.viewData;
             if (viewData !== null && viewData !== undefined) {
                 id = null;

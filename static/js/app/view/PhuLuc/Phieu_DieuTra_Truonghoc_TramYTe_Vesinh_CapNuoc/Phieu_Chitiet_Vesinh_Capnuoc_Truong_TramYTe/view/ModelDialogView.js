@@ -61,7 +61,13 @@ define(function (require) {
                         value: 99,
                         text: "Không quan sát được",
 
-                    },],
+                    },
+                    {
+                        value: 96,
+                        text: "Khác (Nêu rõ)",
+
+                    },
+                    ],
                 },
                 {
                     field: "sannha_rannut",
@@ -189,7 +195,6 @@ define(function (require) {
                         value: 99,
                         text: "Không quan sát được",
                     },],
-                    value: 0
                 },
                 {
                     field: "mailop_nhavesinh",
@@ -398,12 +403,20 @@ define(function (require) {
 
         render: function () {
             var self = this;
+//            self.$el.find("#quansat_khuvesinh_loaikhac").hide();
             var id = null;
             if (self.viewData !== null) {
                 id = self.viewData.id;
                 var phieuthuthap_id = self.viewData.phieuthuthap_id;
                 self.model.set("phieu_chitiet_vesinh_capnuoc_truong_tramyte_id", phieuthuthap_id);
             }
+//            self.model.on("change:quansat_khuvesinh", function () {
+//            	if (self.model.get("quansat_khuvesinh") == 96) {
+//            		self.$el.find("#quansat_khuvesinh_loaikhac").show();
+//            	} else{
+//            		self.$el.find("#quansat_khuvesinh_loaikhac").hide();
+//            	}
+//			});
             if (id) {
                 this.model.set('id', id);
                 this.model.fetch({

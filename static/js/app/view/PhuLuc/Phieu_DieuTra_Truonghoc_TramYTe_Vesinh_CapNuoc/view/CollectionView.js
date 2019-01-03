@@ -6,6 +6,7 @@ define(function (require) {
 
     var template = require('text!app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/tpl/collection.html'),
         schema = require('json!schema/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuocSchema.json');
+    
     return Gonrin.CollectionView.extend({
         template: template,
         modelSchema: schema,
@@ -35,17 +36,14 @@ define(function (require) {
                             return "Trường trung học dạy nghề";
                         } else if (dataRow.loai_truong_tramyte === 4) {
                             return "Trường trung học phổ thông";
-                        }
-                        else if (dataRow.loai_truong_tramyte === 3) {
+                        } else if (dataRow.loai_truong_tramyte === 3) {
                             return "Trường trung học cơ sở";
-                        }
-                        else if (dataRow.loai_truong_tramyte === 2) {
+                        } else if (dataRow.loai_truong_tramyte === 2) {
                             return "Trường tiểu học";
-                        }
-                        else if (dataRow.loai_truong_tramyte === 1) {
+                        } else {
                             return "Trường mẫu giáo";
                         }
-                    }
+                    },
                 },
 
             ],

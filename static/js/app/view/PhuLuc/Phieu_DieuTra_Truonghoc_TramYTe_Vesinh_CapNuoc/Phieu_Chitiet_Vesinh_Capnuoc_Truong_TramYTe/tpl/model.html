@@ -45,7 +45,7 @@
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" data-bind="value:quansat_khuvesinh" /><br>
-                                    Khác (Nêu rõ): <input type="text" class="form-control" data-bind="value:quansat_khuvesinh_loaikhac" />
+                                    <input id="quansat_khuvesinh_loaikhac" type="text" class="form-control" data-bind="value:quansat_khuvesinh_loaikhac" />
                                 </td>
                             </tr>
                             <tr>
@@ -124,7 +124,7 @@
                                 <td><input type="text" class="form-control" data-bind="value:congtrinh_ruatay" /></td>
 
                             </tr>
-                            <tr>
+                            <tr id="quansat_congtrinh_ruatay">
                                 <td class="stt">3.9.1</td>
                                 <td class="content">
                                     Nếu có, đề nghị được quan sát công trình rửa tay<br>
@@ -203,7 +203,7 @@
                                 </td>
                                 <td><input type="text" class="form-control" data-bind="value:khu_ditieu" /></td>
                             </tr>
-                            <tr>
+                            <tr id="thongtinkhuditieu">
                                 <td class="stt">3.19</td>
                                 <td class="content">
                                     Thông tin về khu đi tiểu
