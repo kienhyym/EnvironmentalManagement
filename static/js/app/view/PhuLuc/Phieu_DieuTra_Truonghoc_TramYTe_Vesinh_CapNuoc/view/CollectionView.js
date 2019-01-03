@@ -23,7 +23,30 @@ define(function (require) {
                 },
                 { field: "ten_truong_tramyte", label: "Tên trường/trạm" },
                 { field: "ma_truong_tramyte", label: "Mã trường/trạm" },
-                { field: "loai_truong_tramyte", label: "Loại trường/trạm", },
+                {
+                    field: "loai_truong_tramyte",
+                    label: "Loại trường/trạm",
+                    template: function (dataRow) {
+                        if (dataRow.loai_truong_tramyte === 7) {
+                            return "Trạm y tế"
+                        } else if (dataRow.loai_truong_tramyte === 6) {
+                            return "Trường nội trú";
+                        } else if (dataRow.loai_truong_tramyte === 5) {
+                            return "Trường trung học dạy nghề";
+                        } else if (dataRow.loai_truong_tramyte === 4) {
+                            return "Trường trung học phổ thông";
+                        }
+                        else if (dataRow.loai_truong_tramyte === 3) {
+                            return "Trường trung học cơ sở";
+                        }
+                        else if (dataRow.loai_truong_tramyte === 2) {
+                            return "Trường tiểu học";
+                        }
+                        else if (dataRow.loai_truong_tramyte === 1) {
+                            return "Trường mẫu giáo";
+                        }
+                    }
+                },
 
             ],
             onRowClick: function (event) {
