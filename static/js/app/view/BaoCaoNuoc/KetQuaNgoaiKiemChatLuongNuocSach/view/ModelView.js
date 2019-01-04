@@ -10,7 +10,7 @@ define(function (require) {
 	//var maxDate = new Date();
 	//var KQNgoaiKiemChatLuong = require('app/view/BaoCaoNuoc/KQNgoaiKiemChatLuong/view/ModelItemView');
 	var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
-	
+	var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
@@ -46,7 +46,6 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
@@ -89,6 +88,19 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			
+			self.$el.find("#addItem").unbind("click").bind("click", function () {
+				console.log("them thong so active");
+                var view = new ThongSoBaoCaoChatLuongNuocView();
+                view.dialog();
+                console.log( "view====",view);
+            });
+			
+			self.model.on("change:somauvavitri", function () {
+				if (self.model.get("somauvavitri") > 10){
+					self.getApp().notify({message: "Số lấy mẫu phải nhỏ hơn 10"},{type: "danger"});
+				}
+			});
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
