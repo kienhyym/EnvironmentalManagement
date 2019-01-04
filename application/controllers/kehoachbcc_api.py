@@ -38,11 +38,11 @@ apimanager.create_api(DuyTriVS,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='duytrivs')
 #  
-apimanager.create_api(DTThieuSo,
+apimanager.create_api(Gioi_Dantoc_ThieuSo,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='dtthieuso')
+    collection_name='gioi_dantoc_thieuso')
  
 # apimanager.create_api(CapTinh,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],
