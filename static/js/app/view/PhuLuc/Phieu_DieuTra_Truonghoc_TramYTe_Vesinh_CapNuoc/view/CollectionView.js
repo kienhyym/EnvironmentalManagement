@@ -38,12 +38,11 @@ define(function (require) {
                     foreignField: "xaphuong_id",
                     width:250
                 },
-                { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế", width:250 },
-                { field: "ma_truong_tramyte", label: "Mã trường học/trạm y tế", width:250 },
+                { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế", width:300 },
                 {
                     field: "loai_truong_tramyte",
                     label: "Loại trường học/trạm y tế",
-                    width:250,
+                    width:300,
                     template: function (dataRow) {
                         if (dataRow.loai_truong_tramyte === 7) {
                             return "Trạm y tế"
