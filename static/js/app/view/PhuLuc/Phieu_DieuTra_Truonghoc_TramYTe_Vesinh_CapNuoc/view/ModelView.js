@@ -329,11 +329,28 @@ define(function (require) {
                             var self = this;
                             var tentruongtram = self.model.get("ten_truong_tramyte");
     						var matruongtram = self.model.get("ma_truong_tramyte");
-    						
-    						if(tentruongtram === null || tentruongtram === ""){
+    						var tinhthanh = self.model.get("tinhthanh");
+    						var quanhuyen = self.model.get("quanhuyen");
+    						var xaphuong = self.model.get("xaphuong");
+    						var tennguoitraloi = self.model.get("tennguoitraloi");
+    						var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
+    						var thongtinlienlac = self.model.get("thongtinlienlac");
+    						if(tinhthanh === null || tinhthanh === ""){
+    							self.getApp().notify({message: "Chưa chọn tên tỉnh"},{type: "danger"});
+    						} else if(quanhuyen === null || quanhuyen === ""){
+    							self.getApp().notify({message: "Chưa chọn tên huyện"},{type: "danger"});
+    						} else if(xaphuong === null || xaphuong === ""){
+    							self.getApp().notify({message: "Chưa chọn tên xã"},{type: "danger"});
+    						} else if(tentruongtram === null || tentruongtram === ""){
     							self.getApp().notify({message: "Chưa nhập tên trường học/trạm y tế!"},{type: "danger"});
     						}else if(matruongtram === null || matruongtram === ""){
     							self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
+    						} else if(tennguoitraloi === null || tennguoitraloi === ""){
+    							self.getApp().notify({message: "Chưa nhập tên người trả lời"},{type: "danger"});
+    						} else if(chucvu_nguoitraloi === null || chucvu_nguoitraloi === ""){
+    							self.getApp().notify({message: "Chưa nhập chức vụ người trả lời"},{type: "danger"});
+    						} else if(thongtinlienlac === null || thongtinlienlac === ""){
+    							self.getApp().notify({message: "Chưa nhập thông tin liên lạc người trả lời"},{type: "danger"});
     						} else {
                             self.model.save(null,
                                 {
