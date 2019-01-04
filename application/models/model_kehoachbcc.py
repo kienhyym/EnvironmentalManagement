@@ -40,6 +40,13 @@ class TienDoKeHoachBCC(CommonModel):
     danhsach_hoatdong = db.Column(JSONB())
     tuyendonvi = db.Column(db.String)#Tinh/Huyen/Xa
     
+class DanhMucHoatDong(CommonModel):
+    __tablename__ = 'danhmuchoatdong'
+    mahoatdong = db.Column(db.String)
+    tenhoatdong = db.Column(db.String)
+    loai_hoatdong = db.Column(db.String) ##Cap tinh , huyen ,xa,thon
+    loai_nganh = db.Column(db.String)#nganh y te, nganh gia
+    muctieu = db.Column(db.String)    
 
     
 # 
@@ -162,8 +169,8 @@ class DuyTriVS(CommonModel):
     tram_yte = db.Column(db.Integer)
    
 #Biểu mẫu số 4: Giới và Dân tộc thiểu số
-class DTThieuSo(CommonModel):
-    __tablename__ = 'dtthieuso'
+class Gioi_Dantoc_ThieuSo(CommonModel):
+    __tablename__ = 'gioi_dantoc_thieuso'
     ngdaotao_yte = db.Column(db.Integer)
     nuthamgia_yte = db.Column(db.Integer)
     ptnuthamgia_yte = db.Column(db.Integer)
@@ -185,12 +192,7 @@ class DTThieuSo(CommonModel):
    
 
 
-class DanhMucHoatDong(CommonModel):
-    __tablename__ = 'danhmuchoatdong'
-    mahoatdong = db.Column(db.String)
-    tenhoatdong = db.Column(db.String)
-    loai_hoatdong = db.Column(db.String) ##Cap tinh , huyen ,xa,thon
-    muctieu = db.Column(db.String)
+
 
 
 
