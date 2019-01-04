@@ -46,36 +46,36 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: '1',
+                        value: 1,
                         text: "Trường mẫu giáo",
                     },
                     {
-                        value: '2',
+                        value: 2,
                         text: "Trường tiểu học",
 
                     },
                     {
-                        value: '3',
+                        value: 3,
                         text: "Trường trung học cơ sở",
 
                     },
                     {
-                        value: '4',
+                        value: 4,
                         text: "Trường trung học phổ thông",
 
                     },
                     {
-                        value: '5',
+                        value: 5,
                         text: "Trường trung học dạy nghề",
 
                     },
                     {
-                        value: '6',
+                        value: 6,
                         text: "Trường nội trú",
 
                     },
                     {
-                        value: '7',
+                        value: 7,
                         text: "Trạm y tế",
 
                     }]

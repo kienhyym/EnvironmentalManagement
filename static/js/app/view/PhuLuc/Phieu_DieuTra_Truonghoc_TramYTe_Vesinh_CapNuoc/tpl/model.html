@@ -23,18 +23,47 @@
                         <table class="table">
                             <thead>
                                 <th colspan="2">Thông tin địa bàn<br>
-                                    Tên Tỉnh: <input type="text" class="form-control" data-bind="dict:tinhthanh" /><br>
-                                    Tên Huyện: <input type="text" class="form-control" data-bind="dict:quanhuyen" /><br>
-                                    Tên Xã: <input type="text" class="form-control" data-bind="dict:xaphuong" /><br>
-                                    Tên Trường học/Trạm y tế: <input type="text" class="form-control" data-bind="value:ten_truong_tramyte" /><br>
-                                    Mã Trường/trạm: <input type="text" class="form-control" data-bind="value:ma_truong_tramyte" />
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    Tên Tỉnh: <input type="text" class="form-control" data-bind="dict:tinhthanh" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    Tên Huyện: <input type="text" class="form-control" data-bind="dict:quanhuyen" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    Tên Xã: <input type="text" class="form-control" data-bind="dict:xaphuong" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    Tên Trường học/Trạm y tế: <input type="text" class="form-control"
+                                                        data-bind="value:ten_truong_tramyte" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    Mã Trường/trạm: <input type="text" class="form-control" data-bind="value:ma_truong_tramyte" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </th>
                             </thead>
+
                             <tbody>
                                 <tr>
                                     <td class="description">Loại Trường học/trạm (khoanh 1)</td>
-                                    <td class="loaitruongtram"><input name="check" type="radio" class="form-control"
-                                            data-bind="value:loai_truong_tramyte" /></td>
+                                    <td><input type="text" class="form-control" data-bind="value:loai_truong_tramyte" /></td>
                                 </tr>
                                 <tr id="buoihoc">
                                     <td class="description">NẾU LÀ TRƯỜNG HỌC, GHI SỐ BUỔI HỌC VÀ SỐ HỌC SINH MỖI BUỔI
