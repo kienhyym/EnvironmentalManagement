@@ -12,93 +12,106 @@ def default_uuid():
     return str(uuid.uuid4())
 
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
-class KeHoachBCCXa(CommonModel):
-    __tablename__ = 'kehoach_bcc_xa'
-    kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
-    hoatdong = db.Column(db.String)
-    muctieu = db.Column(db.String)
-    ketqua_datduoc = db.Column(db.String)
-    tongsonguoi_thamgia = db.Column(db.Integer)
-    songuoi_lanu = db.Column(db.Integer)
-    songuoi_dantocthieuso = db.Column(db.Integer)
-    nganh = db.Column(db.Integer)
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    quanhuyen = relationship('QuanHuyen')
-    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    xaphuong = relationship('XaPhuong')
-
-class KeHoachBCCHuyen(CommonModel):
-    __tablename__ = 'kehoach_bcc_huyen'
-    kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
-    hoatdong = db.Column(db.String)
-    muctieu = db.Column(db.String)
-    ketqua_datduoc = db.Column(db.String)
-    tongsonguoi_thamgia = db.Column(db.Integer)
-    songuoi_lanu = db.Column(db.Integer)
-    songuoi_dantocthieuso = db.Column(db.Integer)
-    nganh = db.Column(db.Integer)
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    quanhuyen = relationship('QuanHuyen')
-    # xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    # xaphuong = relationship('XaPhuong')
-
-class KeHoachBCCThon(CommonModel):
-    __tablename__ = 'kehoach_bcc_thon'
-    kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
-    hoatdong = db.Column(db.String)
-    muctieu = db.Column(db.String)
-    ketqua_datduoc = db.Column(db.String)
-    tongsonguoi_thamgia = db.Column(db.Integer)
-    songuoi_lanu = db.Column(db.Integer)
-    songuoi_dtts = db.Column(db.Integer)
-    loainganh = db.Column(db.Integer)#1=yte, 2=giaoduc
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    quanhuyen = relationship('QuanHuyen')
-    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    xaphuong = relationship('XaPhuong')
-    thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
-    thonxom = relationship('ThonXom')
+class TienDoKeHoachBCC(CommonModel):
+    __tablename__ = 'tiendo_kehoach_bcc'
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    ngaybaocao = db.Column(db.DateTime())
+    nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
     
-class KeHoachBCCTinh(CommonModel):
-    __tablename__ = 'kehoach_bcc_tinh'
-    kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
-    hoatdong = db.Column(db.String)
-    muctieu = db.Column(db.String)
-    tiendo_thuchien = db.Column(db.String)
-    tongsonguoi_thamgia = db.Column(db.Integer)
-    songuoi_lanu = db.Column(db.Integer)
-    songuoi_dantocthieuso = db.Column(db.Integer)
-    ketqua_datduoc = db.Column(db.String)
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
-
-class KeHoachThucHien(CommonModel):
-    __tablename__ =  'kehoachthuchien'
-#     itemthon = relationship("ItemThon")
-#     itemxa = relationship("ItemXa")
-#     itemhuyen = relationship("ItemHuyen")
-#     itemtinh = relationship("ItemTinh")
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-
-    xaydungduthao_bcc = db.Column(db.Integer)
-    nganh = db.Column(db.Integer)
-    vihema_chapthuan = db.Column(db.Integer)
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    xaphuong = relationship('XaPhuong')
+    
+    tiendo_xaydung = db.Column(db.SmallInteger, nullable=False)
+    tiendo_rasoat = db.Column(db.SmallInteger, nullable=False)
+    tiendo_pheduyet = db.Column(db.SmallInteger, nullable=False)
     ngay_pheduyet = db.Column(db.DateTime())
-    trangthai_tinhpheduyen = db.Column(db.Integer)
-    #tinhpheduyet_bcc = db.Column(db.String)
-    sohoatdong_pheduyet = db.Column(db.Integer)
-    sohoatdong_bcc = db.Column(db.String)
+    sohoatdong_cotloi_pheduyet = db.Column(db.Integer)
+    sohoatdong_cotloi_hoanthanh = db.Column(db.Integer)
+    danhsach_hoatdong = db.Column(JSONB())
+    tuyendonvi = db.Column(db.String)#Tinh/Huyen/Xa
+    
+
+    
+# 
+# class KeHoachBCCHuyen(CommonModel):
+#     __tablename__ = 'kehoach_bcc_huyen'
+#     kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
+#     hoatdong = db.Column(db.String)
+#     muctieu = db.Column(db.String)
+#     ketqua_datduoc = db.Column(db.String)
+#     tongsonguoi_thamgia = db.Column(db.Integer)
+#     songuoi_lanu = db.Column(db.Integer)
+#     songuoi_dantocthieuso = db.Column(db.Integer)
+#     nganh = db.Column(db.Integer)
+# 
+#     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+#     tinhthanh = relationship('TinhThanh')
+#     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+#     quanhuyen = relationship('QuanHuyen')
+#     # xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+#     # xaphuong = relationship('XaPhuong')
+# 
+# class KeHoachBCCThon(CommonModel):
+#     __tablename__ = 'kehoach_bcc_thon'
+#     kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
+#     hoatdong = db.Column(db.String)
+#     muctieu = db.Column(db.String)
+#     ketqua_datduoc = db.Column(db.String)
+#     tongsonguoi_thamgia = db.Column(db.Integer)
+#     songuoi_lanu = db.Column(db.Integer)
+#     songuoi_dtts = db.Column(db.Integer)
+#     loainganh = db.Column(db.Integer)#1=yte, 2=giaoduc
+# 
+#     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+#     tinhthanh = relationship('TinhThanh')
+#     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+#     quanhuyen = relationship('QuanHuyen')
+#     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+#     xaphuong = relationship('XaPhuong')
+#     thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+#     thonxom = relationship('ThonXom')
+#     
+# class KeHoachBCCTinh(CommonModel):
+#     __tablename__ = 'kehoach_bcc_tinh'
+#     kehoachthuchien_id = db.Column(UUID(as_uuid=True), ForeignKey('kehoachthuchien.id'), nullable=True)
+#     hoatdong = db.Column(db.String)
+#     muctieu = db.Column(db.String)
+#     tiendo_thuchien = db.Column(db.String)
+#     tongsonguoi_thamgia = db.Column(db.Integer)
+#     songuoi_lanu = db.Column(db.Integer)
+#     songuoi_dantocthieuso = db.Column(db.Integer)
+#     ketqua_datduoc = db.Column(db.String)
+#     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+#     tinhthanh = relationship('TinhThanh')
+# 
+# class KeHoachThucHien(CommonModel):
+#     __tablename__ =  'kehoachthuchien'
+# #     itemthon = relationship("ItemThon")
+# #     itemxa = relationship("ItemXa")
+# #     itemhuyen = relationship("ItemHuyen")
+# #     itemtinh = relationship("ItemTinh")
+# 
+#     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+#     tinhthanh = relationship('TinhThanh')
+# 
+#     xaydungduthao_bcc = db.Column(db.Integer)
+#     nganh = db.Column(db.Integer)
+#     vihema_chapthuan = db.Column(db.Integer)
+#     ngay_pheduyet = db.Column(db.DateTime())
+#     trangthai_tinhpheduyen = db.Column(db.Integer)
+#     #tinhpheduyet_bcc = db.Column(db.String)
+#     sohoatdong_pheduyet = db.Column(db.Integer)
+#     sohoatdong_bcc = db.Column(db.String)
 
     
 

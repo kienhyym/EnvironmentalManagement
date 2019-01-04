@@ -15,7 +15,7 @@ from application.client import HTTPClient
 from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
 
-def congdongTongCong(Baocao, current_user, nambaocao=None):
+def congdonTongCong(Baocao, current_user, nambaocao=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
                'nambaocao','kybaocao','mabaocao','nguoibaocao_id','thoigianbaocao','tinhtrang']
     
@@ -116,29 +116,38 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
 
-async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
+async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
     obj = to_dict(result)
     
-    list_baocao = congdongTongCong(VSCapThon,currentuser, obj['nambaocao'])
-    obj['danhsachbaocao'] = list_baocao
+#     list_baocao = congdonTongCong(VSCapThon,currentuser, obj['nambaocao'])
+#     obj['danhsachbaocao'] = list_baocao
+    list_baocao = []
+    if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
+        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        obj['danhsachbaocao'] = list_baocao
     result = obj
     
-async def reponse_caphuyen_single(request=None, Model=None, result=None, **kw):
+async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
     obj = to_dict(result)
     
-    list_baocao = congdongTongCong(VSCapXa,currentuser, obj['nambaocao'])
-    obj['danhsachbaocao'] = list_baocao
+#     list_baocao = congdonTongCong(VSCapXa,currentuser, obj['nambaocao'])
+#     obj['danhsachbaocao'] = list_baocao
+    list_baocao = []
+    if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
+        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
     
-async def reponse_captinh_single(request=None, Model=None, result=None, **kw):
+async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
     obj = to_dict(result)
-    
-    list_baocao = congdongTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
-    obj['danhsachbaocao'] = list_baocao
+    list_baocao = []
+    if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
+        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
     
@@ -160,7 +169,7 @@ apimanager.create_api(VSCapXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscapxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[reponse_capxa_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(GET_SINGLE=[reponse_capxa_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='vscapxa')
 
 
@@ -168,7 +177,7 @@ apimanager.create_api(VSCapHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaphuyen], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[reponse_caphuyen_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(GET_SINGLE=[reponse_caphuyen_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='vscaphuyen')
 
 
@@ -176,7 +185,7 @@ apimanager.create_api(VSCapTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaptinh], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(GET_SINGLE=[reponse_captinh_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(GET_SINGLE=[reponse_captinh_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
     collection_name='vscaptinh')
 
 

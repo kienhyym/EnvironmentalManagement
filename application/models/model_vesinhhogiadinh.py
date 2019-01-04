@@ -117,6 +117,7 @@ class VSCapXa(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
+    danhsachbaocao = db.Column(JSONB())
     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
 
 #Biểu mẫu số 3: Cấp huyen
@@ -154,6 +155,7 @@ class VSCapHuyen(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
+    danhsachbaocao = db.Column(JSONB())
     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
 
 
@@ -192,5 +194,6 @@ class VSCapTinh(CommonModel):
     tong_khonghopvs = db.Column(db.Integer)
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
+    danhsachbaocao = db.Column(JSONB())
     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
     
