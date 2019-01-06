@@ -51,6 +51,17 @@ define(function (require) {
 					textFormat: "DD/MM/YYYY",
 					extraFormats: ["DDMMYYYY"],
 				},
+//				{
+//					field: "danhgia",
+//					textFormat: function (rowObj) {
+//						console.log("rowObj: ", rowObj);
+//						if (rowObj.danhgia){
+//							return "Đạt";
+//						}
+//						
+//						return "Không Đạt";
+//					}
+//				}
 			],
 		},
 		tools: null,
@@ -69,7 +80,6 @@ define(function (require) {
 					self.updateKetQua(view.model.toJSON());
 				})
 			});
-			
 		},
 		updateKetQua: function(obj){
 			var self = this;
