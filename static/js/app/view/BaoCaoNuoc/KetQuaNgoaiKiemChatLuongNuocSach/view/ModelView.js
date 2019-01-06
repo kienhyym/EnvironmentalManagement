@@ -111,7 +111,7 @@
                     });
                     
                 });
-    			self.$el.find("#itemRemove").unbind('click').bind('click', function(data){
+    			view.$el.find("#itemRemove").unbind('click').bind('click', function(data){
                 	var fields = self.model.get("ketquangoaikiemchatluongnuoc");
                 	console.log("ketquangoaikiemchatluongnuoc==fields", fields);
                 	console.log("data====== remove", data);
