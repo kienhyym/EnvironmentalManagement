@@ -12,6 +12,12 @@ from datetime import datetime
 from gatco_restapi.helpers import to_dict
 
 
+class LoaiKyBaoCao(object):
+    THANG = 1
+    QUY = 2
+    SAUTHANG = 3
+    NAM = 4
+
 def hash_value(value):
     return hashlib.md5(value.encode('utf-8')).hexdigest()
 

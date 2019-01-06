@@ -6,6 +6,10 @@
 	text-align:center;
 }
 
+.bg-primary{
+	background-color: #337ab7 !important;
+}
+
 .yeallow {
   background-color: #FFF34F;
   padding: 5px 0 5px 0;

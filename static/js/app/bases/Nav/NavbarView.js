@@ -109,11 +109,11 @@ define(function (require) {
 							$entry.find('span.arrow').addClass("open");
 							$entry.children('a').append($('<span>').addClass("selected"));
 						}
-					} else if((index === 0)&&(is_root === true)){
+					} /* else if((index === 0)&&(is_root === true)){
 						$entry.addClass("open");
 						$entry.find('span.arrow').addClass("open");
 						$entry.children('a').append($('<span>').addClass("selected"));
-					}
+					}*/
 					if($el){
 						$el.append($entry);
 					}

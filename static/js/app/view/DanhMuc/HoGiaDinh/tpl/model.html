@@ -1,0 +1,51 @@
+<div block-bind="toolbar"></div>
+<div block-bind="content" style="margin-top: 20px;">
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>ID</label></div>
+		<div class="col-md-5">
+			<input type="text" readonly data-bind="value:id" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Tên Chủ Hộ</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="value:tenchuho" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Giới tính của chủ hộ</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="value:gioitinh" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Dân tộc</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="dict:dantoc" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Tỉnh/Thành Phố</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="dict:tinhthanh" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Quận/Huyện</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="dict:quanhuyen" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Xã/Phường</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="dict:xaphuong" />
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-3 text-right"><label>Thôn/Xóm/Bản</label></div>
+		<div class="col-md-5">
+			<input type="text" data-bind="dict:thonxom" />
+		</div>
+	</div>
+</div>

@@ -15,11 +15,11 @@ from application.client import HTTPClient
 from application.models.model_user import TinhTrangBaocaoEnum
 
 
-# apimanager.create_api(BanCongBoQuyHop,
-#     methods=['GET', 'POST', 'DELETE', 'PUT'],
-#     url_prefix='/api/v1',
-#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-#     collection_name='bancongboquyhop')
+apimanager.create_api(DonViCapNuoc,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='donvicapnuoc')
 
 async def baocao_prepost_chatluongnuocsach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)

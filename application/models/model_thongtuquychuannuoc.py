@@ -12,6 +12,21 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 def default_uuid():
     return str(uuid.uuid4())
 
+class DonViCapNuoc(CommonModel):
+    __tablename__ = 'donvicapnuoc'
+    ten = db.Column(db.String)
+    ma = db.Column(db.String)
+    diachi = db.Column(db.String)
+    congsuat = db.Column(DECIMAL)
+    tongso_hogiadinh = db.Column(db.Integer)
+    nguonnuoc = db.Column(db.String)
+    
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    xaphuong = relationship('XaPhuong')
 
 ##MauSo 1
 class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):

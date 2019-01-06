@@ -21,6 +21,9 @@
     "gioitinh": {
         "type": "number"
     },
+    "maho": {
+        "type": "string"
+    },
     "hongheo": {
         "type": "number"
     },
