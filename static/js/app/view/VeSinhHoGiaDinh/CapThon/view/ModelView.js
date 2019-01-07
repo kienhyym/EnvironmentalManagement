@@ -182,7 +182,7 @@ define(function (require) {
 				{
 					name: "copy",
 					type: "button",
-					buttonClass: "btn-danger btn-sm",
+					buttonClass: "btn-primary btn-sm",
 					label: "Sao chép từ báo cáo kỳ trước",
 					visible: function () {
 						return this.getApp().getRouter().getParam("id") == null;
