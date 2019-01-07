@@ -1,8 +1,8 @@
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading">Hoạt động cấp thôn</div>
+    <div class="panel-heading">Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông</div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		<div class="" style="margin-top: 30px;">
+		<div class="row" style="margin-top: 30px;">
 			<div class="form-inline form-group col-md-6">
 				<label>Năm đánh giá:</label>
 				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:nambaocao">
@@ -13,46 +13,72 @@
 			</div>
 		</div>
 
-        <div style="margin-top: 20px" class="row">
-            <div class="form-group">
-                <div class="form-group">
-                    <div class="col-md-6">
-                        <label>Chọn tỉnh</label>
-                        <input type="text" class="form-control" data-bind="dict:tinhthanh" />
+		<div class="table1">
+			<h3 style="padding-bottom:10px;">I. Thông tin chung</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td width="25%">Tỉnh/Thành phố</td>
+								<td width="25%"><input type="text" class="form-control" data-bind="dict:tinhthanh" /></td>
+								<td width="25%">Quận/Huyện</td>
+								<td width="25%"><input type="text" class="form-control"  data-bind="dict:quanhuyen" /></td>
+							</tr>
+							<tr>
+								<td>Xã/Phường</td>
+								<td><input type="text" class="form-control" data-bind="dict:xaphuong" /></td>
+								<td>Thôn/Xóm</td>
+								<td><input type="text" class="form-control"  data-bind="dict:thonxom" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">1. Xây dựng dự thảo kế hoạch BCC</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_xaydung" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">2. VIHEMA và WB rà soát, chấp thuận bản kế hoạch BCC</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_rasoat" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">3. Tỉnh phê duyệt kế hoạch BCC</td>
+								<td colspan="2">
+									<input type="text" class="form-control" data-bind="value:tiendo_pheduyet" />
+									<div class="row hide" id="pheduyet_extra">
+										<div class="col-lg-8 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê duyệt:</div>
+										<div class="col-lg-4 form-group">
+											<input type="text" data-bind="value:ngay_pheduyet"/>
+										</div>
+										<div class="col-lg-8 form-group">
+											<span class="glyphicon glyphicon-arrow-right"></span> Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt
+										</div>
+										<div class="col-lg-4 form-group">
+											<input type="text" data-bind="value:sohoatdong_cotloi_pheduyet"/>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:sohoatdong_cotloi_hoanthanh" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">Tổng số giảng viên</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tongsogiangvien" /></td>
+							</tr>
+							<tr>
+								<td colspan="2">Tổng số giảng viên là nữ</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tongsogiangvien_nu" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 
-                    </div>
-                    <div class="col-md-6">
-                        <label>Chọn huyện</label>
-                        <input type="text" class="form-control" data-bind="dict:quanhuyen" />
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-6">
-                    <label>Chọn thôn</label>
-                    <input type="text" class="form-control" data-bind="dict:thonxom" />
-
-                </div>
-                <div class="col-md-6">
-                    <label>Chọn xã</label>
-                    <th><input type="text" class="form-control" data-bind="dict:xaphuong" />
-
-                </div>
-                <div class="col-md-6">
-                    <label style="color: red">Chọn ngành</label>
-                    <input type="text" class="form-control" data-bind="value:nganh" />
-
-                </div>
-            </div>
-        </div>
-		<div class="col-md-12">
-               <div style="padding: 20px 2px;" id="addItem">
-               		<button class="btn btn-sm btm-success">Thêm mới hoạt động</button>
-               </div>
+		<div class="row">
+			<div style="padding: 20px 2px;" id="addItem">
+				<button class="btn btn-sm btn-success">Thêm mới hoạt động</button>
+			</div>
         </div>
 
         <div class="row">
@@ -93,13 +119,12 @@
                 </tbody>
 
                 <tfoot>
-
-                    <td style="min-width: 125px;"><input style="margin-bottom: 10px;" type="text" class="form-control" data-bind="value:hoatdong" /></td>
+                    <!-- <td style="min-width: 125px;"><input style="margin-bottom: 10px;" type="text" class="form-control" data-bind="value:hoatdong" /></td>
                     <td style="min-width: 111px;"><input type="text" class="form-control" data-bind="value:muctieu" /></td>
                     <td style="min-width: 100px;"><input type="text" class="form-control" data-bind="value:ketqua_datduoc" /></td>
                     <td><input type="text" class="form-control" data-bind="value:tongsonguoi_thamgia" /></td>
                     <td><input type="text" class="form-control" data-bind="value:songuoi_lanu" /></td>
-                    <td><input type="text" class="form-control" data-bind="value:songuoi_dantocthieuso" /></td>
+                    <td><input type="text" class="form-control" data-bind="value:songuoi_dantocthieuso" /></td> -->
 
                 </tfoot>
             </table>

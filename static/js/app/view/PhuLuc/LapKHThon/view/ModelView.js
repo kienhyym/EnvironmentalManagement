@@ -57,21 +57,58 @@ define(function (require) {
 					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
 				},
+//				{
+//					field: "nganh",
+//					uicontrol: "combobox",
+//					textField: "text",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"text": "NGÀNH Y TẾ"
+//						},
+//						{
+//							"value": 0,
+//							"text": "NGÀNH GIÁO DỤC"
+//						},
+//					],
+//				},
 				{
-					field: "nganh",
+					field: "tiendo_xaydung",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"text": "NGÀNH Y TẾ"
-						},
-						{
-							"value": 0,
-							"text": "NGÀNH GIÁO DỤC"
-						},
-					],
+					dataSource: [
+						{text: "Đã hooàn thành dự thảo", value: 2},
+						{text: "Đang xây dựng", value: 1},
+						{text: "Chưa xây dựng", value: 0}
+					]
 				},
+				{
+					field: "tiendo_rasoat",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "VIHEMA đã chấp thuận", value: 2},
+						{text: "Đang rà soát", value: 1},
+						{text: "Chưa chấp thuận", value: 0}
+					]
+				},
+				{
+					field: "tiendo_pheduyet",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đã phê duyệt", value: 1},
+						{text: "Chưa phê duyệt", value: 0}
+					]
+				},
+				{
+					field: "ngay_pheduyet",
+					uicontrol: "datetimepicker",
+					textFormat: "DD/MM/YYYY"
+				}
 			]
 		},
 
@@ -101,8 +138,7 @@ define(function (require) {
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(
-									self.collectionName + "/collection");
+								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection");
 
 							},
 							error: function (model, xhr, options) {
@@ -140,6 +176,7 @@ define(function (require) {
 			var self = this;
 			self.process_loaikybaocao();
 			var id = this.getApp().getRouter().getParam("id");
+			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
 				if (!!currentUser.donvi.tinhthanh_id){
 					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
@@ -160,6 +197,7 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
+						self.onChangeEvents();
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -169,7 +207,7 @@ define(function (require) {
 				self.applyBindings();
 				//self.$el.find("#addItem button").click();
 			}
-
+			self.onChangeEvents();
 		},
 		
 		process_loaikybaocao:function() {
@@ -211,6 +249,28 @@ define(function (require) {
 				self.model.set("kybaocao",1);
 				self.$el.find("#kydanhgia").val("Tổng kết năm");
 				self.getApp().data("vsthon_loaibaocao_route","nam");
+			}
+		},
+		
+		onChangeEvents: function() {
+			var self = this;
+			
+			self.model.on("change:tiendo_pheduyet", function(model) {
+				if (self.model.get("tiendo_pheduyet") == 1) {
+					if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
+						self.$el.find("#pheduyet_extra").removeClass("hide");
+					}
+				} else {
+					if (!self.$el.find("#pheduyet_extra").hasClass("hide")) {
+						self.$el.find("#pheduyet_extra").addClass("hide");
+					}
+				}
+			});
+
+			if (self.model.get("tiendo_pheduyet") == 1) {
+				if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
+					self.$el.find("#pheduyet_extra").removeClass("hide");
+				}
 			}
 		}
 	});

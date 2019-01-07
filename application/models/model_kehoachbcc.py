@@ -1,5 +1,5 @@
 import uuid
-
+from datetime import datetime
 from application.database import db
 from application.database.model import CommonModel
 from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
@@ -11,6 +11,9 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 def default_uuid():
     return str(uuid.uuid4())
 
+def default_datetime_now():
+    return datetime.now()
+
 
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 class TienDoKeHoachBCC(CommonModel):
@@ -20,13 +23,13 @@ class TienDoKeHoachBCC(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
-    ngaybaocao = db.Column(db.DateTime())
+    ngaybaocao = db.Column(db.DateTime(), default=default_datetime_now)
     nambaocao = db.Column(db.Integer, nullable=False)
     kybaocao = db.Column(db.SmallInteger, nullable=False)
     loaikybaocao = db.Column(db.Integer, nullable=False)
     
-    danhmucnganh_id = db.Column(UUID(as_uuid=True), ForeignKey('danhmucnganh.id'), nullable=True)
-    danhmucnganh = relationship('DanhMucNganh')
+#     danhmucnganh_id = db.Column(UUID(as_uuid=True), ForeignKey('danhmucnganh.id'), nullable=True)
+#     danhmucnganh = relationship('DanhMucNganh')
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
