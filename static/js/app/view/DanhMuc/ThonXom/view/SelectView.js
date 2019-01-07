@@ -37,16 +37,15 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-    				 { field: "ma", label: "Mã", width:150},
-    		     	 { field: "ten", label: "Tên", width:250 }
-//    	    	     {
-//        	        	 field: "xaphuong_id", 
-//        	        	 label: "Xã phường",
-//        	        	 foreign: "xaphuong",
-//        	        	 foreignValueField: "id",
-//        	        	 foreignTextField: "ten",
-//        	        	 width:250
-//        	         },
+    				 { field: "ma", label: "Mã"},
+    		     	 { field: "ten", label: "Tên" },
+    		     	{
+    	            	 field: "xaphuong_id", 
+    	            	 label: "Xã/Phường",
+    	            	 foreign: "xaphuong",
+    	            	 foreignValueField: "id",
+    	            	 foreignTextField: "ten",
+    	           	 },
     		    ],
     		    onRowClick: function(event){
     	    		this.uiControl.selectedItems = event.selectedItems;

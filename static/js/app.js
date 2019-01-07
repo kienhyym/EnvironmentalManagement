@@ -112,6 +112,16 @@ require(['jquery', 'gonrin', 'app/router',
 				$('body').html(layout);
 				self.showloading();
 				self.currentUser = new Gonrin.User(data);
+				if (!!data.donvi.tinhthanh_id){
+					self.data("tinhthanh_id", data.donvi.tinhthanh_id);
+				}
+				if (!!data.donvi.quanhuyen_id){
+					self.data("quanhuyen_id", data.donvi.quanhuyen_id);
+				}
+				if (!!data.donvi.xaphuong_id){
+					self.data("xaphuong_id", data.donvi.xaphuong_id);
+				}
+				
 				this.$header = $('body').find(".page-header");
 				this.$content = $('body').find(".content-area");
 				this.$navbar = $('body').find(".page-navbar");

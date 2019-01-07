@@ -16,7 +16,7 @@ from application.models.model_danhmuc import QuocGia, TinhThanh, QuanHuyen, XaPh
 apimanager.create_api(QuocGia,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='quocgia')
 
 
@@ -24,7 +24,7 @@ apimanager.create_api(QuocGia,
 apimanager.create_api(TinhThanh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='tinhthanh')
 
 
@@ -32,7 +32,7 @@ apimanager.create_api(TinhThanh,
 apimanager.create_api(QuanHuyen,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='quanhuyen')
 
 
@@ -40,7 +40,7 @@ apimanager.create_api(QuanHuyen,
 apimanager.create_api(XaPhuong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='xaphuong')
 
 
@@ -48,7 +48,7 @@ apimanager.create_api(XaPhuong,
 apimanager.create_api(ThonXom,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='thonxom')
 
 
@@ -65,7 +65,7 @@ apimanager.create_api(NgheNghiep,
 apimanager.create_api(DanToc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func], PUT_SINGLE=[auth_func]),
     collection_name='dantoc')
 
 

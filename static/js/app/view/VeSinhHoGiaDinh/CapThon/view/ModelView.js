@@ -180,6 +180,87 @@ define(function (require) {
 					}
 				},
 				{
+					name: "copy",
+					type: "button",
+					buttonClass: "btn-danger btn-sm",
+					label: "Sao chép từ báo cáo kỳ trước",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") == null;
+					},
+					command: function () {
+						var self = this;
+						var nambaocao = self.model.get("nambaocao");
+						if(nambaocao === undefined || nambaocao === null || nambaocao.length ===0){
+							self.getApp().notify("Chọn năm báo cáo trước khi sử dụng sao chép từ kỳ trước");
+							return;
+						}
+						var kybaocao = self.model.get("kybaocao");
+						var kybaocao_truoc = kybaocao;
+						var nambaocao_truoc = self.model.get("nambaocao");
+						var loaikybaocao = self.model.get("loaikybaocao");
+						if (kybaocao>1){
+							kybaocao_truoc = kybaocao - 1;
+							nambaocao_truoc = nambaocao;
+						}else{
+							nambaocao_truoc = nambaocao -1;
+							if (loaikybaocao === 1){//thang
+								kybaocao_truoc = 12;
+							}else if (loaikybaocao === 2){//quy
+								kybaocao_truoc = 4;
+							}else if (loaikybaocao === 3){//6thang
+								kybaocao_truoc = 2;
+							}else if (loaikybaocao === 4){//1nam
+								kybaocao_truoc = 1;
+							}
+						}
+						var filters = {
+								filters: {
+									"$and": [
+										{ "loaikybaocao": { "$eq": self.model.get("loaikybaocao") } },
+										{ "nambaocao": { "$eq": nambaocao_truoc } },
+										{ "kybaocao": { "$eq": kybaocao_truoc } }
+									]
+								}
+							}
+						var url = self.getApp().serviceURL + "/api/v1/" + self.collectionName;
+						$.ajax({
+							url: url,
+							method: "GET",
+							data: "q=" + JSON.stringify(filters),
+							contentType: "application/json",
+							success: function (data) {
+								if (!!data && !!data.objects && (data.objects.length > 0)){
+									var nhatieuthonhvs = data.objects[0].nhatieuthonhvs;
+									
+									self.$el.find("#nhatieuthonhvs").html("");
+									self.model.set("nhatieuthonhvs",[]);
+									$.each(nhatieuthonhvs, function(idx, obj){
+										var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+						                view.model.set("id",gonrin.uuid());
+						                view.model.set("tenchuho",obj.tenchuho);
+						                view.model.set("dantoc_id",obj.dantoc_id);
+						                view.model.set("dantoc",obj.dantoc);
+						                view.model.set("maho",obj.id);
+						                view.model.set("tendantoc",obj.dantoc.ten);
+						                view.model.set("gioitinh",obj.gioitinh);
+						                var item_nhatieu_thon = view.model.toJSON();
+						                item_nhatieu_thon["stt"] = idx+1;
+						                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+						                self.renderItemView(item_nhatieu_thon);
+										
+									});
+									self.renderTinhTongI();
+								}else{
+									self.getApp().notify("Không tìm thấy báo cáo!");
+								}
+							},
+							error: function (xhr, status, error) {
+								self.getApp().notify("Lỗi không tìm thấy báo cáo kỳ trước!");
+							},
+						});	
+					}
+				},
+				{
 					name: "delete",
 					type: "button",
 					buttonClass: "btn-danger btn-sm",
@@ -209,7 +290,21 @@ define(function (require) {
 			var id = this.getApp().getRouter().getParam("id");
 			self.process_loaikybaocao();
 			
-			
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.tinhthanh_id){
+					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+				}
+				if (!!currentUser.donvi.quanhuyen_id){
+					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+				}
+				if (!!currentUser.donvi.xaphuong_id){
+					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+				}
+			}
 			self.$el.find("#addItem").unbind("click").bind("click", function () {
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
 				view_hogiadinh.dialog();
@@ -240,13 +335,13 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
+						self.$el.find("#nhatieuthonhvs").html("");
 						for(var i=0; i< nhatieuthonhvs.length; i++){
 							nhatieuthonhvs[i]['stt'] = i+1;
 							self.renderItemView(nhatieuthonhvs[i]);
 							
 						}
 						
-//						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -308,6 +403,8 @@ define(function (require) {
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
+						self.$el.find("#nhatieuthonhvs").html("");
+						self.model.set("nhatieuthonhvs",[]);
 						$.each(data.objects, function(idx, obj){
 							var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
 			                view.model.set("id",gonrin.uuid());
@@ -317,9 +414,10 @@ define(function (require) {
 			                view.model.set("maho",obj.id);
 			                view.model.set("tendantoc",obj.dantoc.ten);
 			                view.model.set("gioitinh",obj.gioitinh);
-			                
+			                var item_nhatieu_thon = view.model.toJSON();
+			                item_nhatieu_thon["stt"] = idx+1;
 			                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-			                self.renderItemView(view.model.toJSON());
+			                self.renderItemView(item_nhatieu_thon);
 							
 						});
 						self.renderTinhTongI();
@@ -358,32 +456,32 @@ define(function (require) {
 			} else if(currentRoute.indexOf('model/quy2')>=0){
 				self.model.set("loaikybaocao",2);
 				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").html("Qúy II");
+				self.$el.find("#kydanhgia").val("Qúy II");
 				self.getApp().data("vsthon_loaibaocao_route","quy2");
 			} else if(currentRoute.indexOf('model/quy3')>=0){
 				self.model.set("loaikybaocao",2);
 				self.model.set("kybaocao",3);
-				self.$el.find("#kydanhgia").html("Qúy III");
+				self.$el.find("#kydanhgia").val("Qúy III");
 				self.getApp().data("vsthon_loaibaocao_route","quy3");
 			} else if(currentRoute.indexOf('model/quy4')>=0){
 				self.model.set("loaikybaocao",2);
 				self.model.set("kybaocao",4);
-				self.$el.find("#kydanhgia").html("Qúy IV");
+				self.$el.find("#kydanhgia").val("Qúy IV");
 				self.getApp().data("vsthon_loaibaocao_route","quy4");
 			} else if(currentRoute.indexOf('model/6thangdau')>=0){
 				self.model.set("loaikybaocao",3);
 				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").html("6 tháng đầu năm");
+				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
 				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
 			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
 				self.model.set("loaikybaocao",3);
 				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").html("6 tháng cuối năm");
+				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
 				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
 			} else if(currentRoute.indexOf('model/nam')>=0){
 				self.model.set("loaikybaocao",4);
 				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").html("Tổng kết năm");
+				self.$el.find("#kydanhgia").val("Tổng kết năm");
 				self.getApp().data("vsthon_loaibaocao_route","nam");
 			}
 		},
