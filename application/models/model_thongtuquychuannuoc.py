@@ -40,7 +40,7 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
 #     nambaocao = db.Column(db.Integer, nullable=False)
     
     ngaybaocao = db.Column(db.DateTime())
-    donvicapnuoc_id = db.Column(db.Integer, db.ForeignKey('donvicapnuoc.id'), nullable=False)
+    donvicapnuoc_id = db.Column(UUID(as_uuid=True), db.ForeignKey('donvicapnuoc.id'), nullable=False)
     donvicapnuoc = db.relationship('DonViCapNuoc', viewonly=True)
     tendonvicapnuoc = db.Column(db.String)
     madonvicapnuoc = db.Column(UUID(as_uuid=True))

@@ -182,16 +182,21 @@ define(function (require) {
 				{
 					name: "copy",
 					type: "button",
-					buttonClass: "btn-danger btn-sm",
+					buttonClass: "btn-primary btn-sm",
 					label: "Sao chép từ báo cáo kỳ trước",
 					visible: function () {
 						return this.getApp().getRouter().getParam("id") == null;
 					},
 					command: function () {
 						var self = this;
+						var thonxom_id = self.model.get("thonxom_id");
 						var nambaocao = self.model.get("nambaocao");
 						if(nambaocao === undefined || nambaocao === null || nambaocao.length ===0){
 							self.getApp().notify("Chọn năm báo cáo trước khi sử dụng sao chép từ kỳ trước");
+							return;
+						}
+						if(thonxom_id === undefined || thonxom_id === null || thonxom_id.length ===0){
+							self.getApp().notify("Chọn Thôn xóm trước khi sử dụng sao chép từ kỳ trước");
 							return;
 						}
 						var kybaocao = self.model.get("kybaocao");
@@ -218,7 +223,8 @@ define(function (require) {
 									"$and": [
 										{ "loaikybaocao": { "$eq": self.model.get("loaikybaocao") } },
 										{ "nambaocao": { "$eq": nambaocao_truoc } },
-										{ "kybaocao": { "$eq": kybaocao_truoc } }
+										{ "kybaocao": { "$eq": kybaocao_truoc } },
+										{ "thonxom_id": { "$eq": self.model.get("thonxom_id") } }
 									]
 								}
 							}
@@ -230,26 +236,41 @@ define(function (require) {
 							contentType: "application/json",
 							success: function (data) {
 								if (!!data && !!data.objects && (data.objects.length > 0)){
-									var nhatieuthonhvs = data.objects[0].nhatieuthonhvs;
-									
+									self.model.set(data.objects[0]);
+									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 									self.$el.find("#nhatieuthonhvs").html("");
-									self.model.set("nhatieuthonhvs",[]);
-									$.each(nhatieuthonhvs, function(idx, obj){
-										var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-						                view.model.set("id",gonrin.uuid());
-						                view.model.set("tenchuho",obj.tenchuho);
-						                view.model.set("dantoc_id",obj.dantoc_id);
-						                view.model.set("dantoc",obj.dantoc);
-						                view.model.set("maho",obj.id);
-						                view.model.set("tendantoc",obj.dantoc.ten);
-						                view.model.set("gioitinh",obj.gioitinh);
-						                var item_nhatieu_thon = view.model.toJSON();
-						                item_nhatieu_thon["stt"] = idx+1;
-						                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-						                self.renderItemView(item_nhatieu_thon);
+									for(var i=0; i< nhatieuthonhvs.length; i++){
+										nhatieuthonhvs[i]['stt'] = i+1;
+										self.renderItemView(nhatieuthonhvs[i]);
 										
-									});
+									}
+									
+									self.applyBindings();
 									self.renderTinhTongI();
+									
+									
+									
+									
+//									var nhatieuthonhvs = data.objects[0].nhatieuthonhvs;
+//									
+//									self.$el.find("#nhatieuthonhvs").html("");
+//									self.model.set("nhatieuthonhvs",[]);
+//									$.each(nhatieuthonhvs, function(idx, obj){
+//										var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+//						                view.model.set("id",gonrin.uuid());
+//						                view.model.set("tenchuho",obj.tenchuho);
+//						                view.model.set("dantoc_id",obj.dantoc_id);
+//						                view.model.set("dantoc",obj.dantoc);
+//						                view.model.set("maho",obj.id);
+//						                view.model.set("tendantoc",obj.dantoc.ten);
+//						                view.model.set("gioitinh",obj.gioitinh);
+//						                var item_nhatieu_thon = view.model.toJSON();
+//						                item_nhatieu_thon["stt"] = idx+1;
+//						                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+//						                self.renderItemView(item_nhatieu_thon);
+//										
+//									});
+//									self.renderTinhTongI();
 								}else{
 									self.getApp().notify("Không tìm thấy báo cáo!");
 								}
@@ -344,9 +365,9 @@ define(function (require) {
 						
 						self.applyBindings();
 						self.renderTinhTongI();
-						if (self.model.get("nhatieuthonhvs").length === 0) {
-							self.$el.find("#addItem").click();
-						}
+//						if (self.model.get("nhatieuthonhvs").length === 0) {
+//							self.$el.find("#addItem").click();
+//						}
 						
 					},
 					error: function () {
