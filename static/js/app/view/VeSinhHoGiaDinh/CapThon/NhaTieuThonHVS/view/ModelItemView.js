@@ -19,29 +19,29 @@ define(function (require) {
 		bindings: "bind-item-data",
 		uiControl: {
 			fields: [
-				{
-					field: "dantoc",
-					uicontrol: "ref",
-					textField: "ten",
-					foreignRemoteField: "id",
-					foreignField: "dantoc_id",
-					dataSource: DanTocSelectView
-				},
-				{
-					field: "gioitinh",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 0,
-							"text": "Nam"
-						},
-						{
-							"value": 1,
-							"text": "Nữ"
-						},
-					],
-				},
+//				{
+//					field: "dantoc",
+//					uicontrol: "ref",
+//					textField: "ten",
+//					foreignRemoteField: "id",
+//					foreignField: "dantoc_id",
+//					dataSource: DanTocSelectView
+//				},
+//				{
+//					field: "gioitinh",
+//					uicontrol: "combobox",
+//					textField: "text",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 0,
+//							"text": "Nam"
+//						},
+//						{
+//							"value": 1,
+//							"text": "Nữ"
+//						},
+//					],
+//				},
 				{
 					field: "loaikhac",
 					uicontrol: "combobox",
@@ -244,6 +244,12 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
+			var gioitinh = self.model.get("gioitinh");
+			if(gioitinh===0 || gioitinh === "0"){
+				self.$el.find("#gioitinh").html("Nữ");
+			}else{
+				self.$el.find("#gioitinh").html("Nam");
+			}
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);
 			});
@@ -253,6 +259,12 @@ define(function (require) {
 					"data": self.model.toJSON()
 				});
 			});
+			if (self.viewData && self.viewData.chuongtrinhsup === 0){
+				self.$el.find(".chuongtrinhsup").hide();
+				
+			} else{
+				self.$el.find(".chuongtrinhsup").show();
+			}
 //			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 //				self.remove(true);
 //			});

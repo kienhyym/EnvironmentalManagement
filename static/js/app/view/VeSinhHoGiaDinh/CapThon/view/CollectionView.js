@@ -12,6 +12,25 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "vscapthon",
+		tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "CREATE",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE namdv",
+					command: function () {
+						var self = this;
+						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
+						var path = this.collectionName + '/model/'+loaibaocao;
+						console.log("loaibaocao=",loaibaocao);
+						console.log("path====",path);
+						this.getApp().getRouter().navigate(path);
+					}
+				}]
+		}],
 		uiControl: {
 			fields: [
 				{
@@ -71,12 +90,44 @@ define(function (require) {
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = this.collectionName + '/model?id=' + event.rowId;
+					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
 		},
 		render: function () {
+			var self = this;
+			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var loaikybaocao = 2;//quy
+			var kybaocao = 1;
+			if (loaibaocao === "quy1"){
+				loaikybaocao = 2;
+				kybaocao = 1;
+			} else if (loaibaocao === "quy2"){
+				loaikybaocao = 2;
+				kybaocao = 2;
+			} else if (loaibaocao === "quy3"){
+				loaikybaocao = 2;
+				kybaocao = 3;
+			} else if (loaibaocao === "quy4"){
+				loaikybaocao = 2;
+				kybaocao = 4;
+			} else if (loaibaocao === "6thangdau"){
+				loaikybaocao = 3;
+				kybaocao = 1;
+			} else if (loaibaocao === "6thangcuoi"){
+				loaikybaocao = 3;
+				kybaocao = 2;
+			} else if (loaibaocao === "nam"){
+				loaikybaocao = 4;
+				kybaocao = 1;
+			}else{
+				self.getApp().notify("Lỗi tham số, vui lòng thực hiện lại sau");
+				return;
+			}
+			self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":loaikybaocao}}, {"kybaocao":{"$eq":kybaocao}}]};
+			self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 			this.applyBindings();
 			return this;
 		},

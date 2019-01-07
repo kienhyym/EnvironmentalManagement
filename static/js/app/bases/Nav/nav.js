@@ -248,45 +248,48 @@ define(function (require) {
 					"visible": false
 				},
 				{
-					"text": "Trình độ học vấn",
+					"text": "Hộ Gia Đình",
 					"type": "view",
-					"collectionName": "trinhdohocvan",
-					"route": "trinhdohocvan/collection",
-					"$ref": "app/view/DanhMuc/TrinhDoHocVan/view/CollectionView",
+					"collectionName": "hogiadinh",
+					"route": "hogiadinh/collection",
+					"$ref": "app/view/DanhMuc/HoGiaDinh/view/CollectionView",
+					"tuyendonvi": 4,
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(4);
 					}
 				},
 				{
 					"type": "view",
-					"collectionName": "trinhdohocvan",
-					"route": "trinhdohocvan/model",
-					"$ref": "app/view/DanhMuc/TrinhDoHocVan/view/ModelView",
+					"collectionName": "hogiadinh",
+					"route": "hogiadinh/model",
+					"$ref": "app/view/DanhMuc/HoGiaDinh/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Nghề Nghiệp",
+					"text": "Đơn Vị Cấp Nước",
 					"type": "view",
-					"collectionName": "nghenghiep",
-					"route": "nghenghiep/collection",
-					"$ref": "app/view/DanhMuc/NgheNghiep/view/CollectionView",
+					"collectionName": "donvicapnuoc",
+					"route": "donvicapnuoc/collection",
+					"$ref": "app/view/DanhMuc/DonViCapNuoc/view/CollectionView",
+					"tuyendonvi": 2,
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(2);
 					}
 				},
 				{
 					"type": "view",
-					"collectionName": "nghenghiep",
-					"route": "nghenghiep/model",
-					"$ref": "app/view/DanhMuc/NgheNghiep/view/ModelView",
+					"collectionName": "donvicapnuoc",
+					"route": "donvicapnuoc/model",
+					"$ref": "app/view/DanhMuc/DonViCapNuoc/view/ModelView",
 					"visible": false
 				},
+				
 				{
 					"text": "Danh mục hoạt động",
 					"type": "view",
 					"collectionName": "danhmuchoatdong",
 					"route": "danhmuchoatdong/collection",
-					"$ref": "app/view/DanhMuc/DanhMucHD/view/CollectionView",
+					"$ref": "app/view/DanhMuc/DanhMucHoatDong/view/CollectionView",
 					"visible": function () {
 						return this.userHasRole("Admin");
 					}
@@ -295,7 +298,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "danhmuchoatdong",
 					"route": "danhmuchoatdong/model",
-					"$ref": "app/view/DanhMuc/DanhMucHD/view/ModelView",
+					"$ref": "app/view/DanhMuc/DanhMucHoatDong/view/ModelView",
 					"visible": false
 				},
 				{
@@ -324,21 +327,117 @@ define(function (require) {
 			"entries": [{
 					"text": "Cấp thôn",
 					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
+					"type": "category",
 					"collectionName": "vscapthon",
-					"route": "vscapthon/collection",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
-					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "vscapthon",
-					"route": "vscapthon/model",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
-					"visible": false
+					},
+					"entries": [{
+						"text": "Qúy I",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=quy1",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "Qúy II",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=quy2",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "Qúy III",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=quy3",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "Qúy IV",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=quy4",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng đầu năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=6thangdau",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng cuối năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=6thangcuoi",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"text": "Tổng kết năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/collection?loaikybaocao=nam",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/CollectionView",
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/quy1(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/quy2(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/quy3(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/quy4(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/6thangdau(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/6thangcuoi(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapthon",
+						"route": "vscapthon/model/nam(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapThon/view/ModelView",
+						"visible": false
+					},
+					]
 				},
 				{
 					"text": "Cấp xã",

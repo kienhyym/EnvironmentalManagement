@@ -1,7 +1,7 @@
 import uuid
 from application.database import db
 from application.database.model import CommonModel
-from sqlalchemy import (func, DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
+from sqlalchemy import (func, DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, Index, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import  UUID,JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
@@ -10,6 +10,21 @@ from sqlalchemy.orm import backref, relationship
 def default_uuid():
     return str(uuid.uuid4())
 
+class HoGiaDinh(CommonModel):
+    __tablename__ = 'hogiadinh'
+    maho = db.Column(db.String)
+    tenchuho = db.Column(db.String)
+    dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True) 
+    dantoc = relationship('DanToc')
+    gioitinh = db.Column(db.SmallInteger)
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    xaphuong = relationship('XaPhuong')
+    thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+    thonxom = relationship('ThonXom', viewonly=True)
 
 # Biểu mẫu số 1: Cấp thôn
 # Bang 1:
@@ -23,8 +38,8 @@ class VSCapThon(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
-#     kybaocao = db.Column(db.SmallInteger, nullable=False)
-#     loaikybaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False, default=1)
+    loaikybaocao = db.Column(db.Integer, nullable=False)#thang=1,quy=2,6thang=3,nam=4
 #     tungay = db.Column(db.Date())
 #     denngay = db.Column(db.Date())
     nhatieuthonhvs = db.Column(JSONB())
@@ -38,45 +53,68 @@ class VSCapThon(CommonModel):
     tenthon = db.Column(db.String)
     thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
     thonxom = relationship('ThonXom', viewonly=True)
-    tong_soho = db.Column(db.Integer)
-    tong_chuholanu = db.Column(db.Integer)
-    tong_sohongheo = db.Column(db.Integer)
-    tong_sohodtts = db.Column(db.Integer)
-    tong_danso = db.Column(db.Integer)
-    tong_nam = db.Column(db.Integer)
-    tong_nu = db.Column(db.Integer)
-    tong_tuhoai = db.Column(db.Integer)
-    tong_thamdoi = db.Column(db.Integer)
-    tong_2ngan = db.Column(db.Integer)
-    tong_ongthonghoi = db.Column(db.Integer)
-    tong_loaikhac = db.Column(db.Integer)
-    tong_khongnhatieu = db.Column(db.Integer)
-    tong_hopvs = db.Column(db.Integer)
-    tong_khonghopvs = db.Column(db.Integer)
-    tong_caithien = db.Column(db.Integer)
-    tong_diemruatay = db.Column(db.Integer)
+    tong_soho = db.Column(db.Integer, default=0)
+    tong_chuholanu = db.Column(db.Integer, default=0)
+    tong_sohongheo = db.Column(db.Integer, default=0)
+    tong_sohodtts = db.Column(db.Integer, default=0)
+    tong_danso = db.Column(db.Integer, default=0)
+    tong_nam = db.Column(db.Integer, default=0)
+    tong_nu = db.Column(db.Integer, default=0)
+    tong_tuhoai = db.Column(db.Integer, default=0)
+    tong_thamdoi = db.Column(db.Integer, default=0)
+    tong_2ngan = db.Column(db.Integer, default=0)
+    tong_ongthonghoi = db.Column(db.Integer, default=0)
+    tong_loaikhac = db.Column(db.Integer, default=0)
+    tong_khongnhatieu = db.Column(db.Integer, default=0)
+    tong_hopvs = db.Column(db.Integer, default=0)
+    tong_khonghopvs = db.Column(db.Integer, default=0)
+    tong_caithien = db.Column(db.Integer, default=0)
+    tong_diemruatay = db.Column(db.Integer, default=0)
+    
+    tong_hongheo_caithien = db.Column(db.Integer, default=0)
+    tongho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
+    tongho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tongho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_hongheo_conhatieu_caithien_truocbaocao = db.Column(db.Integer, default=0)
+    tong_hongheo_conhatieu_caithien_xuongcap = db.Column(db.Integer, default=0)
+
+Index('vscapthon_uq_idx', VSCapThon.loaikybaocao, VSCapThon.kybaocao, VSCapThon.nambaocao, VSCapThon.donvi_id, unique=True)
 
     
     
-class NhaTieuThonHVS(CommonModel):
-    __tablename__ = 'nhatieuthonhvs'
-    vscapthon_id = db.Column(UUID(as_uuid=True), ForeignKey('vscapthon.id'), nullable=True) 
-    dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True) 
-    dantoc = relationship('DanToc')
-    tendantoc = db.Column(db.String)
-    tenchuho = db.Column(db.String)
-    gioitinh = db.Column(db.SmallInteger)
-    hongheo = db.Column(db.SmallInteger)
-    tuhoai = db.Column(db.SmallInteger)
-    thamdoi = db.Column(db.SmallInteger)
-    haingan = db.Column(db.SmallInteger)
-    chimco_oth = db.Column(db.SmallInteger)
-    loaikhac = db.Column(db.SmallInteger)
-    khongconhatieu = db.Column(db.SmallInteger)
-    hopvesinh = db.Column(db.SmallInteger)
-    khonghopvesinh = db.Column(db.SmallInteger)
-    caithien = db.Column(db.SmallInteger)
-    diemruataycoxaphong = db.Column(db.SmallInteger)
+# class NhaTieuThonHVS(CommonModel):
+#     __tablename__ = 'nhatieuthonhvs'
+#     vscapthon_id = db.Column(UUID(as_uuid=True), ForeignKey('vscapthon.id'), nullable=True) 
+#     dantoc_id = db.Column(UUID(as_uuid=True), ForeignKey('dantoc.id'), nullable=True) 
+#     dantoc = relationship('DanToc')
+#     tendantoc = db.Column(db.String)
+#     tenchuho = db.Column(db.String)
+#     gioitinh = db.Column(db.SmallInteger)
+#     hongheo = db.Column(db.SmallInteger)
+#     tuhoai = db.Column(db.SmallInteger)
+#     thamdoi = db.Column(db.SmallInteger)
+#     haingan = db.Column(db.SmallInteger)
+#     chimco_oth = db.Column(db.SmallInteger)
+#     loaikhac = db.Column(db.SmallInteger)
+#     khongconhatieu = db.Column(db.SmallInteger)
+#     hopvesinh = db.Column(db.SmallInteger)
+#     khonghopvesinh = db.Column(db.SmallInteger)
+#     caithien = db.Column(db.SmallInteger)
+#     diemruataycoxaphong = db.Column(db.SmallInteger)
     
     
 #Biểu mẫu số 2: Cấp xã
@@ -90,6 +128,8 @@ class VSCapXa(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
@@ -118,7 +158,28 @@ class VSCapXa(CommonModel):
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
     danhsachbaocao = db.Column(JSONB())
-    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
+    
+    tongho_conhatieu_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+    
+    tong_hongheo_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_hongheo_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+#     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
+Index('vscapxa_uq_idx', VSCapXa.loaikybaocao, VSCapXa.kybaocao, VSCapXa.nambaocao, VSCapXa.donvi_id, unique=True)
 
 #Biểu mẫu số 3: Cấp huyen
 class VSCapHuyen(CommonModel):
@@ -130,6 +191,8 @@ class VSCapHuyen(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
@@ -156,13 +219,32 @@ class VSCapHuyen(CommonModel):
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
     danhsachbaocao = db.Column(JSONB())
-    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
+    tongho_conhatieu_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+    
+    tong_hongheo_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_hongheo_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+#     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
+Index('vscaphuyen_uq_idx', VSCapHuyen.loaikybaocao, VSCapHuyen.kybaocao, VSCapHuyen.nambaocao, VSCapHuyen.donvi_id, unique=True)
 
 
 #Biểu mẫu số 4: Cấp tinh
 class VSCapTinh(CommonModel):
     __tablename__ = 'vscaptinh'
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
@@ -170,6 +252,8 @@ class VSCapTinh(CommonModel):
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
     ngaybaocao = db.Column(db.DateTime())
     nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
@@ -195,5 +279,24 @@ class VSCapTinh(CommonModel):
     tong_caithien = db.Column(db.Integer)
     tong_diemruatay = db.Column(db.Integer)
     danhsachbaocao = db.Column(JSONB())
-    __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
+    tongho_conhatieu_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_truocbaocao = db.Column(db.Integer)
+    tongho_conhatieu_hvs_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_tuhoai_xuongcap = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_thamdoi_xuongcap = db.Column(db.Integer)
     
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer)
+    
+    tong_soho_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_soho_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+    
+    tong_hongheo_conhatieu_caithien_truocbaocao = db.Column(db.Integer)
+    tong_hongheo_conhatieu_caithien_xuongcap = db.Column(db.Integer)
+#     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
+Index('vscaptinh_uq_idx', VSCapTinh.loaikybaocao, VSCapTinh.kybaocao, VSCapTinh.nambaocao, VSCapTinh.donvi_id, unique=True)

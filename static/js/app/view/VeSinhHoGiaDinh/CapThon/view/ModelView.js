@@ -15,6 +15,7 @@ define(function (require) {
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+	var HoGiaDinhSelectView = require('app/view/DanhMuc/HoGiaDinh/view/SelectView');
 
 
 
@@ -97,7 +98,24 @@ define(function (require) {
     					{ "value": 1, "text": "Có" },
     					{ "value": 0, "text": "Không" },
 					],
+					value:1
 				},
+//				{
+//    				field: "kybaocao",
+//    				uicontrol: "combobox",
+//    				textField: "text",
+//    				valueField: "value",
+//    				dataSource: [
+//    					{ "value": 1, "text": "Quý I" },
+//    					{ "value": 2, "text": "Quý II" },
+//    					{ "value": 3, "text": "Quý III" },
+//    					{ "value": 4, "text": "Quý I" },
+//    					{ "value": 5, "text": "6 tháng đầu năm" },
+//    					{ "value": 6, "text": "6 tháng cuối năm" },
+//    					{ "value": 7, "text": "Tổng kết năm" },
+//					],
+//					value:1
+//				},
 				
 
 			],
@@ -145,8 +163,8 @@ define(function (require) {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
-									self.getApp().getRouter().navigate(
-										self.collectionName + "/collection");
+									self.getApp().getRouter().navigate(self.collectionName 
+											+ "/collection?loaikybaocao="+self.getApp().data("vsthon_loaibaocao_route"));
 	
 								},
 								error: function (model, xhr, options) {
@@ -174,7 +192,8 @@ define(function (require) {
 						self.model.destroy({
 							success: function (model, response) {
 								self.getApp().notify('Xoá dữ liệu thành công');
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+								self.getApp().getRouter().navigate(self.collectionName 
+										+ "/collection?loaikybaocao="+self.getApp().data("vsthon_loaibaocao_route"));
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Xoá dữ liệu không thành công!');
@@ -188,15 +207,33 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
-			var viewData = self.viewData;
-			if (viewData !== null && viewData!==undefined){
-				id =null;
-			}
+			self.process_loaikybaocao();
+			
+			
 			self.$el.find("#addItem").unbind("click").bind("click", function () {
-                var view = new NhaTieuThonHVSItemView();
-                view.model.set("id",gonrin.uuid());
-                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-                self.renderItemView(view.model.toJSON());
+				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
+				view_hogiadinh.dialog();
+				view_hogiadinh.on("onSelected", function(data){
+					console.log("onSelected.data====",data);
+					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+	                view.model.set("id",gonrin.uuid());
+	                var  danhsachho = self.model.get("nhatieuthonhvs");
+	                for(var i=0; i< danhsachho.length; i++){
+	                	var item_hogiadinh = danhsachho[i];
+	                	if(item_hogiadinh.maho === data.id){
+	                		self.getApp().notify("Hộ gia đình đã tồn tại trong báo cáo");
+	                		return;
+	                	}
+	                }
+	                view.model.set("tenchuho", data.tenchuho);
+	                view.model.set("maho", data.maho);
+	                view.model.set("gioitinh", data.gioitinh);
+	                view.model.set("dantoc_id", data.dantoc_id);
+	                view.model.set("dantoc", data.dantoc);
+	                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+	                self.renderItemView(view.model.toJSON());
+				});
+				
             });
 			if (id) {
 				this.model.set('id', id);
@@ -208,41 +245,151 @@ define(function (require) {
 							self.renderItemView(nhatieuthonhvs[i]);
 							
 						}
+						
 //						self.model.set("nhatieuthonhvs", nhatieuthonhvs)
 						self.applyBindings();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#addItem").click();
 						}
+						
 					},
 					error: function () {
 						self.getApp().notify("Lỗi lấy thông tin cấp thôn");
 					},
+					complete:function(){
+						self.check_chuongtrinhSUP();
+						self.model.on("change:thuocsuprsws", function(){
+							self.check_chuongtrinhSUP();
+						});
+					}
 				});
 			} else {
 				
-				if (viewData !== null && viewData!==undefined){
-					self.model.set("tinhthanh_id", viewData.tinhthanh_id);
-					self.model.set("tinhthanh", viewData.tinhthanh);
-					self.model.set("quanhuyen_id", viewData.quanhuyen_id);
-					self.model.set("quanhuyen", viewData.quanhuyen);
-					self.model.set("xaphuong_id", viewData.xaphuong_id);
-					self.model.set("xaphuong", viewData.xaphuong);
-					self.model.set("nambaocao", viewData.nambaocao);
-				}
+//				if (viewData !== null && viewData!==undefined){
+//					self.model.set("tinhthanh_id", viewData.tinhthanh_id);
+//					self.model.set("tinhthanh", viewData.tinhthanh);
+//					self.model.set("quanhuyen_id", viewData.quanhuyen_id);
+//					self.model.set("quanhuyen", viewData.quanhuyen);
+//					self.model.set("xaphuong_id", viewData.xaphuong_id);
+//					self.model.set("xaphuong", viewData.xaphuong);
+//					self.model.set("nambaocao", viewData.nambaocao);
+//				}
 				
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
-				self.renderTinhTongI();
-				self.$el.find("#addItem").click();
-		
+				
+//				self.$el.find("#addItem").click();
+				self.check_chuongtrinhSUP();
+				self.model.on("change:thuocsuprsws", function(){
+					self.check_chuongtrinhSUP();
+				});
+				self.model.on("change:thonxom", function(){
+					self.get_danhsachho();
+				});
 
 			}
 			
 		},
+		get_danhsachho:function(){
+			var self = this;
+			var filters = {
+					filters: {
+						"$and": [
+							{ "thonxom_id": { "$eq": self.model.get("thonxom").id } }
+						]
+					}
+				}
+			var url = self.getApp().serviceURL + "/api/v1/hogiadinh";
+			$.ajax({
+				url: url,
+				method: "GET",
+				data: "q=" + JSON.stringify(filters),
+				contentType: "application/json",
+				success: function (data) {
+					if (!!data && !!data.objects && (data.objects.length > 0)){
+						$.each(data.objects, function(idx, obj){
+							var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+			                view.model.set("id",gonrin.uuid());
+			                view.model.set("tenchuho",obj.tenchuho);
+			                view.model.set("dantoc_id",obj.dantoc_id);
+			                view.model.set("dantoc",obj.dantoc);
+			                view.model.set("maho",obj.id);
+			                view.model.set("tendantoc",obj.dantoc.ten);
+			                view.model.set("gioitinh",obj.gioitinh);
+			                
+			                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+			                self.renderItemView(view.model.toJSON());
+							
+						});
+						self.renderTinhTongI();
+					}else{
+						self.getApp().notify("Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!");
+					}
+				},
+				error: function (xhr, status, error) {
+					self.getApp().notify("Không lấy được danh sách hộ gia đình, vui lòng thử lại sau!");
+				},
+			});	
+		},
+		check_chuongtrinhSUP:function(){
+			var self = this;
+			var check_thuoc_sup = self.model.get("thuocsuprsws");
+			if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
+				self.$el.find(".chuongtrinhsup").hide();
+				self.$el.find("#header_table_notsup").show();
+				self.$el.find("#header_table_sup").hide();
+				
+			} else{
+				self.$el.find(".chuongtrinhsup").show();
+				self.$el.find("#header_table_notsup").hide();
+				self.$el.find("#header_table_sup").show();
+			}
+		},
+		process_loaikybaocao:function(){
+			var self = this;
+			var currentRoute = self.getApp().router.currentRoute()['fragment'];
+			console.log("currentRoute===",currentRoute);
+			if (currentRoute.indexOf('model/quy1')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").val("Qúy I");
+				self.getApp().data("vsthon_loaibaocao_route","quy1");
+			} else if(currentRoute.indexOf('model/quy2')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",2);
+				self.$el.find("#kydanhgia").html("Qúy II");
+				self.getApp().data("vsthon_loaibaocao_route","quy2");
+			} else if(currentRoute.indexOf('model/quy3')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",3);
+				self.$el.find("#kydanhgia").html("Qúy III");
+				self.getApp().data("vsthon_loaibaocao_route","quy3");
+			} else if(currentRoute.indexOf('model/quy4')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",4);
+				self.$el.find("#kydanhgia").html("Qúy IV");
+				self.getApp().data("vsthon_loaibaocao_route","quy4");
+			} else if(currentRoute.indexOf('model/6thangdau')>=0){
+				self.model.set("loaikybaocao",3);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").html("6 tháng đầu năm");
+				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
+			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
+				self.model.set("loaikybaocao",3);
+				self.model.set("kybaocao",2);
+				self.$el.find("#kydanhgia").html("6 tháng cuối năm");
+				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
+			} else if(currentRoute.indexOf('model/nam')>=0){
+				self.model.set("loaikybaocao",4);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").html("Tổng kết năm");
+				self.getApp().data("vsthon_loaibaocao_route","nam");
+			}
+		},
 		renderItemView:function(data){
 			var self  =this;
-			var view = new NhaTieuThonHVSItemView();
+            var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
             view.model.set(data);
             view.render();
             self.$el.find("#nhatieuthonhvs").append(view.$el);
