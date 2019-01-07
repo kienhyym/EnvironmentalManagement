@@ -79,19 +79,19 @@
     		}],
     		render: function () {
     			var self = this;
-    			var view = new KetQuaNgoaiKiemChatLuongNuocItemView();
     			self.$el.find("#addItem").unbind("click").bind("click", function () {
                     var view = new ThongSoBaoCaoChatLuongNuocView();
                     view.dialog();
                     var ketquangoaikiemchatluongnuoc = self.model.get('ketquangoaikiemchatluongnuoc');
         			view.on("onSelected", function (data) {
-//        				self.model.on("change:somauvavitri", function(){
-//        					
-//							self.changeSoMau();
-//						});
-//        				console.log("data===", data);
+        				for (var i = 0; i < ketquangoaikiemchatluongnuoc.length; i++) {
+                            if (ketquangoaikiemchatluongnuoc[i].id === data.id) {
+                            	self.getApp().notify({message: "Thông số này đã tồn tại!"},{type: "danger"});
+                            	return;
+                            }
+        				}
         				var item = {
-                                "id": gonrin.uuid(),
+                                "id": data.id,
                                 "mathongso": data.mathongso,
                                 "tenthongso": data.tenthongso,
                                 "gioihan_toithieu": data.gioihan_toithieu,
@@ -102,30 +102,11 @@
                                 "danhgia": 0
                             };
         				ketquangoaikiemchatluongnuoc.push(item);
-        				
-//        				console.log("item===", item);
-        				console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
                         self.model.set("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
         				self.applyBindings();
         				self.changeSoMau();
                     });
-                    
                 });
-    			view.$el.find("#itemRemove").unbind('click').bind('click', function(data){
-                	var fields = self.model.get("ketquangoaikiemchatluongnuoc");
-                	console.log("ketquangoaikiemchatluongnuoc==fields", fields);
-                	console.log("data====== remove", data);
-//                	var data = e.data.obj;
-                    for( var i = 0; i < fields.length; i++){ 
-                    	   if ( fields[i].id === data.id) {
-                    		   fields.splice(i, 1); 
-                    	   }
-                    	}
-                    self.model.set("ketquangoaikiemchatluongnuoc", fields);
-//                    view.destroy();
-//                    view.remove();
-                });
-    			
     			self.model.on("change:somauvavitri", function () {
     				if (self.model.get("somauvavitri") > 10){
     					self.getApp().notify({message: "Số lấy mẫu phải nhỏ hơn 10"},{type: "danger"});
@@ -149,7 +130,6 @@
     			} else {
     				self.prepareBaocao();
     			}
-    			
     		},
     		changeSoMau: function(){
     			var self = this;
@@ -193,50 +173,38 @@
     				view.render();
     				self.$el.find("#ketquangoaikiemchatluongnuoc").append(view.$el);
     				view.on("ketquachange", function(evt){
-//    					console.log("evt======", evt);
-//    					console.log("evt ketquaktra", evt.ketquakiemtra.length);
-//    					console.log("evt ketquaktra", evt.ketquakiemtra);
-//    					for( var i = 0; i < evt.ketquakiemtra.length; i++){
-//    						console.log(evt.ketquakiemtra[i].ketqua);
-//    						if (!evt.ketquakiemtra.ketqua){
-//    							console.log(evt.ketquakiemtra.ketqua);
-//    						}
-//    					}
-//    					console.log("ketquangoaikiemchatluongnuoc==", self.model.get("ketquangoaikiemchatluongnuoc"));
-//    					console.log("danh gia value", self.model.get("danhgia"));
     					var danhgiaTo = 1;
     					evt.ketquakiemtra.forEach(function (data) {
 //							console.log("value ket qua====", data.ketqua);
 //							console.log("gioi han toi da value", evt.gioihan_toida);
 //							console.log("gioi han toi thieu value", evt.gioihan_toithieu);
-							if (data.ketqua && data.ketqua <= evt.gioihan_toida && data.ketqua > evt.gioihan_toithieu){
+							if (data.ketqua && data.ketqua < evt.gioihan_toida && data.ketqua > evt.gioihan_toithieu){
 								data.danhgia = 1;
 							} else {
 								data.danhgia = 0;
 							}
 							
 							danhgiaTo *= data.danhgia ? data.danhgia : 0;
-							console.log("danhgiaTo: ", danhgiaTo);
+//							console.log("danhgiaTo: ", danhgiaTo);
 						});
     					evt.danhgia = danhgiaTo;
-    					console.log(evt.ketquakiemtra);
+//    					console.log(evt.ketquakiemtra);
     					self.updateKetqua(evt);
-//    					evt.ketquakiemtra.forEach(function (data) {
-//							console.log("danh gia value", data.danhgia);
-//							console.log("danh gia value", data);
-//							if (data.danhgia === 1 && data.danhgia){
-//								evt.danhgia = 1;
-//							}
-//							a = a * parseInt(data.danhgia);
-//							console.log("aaaaaaa=====",a);
-//						});
 						self.changeSoMau();
 						self.applyBindings();
-    					
-    					console.log(evt);
-    					console.log("ketquangoaikiemchatluongnuoc", self.model.get("ketquangoaikiemchatluongnuoc"));
-    					
     				});
+        			view.$el.find("#itemRemove").unbind("click").bind("click", function () {
+        				var itemketquangoaikiem = self.model.get("ketquangoaikiemchatluongnuoc");
+        				for (var i = 0; i < itemketquangoaikiem.length; i++) {
+                            if (itemketquangoaikiem[i].id === obj.id) {
+                            	itemketquangoaikiem.splice(i, 1);
+                            }
+                        }
+        				 self.model.set("ketquangoaikiemchatluongnuoc", itemketquangoaikiem);
+        				 view.destroy();
+        				 view.remove();
+                         self.applyBindings();
+                    });
     			});
     		},
     		updateKetqua: function(obj){
@@ -259,8 +227,9 @@
     				success: function (data) {
     					if (!!data && !!data.objects && (data.objects.length > 0)){
     						$.each(data.objects, function(idx, obj){
+    							if (obj.batbuoc == true){
     							var item = {
-    	                                "id": gonrin.uuid(),
+    	                                "id": obj.id,
     	                                "mathongso": obj.mathongso,
     	                                "tenthongso": obj.tenthongso,
     	                                "gioihan_toithieu": obj.gioihan_toithieu,
@@ -271,8 +240,9 @@
     	                                "danhgia": 0
     	                            };
     							(self.model.get("ketquangoaikiemchatluongnuoc")).push(item);
-    							
+    							};	
     						});
+    						
     						self.model.set("somauvavitri", 1);
     					}
     				},

@@ -12,6 +12,24 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "thongsobaocaochatluongnuoc",
+    	uiControl: {
+			fields: [
+				{
+					field: "batbuoc",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+						value: true,
+						text: "Có",
+					}, {
+						value: false,
+						text: "Không",
+						
+					}],
+				},
+		]
+	},
     	tools : [
     	    {
     	    	name: "defaultgr",

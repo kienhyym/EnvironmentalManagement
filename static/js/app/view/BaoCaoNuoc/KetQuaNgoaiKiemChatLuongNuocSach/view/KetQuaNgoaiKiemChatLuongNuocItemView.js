@@ -51,17 +51,17 @@ define(function (require) {
 					textFormat: "DD/MM/YYYY",
 					extraFormats: ["DDMMYYYY"],
 				},
-//				{
-//					field: "danhgia",
-//					textFormat: function (rowObj) {
-//						console.log("rowObj: ", rowObj);
-//						if (rowObj.danhgia){
-//							return "Đạt";
-//						}
-//						
-//						return "Không Đạt";
-//					}
-//				}
+				{
+					field: "danhgia",
+					template: function (rowObj) {
+						console.log("rowObj: ", rowObj);
+						if (rowObj.danhgia == 1){
+							return "Đạt";
+						}
+						
+						return "Không Đạt";
+					}
+				}
 			],
 		},
 		tools: null,
@@ -70,6 +70,12 @@ define(function (require) {
 			var self = this;
 			self.applyBindings();
 			this.setElement(this.el.innerHTML);
+//			console.log("button remove item", self.$el.find("#itemRemove"));
+//    		self.$el.find("#itemRemove").unbind("click").bind("click", function () {
+//				console.log("========item view clicked==========");
+//				console.log(self.model);
+//				self.remove(true);
+//			});
 			
 			$.each(self.model.get("ketquakiemtra"), function(idx, obj){
 				var view = new MauViTriItemView();
