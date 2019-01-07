@@ -4,8 +4,8 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/LapKHThon/tpl/model.html'),
-		schema = require('json!schema/ItemThonSchema.json');
+	var template = require('text!../tpl/model.html'),
+		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
@@ -18,21 +18,9 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "itemthon",
+		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
 			fields: [
-				// {
-				// 	field: "ngaypheduyet",
-				// 	textFormat: 'DD-MM-YYYY',
-				// 	extraFormats: ['DDMMYYYY'],
-				// 	maxDate: currentDate,
-				// },
-				// {
-				// 	field: "ngaytinhpheduyet",
-				// 	textFormat: 'DD-MM-YYYY',
-				// 	extraFormats: ['DDMMYYYY'],
-				// 	maxDate: currentDate,
-				// },
 				{
 					field: "tinhthanh",
 					uicontrol: "ref",
@@ -84,69 +72,6 @@ define(function (require) {
 						},
 					],
 				},
-				// {
-				// 	field: "tiendo",
-				// 	uicontrol: "combobox",
-				// 	textField: "text",
-				// 	valueField: "value",
-				// 	dataSource: [{
-				// 			"value": "Chưa lập kế hoạch BCC",
-				// 			"text": "Chưa lập kế hoạch BCC"
-				// 		},
-				// 		{
-				// 			"value": "Đang lập kế hoạch",
-				// 			"text": "Đang lập kế hoạch"
-				// 		},
-				// 	],
-				// },
-				// {
-				// 	field: "vihema",
-				// 	uicontrol: "combobox",
-				// 	textField: "text",
-				// 	valueField: "value",
-				// 	dataSource: [{
-				// 			"value": "Chưa rà soát",
-				// 			"text": "Chưa rà soát"
-				// 		},
-				// 		{
-				// 			"value": "Đang rà soát",
-				// 			"text": "Đang rà soát"
-				// 		},
-				// 		{
-				// 			"value": "Đã chấp thuận",
-				// 			"text": "Đã chấp thuận"
-				// 		},
-				// 	],
-				// },
-				// {
-				// 	field: "khpheduyet",
-				// 	uicontrol: "combobox",
-				// 	textField: "text",
-				// 	valueField: "value",
-				// 	dataSource: [{
-				// 			"value": "Chưa phê duyệt",
-				// 			"text": "Chưa phê duyệt"
-				// 		},
-				// 		{
-				// 			"value": "Đã phê duyệt",
-				// 			"text": "Đã phê duyệt"
-				// 		},
-				// 	],
-				// },
-
-				// {
-				// 	field: "itemtinh",
-				// 	uicontrol: false,
-				// 	itemView: ItemTinhView,
-				// 	tools: [{
-				// 		name: "create",
-				// 		type: "button",
-				// 		buttonClass: "btn btn-success btn-sm",
-				// 		label: "<span class='fa fa-plus'>Thêm</span>",
-				// 		command: "create"
-				// 	}, ],
-				// 	toolEl: "#addItem"
-				// },
 			]
 		},
 
@@ -213,7 +138,23 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			self.process_loaikybaocao();
 			var id = this.getApp().getRouter().getParam("id");
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.tinhthanh_id){
+					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+				}
+				if (!!currentUser.donvi.quanhuyen_id){
+					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+				}
+				if (!!currentUser.donvi.xaphuong_id){
+					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+				}
+			}
+			
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -230,6 +171,48 @@ define(function (require) {
 			}
 
 		},
+		
+		process_loaikybaocao:function() {
+			var self = this;
+			var currentRoute = self.getApp().router.currentRoute()['fragment'];
+			console.log("currentRoute===",currentRoute);
+			if (currentRoute.indexOf('model/quy1')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").val("Qúy I");
+				self.getApp().data("vsthon_loaibaocao_route","quy1");
+			} else if(currentRoute.indexOf('model/quy2')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",2);
+				self.$el.find("#kydanhgia").val("Qúy II");
+				self.getApp().data("vsthon_loaibaocao_route","quy2");
+			} else if(currentRoute.indexOf('model/quy3')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",3);
+				self.$el.find("#kydanhgia").val("Qúy III");
+				self.getApp().data("vsthon_loaibaocao_route","quy3");
+			} else if(currentRoute.indexOf('model/quy4')>=0){
+				self.model.set("loaikybaocao",2);
+				self.model.set("kybaocao",4);
+				self.$el.find("#kydanhgia").val("Qúy IV");
+				self.getApp().data("vsthon_loaibaocao_route","quy4");
+			} else if(currentRoute.indexOf('model/6thangdau')>=0){
+				self.model.set("loaikybaocao",3);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
+				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
+			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
+				self.model.set("loaikybaocao",3);
+				self.model.set("kybaocao",2);
+				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
+				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
+			} else if(currentRoute.indexOf('model/nam')>=0){
+				self.model.set("loaikybaocao",4);
+				self.model.set("kybaocao",1);
+				self.$el.find("#kydanhgia").val("Tổng kết năm");
+				self.getApp().data("vsthon_loaibaocao_route","nam");
+			}
+		}
 	});
 
 });

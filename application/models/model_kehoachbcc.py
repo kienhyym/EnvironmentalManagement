@@ -11,6 +11,7 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 def default_uuid():
     return str(uuid.uuid4())
 
+
 # Biểu mẫu số 1: Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông tiến độ lập kế hoạch và phê duyệt
 class TienDoKeHoachBCC(CommonModel):
     __tablename__ = 'tiendo_kehoach_bcc'
@@ -24,12 +25,16 @@ class TienDoKeHoachBCC(CommonModel):
     kybaocao = db.Column(db.SmallInteger, nullable=False)
     loaikybaocao = db.Column(db.Integer, nullable=False)
     
+    danhmucnganh_id = db.Column(UUID(as_uuid=True), ForeignKey('danhmucnganh.id'), nullable=True)
+    danhmucnganh = relationship('DanhMucNganh')
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
     quanhuyen = relationship('QuanHuyen')
     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     xaphuong = relationship('XaPhuong')
+    thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
+    thonxom = relationship('ThonXom')
     
     tiendo_xaydung = db.Column(db.SmallInteger, nullable=False)
     tiendo_rasoat = db.Column(db.SmallInteger, nullable=False)
@@ -37,18 +42,32 @@ class TienDoKeHoachBCC(CommonModel):
     ngay_pheduyet = db.Column(db.DateTime())
     sohoatdong_cotloi_pheduyet = db.Column(db.Integer)
     sohoatdong_cotloi_hoanthanh = db.Column(db.Integer)
+    
+    tongsogiangvien = db.Column(db.Integer)
+    tongsogiangvien_nu = db.Column(db.Integer)
+    tongsonguoithamgia = db.Column(db.Integer)
+    tongsonguoithamgia_nu = db.Column(db.Integer)
+    tongsonguoithamgia_dtts = db.Column(db.Integer)
+    
     danhsach_hoatdong = db.Column(JSONB())
     tuyendonvi = db.Column(db.String)#Tinh/Huyen/Xa
-    
+
+
 class DanhMucHoatDong(CommonModel):
     __tablename__ = 'danhmuchoatdong'
     mahoatdong = db.Column(db.String)
     tenhoatdong = db.Column(db.String)
-    loai_hoatdong = db.Column(db.String) ##Cap tinh , huyen ,xa,thon
+    loai_hoatdong = db.Column(db.String) #tinh, huyen, xa, thon
     loai_nganh = db.Column(db.String)#nganh y te, nganh gia
     muctieu = db.Column(db.String)    
 
-    
+
+class DanhMucNganh(CommonModel):
+    __tablename__ = 'danhmucnganh'
+    manganh = db.Column(db.String)
+    tennganh = db.Column(db.String)
+
+
 # 
 # class KeHoachBCCHuyen(CommonModel):
 #     __tablename__ = 'kehoach_bcc_huyen'
