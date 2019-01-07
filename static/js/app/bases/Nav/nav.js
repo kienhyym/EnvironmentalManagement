@@ -442,59 +442,356 @@ define(function (require) {
 				{
 					"text": "Cấp xã",
 					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "vscapxa",
-					"route": "vscapxa/collection",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					"type": "category",
+//					"collectionName": "vscapxa",
+//					"route": "vscapxa/collection",
+//					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "vscapxa",
-					"route": "vscapxa/model",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
-					"visible": false
+					},
+					"entries": [{
+						"text": "Qúy I",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=quy1",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "Qúy II",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=quy2",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "Qúy III",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=quy3",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "Qúy IV",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=quy4",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng đầu năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=6thangdau",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng cuối năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=6thangcuoi",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"text": "Tổng kết năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/collection?loaikybaocao=nam",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/CollectionView",
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/quy1(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/quy2(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/quy3(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/quy4(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/6thangdau(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/6thangcuoi(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscapxa",
+						"route": "vscapxa/model/nam(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapXa/view/ModelView",
+						"visible": false
+					},
+					]
 				},
 				{
 					"text": "Cấp huyện",
 					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "vscaphuyen",
-					"route": "vscaphuyen/collection",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					"type": "category",
+//					"collectionName": "vscaphuyen",
+//					"route": "vscaphuyen/collection",
+//					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
 					"tuyendonvi": 3,
 					"visible": function () {
 						return this.checkTuyendonvi(3);
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "vscaphuyen",
-					"route": "vscaphuyen/model",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
-					"visible": false
+					},
+					"entries": [{
+						"text": "Qúy I",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=quy1",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "Qúy II",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=quy2",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "Qúy III",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=quy3",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "Qúy IV",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=quy4",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng đầu năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=6thangdau",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng cuối năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=6thangcuoi",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"text": "Tổng kết năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/collection?loaikybaocao=nam",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/CollectionView",
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/quy1(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/quy2(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/quy3(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/quy4(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/6thangdau(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/6thangcuoi(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaphuyen",
+						"route": "vscaphuyen/model/nam(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapHuyen/view/ModelView",
+						"visible": false
+					},
+					]
 				},
 				{
 					"text": "Cấp tỉnh",
 					"icon": "glyphicon glyphicon-tasks",
-					"type": "view",
-					"collectionName": "vscaptinh",
-					"route": "vscaptinh/collection",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					"type": "category",
+//					"collectionName": "vscaptinh",
+//					"route": "vscaptinh/collection",
+//					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi(2);
-					}
-				},
-				{
-					"type": "view",
-					"collectionName": "vscaptinh",
-					"route": "vscaptinh/model",
-					"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
-					"visible": false
+					},
+					"entries": [{
+						"text": "Qúy I",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=quy1",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "Qúy II",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=quy2",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "Qúy III",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=quy3",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "Qúy IV",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=quy4",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng đầu năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=6thangdau",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "6 Tháng cuối năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=6thangcuoi",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"text": "Tổng kết năm",
+						"icon": "glyphicon glyphicon-tasks",
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/collection?loaikybaocao=nam",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/CollectionView",
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/quy1(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/quy2(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/quy3(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/quy4(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/6thangdau(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/6thangcuoi(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					{
+						"type": "view",
+						"collectionName": "vscaptinh",
+						"route": "vscaptinh/model/nam(/:id)",
+						"$ref": "app/view/VeSinhHoGiaDinh/CapTinh/view/ModelView",
+						"visible": false
+					},
+					]
 				},
 
 			],

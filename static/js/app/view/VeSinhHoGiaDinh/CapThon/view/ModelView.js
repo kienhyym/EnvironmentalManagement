@@ -236,6 +236,7 @@ define(function (require) {
 							success: function (data) {
 								if (!!data && !!data.objects && (data.objects.length > 0)){
 									self.model.set(data.objects[0]);
+									self.model.set("nambaocao",nambaocao);
 									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 									self.$el.find("#nhatieuthonhvs").html("");
 									for(var i=0; i< nhatieuthonhvs.length; i++){
@@ -456,7 +457,6 @@ define(function (require) {
 		process_loaikybaocao:function(){
 			var self = this;
 			var currentRoute = self.getApp().router.currentRoute()['fragment'];
-			console.log("currentRoute===",currentRoute);
 			if (currentRoute.indexOf('model/quy1')>=0){
 				self.model.set("loaikybaocao",2);
 				self.model.set("kybaocao",1);
@@ -515,7 +515,6 @@ define(function (require) {
                 view.remove();
             });
             view.on("change", function (event) {
-            	console.log("onchange=====",event);	
                 var fields = self.model.get("nhatieuthonhvs");
                 fields.forEach(function (item, idx) {
                 	if (fields[idx].id === event.oldData.id){
@@ -549,7 +548,6 @@ define(function (require) {
 					check_dantoc = 1;
 				}
 				_.each(tongischema, function (props, key) {
-					
 					if(key === "dtts"){
 						data[key] = toInt(data[key]) + toInt(check_dantoc);
 					}else if(key === "loaikhac"){
@@ -563,7 +561,6 @@ define(function (require) {
 			self.tongViewi.applyBindings();
 			self.changeTong();
 
-					
 		},
 		changeTong: function() {
 			var self = this;
