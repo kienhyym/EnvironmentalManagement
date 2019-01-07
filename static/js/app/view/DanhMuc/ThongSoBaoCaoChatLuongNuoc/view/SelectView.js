@@ -27,7 +27,9 @@ define(function (require) {
     			    	    	label: "TRANSLATE:SELECT",
     			    	    	command: function(){
     			    	    		var self = this;
-    			    	    		self.trigger("onSelected");
+    			    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) {    			    	    			
+    			    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
+    			    	    		}
     			    	    		self.close();
     			    	    	}
     			    	    },
