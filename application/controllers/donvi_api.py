@@ -224,7 +224,7 @@ async def reset_user_passwd(instance_id=None, data=None):
 
      
 
-@app.route('/api/v1/adddonviwilluser')  
+@app.route('/api/v1/adduser_donvi')  
 async def addDonViWillUser(request):
     id = request.args.get('id', None)
     error_msg = None
@@ -248,6 +248,12 @@ async def addDonViWillUser(request):
                 donvi.diachi = dangky.donvi_diachi
                 donvi.sodienthoai = dangky.donvi_sodienthoai
                 donvi.coquanchuquan = dangky.captren.ten
+                donvi.tinhthanh_id = dangky.tinhthanh_id
+                donvi.tinhthanh = dangky.tinhthanh
+                donvi.quanhuyen_id = dangky.quanhuyen_id
+                donvi.quanhuyen = dangky.quanhuyen
+                donvi.xaphuong_id = dangky.xaphuong_id
+                donvi.xaphuong = dangky.xaphuong
                 donvi.active = True
                   
                 db.session.add(donvi)
@@ -271,9 +277,6 @@ async def addDonViWillUser(request):
                 dangky.trangthai = TrangThaiDangKyDonViEnum.dongbo
                 db.session.commit()
                 
-                print(user.id)
-                print(donvi.id)
-                print(to_dict(dangky))
                 return json({"user_id": str(user.id),"donvi_id": str(donvi.id)},status=200)
               
             else:

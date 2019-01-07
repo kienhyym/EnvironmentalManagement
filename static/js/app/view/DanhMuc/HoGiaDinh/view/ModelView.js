@@ -143,6 +143,23 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
+			
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.tinhthanh_id){
+					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+				}
+				if (!!currentUser.donvi.quanhuyen_id){
+					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+				}
+				if (!!currentUser.donvi.xaphuong_id){
+					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+					self.getApp().data("xaphuong_id", currentUser.donvi.xaphuong_id);
+				}
+			}
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({

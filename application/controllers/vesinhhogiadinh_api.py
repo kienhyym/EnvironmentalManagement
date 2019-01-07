@@ -14,6 +14,8 @@ from sqlalchemy import or_, and_
 from application.client import HTTPClient 
 from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
+from datetime import datetime
+
 
 def congdonTongCong(Baocao, current_user, nambaocao=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
@@ -63,8 +65,13 @@ async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    data['ngaybaocao'] = datetime.now()
     
 async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
     kybaocaotruoc = 1
     nambaocao_truoc = None
     if (data['kybaocao'] > 1):
@@ -84,6 +91,7 @@ async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
                                                       VSCapThon.loaikybaocao == data['loaikybaocao'], \
                                                       VSCapThon.kybaocao == kybaocaotruoc, \
                                                       VSCapThon.nambaocao == nambaocao_truoc)).first()    
+    
     if baocaokytruoc is not None:
         data["tongho_conhatieu_truocbaocao"] = baocaokytruoc.tong_soho - baocaokytruoc.tong_khongnhatieu
         data["tongho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs
@@ -102,18 +110,19 @@ async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
         tong_soho_conhatieu_2ngan_hvs_xuongcap = 0
         tong_soho_conhatieu_caithien_xuongcap = 0
         tong_hongheo_conhatieu_caithien_xuongcap = 0
+        tong_soho_conhatieu_tuhoai_xuongcap = 0
         for nt_truoc in nhatieuthon_kytruoc:
             for nt_sau in nhatieuthon_kyhientai:
                 if nt_truoc["maho"] == nt_sau["maho"]:
-                    if(nt_truoc["hopvesinh"] == 1 and nt_sau["hopvesinh"] == 0):
+                    if(nt_truoc["hopvesinh"] == 1 and (nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
                         tongho_conhatieu_hvs_xuongcap = tongho_conhatieu_hvs_xuongcap +1
-                    if(nt_truoc["tuhoai"] == 1 and nt_sau["tuhoai"] == 0):
+                    if(nt_truoc["tuhoai"] == 1 and (nt_sau["tuhoai"] is None or nt_sau["tuhoai"] == 0)):
                         tong_soho_conhatieu_tuhoai_xuongcap = tong_soho_conhatieu_tuhoai_xuongcap +1
-                    if(nt_truoc["thamdoi"] == 1 and nt_sau["thamdoi"] == 0):
+                    if(nt_truoc["thamdoi"] == 1 and (nt_sau["thamdoi"] is None or nt_sau["thamdoi"]== 0)):
                         tong_soho_conhatieu_thamdoi_xuongcap = tong_soho_conhatieu_thamdoi_xuongcap +1
-                    if(nt_truoc["haingan"] == 1 and nt_sau["haingan"] == 0):
+                    if(nt_truoc["haingan"] == 1 and (nt_sau["haingan"] is None or nt_sau["haingan"] == 0)):
                         tong_soho_conhatieu_2ngan_hvs_xuongcap = tong_soho_conhatieu_2ngan_hvs_xuongcap +1
-                    if(nt_truoc["caithien"] == 1 and nt_sau["caithien"] == 0):
+                    if(nt_truoc["caithien"] == 1 and (nt_sau["caithien"] is None or nt_sau["caithien"] == 0)):
                         tong_soho_conhatieu_caithien_xuongcap = tong_soho_conhatieu_caithien_xuongcap +1
                         if(nt_truoc["hongheo"] == 1 and nt_sau["hongheo"] == 1):
                             tong_hongheo_conhatieu_caithien_xuongcap = tong_hongheo_conhatieu_caithien_xuongcap +1
@@ -145,6 +154,7 @@ async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    data['ngaybaocao'] = datetime.now()
     
 async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -163,6 +173,7 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    data['ngaybaocao'] = datetime.now()
     
 async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -181,6 +192,7 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    data['ngaybaocao'] = datetime.now()
 
 async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)

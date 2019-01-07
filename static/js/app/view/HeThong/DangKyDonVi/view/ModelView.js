@@ -12,7 +12,10 @@ define(function (require) {
 	var TrangThaiDangKyDonViEnum = require('json!app/enum/TrangThaiDangKyDonViEnum.json');
 	var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
 	var DonViSelectView = require('app/view/HeThong/DonVi/view/SelectView');
-
+	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
+	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+	
 
 	return Gonrin.ModelView.extend({
 		template: template,
@@ -43,6 +46,30 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: TrangThaiDangKyDonViEnum,
+				},
+				{
+					field: "tinhthanh",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "tinhthanh_id",
+					dataSource: TinhThanhSelectView
+				},
+				{
+					field: "quanhuyen",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "quanhuyen_id",
+					dataSource: QuanHuyenSelectView
+				},
+				{
+					field: "xaphuong",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "xaphuong_id",
+					dataSource: XaPhuongSelectView
 				},
 
 			],
@@ -132,7 +159,7 @@ define(function (require) {
 						var self = this;
 
 						var id = self.model.get('id');
-						var url = "/api/v1/adddonviwilluser?id=" + id;
+						var url = "/api/v1/adduser_donvi?id=" + id;
 						$.ajax({
 							url: url,
 							success: function (data) {

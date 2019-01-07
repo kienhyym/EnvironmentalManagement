@@ -25,36 +25,47 @@
         "type": "string"
     },
     "hongheo": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "tuhoai": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "thamdoi": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "haingan": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "chimco_oth": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "loaikhac": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "khongconhatieu": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "hopvesinh": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "khonghopvesinh": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "caithien": {
-        "type": "number"
+        "type": "number",
+        "default":0
     },
     "diemruataycoxaphong": {
-        "type": "number"
+        "type": "number",
+        "default":0
     }
 }

@@ -35,11 +35,6 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-    			{
-					field: "id",
-					label: "Mã Hộ",
-					readonly: true,
-				},
 				{
 					field: "tenchuho",
 					label: "Tên chủ hộ"
@@ -62,6 +57,34 @@ define(function (require) {
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
+				{
+	            	 field: "thonxom_id", 
+	            	 label: "Thôn/Xóm",
+	            	 foreign: "thonxom",
+	            	 foreignValueField: "id",
+	            	 foreignTextField: "ten",
+	           	 },
+	           	{
+	            	 field: "xaphuong_id", 
+	            	 label: "Xã/Phường",
+	            	 foreign: "xaphuong",
+	            	 foreignValueField: "id",
+	            	 foreignTextField: "ten",
+	           	 },
+//	           	{
+//	            	 field: "quanhuyen_id", 
+//	            	 label: "Quận/Huyện",
+//	            	 foreign: "quanhuyen",
+//	            	 foreignValueField: "id",
+//	            	 foreignTextField: "ten",
+//	           	 },
+//	           	{
+//	            	 field: "tinhthanh_id", 
+//	            	 label: "Tỉnh/Thành phố",
+//	            	 foreign: "tinhthanh",
+//	            	 foreignValueField: "id",
+//	            	 foreignTextField: "ten",
+//	           	 },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

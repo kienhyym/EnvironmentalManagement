@@ -19,6 +19,9 @@ async def get_user_with_permission(user):
     roleids = [role.id for role in user.roles]
     user_info["roles"] = roles
     user_info['donvi'] = to_dict(user.donvi)
+    user_info['donvi']['tinhthanh'] = to_dict(user.donvi.tinhthanh)
+    user_info['donvi']['quanhuyen'] = to_dict(user.donvi.quanhuyen)
+    user_info['donvi']['xaphuong'] = to_dict(user.donvi.xaphuong)
      
     #permission:
     perms = Permission.query.filter(Permission.role_id.in_(roleids)).order_by(Permission.subject).all()
