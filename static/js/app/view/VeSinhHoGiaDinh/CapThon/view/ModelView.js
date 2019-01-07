@@ -37,11 +37,10 @@ define(function (require) {
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 		template: template,
-
+		current_thonxom:"",
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "vscapthon",
-
 		uiControl: {
 			fields: [
 				{
@@ -381,17 +380,6 @@ define(function (require) {
 					}
 				});
 			} else {
-				
-//				if (viewData !== null && viewData!==undefined){
-//					self.model.set("tinhthanh_id", viewData.tinhthanh_id);
-//					self.model.set("tinhthanh", viewData.tinhthanh);
-//					self.model.set("quanhuyen_id", viewData.quanhuyen_id);
-//					self.model.set("quanhuyen", viewData.quanhuyen);
-//					self.model.set("xaphuong_id", viewData.xaphuong_id);
-//					self.model.set("xaphuong", viewData.xaphuong);
-//					self.model.set("nambaocao", viewData.nambaocao);
-//				}
-				
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				
@@ -400,12 +388,12 @@ define(function (require) {
 				self.model.on("change:thuocsuprsws", function(){
 					self.check_chuongtrinhSUP();
 				});
-				self.model.on("change:thonxom", function(){
-					self.get_danhsachho();
+				self.model.on("change:thonxom", function(event, name){
+					if(self.model.previous("thonxom_id") ===null || self.model.previous("thonxom_id") !== self.model.get("thonxom_id")){
+						self.get_danhsachho();
+					}
 				});
-
 			}
-			
 		},
 		get_danhsachho:function(){
 			var self = this;
