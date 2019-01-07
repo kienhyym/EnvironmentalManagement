@@ -9,6 +9,7 @@
     	//var KQNgoaiKiemChatLuong = require('app/view/BaoCaoNuoc/KQNgoaiKiemChatLuong/view/ModelItemView');
     	var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
     	var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
+    	var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
     	return Gonrin.ModelView.extend({
     		template: template,
     		modelSchema: schema,
@@ -20,6 +21,14 @@
     					textFormat: "DD/MM/YYYY",
     					extraFormats: ["DDMMYYYY"],
     				},
+    				{
+        				field:"donvicapnuoc",
+        				uicontrol:"ref",
+        				textField: "ten",
+        				foreignRemoteField: "id",
+        				foreignField: "donvicapnuoc_id",
+        				dataSource: DonViCapNuocSelectView
+        			},
     			],
     		},
     		tools: [{
@@ -79,6 +88,30 @@
     		}],
     		render: function () {
     			var self = this;
+    			
+//    			var viewDonViCapNuoc = new DonViCapNuocSelectView();
+////    			viewDonViCapNuoc.dialog();
+//    			console.log("value view", viewDonViCapNuoc);
+//    			self.model.on("viewDonViCapNuoc:onSelected", function(){
+//    				console.log("view donvicapnuoc");
+//    			});
+    			self.getApp().on("DonViCapNuoc_onSelected", function (data) {
+    				self.model.set("diachi_donvicapnuoc", data.diachi);
+					self.model.set("diachi_donvicapnuoc", data.diachi);
+					self.model.set("congxuat", data.congsuat);
+					self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
+					self.model.set("nguonnuoc", data.nguonnuoc);
+					
+    				self.model.on("change:donvicapnuoc", function () {
+    					self.model.set("diachi_donvicapnuoc", data.diachi);
+    					self.model.set("diachi_donvicapnuoc", data.diachi);
+    					self.model.set("congxuat", data.congsuat);
+    					self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
+    					self.model.set("nguonnuoc", data.nguonnuoc);
+        			});
+    				
+    			});
+    			
     			self.$el.find("#addItem").unbind("click").bind("click", function () {
                     var view = new ThongSoBaoCaoChatLuongNuocView();
                     view.dialog();

@@ -17,12 +17,20 @@ define(function (require) {
 			fields: [{
 					field: "thoigiankiemtra",
 					label: "Thời gian kiểm tra",
+					textFormat: "DD/MM/YYYY",
 					width: 250
 				},
+//				{
+//					field: "donvicapnuoc",
+//					label: "Tên đơn vị cấp nước",
+//					width: 250
+//				},
 				{
-					field: "tendonvicapnuoc",
+					field: "donvicapnuoc_id",
 					label: "Tên đơn vị cấp nước",
-					width: 250
+					foreign: "donvicapnuoc",
+					foreignValueField: "id",
+					foreignTextField: "ten",
 				},
 				{
 					field: "diachi_donvicapnuoc",
