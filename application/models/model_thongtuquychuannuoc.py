@@ -12,6 +12,7 @@ from sqlalchemy.orm.collections import attribute_mapped_collection
 def default_uuid():
     return str(uuid.uuid4())
 
+#Danh muc cac don vi cap nuoc
 class DonViCapNuoc(CommonModel):
     __tablename__ = 'donvicapnuoc'
     ten = db.Column(db.String)
@@ -28,7 +29,7 @@ class DonViCapNuoc(CommonModel):
     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     xaphuong = relationship('XaPhuong')
 
-##MauSo 1
+##MauSo 1 ket qua ngoai kiem nuoc sach
 class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     __tablename__ = 'ketqua_ngoaikiem_chatluong_nuocsach'
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
