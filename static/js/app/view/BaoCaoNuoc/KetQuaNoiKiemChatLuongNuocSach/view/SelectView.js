@@ -38,7 +38,7 @@ define(function (require) {
 			var self = this;
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
-				sessionKey: "ketqua_noikiem_chatluong_nuocsach_filter"
+				sessionKey: "Ketqua_noikiem_chatluong_nuocsach_filter"
 			});
 			filter.render();
 

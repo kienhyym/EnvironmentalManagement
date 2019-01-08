@@ -4,16 +4,16 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/BaoCaoNuoc/BapCaoNuocSachOne/tpl/collection.html'),
-		schema = require('json!schema/BapCaoNuocSachOneSchema.json');
+	var template = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/collection.html'),
+		schema = require('json!schema/KetQuaNgoaiKiemChatLuongNuocSachSchema.json');
 	var CustomFilterView = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionDialogView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "baocaonuocsachOne",
-		textField: "tenphieu",
+		collectionName: "ketqua_ngoaikiem_chatluong_nuocsach",
+		textField: "tendonvicapnuoc",
 		tools: [
 			{
 				name: "defaultgr",
@@ -38,7 +38,7 @@ define(function (require) {
 			var self = this;
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
-				sessionKey: "Khaithacnuocngam_filter"
+				sessionKey: "Ketqua_ngoaikiem_chatluong_nuocsach_filter"
 			});
 			filter.render();
 
@@ -46,8 +46,8 @@ define(function (require) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
 				var filters = {
 					"$or": [
-						{ "loaiphieu": { "$like": text } },
-						{ "tenphieu": { "$like": text } },
+						{ "tendonvicapnuoc": { "$like": text } },
+						{ "madonvicapnuoc": { "$like": text } },
 					]
 				};
 				self.uiControl.filters = filters;
@@ -61,8 +61,8 @@ define(function (require) {
 					if (text !== null) {
 						var filters = {
 							"$or": [
-								{ "loaiphieu": { "$like": text } },
-								{ "tenphieu": { "$like": text } },
+								{ "tendonvicapnuoc": { "$like": text } },
+								{ "madonvicapnuoc": { "$like": text } },
 							]
 						};
 						$col.data('gonrin').filter(filters);

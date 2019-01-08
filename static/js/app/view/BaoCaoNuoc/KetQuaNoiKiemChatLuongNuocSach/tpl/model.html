@@ -1,53 +1,53 @@
 <div style="margin-top: 30px" class="panel panel-default">
-	<div class="panel-heading ">Kết quả nội kiểm chất lượng nước sạch</div>
-	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		<div style="margin-top: 30px;font-weight: 500">
-			<h5 style="font-weight: 500">A. THÔNG TIN CHUNG </h5>
-		</div>
-
-		
-
-		<div style="margin-top: 15px" class="row">
-			<table class="data-table-no-border">
-				<tr>
-					<td><label>1. Tên đơn vị cấp nước:</label> </td>
-					<td colspan=3><input type="text" class="form-control" data-bind="dict:donvicapnuoc" /></td>
-				</tr>
-				<tr>
-					<td><label>2. Địa chỉ:</label> </td>
-					<td colspan=3><input type="text" class="form-control" data-bind="value:diachi_donvicapnuoc" disabled/></td>
-				</tr>
-				<tr>
-					<td><label>3. Công suất thiết kế:</label> </td>
-					<td><input type="text" class="form-control" data-bind="value:congxuat" disabled /></td>
-					<td><label>/ Tổng số hộ gia đình (HGĐ) được cung cấp nước:</label> </td>
-					<td><input type="text" class="form-control" data-bind="value:tongso_hogiadinh" disabled /></td>
-				</tr>
-				<tr>
-					<td><label>4. Nguồn nước nguyên liệu <i>(ghi cụ thể):</i></label> </td>
-					<td colspan=3><input type="text" class="form-control" data-bind="value:nguonnuoc" disabled /></td>
-				</tr>
-				<tr>
-					<td><label>5. Thời gian kiểm tra:</i></label> </td>
-					<td><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
-				</tr>
-				<tr>
-					<td><label>6. Người kiểm tra:</i></label> </td>
-					<td colspan=3><textarea class="form-control" data-bind="value:nguoikiemtra" ></textarea></td>
-				</tr>
-				<tr>
-					<td><label>7. Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label> </td>
-					<td><input type="number" class="form-control" data-bind="value:somauvavitri" /></td>
-				</tr>
-			</table>
-		
+    <div class="panel-heading ">Kết quả nội kiểm chất lượng nước sạch</div>
+    <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+    <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+        <div style="margin-top: 30px;font-weight: 500">
+            <h5 style="font-weight: 500">A. THÔNG TIN CHUNG </h5>
+        </div>
 
 
-		<div style="margin-bottom: 20px;margin-top: 20px;">
-			<h5>B. HỒ SƠ THEO DÕI, QUẢN LÝ CHẤT LƯỢNG NƯỚC</h5>
-		</div>
 
+        <div style="margin-top: 15px" class="row">
+            <table class="data-table-no-border">
+                <tr>
+                    <td><label>1. Tên đơn vị cấp nước:</label> </td>
+                    <td colspan=3><input type="text" class="form-control" data-bind="dict:donvicapnuoc" /></td>
+                </tr>
+                <tr>
+                    <td><label>2. Địa chỉ:</label> </td>
+                    <td colspan=3><input type="text" class="form-control" data-bind="value:diachi_donvicapnuoc"
+                            disabled /></td>
+                </tr>
+                <tr>
+                    <td><label>3. Công suất thiết kế:</label> </td>
+                    <td><input type="text" class="form-control" data-bind="value:congxuat" disabled /></td>
+                    <td><label>/ Tổng số hộ gia đình (HGĐ) được cung cấp nước:</label> </td>
+                    <td><input type="text" class="form-control" data-bind="value:tongso_hogiadinh" disabled /></td>
+                </tr>
+                <tr>
+                    <td><label>4. Nguồn nước nguyên liệu <i>(ghi cụ thể):</i></label> </td>
+                    <td colspan=3><input type="text" class="form-control" data-bind="value:nguonnuoc" disabled /></td>
+                </tr>
+                <tr>
+                    <td><label>5. Thời gian kiểm tra:</i></label> </td>
+                    <td><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
+                </tr>
+                <tr>
+                    <td><label>6. Người kiểm tra:</i></label> </td>
+                    <td colspan=3><textarea class="form-control" data-bind="value:nguoikiemtra"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label>7. Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label> </td>
+                    <td><input type="number" class="form-control" data-bind="value:somauvavitri" /></td>
+                </tr>
+            </table>
+
+
+
+            <div style="margin-bottom: 20px;margin-top: 20px;">
+                <h5>B. VIỆC THỰC HIỆN NỘI KIỂM CỦA ĐƠN VỊ CẤP NƯỚC</h5>
+            </div>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -56,57 +56,61 @@
 				</div>
 			</div>
 		</div>
-		<div style="margin-bottom: 30px;margin-top: 20px;">
-			<h5>C. KẾT QUẢ THỬ NGHIỆM CHẤT LƯỢNG NƯỚC</h5>
-			<table>
-				<thead>
-					<tr>
-						<th rowspan=2></th>
-						<th rowspan=2>STT</th>
-						<th style="text-align: right">Mã số mẫu, vị trí lấy mẫu</th>
-						<th rowspan=2 id="mauvitri_header_before">Giới hạn tối đa cho phép</th>
-						<th rowspan=2 id="mauvitri_header"></th>
-						<th rowspan=2>Đánh giá (đạt/không đạt)</th>
-					</tr>
-					<tr>
-						<th>Các thông số</th>
-					</tr>
-				</thead>
-				<tbody id="ketquanoikiemchatluongnuoc"></tbody>
-			</table>
-			<button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
-		</div>
+           
+            <div style="margin-bottom: 30px;margin-top: 20px;">
+                <h5>C. KẾT QUẢ NGOẠI KIỂM CHẤT LƯỢNG NƯỚC</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan=2></th>
+                            <th rowspan=2>STT</th>
+                            <th style="text-align: right">Mã số mẫu, vị trí lấy mẫu</th>
+                            <th style="width:150px" rowspan=2 id="mauvitri_header_before">Giới hạn tối đa cho phép</th>
+                            <th rowspan=2 id="mauvitri_header"></th>
+                            <th style="width:150px" rowspan=2>Đánh giá (đạt/không đạt)</th>
+                        </tr>
+                        <tr>
+                            <th>Các thông số</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ketquanoikiemchatluongnuoc"></tbody>
+                </table>
+                <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
+            </div>
 
+            <div style="margin-botton: 20px;">
+                <p>- Dấu (*) chỉ áp dụng cho đơn vị cấp nước khai thác nước ngầm.
+                    <br />- Dấu (**) chỉ áp dụng cho các đơn vị cấp nước sử dụng Clo làm phương pháp khử trùng.</p>
+            </div>
+            <div class="row">
+            	<div class="col-md-3">
+                    <label>Kết luận kết quả ngoại kiểm</label>
+                    <input type="text" class="form-control" data-bind="value:ketquanoikiem" disabled="disabled" />
+            	</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Nhận xét</label>
+                        <textarea type="text" class="form-control" data-bind="value:nhanxet"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>D. CÁC BIỆN PHÁP KHẮC PHỤC (nếu có)</label>
+                        <textarea class="form-control" data-bind="value:bienphapkhacphuc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Đ. KẾT LUẬN</label>
+                        <textarea type="text" class="form-control" data-bind="value:denghi"></textarea>
+                    </div>
+                </div>
+            </div>
 
+        </div>
 
-		<div style="margin-botton: 20px;">
-			<p>- Dấu (*) chỉ áp dụng cho đơn vị cấp nước khai thác nước ngầm.
-				<br />- Dấu (**) chỉ áp dụng cho các đơn vị cấp nước sử dụng Clo làm phương pháp khử trùng.</p>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="form-group">
-					<label>Nhận xét</label> 
-					<textarea type="text" class="form-control" data-bind="value:nhanxet"></textarea>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<label>D. CÁC BIỆN PHÁP KHẮC PHỤC (nếu có)</label>
-					<textarea class="form-control" data-bind="value:bienphapkhacphuc"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="form-group">
-					<label>Đ. KẾT LUẬN</label> 
-					<textarea type="text" class="form-control" data-bind="value:denghi"></textarea>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-
-</div>
+    </div>

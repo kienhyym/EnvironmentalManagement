@@ -111,7 +111,7 @@ class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
     bienphapkhacphuc = db.Column(db.String)
     denghi = db.Column(db.String)
     ketquanoikiemchatluongnuoc = db.Column(JSONB)
-    ketquanoikiem = db.Column(db.Integer)
+    ketquanoikiem = db.Column(db.String)
 
 ##Mau so 2
 class KetQuaKiemTraChatLuongNuocSach(CommonModel):
