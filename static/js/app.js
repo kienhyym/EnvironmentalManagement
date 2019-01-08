@@ -162,7 +162,47 @@ require(['jquery', 'gonrin', 'app/router',
 				$("#userprofile").bind('click', function () {
 					self.router.navigate("user/profile");
 				});
-			}
+			},
+			process_loaikybaocao:function(baocao, Model, elementView){
+				var self = this;
+				var currentRoute = self.router.currentRoute()['fragment'];
+				if (currentRoute.indexOf('model/quy1')>=0){
+					Model.set("loaikybaocao",2);
+					Model.set("kybaocao",1);
+					elementView.find("#kydanhgia").val("Qúy I");
+					self.data(baocao + "_loaibaocao_route","quy1");
+				} else if(currentRoute.indexOf('model/quy2')>=0){
+					Model.set("loaikybaocao",2);
+					Model.set("kybaocao",2);
+					elementView.find("#kydanhgia").val("Qúy II");
+					self.data(baocao + "_loaibaocao_route","quy2");
+				} else if(currentRoute.indexOf('model/quy3')>=0){
+					Model.set("loaikybaocao",2);
+					Model.set("kybaocao",3);
+					elementView.find("#kydanhgia").val("Qúy III");
+					self.data(baocao + "_loaibaocao_route","quy3");
+				} else if(currentRoute.indexOf('model/quy4')>=0){
+					Model.set("loaikybaocao",2);
+					Model.set("kybaocao",4);
+					elementView.find("#kydanhgia").val("Qúy IV");
+					self.data(baocao + "_loaibaocao_route","quy4");
+				} else if(currentRoute.indexOf('model/6thangdau')>=0){
+					Model.set("loaikybaocao",3);
+					Model.set("kybaocao",1);
+					elementView.find("#kydanhgia").val("6 tháng đầu năm");
+					self.data(baocao + "_loaibaocao_route","6thangdau");
+				} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
+					Model.set("loaikybaocao",3);
+					Model.set("kybaocao",2);
+					elementView.find("#kydanhgia").val("6 tháng cuối năm");
+					self.data(baocao + "_loaibaocao_route","6thangcuoi");
+				} else if(currentRoute.indexOf('model/nam')>=0){
+					Model.set("loaikybaocao",4);
+					Model.set("kybaocao",1);
+					elementView.find("#kydanhgia").val("Tổng kết năm");
+					self.data(baocao + "_loaibaocao_route","nam");
+				}
+			},
 		});
 		Backbone.history.start();
 

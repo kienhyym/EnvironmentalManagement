@@ -17,7 +17,7 @@ define(function (require) {
             fields: [{
                 field: "thoigiankiemtra",
                 label: "Thời gian kiểm tra",
-                width: 250,
+                
 //                template: function formatDate() {
 //                	console.log("test function");
 //                }
@@ -32,17 +32,12 @@ define(function (require) {
             {
                 field: "diachi_donvicapnuoc",
                 label: "Địa chỉ",
-                width: 250
+                
             },
             {
                 field: "nguonnuoc",
                 label: "Nguồn nước nguyên liệu",
-                width: 250
-            },
-            {
-                field: "somauvavitri",
-                label: "Số mẫu vị trí lấy mẫu nước",
-                width: 250
+                
             },
 
 

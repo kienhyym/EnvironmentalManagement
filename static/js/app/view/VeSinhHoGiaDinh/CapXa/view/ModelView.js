@@ -136,14 +136,14 @@ define(function (require) {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
-									self.getApp().getRouter().navigate(
-										self.collectionName + "/collection");
+									self.getApp().getRouter().navigate(self.collectionName 
+											+ "/collection?loaikybaocao="+self.getApp().data("vscapxa_loaibaocao_route"));
+	
 								},
 								error: function (xhr, status, error) {
 									try {
 										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-									}
-									catch (err) {
+									}catch (err) {
 										self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
 									}
 								}
@@ -171,8 +171,7 @@ define(function (require) {
 							error: function (xhr, status, error) {
 								try {
 									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-								}
-								catch (err) {
+								}catch (err) {
 									self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
 								}
 							}
@@ -185,11 +184,28 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
+			self.getApp().process_loaikybaocao("vscapxa", self.model, self.$el);
+			
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.tinhthanh_id){
+					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+				}
+				if (!!currentUser.donvi.quanhuyen_id){
+					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+				}
+				if (!!currentUser.donvi.xaphuong_id){
+					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+				}
+			}
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
-						self.$el.find("#nambaocao").attr({"disabled":true});
+//						self.$el.find("#nambaocao").attr({"disabled":true});
 						self.applyBindings();
 						var danhsachbaocao = data.attributes.danhsachbaocao;
 	
@@ -214,8 +230,12 @@ define(function (require) {
 							});
 							tr.append("<td>" + element.tenthon + "</td>");
 							tr.append("<td>" + element.tong_chuholanu + "</td>");
-							tr.append("<td>" + element.tong_sohodtts + "</td>");
-							tr.append("<td>" + element.tong_sohongheo + "</td>");
+							console.log('self.model.get("thuocsuprsws")===',self.model.get("thuocsuprsws"));
+							if(self.model.get("thuocsuprsws")=== 1 ||self.model.get("thuocsuprsws")=== "1"){
+								tr.append("<td>" + element.tong_sohodtts + "</td>");
+								tr.append("<td>" + element.tong_sohongheo + "</td>");
+							}
+							
 							tr.append("<td>" + element.tong_tuhoai + "</td>");
 							tr.append("<td>" + element.tong_thamdoi + "</td>");
 							tr.append("<td>" + element.tong_2ngan + "</td>");
@@ -224,17 +244,32 @@ define(function (require) {
 							tr.append("<td>" + element.tong_khongnhatieu + "</td>");
 							tr.append("<td>" + element.tong_hopvs + "</td>");
 							tr.append("<td>" + element.tong_khonghopvs + "</td>");
-							tr.append("<td>" + element.tong_caithien + "</td>");
-							tr.append("<td>" + element.tong_diemruatay + "</td>");
+							if(self.model.get("thuocsuprsws")=== 1 ||self.model.get("thuocsuprsws")=== "1"){
+								tr.append("<td>" + element.tong_caithien + "</td>");
+								tr.append("<td>" + element.tong_diemruatay + "</td>");
+								
+							}
+							
 							self.model.set("tong_tuhoai", (toInt(self.model.get("tong_tuhoai"))+toInt(element.tong_tuhoai)));
+							self.model.set("tong_tuhoai_hvs", (toInt(self.model.get("tong_tuhoai_hvs"))+toInt(element.tong_tuhoai_hvs)));
+
 							self.model.set("tong_thamdoi", (toInt(self.model.get("tong_thamdoi"))+toInt(element.tong_thamdoi)));
+							self.model.set("tong_thamdoi_hvs", (toInt(self.model.get("tong_thamdoi_hvs"))+toInt(element.tong_thamdoi_hvs)));
+
 							self.model.set("tong_2ngan", (toInt(self.model.get("tong_2ngan"))+toInt(element.tong_2ngan)));
+							self.model.set("tong_2ngan_hvs", (toInt(self.model.get("tong_2ngan_hvs"))+toInt(element.tong_2ngan_hvs)));
+							
 							self.model.set("tong_ongthonghoi", (toInt(self.model.get("tong_ongthonghoi"))+toInt(element.tong_ongthonghoi)));
+							self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
+							
 							self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
 							self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
 							self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
 							self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
 							self.model.set("tong_caithien", (toInt(self.model.get("tong_caithien"))+toInt(element.tong_caithien)));
+							self.model.set("tong_caithien_hvs", (toInt(self.model.get("tong_caithien_hvs"))+toInt(element.tong_caithien)));
+							self.model.set("tong_caithien_hongheo", (toInt(self.model.get("tong_caithien_hongheo"))+toInt(element.tong_caithien_hongheo)));
+							self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
 							self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
 
 							
@@ -242,7 +277,8 @@ define(function (require) {
 							self.$el.find("#danhsachdonvi").append(tr);
 							tr.unbind('click').bind('click', function () {
 								var id = $(this).attr('id');
-								var path = 'vscapthon/model?id=' + id;
+								var path = 'vscapthon/model/'+self.getApp().data("vscapxa_loaibaocao_route")+'?id=' + id;
+								console.log("rowclick.path===",path);
 								self.getApp().getRouter().navigate(path);
 							});
 
@@ -261,11 +297,35 @@ define(function (require) {
 					error: function () {
 						self.getApp().notify("Lỗi không lấy được dữ liệu");
 					},
+					complete:function(){
+						self.check_chuongtrinhSUP();
+						self.model.on("change:thuocsuprsws", function(){
+							self.check_chuongtrinhSUP();
+						});
+					}
 				});
 			} else {
 				self.applyBindings();
+				self.check_chuongtrinhSUP();
+				self.model.on("change:thuocsuprsws", function(){
+					self.check_chuongtrinhSUP();
+				});
 			}
 
+		},
+		check_chuongtrinhSUP:function(){
+			var self = this;
+			var check_thuoc_sup = self.model.get("thuocsuprsws");
+			if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
+				self.$el.find(".chuongtrinhsup").hide();
+				self.$el.find("#header_table_notsup").show();
+				self.$el.find("#header_table_sup").hide();
+				
+			} else{
+				self.$el.find(".chuongtrinhsup").show();
+				self.$el.find("#header_table_notsup").hide();
+				self.$el.find("#header_table_sup").show();
+			}
 		},
 		renderTinhTongI: function (danhsachbaocao) {
 			var self = this;

@@ -21,32 +21,27 @@ define(function (require) {
                 foreign: "donvicapnuoc",
                 foreignValueField: "id",
                 foreignTextField: "ten",
-                width: 250
+                
             },
             {
                 field: "nambaocao",
                 label: "Năm báo cáo",
-                width: 250
+                
             },
             {
                 field: "ngaybaocao",
                 label: "Ngày báo cáo",
-                width: 250
+                
             },
             {
                 field: "diachi_donvicapnuoc",
                 label: "Địa chỉ",
-                width: 250
+                
             },
             {
                 field: "nguonnuoc",
                 label: "Nguồn nước nguyên liệu",
-                width: 250
-            },
-            {
-                field: "somauvavitri",
-                label: "Số mẫu vị trí lấy mẫu nước",
-                width: 250
+                
             },
 
 

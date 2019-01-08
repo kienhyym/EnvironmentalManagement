@@ -167,10 +167,11 @@ define(function (require) {
 	
 								},
 								error: function (model, xhr, options) {
-									var msgJson = $.parseJSON(xhr.responseText);
-										if (msgJson) {
-											self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
-										}
+									try {
+										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}catch (err) {
+										self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
+									}
 								}
 							});
 						}	
@@ -384,13 +385,15 @@ define(function (require) {
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				
-//				self.$el.find("#addItem").click();
 				self.check_chuongtrinhSUP();
 				self.model.on("change:thuocsuprsws", function(){
 					self.check_chuongtrinhSUP();
 				});
 				self.model.on("change:thonxom", function(event, name){
-					if(self.model.previous("thonxom_id") ===null || self.model.previous("thonxom_id") !== self.model.get("thonxom_id")){
+					console.log('self.model.previous("thonxom_id")===',self.model.previous("thonxom"));
+					console.log('self.model.get("thonxom_id")===',self.model.get("thonxom"));
+
+					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
 						self.get_danhsachho();
 					}
 				});

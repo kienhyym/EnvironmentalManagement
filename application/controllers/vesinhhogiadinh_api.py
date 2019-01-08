@@ -10,7 +10,7 @@ from gatco.response import json, text, html
 
 from .helpers import *
 from application.models.model_vesinhhogiadinh import *
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, desc
 from application.client import HTTPClient 
 from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
@@ -69,7 +69,7 @@ async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     data['ngaybaocao'] = str(datetime.now())
-    await process_baocao_vesinh(currentuser,VSCapThon,data)
+    await process_baocao_vesinh_capthon(currentuser,data)
     
     
 async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
@@ -77,30 +77,31 @@ async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
-    await process_baocao_vesinh(currentuser,VSCapThon,data)
+    await process_baocao_vesinh_capthon(currentuser,data)
     
 async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
-    await process_baocao_vesinh(currentuser,VSCapXa,data)
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapXa,data)
     
 async def pre_put_vscaphuyen(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
-    await process_baocao_vesinh(currentuser,VSCapHuyen,data)
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapHuyen,data)
 
 async def pre_put_vscaptinh(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
-    await process_baocao_vesinh(currentuser,VSCapTinh,data)  
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapTinh,data)  
     
-async def process_baocao_vesinh(currentuser=None, BaoCao=None, data=None):
+async def process_baocao_vesinh_capthon(currentuser=None, data=None):
+    Baocao = VSCapThon
     kybaocaotruoc = 1
     nambaocao_truoc = None
     if (data['kybaocao'] > 1):
@@ -176,7 +177,29 @@ async def process_baocao_vesinh(currentuser=None, BaoCao=None, data=None):
         data["tong_soho_conhatieu_vip_hvs_xuongcap"] = tong_soho_conhatieu_vip_hvs_xuongcap
         data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hvs_xuongcap
         data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap
+
+async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, data=None):
+    baocaokytruoc = db.session.query(BaoCao).filter(and_(BaoCao.donvi_id == currentuser.donvi_id, BaoCao.id !=data['id'])).order_by(desc(BaoCao.created_at)).first()    
+    print("baocaokytruoc",to_dict(baocaokytruoc))
+    if baocaokytruoc is not None:
         
+        data["tong_soho_conhatieu_truocbaocao"] = (int(baocaokytruoc.tong_soho) - int(baocaokytruoc.tong_khongnhatieu))
+        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs
+        data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs
+        data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs
+        data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs
+        data["tong_soho_conhatieu_vip_hvs_truocbaocao"] = baocaokytruoc.tong_ongthonghoi_hvs
+        data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hvs
+        
+        data["tong_soho_conhatieu_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap
+        data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap
+        data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap
+        data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap
+        data["tong_soho_conhatieu_vip_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap
+        data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap
+                
     
 async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -201,7 +224,7 @@ async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     data['ngaybaocao'] = str(datetime.now())
-    await process_baocao_vesinh(currentuser,VSCapXa,data)
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapXa,data)
     
 async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -225,7 +248,7 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     data['ngaybaocao'] = str(datetime.now())
-    await process_baocao_vesinh(currentuser,VSCapHuyen,data)
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapHuyen,data)
     
 async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -249,7 +272,7 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     data['ngaybaocao'] = str(datetime.now())
-    await process_baocao_vesinh(currentuser,VSCapTinh,data)
+    await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapTinh,data)
 
 async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
@@ -259,7 +282,7 @@ async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
 #     obj['danhsachbaocao'] = list_baocao
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapXa,currentuser, obj)
+        list_baocao = congdonTongCong(VSCapThon,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     
@@ -271,7 +294,7 @@ async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **k
 #     obj['danhsachbaocao'] = list_baocao
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj)
+        list_baocao = congdonTongCong(VSCapXa,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
@@ -281,7 +304,7 @@ async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw
     obj = to_dict(result)
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapTinh,currentuser, obj)
+        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
