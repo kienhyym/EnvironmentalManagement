@@ -12,6 +12,23 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "vscapxa",
+		tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "CREATE",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE",
+					command: function () {
+						var self = this;
+						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
+						var path = this.collectionName + '/model/'+loaibaocao;
+						this.getApp().getRouter().navigate(path);
+					}
+				}]
+		}],
 		uiControl: {
 			fields: [
 				{
@@ -47,11 +64,10 @@ define(function (require) {
 					field: "tong_soho",
 					label: "Tổng Số hộ"
 				},
-				{
-					field: "tong_chuholanu",
-					label: "Hộ có nữ là chủ hộ"
-				},
-				
+//				{
+//					field: "tong_chuholanu",
+//					label: "Hộ có nữ là chủ hộ"
+//				},
 				{
 					field: "tong_sohongheo",
 					label: "Tổng số hộ nghèo"
@@ -76,12 +92,55 @@ define(function (require) {
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = this.collectionName + '/model?id=' + event.rowId;
+					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
 		},
 		render: function () {
+			var self = this;
+			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var loaikybaocao = 2;//quy
+			var kybaocao = 1;
+			var txt_header = "Danh sách báo cáo cấp Xã - ";
+			if (loaibaocao === "quy1"){
+				loaikybaocao = 2;
+				kybaocao = 1;
+				self.$el.find(".panel-heading h3").html(txt_header +"Quý I");
+			} else if (loaibaocao === "quy2"){
+				loaikybaocao = 2;
+				kybaocao = 2;
+				self.$el.find(".panel-heading h3").html(txt_header +"Quý II");
+			} else if (loaibaocao === "quy3"){
+				loaikybaocao = 2;
+				kybaocao = 3;
+				self.$el.find(".panel-heading h3").html(txt_header +"Quý III");
+			} else if (loaibaocao === "quy4"){
+				loaikybaocao = 2;
+				kybaocao = 4;
+				self.$el.find(".panel-heading h3").html(txt_header +"Quý IV");
+			} else if (loaibaocao === "6thangdau"){
+				loaikybaocao = 3;
+				kybaocao = 1;
+				self.$el.find(".panel-heading h3").html(txt_header +"6 tháng đầu năm");
+			} else if (loaibaocao === "6thangcuoi"){
+				loaikybaocao = 3;
+				kybaocao = 2;
+				self.$el.find(".panel-heading h3").html(txt_header +"tháng cuối năm");
+
+			} else if (loaibaocao === "nam"){
+				loaikybaocao = 4;
+				kybaocao = 1;
+				self.$el.find(".panel-heading h3").html(txt_header +"tổng kết năm");
+			}else{
+				self.getApp().notify("Lỗi tham số, vui lòng thực hiện lại sau");
+				return;
+			}
+			self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":loaikybaocao}}, 
+				{"kybaocao":{"$eq":kybaocao}},
+				{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+			self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 			this.applyBindings();
 			return this;
 		},

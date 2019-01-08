@@ -37,8 +37,7 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
 #     ngaybaocao = db.Column(db.DateTime())
-#     nambaocao = db.Column(db.Integer, nullable=False)
-    
+    nambaocao = db.Column(db.Integer, nullable=False)
     ngaybaocao = db.Column(db.DateTime())
     donvicapnuoc_id = db.Column(UUID(as_uuid=True), db.ForeignKey('donvicapnuoc.id'), nullable=False)
     donvicapnuoc = db.relationship('DonViCapNuoc', viewonly=True)
@@ -85,7 +84,7 @@ class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
 #     ngaybaocao = db.Column(db.DateTime())
-#     nambaocao = db.Column(db.Integer, nullable=False)
+    nambaocao = db.Column(db.Integer, nullable=False)
     
     ngaybaocao = db.Column(db.DateTime())
     donvicapnuoc_id = db.Column(UUID(as_uuid=True), db.ForeignKey('donvicapnuoc.id'), nullable=False)

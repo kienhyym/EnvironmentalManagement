@@ -17,7 +17,7 @@ from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime
 
 
-def congdonTongCong(Baocao, current_user, nambaocao=None):
+def congdonTongCong(Baocao, current_user, data=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
                'nambaocao','kybaocao','mabaocao','nguoibaocao_id','thoigianbaocao','tinhtrang']
     
@@ -25,7 +25,9 @@ def congdonTongCong(Baocao, current_user, nambaocao=None):
     baocaos = db.session.query(Baocao, DonVi).\
             filter(Baocao.donvi_id == DonVi.id).\
             filter(or_(DonVi.captren_id == curdonvi_id, Baocao.donvi_id == curdonvi_id)).\
-            filter(Baocao.nambaocao == nambaocao).all()
+            filter(Baocao.loaikybaocao == data['loaikybaocao']).\
+            filter(Baocao.kybaocao == data['kybaocao']).\
+            filter(Baocao.nambaocao == data['nambaocao']).all()
     
     resp = []
     for baocao, donvi in baocaos:
@@ -142,11 +144,15 @@ async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
       
     if "xaphuong_id" not in data or data["xaphuong_id"] is None:
-        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn thôn xóm"}, status=520)
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn thông tin Xã/Phường"}, status=520)
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    record = db.session.query(VSCapXa).filter(and_(VSCapXa.donvi_id == currentuser.donvi_id,\
+                                                      VSCapXa.xaphuong_id == data['xaphuong_id'], \
+                                                      VSCapXa.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapXa.kybaocao == data['kybaocao'], \
+                                                      VSCapXa.nambaocao == data['nambaocao'])).first()
     
-    record = db.session.query(VSCapXa).filter(and_(VSCapXa.donvi_id == currentuser.donvi_id, VSCapXa.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
       
@@ -165,8 +171,12 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn cấp huyện"}, status=520)
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    record = db.session.query(VSCapHuyen).filter(and_(VSCapHuyen.donvi_id == currentuser.donvi_id,\
+                                                      VSCapHuyen.quanhuyen_id == data['quanhuyen_id'], \
+                                                      VSCapHuyen.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapHuyen.kybaocao == data['kybaocao'], \
+                                                      VSCapHuyen.nambaocao == data['nambaocao'])).first()
     
-    record = db.session.query(VSCapHuyen).filter(and_(VSCapHuyen.donvi_id == currentuser.donvi_id, VSCapHuyen.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
     data['tenhuyen'] = data['quanhuyen']['ten']
@@ -184,8 +194,12 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn cấp Tỉnh"}, status=520)
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    record = db.session.query(VSCapTinh).filter(and_(VSCapTinh.donvi_id == currentuser.donvi_id,\
+                                                      VSCapTinh.quanhuyen_id == data['quanhuyen_id'], \
+                                                      VSCapTinh.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapTinh.kybaocao == data['kybaocao'], \
+                                                      VSCapTinh.nambaocao == data['nambaocao'])).first()
     
-    record = db.session.query(VSCapTinh).filter(and_(VSCapTinh.donvi_id == currentuser.donvi_id, VSCapTinh.nambaocao == data['nambaocao'])).first()
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
     data['tentinh'] = data['tinhthanh']['ten']
@@ -202,7 +216,7 @@ async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
 #     obj['danhsachbaocao'] = list_baocao
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        list_baocao = congdonTongCong(VSCapXa,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     
@@ -214,7 +228,7 @@ async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **k
 #     obj['danhsachbaocao'] = list_baocao
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
@@ -224,7 +238,7 @@ async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw
     obj = to_dict(result)
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj['nambaocao'])
+        list_baocao = congdonTongCong(VSCapTinh,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     print(result)
@@ -274,6 +288,22 @@ apimanager.create_api(VSCapTinh,
     collection_name='vscaptinh')
 
 
+apimanager.create_api(TienDoVeSinhToanXa,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='tiendovesinhtoanxa')
 
 
+apimanager.create_api(BaoCaoTienDoDuyTriVSTXBenVung,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='baocao_tiendo_duytri_vstx_benvung')
+
+apimanager.create_api(DuyetVeSinhToanXa,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='duyet_vesinh_toanxa')
 

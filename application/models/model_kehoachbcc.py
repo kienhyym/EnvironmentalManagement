@@ -144,73 +144,32 @@ class DanhMucNganh(CommonModel):
 
     
 
-# Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh
-class VSToanXa(CommonModel):
-    __tablename__ = 'vstoanxa'
+#Biểu mẫu số 4: Giới và Dân tộc thiểu số
+class Gioi_Dantoc_ThieuSo(CommonModel):
+    __tablename__ = 'gioi_dantoc_thieuso'
     donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
     donvi = db.relationship('DonVi', viewonly=True)
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
-    tinhtrang = db.Column(db.SmallInteger,nullable=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    ngaybaocao = db.Column(db.DateTime())
+    nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
     
-    nam_baocao = db.Column(db.SmallInteger(),nullable=False)
-    ky_baocao = db.Column(db.SmallInteger(),nullable=False)
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    quanhuyen = relationship('QuanHuyen')
-    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    xaphuong = relationship('XaPhuong')
-
-    pt_hogiadinh_nhatieucaithien = db.Column(db.Integer)
-    tyle_hogiadinh_diemruatay = db.Column(db.Integer)
-    pt_truonghoc_conuocsach = db.Column(db.Integer)
-    tonso_hocsinh = db.Column(db.Integer)
-    pt_tramyte_conuocsach = db.Column(db.Integer)
-    tongso_hogiadinh = db.Column(db.Integer)
-    tong_danso_xa = db.Column(db.Integer)
-    pt_giadinh_chulanu = db.Column(db.Integer)
-    pt_hogiadinh_dtts = db.Column(db.Integer)
-
+    tongso_duocdaotao_yte = db.Column(db.Integer)
+    tongso_nguoithamgia_nu_yte = db.Column(db.Integer)
+    tyle_nguoithamgia_nu_yte = db.Column(db.DECIMAL)
+    tongso_nguoithamgia_dtts_yte = db.Column(db.Integer)
+    tyle_nguoithamgia_dtts_yte = db.Column(db.DECIMAL)
+    tongso_giangvien_nu_yte = db.Column(db.DECIMAL)
     
-   
-#Biểu mẫu số 3: Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững
-class DuyTriVS(CommonModel):
-    __tablename__ = 'duytrivs'
-
-    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
-    tinhthanh = relationship('TinhThanh')
-    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
-    quanhuyen = relationship('QuanHuyen')
-    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
-    xaphuong = relationship('XaPhuong')
-
-    namdat_vesinh_thuongxuyen = db.Column(db.DateTime())
-    truong_vesinh = db.Column(db.Integer)
-    tram_yte = db.Column(db.Integer)
-   
-#Biểu mẫu số 4: Giới và Dân tộc thiểu số
-class Gioi_Dantoc_ThieuSo(CommonModel):
-    __tablename__ = 'gioi_dantoc_thieuso'
-    ngdaotao_yte = db.Column(db.Integer)
-    nuthamgia_yte = db.Column(db.Integer)
-    ptnuthamgia_yte = db.Column(db.Integer)
-    dttsthamgia_yte = db.Column(db.Integer)
-    ptdttsthamgia_yte = db.Column(db.Integer)
-
-    ngdaotao_gd = db.Column(db.Integer)
-    nuthamgia_gd = db.Column(db.Integer)
-    ptnuthamgia_yt = db.Column(db.Integer)
-    songuoithamgia_dtts_yt = db.Column(db.Integer)
-    ptdttsthamgia_gd = db.Column(db.Integer)
-    phunugiangvien = db.Column(db.Integer)
-
-    ngdaotao_tong = db.Column(db.Integer)
-    nuthamgia_tong = db.Column(db.Integer)
-    ptnuthamgia_tong = db.Column(db.Integer)
-    dttsthamgia_tong = db.Column(db.Integer)
-    ptdttsthamgia_tong = db.Column(db.Integer)
+    tongso_duocdaotao_giaoduc = db.Column(db.Integer)
+    tongso_nguoithamgia_nu_giaoduc = db.Column(db.Integer)
+    tyle_nguoithamgia_nu_giaoduc = db.Column(db.DECIMAL)
+    tongso_nguoithamgia_dtts_giaoduc = db.Column(db.Integer)
+    tyle_nguoithamgia_dtts_giaoduc = db.Column(db.DECIMAL)
+    tongso_giangvien_nu_giaoduc = db.Column(db.DECIMAL)
    
 
 
