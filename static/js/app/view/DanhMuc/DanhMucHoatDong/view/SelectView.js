@@ -36,8 +36,9 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+	    	     { field: "mahoatdong", label: "Mã", width:150},
+		     	 { field: "tenhoatdong", label: "Tên" },
+		     	 { field: "loai_hoatdong", label: "Phạm vi" },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
@@ -52,7 +53,6 @@ define(function (require) {
     		filter.render();
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
 
-			self.uiControl.orderBy = [{"field": "ma", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [

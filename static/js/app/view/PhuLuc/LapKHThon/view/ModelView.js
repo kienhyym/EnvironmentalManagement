@@ -10,8 +10,8 @@ define(function (require) {
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
-
-
+	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
+	var HoatDongItemView = require('app/view/PhuLuc/LapKHXa/view/HoatDongItemView');
 
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -178,17 +178,17 @@ define(function (require) {
 			var id = this.getApp().getRouter().getParam("id");
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
-				if (!!currentUser.donvi.tinhthanh_id){
-					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+				if (!!currentUser.donvi.tinhthanh_id) {
+					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
 				}
 				if (!!currentUser.donvi.quanhuyen_id){
-					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
 				}
 				if (!!currentUser.donvi.xaphuong_id){
-					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong", currentUser.donvi.xaphuong);
 				}
 			}
 			
@@ -198,6 +198,7 @@ define(function (require) {
 					success: function (data) {
 						self.applyBindings();
 						self.onChangeEvents();
+						self.renderDanhSach();
 					},
 					error: function () {
 						self.getApp().notify("Get data Eror");
@@ -205,9 +206,23 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				//self.$el.find("#addItem button").click();
+				self.onChangeEvents();
+				self.renderDanhSach();
 			}
-			self.onChangeEvents();
+			
+			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
+				var dmHoatDongDialog = new DMHoatDongSelectView();
+				
+				dmHoatDongDialog.dialog();
+				
+				dmHoatDongDialog.on("onSelected", function(event) {
+					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
+					danhsachhoatdong = danhsachhoatdong.concat(dmHoatDongDialog.uiControl.selectedItems);
+					self.model.set("danhsach_hoatdong", danhsachhoatdong);
+					console.log("danhsach_hoatdong: ", danhsachhoatdong);
+					self.renderDanhSach();
+				});
+			});
 		},
 		
 		process_loaikybaocao:function() {
@@ -272,6 +287,44 @@ define(function (require) {
 					self.$el.find("#pheduyet_extra").removeClass("hide");
 				}
 			}
+		},
+		
+		renderDanhSach: function() {
+			var self = this;
+			self.$el.find("#danhsachhoatdong_list").empty();
+			self.$el.find("#danhsachhoatdong_list").append(`
+			<tr class="top">
+                <td>(1)</td>
+                <td>(2)</td>
+                <td>(3)</td>
+                <td colspan="3"></td>
+                <td></td>
+            </tr>
+            <tr class="custom" style="background: #F0F0F0;;">
+                <td colspan="3">
+                    <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
+                </td>
+                <td>Tổng số người tham gia</td>
+                <td>Số người tham gia là nữ</td>
+                <td>Số người tham gia là DTTS</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
+                <td></td>
+                <td></td>
+            </tr>`);
+			var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
+			
+			danhsachhoatdong.forEach(function(hoatdong, idx) {
+				var hoatDongItemView = new HoatDongItemView();
+				hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
+				hoatDongItemView.render();
+				hoatDongItemView.on("change", function(model) {
+					console.log("model: ", model);
+				});
+				self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
+			});
 		}
 	});
 

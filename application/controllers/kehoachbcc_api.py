@@ -47,14 +47,13 @@ async def getDanhmuchoatdong(request):
     danhmuclist = DanhMucHoatDong.query.filter(DanhMucHoatDong.loai_hoatdong == loai_hoatdong).all()
     return json(to_dict(danhmuclist),status=200)
    
-        
-
 
 apimanager.create_api(DanhMucHoatDong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='danhmuchoatdong')
+
  
 apimanager.create_api(DuyTriVS,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
