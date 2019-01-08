@@ -49,11 +49,11 @@ define(function (require) {
 
     	        	        		   self.model.save(null,{
     	        	        			   success: function (model, respose, options) {
-    	        	        				   self.getApp().notify("Save successfully");
+    	        	        				   self.getApp().notify("Lưu cài đặt thành công");
     	        	        				   self.getApp().getRouter().refresh();
     	        	        			   },
     	        	        			   error: function (model, xhr, options) {
-    	        	        				   self.getApp().notify($.parseJSON(xhr.responseText).message);
+    	        	        				   self.getApp().notify($.parseJSON(xhr.responseText).errormessage);
 
     	        	        			   }
     	        	        		   });
