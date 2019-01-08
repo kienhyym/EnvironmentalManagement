@@ -17,7 +17,10 @@ define(function (require) {
             fields: [{
                 field: "thoigiankiemtra",
                 label: "Thời gian kiểm tra",
-                width: 250
+                width: 250,
+//                template: function formatDate() {
+//                	console.log("test function");
+//                }
             },
             {
                 field: "donvicapnuoc_id",
@@ -56,6 +59,9 @@ define(function (require) {
             this.applyBindings();
             return this;
         },
+//        formatDate: function () {
+//        	console.log("formatDate function");
+//        },
     });
 
 });

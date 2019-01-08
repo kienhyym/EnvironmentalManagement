@@ -10,7 +10,7 @@ from gatco.response import json, text, html
 
 from .helpers import *
 from application.models.model_thongtuquychuannuoc import *
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from application.client import HTTPClient
 from application.models.model_user import TinhTrangBaocaoEnum
 

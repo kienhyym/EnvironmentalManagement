@@ -52,7 +52,9 @@ define(function (require) {
         bindings: "bind-item-data",
         collectionName: "ketqua_noikiem_chatluong_nuocsach_itemview",
         uiControl: {
-            fields: [],
+            fields: [
+            	
+            ],
         },
         tools: null,
 
@@ -60,6 +62,7 @@ define(function (require) {
             var self = this;
             self.applyBindings();
             this.setElement(this.el.innerHTML);
+//            console.log("setElement element: ", this.el.innerHTML);
             if (self.model.get("danhgia") == 1) {
                 self.$el.find("[id=danhgiathongso]").text("Đạt");
             } else {

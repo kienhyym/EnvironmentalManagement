@@ -14,17 +14,24 @@ define(function (require) {
         urlPrefix: "/api/v1/",
         collectionName: "ketqua_ngoaikiem_chatluong_nuocsach",
         uiControl: {
-            fields: [{
-                field: "thoigiankiemtra",
-                label: "Thời gian kiểm tra",
-                width: 250
-            },
+            fields: [
             {
                 field: "donvicapnuoc_id",
                 label: "Tên đơn vị cấp nước",
                 foreign: "donvicapnuoc",
                 foreignValueField: "id",
                 foreignTextField: "ten",
+                width: 250
+            },
+            {
+                field: "nambaocao",
+                label: "Năm báo cáo",
+                width: 250
+            },
+            {
+                field: "ngaybaocao",
+                label: "Ngày báo cáo",
+                width: 250
             },
             {
                 field: "diachi_donvicapnuoc",
