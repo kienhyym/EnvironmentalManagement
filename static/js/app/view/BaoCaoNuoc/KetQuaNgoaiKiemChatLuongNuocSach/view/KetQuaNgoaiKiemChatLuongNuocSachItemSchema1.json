@@ -1,0 +1,35 @@
+{
+    "deleted": {
+        "type": "boolean"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "tendonvicapnuoc": {
+        "length": 255,
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "primary": true,
+        "type": "string"
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "ma": {
+        "length": 255,
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    }
+}

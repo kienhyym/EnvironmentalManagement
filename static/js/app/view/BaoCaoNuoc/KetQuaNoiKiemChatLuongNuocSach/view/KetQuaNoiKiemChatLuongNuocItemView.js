@@ -27,7 +27,7 @@ define(function (require) {
         modelSchema: mauschema,
         urlPrefix: "/api/v1/",
         bindings: "mau-data",
-        collectionName: "ketqua_ngoaikiem_chatluong_nuocsach_mau_itemview",
+        collectionName: "ketqua_noikiem_chatluong_nuocsach_mau_itemview",
         uiControl: {
             fields: []
         },
@@ -50,7 +50,7 @@ define(function (require) {
         modelSchema: schema,
         urlPrefix: "/api/v1/",
         bindings: "bind-item-data",
-        collectionName: "ketqua_ngoaikiem_chatluong_nuocsach_itemview",
+        collectionName: "ketqua_noikiem_chatluong_nuocsach_itemview",
         uiControl: {
             fields: [],
         },

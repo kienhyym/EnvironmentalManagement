@@ -43,6 +43,12 @@ apimanager.create_api(KetQuaNgoaiKiemChatLuongNuocSach,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_chatluongnuocsach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='ketqua_ngoaikiem_chatluong_nuocsach')
 
+apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_chatluongnuocsach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ketqua_noikiem_chatluong_nuocsach')
+
 # apimanager.create_api(KQNgoaiKiemChatLuong,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],
 #     url_prefix='/api/v1',

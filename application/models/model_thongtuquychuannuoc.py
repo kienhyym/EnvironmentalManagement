@@ -63,6 +63,7 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     kiennghi = db.Column(db.String)
     ketluan = db.Column(db.String)
     ketquangoaikiemchatluongnuoc = db.Column(JSONB)
+    ketquangoaikiem = db.Column(db.String)
     
 class ThongSoBaoCaoChatLuongNuoc(CommonModel):
     __tablename__ = 'thongsobaocaochatluongnuoc'
@@ -75,8 +76,42 @@ class ThongSoBaoCaoChatLuongNuoc(CommonModel):
     batbuoc = db.Column(db.Boolean)
     baocaoapdung = db.Column(JSONB)
 
+## Mau so 5: Bao Cao Kết quả nội kiểm chất lượng nước sạch    
+class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
+    __tablename__ = 'ketqua_noikiem_chatluong_nuocsach'
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+#     ngaybaocao = db.Column(db.DateTime())
+#     nambaocao = db.Column(db.Integer, nullable=False)
     
-
+    ngaybaocao = db.Column(db.DateTime())
+    donvicapnuoc_id = db.Column(UUID(as_uuid=True), db.ForeignKey('donvicapnuoc.id'), nullable=False)
+    donvicapnuoc = db.relationship('DonViCapNuoc', viewonly=True)
+    tendonvicapnuoc = db.Column(db.String)
+    madonvicapnuoc = db.Column(UUID(as_uuid=True))
+    diachi_donvicapnuoc = db.Column(db.String)
+    congxuat = db.Column(DECIMAL)
+    tongso_hogiadinh = db.Column(db.Integer)
+    nguonnuoc = db.Column(db.String)
+    
+    thoigiankiemtra = db.Column(db.DateTime())
+    
+    nguoikiemtra = db.Column(db.String)
+    
+    somauvavitri = db.Column(db.Integer)
+    
+    hosotheodoi = db.Column(db.String)
+#     tansuatthuchien_chedonoikiem = db.Column(db.String)
+#     tinhhinhchatluongnuoc = db.Column(db.String)
+#     thuchien_chedo = db.Column(db.String)
+    nhanxet = db.Column(db.String)
+    bienphapkhacphuc = db.Column(db.String)
+    denghi = db.Column(db.String)
+    ketquanoikiemchatluongnuoc = db.Column(JSONB)
+    ketquanoikiem = db.Column(db.String)
 
 ##Mau so 2
 class KetQuaKiemTraChatLuongNuocSach(CommonModel):

@@ -21,7 +21,7 @@
         "type": "string"
     },
     "ketquakiemtra": {
-        "type": ""
+        "type": "json"
     },
     "danhgia": {
         "type": "number"

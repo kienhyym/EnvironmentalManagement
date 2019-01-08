@@ -26,7 +26,10 @@ define(function (require) {
 		    	    	label: "TRANSLATE:SELECT",
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		self.trigger("onSelected", this.uiControl.selectedItems[0]);
+		    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) {    			    	    			
+		    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
+		    	    			self.getApp().trigger("DonViCapNuoc_onSelected", this.uiControl.selectedItems[0]);
+		    	    		}
 		    	    		self.close();
 		    	    	}
 		    	    },
@@ -68,18 +71,16 @@ define(function (require) {
 			self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
-    				{"ma": {"$like": text },
-    				{"diachi": {"$like": text },
+    			var filters = {"$or":[
+    				{"ma": {"$like": text }},
+    				{"diachi": {"$like": text }},
 					{"ten": {"$like": text }},
 				] };
     			self.uiControl.filters = filters;
     			self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
     		}else{
     			self.uiControl.filters = null;
-    			
     		}
-    		
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -88,8 +89,8 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-		    				{"ma": {"$like": text },
-		    				{"diachi": {"$like": text },
+		    				{"ma": {"$like": text }},
+		    				{"diachi": {"$like": text }},
 							{"ten": {"$like": text }},
 						] };
 						$col.data('gonrin').filter(filters);
