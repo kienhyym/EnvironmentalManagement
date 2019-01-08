@@ -3,23 +3,26 @@
     	var $ = require('jquery'),
     		_ = require('underscore'),
     		Gonrin = require('gonrin');
-    	var template = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/model.html'),
-    		schema = require('json!schema/KetQuaNgoaiKiemChatLuongNuocSachSchema.json');
+    	var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/model.html'),
+    		schema = require('json!schema/KetQuaNoiKiemChatLuongNuocSachSchema.json');
     	//var maxDate = new Date();
     	//var KQNgoaiKiemChatLuong = require('app/view/BaoCaoNuoc/KQNgoaiKiemChatLuong/view/ModelItemView');
-    	var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
+    	var KetQuaNoiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocItemView');
     	var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     	var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
     	return Gonrin.ModelView.extend({
     		template: template,
     		modelSchema: schema,
     		urlPrefix: "/api/v1/",
-    		collectionName: "ketqua_ngoaikiem_chatluong_nuocsach",
+    		collectionName: "ketqua_noikiem_chatluong_nuocsach",
     		uiControl: {
     			fields: [{
+//    					field: "thoigiankiemtra",
+//    					textFormat: "DD/MM/YYYY",
+//    					extraFormats: ["DDMMYYYY"],
     					field: "thoigiankiemtra",
-    					textFormat: "DD/MM/YYYY",
-    					extraFormats: ["DDMMYYYY"],
+    					uicontrol: "datetimepicker",
+    					textFormat: 'YYYY-MM-DD'
     				},
     				{
         				field:"donvicapnuoc",
@@ -115,10 +118,10 @@
     			self.$el.find("#addItem").unbind("click").bind("click", function () {
                     var view = new ThongSoBaoCaoChatLuongNuocView();
                     view.dialog();
-                    var ketquangoaikiemchatluongnuoc = self.model.get('ketquangoaikiemchatluongnuoc');
+                    var ketquanoikiemchatluongnuoc = self.model.get('ketquanoikiemchatluongnuoc');
         			view.on("onSelected", function (data) {
-        				for (var i = 0; i < ketquangoaikiemchatluongnuoc.length; i++) {
-                            if (ketquangoaikiemchatluongnuoc[i].id === data.id) {
+        				for (var i = 0; i < ketquanoikiemchatluongnuoc.length; i++) {
+                            if (ketquanoikiemchatluongnuoc[i].id === data.id) {
                             	self.getApp().notify({message: "Thông số này đã tồn tại!"},{type: "danger"});
                             	return;
                             }
@@ -134,8 +137,8 @@
                                 "ketquakiemtra": [],
                                 "danhgia": 0
                             };
-        				ketquangoaikiemchatluongnuoc.push(item);
-                        self.model.set("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
+        				ketquanoikiemchatluongnuoc.push(item);
+                        self.model.set("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
         				self.applyBindings();
         				self.changeSoMau();
                     });
@@ -152,7 +155,7 @@
     					success: function (data) {
     						self.applyBindings();
     						self.model.on("change:somauvavitri", function(){
-    							self.changeSoMau(true);
+    							self.changeSoMau();
     						});
     						self.changeSoMau();
     					},
@@ -168,21 +171,19 @@
     			var self = this;
     			var somau = self.model.get("somauvavitri");
     			self.$el.find("[id=mauvitri_header]").remove();
-    			self.$el.find("#ketquangoaikiemchatluongnuoc").empty();
+    			self.$el.find("#ketquanoikiemchatluongnuoc").empty();
     			
     			if(!!somau & (somau >0)){
-    				$.each(self.model.get("ketquangoaikiemchatluongnuoc"), function(idx, obj){
+    				$.each(self.model.get("ketquanoikiemchatluongnuoc"), function(idx, obj){
     					
-    					if (self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau){
-    						for (var i = self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++){
-    							self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
+    					if (self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau){
+    						for (var i = self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++){
+    							self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
     								"vitrimau": i + 1,
     								"ketqua": null,
     								"danhgia": 0
     							})
     						}
-    					}else if (self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length > somau){
-    						self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length = somau;
     					}
     					
     				});
@@ -191,23 +192,24 @@
     					var el = $("<th>").attr("rowspan", 2).attr("id", "mauvitri_header").css({"text-align":"center"}).html(j+1);
     					self.$el.find("#mauvitri_header_before").before(el);
     				}
+    				
+    				
     			}
     			self.renderKetQua();
     			
     		},
     		renderKetQua: function(){
     			//prepare Itemview
-    			//self.getApp().get()
     			var self = this;
-//    			self.getApp().trigger("ketquangoaikiemchatluongnuoc:changesomau");
-    			$.each(self.model.get("ketquangoaikiemchatluongnuoc"), function(idx, obj){
-    				var view = new KetQuaNgoaiKiemChatLuongNuocItemView();
+    			
+    			$.each(self.model.get("ketquanoikiemchatluongnuoc"), function(idx, obj){
+    				var view = new KetQuaNoiKiemChatLuongNuocItemView();
     				obj["sothutu"] = idx + 1;
     				view.model.set(obj);
     				view.render();
-    				self.$el.find("#ketquangoaikiemchatluongnuoc").append(view.$el);
+    				self.$el.find("#ketquanoikiemchatluongnuoc").append(view.$el);
     				view.on("ketquachange", function(evt){
-    					var danhgiaThongSo = 1;
+    					var danhgiaTo = 1;
     					evt.ketquakiemtra.forEach(function (data) {
 //							console.log("value ket qua====", data.ketqua);
 //							console.log("gioi han toi da value", evt.gioihan_toida);
@@ -218,38 +220,23 @@
 								data.danhgia = 0;
 							}
 							
-							danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
-//							console.log("danhgiaThongSo: ", danhgiaThongSo);
+							danhgiaTo *= data.danhgia ? data.danhgia : 0;
+//							console.log("danhgiaTo: ", danhgiaTo);
 						});
-    					evt.danhgia = danhgiaThongSo;
+    					evt.danhgia = danhgiaTo;
 //    					console.log(evt.ketquakiemtra);
-//    					console.log("evt=====", evt);
-//    					console.log("danh gia length", self.model.get("ketquangoaikiemchatluongnuoc"));
     					self.updateKetqua(evt);
-    					var itemNgoaiKiem = self.model.get("ketquangoaikiemchatluongnuoc");
-//    					console.log("itemngoaikiem", itemNgoaiKiem.length);
-    					var danhgiaTong = 1;
-    					self.changeSoMau();
-    					itemNgoaiKiem.forEach(function (data) {
-    						console.log("data====", data);
-    						danhgiaTong *= data.danhgia;
-    						console.log("danhgiaTong", danhgiaTong);
-    						if (danhgiaTong == 1) {
-    							self.model.set("ketquangoaikiem", "Đạt");
-    						} else {
-    							self.model.set("ketquangoaikiem", "Không Đạt");
-    						}
-    					});
+						self.changeSoMau();
 						self.applyBindings();
     				});
         			view.$el.find("#itemRemove").unbind("click").bind("click", function () {
-        				var itemketquangoaikiem = self.model.get("ketquangoaikiemchatluongnuoc");
-        				for (var i = 0; i < itemketquangoaikiem.length; i++) {
-                            if (itemketquangoaikiem[i].id === obj.id) {
-                            	itemketquangoaikiem.splice(i, 1);
+        				var itemketquanoikiem = self.model.get("ketquanoikiemchatluongnuoc");
+        				for (var i = 0; i < itemketquanoikiem.length; i++) {
+                            if (itemketquanoikiem[i].id === obj.id) {
+                            	itemketquanoikiem.splice(i, 1);
                             }
                         }
-        				 self.model.set("ketquangoaikiemchatluongnuoc", itemketquangoaikiem);
+        				 self.model.set("ketquanoikiemchatluongnuoc", itemketquanoikiem);
         				 view.destroy();
         				 view.remove();
                          self.applyBindings();
@@ -258,16 +245,16 @@
     		},
     		updateKetqua: function(obj){
     			var self = this;
-    			for(var i = 0; i < self.model.get("ketquangoaikiemchatluongnuoc").length; i++){
-    				if (self.model.get("ketquangoaikiemchatluongnuoc")[i].id === obj.id){
-    					self.model.get("ketquangoaikiemchatluongnuoc")[i] = obj;
+    			for(var i = 0; i < self.model.get("ketquanoikiemchatluongnuoc").length; i++){
+    				if (self.model.get("ketquanoikiemchatluongnuoc")[i].id === obj.id){
+    					self.model.get("ketquanoikiemchatluongnuoc")[i] = obj;
     				}
     			}
     		},
     		prepareBaocao: function(){
     			//get all thong so
     			var self = this;
-    			self.model.set("ketquangoaikiemchatluongnuoc", []);
+    			self.model.set("ketquanoikiemchatluongnuoc", []);
     			var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
     			$.ajax({
     				url: url,
@@ -288,7 +275,7 @@
     	                                "ketquakiemtra": [],
     	                                "danhgia": 0
     	                            };
-    							(self.model.get("ketquangoaikiemchatluongnuoc")).push(item);
+    							(self.model.get("ketquanoikiemchatluongnuoc")).push(item);
     							};	
     						});
     						

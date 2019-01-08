@@ -921,6 +921,21 @@ define(function (require) {
 					"visible": false
 				},
 				{
+					"text": "Mẫu số 05: Kết quả nội kiểm chất lượng nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+				},
+				{
+					"type": "view",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
+					"visible": false
+				},
+				{
 					"text": "Mẫu số 06: Tổng hợp kết quả nội kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
