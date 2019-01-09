@@ -18,7 +18,15 @@
         "type": "number",
         "default":0
     },
+    "tuhoai_hvs": {
+        "type": "number",
+        "default":0
+    },
     "thamdoi": {
+        "type": "number",
+        "default":0
+    },
+    "thamdoi_hvs": {
         "type": "number",
         "default":0
     },
@@ -26,7 +34,15 @@
         "type": "number",
         "default":0
     },
+    "haingan_hvs": {
+        "type": "number",
+        "default":0
+    },
     "chimco_oth": {
+        "type": "number",
+        "default":0
+    },
+    "chimco_oth_hvs": {
         "type": "number",
         "default":0
     },
@@ -47,6 +63,18 @@
         "default":0
     },
     "caithien": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hongheo_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hvs": {
         "type": "number",
         "default":0
     },

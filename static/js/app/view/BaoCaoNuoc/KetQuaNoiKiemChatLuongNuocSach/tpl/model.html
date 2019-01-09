@@ -1,28 +1,14 @@
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading ">Kết quả ngoại kiểm chất lượng nước sạch</div>
+    <div class="panel-heading ">Kết quả nội kiểm chất lượng nước sạch</div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
         <div style="margin-top: 30px;font-weight: 500">
             <h5 style="font-weight: 500">A. THÔNG TIN CHUNG </h5>
         </div>
 
-		
+
+
         <div style="margin-top: 15px" class="row">
-        
-        <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Năm báo cáo</label>
-                        <input type="text" class="form-control" data-bind="value:nambaocao" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Ngày báo cáo</label>
-                        <input type="text" class="form-control" data-bind="value:ngaybaocao" />
-                    </div>
-                </div>
-            </div>
             <table class="data-table-no-border">
                 <tr>
                     <td><label>1. Tên đơn vị cấp nước:</label> </td>
@@ -48,8 +34,8 @@
                     <td><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
                 </tr>
                 <tr>
-                    <td><label>6. Thành phần đoàn kiểm tra:</i></label> </td>
-                    <td colspan=3><textarea class="form-control" data-bind="value:thanhphan_doankiemtra"></textarea></td>
+                    <td><label>6. Người kiểm tra:</i></label> </td>
+                    <td colspan=3><textarea class="form-control" data-bind="value:nguoikiemtra"></textarea></td>
                 </tr>
                 <tr>
                     <td><label>7. Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label> </td>
@@ -63,41 +49,14 @@
                 <h5>B. VIỆC THỰC HIỆN NỘI KIỂM CỦA ĐƠN VỊ CẤP NƯỚC</h5>
             </div>
 
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>1. Hồ sơ theo dõi, quản lý chất lượng nước</label> <i>(Đánh giá đơn vị cấp nước có thực
-                            hiện đầy đủ các nội dung trong việc lập và quản lý hồ sơ theo dõi, quản lý chất lượng nước
-                            không) </i>
-                        <textarea type="text" class="form-control" data-bind="value:hosotheodoi"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>2.Tần suất thực hiện chế độ nội kiểm</label> <i>(Đánh giá đơn vị cấp nước có thực hiện
-                            thử nghiệm các thông số c…</i>
-                        <textarea class="form-control" data-bind="value:tansuatthuchien_chedonoikiem"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>3.Tình hình chất lượng nước</label> <i>(Trong kỳ kiểm tra có những thông số nào thường
-                            xuyên không đạt, lý do và biện pháp khắc phục)</i>
-                        <textarea type="text" class="form-control" data-bind="value:tinhhinhchatluongnuoc"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>4. Thực hiện chế độ công khai thông tin và báo cáo chất lượng nước</label> <i>(Đánh giá
-                            đơn vị cấp nước có thực hiện nghiêm túc việc công khai thông tin và báo cáo chất lượng nước
-                            theo quy định không)</i>
-                        <textarea class="form-control" data-bind="value:thuchien_chedo"></textarea>
-                    </div>
-                </div>
-            </div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<textarea type="text" class="form-control" data-bind="value:hosotheodoi"></textarea>
+				</div>
+			</div>
+		</div>
+           
             <div style="margin-bottom: 30px;margin-top: 20px;">
                 <h5>C. KẾT QUẢ NGOẠI KIỂM CHẤT LƯỢNG NƯỚC</h5>
                 <table>
@@ -114,7 +73,7 @@
                             <th>Các thông số</th>
                         </tr>
                     </thead>
-                    <tbody id="ketquangoaikiemchatluongnuoc"></tbody>
+                    <tbody id="ketquanoikiemchatluongnuoc"></tbody>
                 </table>
                 <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
             </div>
@@ -124,10 +83,10 @@
                     <br />- Dấu (**) chỉ áp dụng cho các đơn vị cấp nước sử dụng Clo làm phương pháp khử trùng.</p>
             </div>
             <div class="row">
-                <div class="col-md-3">
+            	<div class="col-md-3">
                     <label>Kết luận kết quả ngoại kiểm</label>
-                    <input type="text" class="form-control" data-bind="value:ketquangoaikiem" disabled="disabled" />
-                </div>
+                    <input type="text" class="form-control" data-bind="value:ketquanoikiem" disabled="disabled" />
+            	</div>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -138,16 +97,16 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>D. KẾT LUẬN</label>
-                        <textarea class="form-control" data-bind="value:ketluan"></textarea>
+                        <label>D. CÁC BIỆN PHÁP KHẮC PHỤC (nếu có)</label>
+                        <textarea class="form-control" data-bind="value:bienphapkhacphuc"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Đ. KIẾN NGHỊ</label>
-                        <textarea type="text" class="form-control" data-bind="value:kiennghi"></textarea>
+                        <label>Đ. KẾT LUẬN</label>
+                        <textarea type="text" class="form-control" data-bind="value:denghi"></textarea>
                     </div>
                 </div>
             </div>

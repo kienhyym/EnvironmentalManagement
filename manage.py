@@ -71,15 +71,14 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema[col.name]["length"] = col.type.length
             
             #default
-            if (col.default is not None) and (col.default.arg is not None) \
-                and (not callable(col.default.arg)) and not isinstance(col.default.arg, sqlalchemy.sql.functions.GenericFunction):
+            if (col.default is not None) and (col.default.arg is not None) and (not callable(col.default.arg)):
                 #print(col.default, col.default.arg, callable(col.default.arg))
                 schema[col.name]["default"] = col.default.arg
                 
             #User confirm_password
-            if (classname == "User") and ("password" in col.name):
-                schema["confirm_password"] = {"type": schema_type}
-                schema["confirm_password"]["length"] = col.type.length
+#             if (classname == "User") and ("password" in col.name):
+#                 schema["confirm_password"] = {"type": schema_type}
+#                 schema["confirm_password"]["length"] = col.type.length
                 
                 
         
@@ -89,7 +88,7 @@ def generate_schema(path = None, exclude = None, prettyprint = True):
                 schema[rel.key] = {"type": "list"}
             if rel.direction.name in ['MANYTOONE']:
                 schema[rel.key] = {"type": "dict"}
-        
+            
         if prettyprint:
             with open(path + '/' + classname + 'Schema.json', 'w') as outfile:
                 json.dump(schema,  outfile, indent=4,)

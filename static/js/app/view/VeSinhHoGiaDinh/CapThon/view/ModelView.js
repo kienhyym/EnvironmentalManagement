@@ -167,10 +167,11 @@ define(function (require) {
 	
 								},
 								error: function (model, xhr, options) {
-									var msgJson = $.parseJSON(xhr.responseText);
-										if (msgJson) {
-											self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
-										}
+									try {
+										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}catch (err) {
+										self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
+									}
 								}
 							});
 						}	
@@ -384,13 +385,15 @@ define(function (require) {
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
 				
-//				self.$el.find("#addItem").click();
 				self.check_chuongtrinhSUP();
 				self.model.on("change:thuocsuprsws", function(){
 					self.check_chuongtrinhSUP();
 				});
 				self.model.on("change:thonxom", function(event, name){
-					if(self.model.previous("thonxom_id") ===null || self.model.previous("thonxom_id") !== self.model.get("thonxom_id")){
+					console.log('self.model.previous("thonxom_id")===',self.model.previous("thonxom"));
+					console.log('self.model.get("thonxom_id")===',self.model.get("thonxom"));
+
+					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
 						self.get_danhsachho();
 					}
 				});
@@ -547,6 +550,7 @@ define(function (require) {
 				}else{
 					check_dantoc = 1;
 				}
+				
 				_.each(tongischema, function (props, key) {
 					if(key === "dtts"){
 						data[key] = toInt(data[key]) + toInt(check_dantoc);
@@ -555,6 +559,37 @@ define(function (require) {
 					}else{
 						data[key] = toInt(data[key]) + toInt(chitiet[key]);
 					}
+					
+					if(key === "tuhoai_hvs" && (chitiet["tuhoai"] === 1 || chitiet["tuhoai"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "thamdoi_hvs" && (chitiet["thamdoi"] === 1 || chitiet["thamdoi"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "haingan_hvs" && (chitiet["haingan"] === 1 || chitiet["haingan"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "chimco_oth_hvs" && (chitiet["chimco_oth"] === 1 || chitiet["chimco_oth"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "caithien_hongheo" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "caithien_hongheo_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					if(key === "caithien_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}
+					
 				});
 			}
 			self.tongViewi.model.set(data);
@@ -580,32 +615,38 @@ define(function (require) {
 
 			self.model.set("tong_soho", self.model.get("nhatieuthonhvs").length);	
 
-			var tongTuhoai = self.tongViewi.model.get("tuhoai");
-			self.model.set("tong_tuhoai", tongTuhoai);
-			var tongThamdoi = self.tongViewi.model.get("thamdoi");
-			self.model.set("tong_thamdoi", tongThamdoi);
-			var tong2ngan = self.tongViewi.model.get("haingan");
-			self.model.set("tong_2ngan", tong2ngan);
-			var tong_loaikhac = self.tongViewi.model.get("loaikhac");
-			self.model.set("tong_loaikhac", tong_loaikhac);
-			var tongOngthonghoi = self.tongViewi.model.get("chimco_oth");	
-			self.model.set("tong_ongthonghoi", tongOngthonghoi);
-			var tongKhongconhatieu = self.tongViewi.model.get("khongconhatieu");
-			self.model.set("tong_khongnhatieu", tongKhongconhatieu);
-			var tongHopvs = self.tongViewi.model.get("hopvesinh");
-			self.model.set("tong_hopvs", tongHopvs);
-			var tongKhopvs = self.tongViewi.model.get("khonghopvesinh");
-			self.model.set("tong_khonghopvs", tongKhopvs);
-			var tongDuocaithien = self.tongViewi.model.get("caithien");
-			self.model.set("tong_caithien", tongDuocaithien);
-			var tongRuatay = self.tongViewi.model.get("diemruataycoxaphong");
-			self.model.set("tong_diemruatay", tongRuatay);
+			self.model.set("tong_tuhoai", self.tongViewi.model.get("tuhoai"));
+			self.model.set("tong_tuhoai_hvs", self.tongViewi.model.get("tuhoai_hvs"));
+			
+			self.model.set("tong_thamdoi", self.tongViewi.model.get("thamdoi"));
+			self.model.set("tong_thamdoi_hvs", self.tongViewi.model.get("thamdoi_hvs"));
+			
+			self.model.set("tong_2ngan", self.tongViewi.model.get("haingan"));
+			self.model.set("tong_2ngan_hvs", self.tongViewi.model.get("haingan_hvs"));
+			
+			self.model.set("tong_loaikhac", self.tongViewi.model.get("loaikhac"));
+			
+			self.model.set("tong_ongthonghoi", self.tongViewi.model.get("chimco_oth"));
+			self.model.set("tong_ongthonghoi_hvs", self.tongViewi.model.get("chimco_oth_hvs"));
+			
+			self.model.set("tong_khongnhatieu", self.tongViewi.model.get("khongconhatieu"));
+			
+			self.model.set("tong_hopvs", self.tongViewi.model.get("hopvesinh"));
+			
+			self.model.set("tong_khonghopvs", self.tongViewi.model.get("khonghopvesinh"));
+			
+			self.model.set("tong_caithien", self.tongViewi.model.get("caithien"));
+			self.model.set("tong_caithien_hvs", self.tongViewi.model.get("caithien_hvs"));
+			self.model.set("tong_caithien_hongheo", self.tongViewi.model.get("caithien_hongheo"));
+			self.model.set("tong_caithien_hongheo_hvs", self.tongViewi.model.get("caithien_hongheo_hvs"));
+
+			self.model.set("tong_diemruatay", self.tongViewi.model.get("diemruataycoxaphong"));
 
 		},
 
 		checkDate: function(dateInput){  
 			var self = this;
-			var re = /(2[0-9]{4})\b/g;
+			var re = /(2[0-9]{3})\b/g;
 			var OK = re.exec(dateInput);  
 			if(!OK){
 				self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})

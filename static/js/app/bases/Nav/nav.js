@@ -1203,6 +1203,25 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/DuyTriVS/view/ModelView",
 							"visible": false
 						},
+						{
+							"text": "Duyệt Xã Vệ Sinh Toàn Xã",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "duyet_vesinh_toanxa",
+							"route": "duyet_vesinh_toanxa/collection",
+							"$ref": "app/view/PhuLuc/DuyetVeSinhToanXa/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "duyet_vesinh_toanxa",
+							"route": "duyet_vesinh_toanxa/model",
+							"$ref": "app/view/PhuLuc/DuyetVeSinhToanXa/view/ModelView",
+							"visible": false
+						},
 					]
 				},
 				{
@@ -1412,6 +1431,21 @@ define(function (require) {
 					"collectionName": "kqktchatluong",
 					"route": "kqktchatluong/model",
 					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Mẫu số 05: Kết quả nội kiểm chất lượng nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+				},
+				{
+					"type": "view",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
