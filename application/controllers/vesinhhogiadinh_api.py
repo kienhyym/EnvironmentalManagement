@@ -286,6 +286,25 @@ async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw
     result = obj
     print(result)
     
+async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "xaphuong_id" not in data or data["xaphuong_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn thông tin Xã/Phường"}, status=520)
+    record = db.session.query(DuyetVeSinhToanXa).filter(and_(DuyetVeSinhToanXa.donvi_id == currentuser.donvi_id,\
+                                                      DuyetVeSinhToanXa.xaphuong_id == data['xaphuong_id'])).first()
+    
+    if record is not None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Xã đã được duyệt, vui lòng chọn xã khác"}, status=520)
+      
+    data['tenxa'] = data['xaphuong']['ten']  
+    data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
+    data['donvi_id'] = currentuser.donvi_id
+    data['nguoibaocao_id'] = currentuser.id
+    await process_baocao_vesinh(currentuser,DuyetVeSinhToanXa,data)
+    
 
 apimanager.create_api(HoGiaDinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -347,6 +366,6 @@ apimanager.create_api(BaoCaoTienDoDuyTriVSTXBenVung,
 apimanager.create_api(DuyetVeSinhToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_duyetvstoanxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='duyet_vesinh_toanxa')
 

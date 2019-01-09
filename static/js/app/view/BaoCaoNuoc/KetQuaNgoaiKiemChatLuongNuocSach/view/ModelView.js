@@ -67,7 +67,7 @@ define(function (require) {
                     var donvicapnuoc = self.model.get("donvicapnuoc");
                     var thoigiankiemtra = self.model.get("thoigiankiemtra");
                     var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
-                    if(nambaocao === null || nambaocao === "" || (toInt(nambaocao) > 2000 && toInt(nambaocao) < 3000)){
+                    if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
                     	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
                     } else if(ngaybaocao === null || ngaybaocao === ""){
                     	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
@@ -119,16 +119,16 @@ define(function (require) {
         }],
         render: function () {
             var self = this;
-            self.model.on("change:nambaocao", function () {
-            	var nambaocao = self.model.get("nambaocao");
-            	console.log("nambaocao: ", toInt(nambaocao));
+//            self.model.on("change:nambaocao", function () {
+//            	var nambaocao = self.model.get("nambaocao");
+//            	console.log("nambaocao: ", toInt(nambaocao));
 //            	self.checkDate(nambaocao);
-            	if (toInt(nambaocao) > 2000 && toInt(nambaocao) < 3000){
-            		self.model.set("nambaocao", nambaocao);
-            	} else{
-	            	self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
-            	}
-            });
+//            	if (toInt(nambaocao) > 2000 && toInt(nambaocao) < 3000){
+//            		self.model.set("nambaocao", nambaocao);
+//            	} else{
+//	            	self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
+//            	}
+//            });
             self.getApp().on("DonViCapNuoc_onSelected", function (data) {
                 self.model.set("diachi_donvicapnuoc", data.diachi);
                 self.model.set("diachi_donvicapnuoc", data.diachi);
