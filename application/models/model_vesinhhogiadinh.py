@@ -409,5 +409,13 @@ class DuyetVeSinhToanXa(CommonModel):
     nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     nguoibaocao = db.relationship('User', viewonly=True)
     tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    xaphuong = relationship('XaPhuong')
+
     nam_datvesinh_toanxa = db.Column(db.Integer)
     nam_datvesinh_toanxa_benvung = db.Column(db.Integer)
