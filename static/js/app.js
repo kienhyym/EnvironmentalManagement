@@ -46,12 +46,13 @@ require(['jquery', 'gonrin', 'app/router',
 			staticURL: static_url,
 			router: new Router(),
 			lang: lang,
+			mapKyBaoCao: {},
 			//layout: layout,
 			initialize: function () {
-
 				this.nav = new Nav();
 				this.nav.render();
 				this.getCurrentUser();
+				this.mapKyBaoCao = this.getMapKyBaoCao();
 			},
 			getParameterUrl: function (parameter, url) {
 				if (!url) url = window.location.href;
@@ -162,6 +163,45 @@ require(['jquery', 'gonrin', 'app/router',
 				$("#userprofile").bind('click', function () {
 					self.router.navigate("user/profile");
 				});
+			},
+			getMapKyBaoCao: function() {
+				return {
+					"quy1": {
+						"loaikybaocao": 2,
+						"kybaocao": 1,
+						"text": "Qúy I",
+					},
+					"quy2": {
+						"loaikybaocao": 2,
+						"kybaocao": 2,
+						"text": "Qúy II",
+					},
+					"quy3": {
+						"loaikybaocao": 2,
+						"kybaocao": 3,
+						"text": "Qúy III",
+					},
+					"quy4": {
+						"loaikybaocao": 2,
+						"kybaocao": 4,
+						"text": "Qúy IV",
+					},
+					"6thangdau": {
+						"loaikybaocao": 3,
+						"kybaocao": 1,
+						"text": "6 tháng đầu năm",
+					},
+					"6thangcuoi": {
+						"loaikybaocao": 3,
+						"kybaocao": 2,
+						"text": "6 tháng cuối năm",
+					},
+					"nam": {
+						"loaikybaocao": 4,
+						"kybaocao": 1,
+						"text": "Tổng kết năm",
+					}
+				};
 			}
 		});
 		Backbone.history.start();

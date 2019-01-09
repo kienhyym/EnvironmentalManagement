@@ -44,24 +44,27 @@ define(function (require) {
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    	},
     	},
-    	render:function(){
+    	render:function() {
     		var self= this;
+    		var filters = this.viewFilters();
+    		console.log("filters ", filters);
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
     			sessionKey: "Dantoc_filter"
     		});
     		filter.render();
-    		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
-
+    		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
-					{"ma": {"$like": text }},
-					{"ten": {"$like": text }},
-				] };
-    			self.uiControl.filters = filters;
-    			self.uiControl.orderBy = [{"field": "ma", "direction": "asc"}];
+    			var query = { "$or": [
+					{"mahoatdong": {"$like": text }},
+					{"tenhoatdong": {"$like": text }},
+				]};
+    			filters = self.viewFilters();
+    			filters.filters['$and'].push(query);
     		}
+    		self.uiControl.filters = filters.filters;
+    		self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"}];
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -69,14 +72,16 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
-							{"ten": {"$like": text }},
-							{"ma": {"$like": text }},
+						var query = { "$or": [
+							{"mahoatdong": {"$like": text }},
+							{"tenhoatdong": {"$like": text }},
 						] };
-						$col.data('gonrin').filter(filters);
-						//self.uiControl.filters = filters;
+						filters = self.viewFilters();
+						filters.filters['$and'].push(query);
+						$col.data('gonrin').filter(filters.filters);
 					} else {
 						self.uiControl.filters = null;
+						filters = this.viewFilters();
 					}
 				}
 				self.applyBindings();
@@ -85,6 +90,22 @@ define(function (require) {
     		return this;
     		
     	},
+    	
+    	/**
+    	 * INIT FORM WITH FILTERS
+    	 */
+    	viewFilters: function() {
+    		var self = this;
+    		var filters = {
+    			"filters": {
+    				"$and": []
+    			}
+    		};
+    		if (this.viewData && this.viewData.query) {
+    			filters = this.viewData.query;
+    		}
+    		return JSON.parse(JSON.stringify(filters));
+    	}
     	
     });
 

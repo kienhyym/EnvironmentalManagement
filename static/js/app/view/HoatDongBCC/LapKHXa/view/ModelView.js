@@ -11,7 +11,7 @@ define(function (require) {
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
-	var HoatDongItemView = require('app/view/PhuLuc/LapKHXa/view/HoatDongItemView');
+	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
 
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -138,7 +138,7 @@ define(function (require) {
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection");
+								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection");
 
 							},
 							error: function (model, xhr, options) {
@@ -160,11 +160,10 @@ define(function (require) {
 						self.model.destroy({
 							success: function (model, response) {
 								self.getApp().notify('Xoá dữ liệu thành công');
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection");
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Xoá dữ liệu không thành công!');
-
 							}
 						});
 					}
@@ -176,36 +175,22 @@ define(function (require) {
 			var self = this;
 			self.process_loaikybaocao();
 			var id = this.getApp().getRouter().getParam("id");
-			var currentUser = self.getApp().currentUser;
-			if(!!currentUser && !!currentUser.donvi){
-				if (!!currentUser.donvi.tinhthanh_id) {
-					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
-					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
-				}
-				if (!!currentUser.donvi.quanhuyen_id){
-					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
-					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
-				}
-				if (!!currentUser.donvi.xaphuong_id){
-					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong", currentUser.donvi.xaphuong);
-				}
-			}
-			
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
+						self.setDefaultData();
 						self.onChangeEvents();
 						self.renderDanhSach();
 					},
-					error: function () {
-						self.getApp().notify("Get data Eror");
+					error: function (xhr) {
+						self.getApp().notify({message: xhr.toString()}, {type: "danger"});
 					},
 				});
 			} else {
 				self.applyBindings();
+				self.setDefaultData();
 				self.onChangeEvents();
 				self.renderDanhSach();
 			}
@@ -223,6 +208,29 @@ define(function (require) {
 					self.renderDanhSach();
 				});
 			});
+		},
+		
+		/**
+		 * SET AUTO FIELD BASE ON CURRENT USER & FORM
+		 */
+		setDefaultData: function() {
+			var self = this;
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi) {
+				if (!!currentUser.donvi.tinhthanh_id) {
+					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
+				}
+				if (!!currentUser.donvi.quanhuyen_id){
+					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
+				}
+				if (!!currentUser.donvi.xaphuong_id){
+					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong", currentUser.donvi.xaphuong);
+				}
+			}
+			self.model.set("tuyendonvi", "xa");
 		},
 		
 		process_loaikybaocao:function() {
@@ -310,20 +318,49 @@ define(function (require) {
                 <td></td>
             </tr>
             <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
+                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã</td>
                 <td></td>
                 <td></td>
             </tr>`);
 			var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-			
-			danhsachhoatdong.forEach(function(hoatdong, idx) {
-				var hoatDongItemView = new HoatDongItemView();
-				hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
-				hoatDongItemView.render();
-				hoatDongItemView.on("change", function(model) {
-					console.log("model: ", model);
+			var params = {
+				"$and": [
+					{"loai_hoatdong": {"$eq": "xa"}}
+				]
+			};
+
+			function render(dshoatdong) {
+				dshoatdong.forEach(function(hoatdong, idx) {
+					var hoatDongItemView = new HoatDongItemView();
+					hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
+					hoatDongItemView.render();
+					hoatDongItemView.on("change", function(data) {
+						var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
+						danhsach_hoatdong.forEach(function(item, idx) {
+							if (item.id == data.id) {
+								danhsach_hoatdong[idx] = data;
+							}
+						});
+						self.model.set("danhsach_hoatdong", danhsach_hoatdong);
+					});
+					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
 				});
-				self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
+			}
+
+			$.ajax({
+				url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
+				data: "q="+JSON.stringify(params),
+				type: "GET",
+				success: function(response) {
+					console.log("response: ", response);
+					if (!danhsachhoatdong.length) {
+						danhsachhoatdong = response.objects;
+					}
+					render(danhsachhoatdong);
+				},
+				error: function(xhr) {
+					
+				}
 			});
 		}
 	});

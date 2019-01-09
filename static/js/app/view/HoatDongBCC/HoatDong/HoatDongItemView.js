@@ -4,13 +4,41 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!../tpl/hoatdongitem.html'),
-		schema = require('json!schema/DanhMucHoatDongSchema.json');
+	var template = require('text!./tpl/hoatdongitem.html');
 
+	var schema = {
+		"id": {
+	        "type": "number",
+	        "primary": true
+	    },
+		"mahoatdong": {
+			"type": "string"
+		},
+		"tenhoatdong": {
+			"type": "string"
+		},
+		"muctieu": {
+			"type": "string"
+		},
+		"tiendo": {
+			"type": "string"
+		},
+		"songuoithamgia": {
+			"type": "number"
+		},
+		"songuoithamgia_nu": {
+			"type": "number"
+		},
+		"songuoithamgia_dtts": {
+			"type": "number"
+		}
+	};
+	
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
+		tagName: "tr",
 		collectionName: "danhmuchoatdong",
 		uiControl: {
 			fields: []
@@ -19,13 +47,10 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			this.model.on("change", function() {
-				console.log("changed, ", self.model.toJSON());
 				self.trigger("change", self.model.toJSON());
 			});
 			
 			this.applyBindings();
-			this.setElement(this.el.innerHTML);
-			
 		},
 	});
 });

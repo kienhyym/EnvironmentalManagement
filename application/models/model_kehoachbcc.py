@@ -53,7 +53,7 @@ class TienDoKeHoachBCC(CommonModel):
     tongsonguoithamgia_dtts = db.Column(db.Integer)
     
     danhsach_hoatdong = db.Column(JSONB())
-    tuyendonvi = db.Column(db.String)#Tinh/Huyen/Xa
+    tuyendonvi = db.Column(db.String)#tinh/huyen/xa/thon
 
 
 class DanhMucHoatDong(CommonModel):

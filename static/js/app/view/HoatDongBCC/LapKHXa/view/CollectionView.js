@@ -17,7 +17,8 @@ define(function (require) {
 				{
 					field: "thonxom",
 					label: "Thôn"
-				},{
+				},
+				{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
@@ -43,7 +44,7 @@ define(function (require) {
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = 'hoatdongbcc/capthon/model/quy1?id=' + event.rowId;
+					var path = 'hoatdongbcc/capxa/model/quy1?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
@@ -59,13 +60,30 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
-						var path = 'hoatdongbcc/capthon/model/quy1';
+						var path = 'hoatdongbcc/capxa/model/quy1';
 						this.getApp().getRouter().navigate(path);
 					}
 				}
 			]
 		}],
 		render: function () {
+			var self = this;
+			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			this.uiControl.filters = {
+				"$and": [
+					{
+						"tuyendonvi": {"$eq": "xa"}
+					}
+				]
+			};
+			if (loaikybaocao) {
+				this.uiControl.filters['$and'].push({
+					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+				});
+				this.uiControl.filters['$and'].push({
+					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+				});
+			}
 			this.applyBindings();
 			return this;
 		},
