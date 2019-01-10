@@ -83,5 +83,9 @@
     },
     "ghichu": {
         "type": "string"
+    },
+    "ketluan": {
+        "type": "number",
+        "default":0
     }
 }

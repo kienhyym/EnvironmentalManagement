@@ -1,28 +1,36 @@
+<style type="text/css">
+    .stt {
+        width: 2%;
+    }
+
+    .content {
+        width: 60%
+    }
+
+    .description {
+        width: 62%;
+    }
+</style>
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading">Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học,
-        trạm y tế - Phiếu điều tra trường học/ TYT</div>
+    <div class="panel-heading"><h4>Thu thập thông tin về công trình cấp nước và vệ sinh trong Trường học/ Trạm y tế</h4></div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-        <style type="text/css">
-            .stt {
-                width: 2%;
-            }
-
-            .content {
-                width: 60%
-            }
-
-            .description {
-                width: 62%;
-            }
-        </style>
-        <div class="row" style="margin-top: 20px;">
+        <div style="margin-top: 30px;">
+			<div class="form-inline form-group col-md-6">
+				<label>Năm đánh giá:</label>
+				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:nambaocao">
+			</div>
+			<div class="col-md-6 form-group form-inline ">
+				<label>Kỳ đánh giá:</label>
+				<input id="kydanhgia" disabled type="text" class="form-control">
+			</div>
+		</div>
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
                         <table class="table">
                             <thead>
-                                <th colspan="2">Thông tin địa bàn<br>
+                                <th colspan="2">Thông tin địa bàn
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-12">
@@ -184,6 +192,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="form-group">
+            	<h5>KẾT LUẬN </h5>
+            	<input disabled type="text" class="form-control" data-bind="value:ketluan" />
+            </div>
     </div>
 </div>

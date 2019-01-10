@@ -2,7 +2,7 @@ import uuid
 
 from application.database import db
 from application.database.model import CommonModel
-from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
+from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer,SmallInteger, String, Text,JSON, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import  UUID, JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
@@ -15,6 +15,16 @@ def default_uuid():
 # Biểu mẫu số 5: Thu thập thông tin về công trình cấp nước và vệ sinh trong trường học, trạm y tế
 class Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc(CommonModel):
     __tablename__ = 'phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc'
+    donvi_id = db.Column(db.Integer, db.ForeignKey('donvi.id'), nullable=False)
+    donvi = db.relationship('DonVi', viewonly=True)
+    nguoibaocao_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
+    nguoibaocao = db.relationship('User', viewonly=True)
+    tinhtrang = db.Column(db.SmallInteger,nullable=False)
+    ngaybaocao = db.Column(db.DateTime())
+    nambaocao = db.Column(db.Integer, nullable=False)
+    kybaocao = db.Column(db.SmallInteger, nullable=False)
+    loaikybaocao = db.Column(db.Integer, nullable=False)
+    
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
@@ -43,6 +53,7 @@ class Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc(CommonModel):
     sokhuvesinh_truong_giaovien_nu = db.Column(db.Integer)
     phieuchitiet = db.Column(JSONB)#Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe
     ghichu = db.Column(db.String)
+    ketluan = db.Column(db.SmallInteger, default=0)
 #     phieuchitiet = relationship('Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe')
 #     nguonnccongtrinh_id = db.Column(UUID(as_uuid=True), ForeignKey('nguonnccongtrinh.id'), nullable=True)
 #     capnctruongtram = relationship('CapNcTruongTram')

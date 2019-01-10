@@ -260,7 +260,7 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     record = db.session.query(VSCapTinh).filter(and_(VSCapTinh.donvi_id == currentuser.donvi_id,\
-                                                      VSCapTinh.quanhuyen_id == data['quanhuyen_id'], \
+                                                      VSCapTinh.tinhthanh_id == data['tinhthanh_id'], \
                                                       VSCapTinh.loaikybaocao == data['loaikybaocao'], \
                                                       VSCapTinh.kybaocao == data['kybaocao'], \
                                                       VSCapTinh.nambaocao == data['nambaocao'])).first()
@@ -296,6 +296,7 @@ async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **k
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
         list_baocao = congdonTongCong(VSCapXa,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
+        
     result = obj
     print(result)
     

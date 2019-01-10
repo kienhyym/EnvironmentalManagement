@@ -28,7 +28,15 @@
         "type": "number",
         "default":0
     },
+    "tong_tuhoai_hvs": {
+        "type": "number",
+        "default":0
+    },
     "tong_thamdoi": {
+        "type": "number",
+        "default":0
+    },
+    "tong_thamdoi_hvs": {
         "type": "number",
         "default":0
     },
@@ -36,7 +44,15 @@
         "type": "number",
         "default":0
     },
+    "tong_2ngan_hvs": {
+        "type": "number",
+        "default":0
+    },
     "tong_ongthonghoi": {
+        "type": "number",
+        "default":0
+    },
+    "tong_ongthonghoi_hvs": {
         "type": "number",
         "default":0
     },
@@ -57,6 +73,18 @@
         "default":0
     },
     "tong_caithien": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hongheo_hvs": {
         "type": "number",
         "default":0
     },

@@ -1080,6 +1080,82 @@ define(function (require) {
 							"$ref": "app/view/PhuLuc/LapKHTinh/view/ModelView",
 							"visible": false
 						},
+//						{
+//							"text": "Mẫu số 6.1. Các hoạt động BCC - Tỉnh",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcctinh",
+//							"route": "hoatdongbcctinh/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/CollectionView",
+//							"tuyendonvi": 2,
+//							"visible": function () {
+//								return this.checkTuyendonvi(2);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcctinh",
+//							"route": "hoatdongbcctinh/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTinh/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.2. Các hoạt động BCC - Huyện",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcchuyen",
+//							"route": "hoatdongbcchuyen/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/CollectionView",
+//							"tuyendonvi": 3,
+//							"visible": function () {
+//								return this.checkTuyendonvi(3);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcchuyen",
+//							"route": "hoatdongbcchuyen/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCHuyen/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.3. Các hoạt động BCC Xã/Thôn",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbccxathon",
+//							"route": "hoatdongbccxathon/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/CollectionView",
+//							"tuyendonvi": 4,
+//							"visible": function () {
+//								return this.checkTuyendonvi(4);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbccxathon",
+//							"route": "hoatdongbccxathon/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCXaThon/view/ModelView",
+//							"visible": false
+//						},
+//						{
+//							"text": "Mẫu số 6.4. Các hoạt động BCC - Trường học",
+//							"icon": "glyphicon glyphicon-tasks",
+//							"type": "view",
+//							"collectionName": "hoatdongbcctruonghoc",
+//							"route": "hoatdongbcctruonghoc/collection",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/CollectionView",
+//							"tuyendonvi": 4,
+//							"visible": function () {
+//								return this.checkTuyendonvi(4);
+//							}
+//						},
+//						{
+//							"type": "view",
+//							"collectionName": "hoatdongbcctruonghoc",
+//							"route": "hoatdongbcctruonghoc/model",
+//							"$ref": "app/view/HoatDongGD/HoatDongBCCTruongHoc/view/ModelView",
+//							"visible": false
+//						},
 					]
 				},
 				{
@@ -1149,122 +1225,147 @@ define(function (require) {
 					]
 				},
 				{
-					"text": "Phiếu điều tra trường học/trạm y tế",
-					"icon": "glyphicon glyphicon-tasks",
+					"text": "Trường học/Trạm y tế",
+					"icon": "glyphicon glyphicon-file",
 					"type": "category",
-//					"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-//					"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection",
-//					"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					"tuyendonvi": 4,
-					"visible": function () {
-						return this.checkTuyendonvi(4);
-					},
+					"collectionName": "truonghoctramyte",
+					"route": "truonghoctramyte/collection",
+					"$ref": "app/view/truonghoctramyte/TruongHocTramYTeView",
 					"entries": [{
-						"text": "Qúy I",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy1",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "Qúy II",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy2",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "Qúy III",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy3",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "Qúy IV",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy4",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "6 Tháng đầu năm",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangdau",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "6 Tháng cuối năm",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangcuoi",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"text": "Tổng kết năm",
-						"icon": "glyphicon glyphicon-tasks",
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=nam",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy1(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy2(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy3(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy4(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangdau(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangcuoi(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					},
-					{
-						"type": "view",
-						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
-						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/nam(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
-						"visible": false
-					}]
-				},
+							"text": "Biểu mẫu số 4: Giới và Dân tộc thiểu số",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "dtthieuso",
+							"route": "dtthieuso/collection",
+							"$ref": "app/view/PhuLuc/DTThieuSo/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "dtthieuso",
+							"route": "dtthieuso/model",
+							"$ref": "app/view/PhuLuc/DTThieuSo/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Biểu mẫu số 5: Phiếu điều tra trường học/ TYT",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
+							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection",
+							"$ref": "app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
+							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model",
+							"$ref": "app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Mẫu số 1: Dùng cho nhà tiêu tự hoại",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "kiemtratinhtrangvss",
+							"route": "kiemtratinhtrangvss/collection",
+							"$ref": "app/view/HoatDongGD/KiemTraTinhTrangVS/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "kiemtratinhtrangvss",
+							"route": "kiemtratinhtrangvss/model",
+							"$ref": "app/view/HoatDongGD/KiemTraTinhTrangVS/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Mẫu số 2: Dùng cho nhà tiêu thấm dội nước",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "nhatieuthamnuoc",
+							"route": "nhatieuthamnuoc/collection",
+							"$ref": "app/view/HoatDongGD/NhaTieuThamNuoc/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "nhatieuthamnuoc",
+							"route": "nhatieuthamnuoc/model",
+							"$ref": "app/view/HoatDongGD/NhaTieuThamNuoc/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Mẫu số 3: Dùng cho nhà tiêu 2 ngăn",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "nhatieu2ngan",
+							"route": "nhatieu2ngan/collection",
+							"$ref": "app/view/HoatDongGD/NhaTieu2Ngan/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "nhatieu2ngan",
+							"route": "nhatieu2ngan/model",
+							"$ref": "app/view/HoatDongGD/NhaTieu2Ngan/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Mẫu số 4: Dùng cho nhà tiêu chìm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "nhatieuchim",
+							"route": "nhatieuchim/collection",
+							"$ref": "app/view/HoatDongGD/NhaTieuChim/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "nhatieuchim",
+							"route": "nhatieuchim/model",
+							"$ref": "app/view/HoatDongGD/NhaTieuChim/view/ModelView",
+							"visible": false
+						},
+						{
+							"text": "Mẫu số 5. Cho trường học và trạm y tế",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "chotruonghoctramyte",
+							"route": "chotruonghoctramyte/collection",
+							"$ref": "app/view/HoatDongGD/ChoTruongHocTramYTE/view/CollectionView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
+						},
+						{
+							"type": "view",
+							"collectionName": "chotruonghoctramyte",
+							"route": "chotruonghoctramyte/model",
+							"$ref": "app/view/HoatDongGD/ChoTruongHocTramYTE/view/ModelView",
+							"visible": false
+						}
+					]
+				}
 			]
 		},
 		{

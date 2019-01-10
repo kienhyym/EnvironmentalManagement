@@ -4,8 +4,8 @@ define(function (require) {
         _ = require('underscore'),
         Gonrin = require('gonrin');
 
-    var template = require('text!app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/tpl/model.html'),
-        schema = require('json!app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeSchema.json');
+    var template = require('text!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/tpl/model.html'),
+        schema = require('json!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeSchema.json');
 
     return Gonrin.ModelDialogView.extend({
         template: template,
@@ -55,17 +55,14 @@ define(function (require) {
                     {
                         value: 8,
                         text: "Nhà vệ sinh thùng hoặc cầu tõm",
-
                     },
                     {
                         value: 99,
                         text: "Không quan sát được",
-
                     },
                     {
                         value: 96,
                         text: "Khác (Nêu rõ)",
-
                     },
                     ],
                 },
@@ -75,12 +72,11 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: 2,
                         text: "Có",
                     }, {
-                        value: 2,
+                        value: 1,
                         text: "Không",
-
                     },],
                 },
                 {
@@ -103,10 +99,10 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: 2,
                         text: "Có",
                     }, {
-                        value: 2,
+                        value: 1,
                         text: "Không",
 
                     },],
@@ -176,25 +172,27 @@ define(function (require) {
                     uicontrol: "radio",
                     textField: "text",
                     valueField: "value",
-                    dataSource: [{
-                        value: 1,
-                        text: "Chỉ có nước sạch",
-                    }, {
+                    dataSource: [
+                    	{
+                            value: 1,
+                            text: "Có cả nước sạch và xà phòng",
+                        },
+                    	{
                         value: 2,
-                        text: "Chỉ có xà phòng",
-
-                    }, {
-                        value: 3,
-                        text: "Có cả nước sạch và xà phòng",
-                    },
-                    {
-                        value: 4,
-                        text: "Không có cả nước sạch và xà phòng",
-                    },
-                    {
-                        value: 99,
-                        text: "Không quan sát được",
-                    },],
+                        text: "Chỉ có nước sạch",
+	                    }, 
+	                    {
+	                        value: 3,
+	                        text: "Chỉ có xà phòng",
+	                    }, 
+	                    {
+	                        value: 4,
+	                        text: "Không có cả nước sạch và xà phòng",
+	                    },
+	                    {
+	                        value: 99,
+	                        text: "Không quan sát được",
+	                    }]
                 },
                 {
                     field: "mailop_nhavesinh",
@@ -216,10 +214,10 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: 2,
                         text: "Có",
                     }, {
-                        value: 2,
+                        value: 1,
                         text: "Không",
 
                     },],
@@ -258,10 +256,10 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: 2,
                         text: "Có",
                     }, {
-                        value: 2,
+                        value: 1,
                         text: "Không",
 
                     },
@@ -320,10 +318,10 @@ define(function (require) {
                     textField: "text",
                     valueField: "value",
                     dataSource: [{
-                        value: 1,
+                        value: 2,
                         text: "Có",
                     }, {
-                        value: 2,
+                        value: 1,
                         text: "Không",
 
                     },
@@ -351,6 +349,20 @@ define(function (require) {
                         text: "Không biết",
 
                     },],
+                },
+                {
+                    field: "ketluan",
+                    uicontrol: "combobox",
+                    textField: "text",
+                    valueField: "value",
+                    dataSource: [{
+                        value: 1,
+                        text: "Hợp vệ sinh",
+                    }, {
+                        value: 0,
+                        text: "Không hợp vệ sinh",
+
+                    }],
                 },
             ]
         },
@@ -405,11 +417,11 @@ define(function (require) {
             var self = this;
 //            self.$el.find("#quansat_khuvesinh_loaikhac").hide();
             var id = null;
-            if (self.viewData !== null) {
-                id = self.viewData.id;
-                var phieuthuthap_id = self.viewData.phieuthuthap_id;
-                self.model.set("phieu_chitiet_vesinh_capnuoc_truong_tramyte_id", phieuthuthap_id);
-            }
+//            if (self.viewData !== null) {
+//                id = self.viewData.id;
+//                var phieuthuthap_id = self.viewData.phieuthuthap_id;
+//                self.model.set("phieu_chitiet_vesinh_capnuoc_truong_tramyte_id", phieuthuthap_id);
+//            }
 //            self.model.on("change:quansat_khuvesinh", function () {
 //            	if (self.model.get("quansat_khuvesinh") == 96) {
 //            		self.$el.find("#quansat_khuvesinh_loaikhac").show();
@@ -417,6 +429,9 @@ define(function (require) {
 //            		self.$el.find("#quansat_khuvesinh_loaikhac").hide();
 //            	}
 //			});
+            self.model.on("change",function(){
+            	self.model.set("ketluan",self.check_danhgia_nhatieu());
+            });
             if (id) {
                 this.model.set('id', id);
                 this.model.fetch({
@@ -432,5 +447,65 @@ define(function (require) {
             }
 
         },
+        check_danhgia_nhatieu:function(){
+        	var self=this;
+        	var tieuchichinh = false;
+        	var tieuchiphu = 0;
+        	
+        	if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
+        		self.model.get("sannha_rannut") ===1 &&
+        		self.model.get("coloditieu_daynapkin") ===1 &&
+        		self.model.get("bechua_rannut") ===1 &&
+        		self.model.get("khoangcach_nguonnuoc_bechua") ===1 &&
+        		self.model.get("hoatdong_binhthuong") ===1 &&
+        		self.model.get("capnuocsach") ===1 &&
+        		self.model.get("congtrinh_ruatay") ===1 &&
+        		self.model.get("mailop_nhavesinh") ===1 &&
+        		(((self.viewData.loai_truong_tramyte ===1 || 
+        				self.viewData.loai_truong_tramyte ===7) 
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=2)||
+        		((self.viewData.loai_truong_tramyte ===2 
+        				|| self.viewData.loai_truong_tramyte ===3 
+        				|| self.viewData.loai_truong_tramyte ===4) 
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=4))){
+        		tieuchichinh = true;
+        	}
+        	
+        	if (self.model.get("phan_dinhdong_nhavesinh")===1){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("vesinh_sachse")===1){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("sannha_vesinh_kho_sach")===1){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("nangmui")===1){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("nuocthai_chaydidau")===1 || 
+        			self.model.get("nuocthai_chaydidau")===2 || 
+        			self.model.get("nuocthai_chaydidau")===3 || 
+        			self.model.get("nuocthai_chaydidau")===4){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("bexi_docao")===1){
+        		tieuchiphu +=1;
+        	}
+        	if (self.model.get("ngaplut_khi_mualon")===1){
+        		tieuchiphu +=1;
+        	}
+        	
+        	if(tieuchichinh === true && tieuchiphu >=3){
+        		return 1;
+        	}else{
+        		return 0;
+        	}
+        	
+        		
+        		
+        		
+        	
+        }
     });
 });

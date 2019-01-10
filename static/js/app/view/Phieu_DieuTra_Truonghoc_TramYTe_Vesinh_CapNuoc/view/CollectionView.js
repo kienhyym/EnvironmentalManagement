@@ -4,7 +4,7 @@ define(function (require) {
         _ = require('underscore'),
         Gonrin = require('gonrin');
 
-    var template = require('text!app/view/PhuLuc/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/tpl/collection.html'),
+    var template = require('text!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/tpl/collection.html'),
         schema = require('json!schema/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuocSchema.json');
     
     return Gonrin.CollectionView.extend({
@@ -12,6 +12,23 @@ define(function (require) {
         modelSchema: schema,
         urlPrefix: "/api/v1/",
         collectionName: "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
+        tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "CREATE",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE",
+					command: function () {
+						var self = this;
+						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
+						var path = this.collectionName + '/model/'+loaibaocao;
+						this.getApp().getRouter().navigate(path);
+					}
+				}]
+		}],
         uiControl: {
             fields: [
                 {
@@ -20,7 +37,6 @@ define(function (require) {
                     label: "Tên Tỉnh",
                     foreignRemoteField: "id",
                     foreignField: "tinhthanh_id",
-                    width:250
                 },
                 {
                     field: "quanhuyen",
@@ -28,7 +44,6 @@ define(function (require) {
                     label: "Tên Huyện",
                     foreignRemoteField: "id",
                     foreignField: "quanhuyen_id",
-                    width:250
                 },
                 {
                     field: "xaphuong",
@@ -36,13 +51,11 @@ define(function (require) {
                     label: "Tên Xã",
                     foreignRemoteField: "id",
                     foreignField: "xaphuong_id",
-                    width:250
                 },
-                { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế", width:300 },
+                { field: "ten_truong_tramyte", label: "Tên trường học/trạm y tế" },
                 {
                     field: "loai_truong_tramyte",
                     label: "Loại trường học/trạm y tế",
-                    width:300,
                     template: function (dataRow) {
                         if (dataRow.loai_truong_tramyte === 7) {
                             return "Trạm y tế"
@@ -61,18 +74,41 @@ define(function (require) {
                         }
                     },
                 },
+                { field: "ketluan", label: "Kết Luận", template:function(rowData){
+                	if(rowData.ketluan ===1){
+                		return "Hợp vệ sinh";
+                	}else{
+                		return "không hợp vệ sinh";
+                	}
+                }
+                },
 
             ],
             onRowClick: function (event) {
                 if (event.rowId) {
-                    var path = this.collectionName + '/model?id=' + event.rowId;
-                    this.getApp().getRouter().navigate(path);
+                	var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
+					this.getApp().getRouter().navigate(path);
                 }
             }
         },
         render: function () {
-            this.applyBindings();
-            return this;
+        	var self = this;
+        	var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
+			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+				return;
+			}else{
+				var txt_header = "Danh sách phiếu thu thập trường học/ trạm y tế - "+itemkybaocao.text;
+				self.$el.find(".panel-heading h3").html(txt_header);
+				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
+				this.applyBindings();
+				return this;
+			}
         },
     });
 

@@ -253,7 +253,22 @@ define(function (require) {
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);
 			});
+			self.model.on("change:hopvesinh",function(){
+				if(self.model.get("hopvesinh")===1){
+					self.model.set("khonghopvesinh",0);
+				}else{
+					self.model.set("khonghopvesinh",1);
+				}			
+			});
+			self.model.on("change:khonghopvesinh",function(){
+				if(self.model.get("khonghopvesinh")===1){
+					self.model.set("hopvesinh",0);
+				}else{
+					self.model.set("hopvesinh",1);
+				}			
+			});
 			self.model.on("change", function () {
+				
 				self.trigger("change", {
 					"oldData": self.model.previousAttributes(),
 					"data": self.model.toJSON()

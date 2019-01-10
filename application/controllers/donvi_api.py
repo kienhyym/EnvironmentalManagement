@@ -375,4 +375,4 @@ apimanager.create_api(DonVi,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, donvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func, donvi_prepput_children], DELETE_SINGLE=[auth_func, donvi_predelete]),
     collection_name='donvi',
-    exclude_columns= ["children","user.password"])
+    exclude_columns= ["children","user.password","user.confirmpassword"])

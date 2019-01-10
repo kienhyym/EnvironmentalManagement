@@ -155,15 +155,16 @@ define(function (require) {
 						}else if(quanhuyen === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
 						}else if(xaphuong === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phương"},{type: "danger"});
+							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
 						}else if(thonxom === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm"},{type: "danger"});
 						}else {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
+									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 									self.getApp().getRouter().navigate(self.collectionName 
-											+ "/collection?loaikybaocao="+self.getApp().data("vsthon_loaibaocao_route"));
+											+ "/collection?loaikybaocao="+routeloaibaocao);
 	
 								},
 								error: function (model, xhr, options) {
@@ -295,8 +296,10 @@ define(function (require) {
 						self.model.destroy({
 							success: function (model, response) {
 								self.getApp().notify('Xoá dữ liệu thành công');
+								var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 								self.getApp().getRouter().navigate(self.collectionName 
-										+ "/collection?loaikybaocao="+self.getApp().data("vsthon_loaibaocao_route"));
+										+ "/collection?loaikybaocao="+routeloaibaocao);
+
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Xoá dữ liệu không thành công!');
@@ -310,7 +313,18 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
-			self.process_loaikybaocao();
+			var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+			if (routeloaibaocao!==null){
+				var itemkybaocao = self.getApp().mapKyBaoCao[routeloaibaocao];
+				if (itemkybaocao === null || itemkybaocao ==="undefined"){
+					self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+					return;
+				}else{
+					self.model.set("loaikybaocao",itemkybaocao.loaikybaocao);
+					self.model.set("kybaocao",itemkybaocao.kybaocao);
+					self.$el.find("#kydanhgia").val(itemkybaocao.text);
+				}
+			}
 			
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
@@ -331,7 +345,6 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
 				view_hogiadinh.dialog();
 				view_hogiadinh.on("onSelected", function(data){
-					console.log("onSelected.data====",data);
 					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
 	                view.model.set("id",gonrin.uuid());
 	                var  danhsachho = self.model.get("nhatieuthonhvs");
@@ -457,46 +470,46 @@ define(function (require) {
 				self.$el.find("#header_table_sup").show();
 			}
 		},
-		process_loaikybaocao:function(){
-			var self = this;
-			var currentRoute = self.getApp().router.currentRoute()['fragment'];
-			if (currentRoute.indexOf('model/quy1')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("Qúy I");
-				self.getApp().data("vsthon_loaibaocao_route","quy1");
-			} else if(currentRoute.indexOf('model/quy2')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").val("Qúy II");
-				self.getApp().data("vsthon_loaibaocao_route","quy2");
-			} else if(currentRoute.indexOf('model/quy3')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",3);
-				self.$el.find("#kydanhgia").val("Qúy III");
-				self.getApp().data("vsthon_loaibaocao_route","quy3");
-			} else if(currentRoute.indexOf('model/quy4')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",4);
-				self.$el.find("#kydanhgia").val("Qúy IV");
-				self.getApp().data("vsthon_loaibaocao_route","quy4");
-			} else if(currentRoute.indexOf('model/6thangdau')>=0){
-				self.model.set("loaikybaocao",3);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
-				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
-			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
-				self.model.set("loaikybaocao",3);
-				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
-				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
-			} else if(currentRoute.indexOf('model/nam')>=0){
-				self.model.set("loaikybaocao",4);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("Tổng kết năm");
-				self.getApp().data("vsthon_loaibaocao_route","nam");
-			}
-		},
+//		process_loaikybaocao:function(){
+//			var self = this;
+//			var currentRoute = self.getApp().router.currentRoute()['fragment'];
+//			if (currentRoute.indexOf('model/quy1')>=0){
+//				self.model.set("loaikybaocao",2);
+//				self.model.set("kybaocao",1);
+//				self.$el.find("#kydanhgia").val("Qúy I");
+//				self.getApp().data("vsthon_loaibaocao_route","quy1");
+//			} else if(currentRoute.indexOf('model/quy2')>=0){
+//				self.model.set("loaikybaocao",2);
+//				self.model.set("kybaocao",2);
+//				self.$el.find("#kydanhgia").val("Qúy II");
+//				self.getApp().data("vsthon_loaibaocao_route","quy2");
+//			} else if(currentRoute.indexOf('model/quy3')>=0){
+//				self.model.set("loaikybaocao",2);
+//				self.model.set("kybaocao",3);
+//				self.$el.find("#kydanhgia").val("Qúy III");
+//				self.getApp().data("vsthon_loaibaocao_route","quy3");
+//			} else if(currentRoute.indexOf('model/quy4')>=0){
+//				self.model.set("loaikybaocao",2);
+//				self.model.set("kybaocao",4);
+//				self.$el.find("#kydanhgia").val("Qúy IV");
+//				self.getApp().data("vsthon_loaibaocao_route","quy4");
+//			} else if(currentRoute.indexOf('model/6thangdau')>=0){
+//				self.model.set("loaikybaocao",3);
+//				self.model.set("kybaocao",1);
+//				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
+//				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
+//			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
+//				self.model.set("loaikybaocao",3);
+//				self.model.set("kybaocao",2);
+//				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
+//				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
+//			} else if(currentRoute.indexOf('model/nam')>=0){
+//				self.model.set("loaikybaocao",4);
+//				self.model.set("kybaocao",1);
+//				self.$el.find("#kydanhgia").val("Tổng kết năm");
+//				self.getApp().data("vsthon_loaibaocao_route","nam");
+//			}
+//		},
 		renderItemView:function(data){
 			var self  =this;
             var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});

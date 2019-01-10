@@ -196,7 +196,7 @@ class VSCapXa(CommonModel):
     
     tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
-
+    danhsachbaocao = db.Column(JSONB())
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
 Index('vscapxa_uq_idx', VSCapXa.loaikybaocao, VSCapXa.kybaocao, VSCapXa.nambaocao, VSCapXa.donvi_id, unique=True)
 
@@ -267,7 +267,7 @@ class VSCapHuyen(CommonModel):
     
     tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
-
+    danhsachbaocao = db.Column(JSONB())
 
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
 Index('vscaphuyen_uq_idx', VSCapHuyen.loaikybaocao, VSCapHuyen.kybaocao, VSCapHuyen.nambaocao, VSCapHuyen.donvi_id, unique=True)
@@ -339,7 +339,7 @@ class VSCapTinh(CommonModel):
     
     tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
-
+    danhsachbaocao = db.Column(JSONB())
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
 Index('vscaptinh_uq_idx', VSCapTinh.loaikybaocao, VSCapTinh.kybaocao, VSCapTinh.nambaocao, VSCapTinh.donvi_id, unique=True)
 
