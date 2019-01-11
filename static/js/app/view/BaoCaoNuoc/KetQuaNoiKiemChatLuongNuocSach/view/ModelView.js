@@ -5,12 +5,37 @@ define(function (require) {
         Gonrin = require('gonrin');
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/model.html'),
         schema = require('json!schema/KetQuaNoiKiemChatLuongNuocSachSchema.json');
+    
+    var somauvavitritemplate = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemSoMauVaViTriLayMau.html');
+    var somauvavitrischema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ViTriLayMauItemSchema.json');
+    
     var KetQuaNoiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
+    
     function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
 	}
+    
+    var SoMauVaViTriLayMauView = Gonrin.ModelView.extend({
+    	template : somauvavitritemplate,
+    	modelSchema	: somauvavitrischema,
+    	bindings: "danhsachmau-bind",
+    	urlPrefix: "/api/v1/",
+    	collectionName: "somau_va_vitri_laymau",
+    	uiControl:[],
+    	render:function(){
+    		var self = this;
+    		
+    		self.model.on("change:tenvitrilaymau", function(){
+    			self.trigger("change", {
+    				"data": self.model.toJSON()
+    			});
+    		});
+    		
+    		this.applyBindings();
+    	}
+    });
     
     return Gonrin.ModelView.extend({
         template: template,
@@ -112,7 +137,16 @@ define(function (require) {
         }],
         render: function () {
             var self = this;
-
+            
+            var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
+//            console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
+            if (ketquanoikiemchatluongnuoc == null){
+//            	self.$el.find("[id=mauvitri_header]").hide();
+            	self.$el.find("[id=removeButton]").hide();
+            } else {
+//            	self.$el.find("[id=mauvitri_header]").show();
+            	self.$el.find("[id=removeButton]").show();
+            }
 
             self.getApp().on("DonViCapNuoc_onSelected", function (data) {
                 self.model.set("diachi_donvicapnuoc", data.diachi);
@@ -159,11 +193,11 @@ define(function (require) {
                     self.changeSoMau();
                 });
             });
-            self.model.on("change:somauvavitri", function () {
-                if (self.model.get("somauvavitri") > 10) {
-                    self.getApp().notify({ message: "Số lấy mẫu phải nhỏ hơn 10" }, { type: "danger" });
-                }
-            });
+//            self.model.on("change:somauvavitri", function () {
+//                if (self.model.get("somauvavitri") > 10) {
+//                    self.getApp().notify({ message: "Số lấy mẫu phải nhỏ hơn 10" }, { type: "danger" });
+//                }
+//            });
             var id = this.getApp().getRouter().getParam("id");
             if (id) {
                 this.model.set('id', id);
@@ -176,7 +210,7 @@ define(function (require) {
                         self.changeSoMau();
                     },
                     error: function () {
-                        self.getApp().notify("Get data Eror");
+                        self.getApp().notify("Lỗi lấy dữ liệu");
                     },
                 });
             } else {
@@ -207,12 +241,59 @@ define(function (require) {
                 });
 
                 for (var j = 0; j < somau; j++) {
-                    var el = $("<th>").attr("rowspan", 2).attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
                     self.$el.find("#mauvitri_header_before").before(el);
+                    self.$el.find("#id_ketquanoikiem").attr("colspan", j + 1);
                 }
             }
             self.renderKetQua();
-
+            
+            var somauvavitri = self.model.get("somauvavitri");
+        	self.$el.find("#somauvavitri_input").empty();
+//        	console.log("somauvavitri===",somauvavitri);
+        	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+    		if (danhsachvitrilaymau == null){
+    			danhsachvitrilaymau = []
+    		}
+    		var danhsachvitri_new = [];
+//    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
+        	for (var i = 0; i < somauvavitri; i++){
+        		var somauvavitri_view = new SoMauVaViTriLayMauView();
+        		somauvavitri_view.model.set("id", i + 1);
+        		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
+        			var data_mau = danhsachvitrilaymau[i];
+//        			console.log("ssss",data_mau);
+        			data_mau.id = i+1;
+        			somauvavitri_view.model.set(data_mau);
+        		}
+        		somauvavitri_view.render();
+        		danhsachvitri_new.push(somauvavitri_view.model.toJSON());
+        		self.$el.find("#somauvavitri_input").append(somauvavitri_view.$el);
+        		somauvavitri_view.on("change", function(data){
+//        			console.log("=====data====",data)
+        			var ds = self.model.get("danhsachvitrilaymau");
+        			for(var j=0; j<ds.length;j++){
+//        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
+        				if(data.data.id === ds[j].id){
+//        					console.log(j.vitrilaymau);
+//        					ds.splice(j,1);
+//        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
+//        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
+        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
+//        					console.log("jjjjjj===",ds);
+//        					ds.push(data.data);
+        					break;
+        				}
+        			}
+//        			console.log("danhsachvitrilaymau=====",ds);
+        				self.model.set("danhsachvitrilaymau", ds);
+        				self.applyBindings();
+        		});
+        	}
+        	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
+        	self.applyBindings();
+            
+            
         },
         renderKetQua: function () {
             //prepare Itemview
@@ -228,11 +309,20 @@ define(function (require) {
                 view.on("ketquachange", function (evt) {
                     var danhgiaThongSo = 1;
                     evt.ketquakiemtra.forEach(function (data) {
-                        if (data.ketqua && data.ketqua <= evt.gioihan_toida && data.ketqua >= evt.gioihan_toithieu) {
-                            data.danhgia = 1;
-                        } else {
-                            data.danhgia = 0;
-                        }
+//                    	console.log(data);
+//                    	console.log("evt", evt);
+                        	if (data.ketqua && evt.gioihan_toithieu !== null && evt.gioihan_toida == null && data.ketqua >= evt.gioihan_toithieu){ 
+                        		data.danhgia = 1;
+//                        		console.log("danhgia can duoi", data);
+                        	}else if (data.ketqua && evt.gioihan_toithieu == null && evt.gioihan_toida !== null && data.ketqua <= evt.gioihan_toida){
+                        		data.danhgia = 1;
+//                        		console.log("danhgia can tren", data);
+                        	} else if (data.ketqua && evt.gioihan_toithieu && evt.gioihan_toida && data.ketqua <= evt.gioihan_toida && data.ketqua >= evt.gioihan_toithieu){
+                        		data.danhgia = 1;
+//                        		console.log("data 2 khoang gia tri", data);
+                        	} else {
+                        		data.danhgia = 0;
+                        	}
 
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
                     });

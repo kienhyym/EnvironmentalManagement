@@ -146,6 +146,15 @@ define(function (require) {
         }],
         render: function () {
             var self = this;
+            var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
+            console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
+            if (ketquangoaikiemchatluongnuoc == null){
+//            	self.$el.find("[id=mauvitri_header]").hide();
+            	self.$el.find("[id=removeButton]").hide();
+            } else {
+//            	self.$el.find("[id=mauvitri_header]").show();
+            	self.$el.find("[id=removeButton]").show();
+            }
             
 //            self.model.on("change:nambaocao", function () {
 //            	var nambaocao = self.model.get("nambaocao");
@@ -239,12 +248,12 @@ define(function (require) {
             if (!!somau & (somau > 0)) {
             	
             	var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
-//                console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
+                console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
                 if (ketquangoaikiemchatluongnuoc.length == 0){
-                	self.$el.find("[id=mauvitri_header]").hide();
+//                	self.$el.find("[id=mauvitri_header]").hide();
                 	self.$el.find("[id=removeButton]").hide();
                 } else {
-                	self.$el.find("[id=mauvitri_header]").show();
+//                	self.$el.find("[id=mauvitri_header]").show();
                 	self.$el.find("[id=removeButton]").show();
                 }
                 $.each(self.model.get("ketquangoaikiemchatluongnuoc"), function (idx, obj) {
@@ -417,7 +426,7 @@ define(function (require) {
                                 (self.model.get("ketquangoaikiemchatluongnuoc")).push(item);
                             };
                         });
-
+                        
                         self.model.set("somauvavitri", 1);
                     }
                 },
