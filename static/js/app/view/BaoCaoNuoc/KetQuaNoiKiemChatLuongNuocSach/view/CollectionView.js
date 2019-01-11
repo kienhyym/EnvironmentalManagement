@@ -25,25 +25,19 @@ define(function (require) {
             {
                 field: "nambaocao",
                 label: "Năm báo cáo",
-                width: 250
             },
             {
                 field: "ngaybaocao",
                 label: "Ngày báo cáo",
-                width: 250
             },
             {
                 field: "diachi_donvicapnuoc",
                 label: "Địa chỉ",
-                
             },
             {
                 field: "nguonnuoc",
                 label: "Nguồn nước nguyên liệu",
-                
             },
-
-
             ],
             onRowClick: function (event) {
                 if (event.rowId) {
