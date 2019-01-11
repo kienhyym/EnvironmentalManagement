@@ -10,6 +10,10 @@ define(function (require) {
     var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
     var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
     
+    function toInt(x) {
+		return parseInt(x) ? parseInt(x) : 0;
+	}
+    
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -67,7 +71,10 @@ define(function (require) {
 		    	    	label: "TRANSLATE:SAVE",
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		console.log("Save dovi_id: ", self.model.get("donvi_id"));
+		    	    		var nam_datvesinh_toanxa = self.model.get("nam_datvesinh_toanxa");
+		    	    		var nam_datvesinh_toanxa_benvung = self.model.get("nam_datvesinh_toanxa_benvung");
+//		    	    		if (nam_datvesinh_toanxa_benvung < nam_datvesinh_toanxa + 2)
+		    	    		
 		                    self.model.save(null,{
 		                        success: function (model, respose, options) {
 		                            self.getApp().notify("Lưu thông tin thành công");
@@ -107,6 +114,7 @@ define(function (require) {
     	    }],
     	render:function(){
     		var self = this;
+    		
     		var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
 				if (!!currentUser.donvi.tinhthanh_id){
@@ -114,6 +122,26 @@ define(function (require) {
 					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
 				}
 			}
+			
+			self.model.on("change:nam_datvesinh_toanxa", function () {
+				var nam_datvesinh_toanxa = self.model.get("nam_datvesinh_toanxa");
+				
+				self.model.on("change:nam_datvesinh_toanxa_benvung", function () {
+					var nam_datvesinh_toanxa_benvung = self.model.get("nam_datvesinh_toanxa_benvung");
+					
+					if (toInt(nam_datvesinh_toanxa_benvung) < toInt(nam_datvesinh_toanxa) + 2){
+						self.getApp().notify({message: "Năm đạt vệ sinh toàn xã bền vững không hợp lệ!!!"}, {type: "danger"});
+					}
+				});
+			});
+			
+//			self.model.on("change:nam_datvesinh_toanxa_benvung", function () {
+//				var nam_datvesinh_toanxa_benvung = self.model.get("nam_datvesinh_toanxa_benvung");
+//				
+//				if (toInt(nam_datvesinh_toanxa_benvung) < toInt(nam_datvesinh_toanxa) + 2){
+//					self.getApp().notify({message: "Năm đạt vệ sinh toàn xã bền vững không hợp lệ!!!"}, {type: "danger"});
+//				}
+//			});	
     		var id = this.getApp().getRouter().getParam("id");
     		if(id){
     			this.model.set('id',id);

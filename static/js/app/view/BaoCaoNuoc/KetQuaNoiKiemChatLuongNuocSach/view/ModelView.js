@@ -8,6 +8,10 @@ define(function (require) {
     var KetQuaNoiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
+    function toInt(x) {
+		return parseInt(x) ? parseInt(x) : 0;
+	}
+    
     return Gonrin.ModelView.extend({
         template: template,
         modelSchema: schema,
@@ -16,6 +20,11 @@ define(function (require) {
         uiControl: {
             fields: [{
                 field: "thoigiankiemtra",
+                textFormat: "DD/MM/YYYY",
+                extraFormats: ["DDMMYYYY"],
+            },
+            {
+                field: "ngaybaocao",
                 textFormat: "DD/MM/YYYY",
                 extraFormats: ["DDMMYYYY"],
             },
@@ -50,6 +59,22 @@ define(function (require) {
                 label: "TRANSLATE:SAVE",
                 command: function () {
                     var self = this;
+                    var nambaocao = self.model.get("nambaocao");
+                    var ngaybaocao = self.model.get("ngaybaocao");
+                    var donvicapnuoc = self.model.get("donvicapnuoc");
+                    var thoigiankiemtra = self.model.get("thoigiankiemtra");
+                    var nguoikiemtra = self.model.get("nguoikiemtra");
+                    if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
+                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
+                    } else if(ngaybaocao === null || ngaybaocao === ""){
+                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
+                    } else if(donvicapnuoc === null || donvicapnuoc === ""){
+                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
+                    } else if(thoigiankiemtra === null || thoigiankiemtra === ""){
+                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
+                    } else if(nguoikiemtra === null || nguoikiemtra === ""){
+                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
+                    } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Lưu thông tin thành công");
@@ -59,6 +84,7 @@ define(function (require) {
                             self.getApp().notify('Lưu thông tin không thành công!');
                         }
                     });
+                   }
                 }
             },
             {
