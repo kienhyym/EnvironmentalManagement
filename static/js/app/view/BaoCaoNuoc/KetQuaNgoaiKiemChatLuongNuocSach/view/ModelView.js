@@ -239,7 +239,7 @@ define(function (require) {
             if (!!somau & (somau > 0)) {
             	
             	var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
-                console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
+//                console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
                 if (ketquangoaikiemchatluongnuoc.length == 0){
                 	self.$el.find("[id=mauvitri_header]").hide();
                 	self.$el.find("[id=removeButton]").hide();
@@ -275,15 +275,16 @@ define(function (require) {
             ////////namdv change danh sach lay mau
             var somauvavitri = self.model.get("somauvavitri");
         	self.$el.find("#somauvavitri_input").empty();
-        	console.log("somauvavitri===",somauvavitri);
+//        	console.log("somauvavitri===",somauvavitri);
         	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
     		if (danhsachvitrilaymau == null){
     			danhsachvitrilaymau = []
     		}
     		var danhsachvitri_new = [];
-    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
+//    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
         	for (var i = 0; i < somauvavitri; i++){
         		var somauvavitri_view = new SoMauVaViTriLayMauView();
+        		somauvavitri_view.model.set("id", i + 1);
         		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
         			var data_mau = danhsachvitrilaymau[i];
 //        			console.log("ssss",data_mau);
@@ -297,19 +298,19 @@ define(function (require) {
 //        			console.log("=====data====",data)
         			var ds = self.model.get("danhsachvitrilaymau");
         			for(var j=0; j<ds.length;j++){
-        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
+//        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
         				if(data.data.id === ds[j].id){
-        					console.log(j.vitrilaymau);
+//        					console.log(j.vitrilaymau);
 //        					ds.splice(j,1);
-        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
-        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
+//        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
+//        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
         					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
-        					console.log("jjjjjj===",ds);
+//        					console.log("jjjjjj===",ds);
 //        					ds.push(data.data);
         					break;
         				}
         			}
-        			console.log("danhsachvitrilaymau=====",ds);
+//        			console.log("danhsachvitrilaymau=====",ds);
         				self.model.set("danhsachvitrilaymau", ds);
         				self.applyBindings();
         		});
@@ -333,29 +334,23 @@ define(function (require) {
                 view.on("ketquachange", function (evt) {
                     var danhgiaThongSo = 1;
                     evt.ketquakiemtra.forEach(function (data) {
-                        if (data.ketqua) {
-                        	if (!evt.gioihan_toithieu && data.ketqua >= evt.gioihan_toithieu){ 
-                        	console.log("value gioihantoithieu",!evt.gioihan_toithieu)
-                        	console.log("data ketqua: ", data.ketqua);
-                        	data.danhgia = 1;
-                        	return;
-                        	} else{
-                        		data.danhgia = 0;
-                        	}
-                        		
-                        if (!evt.gioihan_toida && data.ketqua <= evt.gioihan_toida){
-                        		console.log("value gioihantoida",!evt.gioihan_toida)
+//                    	console.log(data);
+//                    	console.log("evt", evt);
+                        	if (data.ketqua && evt.gioihan_toithieu !== null && evt.gioihan_toida == null && data.ketqua >= evt.gioihan_toithieu){ 
                         		data.danhgia = 1;
-                        		return;
-                        	} else{
+//                        		console.log("danhgia can duoi", data);
+                        	}else if (data.ketqua && evt.gioihan_toithieu == null && evt.gioihan_toida !== null && data.ketqua <= evt.gioihan_toida){
+                        		data.danhgia = 1;
+//                        		console.log("danhgia can tren", data);
+                        	} else if (data.ketqua && evt.gioihan_toithieu && evt.gioihan_toida && data.ketqua <= evt.gioihan_toida && data.ketqua >= evt.gioihan_toithieu){
+                        		data.danhgia = 1;
+//                        		console.log("data 2 khoang gia tri", data);
+                        	} else {
                         		data.danhgia = 0;
                         	}
-                        } 
-//                        else {
-//                            data.danhgia = 0;
-//                        }
 
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
+//                        console.log("danhgiaThongSo", danhgiaThongSo);
                     });
                     evt.danhgia = danhgiaThongSo;
                     self.updateKetqua(evt);
