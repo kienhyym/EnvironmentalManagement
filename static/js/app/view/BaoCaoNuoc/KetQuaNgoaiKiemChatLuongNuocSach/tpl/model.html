@@ -55,8 +55,11 @@
                     <td><label>7. Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label> </td>
                     <td><input type="number" class="form-control" data-bind="value:somauvavitri" /></td>
                 </tr>
+                
+                <tr id ="somauvavitri_input">
+                </tr>
+                
             </table>
-
 
 
             <div style="margin-bottom: 20px;margin-top: 20px;">
@@ -75,8 +78,8 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>2.Tần suất thực hiện chế độ nội kiểm</label> <i>(Đánh giá đơn vị cấp nước có thực hiện
-                            thử nghiệm các thông số c…</i>
+                        <label>2.Tần suất thực hiện chế độ nội kiểm</label> <i>(Đánh giá đơn vị cấp nước có thực hiện 
+                        thử nghiệm các thông số chất lượng nước theo quy định về tần suất không)</i>
                         <textarea class="form-control" data-bind="value:tansuatthuchien_chedonoikiem"></textarea>
                     </div>
                 </div>
@@ -103,15 +106,16 @@
                 <table>
                     <thead>
                         <tr>
-                            <th rowspan=2></th>
+                            <th rowspan=2 id="removeButton"></th>
                             <th rowspan=2>STT</th>
-                            <th style="text-align: right">Mã số mẫu, vị trí lấy mẫu</th>
-                            <th style="width:150px" rowspan=2 id="mauvitri_header_before">Giới hạn tối đa cho phép</th>
-                            <th rowspan=2 id="mauvitri_header"></th>
+                            <th style="text-align: right">Mã số mẫu</th>
+                            <th style="text-align: center" id ="id_ketquangoaikiem">Kết quả ngoại kiểm</th>
+                            <th style="width:150px" rowspan=2 >Giới hạn tối đa cho phép</th>
                             <th style="width:150px" rowspan=2>Đánh giá (đạt/không đạt)</th>
                         </tr>
                         <tr>
-                            <th>Các thông số</th>
+                        	<th>Các thông số</th>
+                        	<th id="mauvitri_header_before"></th>
                         </tr>
                     </thead>
                     <tbody id="ketquangoaikiemchatluongnuoc"></tbody>

@@ -5,6 +5,10 @@ define(function (require) {
         Gonrin = require('gonrin');
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/model.html'),
         schema = require('json!schema/KetQuaNgoaiKiemChatLuongNuocSachSchema.json');
+    
+    var somauvavitritemplate = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemSoMauVaViTriLayMau.html');
+    var somauvavitrischema = require('json!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ViTriLayMauItemSchema.json');
+    
     var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
@@ -12,6 +16,26 @@ define(function (require) {
     function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
 	}
+    
+    var SoMauVaViTriLayMauView = Gonrin.ModelView.extend({
+    	template : somauvavitritemplate,
+    	modelSchema	: somauvavitrischema,
+    	bindings: "danhsachmau-bind",
+    	urlPrefix: "/api/v1/",
+    	collectionName: "somau_va_vitri_laymau",
+    	uiControl:[],
+    	render:function(){
+    		var self = this;
+    		
+    		self.model.on("change:tenvitrilaymau", function(){
+    			self.trigger("change", {
+    				"data": self.model.toJSON()
+    			});
+    		});
+    		
+    		this.applyBindings();
+    	}
+    });
     
     return Gonrin.ModelView.extend({
         template: template,
@@ -67,6 +91,7 @@ define(function (require) {
                     var donvicapnuoc = self.model.get("donvicapnuoc");
                     var thoigiankiemtra = self.model.get("thoigiankiemtra");
                     var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
+                    var somauvavitri = self.model.get("somauvavitri");
                     if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
                     	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
                     } else if(ngaybaocao === null || ngaybaocao === ""){
@@ -77,6 +102,8 @@ define(function (require) {
                     	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
                     } else if(thanhphan_doankiemtra === null || thanhphan_doankiemtra === ""){
                     	self.getApp().notify({message: "Chưa chọn thành phần đoàn kiểm tra"},{type: "danger"});
+                    } else if(somauvavitri > 10){
+                    	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
                     } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
@@ -119,6 +146,7 @@ define(function (require) {
         }],
         render: function () {
             var self = this;
+            
 //            self.model.on("change:nambaocao", function () {
 //            	var nambaocao = self.model.get("nambaocao");
 //            	console.log("nambaocao: ", toInt(nambaocao));
@@ -129,6 +157,7 @@ define(function (require) {
 //	            	self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
 //            	}
 //            });
+            
             self.getApp().on("DonViCapNuoc_onSelected", function (data) {
                 self.model.set("diachi_donvicapnuoc", data.diachi);
                 self.model.set("diachi_donvicapnuoc", data.diachi);
@@ -136,13 +165,13 @@ define(function (require) {
                 self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
                 self.model.set("nguonnuoc", data.nguonnuoc);
 
-                self.model.on("change:donvicapnuoc", function () {
-                    self.model.set("diachi_donvicapnuoc", data.diachi);
-                    self.model.set("diachi_donvicapnuoc", data.diachi);
-                    self.model.set("congxuat", data.congsuat);
-                    self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
-                    self.model.set("nguonnuoc", data.nguonnuoc);
-                });
+//                self.model.on("change:donvicapnuoc", function () {
+//                    self.model.set("diachi_donvicapnuoc", data.diachi);
+//                    self.model.set("diachi_donvicapnuoc", data.diachi);
+//                    self.model.set("congxuat", data.congsuat);
+//                    self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
+//                    self.model.set("nguonnuoc", data.nguonnuoc);
+//                });
 
             });
 
@@ -174,11 +203,13 @@ define(function (require) {
                     self.changeSoMau();
                 });
             });
-            self.model.on("change:somauvavitri", function () {
-                if (self.model.get("somauvavitri") > 10) {
-                    self.getApp().notify({ message: "Số lấy mẫu phải nhỏ hơn 10" }, { type: "danger" });
-                }
-            });
+//            self.model.on("change:somauvavitri", function () {
+//                if (self.model.get("somauvavitri") > 10) {
+//                    self.getApp().notify({ message: "Số lấy mẫu phải nhỏ hơn 10" }, { type: "danger" });
+//                }
+//            });
+            
+            
             var id = this.getApp().getRouter().getParam("id");
             if (id) {
                 this.model.set('id', id);
@@ -191,7 +222,7 @@ define(function (require) {
                         self.changeSoMau();
                     },
                     error: function () {
-                        self.getApp().notify("Get data Eror");
+                        self.getApp().notify("Lỗi lấy dữ liệu");
                     },
                 });
             } else {
@@ -202,9 +233,20 @@ define(function (require) {
             var self = this;
             var somau = self.model.get("somauvavitri");
             self.$el.find("[id=mauvitri_header]").remove();
+            self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquangoaikiemchatluongnuoc").empty();
 
             if (!!somau & (somau > 0)) {
+            	
+            	var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
+                console.log("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
+                if (ketquangoaikiemchatluongnuoc.length == 0){
+                	self.$el.find("[id=mauvitri_header]").hide();
+                	self.$el.find("[id=removeButton]").hide();
+                } else {
+                	self.$el.find("[id=mauvitri_header]").show();
+                	self.$el.find("[id=removeButton]").show();
+                }
                 $.each(self.model.get("ketquangoaikiemchatluongnuoc"), function (idx, obj) {
 
                     if (self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {
@@ -222,12 +264,60 @@ define(function (require) {
                 });
 
                 for (var j = 0; j < somau; j++) {
-                    var el = $("<th>").attr("rowspan", 2).attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
                     self.$el.find("#mauvitri_header_before").before(el);
+                    self.$el.find("#id_ketquangoaikiem").attr("colspan", j + 1);
                 }
             }
             self.renderKetQua();
-
+            
+            
+            ////////namdv change danh sach lay mau
+            var somauvavitri = self.model.get("somauvavitri");
+        	self.$el.find("#somauvavitri_input").empty();
+        	console.log("somauvavitri===",somauvavitri);
+        	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+    		if (danhsachvitrilaymau == null){
+    			danhsachvitrilaymau = []
+    		}
+    		var danhsachvitri_new = [];
+    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
+        	for (var i = 0; i < somauvavitri; i++){
+        		var somauvavitri_view = new SoMauVaViTriLayMauView();
+        		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
+        			var data_mau = danhsachvitrilaymau[i];
+//        			console.log("ssss",data_mau);
+        			data_mau.id = i+1;
+        			somauvavitri_view.model.set(data_mau);
+        		}
+        		somauvavitri_view.render();
+        		danhsachvitri_new.push(somauvavitri_view.model.toJSON());
+        		self.$el.find("#somauvavitri_input").append(somauvavitri_view.$el);
+        		somauvavitri_view.on("change", function(data){
+//        			console.log("=====data====",data)
+        			var ds = self.model.get("danhsachvitrilaymau");
+        			for(var j=0; j<ds.length;j++){
+        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
+        				if(data.data.id === ds[j].id){
+        					console.log(j.vitrilaymau);
+//        					ds.splice(j,1);
+        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
+        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
+        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
+        					console.log("jjjjjj===",ds);
+//        					ds.push(data.data);
+        					break;
+        				}
+        			}
+        			console.log("danhsachvitrilaymau=====",ds);
+        				self.model.set("danhsachvitrilaymau", ds);
+        				self.applyBindings();
+        		});
+        	}
+        	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
+        	self.applyBindings();
+            
+            
         },
         renderKetQua: function () {
             //prepare Itemview
@@ -243,11 +333,27 @@ define(function (require) {
                 view.on("ketquachange", function (evt) {
                     var danhgiaThongSo = 1;
                     evt.ketquakiemtra.forEach(function (data) {
-                        if (data.ketqua && data.ketqua <= evt.gioihan_toida && data.ketqua >= evt.gioihan_toithieu) {
-                            data.danhgia = 1;
-                        } else {
-                            data.danhgia = 0;
-                        }
+                        if (data.ketqua) {
+                        	if (!evt.gioihan_toithieu && data.ketqua >= evt.gioihan_toithieu){ 
+                        	console.log("value gioihantoithieu",!evt.gioihan_toithieu)
+                        	console.log("data ketqua: ", data.ketqua);
+                        	data.danhgia = 1;
+                        	return;
+                        	} else{
+                        		data.danhgia = 0;
+                        	}
+                        		
+                        if (!evt.gioihan_toida && data.ketqua <= evt.gioihan_toida){
+                        		console.log("value gioihantoida",!evt.gioihan_toida)
+                        		data.danhgia = 1;
+                        		return;
+                        	} else{
+                        		data.danhgia = 0;
+                        	}
+                        } 
+//                        else {
+//                            data.danhgia = 0;
+//                        }
 
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
                     });

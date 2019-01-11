@@ -69,6 +69,7 @@ define(function (require) {
                 var view = new MauViTriItemView();
                 view.model.set(obj);
                 view.render();
+                console.log("view con con", view.$el);
                 self.$el.find("#gioihan").before(view.$el);
                 view.model.on("change:ketqua", function () {
                     self.updateKetQua(view.model.toJSON());
