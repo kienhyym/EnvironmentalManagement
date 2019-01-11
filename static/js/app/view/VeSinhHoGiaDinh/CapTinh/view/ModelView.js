@@ -179,6 +179,26 @@ define(function (require) {
 						var total_danso = 0;
 						var total_soho = 0;
 						var index = 1;
+						self.model.set("tong_tuhoai", 0);
+						self.model.set("tong_tuhoai_hvs", 0);
+						self.model.set("tong_thamdoi", 0);
+						self.model.set("tong_thamdoi_hvs", 0);
+						self.model.set("tong_2ngan", 0);
+						self.model.set("tong_2ngan_hvs", 0);
+						self.model.set("tong_ongthonghoi", 0);
+						self.model.set("tong_ongthonghoi_hvs", 0);
+						self.model.set("tong_loaikhac", 0);
+						self.model.set("tong_khongnhatieu", 0);
+						self.model.set("tong_hopvs", 0);
+						self.model.set("tong_khonghopvs", 0);
+						self.model.set("tong_caithien", 0);
+						self.model.set("tong_caithien_hvs", 0);
+						self.model.set("tong_caithien_hongheo", 0);
+						self.model.set("tong_caithien_hongheo_hvs", 0);
+						self.model.set("tong_diemruatay", 0);
+						
+						self.model.set("tong_sothon",0);
+						self.model.set("tong_soxa",0);
 						danhsachbaocao.forEach(element => {
 							console.log("element======",element);
 							total_chuholanu += toInt(element.tong_chuholanu);

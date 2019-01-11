@@ -10,12 +10,112 @@ from gatco.response import json, text, html
 
 from .helpers import *
 from application.models.model_vesinhhogiadinh import *
+from application.models.model_truong_tramyte_vesinh_capnuoc import Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc
 from sqlalchemy import or_, and_, desc
 from application.client import HTTPClient 
 from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime
 
+
+
+
+
+@app.route('api/v1/tiendovstx', methods=['GET'])
+async def ThongKe_TienDo_VSTX(request):
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+    tinhthanh_id = request.args.get("tinhthanh_id", None)
+    
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    records = None
+    if(currentuser.donvi.tuyendonvi_id ==1):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == tinhthanh_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()
+    elif(currentuser.donvi.tuyendonvi_id ==2):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all() 
+    elif(currentuser.donvi.tuyendonvi_id ==3):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()  
+    elif(currentuser.donvi.tuyendonvi_id == 4):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.xaphuong_id == currentuser.donvi.xaphuong_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()                                                                                                                                     
+    if records is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
+    else:
+        results = []
+        for baocao in records:
+            bcxa = {}
+            bcxa['tenxaphuong'] = baocao.xaphuong.ten
+            bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
+            bcxa['tentinhthanh'] = baocao.tinhthanh.ten
+            bcxa['tongxa'] = len(records)
+            bcxa['tyle_nhatieu_caithien'] = (baocao.tong_caithien/baocao.tong_soho)*100
+            bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
+            bcxa['tong_soho'] = baocao.tong_soho
+            bcxa['tong_danso'] = baocao.tong_danso
+            bcxa['tong_chuholanu'] = baocao.tong_chuholanu
+            bcxa['tong_sohodtts'] = baocao.tong_sohodtts
+            bcxa['tyle_chuholanu'] = (baocao.tong_chuholanu/baocao.tong_soho)*100
+            bcxa['tyle_hodtts'] = (baocao.tong_sohodtts/baocao.tong_soho)*100
+
+            record_truong_tram = db.session.query(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc).filter(
+                and_(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.xaphuong_id == baocao.xaphuong_id, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.loaikybaocao == loaikybaocao, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.kybaocao == kybaocao, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.nambaocao == nambaocao)).all()
+            if record_truong_tram is None:
+                bcxa['tyle_truong_hvs'] = 0
+                bcxa['tongso_hocsinh'] = 0
+                bcxa['tyle_tramyte_hvs'] = 0
+            else:
+                tongso_truong = 0
+                tongso_truong_hvs = 0
+                tongso_tramyte = 0
+                tongso_tramyte_hvs = 0
+                tongso_hocsinh = 0
+                for bc_truongtram in record_truong_tram:
+                    if (bc_truongtram.loai_truong_tramyte is not None and bc_truongtram.loai_truong_tramyte == 7):
+                        tongso_tramyte +=1
+                        if bc_truongtram.ketluan is not None and bc_truongtram.ketluan ==1:
+                            tongso_tramyte_hvs +=1
+                    if (bc_truongtram.loai_truong_tramyte is not None and bc_truongtram.loai_truong_tramyte in [1,2,3,4,5,6]):
+                        tongso_truong +=1
+                        tongso_hocsinh += bc_truongtram.truong_sohocsinh_moibuoi
+                        if bc_truongtram.ketluan is not None and bc_truongtram.ketluan ==1:
+                            tongso_truong_hvs +=1
+                bcxa['tongso_truong']= tongso_truong
+                bcxa['tongso_truong_hvs']= tongso_truong_hvs
+                bcxa['tongso_tramyte']= tongso_tramyte
+                bcxa['tongso_tramyte_hvs']= tongso_tramyte_hvs
+                bcxa['tongso_hocsinh']= tongso_hocsinh
+                if(tongso_truong>0):
+                    bcxa['tyle_truong_hvs']= (tongso_truong_hvs/tongso_truong)*100
+                else:
+                    bcxa['tyle_truong_hvs'] = 0
+                if tongso_tramyte >0:
+                    bcxa['tyle_tramyte_hvs']= (tongso_tramyte_hvs/tongso_tramyte)*100
+                else:
+                    bcxa['tyle_tramyte_hvs'] = 0
+            results.append(bcxa)
+        return json(results)
 
 def congdonTongCong(Baocao, current_user, data=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
@@ -101,7 +201,7 @@ async def pre_put_vscaptinh(request=None, instance_id=None, data=None, **kw):
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapTinh,data)  
     
 async def process_baocao_vesinh_capthon(currentuser=None, data=None):
-    Baocao = VSCapThon
+    BaoCao = VSCapThon
     kybaocaotruoc = 1
     nambaocao_truoc = None
     if (data['kybaocao'] > 1):

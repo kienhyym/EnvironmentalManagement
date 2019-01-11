@@ -67,8 +67,17 @@ define(function (require) {
     		});
     		filter.render();
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
+    		if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
+				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}};
+				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
-			self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
+				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}};
+				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
+
+    		} else {
+				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
+    		}
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = {"$or":[

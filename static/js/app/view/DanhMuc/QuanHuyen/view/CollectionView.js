@@ -37,6 +37,9 @@ define(function (require) {
 		    	}
     	},
 	     render:function(){
+	    	 if (this.getApp().data("tinhthanh_id") !== null){
+	    			this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}};
+	    		}
 	    	 this.applyBindings();
 	    	 return this;
     	}

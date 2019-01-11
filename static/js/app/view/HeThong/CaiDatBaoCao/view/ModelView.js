@@ -108,7 +108,7 @@ define(function (require) {
  					 }
  				},
  				error:function(xhr,status,error){
- 					self.getApp().notify("Get tuyendonvi Error");
+ 					self.getApp().notify("Lỗi tải tuyến đơn vị");
 				},
     			
     		});

@@ -403,8 +403,6 @@ define(function (require) {
 					self.check_chuongtrinhSUP();
 				});
 				self.model.on("change:thonxom", function(event, name){
-					console.log('self.model.previous("thonxom_id")===',self.model.previous("thonxom"));
-					console.log('self.model.get("thonxom_id")===',self.model.get("thonxom"));
 
 					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
 						self.get_danhsachho();
@@ -565,7 +563,29 @@ define(function (require) {
 				}
 				
 				_.each(tongischema, function (props, key) {
-					if(key === "dtts"){
+					if(key === "tuhoai_hvs" && (chitiet["tuhoai"] === 1 || chitiet["tuhoai"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "thamdoi_hvs" && (chitiet["thamdoi"] === 1 || chitiet["thamdoi"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "haingan_hvs" && (chitiet["haingan"] === 1 || chitiet["haingan"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "chimco_oth_hvs" && (chitiet["chimco_oth"] === 1 || chitiet["chimco_oth"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "caithien_hongheo" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "caithien_hongheo_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "caithien_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
+							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
+						data[key] = toInt(data[key]) + toInt(1);
+					}else if(key === "dtts"){
 						data[key] = toInt(data[key]) + toInt(check_dantoc);
 					}else if(key === "loaikhac"){
 						data[key] = toInt(data[key]) + toInt(check_loaikhac);
@@ -573,35 +593,7 @@ define(function (require) {
 						data[key] = toInt(data[key]) + toInt(chitiet[key]);
 					}
 					
-					if(key === "tuhoai_hvs" && (chitiet["tuhoai"] === 1 || chitiet["tuhoai"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "thamdoi_hvs" && (chitiet["thamdoi"] === 1 || chitiet["thamdoi"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "haingan_hvs" && (chitiet["haingan"] === 1 || chitiet["haingan"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "chimco_oth_hvs" && (chitiet["chimco_oth"] === 1 || chitiet["chimco_oth"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "caithien_hongheo" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
-							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "caithien_hongheo_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
-							&& (chitiet["hongheo"] === 1 || chitiet["hongheo"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
-					if(key === "caithien_hvs" && (chitiet["caithien"] === 1 || chitiet["caithien"] === "1")
-							&& (chitiet["hopvesinh"] === 1 || chitiet["hopvesinh"] === "1")){
-						data[key] = toInt(data[key]) + toInt(1);
-					}
+					
 					
 				});
 			}

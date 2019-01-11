@@ -36,6 +36,9 @@ define(function (require) {
 		    	}
     	},
 	     render:function(){
+	    	 if (this.getApp().data("quanhuyen_id") !== null){
+	    			this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}};
+	    		}
 	    	 this.applyBindings();
 	    	 return this;
     	}

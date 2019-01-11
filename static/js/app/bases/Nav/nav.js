@@ -1086,46 +1086,24 @@ define(function (require) {
 					"text": "Xã vệ sinh toàn xã",
 					"icon": "glyphicon glyphicon-file",
 					"type": "category",
-					"collectionName": "xavesinhtoanxa",
-					"route": "xavesinhtoanxa/collection",
-					"$ref": "app/view/xavesinhtoanxa/XaVeSinhToanXaView",
+//					"collectionName": "xavesinhtoanxa",
+//					"route": "xavesinhtoanxa/collection",
+//					"$ref": "app/view/xavesinhtoanxa/XaVeSinhToanXaView",
 					"entries": [{
-							"text": "Biểu mẫu số 2: Tiến độ thực hiện vệ sinh toàn xã của tỉnh",
+							"text": "Tiến độ thực hiện vệ sinh toàn xã",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "vstoanxa",
-							"route": "vstoanxa/collection",
-							"$ref": "app/view/PhuLuc/VSToanXa/view/CollectionView",
-							"tuyendonvi": 2,
-							"visible": function () {
-								return this.checkTuyendonvi(2);
-							}
+							"collectionName": "tiendovstx",
+							"route": "tiendovstx",
+							"$ref": "app/view/TienDoVSTX/view/ModelView",
 						},
 						{
-							"type": "view",
-							"collectionName": "vstoanxa",
-							"route": "vstoanxa/model",
-							"$ref": "app/view/PhuLuc/VSToanXa/view/ModelView",
-							"visible": false
-						},
-						{
-							"text": "Duy trì vệ sinh toàn xã bền vững",
+							"text": "Tiến độ duy trì vệ sinh toàn xã bền vững",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
-							"collectionName": "duytrivs",
-							"route": "duytrivs/collection",
-							"$ref": "app/view/PhuLuc/DuyTriVS/view/CollectionView",
-							"tuyendonvi": 4,
-							"visible": function () {
-								return this.checkTuyendonvi(4);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "duytrivs",
-							"route": "duytrivs/model",
-							"$ref": "app/view/PhuLuc/DuyTriVS/view/ModelView",
-							"visible": false
+							"collectionName": "tiendovstx_benvung",
+							"route": "tiendovstx_benvung/collection",
+							"$ref": "app/view/TienDoVSTX_BENVUNG/view/ModelView",
 						},
 						{
 							"text": "Duyệt Xã Vệ Sinh Toàn Xã",
@@ -1134,9 +1112,9 @@ define(function (require) {
 							"collectionName": "duyet_vesinh_toanxa",
 							"route": "duyet_vesinh_toanxa/collection",
 							"$ref": "app/view/PhuLuc/DuyetVeSinhToanXa/view/CollectionView",
-							"tuyendonvi": 4,
+							"tuyendonvi": 2,
 							"visible": function () {
-								return this.checkTuyendonvi(4);
+								return this.checkTuyendonvi(2);
 							}
 						},
 						{

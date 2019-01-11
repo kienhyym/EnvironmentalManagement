@@ -11,6 +11,7 @@ from application.server import app
 from gatco_restapi.helpers import to_dict
 from application.controllers.helpers import *
 from sqlalchemy import or_
+from datetime import datetime
  
  
 async def get_user_with_permission(user):
@@ -63,7 +64,6 @@ async def login(request):
     user = db.session.query(User).filter(or_(User.email == username, User.phone == username)).first()
     if (user is not None) and auth.verify_password(password, user.password):
         auth.login_user(request, user)
-        
         result = await get_user_with_permission(user)
         return json(result)
     return json({"error_code":"LOGIN_FAILED","error_message":"user does not exist or incorrect password"}, status=520)

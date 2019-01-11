@@ -95,7 +95,10 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-						Backbone.history.history.back();
+//						Backbone.history.history.back();
+						var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+						self.getApp().getRouter().navigate(self.collectionName 
+								+ "/collection?loaikybaocao="+routeloaibaocao);
 					}
 				},
 				{
@@ -136,9 +139,9 @@ define(function (require) {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
-									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
-									self.getApp().getRouter().navigate(self.collectionName 
-											+ "/collection?loaikybaocao="+routeloaibaocao);
+//									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+//									self.getApp().getRouter().navigate(self.collectionName 
+//											+ "/collection?loaikybaocao="+routeloaibaocao);
 	
 								},
 								error: function (xhr, status, error) {
@@ -218,7 +221,6 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 //						self.$el.find("#nambaocao").attr({"disabled":true});
-						self.applyBindings();
 						var danhsachbaocao = data.attributes.danhsachbaocao;
 						self.model.set("danhsachbaocao",danhsachbaocao);
 						var total_chuholanu = 0;
@@ -228,6 +230,24 @@ define(function (require) {
 						var total_soNu = 0;
 						var total_danso = 0;
 						var total_soho = 0;
+						self.model.set("tong_tuhoai", 0);
+						self.model.set("tong_tuhoai_hvs", 0);
+						self.model.set("tong_thamdoi", 0);
+						self.model.set("tong_thamdoi_hvs", 0);
+						self.model.set("tong_2ngan", 0);
+						self.model.set("tong_2ngan_hvs", 0);
+						self.model.set("tong_ongthonghoi", 0);
+						self.model.set("tong_ongthonghoi_hvs", 0);
+						self.model.set("tong_loaikhac", 0);
+						self.model.set("tong_khongnhatieu", 0);
+						self.model.set("tong_hopvs", 0);
+						self.model.set("tong_khonghopvs", 0);
+						self.model.set("tong_caithien", 0);
+						self.model.set("tong_caithien_hvs", 0);
+						self.model.set("tong_caithien_hongheo", 0);
+						self.model.set("tong_caithien_hongheo_hvs", 0);
+						self.model.set("tong_diemruatay", 0);
+
 						danhsachbaocao.forEach(element => {
 							self.renderItemView(element);
 							total_chuholanu += toInt(element.tong_chuholanu);
@@ -272,6 +292,7 @@ define(function (require) {
 						self.model.set("tong_sothon", danhsachbaocao.length);
 						self.renderTinhTongI(danhsachbaocao);
 						self.model.trigger("change");
+						self.applyBindings();
 					},
 					error: function () {
 						self.getApp().notify("Lỗi không lấy được dữ liệu");
