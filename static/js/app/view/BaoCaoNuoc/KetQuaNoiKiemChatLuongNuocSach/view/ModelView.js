@@ -139,7 +139,7 @@ define(function (require) {
             var self = this;
             
             var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
-//            console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
+            console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
             if (ketquanoikiemchatluongnuoc == null){
 //            	self.$el.find("[id=mauvitri_header]").hide();
             	self.$el.find("[id=removeButton]").hide();
@@ -221,9 +221,21 @@ define(function (require) {
             var self = this;
             var somau = self.model.get("somauvavitri");
             self.$el.find("[id=mauvitri_header]").remove();
+            self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquanoikiemchatluongnuoc").empty();
 
             if (!!somau & (somau > 0)) {
+            	
+            	var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
+//                console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
+                if (ketquanoikiemchatluongnuoc.length == 0){
+//                	self.$el.find("[id=mauvitri_header]").hide();
+                	self.$el.find("[id=removeButton]").hide();
+                } else {
+//                	self.$el.find("[id=mauvitri_header]").show();
+                	self.$el.find("[id=removeButton]").show();
+                }
+            	
                 $.each(self.model.get("ketquanoikiemchatluongnuoc"), function (idx, obj) {
 
                     if (self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {

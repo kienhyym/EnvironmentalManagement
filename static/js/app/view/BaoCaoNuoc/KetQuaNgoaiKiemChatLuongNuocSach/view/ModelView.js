@@ -18,6 +18,7 @@ define(function (require) {
 	}
     
     var SoMauVaViTriLayMauView = Gonrin.ModelView.extend({
+    	tagName: "tr",
     	template : somauvavitritemplate,
     	modelSchema	: somauvavitrischema,
     	bindings: "danhsachmau-bind",
@@ -229,6 +230,7 @@ define(function (require) {
                             self.changeSoMau(true);
                         });
                         self.changeSoMau();
+                        self.applyBindings();
                     },
                     error: function () {
                         self.getApp().notify("Lỗi lấy dữ liệu");
@@ -236,6 +238,7 @@ define(function (require) {
                 });
             } else {
                 self.prepareBaocao();
+                //self.applyBindings();
             }
         },
         changeSoMau: function () {
@@ -325,7 +328,7 @@ define(function (require) {
         		});
         	}
         	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
-        	self.applyBindings();
+        	//self.applyBindings();
             
             
         },
@@ -344,7 +347,7 @@ define(function (require) {
                     var danhgiaThongSo = 1;
                     evt.ketquakiemtra.forEach(function (data) {
 //                    	console.log(data);
-//                    	console.log("evt", evt);
+                    	console.log("evt===", evt.ketquakiemtra);
                         	if (data.ketqua && evt.gioihan_toithieu !== null && evt.gioihan_toida == null && data.ketqua >= evt.gioihan_toithieu){ 
                         		data.danhgia = 1;
 //                        		console.log("danhgia can duoi", data);
@@ -361,6 +364,7 @@ define(function (require) {
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
 //                        console.log("danhgiaThongSo", danhgiaThongSo);
                     });
+                    console.log("ketquangoaikiem", self.model.get("ketquangoaikiemchatluongnuoc"));
                     evt.danhgia = danhgiaThongSo;
                     self.updateKetqua(evt);
                     var itemNgoaiKiem = self.model.get("ketquangoaikiemchatluongnuoc");
@@ -429,14 +433,17 @@ define(function (require) {
                         
                         self.model.set("somauvavitri", 1);
                     }
+                    self.applyBindings();
                 },
                 error: function (xhr, status, error) {
                     self.getApp().notify("Không tìm thấy thông số");
+                    self.applyBindings();
                 },
             });
-            self.applyBindings();
+            
+            //self.applyBindings();
             self.model.on("change:somauvavitri", function () {
-                self.changeSoMau();
+                self.changeSoMau(true);
             });
         },
         checkDate: function(dateInput){  

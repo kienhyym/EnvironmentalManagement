@@ -5,5 +5,8 @@
     },
     "tenvitrilaymau": {
         "type": "string"
+    },
+    "ketqualaymau": {
+        "type": "string"
     }
 }
