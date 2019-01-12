@@ -45,8 +45,8 @@ class TienDoKeHoachBCC(CommonModel):
     ngay_pheduyet = db.Column(db.DateTime())
     sohoatdong_cotloi_pheduyet = db.Column(db.Integer)
     sohoatdong_cotloi_hoanthanh = db.Column(db.Integer)
-    nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('danhmucnganh.id'), nullable=True)
-    nganh = relationship('DanhMucNganh')
+    nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
+    nganh = relationship('Nganh')
     
     giangvien = db.Column(db.Integer)# giang vien tai don vi
     giangvien_nu = db.Column(db.Integer)# giang vien tai don vi
@@ -66,15 +66,9 @@ class DanhMucHoatDong(CommonModel):
     tenhoatdong = db.Column(db.String)
     loai_hoatdong = db.Column(db.String) #tinh, huyen, xa, thon
 #     loai_nganh = db.Column(db.String)#nganh y te, nganh gia
-    nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('danhmucnganh.id'), nullable=True)
-    nganh = relationship('DanhMucNganh')
+    nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
+    nganh = relationship('Nganh')
     muctieu = db.Column(db.String)    
-
-
-class DanhMucNganh(CommonModel):
-    __tablename__ = 'danhmucnganh'
-    manganh = db.Column(db.String)
-    tennganh = db.Column(db.String)
 
 
 # 
@@ -176,10 +170,6 @@ class Gioi_Dantoc_ThieuSo(CommonModel):
     tongso_nguoithamgia_dtts_giaoduc = db.Column(db.Integer)
     tyle_nguoithamgia_dtts_giaoduc = db.Column(db.DECIMAL)
     tongso_giangvien_nu_giaoduc = db.Column(db.DECIMAL)
-   
-
-
-
 
 
 

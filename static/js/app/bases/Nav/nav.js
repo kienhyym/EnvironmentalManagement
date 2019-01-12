@@ -283,7 +283,23 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/DonViCapNuoc/view/ModelView",
 					"visible": false
 				},
-				
+				{
+					"text": "Ngành",
+					"type": "view",
+					"collectionName": "nganh",
+					"route": "nganh/collection",
+					"$ref": "app/view/DanhMuc/Nganh/CollectionView",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "nganh",
+					"route": "nganh/model",
+					"$ref": "app/view/DanhMuc/Nganh/ModelView",
+					"visible": false
+				},
 				{
 					"text": "Danh mục hoạt động",
 					"type": "view",

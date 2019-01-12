@@ -16,16 +16,21 @@ define(function (require) {
 			fields: [
 				{
 					field: "thonxom",
-					label: "Thôn"
+					label: "Thôn",
+					template: function (rowData) {
+						if (rowData.thonxom) {
+							return rowData.thonxom.ten
+						}
+						return "";
+					},
 				},{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
-						if (rowData.nganh === 1) {
-							return "NGÀNH Y TẾ";
-						} else {
-							return "NGÀNH GIÁO DỤC";
+						if (rowData.nganh) {
+							return rowData.nganh.tennganh
 						}
+						return "";
 					},
 				},
 				{
