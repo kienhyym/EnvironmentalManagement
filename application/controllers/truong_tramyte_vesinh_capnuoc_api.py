@@ -46,4 +46,5 @@ apimanager.create_api(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func,entity_pregetmany], POST=[auth_func, baocao_prepost_truong_tramyte], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc')

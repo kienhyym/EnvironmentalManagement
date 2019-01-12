@@ -57,36 +57,75 @@ async def ThongKe_VESINH(request):
     if records is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
     else:
-        results = []
+        results = {}
+        tong_soho = 0
+        tong_khongnhatieu = 0
+        tong_hopvs = 0
+        tong_tuhoai_hvs =0
+        tong_thamdoi_hvs =0
+        tong_2ngan_hvs =0
+        tong_ongthonghoi_hvs =0
+        tong_caithien_hvs = 0
+        tong_caithien_hongheo_hvs = 0
+        tong_diemruatay = 0
+        tentinhthanh = ""
+        tenquanhuyen = ""
+        tenxaphuong = ""
+        
         for baocao in records:
-            bcxa = {}
-            bcxa['tenxaphuong'] = baocao.xaphuong.ten
-            bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
-            bcxa['tentinhthanh'] = baocao.tinhthanh.ten
-            bcxa['tongxa'] = len(records)
-            if(baocao.tong_soho is None or baocao.tong_soho <= 0):
-                bcxa['tyle_conhatieu'] = 0
-                bcxa['tyle_nhatieu_caithien'] = 0
-                bcxa['tyle_diemruatay'] = 0
-                bcxa['tong_soho'] = 0
-                bcxa['tong_danso'] = 0
-                bcxa['tong_chuholanu'] = 0
-                bcxa['tong_sohodtts'] = 0
-                bcxa['tyle_chuholanu'] = 0
-                bcxa['tyle_hodtts'] = 0
-            else:
-                bcxa['tyle_conhatieu'] = (baocao.tong_soho - baocao.tong_khongnhatieu/baocao.tong_soho)*100
-                bcxa['tyle_conhatieu_hvs'] = (baocao.tong_hopvs/baocao.tong_soho)*100
-                bcxa['tyle_tuhoai_hvs'] = (baocao.tong_tuhoai_hvs/baocao.tong_soho)*100
-                bcxa['tyle_thamdoi_hvs'] = (baocao.tong_thamdoi_hvs/baocao.tong_soho)*100
-                bcxa['tyle_2ngan_hvs'] = (baocao.tong_2ngan_hvs/baocao.tong_soho)*100
-                bcxa['tyle_ongthonghoi_hvs'] = (baocao.tong_ongthonghoi_hvs/baocao.tong_soho)*100
-
-                bcxa['tyle_nhatieu_caithien_hvs'] = (baocao.tong_caithien_hvs/baocao.tong_soho)*100
-                bcxa['tyle_caithien_hongheo_hvs'] = (baocao.tong_caithien_hongheo_hvs/baocao.tong_soho)*100
-                bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
-                
-                results.append(bcxa)
+            tentinhthanh = baocao.tinhthanh.ten
+            tenquanhuyen = baocao.quanhuyen.ten
+            tenxaphuong = baocao.xaphuong.ten
+#             bcxa['tenxaphuong'] = baocao.xaphuong.ten
+#             bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
+#             bcxa['tentinhthanh'] = baocao.tinhthanh.ten
+#             bcxa['tongxa'] = len(records)
+#             if(baocao.tong_soho is None or baocao.tong_soho <= 0):
+#                 bcxa['tyle_conhatieu'] = 0
+#                 bcxa['tyle_conhatieu_hvs'] = 0
+#                 bcxa['tyle_tuhoai_hvs'] = 0
+#                 bcxa['tyle_thamdoi_hvs'] = 0
+#                 bcxa['tyle_2ngan_hvs'] = 0
+#                 bcxa['tyle_ongthonghoi_hvs'] = 0
+#                 bcxa['tyle_nhatieu_caithien_hvs'] = 0
+#                 bcxa['tyle_caithien_hongheo_hvs'] = 0
+#                 bcxa['tyle_diemruatay'] = 0
+#             else:
+#                 bcxa['tyle_conhatieu'] = ((baocao.tong_soho - baocao.tong_khongnhatieu)/baocao.tong_soho)*100
+#                 bcxa['tyle_conhatieu_hvs'] = (baocao.tong_hopvs/baocao.tong_soho)*100
+#                 bcxa['tyle_tuhoai_hvs'] = (baocao.tong_tuhoai_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_thamdoi_hvs'] = (baocao.tong_thamdoi_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_2ngan_hvs'] = (baocao.tong_2ngan_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_ongthonghoi_hvs'] = (baocao.tong_ongthonghoi_hvs/baocao.tong_soho)*100
+# 
+#                 bcxa['tyle_nhatieu_caithien_hvs'] = (baocao.tong_caithien_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_caithien_hongheo_hvs'] = (baocao.tong_caithien_hongheo_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
+#                 
+            tong_soho += baocao.tong_soho
+            tong_khongnhatieu = baocao.tong_khongnhatieu
+            tong_hopvs = baocao.tong_hopvs
+            tong_tuhoai_hvs = baocao.tong_tuhoai_hvs
+            tong_thamdoi_hvs = baocao.tong_thamdoi_hvs
+            tong_2ngan_hvs = baocao.tong_2ngan_hvs
+            tong_ongthonghoi_hvs = baocao.tong_ongthonghoi_hvs
+            tong_caithien_hvs = baocao.tong_caithien_hvs
+            tong_caithien_hongheo_hvs = baocao.tong_caithien_hongheo_hvs
+            tong_diemruatay = baocao.tong_diemruatay
+    
+        
+        results['tyle_conhatieu'] = ((tong_soho - tong_khongnhatieu)/tong_soho)*100
+        results['tyle_conhatieu_hvs'] = (tong_hopvs/tong_soho)*100
+        results['tyle_tuhoai_hvs'] = (tong_tuhoai_hvs/tong_soho)*100
+        results['tyle_thamdoi_hvs'] = (tong_thamdoi_hvs/tong_soho)*100
+        results['tyle_2ngan_hvs'] = (tong_2ngan_hvs/tong_soho)*100
+        results['tyle_ongthonghoi_hvs'] = (tong_ongthonghoi_hvs/tong_soho)*100
+        results['tyle_nhatieu_caithien_hvs'] = (tong_caithien_hvs/tong_soho)*100
+        results['tyle_caithien_hongheo_hvs'] = (tong_caithien_hongheo_hvs/tong_soho)*100
+        results['tyle_diemruatay'] = (tong_diemruatay/tong_soho)*100
+        results['tentinhthanh'] = tentinhthanh
+        results['tenquanhuyen'] = tenquanhuyen
+        results['tenxaphuong'] = tenxaphuong
         return json(results)
 
 @app.route('api/v1/tiendovstx', methods=['GET'])
@@ -578,6 +617,7 @@ apimanager.create_api(HoGiaDinh,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
 
 apimanager.create_api(VSCapThon,
@@ -585,6 +625,7 @@ apimanager.create_api(VSCapThon,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func,entity_pregetmany], POST=[auth_func, baocao_prepost_vscapthon], PUT_SINGLE=[auth_func, pre_put_vscapthon], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscapthon')
 
 # apimanager.create_api(NhaTieuThonHVS,
@@ -598,6 +639,7 @@ apimanager.create_api(VSCapXa,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscapxa], PUT_SINGLE=[auth_func, pre_put_vscapxa], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_capxa_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscapxa')
 
 
@@ -606,6 +648,7 @@ apimanager.create_api(VSCapHuyen,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaphuyen], PUT_SINGLE=[auth_func,pre_put_vscaphuyen], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_caphuyen_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscaphuyen')
 
 
@@ -614,6 +657,7 @@ apimanager.create_api(VSCapTinh,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaptinh], PUT_SINGLE=[auth_func,pre_put_vscaptinh], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_captinh_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscaptinh')
 
 
@@ -621,6 +665,7 @@ apimanager.create_api(TienDoVeSinhToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='tiendovesinhtoanxa')
 
 
@@ -628,11 +673,13 @@ apimanager.create_api(BaoCaoTienDoDuyTriVSTXBenVung,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='baocao_tiendo_duytri_vstx_benvung')
 
 apimanager.create_api(DuyetVeSinhToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_duyetvstoanxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='duyet_vesinh_toanxa')
 

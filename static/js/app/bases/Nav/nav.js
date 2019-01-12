@@ -324,7 +324,16 @@ define(function (require) {
 			"text": "Vệ sinh hộ gia đình",
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
-			"entries": [{
+			"entries": [
+				{
+					"text": "Thống kê giám sát vệ sinh",
+					"icon": "glyphicon glyphicon-tasks",
+					"type": "view",
+					"collectionName": "thongkevesinh",
+					"route": "thongkevesinh",
+					"$ref": "app/view/VeSinh/ThongKeVeSinh/view/ModelView",
+				},
+				{
 					"text": "Cấp thôn",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "category",

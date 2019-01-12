@@ -70,6 +70,14 @@ define(function (require) {
 					self.$el.find("#search").attr({"style":"margin-top: 23px;"});
 				}
 				
+				var donvi = currentUser.donvi;
+				if (donvi.tuyendonvi_id ===1 || donvi.tuyendonvi_id ===2){
+					self.$el.find(".quanhuyen").hide();
+					self.$el.find(".xaphuong").hide();
+				}else if(donvi.tuyendonvi_id ===3){
+					self.$el.find(".xaphuong").hide();
+				}
+				
 				self.$el.find("#search").unbind("click").bind("click", function(){
 					var nambaocao = self.$el.find("#namdanhgia").val();
 					var kybaocao = $("#kydanhgia").data('gonrin').getValue();
@@ -96,42 +104,25 @@ define(function (require) {
 						url: url,
 						method: "GET",
 						contentType: "application/json",
-						success: function (data) {
-							if (data){
+						success: function (obj) {
+							if (obj){
 								self.$el.find("#danhsachdonvi").html("");
-								$.each(data, function(idx,obj){
-									var tr = $('<tr id="danhsachdonvi">').attr({
-										"id": obj.id
-									});
-									tr.append("<td>" + obj.tentinhthanh + "</td>");
-									tr.append("<td>" + obj.tenquanhuyen + "</td>");
-									tr.append('<td>' + obj.tenxaphuong + "</td>");
-									tr.append('<td>' + obj.tyle_nhatieu_caithien + "</td>");
-									tr.append("<td>" + obj.tyle_diemruatay + "</td>");
-									tr.append("<td>" + obj.tyle_truong_hvs + "</td>");
-									tr.append("<td>" + obj.tongso_hocsinh + "</td>");
-									tr.append("<td>" + obj.tyle_tramyte_hvs + "</td>");
-									tr.append("<td>" + toInt(obj.tong_soho) + "</td>");
-									tr.append("<td>" + obj.tong_danso + "</td>");
-									tr.append("<td>" + obj.tyle_chuholanu + "</td>");
-									tr.append("<td>" + obj.tyle_hodtts + "</td>");
-									self.$el.find("#danhsachdonvi").append(tr);
-								});
-								var tr_tong = $('<tr id="tong">');
-								tr_tong.append('<td colspan="2">Tổng</td>');
-								tr_tong.append("<td>" + data.length + "</td>");
-								tr_tong.append("<td></td>");
-								tr_tong.append("<td></td>");
-								tr_tong.append("<td></td>");
-								tr_tong.append("<td>" + tong_hocsinh + "</td>");
-								tr_tong.append("<td></td>");
-								tr_tong.append("<td>" + tong_soho + "</td>");
-								tr_tong.append("<td>" + tong_danso + "</td>");
-								tr_tong.append("<td></td>");
-								tr_tong.append("<td></td>");
-								self.$el.find("#danhsachdonvi").append(tr_tong);
+								var tr = $('<tr id="danhsachdonvi">');
+								tr.append('<td class="tinhthanh">' + obj.tentinhthanh + '</td>');
+								tr.append('<td class="quanhuyen">' + obj.tenquanhuyen + '</td>');
+								tr.append('<td class="xaphuong">' + obj.tenxaphuong + "</td>");
+								tr.append('<td>' + obj.tyle_conhatieu + "</td>");
+								tr.append("<td>" + obj.tyle_conhatieu_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_tuhoai_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_thamdoi_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_2ngan_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_ongthonghoi_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_nhatieu_caithien_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_caithien_hongheo_hvs + "</td>");
+								tr.append("<td>" + obj.tyle_diemruatay + "</td>");
+								self.$el.find("#danhsachdonvi").append(tr);
 							}
-							console.log(data);
+							
 						},
 						error: function (xhr, status, error) {
 	 	 			       try {
@@ -145,6 +136,15 @@ define(function (require) {
 	 	 			    	
 	 	 			    	}
 	 	 			    
+	 	 			    },
+	 	 			    complete:function(){
+	 	 			    	var donvi = self.getApp().currentUser.donvi;
+							if (donvi.tuyendonvi_id ===1 || donvi.tuyendonvi_id ===2){
+								self.$el.find(".quanhuyen").hide();
+								self.$el.find(".xaphuong").hide();
+							}else if(donvi.tuyendonvi_id ===3){
+								self.$el.find(".xaphuong").hide();
+							}
 	 	 			    }
 					});
 					
