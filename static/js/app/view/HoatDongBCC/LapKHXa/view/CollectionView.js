@@ -13,10 +13,15 @@ define(function (require) {
 		urlPrefix: "/api/v1/",
 		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: [
-				{
+			fields: [{
 					field: "thonxom",
-					label: "Thôn"
+					label: "Thôn",
+					template: function (rowData) {
+						if (rowData.thonxom) {
+							return rowData.thonxom.ten
+						}
+						return "";
+					},
 				},
 				{
 					field: "nganh",
@@ -54,34 +59,37 @@ define(function (require) {
 			type: "group",
 			groupClass: "toolbar-group",
 			buttons: [{
-					name: "create",
-					type: "button",
-					buttonClass: "btn-success btn-sm",
-					label: "TRANSLATE:CREATE",
-					command: function () {
-						var self = this;
-						var path = 'hoatdongbcc/capxa/model/quy1';
-						this.getApp().getRouter().navigate(path);
-					}
+				name: "create",
+				type: "button",
+				buttonClass: "btn-success btn-sm",
+				label: "TRANSLATE:CREATE",
+				command: function () {
+					var self = this;
+					var path = 'hoatdongbcc/capxa/model/quy1';
+					this.getApp().getRouter().navigate(path);
 				}
-			]
+			}]
 		}],
 		render: function () {
 			var self = this;
 			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
 			this.uiControl.filters = {
-				"$and": [
-					{
-						"tuyendonvi": {"$eq": "xa"}
+				"$and": [{
+					"tuyendonvi": {
+						"$eq": "xa"
 					}
-				]
+				}]
 			};
 			if (loaikybaocao) {
 				this.uiControl.filters['$and'].push({
-					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+					"loaikybaocao": {
+						"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao
+					}
 				});
 				this.uiControl.filters['$and'].push({
-					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+					"kybaocao": {
+						"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao
+					}
 				});
 			}
 			this.applyBindings();
