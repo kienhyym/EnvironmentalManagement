@@ -54,6 +54,7 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     thanhphan_doankiemtra = db.Column(db.String)
     
     somauvavitri = db.Column(db.Integer)
+    danhsachvitrilaymau = db.Column(JSONB)
     
     hosotheodoi = db.Column(db.String)
     tansuatthuchien_chedonoikiem = db.Column(db.String)
@@ -102,6 +103,7 @@ class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
     nguoikiemtra = db.Column(db.String)
     
     somauvavitri = db.Column(db.Integer)
+    danhsachvitrilaymau = db.Column(JSONB)
     
     hosotheodoi = db.Column(db.String)
 #     tansuatthuchien_chedonoikiem = db.Column(db.String)
