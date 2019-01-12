@@ -318,13 +318,12 @@ define(function (require) {
 					hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
 					hoatDongItemView.render();
 					hoatDongItemView.on("change", function(data) {
-						var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
-						danhsach_hoatdong.forEach(function(item, idx) {
+						dshoatdong.forEach(function(item, idx) {
 							if (item.id == data.id) {
-								danhsach_hoatdong[idx] = data;
+								dshoatdong[idx] = data;
 							}
 						});
-						self.model.set("danhsach_hoatdong", danhsach_hoatdong);
+						self.model.set("danhsach_hoatdong", JSON.parse(JSON.stringify((dshoatdong))));
 					});
 					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
 				});

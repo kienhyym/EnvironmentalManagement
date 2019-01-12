@@ -180,7 +180,7 @@ define(function (require) {
 			
 			$.ajax({
 				url: self.getApp().serviceURL + "/api/v1/hoatdongbcc/baocao",
-				data: "nambaocao=2019&kydanhgia=quy1",
+				data: "nambaocao=2019&kydanhgia=1",
 				type: "GET",
 				success: function(response) {
 					console.log(response);
