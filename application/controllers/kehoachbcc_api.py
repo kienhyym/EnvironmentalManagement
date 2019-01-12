@@ -13,7 +13,7 @@ from gatco.response import json, text, html
 from gatco_restapi.helpers import to_dict
 
 from application.models.model_kehoachbcc import *
-from application.models.model_user import TinhTrangBaocaoEnum
+from application.models import TinhTrangBaocaoEnum, Nganh
 from .helpers import *
 from sqlalchemy import or_
 from application.client import HTTPClient
@@ -168,4 +168,33 @@ async def ThongKe_Gioi_DanTocThieuSo(request):
     
 
 
+@app.route("api/v1/hoatdongbcc/baocao", methods=['GET'])
+async def baocao_theo_cap(request):
+    
+    nambaocao = request.args.get('nambaocao', None)
+    kydanhgia = request.args.get('kydanhgia', None)
+    
+    if nambaocao is None:
+        return json({
+            "error_code": "PARAM ERROR",
+            "error_message": "Vui lòng nhập năm báo cáo"
+        }, status=520)
+    
+    # TÌM KIẾM TẤT CẢ NGÀNH
+    ds_nganh = Nganh.query.filter().all()
+    
+    if ds_nganh is None or len(ds_nganh) == 0:
+        return json({
+            "error_code": "NOT FOUND",
+            "error_message": "Không tìm thấy data"
+        }, status=520)
+        
+    for nganh in ds_nganh:
+        print ("====> ", to_dict(nganh))
+    
+    return json(None)
+    
+    
+    
+    
 

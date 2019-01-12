@@ -13,11 +13,10 @@ define(function (require) {
 	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
-
 	var params = {
 		"filters": {
 			"$and": [
-				{"loai_hoatdong": {"$eq": "thon"}}
+				{"loai_hoatdong": {"$eq": "xa"}}
 			]
 		}
 	};
@@ -127,6 +126,7 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
+
 						Backbone.history.history.back();
 					}
 				},
@@ -137,15 +137,14 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
 						self.model.save(null, {
 							success: function (model, respose, options) {
-								self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
+								self.getApp().notify("Lưu thông tin thành công");
+								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection");
 
 							},
 							error: function (model, xhr, options) {
-								self.getApp().notify({message: 'Lưu thông tin không thành công!'}, {type: "danger"});
+								self.getApp().notify('Lưu thông tin không thành công!');
 							}
 						});
 					}
@@ -162,12 +161,11 @@ define(function (require) {
 						var self = this;
 						self.model.destroy({
 							success: function (model, response) {
-								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=quy1");
+								self.getApp().notify('Xoá dữ liệu thành công');
+								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection");
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Xoá dữ liệu không thành công!');
-
 							}
 						});
 					}
@@ -182,7 +180,6 @@ define(function (require) {
 			self.model.set("kybaocao", self.getApp().mapKyBaoCao[currentPeriod].kybaocao);
 			self.$el.find("#kydanhgia").val(self.getApp().mapKyBaoCao[currentPeriod].text);
 			var id = this.getApp().getRouter().getParam("id");
-			
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -204,7 +201,7 @@ define(function (require) {
 			}
 			
 			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
-				
+
 				if (!self.model.get("nganh")) {
 					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
 					return;
@@ -220,11 +217,14 @@ define(function (require) {
 						"query": self.filterParams
 					}
 				});
+				
 				dmHoatDongDialog.dialog();
 				
 				dmHoatDongDialog.on("onSelected", function(event) {
 					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
 					danhsachhoatdong = danhsachhoatdong.concat(dmHoatDongDialog.uiControl.selectedItems);
+					self.model.set("danhsach_hoatdong", danhsachhoatdong);
+					console.log("danhsach_hoatdong: ", danhsachhoatdong);
 					self.renderDanhSach();
 				});
 			});
@@ -250,7 +250,7 @@ define(function (require) {
 					self.model.set("xaphuong", currentUser.donvi.xaphuong);
 				}
 			}
-			self.model.set("tuyendonvi", "thon");
+			self.model.set("tuyendonvi", "xa");
 		},
 		
 		onChangeEvents: function() {
@@ -281,7 +281,6 @@ define(function (require) {
 		
 		renderDanhSach: function() {
 			var self = this;
-			
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
 			<tr class="top">
@@ -301,7 +300,7 @@ define(function (require) {
                 <td></td>
             </tr>
             <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
+                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã</td>
                 <td></td>
                 <td></td>
             </tr>`);
@@ -324,7 +323,7 @@ define(function (require) {
 					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
 				});
 			}
-			
+
 			if (!self.model.get("nganh")) {
 				if (!self.onInit) {
 					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
@@ -353,7 +352,6 @@ define(function (require) {
 					
 				}
 			});
-			self.onInit = false;
 		}
 	});
 

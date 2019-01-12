@@ -4,7 +4,7 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!../tpl/model.html'),
+	var template = require('text!./model.html'),
 		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
@@ -177,6 +177,21 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			
+			$.ajax({
+				url: self.getApp().serviceURL + "/api/v1/hoatdongbcc/baocao",
+				data: "nambaocao=2019&kydanhgia=quy1",
+				type: "GET",
+				success: function(response) {
+					console.log(response);
+				},
+				error: function(xhr) {
+					console.log(xhr.reponseJSON);
+				}
+			})
+			
+			
+			return;
 			var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
 			self.model.set("loaikybaocao", self.getApp().mapKyBaoCao[currentPeriod].loaikybaocao);
 			self.model.set("kybaocao", self.getApp().mapKyBaoCao[currentPeriod].kybaocao);
