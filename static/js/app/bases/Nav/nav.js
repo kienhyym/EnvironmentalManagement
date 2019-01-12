@@ -805,9 +805,18 @@ define(function (require) {
 					"icon": "glyphicon glyphicon-file",
 					"type": "category",
 					"collectionName": "kehoachbcc",
-					"route": "kehoachbcc/collection",
-					"$ref": "app/view/kehoachbcc/KeHoachBCCView",
-					"entries": [{
+//					"route": "kehoachbcc/collection",
+//					"$ref": "app/view/kehoachbcc/KeHoachBCCView",
+					"entries": [
+						{
+							"text": "Thống kê giới và dân tộc thiểu số",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "gioi_dantocthieuso",
+							"route": "hoatdongbcc/gioi_dantocthieuso",
+							"$ref": "app/view/HoatDongBCC/Gioi_Dantocthieuso/view/ModelView",
+						},
+						{
 							"text": "Hoạt động cấp thôn",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "category",
