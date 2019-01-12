@@ -1070,40 +1070,237 @@ define(function (require) {
 						{
 							"text": "Hoạt động cấp huyện",
 							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "itemhuyen",
+							"type": "category",
+							"collectionName": "tiendo_kehoach_bcc",
 							"route": "itemhuyen/collection",
 							"$ref": "app/view/PhuLuc/LapKHHuyen/view/CollectionView",
 							"tuyendonvi": 3,
 							"visible": function () {
 								return this.checkTuyendonvi(3);
-							}
+							},
+							"entries": [{
+								"text": "Qúy I",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=quy1",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "Qúy II",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=quy2",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "Qúy III",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=quy3",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "Qúy IV",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=quy4",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "6 Tháng đầu năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=6thangdau",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "6 Tháng cuối năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=6thangcuoi",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"text": "Tổng kết năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/collection?loaikybaocao=nam",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/quy1(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/quy2(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/quy3(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/quy4(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/6thangdau(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/6thangcuoi(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/caphuyen/model/nam(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/ModelView",
+								"visible": false
+							}]
 						},
-						{
-							"type": "view",
-							"collectionName": "itemhuyen",
-							"route": "itemhuyen/model",
-							"$ref": "app/view/PhuLuc/LapKHHuyen/view/ModelView",
-							"visible": false
-						},
+						//hd cap tinh bcc
 						{
 							"text": "Hoạt động cấp tỉnh",
 							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "kehoachthuchien",
-							"route": "kehoachthuchien/collection",
+							"type": "category",
+							"collectionName": "tiendo_kehoach_bcc",
+							"route": "itemtinh/collection",
 							"$ref": "app/view/PhuLuc/LapKHTinh/view/CollectionView",
 							"tuyendonvi": 2,
 							"visible": function () {
 								return this.checkTuyendonvi(2);
-							}
-						},
-						{
-							"type": "view",
-							"collectionName": "kehoachthuchien",
-							"route": "kehoachthuchien/model",
-							"$ref": "app/view/PhuLuc/LapKHTinh/view/ModelView",
-							"visible": false
+							},
+							"entries": [{
+								"text": "Qúy I",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=quy1",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "Qúy II",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=quy2",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "Qúy III",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=quy3",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "Qúy IV",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=quy4",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "6 Tháng đầu năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=6thangdau",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "6 Tháng cuối năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=6thangcuoi",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"text": "Tổng kết năm",
+								"icon": "glyphicon glyphicon-tasks",
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/collection?loaikybaocao=nam",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/quy1(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/quy2(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/quy3(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/quy4(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/6thangdau(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/6thangcuoi(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							},
+							{
+								"type": "view",
+								"collectionName": "tiendo_kehoach_bcc",
+								"route": "hoatdongbcc/captinh/model/nam(/:id)",
+								"$ref": "app/view/HoatDongBCC/LapKHTinh/view/ModelView",
+								"visible": false
+							}]
 						},
 					]
 				},
