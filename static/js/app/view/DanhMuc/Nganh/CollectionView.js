@@ -5,7 +5,7 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!./tpl/collection.html'),
-    	schema 				= require('json!schema/DanhMucNganhSchema.json');
+    	schema 				= require('json!schema/NganhSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
@@ -15,7 +15,8 @@ define(function (require) {
     	uiControl:{
     		fields: [
 	    	     { field: "manganh", label: "Mã", width:250},
-		     	 { field: "tennganh", label: "ngành" },
+		     	 { field: "tennganh", label: "Tên ngành" },
+		     	{ field: "thutu", label: "Thứ tự" },
 		     ],
 		     onRowClick: function(event) {
 		    	if(event.rowId) {

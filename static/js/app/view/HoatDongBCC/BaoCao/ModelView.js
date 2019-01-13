@@ -10,28 +10,49 @@ define(function (require) {
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
-	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
-	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
-	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
-
-	var params = {
-		"filters": {
-			"$and": [
-				{"loai_hoatdong": {"$eq": "thon"}}
-			]
-		}
-	};
 
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		filterParams: null,
 		onInit: true,
 		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: []
+			fields: [
+				{
+					field: "tinhthanh",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "tinhthanh_id",
+					dataSource: TinhThanhSelectView
+				},
+				{
+					field: "xaphuong",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "xaphuong_id",
+					dataSource: XaPhuongSelectView
+				},
+				{
+					field: "quanhuyen",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "quanhuyen_id",
+					dataSource: QuanHuyenSelectView
+				},
+				{
+					field: "thonxom",
+					uicontrol: "ref",
+					textField: "ten",
+					foreignRemoteField: "id",
+					foreignField: "thonxom_id",
+					dataSource: ThonXomSelectView
+				}
+			]
 		},
 
 
@@ -55,6 +76,7 @@ define(function (require) {
 			var self = this;
 			self.setDefaultData();
 			self.onChangeEvents();
+			self.applyBindings();
 		},
 		
 		/**
@@ -97,21 +119,41 @@ define(function (require) {
 		onChangeEvents: function() {
 			var self = this;
 			self.$el.find("#search").unbind("click").bind("click", function(event) {
+				var query = "";
 				if (!self.$el.find("#namdanhgia").val()) {
 					self.getApp().notify({message: "Vui lòng nhập năm báo cáo"}, {type: "danger"});
 					return;
+				} else {
+					query += "nambaocao=" + self.$el.find("#namdanhgia").val();
 				}
 				
 				if (!self.$el.find("#kydanhgia").val()) {
 					self.getApp().notify({message: "Vui lòng chọn kỳ báo cáo"}, {type: "danger"});
 					return;
+				} else {
+					var kybaocaoObject = self.getApp().mapKyBaoCao[self.$el.find("#kydanhgia").val()];
+					query += "&kydanhgia=" + kybaocaoObject.kybaocao + "&loaikybaocao=" + kybaocaoObject.loaikybaocao;
 				}
 				
-				var kybaocaoObject = self.getApp().mapKyBaoCao[self.$el.find("#kydanhgia").val()];
+				if (self.model.get("tinhthanh")) {
+					query += "&tinhthanh=" + self.model.get("tinhthanh").id;
+				}
+				
+				if (self.model.get("quanhuyen")) {
+					query += "&quanhuyen=" + self.model.get("quanhuyen").id;
+				}
+				
+				if (self.model.get("xaphuong")) {
+					query += "&xaphuong=" + self.model.get("xaphuong").id;
+				}
+				
+				if (self.model.get("thonxom")) {
+					query += "&thonxom=" + self.model.get("thonxom").id;
+				}
 				
 				$.ajax({
 					url: self.getApp().serviceURL + "/api/v1/hoatdongbcc/baocao",
-					data: "nambaocao=" + self.$el.find("#namdanhgia").val() + "&kydanhgia=" + kybaocaoObject.kybaocao + "&loaikybaocao=" + kybaocaoObject.loaikybaocao,
+					data: query,
 					type: "GET",
 					success: function(response) {
 						if (response) {
