@@ -185,7 +185,7 @@ async def baocao_theo_cap(request):
         }, status=520)
     
     # TÌM KIẾM TẤT CẢ NGÀNH
-    ds_nganh = Nganh.query.filter().all()
+    ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
     
     if ds_nganh is None or len(ds_nganh) == 0:
         return json({

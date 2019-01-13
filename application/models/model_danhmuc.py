@@ -77,6 +77,7 @@ class Nganh(CommonModel):
     manganh = db.Column(db.String)
     tennganh = db.Column(db.String)
     mota = db.Column(db.Text)
+    thutu = db.Column(db.Integer, default=0)
 
 
     
