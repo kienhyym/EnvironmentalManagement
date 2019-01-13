@@ -4,51 +4,55 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/DanhMuc/DanhMucHoatDong/tpl/model.html'),
-		schema = require('json!schema/DanhMucHoatDongSchema.json');
-	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
+	var template = require('text!app/view/PhuLuc/LapKHHuyen/tpl/model.html'),
+		schema = require('json!schema/ItemHuyenSchema.json');
+	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
+	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "danhmuchoatdong",
+		collectionName: "itemhuyen",
 		uiControl: {
-			fields: [
+			fields: [{
+					field: "tinhthanh",
+					uicontrol: "ref",
+					textField: "ten",
+					//chuyen sang thanh object
+					foreignRemoteField: "id",
+					foreignField: "tinhthanh_id",
+					dataSource: TinhThanhSelectView
+				},
 				{
-					field: "loai_hoatdong",
+					field: "quanhuyen",
+					uicontrol: "ref",
+					textField: "ten",
+					//chuyen sang thanh object
+					foreignRemoteField: "id",
+					foreignField: "quanhuyen_id",
+					dataSource: QuanHuyenSelectView
+				},
+				{
+					field: "nganh",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "tinh",
-							"text": "Tỉnh"
+							"value": 1,
+							"text": "NGÀNH Y TẾ"
 						},
 						{
-							"value": "huyen",
-							"text": "Huyện"
-						},
-						{
-							"value": "xa",
-							"text": "Xã"
-						},
-						{
-							"value": "thon",
-							"text": "Thôn"
+							"value": 0,
+							"text": "NGÀNH GIÁO DỤC"
 						},
 					],
-				},
-				{
-					field: "nganh",
-					uicontrol: "ref",
-					textField: "tennganh",
-					dataSource: NganhSelectView
 				},
 			]
 		},
 
-		tools: [
-			{
+
+		tools: [{
 			name: "defaultgr",
 			type: "group",
 			groupClass: "toolbar-group",
@@ -70,16 +74,15 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+								self.getApp().getRouter().navigate(
+									self.collectionName + "/collection");
 
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Lưu thông tin không thành công!');
-
 							}
 						});
 					}
@@ -108,6 +111,7 @@ define(function (require) {
 				},
 			],
 		}],
+
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
@@ -123,7 +127,9 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
+				//self.$el.find("#addItem button").click();
 			}
+
 		},
 	});
 

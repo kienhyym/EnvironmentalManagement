@@ -72,7 +72,11 @@ class NgheNghiep(CommonModel):
     ten = db.Column(String(255))
     mota = db.Column(String(255))
     
-
+class Nganh(CommonModel):
+    __tablename__ = 'nganh'
+    manganh = db.Column(db.String)
+    tennganh = db.Column(db.String)
+    mota = db.Column(db.Text)
 
 
     

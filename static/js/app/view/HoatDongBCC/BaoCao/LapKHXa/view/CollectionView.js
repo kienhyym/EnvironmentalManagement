@@ -15,22 +15,18 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "quanhuyen",
-					label: "Huyện",
-					template: function (rowData) {
-						if (rowData.quanhuyen) {
-							return rowData.quanhuyen.ten
-						}
-						return "";
-					},
-				},{
+					field: "thonxom",
+					label: "Thôn"
+				},
+				{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
-						if (rowData.nganh) {
-							return rowData.nganh.tennganh
+						if (rowData.nganh === 1) {
+							return "NGÀNH Y TẾ";
+						} else {
+							return "NGÀNH GIÁO DỤC";
 						}
-						return "";
 					},
 				},
 				{
@@ -48,7 +44,7 @@ define(function (require) {
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = 'hoatdongbcc/captinh/model/quy1?id=' + event.rowId;
+					var path = 'hoatdongbcc/capxa/model/quy1?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
@@ -64,7 +60,7 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
-						var path = 'hoatdongbcc/captinh/model/quy1';
+						var path = 'hoatdongbcc/capxa/model/quy1';
 						this.getApp().getRouter().navigate(path);
 					}
 				}
@@ -76,7 +72,7 @@ define(function (require) {
 			this.uiControl.filters = {
 				"$and": [
 					{
-						"tuyendonvi": {"$eq": "tinh"}
+						"tuyendonvi": {"$eq": "xa"}
 					}
 				]
 			};

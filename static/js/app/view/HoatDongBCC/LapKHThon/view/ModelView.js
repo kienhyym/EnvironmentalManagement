@@ -10,6 +10,7 @@ define(function (require) {
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
 	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
+	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
 
@@ -25,6 +26,8 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
+		filterParams: null,
+		onInit: true,
 		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
 			fields: [
@@ -64,21 +67,14 @@ define(function (require) {
 					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
 				},
-//				{
-//					field: "nganh",
-//					uicontrol: "combobox",
-//					textField: "text",
-//					valueField: "value",
-//					dataSource: [{
-//							"value": 1,
-//							"text": "NGÀNH Y TẾ"
-//						},
-//						{
-//							"value": 0,
-//							"text": "NGÀNH GIÁO DỤC"
-//						},
-//					],
-//				},
+				{
+					field: "nganh",
+					uicontrol: "ref",
+					textField: "tennganh",
+					foreignRemoteField: "id",
+					foreignField: "nganh_id",
+					dataSource: NganhSelectView
+				},
 				{
 					field: "tiendo_xaydung",
 					uicontrol: "combobox",
@@ -131,7 +127,6 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-
 						Backbone.history.history.back();
 					}
 				},
@@ -142,13 +137,17 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						self.model.save(null, {
+						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
+						if (!self.validate()) {
+							return;
+						}
+						self.model.save(null, {	
 							success: function (model, respose, options) {
 								self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection");
+								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
 
 							},
-							error: function (model, xhr, options) {
+							error: function (model, xhr, options) {					
 								self.getApp().notify({message: 'Lưu thông tin không thành công!'}, {type: "danger"});
 							}
 						});
@@ -164,14 +163,14 @@ define(function (require) {
 					},
 					command: function () {
 						var self = this;
+						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
 						self.model.destroy({
 							success: function (model, response) {
 								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection");
+								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
 							},
 							error: function (model, xhr, options) {
 								self.getApp().notify('Xoá dữ liệu không thành công!');
-
 							}
 						});
 					}
@@ -181,7 +180,10 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
-			self.process_loaikybaocao();
+			var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
+			self.model.set("loaikybaocao", self.getApp().mapKyBaoCao[currentPeriod].loaikybaocao);
+			self.model.set("kybaocao", self.getApp().mapKyBaoCao[currentPeriod].kybaocao);
+			self.$el.find("#kydanhgia").val(self.getApp().mapKyBaoCao[currentPeriod].text);
 			var id = this.getApp().getRouter().getParam("id");
 			
 			if (id) {
@@ -205,9 +207,20 @@ define(function (require) {
 			}
 			
 			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
+				
+				if (!self.model.get("nganh")) {
+					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
+					return;
+				}
+				self.filterParams = JSON.parse(JSON.stringify(params));
+
+				self.filterParams['filters']['$and'].push({
+					'nganh_id': {'$eq': self.model.get("nganh").id}
+				});
+				
 				var dmHoatDongDialog = new DMHoatDongSelectView({
 					viewData: {
-						"query": params
+						"query": self.filterParams
 					}
 				});
 				dmHoatDongDialog.dialog();
@@ -215,8 +228,6 @@ define(function (require) {
 				dmHoatDongDialog.on("onSelected", function(event) {
 					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
 					danhsachhoatdong = danhsachhoatdong.concat(dmHoatDongDialog.uiControl.selectedItems);
-					self.model.set("danhsach_hoatdong", danhsachhoatdong);
-					console.log("danhsach_hoatdong: ", danhsachhoatdong);
 					self.renderDanhSach();
 				});
 			});
@@ -243,49 +254,6 @@ define(function (require) {
 				}
 			}
 			self.model.set("tuyendonvi", "thon");
-			console.log("self.model ", self.model.toJSON());
-		},
-		
-		process_loaikybaocao:function() {
-			var self = this;
-			var currentRoute = self.getApp().router.currentRoute()['fragment'];
-			console.log("currentRoute===",currentRoute);
-			if (currentRoute.indexOf('model/quy1')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("Qúy I");
-				self.getApp().data("vsthon_loaibaocao_route","quy1");
-			} else if(currentRoute.indexOf('model/quy2')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").val("Qúy II");
-				self.getApp().data("vsthon_loaibaocao_route","quy2");
-			} else if(currentRoute.indexOf('model/quy3')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",3);
-				self.$el.find("#kydanhgia").val("Qúy III");
-				self.getApp().data("vsthon_loaibaocao_route","quy3");
-			} else if(currentRoute.indexOf('model/quy4')>=0){
-				self.model.set("loaikybaocao",2);
-				self.model.set("kybaocao",4);
-				self.$el.find("#kydanhgia").val("Qúy IV");
-				self.getApp().data("vsthon_loaibaocao_route","quy4");
-			} else if(currentRoute.indexOf('model/6thangdau')>=0){
-				self.model.set("loaikybaocao",3);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
-				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
-			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
-				self.model.set("loaikybaocao",3);
-				self.model.set("kybaocao",2);
-				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
-				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
-			} else if(currentRoute.indexOf('model/nam')>=0){
-				self.model.set("loaikybaocao",4);
-				self.model.set("kybaocao",1);
-				self.$el.find("#kydanhgia").val("Tổng kết năm");
-				self.getApp().data("vsthon_loaibaocao_route","nam");
-			}
 		},
 		
 		onChangeEvents: function() {
@@ -308,10 +276,15 @@ define(function (require) {
 					self.$el.find("#pheduyet_extra").removeClass("hide");
 				}
 			}
+			
+			self.model.on("change:nganh", function() {
+				self.renderDanhSach();
+			});
 		},
 		
 		renderDanhSach: function() {
 			var self = this;
+			
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
 			<tr class="top">
@@ -336,7 +309,6 @@ define(function (require) {
                 <td></td>
             </tr>`);
 			var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-			console.log("danhsachhoatdong ", danhsachhoatdong);
 
 			function render(dshoatdong) {
 				dshoatdong.forEach(function(hoatdong, idx) {
@@ -344,21 +316,33 @@ define(function (require) {
 					hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
 					hoatDongItemView.render();
 					hoatDongItemView.on("change", function(data) {
-						var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
-						danhsach_hoatdong.forEach(function(item, idx) {
+						dshoatdong.forEach(function(item, idx) {
 							if (item.id == data.id) {
-								danhsach_hoatdong[idx] = data;
+								dshoatdong[idx] = data;
 							}
 						});
-						self.model.set("danhsach_hoatdong", danhsach_hoatdong);
+						self.model.set("danhsach_hoatdong", JSON.parse(JSON.stringify((dshoatdong))));
 					});
 					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
 				});
 			}
 			
+			if (!self.model.get("nganh")) {
+				if (!self.onInit) {
+					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
+				}
+				self.onInit = false;
+				return;
+			}
+			self.filterParams = JSON.parse(JSON.stringify(params));
+
+			self.filterParams['filters']['$and'].push({
+				'nganh_id': {'$eq': self.model.get("nganh").id}
+			});
+			
 			$.ajax({
 				url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
-				data: "q="+JSON.stringify(params),
+				data: "q="+JSON.stringify(self.filterParams),
 				type: "GET",
 				success: function(response) {
 					console.log("response: ", response);
@@ -371,7 +355,57 @@ define(function (require) {
 					
 				}
 			});
-		}
+			self.onInit = false;
+		},
+
+		validate : function() {
+			const self = this;
+			if (!self.model.get("nambaocao")) {
+				self.getApp().notify({message: "Năm báo cáo không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tinhthanh")) {
+				self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("quanhuyen")) {
+				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("xaphuong")) {
+				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("thonxom")) {
+				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tiendo_xaydung")) {
+				self.getApp().notify({message: "Tiến độ xây dựng không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tiendo_rasoat")) {
+				self.getApp().notify({message: "Tiến độ rà soát không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tiendo_pheduyet")) {
+				self.getApp().notify({message: "Tiến độ phê duyệt không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("sohoatdong_cotloi_hoanthanh")) {
+				self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tongsogiangvien")) {
+				self.getApp().notify({message: "Tổng số giảng viên không được để trống"},{type: "warning"});
+				return;
+			}
+			if (!self.model.get("tongsogiangvien_nu")) {
+				self.getApp().notify({message: "Tổng số giảng viên nữ không được để trống"},{type: "warning"});
+				return;
+			}
+			return true;
+		},
 	});
 
 });
