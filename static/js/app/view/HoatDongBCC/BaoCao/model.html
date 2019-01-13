@@ -11,22 +11,22 @@
 				<label>Kỳ đánh giá:</label>
 				<input id="kydanhgia" type="text" class="form-control">
 			</div>
-			<div id="tinhthanh" class="col-md-6 form-group">
+			<div id="tinhthanh" class="col-md-4 col-sm-4 col-xs-12 form-group">
 				<label>Chọn Tỉnh/Thành phố</label>
 				<input  type="text" class="form-control" data-bind="dict:tinhthanh">
 			</div>
-			<div id="tinhthanh" class="col-md-6 form-group">
+			<div id="tinhthanh" class="col-md-4 col-sm-4 col-xs-12 form-group">
 				<label>Chọn Quận/Huyện</label>
 				<input  type="text" class="form-control" data-bind="dict:quanhuyen">
 			</div>
-			<div id="tinhthanh" class="col-md-6 form-group">
+			<div id="tinhthanh" class="col-md-4 col-sm-4 col-xs-12 form-group">
 				<label>Chọn Xã/Phường</label>
 				<input  type="text" class="form-control" data-bind="dict:xaphuong">
 			</div>
-			<div id="tinhthanh" class="col-md-6 form-group">
+			<!-- <div id="tinhthanh" class="col-md-6 form-group">
 				<label>Chọn Thôn/Xóm</label>
 				<input  type="text" class="form-control" data-bind="dict:thonxom">
-			</div>
+			</div> -->
 			<div class="col-md-6 form-group">
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
 			</div>
@@ -40,16 +40,16 @@
 						<tbody>
 							<tr>
 								<td colspan="2">1. Xây dựng dự thảo kế hoạch BCC</td>
-								<td colspan="2"><input type="text" class="form-control" id="tiendo_xaydung" /></td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_xaydung" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">2. VIHEMA và WB rà soát, chấp thuận bản kế hoạch BCC</td>
-								<td colspan="2"><input type="text" class="form-control" id="tiendo_rasoat" /></td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_rasoat" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">3. Tỉnh phê duyệt kế hoạch BCC</td>
 								<td colspan="2">
-									<input type="text" class="form-control" id="tiendo_pheduyet" />
+									<input type="text" class="form-control" data-bind="value:tiendo_pheduyet" />
 									<div class="row hide" id="pheduyet_extra">
 										<div class="col-lg-8 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê
 											duyệt:</div>
@@ -60,22 +60,22 @@
 											<span class="glyphicon glyphicon-arrow-right"></span> Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt
 										</div>
 										<div class="col-lg-4 form-group">
-											<input type="text" id="sohoatdong_cotloi_pheduyet" />
+											<input type="text" data-bind="value:sohoatdong_cotloi_pheduyet" />
 										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="2">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
-								<td colspan="2"><input type="text" class="form-control" id="sohoatdong_cotloi_hoanthanh" /></td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:sohoatdong_cotloi_hoanthanh" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">Tổng số giảng viên</td>
-								<td colspan="2"><input type="text" class="form-control" id="value:tongsogiangvien" /></td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:value:tongsogiangvien" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">Tổng số giảng viên là nữ</td>
-								<td colspan="2"><input type="text" class="form-control" id="tongsogiangvien_nu" /></td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tongsogiangvien_nu" /></td>
 							</tr>
 						</tbody>
 					</table>
