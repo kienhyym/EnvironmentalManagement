@@ -11,10 +11,21 @@
 				<label>Kỳ đánh giá:</label>
 				<input id="kydanhgia" type="text" class="form-control">
 			</div>
-			
-			<div id="tinhthanh" class="col-md-6 form-group " style="display:none;">
+			<div id="tinhthanh" class="col-md-6 form-group">
 				<label>Chọn Tỉnh/Thành phố</label>
-				<input  type="text" class="form-control">
+				<input  type="text" class="form-control" data-bind="dict:tinhthanh">
+			</div>
+			<div id="tinhthanh" class="col-md-6 form-group">
+				<label>Chọn Quận/Huyện</label>
+				<input  type="text" class="form-control" data-bind="dict:quanhuyen">
+			</div>
+			<div id="tinhthanh" class="col-md-6 form-group">
+				<label>Chọn Xã/Phường</label>
+				<input  type="text" class="form-control" data-bind="dict:xaphuong">
+			</div>
+			<div id="tinhthanh" class="col-md-6 form-group">
+				<label>Chọn Thôn/Xóm</label>
+				<input  type="text" class="form-control" data-bind="dict:thonxom">
 			</div>
 			<div class="col-md-6 form-group">
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
@@ -27,18 +38,6 @@
 				<div class="col-md-12">
 					<table class="table">
 						<tbody>
-							<tr>
-								<td width="25%">Tỉnh/Thành phố</td>
-								<td width="25%"><input type="text" class="form-control" id="tinhthanh" /></td>
-								<td width="25%">Quận/Huyện</td>
-								<td width="25%"><input type="text" class="form-control" id="quanhuyen" /></td>
-							</tr>
-							<tr>
-								<td>Xã/Phường</td>
-								<td><input type="text" class="form-control" id="xaphuong" /></td>
-								<td>Thôn/Xóm</td>
-								<td><input type="text" class="form-control" id="thonxom" /></td>
-							</tr>
 							<tr>
 								<td colspan="2">1. Xây dựng dự thảo kế hoạch BCC</td>
 								<td colspan="2"><input type="text" class="form-control" id="tiendo_xaydung" /></td>
@@ -69,10 +68,6 @@
 							<tr>
 								<td colspan="2">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
 								<td colspan="2"><input type="text" class="form-control" id="sohoatdong_cotloi_hoanthanh" /></td>
-							</tr>
-							<tr>
-								<td colspan="2">Ngành</td>
-								<td colspan="2"><input type="text" class="form-control" id="nganh" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">Tổng số giảng viên</td>

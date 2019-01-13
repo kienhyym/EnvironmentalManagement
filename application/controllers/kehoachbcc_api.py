@@ -173,6 +173,10 @@ async def baocao_theo_cap(request):
     nambaocao = request.args.get('nambaocao', None)
     kydanhgia = request.args.get('kydanhgia', None)
     loaikybaocao = request.args.get('loaikybaocao', None)
+    tinhthanh = request.args.get('tinhthanh', None)
+    quanhuyen = request.args.get('quanhuyen', None)
+    xaphuong = request.args.get('xaphuong', None)
+    thonxom = request.args.get('thonxom', None)
     
     if nambaocao is None:
         return json({
@@ -210,9 +214,22 @@ async def baocao_theo_cap(request):
         hoatdongbccs = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nganh_id == nganh['id'],\
                                                           TienDoKeHoachBCC.nambaocao == nambaocao,\
                                                           TienDoKeHoachBCC.kybaocao == kydanhgia,\
-                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao)).all()
-
+                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao))
+        if tinhthanh is not None:
+            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.tinhthanh_id == tinhthanh)
         
+        if quanhuyen is not None:
+            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.quanhuyen_id == quanhuyen)
+            
+        if xaphuong is not None:
+            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.xaphuong_id == xaphuong)
+            
+        if thonxom is not None:
+            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
+        
+        
+        hoatdongbccs = hoatdongbccs.all()
+
         tinh = {
             'tuyen': 'Hoat động cấp tỉnh'
         }

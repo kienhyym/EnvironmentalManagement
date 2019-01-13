@@ -1314,57 +1314,14 @@ define(function (require) {
 						{
 							"text": "Thống kê hoạt động",
 							"icon": "glyphicon glyphicon-tasks",
-							"type": "category",
-							"entries": [
-								{
-									"text": "Cấp thôn",
-									"icon": "glyphicon glyphicon-tasks",
-									"type": "view",
-									"collectionName": "tiendo_kehoach_bcc",
-									"route": "hoatdongbcc/baocao/capthon",
-									"$ref": "app/view/HoatDongBCC/BaoCao/Thon/ModelView",
-									"tuyendonvi": 4,
-									"visible": function () {
-										return this.checkTuyendonvi(4);
-									}
-								},
-								{
-									"text": "Cấp xã",
-									"icon": "glyphicon glyphicon-tasks",
-									"type": "view",
-									"collectionName": "tiendo_kehoach_bcc",
-									"route": "hoatdongbcc/baocao/capxa",
-									"$ref": "app/view/HoatDongBCC/BaoCao/Xa/ModelView",
-									"tuyendonvi": 4,
-									"visible": function () {
-										return this.checkTuyendonvi(4);
-									}
-								},
-								{
-									"text": "Cấp huyện",
-									"icon": "glyphicon glyphicon-tasks",
-									"type": "view",
-									"collectionName": "itemhuyen",
-									"route": "hoatdongbcc/baocao/caphuyen",
-									"$ref": "app/view/HoatDongBCC/BaoCao/Huyen/ModelView",
-									"tuyendonvi": 3,
-									"visible": function () {
-										return this.checkTuyendonvi(3);
-									}
-								},
-								{
-									"text": "Cấp tỉnh",
-									"icon": "glyphicon glyphicon-tasks",
-									"type": "view",
-									"collectionName": "kehoachthuchien",
-									"route": "hoatdongbcc/baocao/captinh",
-									"$ref": "app/view/HoatDongBCC/BaoCao/Tinh/ModelView",
-									"tuyendonvi": 2,
-									"visible": function () {
-										return this.checkTuyendonvi(2);
-									}
-								}
-							]
+							"type": "view",
+							"collectionName": "tiendo_kehoach_bcc",
+							"route": "hoatdongbcc/baocao",
+							"$ref": "app/view/HoatDongBCC/BaoCao/ModelView",
+							"tuyendonvi": 4,
+							"visible": function () {
+								return this.checkTuyendonvi(4);
+							}
 						}
 					]
 				},
