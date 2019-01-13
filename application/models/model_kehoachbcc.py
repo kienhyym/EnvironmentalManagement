@@ -65,10 +65,9 @@ class DanhMucHoatDong(CommonModel):
     mahoatdong = db.Column(db.String)
     tenhoatdong = db.Column(db.String)
     loai_hoatdong = db.Column(db.String) #tinh, huyen, xa, thon
-#     loai_nganh = db.Column(db.String)#nganh y te, nganh gia
     nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
     nganh = relationship('Nganh')
-    muctieu = db.Column(db.String)    
+    muctieu = db.Column(db.String)
 
 
 # 

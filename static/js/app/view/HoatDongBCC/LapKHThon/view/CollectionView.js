@@ -64,7 +64,8 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
-						var path = 'hoatdongbcc/capthon/model/quy1';
+						var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+						var path = 'hoatdongbcc/capthon/model/' + loaikybaocao;
 						this.getApp().getRouter().navigate(path);
 					}
 				}

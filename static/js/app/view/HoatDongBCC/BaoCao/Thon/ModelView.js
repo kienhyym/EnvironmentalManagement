@@ -21,6 +21,7 @@ define(function (require) {
 			]
 		}
 	};
+
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
 		template: template,
@@ -30,89 +31,7 @@ define(function (require) {
 		onInit: true,
 		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: [
-				{
-					field: "tinhthanh",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "tinhthanh_id",
-					dataSource: TinhThanhSelectView
-				},
-				{
-					field: "xaphuong",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "xaphuong_id",
-					dataSource: XaPhuongSelectView
-				},
-				{
-					field: "quanhuyen",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "quanhuyen_id",
-					dataSource: QuanHuyenSelectView
-				},
-				{
-					field: "thonxom",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "thonxom_id",
-					dataSource: ThonXomSelectView
-				},
-				{
-					field: "nganh",
-					uicontrol: "ref",
-					textField: "tennganh",
-					foreignRemoteField: "id",
-					foreignField: "nganh_id",
-					dataSource: NganhSelectView
-				},
-				{
-					field: "tiendo_xaydung",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{text: "Đã hooàn thành dự thảo", value: 2},
-						{text: "Đang xây dựng", value: 1},
-						{text: "Chưa xây dựng", value: 0}
-					]
-				},
-				{
-					field: "tiendo_rasoat",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{text: "VIHEMA đã chấp thuận", value: 2},
-						{text: "Đang rà soát", value: 1},
-						{text: "Chưa chấp thuận", value: 0}
-					]
-				},
-				{
-					field: "tiendo_pheduyet",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{text: "Đã phê duyệt", value: 1},
-						{text: "Chưa phê duyệt", value: 0}
-					]
-				},
-				{
-					field: "ngay_pheduyet",
-					uicontrol: "datetimepicker",
-					textFormat: "DD/MM/YYYY"
-				}
-			]
+			fields: []
 		},
 
 
@@ -121,128 +40,21 @@ define(function (require) {
 			type: "group",
 			groupClass: "toolbar-group",
 			buttons: [{
-					name: "back",
-					type: "button",
-					buttonClass: "btn-default btn-sm",
-					label: "TRANSLATE:BACK",
-					command: function () {
-						var self = this;
-						Backbone.history.history.back();
-					}
-				},
-				{
-					name: "save",
-					type: "button",
-					buttonClass: "btn-success btn-sm",
-					label: "TRANSLATE:SAVE",
-					command: function () {
-						var self = this;
-						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
-
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify({message: 'Lưu thông tin không thành công!'}, {type: "danger"});
-							}
-						});
-					}
-				},
-				{
-					name: "delete",
-					type: "button",
-					buttonClass: "btn-danger btn-sm",
-					label: "TRANSLATE:DELETE",
-					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
-					},
-					command: function () {
-						var self = this;
-						self.model.destroy({
-							success: function (model, response) {
-								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=quy1");
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Xoá dữ liệu không thành công!');
-
-							}
-						});
-					}
-				},
-			],
+				name: "back",
+				type: "button",
+				buttonClass: "btn-default btn-sm",
+				label: "TRANSLATE:BACK",
+				command: function () {
+					var self = this;
+					Backbone.history.history.back();
+				}
+			}]
 		}],
 
 		render: function () {
 			var self = this;
-			
-			$.ajax({
-				url: self.getApp().serviceURL + "/api/v1/hoatdongbcc/baocao",
-				data: "nambaocao=2019&kydanhgia=1",
-				type: "GET",
-				success: function(response) {
-					console.log(response);
-				},
-				error: function(xhr) {
-					console.log(xhr.reponseJSON);
-				}
-			})
-			
-			
-			return;
-			var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
-			self.model.set("loaikybaocao", self.getApp().mapKyBaoCao[currentPeriod].loaikybaocao);
-			self.model.set("kybaocao", self.getApp().mapKyBaoCao[currentPeriod].kybaocao);
-			self.$el.find("#kydanhgia").val(self.getApp().mapKyBaoCao[currentPeriod].text);
-			var id = this.getApp().getRouter().getParam("id");
-			
-			if (id) {
-				this.model.set('id', id);
-				this.model.fetch({
-					success: function (data) {
-						self.applyBindings();
-						self.setDefaultData();
-						self.onChangeEvents();
-						self.renderDanhSach();
-					},
-					error: function (xhr) {
-						self.getApp().notify({message: xhr.toString()}, {type: "danger"});
-					},
-				});
-			} else {
-				self.applyBindings();
-				self.setDefaultData();
-				self.onChangeEvents();
-				self.renderDanhSach();
-			}
-			
-			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
-				
-				if (!self.model.get("nganh")) {
-					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
-					return;
-				}
-				self.filterParams = JSON.parse(JSON.stringify(params));
-
-				self.filterParams['filters']['$and'].push({
-					'nganh_id': {'$eq': self.model.get("nganh").id}
-				});
-				
-				var dmHoatDongDialog = new DMHoatDongSelectView({
-					viewData: {
-						"query": self.filterParams
-					}
-				});
-				dmHoatDongDialog.dialog();
-				
-				dmHoatDongDialog.on("onSelected", function(event) {
-					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-					danhsachhoatdong = danhsachhoatdong.concat(dmHoatDongDialog.uiControl.selectedItems);
-					self.renderDanhSach();
-				});
-			});
+			self.setDefaultData();
+			self.onChangeEvents();
 		},
 		
 		/**
@@ -266,109 +78,118 @@ define(function (require) {
 				}
 			}
 			self.model.set("tuyendonvi", "thon");
+			
+			self.$el.find('#kydanhgia').combobox({
+            	textField: "text",
+                valueField: "value",
+                dataSource: [
+                    { text: "Qúy I", value: "quy1" },
+                    { text: "Qúy II", value: "quy2" },
+                    { text: "Qúy III", value: "quy3" },
+                    { text: "Qúy IV", value: "quy4" },
+                    { text: "6 tháng đầu năm", value: "6thangdau" },
+                    { text: "6 tháng cuối năm", value: "6thangcuoi" },
+                    { text: "Tổng kết năm", value: "nam" }
+                ],
+			});
 		},
 		
 		onChangeEvents: function() {
 			var self = this;
-			
-			self.model.on("change:tiendo_pheduyet", function(model) {
-				if (self.model.get("tiendo_pheduyet") == 1) {
-					if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
-						self.$el.find("#pheduyet_extra").removeClass("hide");
-					}
-				} else {
-					if (!self.$el.find("#pheduyet_extra").hasClass("hide")) {
-						self.$el.find("#pheduyet_extra").addClass("hide");
-					}
+			self.$el.find("#search").unbind("click").bind("click", function(event) {
+				if (!self.$el.find("#namdanhgia").val()) {
+					self.getApp().notify({message: "Vui lòng nhập năm báo cáo"}, {type: "danger"});
+					return;
 				}
-			});
-
-			if (self.model.get("tiendo_pheduyet") == 1) {
-				if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
-					self.$el.find("#pheduyet_extra").removeClass("hide");
+				
+				if (!self.$el.find("#kydanhgia").val()) {
+					self.getApp().notify({message: "Vui lòng chọn kỳ báo cáo"}, {type: "danger"});
+					return;
 				}
-			}
-			
-			self.model.on("change:nganh", function() {
-				self.renderDanhSach();
+				
+				var kybaocaoObject = self.getApp().mapKyBaoCao[self.$el.find("#kydanhgia").val()];
+				
+				$.ajax({
+					url: self.getApp().serviceURL + "/api/v1/hoatdongbcc/baocao",
+					data: "nambaocao=" + self.$el.find("#namdanhgia").val() + "&kydanhgia=" + kybaocaoObject.kybaocao + "&loaikybaocao=" + kybaocaoObject.loaikybaocao,
+					type: "GET",
+					success: function(response) {
+						if (response) {
+//							self.model.set('songuoithamgia', response.tongsonguoithamgia);
+//							self.model.set('songuoithamgia_nu', response.tongsonguoithamgia_nu);
+//							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);
+							self.renderKetQua(response.danhsachnganh);
+						}
+					},
+					error: function(xhr) {
+						self.getApp().notify({message: xhr.responseJSON.error_message}, {type: "danger"});
+					}
+				});
 			});
 		},
 		
-		renderDanhSach: function() {
+		renderKetQua: function(data) {
 			var self = this;
-			
 			self.$el.find("#danhsachhoatdong_list").empty();
+			
 			self.$el.find("#danhsachhoatdong_list").append(`
-			<tr class="top">
-                <td>(1)</td>
-                <td>(2)</td>
-                <td>(3)</td>
-                <td colspan="3"></td>
-                <td></td>
+			<tr>
+                <td class="top text-center">(1)</td>
+                <td class="top text-center">(2)</td>
+                <td class="top text-center">(3)</td>
+                <td class="top" colspan="3"></td>
+                <td class="top"></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
                 <td colspan="3">
+					<p>DLI 1.1 Kế hoạch Truyền thông Thay đổi Hành vi đã phê duyệt được thực hiện ở tỉnh:</p>
                     <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                 </td>
                 <td>Tổng số người tham gia</td>
                 <td>Số người tham gia là nữ</td>
                 <td>Số người tham gia là DTTS</td>
                 <td></td>
-            </tr>
-            <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
-                <td></td>
-                <td></td>
             </tr>`);
-			var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
 
-			function render(dshoatdong) {
-				dshoatdong.forEach(function(hoatdong, idx) {
-					var hoatDongItemView = new HoatDongItemView();
-					hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
-					hoatDongItemView.render();
-					hoatDongItemView.on("change", function(data) {
-						var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
-						danhsach_hoatdong.forEach(function(item, idx) {
-							if (item.id == data.id) {
-								danhsach_hoatdong[idx] = data;
-							}
-						});
-						self.model.set("danhsach_hoatdong", danhsach_hoatdong);
-					});
-					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
-				});
-			}
-			
-			if (!self.model.get("nganh")) {
-				if (!self.onInit) {
-					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
-				}
-				self.onInit = false;
+			if (!data) {
 				return;
 			}
-			self.filterParams = JSON.parse(JSON.stringify(params));
-
-			self.filterParams['filters']['$and'].push({
-				'nganh_id': {'$eq': self.model.get("nganh").id}
-			});
 			
-			$.ajax({
-				url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
-				data: "q="+JSON.stringify(self.filterParams),
-				type: "GET",
-				success: function(response) {
-					console.log("response: ", response);
-					if (!danhsachhoatdong.length) {
-						danhsachhoatdong = response.objects;
+			data.forEach(function(nganh, idx) {
+				if (nganh && (nganh.manganh || nganh.tennganh)) {
+					self.$el.find("#danhsachhoatdong_list").append(`<tr>
+		                <td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; font-size: 14px;">${nganh.tennganh.toLocaleUpperCase()}</td>
+		                <td class="text-center"></td>
+		                <td class="text-center"></td>
+		                <td class="text-center"></td>
+					</tr>`);
+				
+					if (nganh && nganh.tuyendonvis) {
+						nganh.tuyendonvis.forEach(function(tuyen, idx) {							
+							self.$el.find("#danhsachhoatdong_list").append(`<tr>
+									<td colspan="3" class="text-left" style="color: #e30303; font-weight: bold;">&nbsp;&nbsp;${tuyen.tuyen}</td>
+									<td class="text-center"></td>
+									<td class="text-center"></td>
+									<td class="text-center"></td>
+							</tr>`);
+							
+							if (tuyen && tuyen.hoatdong) {
+								tuyen.hoatdong.forEach(function(hoatdong, idx) {
+									self.$el.find("#danhsachhoatdong_list").append(`<tr>
+											<td class="text-left">&nbsp;&nbsp; - ${hoatdong.tenhoatdong}</td>
+											<td>${hoatdong.muctieu}</td>
+											<td>${hoatdong.tiendo ? hoatdong.tiendo : ''}</td>
+											<td class="text-center">${hoatdong.songuoithamgia}</td>
+											<td class="text-center">${hoatdong.songuoithamgia_nu}</td>
+											<td class="text-center">${hoatdong.songuoithamgia_dtts}</td>
+									</tr>`);
+								});
+							}
+							
+						})
 					}
-					render(danhsachhoatdong);
-				},
-				error: function(xhr) {
-					
 				}
 			});
-			self.onInit = false;
 		}
 	});
 
