@@ -204,12 +204,12 @@ async def baocao_theo_cap(request):
     
     if nambaocao is None:
         return json({
-            "error_code": "PARAM ERROR",
+            "error_code": "PARAM_ERROR",
             "error_message": "Vui lòng nhập năm báo cáo"
         }, status=520)
     if tinhthanh is None:
         return json({
-            "error_code": "PARAM ERROR",
+            "error_code": "PARAM_ERROR",
             "error_message": "Vui lòng chọn thông tin tỉnh thành"
         }, status=520)
     
@@ -218,14 +218,11 @@ async def baocao_theo_cap(request):
     
     if ds_nganh is None or len(ds_nganh) == 0:
         return json({
-            "error_code": "NOT FOUND",
-            "error_message": "Không tìm thấy data"
+            "error_code": "NOT_FOUND",
+            "error_message": "Chưa thiết lập danh mục ngành"
         }, status=520)
         
     # OBJECT DATA OF REPORT
-    result = {
-        'danhsachnganh': []
-    }
     
     tongsonguoithamgia = 0
     tongsonguoithamgia_nu = 0
@@ -233,20 +230,29 @@ async def baocao_theo_cap(request):
     baocao_data = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nambaocao == nambaocao,\
                                                           TienDoKeHoachBCC.kybaocao == kydanhgia,\
                                                           TienDoKeHoachBCC.loaikybaocao == loaikybaocao))
+    tuyendonvi = 2#cap tinh
     if tinhthanh is not None:
         baocao_data = baocao_data.filter(TienDoKeHoachBCC.tinhthanh_id == tinhthanh)
+        tuyendonvi = 2
     
     if quanhuyen is not None:
         baocao_data = baocao_data.filter(TienDoKeHoachBCC.quanhuyen_id == quanhuyen)
+        tuyendonvi = 3
         
     if xaphuong is not None:
         baocao_data = baocao_data.filter(TienDoKeHoachBCC.xaphuong_id == xaphuong)
-        
-    if thonxom is not None:
-        baocao_data = baocao_data.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
+        tuyendonvi = 4
+#     if thonxom is not None:
+#         baocao_data = baocao_data.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
     
     result_baocao = baocao_data.first()
-    
+    if result_baocao is None:
+        return json({
+            "error_code": "NOT_FOUND",
+            "error_message": "Không tìm thấy báo cáo của đơn vị"
+        }, status=520)
+    result = to_dict(result_baocao)
+    result['danhsachnganh'] =[]
     for nganh in ds_nganh:
         nganh = to_dict(nganh)
         
@@ -384,8 +390,13 @@ async def baocao_theo_cap(request):
                                     'songuoithamgia_dtts': int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 })
         
-        data_in_nganh['tuyendonvis'] = [tinh, huyen, xa, thon]
-
+        if(tuyendonvi == 2):
+            data_in_nganh['tuyendonvis'] = [tinh, huyen, xa, thon]
+        elif tuyendonvi ==3:
+            data_in_nganh['tuyendonvis'] = [huyen, xa, thon]
+        elif tuyendonvi ==4:
+            data_in_nganh['tuyendonvis'] = [xa, thon]
+            
         result['tongsonguoithamgia'] = tongsonguoithamgia
         result['tongsonguoithamgia_nu'] = tongsonguoithamgia_nu
         result['tongsonguoithamgia_dtts'] = tongsonguoithamgia_dtts

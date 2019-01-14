@@ -51,7 +51,49 @@ define(function (require) {
 					foreignRemoteField: "id",
 					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
-				}
+				},
+				{
+					field: "tiendo_xaydung",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đã hooàn thành dự thảo", value: 2},
+						{text: "Đang xây dựng", value: 1},
+						{text: "Chưa xây dựng", value: 0}
+					],
+					readonly:true
+				},
+				{
+					field: "tiendo_rasoat",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "VIHEMA đã chấp thuận", value: 2},
+						{text: "Đang rà soát", value: 1},
+						{text: "Chưa chấp thuận", value: 0}
+					],
+					readonly:true
+				},
+				{
+					field: "tiendo_pheduyet",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đã phê duyệt", value: 1},
+						{text: "Chưa phê duyệt", value: 0}
+					],
+					readonly:true
+				},
+				{
+					field: "ngay_pheduyet",
+					uicontrol: "datetimepicker",
+					textFormat: "DD/MM/YYYY",
+					readonly:true
+				},
+				
 			]
 		},
 
@@ -77,6 +119,7 @@ define(function (require) {
 			self.setDefaultData();
 			self.onChangeEvents();
 			self.applyBindings();
+			self.$el.find("table.table input").attr({"disabled":true});
 		},
 		
 		/**
@@ -89,20 +132,20 @@ define(function (require) {
 				if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >=2) {
 					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
-					self.$el.find("#tinhthanh").attr({"disabled":"disabled"});
+					self.$el.find("#tinhthanh").hide();
 				}
-				if (!!currentUser.donvi.quanhuyen_id  && currentUser.donvi.tuyendonvi_id ===3){
+				if (!!currentUser.donvi.quanhuyen_id  && currentUser.donvi.tuyendonvi_id >=3){
 					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
 					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
-					self.$el.find("#tinhthanh").attr({"disabled":"disabled"});
-					self.$el.find("#quanhuyen").attr({"disabled":"disabled"});
+					self.$el.find("#tinhthanh").hide();
+					self.$el.find("#quanhuyen").hide();
 				}
 				if (!!currentUser.donvi.xaphuong_id  && currentUser.donvi.tuyendonvi_id ===4){
 					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
 					self.model.set("xaphuong", currentUser.donvi.xaphuong);
-					self.$el.find("#tinhthanh").attr({"disabled":"disabled"});
-					self.$el.find("#quanhuyen").attr({"disabled":"disabled"});
-					self.$el.find("#xaphuong").attr({"disabled":"disabled"});
+					self.$el.find("#tinhthanh").hide();
+					self.$el.find("#quanhuyen").hide();
+					self.$el.find("#xaphuong").hide();
 				}
 			}
 			
@@ -162,6 +205,7 @@ define(function (require) {
 					type: "GET",
 					success: function(response) {
 						if (response) {
+							self.model.set(response);
 //							self.model.set('songuoithamgia', response.tongsonguoithamgia);
 //							self.model.set('songuoithamgia_nu', response.tongsonguoithamgia_nu);
 //							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);

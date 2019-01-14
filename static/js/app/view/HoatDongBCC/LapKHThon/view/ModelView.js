@@ -287,6 +287,7 @@ define(function (require) {
                 hoatDongItemView.remove();
             });
 			hoatDongItemView.on("change", function(data) {
+				var dshoatdong = self.model.get("danhsach_hoatdong");
 				dshoatdong.forEach(function(item, idx) {
 					if (item.id == data.id) {
 						dshoatdong[idx] = data;
