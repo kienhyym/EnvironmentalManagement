@@ -1325,11 +1325,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "tiendo_kehoach_bcc",
 							"route": "hoatdongbcc/baocao",
-							"$ref": "app/view/HoatDongBCC/BaoCao/ModelView",
-							"tuyendonvi": 4,
-							"visible": function () {
-								return this.checkTuyendonvi(4);
-							}
+							"$ref": "app/view/HoatDongBCC/BaoCao/ModelView"
 						}
 					]
 				},

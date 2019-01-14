@@ -27,7 +27,7 @@ define(function (require) {
 		    	    	label: "TRANSLATE:SELECT",
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		self.trigger("onSelected");
+		    	    		self.trigger("onSelected", this.uiControl.selectedItems[0]);
 		    	    		self.close();
 		    	    	}
 		    	    },
@@ -36,9 +36,16 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "mahoatdong", label: "Mã", width:150},
+	    	     { field: "mahoatdong", label: "Mã"},
 		     	 { field: "tenhoatdong", label: "Tên" },
 		     	 { field: "loai_hoatdong", label: "Phạm vi" },
+		     	{
+	            	 field: "nganh_id", 
+	            	 label: "Ngành",
+	            	 foreign: "nganh",
+	            	 foreignValueField: "id",
+	            	 foreignTextField: "tennganh",
+	           	 }
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
@@ -46,11 +53,15 @@ define(function (require) {
     	},
     	render:function() {
     		var self= this;
-    		var filters = this.viewFilters();
-    		console.log("filters ", filters);
+//    		var filters = this.viewFilters();
+//    		console.log("filters ", filters);
+    		var filter_loaihoatdong = "";
+    		if(self.viewData && self.viewData.loai_hoatdong){
+    			filter_loaihoatdong = {"loai_hoatdong":{"$eq": self.viewData.loai_hoatdong }};
+    		}
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: "Dantoc_filter"
+    			sessionKey: "Danhmuchoatdong_filter"
     		});
     		filter.render();
     		
@@ -60,11 +71,25 @@ define(function (require) {
 					{"mahoatdong": {"$like": text }},
 					{"tenhoatdong": {"$like": text }},
 				]};
-    			filters = self.viewFilters();
-    			filters.filters['$and'].push(query);
+    			if (filter_loaihoatdong && filter_loaihoatdong !== ""){
+    				query = {"$and":{filter_loaihoatdong,query}};
+    			}
+    			self.uiControl.filters = query;
+    			self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"},{"field": "loai_hoatdong", "direction": "asc"}];
+//    			filters = self.viewFilters();
+//    			filters.filters['$and'].push(query);
+    		}else{
+    			if (filter_loaihoatdong && filter_loaihoatdong !== ""){
+    				self.uiControl.filters = filter_loaihoatdong;
+    			}else{
+    				self.uiControl.filters = null;
+    			}
+    			self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"},{"field": "loai_hoatdong", "direction": "asc"}];
+
+    			
     		}
-    		self.uiControl.filters = filters.filters;
-    		self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"}];
+//    		self.uiControl.filters = filters.filters;
+//    		self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"}];
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -76,12 +101,12 @@ define(function (require) {
 							{"mahoatdong": {"$like": text }},
 							{"tenhoatdong": {"$like": text }},
 						] };
-						filters = self.viewFilters();
-						filters.filters['$and'].push(query);
-						$col.data('gonrin').filter(filters.filters);
+//						filters = self.viewFilters();
+//						filters.filters['$and'].push(query);
+						$col.data('gonrin').filter(query);
 					} else {
 						self.uiControl.filters = null;
-						filters = this.viewFilters();
+//						filters = this.viewFilters();
 					}
 				}
 				self.applyBindings();

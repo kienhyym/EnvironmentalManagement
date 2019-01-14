@@ -183,6 +183,11 @@ async def baocao_theo_cap(request):
             "error_code": "PARAM ERROR",
             "error_message": "Vui lòng nhập năm báo cáo"
         }, status=520)
+    if tinhthanh is None:
+        return json({
+            "error_code": "PARAM ERROR",
+            "error_message": "Vui lòng chọn thông tin tỉnh thành"
+        }, status=520)
     
     # TÌM KIẾM TẤT CẢ NGÀNH
     ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
@@ -201,6 +206,22 @@ async def baocao_theo_cap(request):
     tongsonguoithamgia = 0
     tongsonguoithamgia_nu = 0
     tongsonguoithamgia_dtts = 0
+    baocao_data = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nambaocao == nambaocao,\
+                                                          TienDoKeHoachBCC.kybaocao == kydanhgia,\
+                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao))
+    if tinhthanh is not None:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.tinhthanh_id == tinhthanh)
+    
+    if quanhuyen is not None:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.quanhuyen_id == quanhuyen)
+        
+    if xaphuong is not None:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.xaphuong_id == xaphuong)
+        
+    if thonxom is not None:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
+    
+    result_baocao = baocao_data.first()
     
     for nganh in ds_nganh:
         nganh = to_dict(nganh)
@@ -210,23 +231,8 @@ async def baocao_theo_cap(request):
             'tennganh': nganh['tennganh'],
             'tuyendonvis': []
         }
-        
-        hoatdongbccs = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nganh_id == nganh['id'],\
-                                                          TienDoKeHoachBCC.nambaocao == nambaocao,\
-                                                          TienDoKeHoachBCC.kybaocao == kydanhgia,\
-                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao))
-        if tinhthanh is not None:
-            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.tinhthanh_id == tinhthanh)
-        
-        if quanhuyen is not None:
-            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.quanhuyen_id == quanhuyen)
-            
-        if xaphuong is not None:
-            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.xaphuong_id == xaphuong)
-            
-        if thonxom is not None:
-            hoatdongbccs = hoatdongbccs.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
-        
+        hoatdongbccs = baocao_data.filter(TienDoKeHoachBCC.nganh_id == nganh['id'])
+
         
         hoatdongbccs = hoatdongbccs.all()
 

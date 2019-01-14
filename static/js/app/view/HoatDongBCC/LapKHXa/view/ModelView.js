@@ -9,7 +9,7 @@ define(function (require) {
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
-	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
+//	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
@@ -57,15 +57,15 @@ define(function (require) {
 					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-				{
-					field: "thonxom",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "thonxom_id",
-					dataSource: ThonXomSelectView
-				},
+//				{
+//					field: "thonxom",
+//					uicontrol: "ref",
+//					textField: "ten",
+//					//chuyen sang thanh object
+//					foreignRemoteField: "id",
+//					foreignField: "thonxom_id",
+//					dataSource: ThonXomSelectView
+//				},
 				{
 					field: "nganh",
 					uicontrol: "ref",
@@ -194,7 +194,7 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-						self.setDefaultData();
+//						self.setDefaultData();
 						self.onChangeEvents();
 						self.renderDanhSach();
 					},
@@ -203,8 +203,9 @@ define(function (require) {
 					},
 				});
 			} else {
-				self.applyBindings();
+				
 				self.setDefaultData();
+				self.applyBindings();
 				self.onChangeEvents();
 				self.renderDanhSach();
 			}
@@ -297,7 +298,6 @@ define(function (require) {
                 <td>(2)</td>
                 <td>(3)</td>
                 <td colspan="3"></td>
-                <td></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
                 <td colspan="3">
@@ -306,10 +306,10 @@ define(function (require) {
                 <td>Tổng số người tham gia</td>
                 <td>Số người tham gia là nữ</td>
                 <td>Số người tham gia là DTTS</td>
-                <td></td>
             </tr>
             <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã</td>
+                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã/phường</td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>`);
@@ -379,10 +379,10 @@ define(function (require) {
 				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("thonxom")) {
-				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
-				return;
-			}
+//			if (!self.model.get("thonxom")) {
+//				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
+//				return;
+//			}
 			if (!self.model.get("tiendo_xaydung")) {
 				self.getApp().notify({message: "Tiến độ xây dựng không được để trống"},{type: "warning"});
 				return;

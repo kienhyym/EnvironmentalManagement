@@ -65,14 +65,15 @@ define(function (require) {
        		    	storejs.set('X-USER-TOKEN', data.token);
        		    	self.getApp().postLogin(data);
        		    },
-       		    error: function(request, textStatus, errorThrown) {
-       		    	//console.log(request);
-       		    	try {
-       		    		self.getApp().notify($.parseJSON(request.responseJSON).error_message);
-       		    	} catch(err) {
-       		    		self.getApp().notify({message: 'Có lỗi xảy ra, vui lòng thử lại sau'},{type: "danger"});
-       		    	}
-       		    }
+       		    error: function(xhr, status, error){
+    		    	try {
+    		    		self.getApp().notify($.parseJSON(xhr.responseText).error_message);
+    		    		}				  	  				    	
+    		    	catch(err) {
+    		    		self.getApp().notify("có lỗi xảy ra, vui lòng thử lại sau ");
+    		    		}
+	       			
+	       		 }
        		});
        	},
 

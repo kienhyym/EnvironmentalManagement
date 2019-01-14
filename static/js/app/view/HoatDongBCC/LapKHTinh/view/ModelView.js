@@ -7,9 +7,6 @@ define(function (require) {
 	var template = require('text!../tpl/model.html'),
 		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
-	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
-	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
-	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
@@ -35,37 +32,9 @@ define(function (require) {
 					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
-				},
-				{
-					field: "xaphuong",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "xaphuong_id",
-					dataSource: XaPhuongSelectView
-				},
-				{
-					field: "quanhuyen",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "quanhuyen_id",
-					dataSource: QuanHuyenSelectView
-				},
-				{
-					field: "thonxom",
-					uicontrol: "ref",
-					textField: "ten",
-					//chuyen sang thanh object
-					foreignRemoteField: "id",
-					foreignField: "thonxom_id",
-					dataSource: ThonXomSelectView
 				},
 				{
 					field: "nganh",
@@ -193,7 +162,6 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-						self.setDefaultData();
 						self.onChangeEvents();
 						self.renderDanhSach();
 					},
@@ -202,8 +170,9 @@ define(function (require) {
 					},
 				});
 			} else {
-				self.applyBindings();
+				
 				self.setDefaultData();
+				self.applyBindings();
 				self.onChangeEvents();
 				self.renderDanhSach();
 			}
@@ -246,14 +215,6 @@ define(function (require) {
 					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
 				}
-				if (!!currentUser.donvi.quanhuyen_id){
-					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
-					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
-				}
-				if (!!currentUser.donvi.xaphuong_id){
-					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong", currentUser.donvi.xaphuong);
-				}
 			}
 			self.model.set("tuyendonvi", "tinh");
 		},
@@ -294,7 +255,6 @@ define(function (require) {
                 <td>(2)</td>
                 <td>(3)</td>
                 <td colspan="3"></td>
-                <td></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
                 <td colspan="3">
@@ -303,10 +263,10 @@ define(function (require) {
                 <td>Tổng số người tham gia</td>
                 <td>Số người tham gia là nữ</td>
                 <td>Số người tham gia là DTTS</td>
-                <td></td>
             </tr>
             <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp thôn</td>
+                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp Tỉnh</td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>`);
@@ -367,18 +327,6 @@ define(function (require) {
 			}
 			if (!self.model.get("tinhthanh")) {
 				self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "warning"});
-				return;
-			}
-			if (!self.model.get("quanhuyen")) {
-				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "warning"});
-				return;
-			}
-			if (!self.model.get("xaphuong")) {
-				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
-				return;
-			}
-			if (!self.model.get("thonxom")) {
-				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
 				return;
 			}
 			if (!self.model.get("tiendo_xaydung")) {

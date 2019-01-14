@@ -66,7 +66,7 @@ async def login(request):
         auth.login_user(request, user)
         result = await get_user_with_permission(user)
         return json(result)
-    return json({"error_code":"LOGIN_FAILED","error_message":"user does not exist or incorrect password"}, status=520)
+    return json({"error_code":"LOGIN_FAILED","error_message":"Tài khoản hoặc mật khẩu không đúng"}, status=520)
  
  
 @app.route('/current_user')
@@ -77,7 +77,7 @@ async def get_current_user(request):
         user_info = await get_user_with_permission(currentUser)
         return json(user_info)
     else:
-        error_msg = "User does not exist"
+        error_msg = "Tài khoản không tồn tại"
     return json({
         "error_code": "USER_NOT_FOUND",
         "error_message":error_msg
@@ -97,11 +97,11 @@ async def user_changepw(request):
                     user = db.session.query(User).filter(User.id == currentUser.id).first()
                     user.password = passwd
                     db.session.commit()
-                    return json({"error_message":"Successfully"},status=200)
+                    return json({"error_message":"Thay đổi thành công"},status=200)
                 else:
-                    return json({"error_code":"PARAMS_ERROR","error_message":"Password is not correct"},status=520)
+                    return json({"error_code":"PARAMS_ERROR","error_message":"Mật khẩu không đúng"},status=520)
             else:
-                return json({"error_code":"PARAMS_ERROR","error_message":"Confirm password is not match"},status=520)
+                return json({"error_code":"PARAMS_ERROR","error_message":"Mật khẩu không khớp với xác nhận, vui lòng kiểm tra lại"},status=520)
         else:
             return json({"error_code":"PARAMS_ERROR","error_message":"Parameters are not correct"},status=520)
     return json({"error_code":"ERROR_SESSION","error_message":"Session expired!"},status=520)   
@@ -119,11 +119,11 @@ async def user_change_phone(request):
                 check_current_user = db.session.query(User).filter(User.id == currentUser.id).first()
                 check_current_user.phone = phone
                 db.session.commit()
-                return json({"error_message":"Successfully"},status=200)
+                return json({"error_message":"Thay đổi số điện thoại thành công"},status=200)
         else:
-            return json({"error_code":"PARAMS_ERROR","error_message":"Parameters are not correct"},status=520)
+            return json({"error_code":"PARAMS_ERROR","error_message":"Tham số không hợp lệ"},status=520)
         pass
-    return json({"error_code":"ERROR_SESSION","error_message":"Session expired!"},status=520)     
+    return json({"error_code":"ERROR_SESSION","error_message":"Phiên làm việc hết hạn, vui lòng đăng nhập lại!"},status=520)     
 
 
 @app.route('/api/v1/donvilist')
@@ -348,9 +348,9 @@ async def pre_post_user(data, **kw):
         user = db.session.query(User).filter((User.phone == data['phone']) | (User.email == data['email'])).first()
         if user is not None:
             print("user existed!!!!!!!!!!!!!!!!!!!!!!!1")
-            return json({"error_code":"USER_EXISTED","error_message":'Email or Phone existed'},status=520)
+            return json({"error_code":"USER_EXISTED","error_message":'Email hoặc số điện thoại đã tồn tại trong hệ thống'},status=520)
     else:
-        return json({"error_code":"PARRAM_ERROR","error_message":'parameter is incorrect'},status=520)
+        return json({"error_code":"PARRAM_ERROR","error_message":'Tham số không hợp lệ'},status=520)
 
 async def reset_user_passwd(instance_id=None, data=None,**kw):
     if (data is not None) and ('password' in data) and ('confirmpassword' in data):
@@ -360,12 +360,12 @@ async def reset_user_passwd(instance_id=None, data=None,**kw):
             
                 del data['confirmpassword']
             else:
-                 return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
+                 return json({"error_code": "PARAM_ERROR", "error_message":"Xác nhận mật khẩu không khớp"},status=520)
         else:
             del data['confirmpassword']
             del data['password']
     else:
-        return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
+        return json({"error_code": "PARAM_ERROR", "error_message":"Tham số không hợp lệ"},status=520)
 
 async def set_user_passwd(data=None,**kw):
     if (data is not None) and ('password' in data) and ('confirmpassword' in data):
@@ -374,10 +374,10 @@ async def set_user_passwd(data=None,**kw):
             del data['confirmpassword']
             print('DATA : ', to_dict(data))
         else:
-            return json({"error_code": "PARAM_ERROR", "error_message":"Confirm password is not match"},status=520)
+            return json({"error_code": "PARAM_ERROR", "error_message":"Mật khẩu không khớp"},status=520)
     else:
 
-        return json({"error_code": "PARAM_ERROR", "error_message":"Parameters are not correct"},status=520)
+        return json({"error_code": "PARAM_ERROR", "error_message":"Tham số không hợp lệ"},status=520)
          
 
         

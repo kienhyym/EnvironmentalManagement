@@ -468,46 +468,6 @@ define(function (require) {
 				self.$el.find("#header_table_sup").show();
 			}
 		},
-//		process_loaikybaocao:function(){
-//			var self = this;
-//			var currentRoute = self.getApp().router.currentRoute()['fragment'];
-//			if (currentRoute.indexOf('model/quy1')>=0){
-//				self.model.set("loaikybaocao",2);
-//				self.model.set("kybaocao",1);
-//				self.$el.find("#kydanhgia").val("Qúy I");
-//				self.getApp().data("vsthon_loaibaocao_route","quy1");
-//			} else if(currentRoute.indexOf('model/quy2')>=0){
-//				self.model.set("loaikybaocao",2);
-//				self.model.set("kybaocao",2);
-//				self.$el.find("#kydanhgia").val("Qúy II");
-//				self.getApp().data("vsthon_loaibaocao_route","quy2");
-//			} else if(currentRoute.indexOf('model/quy3')>=0){
-//				self.model.set("loaikybaocao",2);
-//				self.model.set("kybaocao",3);
-//				self.$el.find("#kydanhgia").val("Qúy III");
-//				self.getApp().data("vsthon_loaibaocao_route","quy3");
-//			} else if(currentRoute.indexOf('model/quy4')>=0){
-//				self.model.set("loaikybaocao",2);
-//				self.model.set("kybaocao",4);
-//				self.$el.find("#kydanhgia").val("Qúy IV");
-//				self.getApp().data("vsthon_loaibaocao_route","quy4");
-//			} else if(currentRoute.indexOf('model/6thangdau')>=0){
-//				self.model.set("loaikybaocao",3);
-//				self.model.set("kybaocao",1);
-//				self.$el.find("#kydanhgia").val("6 tháng đầu năm");
-//				self.getApp().data("vsthon_loaibaocao_route","6thangdau");
-//			} else if(currentRoute.indexOf('model/6thangcuoi')>=0){
-//				self.model.set("loaikybaocao",3);
-//				self.model.set("kybaocao",2);
-//				self.$el.find("#kydanhgia").val("6 tháng cuối năm");
-//				self.getApp().data("vsthon_loaibaocao_route","6thangcuoi");
-//			} else if(currentRoute.indexOf('model/nam')>=0){
-//				self.model.set("loaikybaocao",4);
-//				self.model.set("kybaocao",1);
-//				self.$el.find("#kydanhgia").val("Tổng kết năm");
-//				self.getApp().data("vsthon_loaibaocao_route","nam");
-//			}
-//		},
 		renderItemView:function(data){
 			var self  =this;
             var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});

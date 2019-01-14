@@ -13,16 +13,7 @@ define(function (require) {
 		urlPrefix: "/api/v1/",
 		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: [{
-					field: "thonxom",
-					label: "Thôn",
-					template: function (rowData) {
-						if (rowData.thonxom) {
-							return rowData.thonxom.ten
-						}
-						return "";
-					},
-				},
+			fields: [
 				{
 					field: "nganh",
 					label: "Ngành",
@@ -36,15 +27,15 @@ define(function (require) {
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "TĐ xây dựng"
+					label: "Tiến độ xây dựng"
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "TĐ rà soát"
+					label: "Tiến độ rà soát"
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "TĐ phê duyệt"
+					label: "Tiến độ phê duyệt"
 				}
 			],
 			onRowClick: function (event) {

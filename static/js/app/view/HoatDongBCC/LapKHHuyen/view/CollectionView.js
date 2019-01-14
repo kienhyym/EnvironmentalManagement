@@ -15,15 +15,6 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "xaphuong",
-					label: "Xã",
-					template: function (rowData) {
-						if (rowData.xaphuong) {
-							return rowData.xaphuong.ten
-						}
-						return "";
-					},
-				},{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
@@ -35,15 +26,15 @@ define(function (require) {
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "TĐ xây dựng"
+					label: "Tiến độ xây dựng"
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "TĐ rà soát"
+					label: "Tiến độ rà soát"
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "TĐ phê duyệt"
+					label: "Tiến độ phê duyệt"
 				}
 			],
 			onRowClick: function (event) {
