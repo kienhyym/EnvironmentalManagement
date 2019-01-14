@@ -60,6 +60,9 @@ require(['jquery', 'gonrin', 'app/router',
 				var string = reg.exec(url);
 				return string ? string[1] : undefined;
 			},
+			toInt: function(x) {
+				return parseInt(x) ? parseInt(x) : 0;
+			},
 			showloading: function () {
 				$("#loading").removeClass("hidden");
 			},

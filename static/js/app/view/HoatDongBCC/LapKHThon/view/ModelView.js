@@ -379,20 +379,27 @@ define(function (require) {
 				self.getApp().notify({message: "Tiến độ rà soát không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tiendo_pheduyet")) {
+			var tiendo_pheduyet = self.model.get("tiendo_pheduyet");
+			if (tiendo_pheduyet === null || tiendo_pheduyet=== undefined) {
 				self.getApp().notify({message: "Tiến độ phê duyệt không được để trống"},{type: "warning"});
 				return;
+			}else if(tiendo_pheduyet ===1){
+				if (!self.model.get("ngay_pheduyet")) {
+					self.getApp().notify({message: "Chưa chọn ngày phê duyệt kế hoạch BCC"},{type: "warning"});
+					return;
+				}
+				if (!self.model.get("sohoatdong_cotloi_pheduyet")) {
+					self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
+					return;
+				}
 			}
-			if (!self.model.get("sohoatdong_cotloi_hoanthanh")) {
-				self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
+			
+			if (!self.model.get("giangvien")) {
+				self.getApp().notify({message: "Số giảng viên của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tongsogiangvien")) {
-				self.getApp().notify({message: "Tổng số giảng viên không được để trống"},{type: "warning"});
-				return;
-			}
-			if (!self.model.get("tongsogiangvien_nu")) {
-				self.getApp().notify({message: "Tổng số giảng viên nữ không được để trống"},{type: "warning"});
+			if (!self.model.get("giangvien_nu")) {
+				self.getApp().notify({message: "Số giảng viên nữ của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
 			return true;
