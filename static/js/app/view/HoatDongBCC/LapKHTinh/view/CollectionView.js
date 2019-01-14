@@ -4,88 +4,81 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/LapKHTinh/tpl/collection.html'),
-		schema = require('json!schema/KeHoachThucHienSchema.json');
+	var template = require('text!../tpl/collection.html'),
+		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "kehoachthuchien",
+		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: [{
+			fields: [
+				{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
-						if (rowData.nganh === 1) {
-							return "NGÀNH Y TẾ";
-						} else {
-							return "NGÀNH GIÁO DỤC";
+						if (rowData.nganh) {
+							return rowData.nganh.tennganh
 						}
+						return "";
 					},
 				},
 				{
-					field: "tinhthanh",
-					textField: "ten",
-					label: "Tên tỉnh",
-					foreignRemoteField: "id",
-					foreignField: "tinhthanh_id",
+					field: "tiendo_xaydung",
+					label: "Tiến độ xây dựng"
 				},
 				{
-					field: "ngay_pheduyet",
-					label: "Ngày phê duyệt",
+					field: "tiendo_rasoat",
+					label: "Tiến độ rà soát"
 				},
 				{
-					field: "xaydungduthao_bcc",
-					label: "Xây dựng dự thảo kế hoạch BCC",
-					template: function (rowData) {
-						if (rowData.xaydungduthao === 2) {
-							return "Đã hooàn thành dự thảo";
-						} else if (rowData.xaydungduthao === 1) {
-							return "Đang xây dựng";
-						} else {
-							return "Chưa xây dựng";
-						}
-					},
-				},
-				{
-					field: "vihema_chapthuan",
-					label: "VIHEMA và WB",
-					template: function (rowData) {
-						if (rowData.vihera === 2) {
-							return "Đã chấp thuận";
-						} else if (rowData.vihera === 1) {
-							return "Đang rà soát";
-						} else {
-							return "Chưa rà soát";
-						}
-					},
-				},
-				{
-					field: "sohoatdong_bcc",
-					label: "Số hoạt động BCC cốt lõi"
-				},
-				{
-					field: "trangthai_tinhpheduyen",
-					label: "Trạng thái phê duyệt",
-					template: function (rowData) {
-						if (rowData.trangthai_tinhpheduyen === 1) {
-							return "Đã phê duyệt";
-						} else {
-							return "Chưa phê duyệt";
-						}
-					},
-				},
-
+					field: "tiendo_pheduyet",
+					label: "Tiến độ phê duyệt"
+				}
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = this.collectionName + '/model?id=' + event.rowId;
+					var path = 'hoatdongbcc/captinh/model/quy1?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
 		},
+		tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "create",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE",
+					command: function () {
+						var self = this;
+						var path = 'hoatdongbcc/captinh/model/quy1';
+						this.getApp().getRouter().navigate(path);
+					}
+				}
+			]
+		}],
 		render: function () {
+			var self = this;
+			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			this.uiControl.filters = {
+				"$and": [
+					{
+						"tuyendonvi": {"$eq": "tinh"}
+					}
+				]
+			};
+			if (loaikybaocao) {
+				this.uiControl.filters['$and'].push({
+					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+				});
+				this.uiControl.filters['$and'].push({
+					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+				});
+			}
 			this.applyBindings();
 			return this;
 		},

@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/DanhMuc/DanhMucHoatDong/tpl/model.html'),
 		schema = require('json!schema/DanhMucHoatDongSchema.json');
+	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 
 	return Gonrin.ModelView.extend({
 		template: template,
@@ -36,6 +37,12 @@ define(function (require) {
 							"text": "Thôn"
 						},
 					],
+				},
+				{
+					field: "nganh",
+					uicontrol: "ref",
+					textField: "tennganh",
+					dataSource: NganhSelectView
 				},
 			]
 		},
@@ -117,7 +124,6 @@ define(function (require) {
 			} else {
 				self.applyBindings();
 			}
-
 		},
 	});
 

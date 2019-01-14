@@ -1,5 +1,5 @@
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading">Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông</div>
+    <div class="panel-heading"><h3>Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông - Cấp Thôn </h3></div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 		<div class="row" style="margin-top: 30px;">
@@ -44,14 +44,14 @@
 								<td colspan="2">
 									<input type="text" class="form-control" data-bind="value:tiendo_pheduyet" />
 									<div class="row hide" id="pheduyet_extra">
-										<div class="col-lg-8 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê duyệt:</div>
-										<div class="col-lg-4 form-group">
+										<div class="col-lg-7 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê duyệt:</div>
+										<div class="col-lg-5 form-group">
 											<input type="text" data-bind="value:ngay_pheduyet"/>
 										</div>
-										<div class="col-lg-8 form-group">
+										<div class="col-lg-7 form-group">
 											<span class="glyphicon glyphicon-arrow-right"></span> Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt
 										</div>
-										<div class="col-lg-4 form-group">
+										<div class="col-lg-5 form-group">
 											<input type="text" data-bind="value:sohoatdong_cotloi_pheduyet"/>
 										</div>
 									</div>
@@ -61,6 +61,10 @@
 								<td colspan="2">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
 								<td colspan="2"><input type="text" class="form-control" data-bind="value:sohoatdong_cotloi_hoanthanh" /></td>
 							</tr>
+							<!-- <tr>
+								<td colspan="2">Ngành</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="dict:nganh"/></td>
+							</tr> -->
 							<tr>
 								<td colspan="2">Tổng số giảng viên</td>
 								<td colspan="2"><input type="text" class="form-control" data-bind="value:tongsogiangvien" /></td>
@@ -85,12 +89,12 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="top">Hoạt động</th>
+                        <th colspan="2" class="top">Hoạt động</th>
                         <th class="top">Mục tiêu</th>
                         <th class="top">Tiến độ thực hiện/ <br>Kết quả đạt được
+                        <th class="top">Ngành</th>
                         </th>
                         <th colspan="3" class="top text-center">Số người tham gia</th>
-                        <th class="top"></th>
                     </tr>
                 </thead>
                 <tbody id="danhsachhoatdong_list">
@@ -98,11 +102,12 @@
                         <td>(1)</td>
                         <td>(2)</td>
                         <td>(3)</td>
+                        <td></td>
                         <td colspan="3"></td>
                         <td></td>
                     </tr>
                     <tr class="custom" style="background: #F0F0F0;;">
-                        <td colspan="3">
+                        <td colspan="4">
                             <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                         </td>
                         <td>Tổng số người tham gia</td>
@@ -111,8 +116,9 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động
+                        <td colspan="4" class="text-left" style="color: red; font-weight: bold;">Hoạt động
                             cấp thôn</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>

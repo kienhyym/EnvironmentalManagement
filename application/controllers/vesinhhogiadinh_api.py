@@ -18,8 +18,115 @@ from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime
 
 
-
-
+@app.route('api/v1/thongkevesinh', methods=['GET'])
+async def ThongKe_VESINH(request):
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+    tinhthanh_id = request.args.get("tinhthanh_id", None)
+    
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    records = None
+    if(currentuser.donvi.tuyendonvi_id ==1):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == tinhthanh_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()
+    elif(currentuser.donvi.tuyendonvi_id ==2):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all() 
+    elif(currentuser.donvi.tuyendonvi_id ==3):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()  
+    elif(currentuser.donvi.tuyendonvi_id == 4):
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.xaphuong_id == currentuser.donvi.xaphuong_id, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.nambaocao == nambaocao)).all()                                                                                                                                     
+    if records is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
+    else:
+        results = {}
+        tong_soho = 0
+        tong_khongnhatieu = 0
+        tong_hopvs = 0
+        tong_tuhoai_hvs =0
+        tong_thamdoi_hvs =0
+        tong_2ngan_hvs =0
+        tong_ongthonghoi_hvs =0
+        tong_caithien_hvs = 0
+        tong_caithien_hongheo_hvs = 0
+        tong_diemruatay = 0
+        tentinhthanh = ""
+        tenquanhuyen = ""
+        tenxaphuong = ""
+        
+        for baocao in records:
+            tentinhthanh = baocao.tinhthanh.ten
+            tenquanhuyen = baocao.quanhuyen.ten
+            tenxaphuong = baocao.xaphuong.ten
+#             bcxa['tenxaphuong'] = baocao.xaphuong.ten
+#             bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
+#             bcxa['tentinhthanh'] = baocao.tinhthanh.ten
+#             bcxa['tongxa'] = len(records)
+#             if(baocao.tong_soho is None or baocao.tong_soho <= 0):
+#                 bcxa['tyle_conhatieu'] = 0
+#                 bcxa['tyle_conhatieu_hvs'] = 0
+#                 bcxa['tyle_tuhoai_hvs'] = 0
+#                 bcxa['tyle_thamdoi_hvs'] = 0
+#                 bcxa['tyle_2ngan_hvs'] = 0
+#                 bcxa['tyle_ongthonghoi_hvs'] = 0
+#                 bcxa['tyle_nhatieu_caithien_hvs'] = 0
+#                 bcxa['tyle_caithien_hongheo_hvs'] = 0
+#                 bcxa['tyle_diemruatay'] = 0
+#             else:
+#                 bcxa['tyle_conhatieu'] = ((baocao.tong_soho - baocao.tong_khongnhatieu)/baocao.tong_soho)*100
+#                 bcxa['tyle_conhatieu_hvs'] = (baocao.tong_hopvs/baocao.tong_soho)*100
+#                 bcxa['tyle_tuhoai_hvs'] = (baocao.tong_tuhoai_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_thamdoi_hvs'] = (baocao.tong_thamdoi_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_2ngan_hvs'] = (baocao.tong_2ngan_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_ongthonghoi_hvs'] = (baocao.tong_ongthonghoi_hvs/baocao.tong_soho)*100
+# 
+#                 bcxa['tyle_nhatieu_caithien_hvs'] = (baocao.tong_caithien_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_caithien_hongheo_hvs'] = (baocao.tong_caithien_hongheo_hvs/baocao.tong_soho)*100
+#                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
+#                 
+            tong_soho += baocao.tong_soho
+            tong_khongnhatieu = baocao.tong_khongnhatieu
+            tong_hopvs = baocao.tong_hopvs
+            tong_tuhoai_hvs = baocao.tong_tuhoai_hvs
+            tong_thamdoi_hvs = baocao.tong_thamdoi_hvs
+            tong_2ngan_hvs = baocao.tong_2ngan_hvs
+            tong_ongthonghoi_hvs = baocao.tong_ongthonghoi_hvs
+            tong_caithien_hvs = baocao.tong_caithien_hvs
+            tong_caithien_hongheo_hvs = baocao.tong_caithien_hongheo_hvs
+            tong_diemruatay = baocao.tong_diemruatay
+    
+        
+        results['tyle_conhatieu'] = ((tong_soho - tong_khongnhatieu)/tong_soho)*100
+        results['tyle_conhatieu_hvs'] = (tong_hopvs/tong_soho)*100
+        results['tyle_tuhoai_hvs'] = (tong_tuhoai_hvs/tong_soho)*100
+        results['tyle_thamdoi_hvs'] = (tong_thamdoi_hvs/tong_soho)*100
+        results['tyle_2ngan_hvs'] = (tong_2ngan_hvs/tong_soho)*100
+        results['tyle_ongthonghoi_hvs'] = (tong_ongthonghoi_hvs/tong_soho)*100
+        results['tyle_nhatieu_caithien_hvs'] = (tong_caithien_hvs/tong_soho)*100
+        results['tyle_caithien_hongheo_hvs'] = (tong_caithien_hongheo_hvs/tong_soho)*100
+        results['tyle_diemruatay'] = (tong_diemruatay/tong_soho)*100
+        results['tentinhthanh'] = tentinhthanh
+        results['tenquanhuyen'] = tenquanhuyen
+        results['tenxaphuong'] = tenxaphuong
+        return json(results)
 
 @app.route('api/v1/tiendovstx', methods=['GET'])
 async def ThongKe_TienDo_VSTX(request):
@@ -106,6 +213,83 @@ async def ThongKe_TienDo_VSTX(request):
                 bcxa['tongso_tramyte']= tongso_tramyte
                 bcxa['tongso_tramyte_hvs']= tongso_tramyte_hvs
                 bcxa['tongso_hocsinh']= tongso_hocsinh
+                if(tongso_truong>0):
+                    bcxa['tyle_truong_hvs']= (tongso_truong_hvs/tongso_truong)*100
+                else:
+                    bcxa['tyle_truong_hvs'] = 0
+                if tongso_tramyte >0:
+                    bcxa['tyle_tramyte_hvs']= (tongso_tramyte_hvs/tongso_tramyte)*100
+                else:
+                    bcxa['tyle_tramyte_hvs'] = 0
+            results.append(bcxa)
+        return json(results)
+    
+@app.route('api/v1/tiendovstx_benvung', methods=['GET'])
+async def ThongKe_TienDo_VSTX_BENVUNG(request):
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+    tinhthanh_id = request.args.get("tinhthanh_id", None)
+    
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    records = None
+    if(currentuser.donvi.tuyendonvi_id ==1):
+        records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.tinhthanh_id == tinhthanh_id).all()
+    elif(currentuser.donvi.tuyendonvi_id ==2):
+        records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.tinhthanh_id == currentuser.donvi.tinhthanh_id).all() 
+    elif(currentuser.donvi.tuyendonvi_id ==3):
+        records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.quanhuyen_id == currentuser.donvi.quanhuyen_id).all()  
+    elif(currentuser.donvi.tuyendonvi_id == 4):
+        records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.xaphuong_id == currentuser.donvi.xaphuong_id).all()                                                                                                                                     
+    if records is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
+    else:
+        results = []
+        for baocao in records:
+            bcxa = {}
+            bcxa['tenxaphuong'] = baocao.xaphuong.ten
+            bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
+            bcxa['tentinhthanh'] = baocao.tinhthanh.ten
+            bcxa['tongxa'] = len(records)
+            bcxa['namdat_vstx'] = baocao.nam_datvesinh_toanxa
+            bcxa['namdat_vstx_benvung'] = baocao.nam_datvesinh_toanxa_benvung
+            record_truong_tram = db.session.query(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc).filter(
+                and_(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.xaphuong_id == baocao.xaphuong_id, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.loaikybaocao == loaikybaocao, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.kybaocao == kybaocao, \
+                Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.nambaocao == nambaocao)).all()
+            if record_truong_tram is None:
+                bcxa['tongso_truong'] = 0
+                bcxa['tongso_tramyte'] = 0
+                bcxa['tongso_truong_hvs'] = 0
+                bcxa['tongso_tramyte_hvs'] = 0
+                bcxa['tyle_truong_hvs'] = 0
+                bcxa['tyle_tramyte_hvs'] = 0
+            else:
+                tongso_truong = 0
+                tongso_truong_hvs = 0
+                tongso_tramyte = 0
+                tongso_tramyte_hvs = 0
+                for bc_truongtram in record_truong_tram:
+                    if (bc_truongtram.loai_truong_tramyte is not None and bc_truongtram.loai_truong_tramyte == 7):
+                        tongso_tramyte +=1
+                        if bc_truongtram.ketluan is not None and bc_truongtram.ketluan ==1:
+                            tongso_tramyte_hvs +=1
+                    if (bc_truongtram.loai_truong_tramyte is not None and bc_truongtram.loai_truong_tramyte in [1,2,3,4,5,6]):
+                        tongso_truong +=1
+                        if bc_truongtram.ketluan is not None and bc_truongtram.ketluan ==1:
+                            tongso_truong_hvs +=1
+                bcxa['tongso_truong']= tongso_truong
+                bcxa['tongso_truong_hvs']= tongso_truong_hvs
+                bcxa['tongso_tramyte']= tongso_tramyte
+                bcxa['tongso_tramyte_hvs']= tongso_tramyte_hvs
                 if(tongso_truong>0):
                     bcxa['tyle_truong_hvs']= (tongso_truong_hvs/tongso_truong)*100
                 else:
@@ -426,7 +610,6 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
-    await process_baocao_vesinh(currentuser,DuyetVeSinhToanXa,data)
     
 
 apimanager.create_api(HoGiaDinh,
@@ -434,6 +617,7 @@ apimanager.create_api(HoGiaDinh,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
 
 apimanager.create_api(VSCapThon,
@@ -441,6 +625,7 @@ apimanager.create_api(VSCapThon,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func,entity_pregetmany], POST=[auth_func, baocao_prepost_vscapthon], PUT_SINGLE=[auth_func, pre_put_vscapthon], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscapthon')
 
 # apimanager.create_api(NhaTieuThonHVS,
@@ -454,6 +639,7 @@ apimanager.create_api(VSCapXa,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscapxa], PUT_SINGLE=[auth_func, pre_put_vscapxa], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_capxa_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscapxa')
 
 
@@ -462,6 +648,7 @@ apimanager.create_api(VSCapHuyen,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaphuyen], PUT_SINGLE=[auth_func,pre_put_vscaphuyen], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_caphuyen_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscaphuyen')
 
 
@@ -470,6 +657,7 @@ apimanager.create_api(VSCapTinh,
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, baocao_prepost_vscaptinh], PUT_SINGLE=[auth_func,pre_put_vscaptinh], DELETE_SINGLE=[auth_func]),
     postprocess=dict(GET_SINGLE=[reponse_captinh_get_single], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='vscaptinh')
 
 
@@ -477,6 +665,7 @@ apimanager.create_api(TienDoVeSinhToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='tiendovesinhtoanxa')
 
 
@@ -484,11 +673,13 @@ apimanager.create_api(BaoCaoTienDoDuyTriVSTXBenVung,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='baocao_tiendo_duytri_vstx_benvung')
 
 apimanager.create_api(DuyetVeSinhToanXa,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_duyetvstoanxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='duyet_vesinh_toanxa')
 

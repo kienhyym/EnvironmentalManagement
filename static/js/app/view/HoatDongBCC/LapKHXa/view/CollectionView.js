@@ -15,10 +15,6 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "thonxom",
-					label: "Thôn"
-				},
-				{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
@@ -31,15 +27,15 @@ define(function (require) {
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "TĐ xây dựng"
+					label: "Tiến độ xây dựng"
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "TĐ rà soát"
+					label: "Tiến độ rà soát"
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "TĐ phê duyệt"
+					label: "Tiến độ phê duyệt"
 				}
 			],
 			onRowClick: function (event) {
@@ -54,34 +50,37 @@ define(function (require) {
 			type: "group",
 			groupClass: "toolbar-group",
 			buttons: [{
-					name: "create",
-					type: "button",
-					buttonClass: "btn-success btn-sm",
-					label: "TRANSLATE:CREATE",
-					command: function () {
-						var self = this;
-						var path = 'hoatdongbcc/capxa/model/quy1';
-						this.getApp().getRouter().navigate(path);
-					}
+				name: "create",
+				type: "button",
+				buttonClass: "btn-success btn-sm",
+				label: "TRANSLATE:CREATE",
+				command: function () {
+					var self = this;
+					var path = 'hoatdongbcc/capxa/model/quy1';
+					this.getApp().getRouter().navigate(path);
 				}
-			]
+			}]
 		}],
 		render: function () {
 			var self = this;
 			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
 			this.uiControl.filters = {
-				"$and": [
-					{
-						"tuyendonvi": {"$eq": "xa"}
+				"$and": [{
+					"tuyendonvi": {
+						"$eq": "xa"
 					}
-				]
+				}]
 			};
 			if (loaikybaocao) {
 				this.uiControl.filters['$and'].push({
-					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+					"loaikybaocao": {
+						"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao
+					}
 				});
 				this.uiControl.filters['$and'].push({
-					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+					"kybaocao": {
+						"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao
+					}
 				});
 			}
 			this.applyBindings();

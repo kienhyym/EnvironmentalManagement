@@ -15,30 +15,30 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
+					field: "nambaocao",
+					label: "Năm báo cáo"
+				},
+				{
 					field: "thonxom",
-					label: "Thôn"
-				},{
-					field: "nganh",
-					label: "Ngành",
+					label: "Thôn",
 					template: function (rowData) {
-						if (rowData.nganh === 1) {
-							return "NGÀNH Y TẾ";
-						} else {
-							return "NGÀNH GIÁO DỤC";
+						if (rowData.thonxom) {
+							return rowData.thonxom.ten
 						}
+						return "";
 					},
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "TĐ xây dựng"
+					label: "Tiến độ xây dựng"
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "TĐ rà soát"
+					label: "Tiến độ rà soát"
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "TĐ phê duyệt"
+					label: "Tiến độ phê duyệt"
 				}
 			],
 			onRowClick: function (event) {
@@ -59,7 +59,8 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
-						var path = 'hoatdongbcc/capthon/model/quy1';
+						var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+						var path = 'hoatdongbcc/capthon/model/' + loaikybaocao;
 						this.getApp().getRouter().navigate(path);
 					}
 				}
@@ -67,24 +68,42 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
-			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
-			this.uiControl.filters = {
-				"$and": [
-					{
-						"tuyendonvi": {"$eq": "thon"}
-					}
-				]
-			};
-			if (loaikybaocao) {
-				this.uiControl.filters['$and'].push({
-					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
-				});
-				this.uiControl.filters['$and'].push({
-					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
-				});
+			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
+			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+				return;
+			}else{
+				var txt_header = "Danh sách báo cáo cấp Thôn - "+itemkybaocao.text;
+				self.$el.find(".panel-heading h3").html(txt_header);
+				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"tuyendonvi": {"$eq": "thon"}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
+				this.applyBindings();
+				return this;
 			}
-			this.applyBindings();
-			return this;
+			
+			
+//			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+//			this.uiControl.filters = {
+//				"$and": [
+//					{
+//						"tuyendonvi": {"$eq": "thon"}
+//					}
+//				]
+//			};
+//			if (loaikybaocao) {
+//				this.uiControl.filters['$and'].push({
+//					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+//				});
+//				this.uiControl.filters['$and'].push({
+//					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+//				});
+//			}
+//			this.applyBindings();
+//			return this;
 		},
 	});
 

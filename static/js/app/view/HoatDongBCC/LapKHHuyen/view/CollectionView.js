@@ -4,60 +4,81 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/LapKHHuyen/tpl/collection.html'),
-		schema = require('json!schema/ItemHuyenSchema.json');
+	var template = require('text!../tpl/collection.html'),
+		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "itemhuyen",
+		collectionName: "tiendo_kehoach_bcc",
 		uiControl: {
-			fields: [{
+			fields: [
+				{
 					field: "nganh",
 					label: "Ngành",
 					template: function (rowData) {
-						if (rowData.nganh === 1) {
-							return "NGÀNH Y TẾ";
-						} else {
-							return "NGÀNH GIÁO DỤC";
+						if (rowData.nganh) {
+							return rowData.nganh.tennganh
 						}
+						return "";
 					},
 				},
 				{
-					field: "hoatdong",
-					label: "Hoạt động"
+					field: "tiendo_xaydung",
+					label: "Tiến độ xây dựng"
 				},
 				{
-					field: "muctieu",
-					label: "Mục tiêu"
+					field: "tiendo_rasoat",
+					label: "Tiến độ rà soát"
 				},
 				{
-					field: "ketqua_datduoc",
-					label: "Kết quả đạt được"
-				},
-				{
-					field: "songuoi_lanu",
-					label: "Số người tham gia là nữ"
-				},
-				{
-					field: "tongsonguoi_thamgia",
-					label: "Tổng số người tham gia"
-				},
-				{
-					field: "songuoi_dantocthieuso",
-					label: "Số người tham gia là DTTS"
-				},
-
+					field: "tiendo_pheduyet",
+					label: "Tiến độ phê duyệt"
+				}
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = this.collectionName + '/model?id=' + event.rowId;
+					var path = 'hoatdongbcc/caphuyen/model/quy1?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
 		},
+		tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "create",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE",
+					command: function () {
+						var self = this;
+						var path = 'hoatdongbcc/caphuyen/model/quy1';
+						this.getApp().getRouter().navigate(path);
+					}
+				}
+			]
+		}],
 		render: function () {
+			var self = this;
+			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			this.uiControl.filters = {
+				"$and": [
+					{
+						"tuyendonvi": {"$eq": "huyen"}
+					}
+				]
+			};
+			if (loaikybaocao) {
+				this.uiControl.filters['$and'].push({
+					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
+				});
+				this.uiControl.filters['$and'].push({
+					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
+				});
+			}
 			this.applyBindings();
 			return this;
 		},

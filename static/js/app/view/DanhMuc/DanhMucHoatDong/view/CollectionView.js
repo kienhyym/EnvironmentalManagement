@@ -16,40 +16,42 @@ define(function (require) {
 			fields: [{
 					field: "id",
 					label: "ID",
-					width: 250,
 					readonly: true,
 				},
 				{
 					field: "mahoatdong",
 					label: "Mã",
-					width: 250
 				},
 				{
 					field: "tenhoatdong",
 					label: "Tên hoạt động",
-					width: 250
 				},
 				{
 					field: "loai_hoatdong",
 					label: "Phạm vi",
 					template: function (dataRow) {
 						if (dataRow.loai_hoatdong === "tinh") {
-							return "Trong tỉnh"
+							return "Cấp Tỉnh"
 						} else if (dataRow.loai_hoatdong === "huyen") {
-							return "Trong huyện";
+							return "Cấp Huyện";
 						} else if (dataRow.loai_hoatdong === "xa") {
-							return "Trong Xã";
+							return "Cấp Xã";
 						} else {
-							return "Trong Thôn";
+							return "Cấp Thôn";
 						}
 					},
-					width: 250
 				},
 				{
 					field: "muctieu",
 					label: "Mục tiêu hoạt động",
-					width: 250
 				},
+				{
+	            	 field: "nganh_id", 
+	            	 label: "Ngành",
+	            	 foreign: "nganh",
+	            	 foreignValueField: "id",
+	            	 foreignTextField: "tennganh",
+	           	 }
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
@@ -60,6 +62,7 @@ define(function (require) {
 			}
 		},
 		render: function () {
+			this.uiControl.orderBy = [{"field": "loai_hoatdong", "direction": "asc"},{"field": "tenhoatdong", "direction": "asc"}];
 			this.applyBindings();
 			return this;
 		},

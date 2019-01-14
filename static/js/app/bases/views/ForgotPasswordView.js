@@ -83,9 +83,15 @@ define(function (require) {
        		    	$('.form-actions').html('<label class="control-label">'+data.error_msg+'</label>');
        		    	//self.getApp().getRouter().navigate("login");
        		    },
-       		    error: function(XMLHttpRequest, textStatus, errorThrown) {
-       		    	self.getApp().notify("Request forgot password error");
-       		    }
+       		    error: function(xhr, status, error){
+    		    	try {
+    		    		self.getApp().notify($.parseJSON(xhr.responseText).error_message);
+    		    		}				  	  				    	
+    		    	catch(err) {
+    		    		self.getApp().notify("có lỗi xảy ra, vui lòng thử lại sau ");
+    		    		}
+	       			
+	       		 }
        		});
        	},
 

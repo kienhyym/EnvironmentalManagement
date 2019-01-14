@@ -5,6 +5,7 @@ define(function (require) {
 		Gonrin = require('gonrin');
 
 	var template = require('text!./tpl/hoatdongitem.html');
+	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 
 	var schema = {
 		"id": {
@@ -22,6 +23,12 @@ define(function (require) {
 		},
 		"tiendo": {
 			"type": "string"
+		},
+		"nganh_id": {
+			"type": "string"
+		},
+		"nganh": {
+			"type": "dict"
 		},
 		"songuoithamgia": {
 			"type": "number"
@@ -41,7 +48,14 @@ define(function (require) {
 		tagName: "tr",
 		collectionName: "danhmuchoatdong",
 		uiControl: {
-			fields: []
+			fields: [{
+				field: "nganh",
+				uicontrol: "ref",
+				textField: "tennganh",
+				foreignRemoteField: "id",
+				foreignField: "nganh_id",
+				dataSource: NganhSelectView
+			}]
 		},
 		tools: null,
 		render: function () {
