@@ -18,7 +18,7 @@ from .helpers import *
 from sqlalchemy import or_
 from application.client import HTTPClient
 
-async def preprocess_cap_thon(request=None, data=None, Model=None, **kw):
+async def preprocess_kehoachbcc(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
@@ -26,14 +26,38 @@ async def preprocess_cap_thon(request=None, data=None, Model=None, **kw):
     if request.method == "POST":
         if "nambaocao" not in data or data["nambaocao"] is None:
             return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+        
+        if "kybaocao" not in data or data["kybaocao"] is None or "tuyendonvi" not in data or data["tuyendonvi"] is None or "loaikybaocao" not in data or data["loaikybaocao"] is None:
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Tham số không hợp lệ, vui lòng kiểm tra lại"}, status=520)
     
         record = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi_id,\
+                                                                TienDoKeHoachBCC.loaikybaocao == data['loaikybaocao'], \
+                                                                TienDoKeHoachBCC.kybaocao == data['kybaocao'], \
                                                                 TienDoKeHoachBCC.nambaocao == data['nambaocao'],
                                                                 TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).first()
-    
+                                                                
         if record is not None:
             return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
-
+        
+        baocao_donvicon = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi.captren_id,\
+                                                            TienDoKeHoachBCC.loaikybaocao == data['loaikybaocao'], \
+                                                            TienDoKeHoachBCC.kybaocao == data['kybaocao'], \
+                                                            TienDoKeHoachBCC.nambaocao == data['nambaocao'],
+                                                            TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).first()
+        tongsogiangvien = 0
+        tongsogiangvien_nu = 0
+#         tongsonguoithamgia =0
+#         tongsonguoithamgia_nu =0
+#         tongsonguoithamgia_dtts =0
+        if  baocao_donvicon is not None:
+            for donvicon in baocao_donvicon:
+                tongsogiangvien += donvicon.giangvien
+                tongsogiangvien_nu += donvicon.giangvien_nu
+        
+        data['tongsogiangvien'] = tongsogiangvien + data["giangvien"]
+        data['tongsogiangvien_nu'] = tongsogiangvien_nu + data["giangvien_nu"]
+                                 
+        
         data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
         data['donvi_id'] = currentuser.donvi_id
         data['nguoibaocao_id'] = currentuser.id
@@ -59,8 +83,8 @@ apimanager.create_api(TienDoKeHoachBCC,
     preprocess=dict(
         GET_SINGLE=[auth_func],
         GET_MANY=[auth_func],
-        POST=[auth_func, preprocess_cap_thon],
-        PUT_SINGLE=[auth_func, preprocess_cap_thon],
+        POST=[auth_func, preprocess_kehoachbcc],
+        PUT_SINGLE=[auth_func, preprocess_kehoachbcc],
         DELETE_SINGLE=[auth_func]),
     collection_name='tiendo_kehoach_bcc')
 

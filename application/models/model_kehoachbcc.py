@@ -48,13 +48,13 @@ class TienDoKeHoachBCC(CommonModel):
     nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
     nganh = relationship('Nganh')
     
-    giangvien = db.Column(db.Integer)# giang vien tai don vi
-    giangvien_nu = db.Column(db.Integer)# giang vien tai don vi
-    tongsogiangvien = db.Column(db.Integer)#tong so giang vien, bao gom cac don vi con
-    tongsogiangvien_nu = db.Column(db.Integer)
-    tongsonguoithamgia = db.Column(db.Integer)
-    tongsonguoithamgia_nu = db.Column(db.Integer)
-    tongsonguoithamgia_dtts = db.Column(db.Integer)
+    giangvien = db.Column(db.Integer, default =0)# giang vien tai don vi
+    giangvien_nu = db.Column(db.Integer, default =0)# giang vien tai don vi
+    tongsogiangvien = db.Column(db.Integer, default =0)#tong so giang vien, bao gom cac don vi con
+    tongsogiangvien_nu = db.Column(db.Integer, default =0)
+    tongsonguoithamgia = db.Column(db.Integer, default =0)
+    tongsonguoithamgia_nu = db.Column(db.Integer, default =0)
+    tongsonguoithamgia_dtts = db.Column(db.Integer, default =0)
     
     danhsach_hoatdong = db.Column(JSONB())
     tuyendonvi = db.Column(db.String)#tinh/huyen/xa/thon
