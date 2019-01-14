@@ -15,26 +15,52 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "nganh",
-					label: "Ngành",
+					field: "nambaocao",
+					label: "Năm báo cáo"
+				},
+				{
+					field: "quanhuyen",
+					label: "Huyện",
 					template: function (rowData) {
-						if (rowData.nganh) {
-							return rowData.nganh.tennganh
+						if (rowData.quanhuyen) {
+							return rowData.quanhuyen.ten
 						}
 						return "";
 					},
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "Tiến độ xây dựng"
+					label: "Tiến độ xây dựng",
+					template: function (rowData) {
+						if (rowData.tiendo_xaydung == 2){
+							return "Đã hoàn thành";
+						} else if (rowData.tiendo_xaydung == 1){
+							return "Đang xây dựng";
+						}
+						return "Chưa xây dựng";
+					}
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "Tiến độ rà soát"
+					label: "Tiến độ rà soát",
+					template: function (rowData) {
+						if (rowData.tiendo_rasoat == 2){
+							return "Đã chấp thuận";
+						} else if (rowData.tiendo_rasoat == 1){
+							return "Đang rà soát";
+						}
+						return "Chưa chấp thuận";
+					}
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "Tiến độ phê duyệt"
+					label: "Tiến độ phê duyệt",
+					template: function (rowData) {
+						if (rowData.tiendo_pheduyet == 1){
+							return "Đã phê duyệt";
+						}
+						return "Chưa phê duyệt";
+					}
 				}
 			],
 			onRowClick: function (event) {
@@ -55,7 +81,8 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
-						var path = 'hoatdongbcc/caphuyen/model/quy1';
+						var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
+						var path = 'hoatdongbcc/caphuyen/model/' + loaikybaocao;
 						this.getApp().getRouter().navigate(path);
 					}
 				}
@@ -63,24 +90,22 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
-			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
-			this.uiControl.filters = {
-				"$and": [
-					{
-						"tuyendonvi": {"$eq": "huyen"}
-					}
-				]
-			};
-			if (loaikybaocao) {
-				this.uiControl.filters['$and'].push({
-					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
-				});
-				this.uiControl.filters['$and'].push({
-					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
-				});
+			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
+			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+				return;
+			}else{
+				var txt_header = "Danh sách báo cáo cấp Huyện - "+itemkybaocao.text;
+				self.$el.find(".panel-heading h3").html(txt_header);
+				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"tuyendonvi": {"$eq": "huyen"}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
+				this.applyBindings();
+				return this;
 			}
-			this.applyBindings();
-			return this;
 		},
 	});
 

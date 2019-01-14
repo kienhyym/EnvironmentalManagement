@@ -4,15 +4,15 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/PhuLuc/LapKHXa/tpl/collection.html'),
-		schema = require('json!schema/ItemXaSchema.json');
+	var template = require('text!app/view/HoatDongBCC/LapKHXa/tpl/collection.html'),
+		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
 	var CustomFilterView = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionDialogView.extend({
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "itemxa",
+		collectionName: "tiendo_kehoach_bcc",
 		tools: [{
 			name: "defaultgr",
 			type: "group",
@@ -34,7 +34,7 @@ define(function (require) {
 			var self = this;
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
-				sessionKey: "lapkhtinh_filter"
+				sessionKey: "tiendo_kehoach_bcc_filter"
 			});
 			filter.render();
 

@@ -9,7 +9,6 @@ define(function (require) {
 	var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
 	var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
-//	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 	var NganhSelectView = require('app/view/DanhMuc/Nganh/SelectView');
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
@@ -34,7 +33,6 @@ define(function (require) {
 					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
@@ -43,7 +41,6 @@ define(function (require) {
 					field: "xaphuong",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "xaphuong_id",
 					dataSource: XaPhuongSelectView
@@ -52,20 +49,10 @@ define(function (require) {
 					field: "quanhuyen",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
 				},
-//				{
-//					field: "thonxom",
-//					uicontrol: "ref",
-//					textField: "ten",
-//					//chuyen sang thanh object
-//					foreignRemoteField: "id",
-//					foreignField: "thonxom_id",
-//					dataSource: ThonXomSelectView
-//				},
 				{
 					field: "nganh",
 					uicontrol: "ref",
@@ -80,7 +67,7 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "Đã hooàn thành dự thảo", value: 2},
+						{text: "Đã hoàn thành dự thảo", value: 2},
 						{text: "Đang xây dựng", value: 1},
 						{text: "Chưa xây dựng", value: 0}
 					]
@@ -113,8 +100,6 @@ define(function (require) {
 				}
 			]
 		},
-
-
 		tools: [{
 			name: "defaultgr",
 			type: "group",
@@ -126,7 +111,6 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-
 						Backbone.history.history.back();
 					}
 				},
@@ -143,16 +127,15 @@ define(function (require) {
 						}
 						self.model.save(null, {
 							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
+								self.getApp().notify({message:"Lưu thông tin thành công"}, {type:"success"});
 								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
-
 							},
 							error: function (model, xhr, options) {
-								// var msgJson = $.parseJSON(xhr.responseText);
-								// 	if (msgJson) {
-								// 		self.getApp().notify({message: msgJson.error_message}, {type: "danger"});
-								// 	}
-								self.getApp().notify('Lưu thông tin không thành công!');
+								try {
+									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								} catch (err) {
+									self.getApp().notify({ message: 'Lưu thông tin không thành công!' }, { type: "danger", delay: 1000 });
+								}
 							}
 						});
 					}
@@ -170,7 +153,7 @@ define(function (require) {
 						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
 						self.model.destroy({
 							success: function (model, response) {
-								self.getApp().notify('Xoá dữ liệu thành công');
+								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
 								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
 							},
 							error: function (model, xhr, options) {
@@ -181,7 +164,6 @@ define(function (require) {
 				},
 			],
 		}],
-
 		render: function () {
 			var self = this;
 			var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
@@ -194,48 +176,33 @@ define(function (require) {
 				this.model.fetch({
 					success: function (data) {
 						self.applyBindings();
-//						self.setDefaultData();
 						self.onChangeEvents();
-						self.renderDanhSach();
+						self.renderDanhSach(data.attributes.danhsach_hoatdong);
 					},
 					error: function (xhr) {
 						self.getApp().notify({message: xhr.toString()}, {type: "danger"});
 					},
 				});
 			} else {
-				
 				self.setDefaultData();
 				self.applyBindings();
 				self.onChangeEvents();
-				self.renderDanhSach();
+				self.renderDanhSach(null);
 			}
-			
 			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
-
-				if (!self.model.get("nganh")) {
-					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
-					return;
-				}
-				self.filterParams = JSON.parse(JSON.stringify(params));
-
-				self.filterParams['filters']['$and'].push({
-					'nganh_id': {'$eq': self.model.get("nganh").id}
-				});
-				
-				var dmHoatDongDialog = new DMHoatDongSelectView({
-					viewData: {
-						"query": self.filterParams
-					}
-				});
-				
+				var dmHoatDongDialog = new DMHoatDongSelectView({"viewData":{"loai_hoatdong":"xa"}});
 				dmHoatDongDialog.dialog();
-				
-				dmHoatDongDialog.on("onSelected", function(event) {
+				dmHoatDongDialog.on("onSelected", function(data) {
 					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-					danhsachhoatdong = danhsachhoatdong.concat(dmHoatDongDialog.uiControl.selectedItems);
-					self.model.set("danhsach_hoatdong", danhsachhoatdong);
-					console.log("danhsach_hoatdong: ", danhsachhoatdong);
-					self.renderDanhSach();
+	                for(var i=0; i< danhsachhoatdong.length; i++){
+	                	var item = danhsachhoatdong[i];
+	                	if(item.id === data.id){
+	                		self.getApp().notify("Hoạt động đã tồn tại trong báo cáo");
+	                		return;
+	                	}
+	                }
+					self.model.get("danhsach_hoatdong").push(data);
+					self.renderHoatDongView(data);
 				});
 			});
 		},
@@ -262,10 +229,8 @@ define(function (require) {
 			}
 			self.model.set("tuyendonvi", "xa");
 		},
-		
 		onChangeEvents: function() {
 			var self = this;
-			
 			self.model.on("change:tiendo_pheduyet", function(model) {
 				if (self.model.get("tiendo_pheduyet") == 1) {
 					if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
@@ -277,30 +242,55 @@ define(function (require) {
 					}
 				}
 			});
-
 			if (self.model.get("tiendo_pheduyet") == 1) {
 				if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
 					self.$el.find("#pheduyet_extra").removeClass("hide");
 				}
 			}
-			
-			self.model.on("change:nganh", function() {
-				self.renderDanhSach();
-			});
 		},
-		
-		renderDanhSach: function() {
+		renderHoatDongView:function(data){
+			var self = this;
+			var hoatDongItemView = new HoatDongItemView();
+			hoatDongItemView.model.set(JSON.parse(JSON.stringify(data)));
+			hoatDongItemView.render();
+			hoatDongItemView.$el.find("#itemRemove").unbind('click').bind('click',{obj:data}, function(e){
+            	var fields = self.model.get("danhsach_hoatdong");
+            	var data = e.data.obj;
+                for( var i = 0; i < fields.length; i++){ 
+                	   if ( fields[i].id === data.id) {
+                		   fields.splice(i, 1); 
+                	   }
+                	}
+                self.model.set("danhsach_hoatdong", fields);
+                self.model.trigger("change");
+                hoatDongItemView.destroy();
+                hoatDongItemView.remove();
+            });
+			hoatDongItemView.on("change", function(data) {
+				var dshoatdong = self.model.get("danhsach_hoatdong");
+				dshoatdong.forEach(function(item, idx) {
+					if (item.id == data.id) {
+						dshoatdong[idx] = data;
+					}
+				});
+				self.model.set("danhsach_hoatdong", JSON.parse(JSON.stringify((dshoatdong))));
+				self.model.trigger("change");
+			});
+			self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
+		},
+		renderDanhSach: function(danhsachhoatdong) {
 			var self = this;
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
 			<tr class="top">
-                <td>(1)</td>
+                <td colspan="2">(1)</td>
                 <td>(2)</td>
                 <td>(3)</td>
+                <td></td>
                 <td colspan="3"></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
-                <td colspan="3">
+                <td colspan="5">
                     <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                 </td>
                 <td>Tổng số người tham gia</td>
@@ -308,58 +298,35 @@ define(function (require) {
                 <td>Số người tham gia là DTTS</td>
             </tr>
             <tr>
-                <td colspan="3" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã/phường</td>
+                <td colspan="5" class="text-left" style="color: red; font-weight: bold;">Hoạt động cấp xã/phường</td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>`);
-			var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-
-			function render(dshoatdong) {
-				dshoatdong.forEach(function(hoatdong, idx) {
-					var hoatDongItemView = new HoatDongItemView();
-					hoatDongItemView.model.set(JSON.parse(JSON.stringify(hoatdong)));
-					hoatDongItemView.render();
-					hoatDongItemView.on("change", function(data) {
-						dshoatdong.forEach(function(item, idx) {
-							if (item.id == data.id) {
-								dshoatdong[idx] = data;
+			
+			if(danhsachhoatdong === null){
+				$.ajax({
+					url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
+		    		data: {"q": JSON.stringify({"filters": {"loai_hoatdong":{"$eq":"xa"}}, "order_by":[{"field": "nganh_id", "direction": "asc"}]})},
+					type: "GET",
+					success: function(data) {
+						self.model.set("danhsach_hoatdong",[]);
+						$.each(data.objects, function(idx, obj){
+							if(!!obj && obj.id !==null && obj.id.length>0){
+								self.model.get("danhsach_hoatdong").push(obj);
+				                self.renderHoatDongView(obj);
 							}
 						});
-						self.model.set("danhsach_hoatdong", JSON.parse(JSON.stringify((dshoatdong))));
-					});
-					self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
+					},
+					error: function (xhr, status, error) {
+						self.getApp().notify("Không lấy được danh sách hoạt động, vui lòng thử lại sau!");
+					},
 				});
-			}
-
-			if (!self.model.get("nganh")) {
-				if (!self.onInit) {
-					self.getApp().notify({message: "Vui lòng chọn ngành trước"}, {type: "danger"});
+			}else{
+				for(var i=0; i< danhsachhoatdong.length; i++){
+					self.renderHoatDongView(danhsachhoatdong[i]);
 				}
-				self.onInit = false;
-				return;
 			}
-			self.filterParams = JSON.parse(JSON.stringify(params));
-
-			self.filterParams['filters']['$and'].push({
-				'nganh_id': {'$eq': self.model.get("nganh").id}
-			});
-			
-			$.ajax({
-				url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
-				data: "q="+JSON.stringify(self.filterParams),
-				type: "GET",
-				success: function(response) {
-					console.log("response: ", response);
-					if (!danhsachhoatdong.length) {
-						danhsachhoatdong = response.objects;
-					}
-					render(danhsachhoatdong);
-				},
-				error: function(xhr) {
-					
-				}
-			});
 		},
 		validate : function() {
 			const self = this;
@@ -379,36 +346,41 @@ define(function (require) {
 				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
 				return;
 			}
-//			if (!self.model.get("thonxom")) {
-//				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
-//				return;
-//			}
-			if (!self.model.get("tiendo_xaydung")) {
+			if (self.model.get("tiendo_xaydung") === null || self.model.get("tiendo_xaydung") === "") {
 				self.getApp().notify({message: "Tiến độ xây dựng không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tiendo_rasoat")) {
+			if (self.model.get("tiendo_rasoat") === null || self.model.get("tiendo_rasoat") === "") {
 				self.getApp().notify({message: "Tiến độ rà soát không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tiendo_pheduyet")) {
+			var tiendo_pheduyet = self.model.get("tiendo_pheduyet");
+			if (tiendo_pheduyet === null || tiendo_pheduyet=== undefined) {
 				self.getApp().notify({message: "Tiến độ phê duyệt không được để trống"},{type: "warning"});
 				return;
+			}else if(tiendo_pheduyet ===1){
+				if (!self.model.get("ngay_pheduyet")) {
+					self.getApp().notify({message: "Chưa chọn ngày phê duyệt kế hoạch BCC"},{type: "warning"});
+					return;
+				}
+				if (!self.model.get("sohoatdong_cotloi_pheduyet")) {
+					self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
+					return;
+				}
 			}
 			if (!self.model.get("sohoatdong_cotloi_hoanthanh")) {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tongsogiangvien")) {
-				self.getApp().notify({message: "Tổng số giảng viên không được để trống"},{type: "warning"});
+			if (!self.model.get("giangvien")) {
+				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tongsogiangvien_nu")) {
-				self.getApp().notify({message: "Tổng số giảng viên nữ không được để trống"},{type: "warning"});
+			if (!self.model.get("giangvien_nu")) {
+				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
 			return true;
 		},
 	});
-
 });

@@ -34,7 +34,6 @@ define(function (require) {
 					field: "tinhthanh",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
@@ -43,7 +42,6 @@ define(function (require) {
 					field: "xaphuong",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "xaphuong_id",
 					dataSource: XaPhuongSelectView
@@ -52,7 +50,6 @@ define(function (require) {
 					field: "quanhuyen",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView
@@ -61,7 +58,6 @@ define(function (require) {
 					field: "thonxom",
 					uicontrol: "ref",
 					textField: "ten",
-					//chuyen sang thanh object
 					foreignRemoteField: "id",
 					foreignField: "thonxom_id",
 					dataSource: ThonXomSelectView
@@ -72,7 +68,7 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "Đã hooàn thành dự thảo", value: 2},
+						{text: "Đã hoàn thành dự thảo", value: 2},
 						{text: "Đang xây dựng", value: 1},
 						{text: "Chưa xây dựng", value: 0}
 					]
@@ -136,12 +132,11 @@ define(function (require) {
 							success: function (model, respose, options) {
 								self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
 								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
-
 							},
 							error: function (model, xhr, options) {
 								try {
 									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-								}catch (err) {
+								} catch (err) {
 									self.getApp().notify({ message: 'Lưu thông tin không thành công!' }, { type: "danger", delay: 1000 });
 								}
 							}
@@ -172,7 +167,6 @@ define(function (require) {
 				},
 			],
 		}],
-
 		render: function () {
 			var self = this;
 			var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
@@ -180,7 +174,6 @@ define(function (require) {
 			self.model.set("kybaocao", self.getApp().mapKyBaoCao[currentPeriod].kybaocao);
 			self.$el.find("#kydanhgia").val(self.getApp().mapKyBaoCao[currentPeriod].text);
 			var id = this.getApp().getRouter().getParam("id");
-			
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -194,20 +187,15 @@ define(function (require) {
 					},
 				});
 			} else {
-				
 				self.setDefaultData();
 				self.applyBindings();
 				self.onChangeEvents();
 				self.renderDanhSach(null);
 			}
-			
 			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
-				
 				var dmHoatDongDialog = new DMHoatDongSelectView({"viewData":{"loai_hoatdong":"thon"}});
 				dmHoatDongDialog.dialog();
-				
 				dmHoatDongDialog.on("onSelected", function(data) {
-					console.log("data==",data);
 					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
 	                for(var i=0; i< danhsachhoatdong.length; i++){
 	                	var item = danhsachhoatdong[i];
@@ -228,7 +216,6 @@ define(function (require) {
 		setDefaultData: function() {
 			var self = this;
 			var currentUser = self.getApp().currentUser;
-			console.log("currentUser===",currentUser);
 			if(!!currentUser && !!currentUser.donvi) {
 				if (!!currentUser.donvi.tinhthanh_id) {
 					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
@@ -245,10 +232,8 @@ define(function (require) {
 			}
 			self.model.set("tuyendonvi", "thon");
 		},
-		
 		onChangeEvents: function() {
 			var self = this;
-			
 			self.model.on("change:tiendo_pheduyet", function(model) {
 				if (self.model.get("tiendo_pheduyet") == 1) {
 					if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
@@ -260,13 +245,11 @@ define(function (require) {
 					}
 				}
 			});
-
 			if (self.model.get("tiendo_pheduyet") == 1) {
 				if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
 					self.$el.find("#pheduyet_extra").removeClass("hide");
 				}
 			}
-			
 		},
 		renderHoatDongView:function(data){
 			var self = this;
@@ -300,7 +283,6 @@ define(function (require) {
 		},
 		renderDanhSach: function(danhsachhoatdong) {
 			var self = this;
-			
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
 			<tr class="top">
@@ -324,6 +306,7 @@ define(function (require) {
                 <td></td>
                 <td></td>
             </tr>`);
+			
 			if(danhsachhoatdong === null){
 				$.ajax({
 					url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
@@ -342,13 +325,12 @@ define(function (require) {
 						self.getApp().notify("Không lấy được danh sách hoạt động, vui lòng thử lại sau!");
 					},
 				});
-			}else{
+			} else {
 				for(var i=0; i< danhsachhoatdong.length; i++){
 					self.renderHoatDongView(danhsachhoatdong[i]);
 				}
 			}
 		},
-
 		validate : function() {
 			const self = this;
 			if (!self.model.get("nambaocao")) {
@@ -371,11 +353,11 @@ define(function (require) {
 				self.getApp().notify({message: "Thôn xóm không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tiendo_xaydung")) {
+			if (self.model.get("tiendo_xaydung") === null || self.model.get("tiendo_xaydung") === "") {
 				self.getApp().notify({message: "Tiến độ xây dựng không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("tiendo_rasoat")) {
+			if (self.model.get("tiendo_rasoat") === null || self.model.get("tiendo_rasoat") === "") {
 				self.getApp().notify({message: "Tiến độ rà soát không được để trống"},{type: "warning"});
 				return;
 			}
@@ -393,17 +375,19 @@ define(function (require) {
 					return;
 				}
 			}
-			
+			if (!self.model.get("sohoatdong_cotloi_hoanthanh")) {
+				self.getApp().notify({message: "Số hoạt động BBC cốt lõi không được để trống"},{type: "warning"});
+				return;
+			}
 			if (!self.model.get("giangvien")) {
-				self.getApp().notify({message: "Số giảng viên của đơn vị không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
 			if (!self.model.get("giangvien_nu")) {
-				self.getApp().notify({message: "Số giảng viên nữ của đơn vị không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không được để trống"},{type: "warning"});
 				return;
 			}
 			return true;
 		},
 	});
-
 });

@@ -30,15 +30,37 @@ define(function (require) {
 				},
 				{
 					field: "tiendo_xaydung",
-					label: "Tiến độ xây dựng"
+					label: "Tiến độ xây dựng",
+					template: function (rowData) {
+						if (rowData.tiendo_xaydung == 2){
+							return "Đã hoàn thành";
+						} else if (rowData.tiendo_xaydung == 1){
+							return "Đang xây dựng";
+						}
+						return "Chưa xây dựng";
+					}
 				},
 				{
 					field: "tiendo_rasoat",
-					label: "Tiến độ rà soát"
+					label: "Tiến độ rà soát",
+					template: function (rowData) {
+						if (rowData.tiendo_rasoat == 2){
+							return "Đã chấp thuận";
+						} else if (rowData.tiendo_rasoat == 1){
+							return "Đang rà soát";
+						}
+						return "Chưa chấp thuận";
+					}
 				},
 				{
 					field: "tiendo_pheduyet",
-					label: "Tiến độ phê duyệt"
+					label: "Tiến độ phê duyệt",
+					template: function (rowData) {
+						if (rowData.tiendo_pheduyet == 1){
+							return "Đã phê duyệt";
+						}
+						return "Chưa phê duyệt";
+					}
 				}
 			],
 			onRowClick: function (event) {
@@ -84,27 +106,6 @@ define(function (require) {
 				this.applyBindings();
 				return this;
 			}
-			
-			
-//			var loaikybaocao = this.getApp().getRouter().getParam("loaikybaocao");
-//			this.uiControl.filters = {
-//				"$and": [
-//					{
-//						"tuyendonvi": {"$eq": "thon"}
-//					}
-//				]
-//			};
-//			if (loaikybaocao) {
-//				this.uiControl.filters['$and'].push({
-//					"loaikybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].loaikybaocao}
-//				});
-//				this.uiControl.filters['$and'].push({
-//					"kybaocao": {"$eq": self.getApp().mapKyBaoCao[loaikybaocao].kybaocao}
-//				});
-//			}
-//			this.applyBindings();
-//			return this;
 		},
 	});
-
 });
