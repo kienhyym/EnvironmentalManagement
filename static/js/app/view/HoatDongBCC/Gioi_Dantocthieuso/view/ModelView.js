@@ -12,7 +12,7 @@ define(function (require) {
 
 	function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
-	}
+	};
 
 	var currentDate = new Date();
 	return Gonrin.ModelView.extend({
@@ -99,68 +99,98 @@ define(function (require) {
 						success: function (data) {
 							if (data){
 								self.$el.find("#danhsachdonvi").html("");
+								
+								var th = self.$el.find("#header_report").html('');
+								th.append('<th  class="top sd2" >Kết quả mong đợi</th>');
+								th.append('<th  class="top sd2" >Chỉ số</th>');
+								
 								var tr = $('<tr>');
 								tr.append('<td rowspan="6">NÂNG CAO NĂNG LỰC</td>');
 								tr.append("<td>Số người được đào tạo</td>");
-								tr.append('<td>' + data.tongnguoi_duocdaotao_yte + "</td>");
-								tr.append('<td>' + data.tongnguoi_duocdaotao_giaoduc + "</td>");
+								var tr2 = $('<tr>');
+								tr2.append("<td>Số người tham gia là nữ</td>");
+								var tr3 = $('<tr>');
+								tr3.append("<td>% người tham gia là nữ</td>");
+								var tr4 = $('<tr>');
+								tr4.append("<td>Số người tham gia là DTTS</td>");
+								var tr5 = $('<tr>');
+								tr5.append("<td>% người tham gia là DTTS</td>");
+								var tr6 = $('<tr>');
+								tr6.append("<td>phụ nữ là giảng viên, tuyên truyền viên</td>");
+								for(var i=0; i<data.danhsachnganh.length; i++){
+									var data_nganh = data.danhsachnganh[i];
+									th.append('<th  class="top" >Ngành '+data_nganh.tennganh+'</th>')
+									tr.append('<td>' + data_nganh.tongnguoi_duocdaotao + "</td>");
+									tr2.append('<td>' + data_nganh.tongnguoi_thamgia_nu + "</td>");
+									var tyle_nguoithamgia_nu = 0;
+									if(data.tongnguoi_duocdaotao >0){
+										tyle_nguoithamgia_nu = (data_nganh.tongnguoi_thamgia_nu/data.tongnguoi_duocdaotao);
+									}
+									tr3.append('<td>' + tyle_nguoithamgia_nu.toFixed(2) + "</td>");
+									tr4.append('<td>' + data_nganh.tongnguoi_dantocthieuso + "</td>");
+									var tyle_dantocthieuso = 0;
+									if(data.tongnguoi_dantocthieuso>0){
+										tyle_dantocthieuso = (data_nganh.tongnguoi_dantocthieuso/data.tongnguoi_dantocthieuso);
+									}
+									tr5.append('<td>' + tyle_dantocthieuso.toFixed(2) + "</td>");
+									tr6.append('<td></td>"');
+								}
+								th.append('<th  class="top" >Tổng số</th>');
+								
+//								tr.append('<td>' + data.tongnguoi_duocdaotao_yte + "</td>");
+//								tr.append('<td>' + data.tongnguoi_duocdaotao_giaoduc + "</td>");
 								tr.append("<td>" + data.tongnguoi_duocdaotao + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr);
 								
-								var tr2 = $('<tr>');
-								tr2.append("<td>Số người tham gia là nữ</td>");
-								tr2.append('<td>' + data.tongnguoi_thamgia_nu_yte + "</td>");
-								tr2.append('<td>' + data.tongnguoi_thamgia_nu_giaoduc + "</td>");
+								
+//								tr2.append('<td>' + data.tongnguoi_thamgia_nu_yte + "</td>");
+//								tr2.append('<td>' + data.tongnguoi_thamgia_nu_giaoduc + "</td>");
 								tr2.append("<td>" + data.tongnguoi_thamgia_nu + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr2);
 								
-								var tyle_nguoithamgia_nu_yte = 0;
-								if(data.tongnguoi_duocdaotao_yte >0){
-									tyle_nguoithamgia_nu_yte = (data.tongnguoi_thamgia_nu_yte/data.tongnguoi_duocdaotao_yte)
-								}
-								var tyle_nguoithamgia_nu_giaoduc = 0;
-								if(data.tongnguoi_duocdaotao_giaoduc >0){
-									tyle_nguoithamgia_nu_giaoduc = (data.tongnguoi_thamgia_nu_giaoduc/data.tongnguoi_duocdaotao_giaoduc);
-								}
+//								var tyle_nguoithamgia_nu_yte = 0;
+//								if(data.tongnguoi_duocdaotao_yte >0){
+//									tyle_nguoithamgia_nu_yte = (data.tongnguoi_thamgia_nu_yte/data.tongnguoi_duocdaotao_yte)
+//								}
+//								var tyle_nguoithamgia_nu_giaoduc = 0;
+//								if(data.tongnguoi_duocdaotao_giaoduc >0){
+//									tyle_nguoithamgia_nu_giaoduc = (data.tongnguoi_thamgia_nu_giaoduc/data.tongnguoi_duocdaotao_giaoduc);
+//								}
 								var tyle_nguoithamgia_nu = 0;
 								if(data.tongnguoi_thamgia>0){
 									tyle_nguoithamgia_nu = (data.tongnguoi_thamgia_nu/data.tongnguoi_thamgia);
 								}
-								var tr3 = $('<tr>');
-								tr3.append("<td>% người tham gia là nữ</td>");
-								tr3.append('<td>' + tyle_nguoithamgia_nu_yte + "</td>");
-								tr3.append('<td>' + tyle_nguoithamgia_nu_giaoduc + "</td>");
-								tr3.append("<td>" + tyle_nguoithamgia_nu + "</td>");
+								
+//								tr3.append('<td>' + tyle_nguoithamgia_nu_yte + "</td>");
+//								tr3.append('<td>' + tyle_nguoithamgia_nu_giaoduc + "</td>");
+								tr3.append("<td>" + tyle_nguoithamgia_nu.toFixed(2) + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr3);
 								
-								var tr4 = $('<tr>');
-								tr4.append("<td>Số người tham gia là DTTS</td>");
-								tr4.append('<td>' + data.tongnguoi_dantocthieuso_yte + "</td>");
-								tr4.append('<td>' + data.tongnguoi_dantocthieuso_giaoduc + "</td>");
+								
+//								tr4.append('<td>' + data.tongnguoi_dantocthieuso_yte + "</td>");
+//								tr4.append('<td>' + data.tongnguoi_dantocthieuso_giaoduc + "</td>");
 								tr4.append("<td>" + data.tongnguoi_dantocthieuso + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr4);
 								
-								var tyle_dantocthieuso_yte = 0;
-								var tyle_dantocthieuso_giaoduc = 0;
+//								var tyle_dantocthieuso_yte = 0;
+//								var tyle_dantocthieuso_giaoduc = 0;
 								var tyle_dantocthieuso = 0;
-								if(data.tongnguoi_dantocthieuso>0){
-									tyle_dantocthieuso_yte = (data.tongnguoi_dantocthieuso_yte/data.tongnguoi_dantocthieuso);
-									tyle_dantocthieuso_giaoduc = (data.tongnguoi_dantocthieuso_giaoduc/data.tongnguoi_dantocthieuso);
-								}
+//								if(data.tongnguoi_dantocthieuso>0){
+//									tyle_dantocthieuso_yte = (data.tongnguoi_dantocthieuso_yte/data.tongnguoi_dantocthieuso);
+//									tyle_dantocthieuso_giaoduc = (data.tongnguoi_dantocthieuso_giaoduc/data.tongnguoi_dantocthieuso);
+//								}
 								if(data.tongnguoi_thamgia>0){
 									tyle_dantocthieuso = (data.tongnguoi_dantocthieuso/data.tongnguoi_thamgia);
 								}
-								var tr5 = $('<tr>');
-								tr5.append("<td>% người tham gia là DTTS</td>");
-								tr5.append('<td>' + tyle_dantocthieuso_yte + "</td>");
-								tr5.append('<td>' + tyle_dantocthieuso_giaoduc + "</td>");
-								tr5.append("<td>" + tyle_dantocthieuso + "</td>");
+								
+//								tr5.append('<td>' + tyle_dantocthieuso_yte + "</td>");
+//								tr5.append('<td>' + tyle_dantocthieuso_giaoduc + "</td>");
+								tr5.append("<td>" + tyle_dantocthieuso.toFixed(2) + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr5);
 								
-								var tr6 = $('<tr>');
-								tr6.append("<td>phụ nữ là giảng viên, tuyên truyền viên</td>");
-								tr6.append('<td>' + data.tong_giangvien_nu_yte + "</td>");
-								tr6.append('<td>' + data.tong_giangvien_nu_giaoduc + "</td>");
+								
+//								tr6.append('<td>' + data.tong_giangvien_nu_yte + "</td>");
+//								tr6.append('<td>' + data.tong_giangvien_nu_giaoduc + "</td>");
 								tr6.append("<td>" + data.tong_giangvien_nu + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr6);
 								

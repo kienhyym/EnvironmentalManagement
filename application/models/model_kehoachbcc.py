@@ -45,8 +45,8 @@ class TienDoKeHoachBCC(CommonModel):
     ngay_pheduyet = db.Column(db.DateTime())
     sohoatdong_cotloi_pheduyet = db.Column(db.Integer)
     sohoatdong_cotloi_hoanthanh = db.Column(db.Integer)
-    nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
-    nganh = relationship('Nganh')
+#     nganh_id = db.Column(UUID(as_uuid=True), ForeignKey('nganh.id'), nullable=True)
+#     nganh = relationship('Nganh')
     
     giangvien = db.Column(db.Integer, default =0)# giang vien tai don vi
     giangvien_nu = db.Column(db.Integer, default =0)# giang vien tai don vi
