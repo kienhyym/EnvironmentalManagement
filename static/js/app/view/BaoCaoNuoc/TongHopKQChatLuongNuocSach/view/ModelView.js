@@ -36,7 +36,7 @@ define(function(require) {
     template: template,
     modelSchema: schema,
     urlPrefix: "/api/v1/",
-    collectionName: "kqkiemtranuocsach",
+    collectionName: "tonghop_ketqua_chatluong_nuocsach",
     uiControl: {
       fields: [{
           field: "thoigiankiemtra",

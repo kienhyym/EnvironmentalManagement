@@ -289,7 +289,7 @@ define(function (require) {
 					"route": "nganh/collection",
 					"$ref": "app/view/DanhMuc/Nganh/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -306,7 +306,7 @@ define(function (require) {
 					"route": "danhmuchoatdong/collection",
 					"$ref": "app/view/DanhMuc/DanhMucHoatDong/view/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -323,7 +323,7 @@ define(function (require) {
 					"route": "thongsobaocaochatluongnuoc/collection",
 					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -1501,22 +1501,7 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text": "Mẫu số 01: Kết quả ngoại kiểm chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
-					"route": "ketqua_ngoaikiem_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/CollectionView",
-				},
-				{
-					"type": "view",
-					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
-					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
-					"visible": false
-				},
-				{
-					"text": "Mẫu số 02: Kết quả kiểm tra chất lượng nước sạch",
+					"text": "Phiếu kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
 					"collectionName": "baocaokiemtraclnuocsach",
@@ -1531,64 +1516,90 @@ define(function (require) {
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 03: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
+					"text": "Phiếu kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "kqkiemtranuocsach",
-					"route": "kqkiemtranuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/CollectionView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "kqkiemtranuocsach",
-					"route": "kqkiemtranuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/ModelView",
-					"visible": false
-				},
-
-				{
-					"text": "Mẫu số 04: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "kqktchatluong",
-					"route": "kqktchatluong/collection",
-					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/CollectionView",
-				},
-				{
-					"type": "view",
-					"collectionName": "kqktchatluong",
-					"route": "kqktchatluong/model",
-					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/ModelView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 05: Kết quả nội kiểm chất lượng nước sạch",
+					"text": "Tổng hợp kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
+					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+					"route": "tonghop_ketqua_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 06: Tổng hợp kết quả nội kiểm chất lượng nước sạch",
+					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Huyện",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "thkqnoikiemnuocsach",
-					"route": "thkqnoikiemnuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/CollectionView",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_huyen/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"tuyendonvi": 3,
+					"visible": function () {
+						return this.checkTuyendonvi(3);
+					},
 				},
 				{
 					"type": "view",
-					"collectionName": "thkqnoikiemnuocsach",
-					"route": "thkqnoikiemnuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/ModelView",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_huyen/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Tỉnh",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_tinh/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"tuyendonvi": 2,
+					"visible": function () {
+						return this.checkTuyendonvi(2);
+					},
+				},
+				{
+					"type": "view",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_tinh/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Báo cáo Nước sạch dành cho Viện Chuyên Ngành",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "baocao_vienchuyennganh_nuoc",
+					"route": "baocao_vienchuyennganh_nuoc/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
+					"tuyendonvi": 2,
+					"visible": function () {
+						return this.checkTuyendonvi(2);
+					},
+				},
+				{
+					"type": "view",
+					"collectionName": "baocao_vienchuyennganh_nuoc",
+					"route": "baocao_vienchuyennganh_nuoc/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/ModelView",
 					"visible": false
 				},
 			],

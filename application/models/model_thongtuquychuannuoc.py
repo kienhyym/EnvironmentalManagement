@@ -19,6 +19,18 @@ class MapVienChuyenNganhNuocVaTinh(CommonModel):
     user_id = db.Column(UUID(as_uuid=True), db.ForeignKey('user.id'), nullable=True)
     user = db.relationship('User', viewonly=True)
     danhsachtinhthanh = db.Column(JSONB)
+    
+    
+class ThongSoBaoCaoChatLuongNuoc(CommonModel):
+    __tablename__ = 'thongsobaocaochatluongnuoc'
+    mathongso = db.Column(db.String)
+    tenthongso = db.Column(db.String)
+    gioihan_toida_txt = db.Column(db.String)
+    gioihan_toida = db.Column(DECIMAL)
+    gioihan_toithieu_txt = db.Column(db.String)
+    gioihan_toithieu = db.Column(DECIMAL)
+    batbuoc = db.Column(db.Boolean)
+    baocaoapdung = db.Column(JSONB)
 
 #Danh muc cac don vi cap nuoc
 class DonViCapNuoc(CommonModel):
@@ -144,17 +156,6 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     kiennghi = db.Column(db.String)
     ketluan = db.Column(db.String)
     
-    
-class ThongSoBaoCaoChatLuongNuoc(CommonModel):
-    __tablename__ = 'thongsobaocaochatluongnuoc'
-    mathongso = db.Column(db.String)
-    tenthongso = db.Column(db.String)
-    gioihan_toida_txt = db.Column(db.String)
-    gioihan_toida = db.Column(DECIMAL)
-    gioihan_toithieu_txt = db.Column(db.String)
-    gioihan_toithieu = db.Column(DECIMAL)
-    batbuoc = db.Column(db.Boolean)
-    baocaoapdung = db.Column(JSONB)
     
     
 
