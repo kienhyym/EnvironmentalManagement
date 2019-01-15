@@ -340,7 +340,7 @@ define(function (require) {
                 for (var j = 0; j < somau; j++) {
                     var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
                     self.$el.find("#mauvitri_header_before").before(el);
-                    self.$el.find("#ketqualaymau").attr("colspan", j + 1);
+                    self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }
             }
             self.renderKetQua();
