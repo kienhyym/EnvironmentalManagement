@@ -526,7 +526,7 @@ define(function (require) {
 		danhsachViTriMau: function () {
 			var self = this;
             var somauvavitri = self.model.get("somauvavitri");
-        	self.$el.find("#somauvavitri_input").empty();
+        	self.$el.find("#danhsachvitrilaymau").empty();
         	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
     		if (danhsachvitrilaymau == null){
     			danhsachvitrilaymau = []
