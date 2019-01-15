@@ -118,7 +118,7 @@ define(function (require) {
 			var self = this;
 			self.setDefaultData();
 			self.onChangeEvents();
-			self.applyBindings();
+//			self.applyBindings();
 			self.$el.find("table.table input").attr({"disabled":true});
 		},
 		
@@ -211,7 +211,7 @@ define(function (require) {
 									self.$el.find("#pheduyet_extra").removeClass("hide");
 								}
 							}
-//							self.applyBindings();
+							self.applyBindings();
 //							self.model.set('songuoithamgia', response.tongsonguoithamgia);
 //							self.model.set('songuoithamgia_nu', response.tongsonguoithamgia_nu);
 //							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);

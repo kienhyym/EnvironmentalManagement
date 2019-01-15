@@ -289,7 +289,7 @@ define(function (require) {
 					"route": "nganh/collection",
 					"$ref": "app/view/DanhMuc/Nganh/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -306,7 +306,7 @@ define(function (require) {
 					"route": "danhmuchoatdong/collection",
 					"$ref": "app/view/DanhMuc/DanhMucHoatDong/view/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -323,7 +323,7 @@ define(function (require) {
 					"route": "thongsobaocaochatluongnuoc/collection",
 					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/CollectionView",
 					"visible": function () {
-						return this.userHasRole("Admin");
+						return this.checkTuyendonvi(1);
 					}
 				},
 				{
@@ -1380,7 +1380,7 @@ define(function (require) {
 					"type": "category",
 					//					"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 					//					"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection",
-					//					"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+					//					"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
@@ -1392,7 +1392,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy1",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "Qúy II",
@@ -1400,7 +1400,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy2",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "Qúy III",
@@ -1408,7 +1408,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy3",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "Qúy IV",
@@ -1416,7 +1416,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy4",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "6 Tháng đầu năm",
@@ -1424,7 +1424,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangdau",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "6 Tháng cuối năm",
@@ -1432,7 +1432,7 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangcuoi",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"text": "Tổng kết năm",
@@ -1440,55 +1440,55 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=nam",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy1(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy2(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy3(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy4(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangdau(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangcuoi(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						},
 						{
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 							"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/nam(/:id)",
-							"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 							"visible": false
 						}
 					]
@@ -1501,22 +1501,7 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text": "Mẫu số 01: Kết quả ngoại kiểm chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
-					"route": "ketqua_ngoaikiem_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/CollectionView",
-				},
-				{
-					"type": "view",
-					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
-					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
-					"visible": false
-				},
-				{
-					"text": "Mẫu số 02: Kết quả kiểm tra chất lượng nước sạch",
+					"text": "Phiếu kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
 					"collectionName": "baocaokiemtraclnuocsach",
@@ -1531,64 +1516,90 @@ define(function (require) {
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 03: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
+					"text": "Phiếu kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "kqkiemtranuocsach",
-					"route": "kqkiemtranuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/CollectionView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "kqkiemtranuocsach",
-					"route": "kqkiemtranuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/ModelView",
-					"visible": false
-				},
-
-				{
-					"text": "Mẫu số 04: Tổng hợp kết quả kiểm tra chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "kqktchatluong",
-					"route": "kqktchatluong/collection",
-					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/CollectionView",
-				},
-				{
-					"type": "view",
-					"collectionName": "kqktchatluong",
-					"route": "kqktchatluong/model",
-					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/ModelView",
+					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 05: Kết quả nội kiểm chất lượng nước sạch",
+					"text": "Tổng hợp kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
+					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+					"route": "tonghop_ketqua_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Mẫu số 06: Tổng hợp kết quả nội kiểm chất lượng nước sạch",
+					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Huyện",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "thkqnoikiemnuocsach",
-					"route": "thkqnoikiemnuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/CollectionView",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_huyen/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"tuyendonvi": 3,
+					"visible": function () {
+						return this.checkTuyendonvi(3);
+					},
 				},
 				{
 					"type": "view",
-					"collectionName": "thkqnoikiemnuocsach",
-					"route": "thkqnoikiemnuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/ModelView",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_huyen/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Tỉnh",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_tinh/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"tuyendonvi": 2,
+					"visible": function () {
+						return this.checkTuyendonvi(2);
+					},
+				},
+				{
+					"type": "view",
+					"collectionName": "baocao_nuocsach_huyentinh",
+					"route": "baocao_nuocsach_tinh/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+					"visible": false
+				},
+				{
+					"text": "Báo cáo Nước sạch dành cho Viện Chuyên Ngành",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "baocao_vienchuyennganh_nuoc",
+					"route": "baocao_vienchuyennganh_nuoc/collection",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
+					"tuyendonvi": 2,
+					"visible": function () {
+						return this.checkTuyendonvi(2);
+					},
+				},
+				{
+					"type": "view",
+					"collectionName": "baocao_vienchuyennganh_nuoc",
+					"route": "baocao_vienchuyennganh_nuoc/model",
+					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/ModelView",
 					"visible": false
 				},
 			],

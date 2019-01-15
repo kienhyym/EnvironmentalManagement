@@ -1340,7 +1340,7 @@ define(function (require) {
 					"type": "category",
 //					"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 //					"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection",
-//					"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+//					"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
 						return this.checkTuyendonvi(4);
@@ -1351,7 +1351,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy1",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "Qúy II",
@@ -1359,7 +1359,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy2",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "Qúy III",
@@ -1367,7 +1367,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy3",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "Qúy IV",
@@ -1375,7 +1375,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=quy4",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "6 Tháng đầu năm",
@@ -1383,7 +1383,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangdau",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "6 Tháng cuối năm",
@@ -1391,7 +1391,7 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=6thangcuoi",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"text": "Tổng kết năm",
@@ -1399,55 +1399,55 @@ define(function (require) {
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/collection?loaikybaocao=nam",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy1(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy2(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy3(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/quy4(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangdau(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/6thangcuoi(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					},
 					{
 						"type": "view",
 						"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
 						"route": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc/model/nam(/:id)",
-						"$ref": "app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
+						"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/ModelView",
 						"visible": false
 					}]
 				},
