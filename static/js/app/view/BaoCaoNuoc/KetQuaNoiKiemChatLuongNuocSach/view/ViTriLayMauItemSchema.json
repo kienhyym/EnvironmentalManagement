@@ -1,9 +1,0 @@
-{
-	"id": {
-        "type": "number",
-        "primary": true
-    },
-    "tenvitrilaymau": {
-        "type": "string"
-    }
-}

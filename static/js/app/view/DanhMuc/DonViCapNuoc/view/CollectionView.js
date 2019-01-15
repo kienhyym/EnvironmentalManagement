@@ -14,17 +14,21 @@ define(function (require) {
 		collectionName: "donvicapnuoc",
 		uiControl: {
 			fields: [
-    			{
-					field: "ma",
-					label: "Mã Đơn Vị",
-				},
 				{
 					field: "ten",
 					label: "Tên Đơn Vị"
 				},
 				{
-					field: "nguonnuoc",
-					label: "Nguồn Nước"
+					field: "congsuat",
+					label: "Công suất"
+				},
+				{
+					field: "tongso_hogiadinh",
+					label: "Tổng số HGĐ"
+				},
+				{
+					field: "tansuat_noikiem",
+					label: "Tần suất nội kiểm"
 				},
 				{
 					field: "diachi",
