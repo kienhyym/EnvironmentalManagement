@@ -1,0 +1,96 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean"
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number"
+    },
+    "nam_baocao": {
+        "type": "number",
+        "required": true
+    },
+    "ky_baocao": {
+        "type": "number",
+        "required": true
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "pt_hogiadinh_nhatieucaithien": {
+        "type": "number"
+    },
+    "tyle_hogiadinh_diemruatay": {
+        "type": "number"
+    },
+    "pt_truonghoc_conuocsach": {
+        "type": "number"
+    },
+    "tonso_hocsinh": {
+        "type": "number"
+    },
+    "pt_tramyte_conuocsach": {
+        "type": "number"
+    },
+    "tongso_hogiadinh": {
+        "type": "number"
+    },
+    "tong_danso_xa": {
+        "type": "number"
+    },
+    "pt_giadinh_chulanu": {
+        "type": "number"
+    },
+    "pt_hogiadinh_dtts": {
+        "type": "number"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    }
+}

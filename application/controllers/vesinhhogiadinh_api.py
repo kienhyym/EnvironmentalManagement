@@ -114,15 +114,15 @@ async def ThongKe_VESINH(request):
             tong_diemruatay = baocao.tong_diemruatay
     
         
-        results['tyle_conhatieu'] = ((tong_soho - tong_khongnhatieu)/tong_soho)*100
-        results['tyle_conhatieu_hvs'] = (tong_hopvs/tong_soho)*100
-        results['tyle_tuhoai_hvs'] = (tong_tuhoai_hvs/tong_soho)*100
-        results['tyle_thamdoi_hvs'] = (tong_thamdoi_hvs/tong_soho)*100
-        results['tyle_2ngan_hvs'] = (tong_2ngan_hvs/tong_soho)*100
-        results['tyle_ongthonghoi_hvs'] = (tong_ongthonghoi_hvs/tong_soho)*100
-        results['tyle_nhatieu_caithien_hvs'] = (tong_caithien_hvs/tong_soho)*100
-        results['tyle_caithien_hongheo_hvs'] = (tong_caithien_hongheo_hvs/tong_soho)*100
-        results['tyle_diemruatay'] = (tong_diemruatay/tong_soho)*100
+        results['tyle_conhatieu'] = 0 if tong_soho == 0 else ((tong_soho - tong_khongnhatieu)/tong_soho)*100
+        results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else (tong_hopvs/tong_soho)*100
+        results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else (tong_tuhoai_hvs/tong_soho)*100
+        results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else (tong_thamdoi_hvs/tong_soho)*100
+        results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else (tong_2ngan_hvs/tong_soho)*100
+        results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else (tong_ongthonghoi_hvs/tong_soho)*100
+        results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else (tong_caithien_hvs/tong_soho)*100
+        results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else (tong_caithien_hongheo_hvs/tong_soho)*100
+        results['tyle_diemruatay'] =  0 if tong_soho == 0 else (tong_diemruatay/tong_soho)*100
         results['tentinhthanh'] = tentinhthanh
         results['tenquanhuyen'] = tenquanhuyen
         results['tenxaphuong'] = tenxaphuong

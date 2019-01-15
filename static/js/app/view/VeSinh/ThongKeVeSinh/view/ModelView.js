@@ -105,7 +105,7 @@ define(function (require) {
 						method: "GET",
 						contentType: "application/json",
 						success: function (obj) {
-							if (obj){
+							if (obj && !!obj.tentinhthanh && obj.tentinhthanh!==""){
 								self.$el.find("#danhsachdonvi").html("");
 								var tr = $('<tr id="danhsachdonvi">');
 								tr.append('<td class="tinhthanh">' + obj.tentinhthanh + '</td>');
@@ -121,6 +121,9 @@ define(function (require) {
 								tr.append("<td>" + obj.tyle_caithien_hongheo_hvs + "</td>");
 								tr.append("<td>" + obj.tyle_diemruatay + "</td>");
 								self.$el.find("#danhsachdonvi").append(tr);
+							}else{
+	 	 			    		self.getApp().notify("Không tìm thấy báo cáo trên hệ thống");
+	 	 			    		return;
 							}
 							
 						},

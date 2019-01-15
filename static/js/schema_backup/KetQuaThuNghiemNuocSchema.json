@@ -1,0 +1,52 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "thongso_id": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string"
+    },
+    "tongso_donvicapnuoc": {
+        "type": "number"
+    },
+    "tongso_maunuoc_thinghiem": {
+        "type": "number"
+    },
+    "tongso_maunuoc_quychuan": {
+        "type": "number"
+    },
+    "tongso_maunuoc_khongquychuan": {
+        "type": "number"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    }
+}

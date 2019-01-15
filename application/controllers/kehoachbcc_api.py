@@ -296,7 +296,6 @@ async def baocao_theo_cap(request):
         if hoatdongbccs is not None and isinstance(hoatdongbccs, list):
             for _ in hoatdongbccs:
                 _ = to_dict(_)
-                print("check hoat dong====",_)
                 if _['tuyendonvi'] == 'tinh':
                     if 'hoatdong' not in tinh or tinh['hoatdong'] is None:
                         tinh['hoatdong'] = []

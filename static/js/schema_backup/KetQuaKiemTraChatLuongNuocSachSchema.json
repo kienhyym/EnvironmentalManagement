@@ -1,0 +1,96 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "loaibaocao": {
+        "type": "boolean"
+    },
+    "tongsotinh_trenkhuvuc": {
+        "type": "number"
+    },
+    "sotinh_baocao": {
+        "type": "number"
+    },
+    "tongsotinh_khuvuc_phutrach": {
+        "type": "number"
+    },
+    "tongdonvi_duockiemtra": {
+        "type": "number"
+    },
+    "chiemtyle": {
+        "type": "number"
+    },
+    "trungtam_benhtinh": {
+        "type": "string"
+    },
+    "doivoi_cacdonvi_capnuoc": {
+        "type": "string"
+    },
+    "tongso_maunuoc_lamxn": {
+        "type": "number"
+    },
+    "tongso_maudatquychuan": {
+        "type": "number"
+    },
+    "tyle_mauquychuan": {
+        "type": "number"
+    },
+    "tongso_maukhongdat_quychuan": {
+        "type": "number"
+    },
+    "cacthongso_khongdat": {
+        "type": "string"
+    },
+    "nghiencuu_ketluan": {
+        "type": "string"
+    },
+    "ketluan_dexuat": {
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    }
+}

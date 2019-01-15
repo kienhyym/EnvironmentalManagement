@@ -1,0 +1,116 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "fullname": {
+        "type": "string",
+        "length": 255
+    },
+    "email": {
+        "type": "string",
+        "length": 255
+    },
+    "password": {
+        "type": "string",
+        "length": 255
+    },
+    "cfpassword": {
+        "type": "string",
+        "length": 255
+    },
+    "phone": {
+        "type": "string",
+        "length": 255
+    },
+    "macongdan": {
+        "type": "string",
+        "length": 200
+    },
+    "user_id": {
+        "type": "string"
+    },
+    "donvi_id": {
+        "type": "number"
+    },
+    "donvi_sodienthoai": {
+        "type": "string",
+        "length": 255
+    },
+    "donvi_diachi": {
+        "type": "string",
+        "length": 255
+    },
+    "donvi_ten": {
+        "type": "string",
+        "length": 255
+    },
+    "donvi_tuyendonvi_id": {
+        "type": "number"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quocgia_id": {
+        "type": "string"
+    },
+    "captren_id": {
+        "type": "number"
+    },
+    "trangthai": {
+        "type": "number",
+        "default": 2
+    },
+    "users": {
+        "type": "dict"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "donvi_tuyendonvi": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quocgia": {
+        "type": "dict"
+    },
+    "captren": {
+        "type": "dict"
+    }
+}
