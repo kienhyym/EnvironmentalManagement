@@ -29,7 +29,7 @@ class DonViCapNuoc(CommonModel):
     congsuat = db.Column(DECIMAL)
     tongso_hogiadinh = db.Column(db.Integer)
     tansuat_noikiem = db.Column(db.Integer)
-    nguonnuoc_nguyenlieu = db.Column(db.String)
+    nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)
     phuongphap_khutrung = db.Column(db.SmallInteger)
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
