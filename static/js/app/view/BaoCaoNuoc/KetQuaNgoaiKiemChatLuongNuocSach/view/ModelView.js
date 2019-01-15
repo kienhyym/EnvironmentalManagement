@@ -62,6 +62,169 @@ define(function (require) {
                 foreignField: "donvicapnuoc_id",
                 dataSource: DonViCapNuocSelectView
             },
+            {
+				field: "thunghiem_chatluong_nuoc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+            {
+				field: "loai_donvi_kiemtra",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Trung tâm y tế huyện", value: 2},
+					{text: "Trung tâm kiểm soát bệnh tật tỉnh", value: 1},
+					{text: "Loại khác", value: 0}
+				]
+			},
+			{
+				field: "nguonnuoc_nguyenlieu",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Nước mặt", value: 3},
+					{text: "Nước nguồn", value: 2},
+					{text: "Cả nước mặt và nước nguồn", value: 1},
+					{text: "Loại khác", value: 0}
+				]
+			},
+			{
+				field: "laphoso_theoquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 2}
+				]
+			},
+			{
+				field: "hoso_daydu_theoquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 2}
+				]
+			},
+			{
+				field: "somau_thunghiem_dungquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thunghiem_daydu_thongso",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "tansuat_thuchien_noikiem_dungquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_baocao_daydu",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_congkhai_thongtin",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_bienphap_khacphuc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "ketquangoaikiem",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: "Đạt"},
+					{text: "Không Đạt", value: "Không Đạt"}
+				]
+			},
+			{
+				field: "congbo_thongtin_chodonvicapnuoc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "congkhai_thongtin",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "thongbao_coquan_thamquyen",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "thongbao_donvi_chuquan",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
             ],
         },
         tools: [{
@@ -169,20 +332,11 @@ define(function (require) {
 //            });
             
             self.getApp().on("DonViCapNuoc_onSelected", function (data) {
-                self.model.set("diachi_donvicapnuoc", data.diachi);
-                self.model.set("diachi_donvicapnuoc", data.diachi);
-                self.model.set("congxuat", data.congsuat);
+                self.model.set("congsuat_thietke", data.congsuat);
+                self.model.set("tansuat_noikiem", data.tansuat_noikiem);
                 self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
-                self.model.set("nguonnuoc", data.nguonnuoc);
-
-//                self.model.on("change:donvicapnuoc", function () {
-//                    self.model.set("diachi_donvicapnuoc", data.diachi);
-//                    self.model.set("diachi_donvicapnuoc", data.diachi);
-//                    self.model.set("congxuat", data.congsuat);
-//                    self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
-//                    self.model.set("nguonnuoc", data.nguonnuoc);
-//                });
-
+                self.model.set("nguonnuoc_nguyenlieu", data.nguonnuoc_nguyenlieu);
+                self.model.set("diachi_donvicapnuoc", data.diachi);
             });
 
             self.$el.find("#addItem").unbind("click").bind("click", function () {

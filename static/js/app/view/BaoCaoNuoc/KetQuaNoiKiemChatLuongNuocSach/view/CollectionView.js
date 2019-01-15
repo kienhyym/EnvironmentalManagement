@@ -35,8 +35,12 @@ define(function (require) {
                 label: "Địa chỉ",
             },
             {
-                field: "nguonnuoc",
-                label: "Nguồn nước nguyên liệu",
+                field: "nguoikiemtra",
+                label: "Người kiểm tra",
+            },
+            {
+                field: "thoigiankiemtra",
+                label: "Thời gian kiểm tra",
             },
             ],
             onRowClick: function (event) {
