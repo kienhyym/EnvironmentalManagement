@@ -137,9 +137,45 @@ width:50%;
                 </div>
             </div>
         </div>
+        <div class="table1">
+            <h5 style="padding-bottom: 10px;">2. Nội kiểm chất lượng nước</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table effect-table">
+                        <tbody>
+	                        <tr>
+                                <td colspan="2">Tổng số mẫu nước làm thử nghiệm (mẫu)</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:tongsomau_thunghiem" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tổng số mẫu đạt quy chuẩn (mẫu)</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:tongsomau_dat_quychuan" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
+                                <td colspan="2"><input type="text" class="form-control" readonly="readonly" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:tongsomau_khongdat_quychuan"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
+                                <td colspan="2"><input type="text" class="form-control" readonly="readonly"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Các thông số không đạt</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:tong_thongso_khongdat"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <div class="table1">
-            <h3 style="padding-bottom:10px;">C. Kết quả thử nghiệm chất lượng nước</h3>
+            <h3 style="padding-bottom:10px;">C. Kết quả ngoại kiểm chất lượng nước</h3>
+            <h5 style="padding-bottom: 10px">1. Thử nghiệm chất lượng nước</h5>
             <div class="row">
                 <div class="col-md-3">
                     <td><label>Số mẫu và vị trí lấy mẫu nước: <i>(Có biên bản lấy mẫu kèm theo):</i></label></td>
@@ -199,19 +235,40 @@ width:50%;
                 </div>
             </div>
         </div>
-		<!-- <div class="row hide" id="bienphap_extra">
-            <h3 style="padding-left: 15px; padding-bottom: 10px;">D. Các biện pháp khắc phục</h3>
-                <div class="col-md-3">
-                    <label>Thực hiện khắc phục</label>
-                    <input type="text" class="form-control" data-bind="value:cothuchien_khacphuc"></input>
-                </div>
+        
+        <div class="table1">
+            <h5 style="padding-bottom: 10px;">2. Công bố thông tin của đơn vị ngoại kiểm</h5>
+            <div class="row">
                 <div class="col-md-12">
-                    <label>Biện pháp khắc phục</label>
-                    <textarea rows="2" class="form-control" data-bind="value:bienphap_khacphuc"></textarea>
+                    <table class="table effect-table">
+                        <tbody>
+	                        <tr>
+                                <td colspan="2">Công bố thông tin chất lượng nước cho đơn vị cấp nước</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:congbo_thongtin_chodonvicapnuoc" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Công khai trên trang thông tin của cơ quan ngoại kiểm</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:congkhai_thongtin" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Thông báo cho cơ quan có thẩm quyền</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:thongbao_coquan_thamquyen" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Thông báo cho đơn vị chủ quản</td>
+                                <td colspan="2"><input type="text" class="form-control" data-bind="value:thongbao_donvi_chuquan"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-        </div> -->
-        <div style="padding-top: 5px; padding-bottom: 30px;">
-            <h3 style="padding-bottom:10px;">Đ. Đề nghị</h3>
+            </div>
+        </div>
+        <div style="padding-bottom: 10px;">
+            <h3 style="padding-bottom:10px;">D. Kết luận</h3>
+            <textarea rows="2" class="form-control" data-bind="value:ketluan"></textarea>
+        </div>
+        <div style="padding-top: 10px; padding-bottom: 30px;">
+            <h3 style="padding-bottom:10px;">Đ. Kiến nghị</h3>
             <textarea rows="2" class="form-control" data-bind="value:kiennghi"></textarea>
         </div>
     </div>

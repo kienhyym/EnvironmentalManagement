@@ -175,6 +175,56 @@ define(function (require) {
 					{text: "Không Đạt", value: 0}
 				]
 			},
+			{
+				field: "ketquangoaikiem",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: "Đạt"},
+					{text: "Không Đạt", value: "Không Đạt"}
+				]
+			},
+			{
+				field: "congbo_thongtin_chodonvicapnuoc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "congkhai_thongtin",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "thongbao_coquan_thamquyen",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "thongbao_donvi_chuquan",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
             ],
         },
         tools: [{
