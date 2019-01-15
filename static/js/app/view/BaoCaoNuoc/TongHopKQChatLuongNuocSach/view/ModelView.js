@@ -4,8 +4,8 @@ define(function(require) {
     _ = require('underscore'),
     Gonrin = require('gonrin');
 
-  var template = require('text!app/view/BaoCaoNuoc/KQKiemTraNuocSach/tpl/model.html'),
-    schema = require('json!schema/KQKiemTraNuocSachSchema.json');
+  var template = require('text!app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/tpl/model.html'),
+    schema = require('json!schema/TongHopKetQuaKiemTraChatLuongNuocSachSchema.json');
 
   var maxDate = new Date();
   var HoSoTheoDoi = require('app/view/BaoCaoNuoc/HoSoTheoDoi/view/ModelItemView');

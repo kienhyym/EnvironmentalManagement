@@ -1501,18 +1501,18 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text": "Phiếu kết quả kiểm tra chất lượng nước sạch",
+					"text": "Phiếu kết quả nội kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
 					"type": "view",
-					"collectionName": "baocaokiemtraclnuocsach",
-					"route": "baocaokiemtraclnuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/CollectionView",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
 				},
 				{
 					"type": "view",
-					"collectionName": "baocaokiemtraclnuocsach",
-					"route": "baocaokiemtraclnuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
+					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+					"route": "ketqua_noikiem_chatluong_nuocsach/model",
+					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
@@ -1533,74 +1533,264 @@ define(function (require) {
 				{
 					"text": "Tổng hợp kết quả kiểm tra chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-				},
-				{
-					"type": "view",
-					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-					"route": "tonghop_ketqua_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
-					"visible": false
+					"type": "category",
+//					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+//					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
+//					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+					"entries": [
+						{
+							"text": "Qúy I",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy1",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+						},
+						{
+							"text": "Qúy II",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy2",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+						},
+						{
+							"text": "Qúy III",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy3",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+						},
+						{
+							"text": "Qúy IV",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy4",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+						},
+						{
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy1(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy2(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy3(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy4(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+							"visible": false
+						},
+					]
 				},
 				{
 					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Huyện",
 					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "baocao_nuocsach_huyentinh",
-					"route": "baocao_nuocsach_huyen/collection",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"type": "category",
+//					"collectionName": "baocao_nuocsach_huyentinh",
+//					"route": "baocao_nuocsach_huyen/collection",
+//					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 					"tuyendonvi": 3,
 					"visible": function () {
 						return this.checkTuyendonvi(3);
 					},
-				},
-				{
-					"type": "view",
-					"collectionName": "baocao_nuocsach_huyentinh",
-					"route": "baocao_nuocsach_huyen/model",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
-					"visible": false
+					"entries": [
+						{
+							"text": "Qúy I",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=quy1",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Qúy II",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=quy2",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Qúy III",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=quy3",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Qúy IV",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=quy4",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Báo cáo 6 tháng đầu năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=6thangdau",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Báo cáo năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=nam",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/quy1(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/quy2(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/quy3(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/quy4(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/6thangdau(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/model/nam(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+					]
 				},
 				{
 					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Tỉnh",
 					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "baocao_nuocsach_huyentinh",
-					"route": "baocao_nuocsach_tinh/collection",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+					"type": "category",
+//					"collectionName": "baocao_nuocsach_huyentinh",
+//					"route": "baocao_nuocsach_tinh/collection",
+//					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi(2);
 					},
-				},
-				{
-					"type": "view",
-					"collectionName": "baocao_nuocsach_huyentinh",
-					"route": "baocao_nuocsach_tinh/model",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
-					"visible": false
+					"entries": [
+						{
+							"text": "Báo cáo 6 tháng đầu năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_tinh",
+							"route": "baocao_nuocsach_tinh/collection?loaikybaocao=6thangdau",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"text": "Báo cáo năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_tinh",
+							"route": "baocao_nuocsach_tinh/collection?loaikybaocao=nam",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_tinh",
+							"route": "baocao_nuocsach_tinh/model/6thangdau(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyentinh/model/nam(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
+							"visible": false
+						},
+					]
 				},
 				{
 					"text": "Báo cáo Nước sạch dành cho Viện Chuyên Ngành",
 					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "baocao_vienchuyennganh_nuoc",
-					"route": "baocao_vienchuyennganh_nuoc/collection",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
+					"type": "category",
+//					"collectionName": "baocao_vienchuyennganh_nuoc",
+//					"route": "baocao_vienchuyennganh_nuoc/collection",
+//					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi(2);
 					},
-				},
-				{
-					"type": "view",
-					"collectionName": "baocao_vienchuyennganh_nuoc",
-					"route": "baocao_vienchuyennganh_nuoc/model",
-					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/ModelView",
-					"visible": false
+					"entries": [
+						{
+							"text": "Báo cáo 6 tháng đầu năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_vienchuyennganh_nuoc",
+							"route": "baocao_vienchuyennganh_nuoc/collection?loaikybaocao=6thangdau",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
+						},
+						{
+							"text": "Báo cáo năm",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_vienchuyennganh_nuoc",
+							"route": "baocao_vienchuyennganh_nuoc/collection?loaikybaocao=nam",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_vienchuyennganh_nuoc",
+							"route": "baocao_vienchuyennganh_nuoc/model/6thangdau(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/ModelView",
+							"visible": false
+						},
+						{
+							"type": "view",
+							"collectionName": "baocao_vienchuyennganh_nuoc",
+							"route": "baocao_vienchuyennganh_nuoc/model/nam(/:id)",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/ModelView",
+							"visible": false
+						},
+					]
 				},
 			],
 		},

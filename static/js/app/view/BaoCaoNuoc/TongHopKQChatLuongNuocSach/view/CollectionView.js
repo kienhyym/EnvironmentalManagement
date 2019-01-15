@@ -4,8 +4,8 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/BaoCaoNuoc/KQKiemTraNuocSach/tpl/collection.html'),
-		schema = require('json!schema/KQKiemTraNuocSachSchema.json');
+	var template = require('text!app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/tpl/collection.html'),
+		schema = require('json!schema/TongHopKetQuaKiemTraChatLuongNuocSachSchema.json');
 
 
 	return Gonrin.CollectionView.extend({
@@ -15,9 +15,8 @@ define(function (require) {
 		collectionName: "tonghop_ketqua_chatluong_nuocsach",
 		uiControl: {
 			fields: [{
-					field: "ngaybanhanh",
-					label: "Thời gian kiểm tra",
-					width: 250
+					field: "nambaocao",
+					label: "Năm báo cáo",
 				},
 				{
 					field: "tongdv",
