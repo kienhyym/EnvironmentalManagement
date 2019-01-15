@@ -6,8 +6,8 @@ define(function (require) {
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/model.html'),
         schema = require('json!schema/KetQuaNoiKiemChatLuongNuocSachSchema.json');
     
-    var somauvavitritemplate = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemSoMauVaViTriLayMau.html');
-    var somauvavitrischema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ViTriLayMauItemSchema.json');
+    var danhsachmautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemDanhSachMau.html');
+    var danhsachmauschema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/DanhSachMauItemSchema.json');
     
     var KetQuaNoiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
@@ -17,9 +17,10 @@ define(function (require) {
 		return parseInt(x) ? parseInt(x) : 0;
 	}
     
-    var SoMauVaViTriLayMauView = Gonrin.ModelView.extend({
-    	template : somauvavitritemplate,
-    	modelSchema	: somauvavitrischema,
+    var DanhSachMauView = Gonrin.ModelView.extend({
+    	tagName: "tr",
+    	template : danhsachmautemplate,
+    	modelSchema	: danhsachmauschema,
     	bindings: "danhsachmau-bind",
     	urlPrefix: "/api/v1/",
     	collectionName: "somau_va_vitri_laymau",
@@ -27,7 +28,7 @@ define(function (require) {
     	render:function(){
     		var self = this;
     		
-    		self.model.on("change:tenvitrilaymau", function(){
+    		self.model.on("change", function(){
     			self.trigger("change", {
     				"data": self.model.toJSON()
     			});
@@ -61,6 +62,118 @@ define(function (require) {
                 foreignField: "donvicapnuoc_id",
                 dataSource: DonViCapNuocSelectView
             },
+			{
+				field: "laphoso_theoquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 2}
+				]
+			},
+			{
+				field: "hoso_daydu_theoquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 2}
+				]
+			},
+			{
+				field: "somau_thunghiem_dungquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thunghiem_daydu_thongso",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "tansuat_thuchien_noikiem_dungquydinh",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_baocao_daydu",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_congkhai_thongtin",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "thuchien_bienphap_khacphuc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
+				]
+			},
+			{
+				field: "ketquanoikiem",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Đạt", value: "Đạt"},
+					{text: "Không Đạt", value: "Không Đạt"}
+				]
+			},
+			{
+				field: "cothuchien_khacphuc",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Có", value: 1},
+					{text: "Không", value: 0}
+				]
+			},
+			{
+				field: "nguonnuoc_nguyenlieu",
+				uicontrol: "combobox",
+				textField: "text",
+				valueField: "value",
+				dataSource: [
+					{text: "Nước mặt", value: 3},
+					{text: "Nước nguồn", value: 2},
+					{text: "Cả nước mặt và nước nguồn", value: 1},
+					{text: "Loại khác", value: 0}
+				]
+			},
             ],
         },
         tools: [{
@@ -139,7 +252,7 @@ define(function (require) {
             var self = this;
             
             var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
-            console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
+//            console.log("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
             if (ketquanoikiemchatluongnuoc == null){
 //            	self.$el.find("[id=mauvitri_header]").hide();
             	self.$el.find("[id=removeButton]").hide();
@@ -149,22 +262,12 @@ define(function (require) {
             }
 
             self.getApp().on("DonViCapNuoc_onSelected", function (data) {
-                self.model.set("diachi_donvicapnuoc", data.diachi);
-                self.model.set("diachi_donvicapnuoc", data.diachi);
-                self.model.set("congxuat", data.congsuat);
+                self.model.set("congsuat_thietke", data.congsuat);
+                self.model.set("tansuat_noikiem", data.tansuat_noikiem);
                 self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
-                self.model.set("nguonnuoc", data.nguonnuoc);
-
-                self.model.on("change:donvicapnuoc", function () {
-                    self.model.set("diachi_donvicapnuoc", data.diachi);
-                    self.model.set("diachi_donvicapnuoc", data.diachi);
-                    self.model.set("congxuat", data.congsuat);
-                    self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
-                    self.model.set("nguonnuoc", data.nguonnuoc);
-                });
-
+                self.model.set("nguonnuoc_nguyenlieu", data.nguonnuoc_nguyenlieu);
+                self.model.set("diachi_donvicapnuoc", data.diachi);
             });
-
             self.$el.find("#addItem").unbind("click").bind("click", function () {
                 var view = new ThongSoBaoCaoChatLuongNuocView();
                 view.dialog();
@@ -203,11 +306,12 @@ define(function (require) {
                 this.model.set('id', id);
                 this.model.fetch({
                     success: function (data) {
-                        self.applyBindings();
                         self.model.on("change:somauvavitri", function () {
                             self.changeSoMau(true);
                         });
+                        self.onChangeEvents();
                         self.changeSoMau();
+                        self.applyBindings();
                     },
                     error: function () {
                         self.getApp().notify("Lỗi lấy dữ liệu");
@@ -215,6 +319,8 @@ define(function (require) {
                 });
             } else {
                 self.prepareBaocao();
+                self.onChangeEvents();
+                self.applyBindings();
             }
         },
         changeSoMau: function () {
@@ -255,63 +361,14 @@ define(function (require) {
                 for (var j = 0; j < somau; j++) {
                     var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
                     self.$el.find("#mauvitri_header_before").before(el);
-                    self.$el.find("#id_ketquanoikiem").attr("colspan", j + 1);
+                    self.$el.find("#ketqualaymau").attr("colspan", j + 1);
                 }
             }
             self.renderKetQua();
-            
-            var somauvavitri = self.model.get("somauvavitri");
-        	self.$el.find("#somauvavitri_input").empty();
-//        	console.log("somauvavitri===",somauvavitri);
-        	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
-    		if (danhsachvitrilaymau == null){
-    			danhsachvitrilaymau = []
-    		}
-    		var danhsachvitri_new = [];
-//    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
-        	for (var i = 0; i < somauvavitri; i++){
-        		var somauvavitri_view = new SoMauVaViTriLayMauView();
-        		somauvavitri_view.model.set("id", i + 1);
-        		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
-        			var data_mau = danhsachvitrilaymau[i];
-//        			console.log("ssss",data_mau);
-        			data_mau.id = i+1;
-        			somauvavitri_view.model.set(data_mau);
-        		}
-        		somauvavitri_view.render();
-        		danhsachvitri_new.push(somauvavitri_view.model.toJSON());
-        		self.$el.find("#somauvavitri_input").append(somauvavitri_view.$el);
-        		somauvavitri_view.on("change", function(data){
-//        			console.log("=====data====",data)
-        			var ds = self.model.get("danhsachvitrilaymau");
-        			for(var j=0; j<ds.length;j++){
-//        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
-        				if(data.data.id === ds[j].id){
-//        					console.log(j.vitrilaymau);
-//        					ds.splice(j,1);
-//        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
-//        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
-        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
-//        					console.log("jjjjjj===",ds);
-//        					ds.push(data.data);
-        					break;
-        				}
-        			}
-//        			console.log("danhsachvitrilaymau=====",ds);
-        				self.model.set("danhsachvitrilaymau", ds);
-        				self.applyBindings();
-        		});
-        	}
-        	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
-        	self.applyBindings();
-            
-            
+            self.danhsachViTriMau();
         },
         renderKetQua: function () {
-            //prepare Itemview
-            //self.getApp().get()
             var self = this;
-            //    			self.getApp().trigger("ketquanoikiemchatluongnuoc:changesomau");
             $.each(self.model.get("ketquanoikiemchatluongnuoc"), function (idx, obj) {
                 var view = new KetQuaNoiKiemChatLuongNuocItemView();
                 obj["sothutu"] = idx + 1;
@@ -376,7 +433,6 @@ define(function (require) {
             }
         },
         prepareBaocao: function () {
-            //get all thong so
             var self = this;
             self.model.set("ketquanoikiemchatluongnuoc", []);
             var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
@@ -410,10 +466,92 @@ define(function (require) {
                     self.getApp().notify("Không tìm thấy thông số");
                 },
             });
-            self.applyBindings();
+//            self.applyBindings();
             self.model.on("change:somauvavitri", function () {
                 self.changeSoMau();
             });
+        },
+        
+        danhsachViTriMau: function () {
+        	var self = this;
+            var somauvavitri = self.model.get("somauvavitri");
+        	self.$el.find("#danhsachvitrilaymau").empty();
+//        	console.log("somauvavitri===",somauvavitri);
+        	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+    		if (danhsachvitrilaymau == null){
+    			danhsachvitrilaymau = []
+    		}
+    		var danhsachvitri_new = [];
+//    		console.log("danhsachvitrilaymau======",danhsachvitrilaymau);
+        	for (var i = 0; i < somauvavitri; i++){
+        		var somauvavitri_view = new DanhSachMauView();
+        		somauvavitri_view.model.set("masomau", i + 1);
+        		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
+        			var data_mau = danhsachvitrilaymau[i];
+//        			console.log("ssss",data_mau);
+        			data_mau.id = i+1;
+        			somauvavitri_view.model.set(data_mau);
+        		}
+        		somauvavitri_view.render();
+        		danhsachvitri_new.push(somauvavitri_view.model.toJSON());
+        		self.$el.find("#danhsachvitrilaymau").append(somauvavitri_view.$el);
+        		somauvavitri_view.on("change", function(data){
+//        			console.log("=====data====",data)
+        			var ds = self.model.get("danhsachvitrilaymau");
+        			for(var j=0; j<ds.length;j++){
+//        				console.log("id1===",data.data.id,"====id2===",ds[j].id)
+        				if(data.data.id === ds[j].id){
+//        					console.log(j.vitrilaymau);
+//        					ds.splice(j,1);
+//        					console.log("data vitrilaymau", data.data.tenvitrilaymau);
+//        					console.log("ds vitrilaymau", ds[j].tenvitrilaymau);
+        					ds[j].vitrilaymau = data.data.vitrilaymau;
+//        					console.log("jjjjjj===",ds);
+//        					ds.push(data.data);
+        					break;
+        				}
+        			}
+//        			console.log("danhsachvitrilaymau=====",ds);
+        				self.model.set("danhsachvitrilaymau", ds);
+        				self.applyBindings();
+        		});
+        	}
+        	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
+//        	self.applyBindings();
+        },
+        
+        onChangeEvents: function () {
+        	var self = this;
+            self.$el.find("#tailieu_thieu").hide();
+            self.model.on("change:hoso_daydu_theoquydinh", function (data) {
+            	if (self.model.get("hoso_daydu_theoquydinh") == 1) {
+            		self.$el.find("#tailieu_thieu").hide();
+            	} else {
+            		self.$el.find("#tailieu_thieu").show();
+            	}
+            });
+            if (self.model.get("hoso_daydu_theoquydinh") == 1) {
+            	self.$el.find("#tailieu_thieu").hide();
+            } else {
+            	self.$el.find("#tailieu_thieu").show();
+            }
+            
+            self.model.on("change:thuchien_bienphap_khacphuc", function (data) {
+            	if (self.model.get("thuchien_bienphap_khacphuc") == 0) {
+					if (self.$el.find("#bienphap_extra").hasClass("hide")) {
+						self.$el.find("#bienphap_extra").removeClass("hide");
+					}
+				} else {
+					if (!self.$el.find("#bienphap_extra").hasClass("hide")) {
+						self.$el.find("#bienphap_extra").addClass("hide");
+					}
+				}
+            });
+			if (self.model.get("thuchien_bienphap_khacphuc") == 1) {
+				if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
+					self.$el.find("#pheduyet_extra").removeClass("hide");
+				}
+			}
         },
     });
 });

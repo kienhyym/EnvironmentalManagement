@@ -38,10 +38,6 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-    			{
-					field: "ma",
-					label: "Mã Đơn Vị",
-				},
 				{
 					field: "ten",
 					label: "Tên Đơn Vị"

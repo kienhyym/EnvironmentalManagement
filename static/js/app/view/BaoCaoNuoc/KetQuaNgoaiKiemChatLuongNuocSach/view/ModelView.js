@@ -28,7 +28,7 @@ define(function (require) {
     	render:function(){
     		var self = this;
     		
-    		self.model.on("change:tenvitrilaymau", function(){
+    		self.model.on("change", function(){
     			self.trigger("change", {
     				"data": self.model.toJSON()
     			});
@@ -260,8 +260,10 @@ define(function (require) {
                 	self.$el.find("[id=removeButton]").show();
                 }
                 $.each(self.model.get("ketquangoaikiemchatluongnuoc"), function (idx, obj) {
-
+                	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+                	console.log("danhsachvitrilaymau", danhsachvitrilaymau);
                     if (self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {
+                    	console.log("zzz", self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"]);
                         for (var i = self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++) {
                             self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
                                 "vitrimau": i + 1,
@@ -276,13 +278,21 @@ define(function (require) {
                 });
 
                 for (var j = 0; j < somau; j++) {
-                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
-                    self.$el.find("#mauvitri_header_before").before(el);
-                    self.$el.find("#id_ketquangoaikiem").attr("colspan", j + 1);
+                	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+            		if (danhsachvitrilaymau == null){
+            			danhsachvitrilaymau = []
+            		}
+//            		console.log("danhsachvitrilaymau", danhsachvitrilaymau);
+//                	danhsachvitrilaymau.forEach(function (data){
+//                		console.log("data==", data);
+	                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
+	                    self.$el.find("#mauvitri_header_before").before(el);
+	                    self.$el.find("#id_ketquangoaikiem").attr("colspan", j + 1);
+//                	});
                 }
             }
             self.renderKetQua();
-            self.danhsachMau();
+            self.danhsachViTriMau();
             
         },
         renderKetQua: function () {
@@ -313,7 +323,6 @@ define(function (require) {
                         	} else {
                         		data.danhgia = 0;
                         	}
-
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
 //                        console.log("danhgiaThongSo", danhgiaThongSo);
                     });
@@ -409,7 +418,7 @@ define(function (require) {
 			}
 		},
 		
-		danhsachMau: function () {
+		danhsachViTriMau: function () {
 			var self = this;
             var somauvavitri = self.model.get("somauvavitri");
         	self.$el.find("#somauvavitri_input").empty();
@@ -456,13 +465,12 @@ define(function (require) {
         	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
         	//self.applyBindings();
 		},
-		
 		danhgiaViTriMau: function () {
 			var self = this;
 			var listvitri = {};
             var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
             ketquangoaikiemchatluongnuoc.forEach(function (data) {
-            	console.log("thong so: ", data);
+//            	console.log("thong so: ", data);
 		        data.ketquakiemtra.forEach(function (data, index) {
 		        	if (listvitri.hasOwnProperty(data.vitrimau) && listvitri[data.vitrimau]) {
 		        		listvitri[data.vitrimau].ketqua.push(data.ketqua ? data.ketqua : 0);

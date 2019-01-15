@@ -1,40 +1,47 @@
 <div block-bind="toolbar"></div>
 <div block-bind="content" style="margin-top: 20px;">
-	<div class="col-md-6">	
-		<div class="form-group">
-			<label>Tên đơn vị cấp nước</label>
-			<input type="text" data-bind="value:ten" />
-		</div>
-		<div class="form-group">
-			<label>Công suất thiết kế (m3/ngày đêm)</label>
-			<input type="text" data-bind="value:congsuat" />
-		</div>
-		<div class="form-group">
-			<label>Tổng số hộ gia đình được cung cấp nước</label>
-			<input type="text" data-bind="value:tongso_hogiadinh" />
-		</div>
-		<div class="form-group">
-			<label>Nguồn nước nguyên liệu</label>
-			<input type="text" data-bind="value:nguonnuoc" />
-		</div>
-		
-	</div>
-	<div class="col-md-6">	
-		<div class="form-group">
-			<label>Tỉnh/Thành Phố</label>
-			<input type="text" data-bind="dict:tinhthanh" />
-		</div>
-		<div class="form-group">
-			<label>Quận/Huyện</label>
-			<input type="text" data-bind="dict:quanhuyen" />
-		</div>
-		<div class="form-group">
-			<label>Xã/Phường</label>
-			<input type="text" data-bind="dict:xaphuong" />
-		</div>
-		<div class="form-group">
-			<label>Địa chỉ cụ thể</label>
-			<textarea rows="2" data-bind="value:diachi" ></textarea>
-		</div>
-	</div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Tỉnh/Thành Phố</label>
+            <input type="text" data-bind="dict:tinhthanh" />
+        </div>
+        <div class="form-group">
+            <label>Quận/Huyện</label>
+            <input type="text" data-bind="dict:quanhuyen" />
+        </div>
+        <div class="form-group">
+            <label>Xã/Phường</label>
+            <input type="text" data-bind="dict:xaphuong" />
+        </div>
+        <div class="form-group">
+            <label>Tên đơn vị cấp nước</label>
+            <input type="text" data-bind="value:ten" />
+        </div>
+        <div class="form-group">
+            <label>Công suất thiết kế (m3/ngày đêm)</label>
+            <input type="text" data-bind="value:congsuat" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Tổng số hộ gia đình được cung cấp nước</label>
+            <input type="text" data-bind="value:tongso_hogiadinh" />
+        </div>
+        <div class="form-group">
+            <label>Nguồn nước nguyên liệu</label>
+            <input type="text" data-bind="value:nguonnuoc_nguyenlieu" />
+        </div>
+        <div class="form-group">
+            <label>Phương pháp khử trùng</label>
+            <input type="text" data-bind="value:phuongphap_khutrung" />
+        </div>
+        <div class="form-group">
+            <label>Tần suất thực hiện nội kiểm</label>
+            <input type="text" data-bind="value:tansuat_noikiem" />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ cụ thể</label>
+            <textarea rows="2" data-bind="value:diachi"></textarea>
+        </div>
+    </div>
 </div>

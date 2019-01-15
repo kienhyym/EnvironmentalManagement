@@ -1,0 +1,11 @@
+{
+	"masomau": {
+		"type": "number"
+	},
+	"vitrilaymau": {
+		"type": "string"
+	},
+	"ketquavitrimau": {
+		"type": "string"
+	}
+}
