@@ -191,9 +191,21 @@ define(function (require) {
                 label: "TRANSLATE:SAVE",
                 command: function () {
                     var self = this;
-                    if (!self.validate()) {
-                    	return;
+                    var nambaocao = self.model.get("nambaocao");
+                	if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
+                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
+                    } else if(!self.model.get("ngaybaocao")){
+                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "warning"});
                     }
+                    else if(!self.model.get("donvicapnuoc")){
+                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
+                    }
+                    else if(!self.model.get("thoigiankiemtra")){
+                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "warning"});
+                    }
+                    else if(!self.model.get("nguoikiemtra")){
+                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "warning"});
+                    } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Lưu thông tin thành công");
@@ -203,6 +215,7 @@ define(function (require) {
                             self.getApp().notify('Lưu thông tin không thành công!');
                         }
                     });
+                   }
                 }
             },
             {
@@ -358,17 +371,19 @@ define(function (require) {
                     });
                     evt.danhgia = danhgiaThongSo;
                     self.updateKetqua(evt);
-                    var itemNoiKiem = self.model.get("ketquanoikiemchatluongnuoc");
-                    var danhgiaTong = 1;
-                    self.changeSoMau();
-                    itemNoiKiem.forEach(function (data) {
-                        danhgiaTong *= data.danhgia;
-                        if (danhgiaTong == 1) {
-                            self.model.set("ketquanoikiem", "Đạt");
-                        } else {
-                            self.model.set("ketquanoikiem", "Không Đạt");
-                        }
-                    });
+//                    Đánh giá Tổng của tất cả các thông số
+//                    var itemNoiKiem = self.model.get("ketquanoikiemchatluongnuoc");
+//                    var danhgiaTong = 1;
+//                    self.changeSoMau();
+//                    itemNoiKiem.forEach(function (data) {
+//                        danhgiaTong *= data.danhgia;
+//                        if (danhgiaTong == 1) {
+//                            self.model.set("ketquanoikiem", "Đạt");
+//                        } else {
+//                            self.model.set("ketquanoikiem", "Không Đạt");
+//                        }
+//                    });
+//                    end 
                     self.applyBindings();
                 });
                 view.$el.find("#itemRemove").unbind("click").bind("click", function () {
@@ -500,24 +515,5 @@ define(function (require) {
 				}
 			}
         },
-        validate: function () {
-        	var self = this;
-            var nambaocao = self.model.get("nambaocao");
-        	if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
-            	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
-            } else if(!self.model.get("ngaybaocao")){
-            	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "warning"});
-            }
-            else if(!self.model.get("donvicapnuoc")){
-            	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
-            }
-            else if(!self.model.get("thoigiankiemtra")){
-            	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "warning"});
-            }
-            else if(!self.model.get("nguoikiemtra")){
-            	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "warning"});
-            }
-        	return true;
-        }
     });
 });
