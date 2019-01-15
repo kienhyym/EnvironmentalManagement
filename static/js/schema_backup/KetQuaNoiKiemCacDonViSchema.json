@@ -1,0 +1,58 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tendonvicapnuoc": {
+        "type": "string"
+    },
+    "madonvicapnuoc": {
+        "type": "string"
+    },
+    "soho_giadinh_duoccapnuoc": {
+        "type": "number"
+    },
+    "laphoso": {
+        "type": "boolean"
+    },
+    "hoso_daydu": {
+        "type": "boolean"
+    },
+    "thieu_tailieu": {
+        "type": "string"
+    },
+    "soluongmau_cacthongso": {
+        "type": "boolean"
+    },
+    "tanxuat_thuchien": {
+        "type": "boolean"
+    },
+    "chedo_thongtin": {
+        "type": "boolean"
+    },
+    "cacbienphap": {
+        "type": "boolean"
+    }
+}

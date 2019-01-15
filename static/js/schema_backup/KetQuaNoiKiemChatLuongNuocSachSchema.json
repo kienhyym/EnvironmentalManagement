@@ -1,0 +1,107 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "donvicapnuoc_id": {
+        "type": "string",
+        "required": true
+    },
+    "tendonvicapnuoc": {
+        "type": "string"
+    },
+    "madonvicapnuoc": {
+        "type": "string"
+    },
+    "diachi_donvicapnuoc": {
+        "type": "string"
+    },
+    "congxuat": {
+        "type": "number"
+    },
+    "tongso_hogiadinh": {
+        "type": "number"
+    },
+    "nguonnuoc": {
+        "type": "string"
+    },
+    "thoigiankiemtra": {
+        "type": "datetime"
+    },
+    "nguoikiemtra": {
+        "type": "string"
+    },
+    "somauvavitri": {
+        "type": "number"
+    },
+    "danhsachvitrilaymau": {
+        "type": "json"
+    },
+    "hosotheodoi": {
+        "type": "string"
+    },
+    "nhanxet": {
+        "type": "string"
+    },
+    "bienphapkhacphuc": {
+        "type": "string"
+    },
+    "denghi": {
+        "type": "string"
+    },
+    "ketquanoikiemchatluongnuoc": {
+        "type": "json"
+    },
+    "ketquanoikiem": {
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "donvicapnuoc": {
+        "type": "dict"
+    }
+}

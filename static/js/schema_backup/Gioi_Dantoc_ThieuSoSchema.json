@@ -1,0 +1,96 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "tongso_duocdaotao_yte": {
+        "type": "number"
+    },
+    "tongso_nguoithamgia_nu_yte": {
+        "type": "number"
+    },
+    "tyle_nguoithamgia_nu_yte": {
+        "type": "number"
+    },
+    "tongso_nguoithamgia_dtts_yte": {
+        "type": "number"
+    },
+    "tyle_nguoithamgia_dtts_yte": {
+        "type": "number"
+    },
+    "tongso_giangvien_nu_yte": {
+        "type": "number"
+    },
+    "tongso_duocdaotao_giaoduc": {
+        "type": "number"
+    },
+    "tongso_nguoithamgia_nu_giaoduc": {
+        "type": "number"
+    },
+    "tyle_nguoithamgia_nu_giaoduc": {
+        "type": "number"
+    },
+    "tongso_nguoithamgia_dtts_giaoduc": {
+        "type": "number"
+    },
+    "tyle_nguoithamgia_dtts_giaoduc": {
+        "type": "number"
+    },
+    "tongso_giangvien_nu_giaoduc": {
+        "type": "number"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tongso_mau_lamxn": {
+        "type": "number"
+    },
+    "tongsomau_datquychuan": {
+        "type": "number"
+    },
+    "tyle_quychuan": {
+        "type": "number"
+    },
+    "tongsomau_khongdat": {
+        "type": "number"
+    },
+    "tylemau_khongdat": {
+        "type": "number"
+    }
+}

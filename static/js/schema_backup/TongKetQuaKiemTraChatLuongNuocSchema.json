@@ -1,0 +1,52 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tendonvicapnuoc": {
+        "type": "string"
+    },
+    "madonvicapnuoc": {
+        "type": "string"
+    },
+    "thoigiankiemtra": {
+        "type": "datetime"
+    },
+    "noidungkiemtra": {
+        "type": "string"
+    },
+    "ketqua_thunghiem_ngoaikiem": {
+        "type": "string"
+    },
+    "ketluan": {
+        "type": "string"
+    },
+    "bienphap_khacphuc": {
+        "type": "string"
+    },
+    "ketqua_khacphuc": {
+        "type": "string"
+    }
+}

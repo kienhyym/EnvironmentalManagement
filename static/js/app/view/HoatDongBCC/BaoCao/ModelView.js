@@ -89,8 +89,8 @@ define(function (require) {
 				},
 				{
 					field: "ngay_pheduyet",
-					uicontrol: "datetimepicker",
-					textFormat: "DD/MM/YYYY",
+					textFormat:"DD/MM/YYYY",
+					extraFormats:["DDMMYYYY"],
 					readonly:true
 				},
 				
@@ -206,6 +206,12 @@ define(function (require) {
 					success: function(response) {
 						if (response) {
 							self.model.set(response);
+							if (self.model.get("tiendo_pheduyet") == 1) {
+								if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
+									self.$el.find("#pheduyet_extra").removeClass("hide");
+								}
+							}
+//							self.applyBindings();
 //							self.model.set('songuoithamgia', response.tongsonguoithamgia);
 //							self.model.set('songuoithamgia_nu', response.tongsonguoithamgia_nu);
 //							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);

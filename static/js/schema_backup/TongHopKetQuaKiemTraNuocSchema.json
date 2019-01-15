@@ -1,0 +1,61 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "ngaybanhanh": {
+        "type": "datetime"
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "loaibaocao": {
+        "type": "boolean"
+    },
+    "tong_donvicapnuoc": {
+        "type": "number"
+    },
+    "tong_hogiadinh_duoccap": {
+        "type": "number"
+    },
+    "chiemtyle": {
+        "type": "number"
+    },
+    "tong_donvicapnuoc_kybaocao": {
+        "type": "number"
+    },
+    "socoso_thuchien_ngoaikiem": {
+        "type": "number"
+    },
+    "sokinhphi_duoccungcap": {
+        "type": "number"
+    },
+    "kinhphi_sovoi_namtruoc": {
+        "type": "number"
+    },
+    "thuchien_baocao": {
+        "type": "boolean"
+    }
+}

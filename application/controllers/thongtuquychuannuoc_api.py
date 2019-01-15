@@ -21,24 +21,45 @@ apimanager.create_api(DonViCapNuoc,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='donvicapnuoc')
 
+apimanager.create_api(MapVienChuyenNganhNuocVaTinh,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='map_vienchuyennganhnuoc_tinh')
+
+apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='thongsobaocaochatluongnuoc')
+
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
-    record = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvicapnuoc_id == data["donvicapnuoc_id"],\
-                                                      KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
-                                                      KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao == data['ngaybaocao'], \
-                                                      KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).first()
-    
-    if record is not None:
-        return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+#     record = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvicapnuoc_id == data["donvicapnuoc_id"],\
+#                                                       KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
+#                                                       KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao == data['ngaybaocao'], \
+#                                                       KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).first()
+#     
+#     if record is not None:
+#         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
     
       
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    
+    
+apimanager.create_api(KetQuaNgoaiKiemChatLuongNuocSach,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNgoaiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='ketqua_ngoaikiem_chatluong_nuocsach')
+
+
     
 async def prepost_KetQuaNoiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -53,30 +74,40 @@ async def prepost_KetQuaNoiKiemChatLuongNuocSach(request=None, data=None, Model=
     
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
-    
       
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
 
 
-apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='thongsobaocaochatluongnuoc')
 
-apimanager.create_api(KetQuaNgoaiKiemChatLuongNuocSach,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNgoaiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    collection_name='ketqua_ngoaikiem_chatluong_nuocsach')
 
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='ketqua_noikiem_chatluong_nuocsach')
+
+
+apimanager.create_api(TongHopKetQuaKiemTraChatLuongNuocSach,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='tonghop_ketqua_chatluong_nuocsach')
+
+apimanager.create_api(BaoCaoNuocSachHuyenTinh,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='baocao_nuocsach_huyentinh')
+
+apimanager.create_api(BaoCaoVienChuyenNganhNuoc,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    collection_name='baocao_vienchuyennganh_nuoc')
+
+
 
 # apimanager.create_api(KQNgoaiKiemChatLuong,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],

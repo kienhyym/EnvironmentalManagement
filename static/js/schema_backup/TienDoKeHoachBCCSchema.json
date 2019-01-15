@@ -1,0 +1,138 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "thonxom_id": {
+        "type": "string"
+    },
+    "tiendo_xaydung": {
+        "type": "number",
+        "required": true
+    },
+    "tiendo_rasoat": {
+        "type": "number",
+        "required": true
+    },
+    "tiendo_pheduyet": {
+        "type": "number",
+        "required": true
+    },
+    "ngay_pheduyet": {
+        "type": "datetime"
+    },
+    "sohoatdong_cotloi_pheduyet": {
+        "type": "number"
+    },
+    "sohoatdong_cotloi_hoanthanh": {
+        "type": "number"
+    },
+    "nganh_id": {
+        "type": "string"
+    },
+    "giangvien": {
+        "type": "number"
+    },
+    "giangvien_nu": {
+        "type": "number"
+    },
+    "tongsogiangvien": {
+        "type": "number"
+    },
+    "tongsogiangvien_nu": {
+        "type": "number"
+    },
+    "tongsonguoithamgia": {
+        "type": "number"
+    },
+    "tongsonguoithamgia_nu": {
+        "type": "number"
+    },
+    "tongsonguoithamgia_dtts": {
+        "type": "number"
+    },
+    "danhsach_hoatdong": {
+        "type": "json"
+    },
+    "tuyendonvi": {
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    },
+    "thonxom": {
+        "type": "dict"
+    },
+    "nganh": {
+        "type": "dict"
+    }
+}

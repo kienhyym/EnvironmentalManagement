@@ -1,0 +1,239 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "tenxa": {
+        "type": "string"
+    },
+    "thuocsuprsws": {
+        "type": "number"
+    },
+    "tong_sothon": {
+        "type": "number"
+    },
+    "tong_soho": {
+        "type": "number"
+    },
+    "tong_chuholanu": {
+        "type": "number"
+    },
+    "tong_sohongheo": {
+        "type": "number"
+    },
+    "tong_sohodtts": {
+        "type": "number"
+    },
+    "tong_danso": {
+        "type": "number"
+    },
+    "tong_nam": {
+        "type": "number"
+    },
+    "tong_nu": {
+        "type": "number"
+    },
+    "tong_tuhoai": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_tuhoai_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thamdoi": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thamdoi_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_2ngan": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_2ngan_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_ongthonghoi": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_ongthonghoi_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_loaikhac": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_khongnhatieu": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_hopvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_khonghopvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_caithien": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_caithien_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_caithien_hongheo": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_caithien_hongheo_hvs": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_diemruatay": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_tuhoai_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_tuhoai_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_thamdoi_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_thamdoi_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_2ngan_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_2ngan_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_vip_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_vip_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_caithien_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_caithien_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap": {
+        "type": "number",
+        "default": 0
+    },
+    "danhsachbaocao": {
+        "type": "json"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    }
+}

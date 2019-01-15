@@ -1,0 +1,105 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "tyle_hogiadinh_nhatieucaithien": {
+        "type": "number"
+    },
+    "tyle_hogiadinh_diemruatay": {
+        "type": "number"
+    },
+    "tyle_truonghoc_conuocsach_nhatieuhvs": {
+        "type": "number"
+    },
+    "tonso_hocsinh": {
+        "type": "number"
+    },
+    "tyle_tramyte_conuocsach_nhatieuhvs": {
+        "type": "number"
+    },
+    "tongso_hogiadinh_xa": {
+        "type": "number"
+    },
+    "tong_danso_xa": {
+        "type": "number"
+    },
+    "tyle_giadinh_chulanu": {
+        "type": "number"
+    },
+    "tyle_hogiadinh_dtts": {
+        "type": "number"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    }
+}
