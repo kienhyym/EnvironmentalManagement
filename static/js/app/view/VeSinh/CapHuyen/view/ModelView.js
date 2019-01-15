@@ -153,7 +153,6 @@ define(function (require) {
 					},
 					command: function () {
 						var self = this;
-						self.model.unset("danhsachbaocao");
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
