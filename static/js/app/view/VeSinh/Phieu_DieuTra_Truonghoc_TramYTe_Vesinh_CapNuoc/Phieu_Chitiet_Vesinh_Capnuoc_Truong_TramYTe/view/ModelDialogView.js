@@ -4,8 +4,8 @@ define(function (require) {
         _ = require('underscore'),
         Gonrin = require('gonrin');
 
-    var template = require('text!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/tpl/model.html'),
-        schema = require('json!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeSchema.json');
+    var template = require('text!app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/tpl/model.html'),
+        schema = require('json!app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeSchema.json');
 
     return Gonrin.ModelDialogView.extend({
         template: template,

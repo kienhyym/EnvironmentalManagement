@@ -2,12 +2,12 @@ define(function (require) {
     "use strict";
     var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
-    var template = require('text!app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/tpl/model.html'),
+    var template = require('text!app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/tpl/model.html'),
         schema = require('json!schema/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuocSchema.json');
     var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
     var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
     var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
-    var Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView = require('app/view/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/ModelDialogView');
+    var Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView = require('app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/ModelDialogView');
 
     return Gonrin.ModelView.extend({
         template: template,
