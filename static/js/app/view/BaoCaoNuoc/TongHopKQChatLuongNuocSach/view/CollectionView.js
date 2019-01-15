@@ -21,22 +21,18 @@ define(function (require) {
 				{
 					field: "tongdv",
 					label: "Tổng số đơn vị cấp nước",
-					width: 250
 				},
 				{
 					field: "tyle",
 					label: "Chiếm tỷ lệ",
-					width: 250
 				},
 				{
 					field: "csngoaikiem",
 					label: "Số cơ sở thực hiện ngoại kiểm",
-					width: 250
 				},
 				{
 					field: "kinhphi",
 					label: "Số kinh phí được cấp cho công tác ngoại kiểm",
-					width: 250
 				},
 
 

@@ -460,7 +460,7 @@ define(function (require) {
         		somauvavitri_view.model.set("masomau", i + 1);
         		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
         			var data_mau = danhsachvitrilaymau[i];
-        			data_mau.id = i+1;
+        			data_mau.masomau = i+1;
         			somauvavitri_view.model.set(data_mau);
         		}
         		somauvavitri_view.render();
@@ -469,7 +469,7 @@ define(function (require) {
         		somauvavitri_view.on("change", function(data){
         			var ds = self.model.get("danhsachvitrilaymau");
         			for(var j=0; j<ds.length;j++){
-        				if(data.data.id === ds[j].id){
+        				if(data.data.masomau === ds[j].masomau){
         					ds[j].vitrilaymau = data.data.vitrilaymau;
         					break;
         				}
