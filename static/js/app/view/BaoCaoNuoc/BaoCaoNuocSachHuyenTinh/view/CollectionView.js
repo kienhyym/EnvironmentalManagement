@@ -47,11 +47,6 @@ define(function (require) {
 
                 },
                 {
-                    field: "ngaybaocao",
-                    label: "Ngày báo cáo",
-
-                },
-                {
                     field: "tong_donvi_capnuoc",
                     label: "Tổng số đơn vị cấp nước",
 
@@ -61,8 +56,11 @@ define(function (require) {
                     label: "Tổng số HGĐ được cung cấp nước",
 
                 },
+                {
+                    field: "tong_hogiadinh_diaban",
+                    label: "Tổng số HGĐ trên địa bàn",
 
-
+                },
             ],
 			onRowClick: function (event) {
 				if (event.rowId) {

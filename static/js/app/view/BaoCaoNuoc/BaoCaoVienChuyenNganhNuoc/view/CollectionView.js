@@ -36,16 +36,16 @@ define(function (require) {
 					label: "Năm báo cáo",
 				},
 				{
-					field: "tendonvicapnuoc",
-					label: "Tên đơn vị cấp nước",
+					field: "tong_tinh_phutrach",
+					label: "Tổng số tỉnh phụ trách",
 				},
 				{
-					field: "congsuat_thietke",
-					label: "Công suất thiết kế",
+					field: "tong_tinh_cobaocao",
+					label: "Số tỉnh có báo cáo",
 				},
 				{
-					field: "tongso_hogiadinh",
-					label: "Tổng số HGĐ được cấp nước",
+					field: "tong_donvi_capnuoc_phutrach",
+					label: "Tổng số đơn vị cấp nước phụ trách",
 				},
 
 			],
