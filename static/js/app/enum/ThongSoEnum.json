@@ -1,0 +1,66 @@
+[
+    {
+        "tenthongso": "Coliform (CFU/100 mL)",
+        "gioihan_toida_txt": "nhỏ hơn 3",
+        "gioihan_toida": "3",
+        "gioihan_toithieu_txt": "",
+        "gioihan_toithieu": "",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "E.Coli hoặc Coliform chịu nhiệt (CFU/100 mL)",
+        "gioihan_toida_txt": "nhỏ hơn 1",
+        "gioihan_toida": "1",
+        "gioihan_toithieu_txt": "",
+        "gioihan_toithieu": "",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "Arsenic (As)(*) (mg/L)",
+        "gioihan_toida_txt": "nhỏ hơn 0.01",
+        "gioihan_toida": "0.01",
+        "gioihan_toithieu_txt": "",
+        "gioihan_toithieu": "",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "Clo dư tự do (**) (mg/L)",
+        "gioihan_toida_txt": "nhỏ hơn 1",
+        "gioihan_toida": "1",
+        "gioihan_toithieu_txt": "lớn hơn 0.2",
+        "gioihan_toithieu": "0.2",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "Độ đục( NTU)",
+        "gioihan_toida_txt": "nhỏ hơn 2",
+        "gioihan_toida": "2",
+        "gioihan_toithieu_txt": "",
+        "gioihan_toithieu": "",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "Màu sắc (TCU)",
+        "gioihan_toida_txt": "nhỏ hơn 15",
+        "gioihan_toida": "15",
+        "gioihan_toithieu_txt": "",
+        "gioihan_toithieu": "",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "Mùi,vị",
+        "gioihan_toida_txt": "Không có mùi vị lạ",
+        "gioihan_toida": "1",
+        "gioihan_toithieu_txt": "Không có mùi vị lạ",
+        "gioihan_toithieu": "1",
+        "batbuoc": true
+    },
+    {
+        "tenthongso": "PH",
+        "gioihan_toida_txt": "nhỏ hơn 8.5",
+        "gioihan_toida": "8.5",
+        "gioihan_toithieu_txt": "lớn hơn 6",
+        "gioihan_toithieu": "6",
+        "batbuoc": true
+    }
+]
