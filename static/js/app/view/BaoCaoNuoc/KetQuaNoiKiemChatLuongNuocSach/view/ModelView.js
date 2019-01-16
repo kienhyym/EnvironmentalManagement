@@ -322,12 +322,19 @@ define(function (require) {
                 	self.$el.find("[id=removeButton]").show();
                 }
                 
+                var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+                if (danhsachvitrilaymau == null) {
+                	danhsachvitrilaymau = []
+                }
+                console.log(danhsachvitrilaymau);
                 $.each(self.model.get("ketquanoikiemchatluongnuoc"), function (idx, obj) {
 
                     if (self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {
                         for (var i = self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++) {
-                            self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
-                                "vitrimau": i + 1,
+                        	console.log("iii", i);
+                        	self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
+                                "mavitrimau": danhsachvitrilaymau[idx].masomau,
+                                "tenvitrimau": danhsachvitrilaymau[idx].tenvitrilaymau,
                                 "ketqua": null,
                                 "danhgia": 0
                             })
@@ -470,7 +477,7 @@ define(function (require) {
         			var ds = self.model.get("danhsachvitrilaymau");
         			for(var j=0; j<ds.length;j++){
         				if(data.data.masomau === ds[j].masomau){
-        					ds[j].vitrilaymau = data.data.vitrilaymau;
+        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
         					break;
         				}
         			}

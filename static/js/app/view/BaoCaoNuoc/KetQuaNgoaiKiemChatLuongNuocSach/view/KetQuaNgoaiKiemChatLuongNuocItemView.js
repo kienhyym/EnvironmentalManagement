@@ -9,9 +9,15 @@ define(function (require) {
 
     var mautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemViTriLayMau.html');
     var mauschema = {
-        "vitrimau": {
+        "mavitrimau": {
             "type": "number",
             "primary": true
+        },
+        "tenvitrimau": {
+            "type": "string"
+        },
+        "ngaykiemtra": {
+            "type": "datetime"
         },
         "ketqua": {
             "type": "number"
