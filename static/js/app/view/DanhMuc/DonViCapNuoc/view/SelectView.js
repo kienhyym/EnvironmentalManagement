@@ -43,8 +43,12 @@ define(function (require) {
 					label: "Tên Đơn Vị"
 				},
 				{
-					field: "nguonnuoc",
-					label: "Nguồn Nước"
+					field: "congsuat",
+					label: "Công suất"
+				},
+				{
+					field: "tongso_hogiadinh",
+					label: "Tổng số HGĐ"
 				},
 				{
 					field: "diachi",

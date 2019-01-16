@@ -27,10 +27,6 @@ define(function (require) {
 					label: "Tổng số HGĐ"
 				},
 				{
-					field: "tansuat_noikiem",
-					label: "Tần suất nội kiểm"
-				},
-				{
 					field: "diachi",
 					label: "Địa Chỉ"
 				},

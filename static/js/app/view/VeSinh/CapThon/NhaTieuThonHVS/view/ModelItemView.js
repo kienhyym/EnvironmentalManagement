@@ -246,9 +246,9 @@ define(function (require) {
 			var self = this;
 			var gioitinh = self.model.get("gioitinh");
 			if(gioitinh===0 || gioitinh === "0"){
-				self.$el.find("#gioitinh").html("Nữ");
-			}else{
 				self.$el.find("#gioitinh").html("Nam");
+			}else{
+				self.$el.find("#gioitinh").html("Nữ");
 			}
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);

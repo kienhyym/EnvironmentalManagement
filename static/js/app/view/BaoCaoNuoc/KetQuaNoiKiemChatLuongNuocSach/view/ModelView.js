@@ -142,8 +142,8 @@ define(function (require) {
 				textField: "text",
 				valueField: "value",
 				dataSource: [
-					{text: "Đạt", value: "Đạt"},
-					{text: "Không Đạt", value: "Không Đạt"}
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
 				]
 			},
 			{

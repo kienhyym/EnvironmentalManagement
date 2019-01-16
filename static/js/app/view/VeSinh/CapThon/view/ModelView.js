@@ -342,6 +342,11 @@ define(function (require) {
 				}
 			}
 			self.$el.find("#addItem").unbind("click").bind("click", function () {
+				var thonxom = self.model.get("thonxom");
+				if(self.model.get("thonxom") === null || !self.model.get("thonxom")){
+					self.getApp().notify("Chưa chọn thông tin thôn/xóm");
+					return;
+				}
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
 				view_hogiadinh.dialog();
 				view_hogiadinh.on("onSelected", function(data){

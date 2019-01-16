@@ -36,6 +36,18 @@ define(function(require) {
             foreignField: "donvicapnuoc_id",
             dataSource: DonViCapNuocSelectView
         },
+        {
+			field: "nguonnuoc_nguyenlieu",
+			uicontrol: "combobox",
+			textField: "text",
+			valueField: "value",
+			dataSource: [
+				{text: "Nước mặt", value: 3},
+				{text: "Nước nguồn", value: 2},
+				{text: "Cả nước mặt và nước nguồn", value: 1},
+				{text: "Loại khác", value: 0}
+			]
+		},
 //        {
 //          field: "hosotheodoi",
 //          uicontrol: false,
@@ -79,7 +91,10 @@ define(function(require) {
 				if(nambaocao === null || nambaocao === ""){
 					self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
 					return;
-				}
+				}else if(!self.model.get("donvicapnuoc")){
+                	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
+                	return;
+                }
 				var check_donvi = true;
 				if (id !== null && id.length>0){
 					if (self.getApp().currentUser !== null 
@@ -115,11 +130,19 @@ define(function(require) {
 			type: "button",
 			buttonClass: "btn-primary btn-sm",
 			label: "Cộng dồn",
-			visible: function () {
-				return this.getApp().getRouter().getParam("id") !== null;
-			},
+//			visible: function () {
+//				return this.getApp().getRouter().getParam("id") !== null;
+//			},
 			command: function () {
 				var self = this;
+				var nambaocao = self.model.get("nambaocao");
+				if(nambaocao === null || nambaocao === ""){
+					self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+					return;
+				}else if(!self.model.get("donvicapnuoc")){
+                	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
+                	return;
+                }
 				self.model.save(null, {
 					success: function (model, respose, options) {
 						self.getApp().notify("Lưu thông tin thành công");
@@ -185,6 +208,16 @@ define(function(require) {
 				self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
 			}
 		}
+		self.getApp().on("DonViCapNuoc_onSelected", function (data) {
+			self.model.set("tendonvicapnuoc",data.ten)
+            self.model.set("congsuat_thietke", data.congsuat);
+            self.model.set("tansuat_noikiem", data.tansuat_noikiem);
+            self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
+            self.model.set("nguonnuoc_nguyenlieu", toInt(data.nguonnuoc_nguyenlieu));
+            self.model.set("diachi_donvicapnuoc", data.diachi);
+            console.log("donvicapnuoc==", data);
+            self.applyBindings();
+        });
 		if (id) {
 			this.model.set('id', id);
 			this.model.fetch({
