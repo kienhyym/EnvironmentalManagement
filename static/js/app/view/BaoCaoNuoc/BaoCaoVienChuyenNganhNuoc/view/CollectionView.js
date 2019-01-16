@@ -12,48 +12,69 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "tonghop_ketqua_chatluong_nuocsach",
+		collectionName: "baocao_vienchuyennganh_nuoc",
+		tools: [{
+			name: "defaultgr",
+			type: "group",
+			groupClass: "toolbar-group",
+			buttons: [{
+					name: "CREATE",
+					type: "button",
+					buttonClass: "btn-success btn-sm",
+					label: "TRANSLATE:CREATE",
+					command: function () {
+						var self = this;
+						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
+						var path = this.collectionName + '/model/'+loaibaocao;
+						this.getApp().getRouter().navigate(path);
+					}
+				}]
+		}],
 		uiControl: {
 			fields: [{
-					field: "ngaybanhanh",
-					label: "Thời gian kiểm tra",
-					width: 250
+					field: "nambaocao",
+					label: "Năm báo cáo",
 				},
 				{
-					field: "tongdv",
-					label: "Tổng số đơn vị cấp nước",
-					width: 250
+					field: "tendonvicapnuoc",
+					label: "Tên đơn vị cấp nước",
 				},
 				{
-					field: "tyle",
-					label: "Chiếm tỷ lệ",
-					width: 250
+					field: "congsuat_thietke",
+					label: "Công suất thiết kế",
 				},
 				{
-					field: "csngoaikiem",
-					label: "Số cơ sở thực hiện ngoại kiểm",
-					width: 250
+					field: "tongso_hogiadinh",
+					label: "Tổng số HGĐ được cấp nước",
 				},
-				{
-					field: "kinhphi",
-					label: "Số kinh phí được cấp cho công tác ngoại kiểm",
-					width: 250
-				},
-
-
 
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
-					var path = this.collectionName + '/model?id=' + event.rowId;
+					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 
 			}
 		},
 		render: function () {
-			this.applyBindings();
-			return this;
+			var self = this;
+			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
+			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+				return;
+			}else{
+				var txt_header = "Báo cáo dành cho Viện chuyên ngành - "+itemkybaocao.text;
+				self.$el.find(".panel-heading h3").html(txt_header);
+				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
+				this.applyBindings();
+				return this;
+			}
 		},
 	});
 

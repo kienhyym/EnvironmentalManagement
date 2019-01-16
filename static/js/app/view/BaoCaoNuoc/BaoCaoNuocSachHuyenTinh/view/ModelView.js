@@ -46,22 +46,46 @@ define(function (require) {
                 type: "button",
                 buttonClass: "btn-success btn-sm",
                 label: "TRANSLATE:SAVE",
-                command: function () {
-                    var self = this;
-
-                    self.model.save(null, {
-                        success: function (model, respose, options) {
-                            self.getApp().notify("Lưu thông tin thành công");
-                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-
-                        },
-                        error: function (model, xhr, options) {
-                            self.getApp().notify('Lưu thông tin không thành công!');
-
-                        }
-                    });
+                command: function() {
+                  var self = this;
+                  self.model.save(null, {
+                    success: function(model, respose, options) {
+                      self.getApp().notify("Lưu thông tin thành công");
+                      self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                    },
+                    error: function(model, xhr, options) {
+                      self.getApp().notify('Lưu thông tin không thành công!');
+                    }
+                  });
                 }
-            },
+              },
+//              {
+//      			name: "count",
+//      			type: "button",
+//      			buttonClass: "btn-primary btn-sm",
+//      			label: "Cộng dồn",
+//      			command: function () {
+//      				var self = this;
+//      				var nambaocao = self.model.get("nambaocao");
+//      				if(nambaocao === null || nambaocao === ""){
+//      					self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+//      					return;
+//      				}
+//      				self.model.save(null, {
+//      					success: function (model, respose, options) {
+//      						self.getApp().notify("Lưu thông tin thành công");
+//      					},
+//      					error: function (xhr, status, error) {
+//      						try {
+//      							self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+//      						}
+//      						catch (err) {
+//      							self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
+//      						}
+//      					}
+//      				});
+//      			}
+//      		},
             {
                 name: "delete",
                 type: "button",
@@ -89,6 +113,18 @@ define(function (require) {
         render: function () {
             var self = this;
             var id = this.getApp().getRouter().getParam("id");
+            var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+    		if (routeloaibaocao!==null){
+    			var itemkybaocao = self.getApp().mapKyBaoCao[routeloaibaocao];
+    			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+    				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
+    				return;
+    			}else{
+    				self.model.set("loaikybaocao",itemkybaocao.loaikybaocao);
+    				self.model.set("kybaocao",itemkybaocao.kybaocao);
+    				self.$el.find("#kydanhgia").val(itemkybaocao.text);
+    			}
+    		}
             if (id) {
                 this.model.set('id', id);
                 this.model.fetch({
@@ -96,7 +132,7 @@ define(function (require) {
                         self.applyBindings();
                     },
                     error: function () {
-                        self.getApp().notify("Get data Eror");
+                        self.getApp().notify("Lỗi không lấy được dữ liệu");
                     },
                 });
             } else {

@@ -10,7 +10,6 @@ define(function(require) {
 
   var maxDate = new Date();
 
-
   function toInt(x) {
     return parseInt(x) ? parseInt(x) : 0;
   }
@@ -26,7 +25,7 @@ define(function(require) {
           field: "ngaybaocao",
           textFormat: "DD/MM/YYYY",
           extraFormats: ["DDMMYYYY"],
-          maxDate:maxDate
+          maxDate: maxDate
         },
         {
             field: "donvicapnuoc",
@@ -48,20 +47,6 @@ define(function(require) {
 				{text: "Loại khác", value: 0}
 			]
 		},
-//        {
-//          field: "hosotheodoi",
-//          uicontrol: false,
-//          itemView: HoSoTheoDoi,
-//          tools: [{
-//            name: "create",
-//            type: "button",
-//            buttonClass: "btn btn-success btn-sm",
-//            label: "<span class='fa fa-plus'>Thêm</span>",
-//            command: "create"
-//          }, ],
-//          toolEl: "#addItem"
-//        },
-
       ],
     },
     tools: [{
@@ -215,7 +200,6 @@ define(function(require) {
             self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
             self.model.set("nguonnuoc_nguyenlieu", toInt(data.nguonnuoc_nguyenlieu));
             self.model.set("diachi_donvicapnuoc", data.diachi);
-            console.log("donvicapnuoc==", data);
             self.applyBindings();
         });
 		if (id) {
