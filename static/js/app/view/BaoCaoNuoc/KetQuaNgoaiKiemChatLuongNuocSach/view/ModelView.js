@@ -10,6 +10,7 @@ define(function (require) {
     var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
+    var ThongSoKhongDatItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ThongSoKhongDatItem');
     
     function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
@@ -245,25 +246,25 @@ define(function (require) {
                 label: "TRANSLATE:SAVE",
                 command: function () {
                     var self = this;
-                    var nambaocao = self.model.get("nambaocao");
-                    var ngaybaocao = self.model.get("ngaybaocao");
-                    var donvicapnuoc = self.model.get("donvicapnuoc");
-                    var thoigiankiemtra = self.model.get("thoigiankiemtra");
-                    var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
-                    var somauvavitri = self.model.get("somauvavitri");
-                    if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
-                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
-                    } else if(ngaybaocao === null || ngaybaocao === ""){
-                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
-                    } else if(donvicapnuoc === null || donvicapnuoc === ""){
-                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
-                    } else if(thoigiankiemtra === null || thoigiankiemtra === ""){
-                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
-                    } else if(thanhphan_doankiemtra === null || thanhphan_doankiemtra === ""){
-                    	self.getApp().notify({message: "Chưa chọn thành phần đoàn kiểm tra"},{type: "danger"});
-                    } else if(somauvavitri > 10){
-                    	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
-                    } else {
+//                    var nambaocao = self.model.get("nambaocao");
+//                    var ngaybaocao = self.model.get("ngaybaocao");
+//                    var donvicapnuoc = self.model.get("donvicapnuoc");
+//                    var thoigiankiemtra = self.model.get("thoigiankiemtra");
+//                    var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
+//                    var somauvavitri = self.model.get("somauvavitri");
+//                    if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
+//                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
+//                    } else if(ngaybaocao === null || ngaybaocao === ""){
+//                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
+//                    } else if(donvicapnuoc === null || donvicapnuoc === ""){
+//                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
+//                    } else if(thoigiankiemtra === null || thoigiankiemtra === ""){
+//                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
+//                    } else if(thanhphan_doankiemtra === null || thanhphan_doankiemtra === ""){
+//                    	self.getApp().notify({message: "Chưa chọn thành phần đoàn kiểm tra"},{type: "danger"});
+//                    } else if(somauvavitri > 10){
+//                    	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
+//                    } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Lưu thông tin thành công");
@@ -277,7 +278,7 @@ define(function (require) {
         					}
                         }
                     	});
-                    }
+//                    }
                 }
             },
             {
@@ -318,6 +319,38 @@ define(function (require) {
                 self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
                 self.model.set("nguonnuoc_nguyenlieu", data.nguonnuoc_nguyenlieu);
                 self.model.set("diachi_donvicapnuoc", data.diachi);
+            });
+            
+            
+            self.$el.find("#them_thongso_khongdat").unbind("click").bind("click", function () {
+            	var dsThongSo = new ThongSoBaoCaoChatLuongNuocView();
+            	dsThongSo.dialog();
+            	var thongsoKhongDatView = new ThongSoKhongDatItemView();
+            	var danhsachthongso_khongdat = self.model.get("danhsachthongso_khongdat");
+            	if (danhsachthongso_khongdat == null){
+            		danhsachthongso_khongdat = []
+        		}
+            	dsThongSo.on("onSelected", function (dataThongSo) {
+            		thongsoKhongDatView.model.set("id", gonrin.uuid());
+            		thongsoKhongDatView.model.set("mathongso", dataThongSo.mathongso);
+            		thongsoKhongDatView.model.set("tenthongso", dataThongSo.tenthongso);
+            		thongsoKhongDatView.model.set("gioihan_toida_txt", dataThongSo.gioihan_toida_txt);
+            		thongsoKhongDatView.model.set("gioihan_toida", dataThongSo.gioihan_toida);
+            		thongsoKhongDatView.model.set("gioihan_toithieu_txt", dataThongSo.gioihan_toithieu_txt);
+            		thongsoKhongDatView.model.set("gioihan_toithieu", dataThongSo.gioihan_toithieu);
+            		thongsoKhongDatView.render();
+            		self.$el.find("#danhsachthongso_khongdat").append(thongsoKhongDatView.$el);
+            		console.log("model to JSON", thongsoKhongDatView.model.toJSON());
+            		danhsachthongso_khongdat.push(thongsoKhongDatView.model.toJSON());
+            		thongsoKhongDatView.on("change", function (thongsoKhongDat) {
+            			console.log("ts data", thongsoKhongDat);
+            			danhsachthongso_khongdat.push(thongsoKhongDatView.model.toJSON());
+//            			console.log("danhsachthongso_khongdat change", danhsachthongso_khongdat);
+            		});
+//            		self.applyBindings();
+            	});
+            	self.model.set("danhsachthongso_khongdat", danhsachthongso_khongdat);
+            	console.log("danhsachthongso_khongdat", danhsachthongso_khongdat);
             });
 
             self.$el.find("#addItem").unbind("click").bind("click", function () {
@@ -385,13 +418,15 @@ define(function (require) {
                 	self.$el.find("[id=removeButton]").show();
                 }
                 $.each(self.model.get("ketquangoaikiemchatluongnuoc"), function (idx, obj) {
-                	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
-                	console.log("danhsachvitrilaymau", danhsachvitrilaymau);
+                	
                     if (self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {
-                    	console.log("zzz", self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"]);
+                    	var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+                    	console.log("ketquangoaikiem", self.model.get("ketquangoaikiemchatluongnuoc")[idx]);
+                    	console.log("danhsachvitrilaymau", danhsachvitrilaymau);
                         for (var i = self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++) {
-                            self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
-                                "vitrimau": i + 1,
+                        	self.model.get("ketquangoaikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
+                                "mavitrimau": i + 1,
+                                "tenvitrimau": i + 1,
                                 "ketqua": null,
                                 "danhgia": 0
                             })
@@ -422,6 +457,8 @@ define(function (require) {
                 view.on("ketquachange", function (evt) {
                     var danhgiaThongSo = 1;
                     evt.ketquakiemtra.forEach(function (data) {
+                    	console.log("data===", data);
+                    	console.log("evt===", evt);
                         	if (data.ketqua && evt.gioihan_toithieu !== null && evt.gioihan_toida == null && data.ketqua >= evt.gioihan_toithieu){ 
                         		data.danhgia = 1;
                         	} else if (data.ketqua && evt.gioihan_toithieu == null && evt.gioihan_toida !== null && data.ketqua <= evt.gioihan_toida){
@@ -432,6 +469,7 @@ define(function (require) {
                         		data.danhgia = 0;
                         	}
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
+                        console.log(danhgiaThongSo);
                     });
                     evt.danhgia = danhgiaThongSo;
                     self.updateKetqua(evt);
@@ -518,7 +556,6 @@ define(function (require) {
 			var self = this;
 			var re = /(2[0-9]{3})\b/g;
 			var OK = re.exec(dateInput); 
-			console.log(OK);
 			if(!OK){
 				self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
 			}
@@ -547,7 +584,7 @@ define(function (require) {
         			var ds = self.model.get("danhsachvitrilaymau");
         			for(var j=0; j<ds.length;j++){
         				if(data.data.masomau === ds[j].masomau){
-        					ds[j].vitrilaymau = data.data.vitrilaymau;
+        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
         					break;
         				}
         			}
@@ -580,6 +617,6 @@ define(function (require) {
 		
 		onChangeEvents: function () {
 			var self = this;
-		}
+		},
     });
 });
