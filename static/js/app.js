@@ -29,10 +29,9 @@ require.config({
 require(['jquery', 'gonrin', 'app/router',
 		'app/bases/Nav/NavbarView',
 		'text!app/bases/tpl/layout.html',
-		'i18n!app/nls/app',
-		'store'
+		'i18n!app/nls/app'
 	],
-	function ($, Gonrin, Router, Nav, layout, lang, storejs) {
+	function ($, Gonrin, Router, Nav, layout, lang) {
 		$.ajaxSetup({
 			headers: {
 				'content-type': 'application/json'
@@ -80,12 +79,12 @@ require(['jquery', 'gonrin', 'app/router',
 			},
 			getCurrentUser: function () {
 				var self = this;
-				token = storejs.get('X-USER-TOKEN');
-				$.ajaxSetup({
-					headers: {
-						'X-USER-TOKEN': token
-					}
-				});
+//				token = storejs.get('X-USER-TOKEN');
+//				$.ajaxSetup({
+//					headers: {
+//						'X-USER-TOKEN': token
+//					}
+//				});
 				$.ajax({
 					url: self.serviceURL + '/current_user',
 					dataType: "json",
