@@ -49,8 +49,8 @@ define(function (require) {
 					valueField: "value",
 					dataSource: [
 						{text: "Nước mặt", value: 3},
-						{text: "Nước nguồn", value: 2},
-						{text: "Cả nước mặt và nước nguồn", value: 1},
+						{text: "Nước ngầm", value: 2},
+						{text: "Cả nước mặt và nước ngầm", value: 1},
 						{text: "Loại khác", value: 0}
 					]
 				},

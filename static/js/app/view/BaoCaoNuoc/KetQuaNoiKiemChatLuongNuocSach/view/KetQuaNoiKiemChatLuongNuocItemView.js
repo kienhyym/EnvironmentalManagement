@@ -4,33 +4,18 @@ define(function (require) {
         _ = require('underscore'),
         Gonrin = require('gonrin');
 
-    var template = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemThongSoNgoaiKiem.html'),
-        schema = require('json!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocSachItemSchema.json');
+    var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemThongSoNoiKiem.html'),
+        schema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocSachItemSchema.json');
 
-    var mautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemViTriLayMau.html');
-    var mauschema = {
-        "mavitrimau": {
-            "type": "number",
-            "primary": true
-        },
-        "tenvitrimau": {
-            "type": "string"
-        },
-        "ngaykiemtra": {
-            "type": "datetime"
-        },
-        "ketqua": {
-            "type": "number"
-        },
-        "danhgia": {
-            "type": "number"
-        }
-    };
+    var mautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemViTriLayMau.html');
+
+    var vitrimau_schema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ViTriMauSchema.json');
+    
     var MauViTriItemView = Gonrin.ModelView.extend({
         idAttribtue: "vitrimau",
         tagName: "td",
         template: mautemplate,
-        modelSchema: mauschema,
+        modelSchema: vitrimau_schema,
         urlPrefix: "/api/v1/",
         bindings: "mau-data",
         collectionName: "ketqua_noikiem_chatluong_nuocsach_mau_itemview",
@@ -44,10 +29,6 @@ define(function (require) {
             self.$el.addClass("text-center");
             self.applyBindings();
 
-            //			self.getApp().on("ketquangoaikiemchatluongnuoc:changesomau", function(){
-            //				self.$el.remove();
-            //				self.destroy();
-            //			})
         },
     });
 
@@ -66,7 +47,7 @@ define(function (require) {
 
         render: function () {
             var self = this;
-            self.applyBindings();
+           
             this.setElement(this.el.innerHTML);
 //            console.log("setElement element: ", this.el.innerHTML);
             if (self.model.get("danhgia") == 1) {
@@ -79,16 +60,21 @@ define(function (require) {
                 view.model.set(obj);
                 view.render();
                 self.$el.find("#gioihan").before(view.$el);
-                view.model.on("change:ketqua", function () {
+                view.model.off("change:ketqua").on("change:ketqua", function () {
+//                	console.log("thay doi ket qua thong so",view.model.toJSON());
                     self.updateKetQua(view.model.toJSON());
+                    
                 })
             });
+            self.applyBindings();
         },
         updateKetQua: function (obj) {
             var self = this;
             for (var i = 0; i < self.model.get("ketquakiemtra").length; i++) {
-                if (self.model.get("ketquakiemtra")[i].vitrimau == obj.vitrimau) {
+            	console.log('self.model.get("ketquakiemtra")[i]=====',self.model.get("ketquakiemtra")[i]);
+                if (self.model.get("ketquakiemtra")[i].id === obj.id) {
                     self.model.get("ketquakiemtra")[i].ketqua = obj.ketqua;
+                    console.log("ket qua item view====",obj)
                     //danh gia
                 }
             }

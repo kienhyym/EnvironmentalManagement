@@ -120,8 +120,9 @@ width:50%;
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Mã số mẫu</th>
-                                <th>Vị trí lấy mẫu</th>
+                                <th>Mã vị trí lấy mẫu</th>
+                                <th>Tên vị trí lấy mẫu</th>
+                                <th>Ngày lấy mẫu</th>
                                 <th>Kết quả</th>
                             </tr>
                         </thead>
@@ -134,13 +135,13 @@ width:50%;
         <div style="margin-bottom: 30px;margin-top: 20px;">
             <table>
                 <thead>
-                    <tr>
-                        <th rowspan=2 id="removeButton"></th>
-                        <th rowspan=2>STT</th>
+                    <tr style="text-align: center">
+                        <th rowspan="2" id="removeButton"></th>
+                        <th rowspan="2">STT</th>
                         <th rowspan="2">Các thông số</th>
-                        <th style="text-align: center" id="ketquathunghiem">Kết quả thử nghiệm</th>
-                        <th style="width:150px" rowspan=2>Giới hạn tối đa cho phép</th>
-                        <th style="width:150px" rowspan=2>Đánh giá (đạt/không đạt)</th>
+                        <th id="ketquathunghiem">Kết quả thử nghiệm</th>
+                        <th style="width:150px" rowspan="2">Giới hạn tối đa cho phép</th>
+                        <th style="width:150px" rowspan="2">Đánh giá (đạt/không đạt)</th>
                     </tr>
                     <tr>
                         <th id="mauvitri_header_before"></th>
@@ -181,7 +182,7 @@ width:50%;
                 </div>
         </div>
         <div style="padding-top: 5px; padding-bottom: 30px;">
-            <h3 style="padding-bottom:10px;">Đ. Đề nghị</h3>
+            <h3 style="padding-bottom:10px;">E. Đề nghị</h3>
             <textarea rows="2" class="form-control" data-bind="value:kiennghi"></textarea>
         </div>
     </div>

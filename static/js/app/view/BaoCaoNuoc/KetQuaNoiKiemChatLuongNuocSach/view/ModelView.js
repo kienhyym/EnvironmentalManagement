@@ -6,7 +6,7 @@ define(function (require) {
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/model.html'),
         schema = require('json!schema/KetQuaNoiKiemChatLuongNuocSachSchema.json');
     var danhsachmautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/itemDanhSachMau.html');
-    var danhsachmauschema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/DanhSachMauItemSchema.json');
+    var danhsachmauschema = require('json!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ViTriMauSchema.json');
     var KetQuaNoiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/KetQuaNoiKiemChatLuongNuocItemView');
     var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
@@ -21,7 +21,25 @@ define(function (require) {
     	bindings: "danhsachmau-bind",
     	urlPrefix: "/api/v1/",
     	collectionName: "somau_va_vitri_laymau",
-    	uiControl:[],
+    	uiControl:{
+    		fields: [
+    			{
+	                field: "ngaykiemtra",
+	                textFormat: "DD/MM/YYYY",
+	                extraFormats: ["DDMMYYYY"]
+	    		},
+	    		{
+					field: "danhgia",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đạt", value: 1},
+						{text: "Không Đạt", value: 0}
+					]
+				},
+    		]
+    	},
     	render:function(){
     		var self = this;
     		self.model.on("change", function(){
@@ -29,7 +47,7 @@ define(function (require) {
     				"data": self.model.toJSON()
     			});
     		});
-    		this.applyBindings();
+    		self.applyBindings();
     	}
     });
     return Gonrin.ModelView.extend({
@@ -167,7 +185,7 @@ define(function (require) {
 					{text: "Cả nước mặt và nước nguồn", value: 1},
 					{text: "Loại khác", value: 0}
 				]
-			},
+			}
             ],
         },
         tools: [{
@@ -282,8 +300,9 @@ define(function (require) {
                     };
                     ketquanoikiemchatluongnuoc.push(item);
                     self.model.set("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
+                    
+//                    self.changeSoMau();
                     self.applyBindings();
-                    self.changeSoMau();
                 });
             });
             var id = this.getApp().getRouter().getParam("id");
@@ -291,6 +310,7 @@ define(function (require) {
                 this.model.set('id', id);
                 this.model.fetch({
                     success: function (data) {
+                    	
                         self.model.on("change:somauvavitri", function () {
                             self.changeSoMau(true);
                         });
@@ -314,7 +334,10 @@ define(function (require) {
             self.$el.find("[id=mauvitri_header]").remove();
             self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquanoikiemchatluongnuoc").empty();
+            
+            console.log("somau===",somau);
             if (!!somau & (somau > 0)) {
+            	self.renderViTriMau();
             	var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
                 if (ketquanoikiemchatluongnuoc.length == 0){
                 	self.$el.find("[id=removeButton]").hide();
@@ -323,75 +346,121 @@ define(function (require) {
                 }
                 
                 var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
-                if (danhsachvitrilaymau == null) {
+                if (danhsachvitrilaymau === null) {
                 	danhsachvitrilaymau = []
                 }
-                console.log(danhsachvitrilaymau);
-                $.each(self.model.get("ketquanoikiemchatluongnuoc"), function (idx, obj) {
-
-                    if (self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length < somau) {
-                        for (var i = self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length; i < somau; i++) {
-                        	console.log("iii", i);
-                        	self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].push({
-                                "mavitrimau": danhsachvitrilaymau[idx].masomau,
-                                "tenvitrimau": danhsachvitrilaymau[idx].tenvitrilaymau,
-                                "ketqua": null,
-                                "danhgia": 0
-                            })
+                $.each(ketquanoikiemchatluongnuoc, function (idx, obj) {
+                	var old_thongso_ketqua = obj["ketquakiemtra"];
+                    if (old_thongso_ketqua.length < somau && danhsachvitrilaymau.length === somau) {
+                    	var arr_ketquakiemtra = old_thongso_ketqua;
+                    	for (var i = old_thongso_ketqua.length; i < somau; i++) {
+                        	var item_vitrilaymau = danhsachvitrilaymau[i];
+//                        	console.log("item_vitrilaymau====", item_vitrilaymau);
+//                        	console.log("i====",i,"===idx===",idx);
+                        	if(item_vitrilaymau !== null && item_vitrilaymau !== undefined){
+                        		item_vitrilaymau.danhgia = null;
+                        		item_vitrilaymau.ketqua = null;
+                        		arr_ketquakiemtra.push(item_vitrilaymau);
+                            	
+                        	}else{
+                        		console.log("chay vao day la loi roi???? line 362");
+                        	}
                         }
-                    } else if (self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length > somau) {
+                    	self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"] = arr_ketquakiemtra;
+                    	console.log("ketquanoikiemchatluongnuoc.idx===",idx,"====",self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"]);
+
+                    } else if (old_thongso_ketqua.length > somau) {
+                    	console.log("chay vao thay doi thong so ket qua hay ko?");
                         self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"].length = somau;
                     }
-
+                    
                 });
+                
                 for (var j = 0; j < somau; j++) {
-                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(j + 1);
+                	var mavitrimau = j+1;
+                	if (!!danhsachvitrilaymau && danhsachvitrilaymau.length === somau){
+                		mavitrimau = danhsachvitrilaymau[j].mavitri;
+                	}
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(mavitrimau);
                     self.$el.find("#mauvitri_header_before").before(el);
                     self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }
             }
             self.renderKetQua();
-            self.danhsachViTriMau();
+            
         },
         renderKetQua: function () {
             var self = this;
+            //danh sach thong so
             $.each(self.model.get("ketquanoikiemchatluongnuoc"), function (idx, obj) {
                 var view = new KetQuaNoiKiemChatLuongNuocItemView();
                 obj["sothutu"] = idx + 1;
                 view.model.set(obj);
                 view.render();
                 self.$el.find("#ketquanoikiemchatluongnuoc").append(view.$el);
-                view.on("ketquachange", function (evt) {
-                    var danhgiaThongSo = 1;
-                    evt.ketquakiemtra.forEach(function (data) {
-                        	if (data.ketqua && evt.gioihan_toithieu !== null && evt.gioihan_toida == null && data.ketqua >= evt.gioihan_toithieu){ 
-                        		data.danhgia = 1;
-                        	}else if (data.ketqua && evt.gioihan_toithieu == null && evt.gioihan_toida !== null && data.ketqua <= evt.gioihan_toida){
-                        		data.danhgia = 1;
-                        	} else if (data.ketqua && evt.gioihan_toithieu && evt.gioihan_toida && data.ketqua <= evt.gioihan_toida && data.ketqua >= evt.gioihan_toithieu){
-                        		data.danhgia = 1;
-                        	} else {
-                        		data.danhgia = 0;
-                        	}
+                
 
+                view.on("ketquachange", function (evt) {
+                	console.log("chay vao day ko???evt==",evt);
+//                  var donvicapnuoc = self.model.get("donvicapnuoc");
+//                	if (!!donvicapnuoc){
+//                		//check don vi nuoc ngam
+//            			if(donvicapnuoc.nguonnuoc_nguyenlieu === 1 || donvicapnuoc.nguonnuoc_nguyenlieu === 2){
+//            			}
+//            			//check su dung clo de khu trung
+//            			if(donvicapnuoc.phuongphap_khutrung === 1){
+//            			}
+//                	}
+
+                    var danhgiaThongSo = 1;
+                    var danhsachvitri = self.model.get("danhsachvitrilaymau");
+                    var ketquakiemtra_vitrilaymau = []
+
+                    evt.ketquakiemtra.forEach(function (data) {
+                    	data.danhgia = self.check_thongso(evt, data.ketqua);
+                    	for(var index=0; index<danhsachvitri.length; index++){
+                    		if (data.id === danhsachvitri[index].id){
+                    			data.tenvitri = danhsachvitri[index].tenvitri;
+//                    			data.ketqua = danhsachvitri[index].ketqua;
+                    			data.mavitri = danhsachvitri[index].mavitri;
+                    			data.ngaykiemtra = danhsachvitri[index].ngaykiemtra;
+                    			break;
+                    		}
+                    	}
+                    	ketquakiemtra_vitrilaymau.push(data);
                         danhgiaThongSo *= data.danhgia ? data.danhgia : 0;
                     });
+                    evt.ketquakiemtra = ketquakiemtra_vitrilaymau;
                     evt.danhgia = danhgiaThongSo;
+
                     self.updateKetqua(evt);
-//                    Đánh giá Tổng của tất cả các thông số
-//                    var itemNoiKiem = self.model.get("ketquanoikiemchatluongnuoc");
-//                    var danhgiaTong = 1;
-//                    self.changeSoMau();
-//                    itemNoiKiem.forEach(function (data) {
-//                        danhgiaTong *= data.danhgia;
-//                        if (danhgiaTong == 1) {
-//                            self.model.set("ketquanoikiem", "Đạt");
-//                        } else {
-//                            self.model.set("ketquanoikiem", "Không Đạt");
-//                        }
-//                    });
-//                    end 
-                    self.applyBindings();
+
+//                    
+//                  Tính lại tổng các thông số tại các vị trí đạt  hay không đạt
+                    var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
+//                    var map_ketqua_vitrimau = {};
+                    for(var j=0; j<danhsachvitri.length; j++){
+                    	danhsachvitri[j].danhgia = 1;
+                    }
+                    danhsachthongso.forEach(function (thongso) {
+                    	if (!!thongso && !!thongso["ketquakiemtra"]){
+                    		for (var i=0; i<thongso["ketquakiemtra"].length; i++){
+                    			for(var j=0; j<danhsachvitri.length; j++){
+                    				if(thongso["ketquakiemtra"][i].id == danhsachvitri[j].id){
+                    					danhsachvitri[j].danhgia *= thongso["ketquakiemtra"][i].danhgia ? thongso["ketquakiemtra"][i].danhgia : 0;
+                    				}
+                    			}
+                    		}
+                    	}
+                    });
+                    self.model.set("danhsachvitrilaymau",danhsachvitri);
+                    self.applyBindings("danhsachvitrilaymau");
+                    
+                    
+                    
+//                    self.model.set("ketquanoikiem", danhgiaTong);
+//                    end  tinh tong vi tri
+                    
                 });
                 view.$el.find("#itemRemove").unbind("click").bind("click", function () {
                     var itemketquanoikiem = self.model.get("ketquanoikiemchatluongnuoc");
@@ -407,17 +476,31 @@ define(function (require) {
                 });
             });
         },
+        check_thongso: function(objthongso, ketquathongso){
+        	var result = 0;
+        	if (ketquathongso && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida == null && ketquathongso >= objthongso.gioihan_toithieu){ 
+        		result = 1;
+        	}else if (ketquathongso && objthongso.gioihan_toithieu == null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida){
+        		result = 1;
+        	} else if (ketquathongso && !!objthongso.gioihan_toithieu && !!objthongso.gioihan_toida && ketquathongso <= objthongso.gioihan_toida && ketquathongso >= objthongso.gioihan_toithieu){
+        		result = 1;
+        	}
+        	return result;
+        },
         updateKetqua: function (obj) {
             var self = this;
             for (var i = 0; i < self.model.get("ketquanoikiemchatluongnuoc").length; i++) {
                 if (self.model.get("ketquanoikiemchatluongnuoc")[i].id === obj.id) {
                     self.model.get("ketquanoikiemchatluongnuoc")[i] = obj;
+                    break;
                 }
             }
+//            self.applyBindings("ketquanoikiemchatluongnuoc");
         },
         prepareBaocao: function () {
             var self = this;
             self.model.set("ketquanoikiemchatluongnuoc", []);
+            
             var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
             $.ajax({
                 url: url,
@@ -438,7 +521,7 @@ define(function (require) {
                                     "ketquakiemtra": [],
                                     "danhgia": 0
                                 };
-                                (self.model.get("ketquanoikiemchatluongnuoc")).push(item);
+                                self.model.get("ketquanoikiemchatluongnuoc").push(item);
                             };
                         });
                         self.model.set("somauvavitri", 1);
@@ -453,7 +536,7 @@ define(function (require) {
             });
         },
         
-        danhsachViTriMau: function () {
+        renderViTriMau: function () {
         	var self = this;
             var somauvavitri = self.model.get("somauvavitri");
         	self.$el.find("#danhsachvitrilaymau").empty();
@@ -464,11 +547,14 @@ define(function (require) {
     		var danhsachvitri_new = [];
         	for (var i = 0; i < somauvavitri; i++){
         		var somauvavitri_view = new DanhSachMauView();
-        		somauvavitri_view.model.set("masomau", i + 1);
         		if(danhsachvitrilaymau && danhsachvitrilaymau.length>i){
         			var data_mau = danhsachvitrilaymau[i];
-        			data_mau.masomau = i+1;
+        			//data_mau.mavitri = i+1;
         			somauvavitri_view.model.set(data_mau);
+        		}else{
+        			somauvavitri_view.model.set("id", gonrin.uuid());
+            		somauvavitri_view.model.set("mavitri", i + 1);
+            		somauvavitri_view.model.set("tenvitri", "Vị trí mẫu "+ (i + 1));
         		}
         		somauvavitri_view.render();
         		danhsachvitri_new.push(somauvavitri_view.model.toJSON());
@@ -476,17 +562,20 @@ define(function (require) {
         		somauvavitri_view.on("change", function(data){
         			var ds = self.model.get("danhsachvitrilaymau");
         			for(var j=0; j<ds.length;j++){
-        				if(data.data.masomau === ds[j].masomau){
-        					ds[j].tenvitrilaymau = data.data.tenvitrilaymau;
+        				if(data.data.id === ds[j].id){
+        					ds[j].tenvitri = data.data.tenvitri;
+        					ds[j].mavitri = data.data.mavitri;
+        					ds[j].ngaykiemtra = data.data.ngaykiemtra;
+        					ds[j].danhgia = data.data.danhgia;
         					break;
         				}
         			}
-        				self.model.set("danhsachvitrilaymau", ds);
-        				self.applyBindings();
+
+    				self.model.set("danhsachvitrilaymau", ds);
+//    				self.applyBindings("danhsachvitrilaymau");
         		});
         	}
         	self.model.set("danhsachvitrilaymau", danhsachvitri_new);
-//        	self.applyBindings();
         },
         
         onChangeEvents: function () {

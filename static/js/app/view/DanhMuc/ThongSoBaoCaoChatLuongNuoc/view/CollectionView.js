@@ -19,6 +19,7 @@ define(function (require) {
 	    	     },
 	    	     { field: "tenthongso", label: "Tên Thông số"},
 	    	     { field: "gioihan_toida_txt", label: "Giới hạn tối đa"},
+	    	     { field: "gioihan_toithieu_txt", label: "Giới hạn tối thiểu"},
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
