@@ -209,6 +209,7 @@ define(function (require) {
                 label: "TRANSLATE:SAVE",
                 command: function () {
                     var self = this;
+                    console.log(self.model.toJSON());
                     var nambaocao = self.model.get("nambaocao");
                 	if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
                     	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
@@ -342,6 +343,7 @@ define(function (require) {
             console.log("somau===",somau);
             if (!!somau & (somau > 0)) {
             	self.renderViTriMau();
+            	
             	var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
                 if (danhsachthongso === null || danhsachthongso.length == 0){
                 	self.$el.find("[id=removeButton]").hide();
@@ -379,7 +381,7 @@ define(function (require) {
                     	obj["ketquakiemtra"].length = somau;
                     }
                     danhsachthongso_new.push(obj);
-                	console.log("danhsachthongso_new.idx===",danhsachthongso_new);
+                	//console.log("danhsachthongso_new.idx===",danhsachthongso_new);
 
                     
                 });
@@ -403,6 +405,13 @@ define(function (require) {
             
             
         },
+//        createItemView:function(obj, idx){
+//        	var view = new KetQuaNoiKiemChatLuongNuocItemView();
+//            obj["sothutu"] = idx + 1;
+//            view.model.set(obj);
+//            view.render();
+//            return view;
+//        },
         renderKetQua: function (danhsachthongso) {
             var self = this;
             //danh sach thong so
@@ -410,15 +419,18 @@ define(function (require) {
             $.each(danhsachthongso, function (idx, obj) {
                 var view = new KetQuaNoiKiemChatLuongNuocItemView();
                 obj["sothutu"] = idx + 1;
-                view.model.set(obj);
+                view.model.set(JSON.parse( JSON.stringify( obj )));
                 view.render();
+                
+                //var view = self.createItemView(JSON.parse( JSON.stringify( obj )) , idx);
                 self.$el.find("#ketquanoikiemchatluongnuoc").append(view.$el);
                 
 
                 view.on("ketquachange", function (data_thongso) {
-                	console.log("view.ketquachange.data_thongso====",data_thongso);
                     self.update_ketqua_thongso(data_thongso);
                 });
+                
+                
                 view.$el.find("#itemRemove").unbind("click").bind("click", function () {
                     var itemketquanoikiem = self.model.get("ketquanoikiemchatluongnuoc");
                     for (var i = 0; i < itemketquanoikiem.length; i++) {
@@ -427,29 +439,19 @@ define(function (require) {
                         }
                     }
                     self.model.set("ketquanoikiemchatluongnuoc", itemketquanoikiem);
-                    self.applyBindings("ketquanoikiemchatluongnuoc");
+                    //self.applyBindings("ketquanoikiemchatluongnuoc");
                     view.destroy();
                     view.remove();
                 });
             });
         },
         update_ketqua_thongso: function(data_thongso){
+        	console.log("update_ketqua_thongso");
         	var self = this;
         	var thongso_new = data_thongso;
-        	console.log("update_ketqua_thongso==",data_thongso);
-//          var donvicapnuoc = self.model.get("donvicapnuoc");
-//        	if (!!donvicapnuoc){
-//        		//check don vi nuoc ngam
-//    			if(donvicapnuoc.nguonnuoc_nguyenlieu === 1 || donvicapnuoc.nguonnuoc_nguyenlieu === 2){
-//    			}
-//    			//check su dung clo de khu trung
-//    			if(donvicapnuoc.phuongphap_khutrung === 1){
-//    			}
-//        	}
-
-            
-
+        	
             var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
+            console.log("update_ketqua_thongso==111:",data_thongso, danhsachthongso);
             for (var i = 0; i < danhsachthongso.length; i++) {
                 if (danhsachthongso[i].id === thongso_new.id) {
                 	var danhgiaThongSo = 1;
@@ -479,11 +481,11 @@ define(function (require) {
                     break;
                 }
             }
-            console.log("danhsachthongso.danhsachthongso====",danhsachthongso);
+            
             self.model.set('ketquanoikiemchatluongnuoc', danhsachthongso);
             self.model.trigger("change");
-            self.applyBindings("ketquanoikiemchatluongnuoc");
-//            self.updateKetqua(evt);
+//            self.applyBindings("ketquanoikiemchatluongnuoc");
+            //self.updateKetqua(evt);
 
 //            
 //          Tính lại tổng các thông số tại các vị trí đạt  hay không đạt
