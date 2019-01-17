@@ -49,38 +49,50 @@ define(function (require) {
             var self = this;
            
             this.setElement(this.el.innerHTML);
-//            console.log("setElement element: ", this.el.innerHTML);
             if (self.model.get("danhgia") == 1) {
                 self.$el.find("[id=danhgiathongso]").text("Đạt");
             } else {
                 self.$el.find("[id=danhgiathongso]").text("Không Đạt");
             }
-            $.each(self.model.get("ketquakiemtra"), function (idx, obj) {
+            var ketquakiemtra = self.model.get("ketquakiemtra");
+            $.each(ketquakiemtra, function (idx, obj) {
                 var view = new MauViTriItemView();
                 view.model.set(obj);
                 view.render();
                 self.$el.find("#gioihan").before(view.$el);
-                view.model.off("change:ketqua").on("change:ketqua", function () {
+                view.model.on("change:ketqua", function () {
 //                	console.log("thay doi ket qua thong so",view.model.toJSON());
-                    self.updateKetQua(view.model.toJSON());
+                	var danhsachketqua = self.model.get("ketquakiemtra");
+                	var viewData = view.model.toJSON();
+                	for(var i=0; i< danhsachketqua.length; i++){
+                		if (!!danhsachketqua[i] && danhsachketqua[i].id === viewData.id){
+                			danhsachketqua[i].ketqua = viewData.ketqua;
+                		}
+                	}
+                	self.model.set("ketquakiemtra",danhsachketqua);
+                	self.applyBindings("ketquakiemtra");
+                	var data_thongso = self.model.toJSON();
+                	self.trigger("ketquachange", data_thongso);
+//                    self.updateKetQua(view.model.toJSON());
                     
                 })
             });
             self.applyBindings();
         },
-        updateKetQua: function (obj) {
-            var self = this;
-            for (var i = 0; i < self.model.get("ketquakiemtra").length; i++) {
-            	console.log('self.model.get("ketquakiemtra")[i]=====',self.model.get("ketquakiemtra")[i]);
-                if (self.model.get("ketquakiemtra")[i].id === obj.id) {
-                    self.model.get("ketquakiemtra")[i].ketqua = obj.ketqua;
-                    console.log("ket qua item view====",obj)
-                    //danh gia
-                }
-            }
-            //console.log(self.model.toJSON());
-            self.trigger("ketquachange", self.model.toJSON());
-        }
+//        updateKetQua: function (obj) {
+//            var self = this;
+//            for (var i = 0; i < self.model.get("ketquakiemtra").length; i++) {
+//            	console.log('self.model.get("ketquakiemtra")[i]=====',self.model.get("ketquakiemtra")[i]);
+//                if (self.model.get("ketquakiemtra")[i].id === obj.id) {
+//                    self.model.get("ketquakiemtra")[i].ketqua = obj.ketqua;
+//                    console.log("ket qua item view====",obj)
+//                    break;
+//                    //danh gia
+//                }
+//            }
+//            //console.log(self.model.toJSON());
+//            self.trigger("ketquachange", self.model.toJSON());
+//        }
     });
 
 });
