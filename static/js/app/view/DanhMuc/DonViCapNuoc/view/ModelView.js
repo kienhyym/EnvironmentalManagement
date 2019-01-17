@@ -158,10 +158,10 @@ define(function (require) {
 				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "warning"});
 				return;
 			}
-			if (!self.model.get("xaphuong")) {
-				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
-				return;
-			}
+//			if (!self.model.get("xaphuong")) {
+//				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
+//				return;
+//			}
 			if (!self.model.get("ten")) {
 				self.getApp().notify({message: "Tên đơn vị cấp nước không được để trống"},{type: "warning"});
 				return;

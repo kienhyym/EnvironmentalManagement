@@ -61,24 +61,44 @@ define(function (require) {
                 view.render();
                 self.$el.find("#gioihan").before(view.$el);
                 view.model.on("change:ketqua", function () {
-//                	console.log("thay doi ket qua thong so",view.model.toJSON());
+                	
                 	var danhsachketqua = self.model.get("ketquakiemtra");
                 	var viewData = view.model.toJSON();
+                	var danhgiaThongSo = 1;
+                	var thongso_data = self.model.toJSON();
+                	
                 	for(var i=0; i< danhsachketqua.length; i++){
                 		if (!!danhsachketqua[i] && danhsachketqua[i].id === viewData.id){
                 			danhsachketqua[i].ketqua = viewData.ketqua;
                 		}
+                		
+                		var ketqua_danhgia = self.check_thongso(thongso_data, danhsachketqua[i].ketqua);
+                		danhsachketqua[i].danhgia = ketqua_danhgia;
+                		danhgiaThongSo *= ketqua_danhgia ? ketqua_danhgia : 0;
                 	}
+                	self.model.set("danhgia",danhgiaThongSo);
                 	self.model.set("ketquakiemtra",danhsachketqua);
-                	self.applyBindings("ketquakiemtra");
+                	self.applyBindings();
+                	
+                	
                 	var data_thongso = self.model.toJSON();
-                	console.log("item.data_thongso======",data_thongso);
                 	self.trigger("ketquachange", data_thongso);
 //                    self.updateKetQua(view.model.toJSON());
                     
-                })
+                });
             });
             self.applyBindings();
+        },
+        check_thongso: function(objthongso, ketquathongso){
+        	var result = 0;
+        	if (ketquathongso && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida == null && ketquathongso >= objthongso.gioihan_toithieu){ 
+        		result = 1;
+        	}else if (ketquathongso && objthongso.gioihan_toithieu == null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida){
+        		result = 1;
+        	} else if (ketquathongso && !!objthongso.gioihan_toithieu && !!objthongso.gioihan_toida && ketquathongso <= objthongso.gioihan_toida && ketquathongso >= objthongso.gioihan_toithieu){
+        		result = 1;
+        	}
+        	return result;
         },
 //        updateKetQua: function (obj) {
 //            var self = this;
