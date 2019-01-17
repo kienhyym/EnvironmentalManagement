@@ -55,9 +55,6 @@ define(function (require) {
             this.applyBindings();
             return this;
         },
-//        formatDate: function () {
-//        	console.log("formatDate function");
-//        },
     });
 
 });

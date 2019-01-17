@@ -8,29 +8,31 @@ define(function (require) {
         schema = require('json!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocSachItemSchema.json');
 
     var mautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemViTriLayMau.html');
-    var mauschema = {
-        "mavitrimau": {
-            "type": "number",
-            "primary": true
-        },
-        "tenvitrimau": {
-            "type": "string"
-        },
-        "ngaykiemtra": {
-            "type": "datetime"
-        },
-        "ketqua": {
-            "type": "number"
-        },
-        "danhgia": {
-            "type": "number"
-        }
-    };
+    var vitrimau_schema = require('json!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ViTriMauSchema.json');
+
+//    var mauschema = {
+//        "mavitrimau": {
+//            "type": "number",
+//            "primary": true
+//        },
+//        "tenvitrimau": {
+//            "type": "string"
+//        },
+//        "ngaykiemtra": {
+//            "type": "datetime"
+//        },
+//        "ketqua": {
+//            "type": "number"
+//        },
+//        "danhgia": {
+//            "type": "number"
+//        }
+//    };
     var MauViTriItemView = Gonrin.ModelView.extend({
         idAttribtue: "vitrimau",
         tagName: "td",
         template: mautemplate,
-        modelSchema: mauschema,
+        modelSchema: vitrimau_schema,
         urlPrefix: "/api/v1/",
         bindings: "mau-data",
         collectionName: "ketqua_ngoaikiem_chatluong_nuocsach_mau_itemview",
@@ -40,14 +42,8 @@ define(function (require) {
         tools: null,
         render: function () {
             var self = this;
-
             self.$el.addClass("text-center");
             self.applyBindings();
-
-            //			self.getApp().on("ketquangoaikiemchatluongnuoc:changesomau", function(){
-            //				self.$el.remove();
-            //				self.destroy();
-            //			})
         },
     });
 
@@ -71,27 +67,56 @@ define(function (require) {
             } else {
                 self.$el.find("[id=danhgiathongso]").text("Không Đạt");
             }
-            $.each(self.model.get("ketquakiemtra"), function (idx, obj) {
+//            $.each(self.model.get("ketquakiemtra"), function (idx, obj) {
+//                var view = new MauViTriItemView();
+//                view.model.set(obj);
+//                view.render();
+//                self.$el.find("#gioihan").before(view.$el);
+//                view.model.on("change:ketqua", function () {
+//                    self.updateKetQua(view.model.toJSON());
+//                })
+//            });
+            var ketquakiemtra = self.model.get("ketquakiemtra");
+            $.each(ketquakiemtra, function (idx, obj) {
                 var view = new MauViTriItemView();
                 view.model.set(obj);
                 view.render();
                 self.$el.find("#gioihan").before(view.$el);
                 view.model.on("change:ketqua", function () {
-                    self.updateKetQua(view.model.toJSON());
-                })
+                	
+                	var danhsachketqua = self.model.get("ketquakiemtra");
+                	var viewData = view.model.toJSON();
+                	var danhgiaThongSo = 1;
+                	var thongso_data = self.model.toJSON();
+                	
+                	for(var i=0; i< danhsachketqua.length; i++){
+                		if (!!danhsachketqua[i] && danhsachketqua[i].id === viewData.id){
+                			danhsachketqua[i].ketqua = viewData.ketqua;
+                		}
+                		var ketqua_danhgia = self.check_thongso(thongso_data, danhsachketqua[i].ketqua);
+                		danhsachketqua[i].danhgia = ketqua_danhgia;
+                		danhgiaThongSo *= ketqua_danhgia ? ketqua_danhgia : 0;
+                	}
+                	self.model.set("danhgia",danhgiaThongSo);
+                	self.model.set("ketquakiemtra",danhsachketqua);
+                	self.applyBindings();
+                	
+                	var data_thongso = self.model.toJSON();
+                	self.trigger("ketquachange", data_thongso);
+                });
             });
         },
-        updateKetQua: function (obj) {
-            var self = this;
-            for (var i = 0; i < self.model.get("ketquakiemtra").length; i++) {
-                if (self.model.get("ketquakiemtra")[i].vitrimau == obj.vitrimau) {
-                    self.model.get("ketquakiemtra")[i].ketqua = obj.ketqua;
-                    //danh gia
-                }
-            }
-            //console.log(self.model.toJSON());
-            self.trigger("ketquachange", self.model.toJSON());
-        }
+        check_thongso: function(objthongso, ketquathongso){
+        	var result = 0;
+        	if (ketquathongso && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida == null && ketquathongso >= objthongso.gioihan_toithieu){ 
+        		result = 1;
+        	}else if (ketquathongso && objthongso.gioihan_toithieu == null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida){
+        		result = 1;
+        	} else if (ketquathongso && !!objthongso.gioihan_toithieu && !!objthongso.gioihan_toida && ketquathongso <= objthongso.gioihan_toida && ketquathongso >= objthongso.gioihan_toithieu){
+        		result = 1;
+        	}
+        	return result;
+        },
     });
 
 });

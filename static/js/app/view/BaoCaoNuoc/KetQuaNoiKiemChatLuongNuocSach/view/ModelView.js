@@ -210,7 +210,7 @@ define(function (require) {
                 command: function () {
                     var self = this;
                     var nambaocao = self.model.get("nambaocao");
-                	if(!(toInt(nambaocao) >= 2000 && toInt(nambaocao) <= 3000)){
+                	if(!(toInt(nambaocao) >= 1900 && toInt(nambaocao) <= 3000)){
                     	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
                     } else if(!self.model.get("ngaybaocao")){
                     	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "warning"});
@@ -379,8 +379,6 @@ define(function (require) {
                     	obj["ketquakiemtra"].length = somau;
                     }
                     danhsachthongso_new.push(obj);
-
-                    
                 });
                 self.model.set("ketquanoikiemchatluongnuoc",danhsachthongso_new);
                 
