@@ -323,12 +323,13 @@ define(function (require) {
                     },
                 });
             } else {
-            	self.model.on("change:somauvavitri", function () {
-                    self.changeSoMau();
-                });
+            	
                 self.prepareBaocao();
                 self.onChangeEvents();
                 self.applyBindings();
+                self.model.on("change:somauvavitri", function () {
+                    self.changeSoMau();
+                });
             }
         },
         changeSoMau: function () {
@@ -356,7 +357,7 @@ define(function (require) {
                 var danhsachthongso_new =[];
                 $.each(danhsachthongso, function (idx, obj) {
                 	var old_thongso_ketqua = obj["ketquakiemtra"];
-                    if (old_thongso_ketqua.length < somau && danhsachvitrilaymau.length === somau) {
+                    if (old_thongso_ketqua.length < somau) {
                     	var arr_ketquakiemtra = old_thongso_ketqua;
                     	for (var i = old_thongso_ketqua.length; i < somau; i++) {
                         	var item_vitrilaymau = danhsachvitrilaymau[i];
@@ -372,13 +373,14 @@ define(function (require) {
                         	}
                         }
                     	obj["ketquakiemtra"] = arr_ketquakiemtra;
-                    	console.log("ketquanoikiemchatluongnuoc.idx===",idx,"====",self.model.get("ketquanoikiemchatluongnuoc")[idx]["ketquakiemtra"]);
 
                     } else if (old_thongso_ketqua.length > somau) {
                     	console.log("chay vao thay doi thong so ket qua hay ko?");
                     	obj["ketquakiemtra"].length = somau;
                     }
                     danhsachthongso_new.push(obj);
+                	console.log("danhsachthongso_new.idx===",danhsachthongso_new);
+
                     
                 });
                 self.model.set("ketquanoikiemchatluongnuoc",danhsachthongso_new);
@@ -396,14 +398,15 @@ define(function (require) {
                     self.$el.find("#mauvitri_header_before").before(el);
                     self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }
+                self.renderKetQua(danhsachthongso_new);
             }
-            self.renderKetQua();
+            
             
         },
-        renderKetQua: function () {
+        renderKetQua: function (danhsachthongso) {
             var self = this;
             //danh sach thong so
-            var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
+//            var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
             $.each(danhsachthongso, function (idx, obj) {
                 var view = new KetQuaNoiKiemChatLuongNuocItemView();
                 obj["sothutu"] = idx + 1;

@@ -72,6 +72,7 @@ define(function (require) {
                 	self.model.set("ketquakiemtra",danhsachketqua);
                 	self.applyBindings("ketquakiemtra");
                 	var data_thongso = self.model.toJSON();
+                	console.log("item.data_thongso======",data_thongso);
                 	self.trigger("ketquachange", data_thongso);
 //                    self.updateKetQua(view.model.toJSON());
                     

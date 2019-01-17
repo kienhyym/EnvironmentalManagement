@@ -4,13 +4,13 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin            	= require('gonrin'),
-        storejs				= require('store'),
+//        storejs				= require('store'),
         tpl                 = require('text!app/bases/tpl/login.html'),
         template = _.template(tpl);
     return Gonrin.View.extend({
         render: function () {
         	var self = this;
-        	storejs.set('X-USER-TOKEN', '');
+//        	storejs.set('X-USER-TOKEN', '');
         	self.getApp().currentUser = null;
 			$("body").attr({'style':'background-color: #e9ecf3 !important;'});
 
@@ -57,12 +57,12 @@ define(function (require) {
        		    dataType: 'json',
        		    success: function (data) {
        		    	console.log(data);
-       		    	$.ajaxSetup({
-       		    	    headers: {
-       		    	    	'X-USER-TOKEN': data.token
-       		    	    }
-       		    	});
-       		    	storejs.set('X-USER-TOKEN', data.token);
+//       		    	$.ajaxSetup({
+//       		    	    headers: {
+//       		    	    	'X-USER-TOKEN': data.token
+//       		    	    }
+//       		    	});
+//       		    	storejs.set('X-USER-TOKEN', data.token);
        		    	self.getApp().postLogin(data);
        		    },
        		    error: function(xhr, status, error){
