@@ -83,6 +83,7 @@ define(function (require) {
     		var self = this;
     		var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
     		var url = '/api/v1/tuyendonvi/' + tuyendonvi_id;
+    		console.log("apiii", url);
     		$.ajax({
     			url: self.getApp().serviceURL + url,
  				//data: {"q": JSON.stringify({"filters": filters,"single":true})},

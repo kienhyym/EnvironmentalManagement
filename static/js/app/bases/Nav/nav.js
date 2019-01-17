@@ -1742,7 +1742,7 @@ define(function (require) {
 						{
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
-							"route": "baocao_nuocsach_huyentinh/model/nam(/:id)",
+							"route": "baocao_nuocsach_tinh/model/nam(/:id)",
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/ModelView",
 							"visible": false
 						},
