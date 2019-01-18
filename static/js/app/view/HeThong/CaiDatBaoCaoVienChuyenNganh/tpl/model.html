@@ -1,0 +1,29 @@
+<div block-bind="toolbar"></div>
+<div block-bind="content">
+	<div class="row text-center" style="margin: 0px 0px 10px 0px">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<label>Đơn Vị</label> <input id="donvi" data-bind="dict:donvi"
+				type="text" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="container" style="width: 82%;">
+			<div class="row-fluid" id="content" style="margin-top: 30px;">
+				<button class="btn btn-sm btn-success" style="margin-bottom: 10px; margin-left: 15px;" id="addTinh">Thêm
+					tỉnh</button>
+				<div class="col-md-12">
+					<table>
+						<thead>
+							<tr>
+								<th>Tên tỉnh</th>
+								<th>Command</th>
+							</tr>
+						</thead>
+						<tbody id="dsTinh"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -132,7 +132,26 @@ define(function (require) {
 					"visible": function () {
 						return this.userHasRole("Admin");
 					}
-
+				},
+				{
+					"text": "Cài đặt Báo Cáo Viện Chuyên Ngành",
+					"type": "view",
+					"collectionName": "map_vienchuyennganhnuoc_tinh",
+					"route": "map_vienchuyennganhnuoc_tinh/collection",
+					"$ref": "app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/view/CollectionView",
+					"icon": "glyphicon glyphicon-cog",
+					"visible": false
+				}, {
+					"text": "Cài đặt Báo Cáo Viện Chuyên Ngành",
+					"type": "view",
+					"collectionName": "map_vienchuyennganhnuoc_tinh",
+					"route": "map_vienchuyennganhnuoc_tinh/model(/:id)",
+					"href": "map_vienchuyennganhnuoc_tinh/model?donvi_id",
+					"$ref": "app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/view/ModelView",
+					"icon": "glyphicon glyphicon-cog",
+					"visible": function () {
+						return this.userHasRole("Admin");
+					}
 				}
 			]
 		},
