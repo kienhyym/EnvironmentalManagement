@@ -28,11 +28,18 @@ define(function (require) {
 						var path ='baocao_nuocsach_tinh/model/'+loaibaocao;
 						var currentUser = self.getApp().currentUser;
 						if(currentUser !== null){
-							if (currentUser.donvi.tuyendonvi_id ===2){
-								path = 'baocao_nuocsach_tinh/model/'+loaibaocao;
-							}else if (currentUser.donvi.tuyendonvi_id ===3){
+							var currentRoute = self.getApp().getRouter().currentRoute().fragment;
+							console.log("currentRoute===",currentRoute);
+							if(currentRoute.indexOf('baocao_nuocsach_huyen')>=0){
 								path = 'baocao_nuocsach_huyen/model/'+loaibaocao;
+							}else if(currentRoute.indexOf('baocao_nuocsach_tinh')>=0){
+								path = 'baocao_nuocsach_tinh/model/'+loaibaocao;
 							}
+//							if (currentUser.donvi.tuyendonvi_id ===2){
+//								path = 'baocao_nuocsach_tinh/model/'+loaibaocao;
+//							}else if (currentUser.donvi.tuyendonvi_id ===3){
+//								path = 'baocao_nuocsach_huyen/model/'+loaibaocao;
+//							}
 						}
 //						console.log("path===",path);
 						this.getApp().getRouter().navigate(path);
