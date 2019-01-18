@@ -195,8 +195,8 @@ define(function (require) {
 				textField: "text",
 				valueField: "value",
 				dataSource: [
-					{text: "Đạt", value: "Đạt"},
-					{text: "Không Đạt", value: "Không Đạt"}
+					{text: "Đạt", value: 1},
+					{text: "Không Đạt", value: 0}
 				]
 			},
 			{
@@ -337,23 +337,17 @@ define(function (require) {
                 self.model.set("diachi_donvicapnuoc", data.diachi);
             });
             
-            self.model.on("change:thunghiem_chatluong_nuoc",function(){
-            	var thunghiem_chatluong_nuoc = self.model.get("thunghiem_chatluong_nuoc");
-            	if(!!thunghiem_chatluong_nuoc && thunghiem_chatluong_nuoc ===1){
-            		self.$el.find(".tagketquangoaikiem").show();
-            	}else{
-            		self.$el.find(".tagketquangoaikiem").hide();
-            	}
-            });
+           
             self.$el.find("#them_thongso_khongdat").unbind("click").bind("click", function () {
             	var dsThongSo = new ThongSoBaoCaoChatLuongNuocView();
             	dsThongSo.dialog();
-            	var thongsoKhongDatView = new ThongSoKhongDatItemView();
             	var danhsachthongso_khongdat = self.model.get("danhsachthongso_khongdat");
             	if (danhsachthongso_khongdat == null){
             		danhsachthongso_khongdat = []
         		}
-            	dsThongSo.on("onSelected", function (dataThongSo) {
+            	dsThongSo.on("ThongSo_onSelected", function (dataThongSo) {
+                	var thongsoKhongDatView = new ThongSoKhongDatItemView();
+
             		thongsoKhongDatView.model.set("id", gonrin.uuid());
             		thongsoKhongDatView.model.set("mathongso", dataThongSo.mathongso);
             		thongsoKhongDatView.model.set("tenthongso", dataThongSo.tenthongso);
@@ -365,12 +359,31 @@ define(function (require) {
             		self.$el.find("#danhsachthongso_khongdat").append(thongsoKhongDatView.$el);
             		console.log("model to JSON", thongsoKhongDatView.model.toJSON());
             		danhsachthongso_khongdat.push(thongsoKhongDatView.model.toJSON());
-            		thongsoKhongDatView.on("change", function (thongsoKhongDat) {
-            			console.log("ts data", thongsoKhongDat);
-            			danhsachthongso_khongdat.push(thongsoKhongDatView.model.toJSON());
-//            			console.log("danhsachthongso_khongdat change", danhsachthongso_khongdat);
+            		thongsoKhongDatView.on("change", function (event) {
+                    	var ds_khongdat = self.model.get("danhsachthongso_khongdat");
+                    	for(var i=0;i<ds_khongdat.length;i++){
+                    		if(ds_khongdat[i].id === event.oldData.id){
+                    			ds_khongdat[i] = event.data;
+                    			break;
+                    		}
+                    	}
+            			self.model.set("danhsachthongso_khongdat",ds_khongdat);
+            			self.applyBinding("danhsachthongso_khongdat");
             		});
-//            		self.applyBindings();
+            		thongsoKhongDatView.$el.find("#xoa_thongso_khongdat").unbind("click").bind("click", function () {
+                    	var ds_khongdat = self.model.get("danhsachthongso_khongdat");
+	                    for (var i = 0; i < ds_khongdat.length; i++) {
+	                        if (ds_khongdat[i].id === thongsoKhongDatView.model.get("id")) {
+	                        	ds_khongdat.splice(i, 1);
+	                        }
+	                    }
+	                    self.model.set("danhsachthongso_khongdat", ds_khongdat);
+	                    self.applyBinding("danhsachthongso_khongdat");
+	                    thongsoKhongDatView.destroy();
+	                    thongsoKhongDatView.remove();
+	                });
+            		dsThongSo.destroy();
+            		dsThongSo.remove();
             	});
             	self.model.set("danhsachthongso_khongdat", danhsachthongso_khongdat);
             });
@@ -379,7 +392,7 @@ define(function (require) {
                 var view = new ThongSoBaoCaoChatLuongNuocView();
                 view.dialog();
                 var ketquangoaikiemchatluongnuoc = self.model.get('ketquangoaikiemchatluongnuoc');
-                view.on("onSelected", function (data) {
+                view.on("ThongSo_onSelected", function (data) {
                     for (var i = 0; i < ketquangoaikiemchatluongnuoc.length; i++) {
                         if (ketquangoaikiemchatluongnuoc[i].id === data.id) {
                             self.getApp().notify({ message: "Thông số này đã tồn tại!" }, { type: "danger" });
@@ -400,7 +413,9 @@ define(function (require) {
                     ketquangoaikiemchatluongnuoc.push(item);
                     self.model.set("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
                     self.applyBinding("ketquangoaikiemchatluongnuoc");
-                    self.changeSoMau();
+//                    self.changeSoMau();
+                    view.destroy();
+                    view.remove();
                 });
             });
             var id = this.getApp().getRouter().getParam("id");
@@ -414,6 +429,7 @@ define(function (require) {
                         });
                         self.onChangeEvents();
                         self.changeSoMau();
+                        self.render_thongsokhongdat();
                         self.applyBindings();
                     },
                     error: function () {
@@ -421,13 +437,49 @@ define(function (require) {
                     },
                 });
             } else {
-                self.prepareBaocao();
-                self.onChangeEvents();
+            	self.prepareBaocao();
                 self.model.on("change:somauvavitri", function () {
                     self.changeSoMau();
                 });
+                self.onChangeEvents();
                 self.applyBindings();
             }
+        },
+        render_thongsokhongdat: function(){
+        	var self = this;
+        	var danhsachthongso_khongdat = self.model.get("danhsachthongso_khongdat");
+        	if (!!danhsachthongso_khongdat && danhsachthongso_khongdat.length>0){
+        		$.each(danhsachthongso_khongdat, function(idx, data){
+        			var thongsoKhongDatView = new ThongSoKhongDatItemView();
+        			thongsoKhongDatView.model.set(JSON.parse( JSON.stringify( data )));
+            		thongsoKhongDatView.render();
+            		self.$el.find("#danhsachthongso_khongdat").append(thongsoKhongDatView.$el);
+            		thongsoKhongDatView.on("change", function (event) {
+                    	var ds_khongdat = self.model.get("danhsachthongso_khongdat");
+                    	for(var i=0;i<ds_khongdat.length;i++){
+                    		if(ds_khongdat[i].id === event.oldData.id){
+                    			ds_khongdat[i] = event.data;
+                    			break;
+                    		}
+                    	}
+            			self.model.set("danhsachthongso_khongdat",ds_khongdat);
+            			self.applyBinding("danhsachthongso_khongdat");
+            		});
+            		thongsoKhongDatView.$el.find("#xoa_thongso_khongdat").unbind("click").bind("click", function () {
+                    	var ds_khongdat = self.model.get("danhsachthongso_khongdat");
+	                    for (var i = 0; i < ds_khongdat.length; i++) {
+	                        if (ds_khongdat[i].id === thongsoKhongDatView.model.get("id")) {
+	                        	ds_khongdat.splice(i, 1);
+	                        }
+	                    }
+	                    self.model.set("danhsachthongso_khongdat", ds_khongdat);
+	                    self.applyBinding("danhsachthongso_khongdat");
+	                    thongsoKhongDatView.destroy();
+	                    thongsoKhongDatView.remove();
+	                });
+            		
+        		});
+        	}
         },
         changeSoMau: function () {
             var self = this;
@@ -443,6 +495,7 @@ define(function (require) {
                 } else {
                 	self.$el.find("[id=removeButton]").show();
                 }
+                console.log("changeSoMau.danhsachthongso===",danhsachthongso);
                 var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
                 if (danhsachvitrilaymau === null) {
                 	danhsachvitrilaymau = [];
@@ -622,13 +675,13 @@ define(function (require) {
                             };
                         });
                     }
-                    self.model.set("somauvavitri", 1);
                     self.model.set("ketquangoaikiemchatluongnuoc", danhsachthongso);
+                    self.applyBinding("ketquangoaikiemchatluongnuoc");
+                    self.model.set("somauvavitri", 1);
                     self.model.trigger("change");
                 },
                 error: function (xhr, status, error) {
                     self.getApp().notify("Không tìm thấy thông số");
-                    self.applyBindings();
                 },
             });
         },
@@ -691,21 +744,40 @@ define(function (require) {
 		
 		onChangeEvents: function () {
 			var self = this;
-			
+			 self.model.on("change:thunghiem_chatluong_nuoc",function(){
+            	var thunghiem_chatluong_nuoc = self.model.get("thunghiem_chatluong_nuoc");
+            	if(!!thunghiem_chatluong_nuoc && thunghiem_chatluong_nuoc ===1){
+            		self.$el.find(".tagketquangoaikiem").show();
+            	}else{
+            		self.$el.find(".tagketquangoaikiem").hide();
+            	}
+            });
 			self.model.on("change:tongsomau_thunghiem", function(){
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
-				self.$el.find("#tylemau_datquychuan").val((tongsomau_dat_quychuan/tongsomau_thunghiem).toFix(2));
+				var tyle = 0;
+				if(toInt(tongsomau_thunghiem)>0){
+					tyle = (tongsomau_dat_quychuan*100/tongsomau_thunghiem).toFixed(2);
+				}
+				self.$el.find("#tylemau_datquychuan").val(tyle);
 			});
 			self.model.on("change:tongsomau_dat_quychuan", function(){
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
-				self.$el.find("#tylemau_datquychuan").val((tongsomau_dat_quychuan/tongsomau_thunghiem).toFix(2));
+				var tyle = 0;
+				if(toInt(tongsomau_thunghiem)>0){
+					tyle = (tongsomau_dat_quychuan*100/tongsomau_thunghiem).toFixed(2);
+				}
+				self.$el.find("#tylemau_datquychuan").val(tyle);
 			});
 			self.model.on("change:tongsomau_khongdat_quychuan", function(){
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_khongdat_quychuan = self.model.get("tongsomau_khongdat_quychuan");
-				self.$el.find("#tylemau_khongdatquychuan").val((tongsomau_khongdat_quychuan/tongsomau_thunghiem).toFix(2));
+				var tyle = 0;
+				if(toInt(tongsomau_thunghiem)>0){
+					tyle = (tongsomau_khongdat_quychuan*100/tongsomau_thunghiem).toFixed(2);
+				}
+				self.$el.find("#tylemau_khongdatquychuan").val(tyle);
 			});
             self.$el.find("#tailieu_thieu").hide();
             self.model.on("change:hoso_daydu_theoquydinh", function (data) {

@@ -28,7 +28,9 @@ define(function (require) {
     			    	    	command: function(){
     			    	    		var self = this;
     			    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) {    			    	    			
-    			    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
+    			    	    			self.trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
+    			    	    			self.getApp().trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
+
     			    	    		}
     			    	    		self.close();
     			    	    	}

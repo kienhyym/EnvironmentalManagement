@@ -38,12 +38,6 @@ define(function (require) {
                 label: "Địa chỉ",
                 
             },
-            {
-                field: "nguonnuoc",
-                label: "Nguồn nước nguyên liệu",
-                
-            },
-
 
             ],
             onRowClick: function (event) {

@@ -31,9 +31,16 @@ define(function (require) {
 //				self.remove(true);
 //			});
 //			
+//			self.model.on("change", function () {
+//				self.trigger("change", {
+//					"thongsoKhongDat": self.model.toJSON()
+//				});
+//			});
 			self.model.on("change", function () {
+				
 				self.trigger("change", {
-					"thongsoKhongDat": self.model.toJSON()
+					"oldData": self.model.previousAttributes(),
+					"data": self.model.toJSON()
 				});
 			});
 			self.applyBindings();

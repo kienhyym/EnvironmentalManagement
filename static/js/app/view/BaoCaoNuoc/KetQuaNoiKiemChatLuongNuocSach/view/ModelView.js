@@ -280,7 +280,7 @@ define(function (require) {
                 var view = new ThongSoBaoCaoChatLuongNuocView();
                 view.dialog();
                 var ketquanoikiemchatluongnuoc = self.model.get('ketquanoikiemchatluongnuoc');
-                view.on("onSelected", function (data) {
+                view.on("ThongSo_onSelected", function (data) {
                     for (var i = 0; i < ketquanoikiemchatluongnuoc.length; i++) {
                         if (ketquanoikiemchatluongnuoc[i].id === data.id) {
                             self.getApp().notify({ message: "Thông số này đã tồn tại!" }, { type: "danger" });
@@ -555,8 +555,8 @@ define(function (require) {
                             };
                         });
                     }
-                    self.model.set("somauvavitri", 1);
                     self.model.set("ketquanoikiemchatluongnuoc", danhsachthongso);
+                    self.model.set("somauvavitri", 1);
                     self.model.trigger("change");
                 },
                 error: function (xhr, status, error) {

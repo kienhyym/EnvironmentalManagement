@@ -9,9 +9,9 @@
 }
 .navbar {min-height:28px !important;}
 
-.input-group{
+/* .input-group{
 	margin-bottom:10px !important;	
-}
+} */
 
 .list-table tr.selected{
 	background:#ffc !important;
