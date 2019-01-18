@@ -134,7 +134,7 @@ define(function (require) {
 					}
 				},
 				{
-					"text": "Cài đặt Báo Cáo Viện Chuyên Ngành",
+					"text": "Cài đặt Viện Chuyên Ngành",
 					"type": "view",
 					"collectionName": "map_vienchuyennganhnuoc_tinh",
 					"route": "map_vienchuyennganhnuoc_tinh/collection",
@@ -142,7 +142,7 @@ define(function (require) {
 					"icon": "glyphicon glyphicon-cog",
 					"visible": false
 				}, {
-					"text": "Cài đặt Báo Cáo Viện Chuyên Ngành",
+					"text": "Cài đặt Viện Chuyên Ngành",
 					"type": "view",
 					"collectionName": "map_vienchuyennganhnuoc_tinh",
 					"route": "map_vienchuyennganhnuoc_tinh/model(/:id)",

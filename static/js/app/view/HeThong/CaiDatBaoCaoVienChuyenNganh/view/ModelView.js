@@ -7,8 +7,6 @@ define(function (require) {
     var template = require('text!app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/tpl/model.html'),
         schema = require('json!schema/MapVienChuyenNganhNuocVaTinhSchema.json');
     
-    var itemTinhThanh = require('text!app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/tpl/itemTinhThanh.html'),
-    itemTinhThanhSchema = require('json!app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/view/itemTinhThanh.json');
     var TinhThanhSelectView = require('app/view/DanhMuc/TinhThanh/view/SelectView');
 
     return Gonrin.ModelView.extend({
