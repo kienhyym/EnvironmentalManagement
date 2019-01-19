@@ -1,51 +1,56 @@
-<div block-bind="toolbar"></div>
-<div block-bind="content">
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>ID</label></div>
-		<div class="col-md-3">
-			<input type="text" readonly data-bind="value:id"/>
-		</div>
+<div style="margin-top: 30px" class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Thông số báo cáo chất lượng nước</h3>
 	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Mã thông số</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:mathongso"/>
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div class="" style="text-align: left; margin-top: 20px;" block-bind="content">
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>ID</label></div>
+			<div class="col-md-3">
+				<input type="text" readonly data-bind="value:id" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Tên Thông số</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:tenthongso"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Mã thông số</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:mathongso" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Giới hạn tối thiểu bằng chữ</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:gioihan_toithieu_txt"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Tên Thông số</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:tenthongso" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Giới hạn tối thiểu bằng số</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:gioihan_toithieu"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Giới hạn tối thiểu bằng chữ</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:gioihan_toithieu_txt" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Giới hạn tối đa bằng chữ</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:gioihan_toida_txt"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Giới hạn tối thiểu bằng số</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:gioihan_toithieu" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Giới hạn tối đa bằng số</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:gioihan_toida"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Giới hạn tối đa bằng chữ</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:gioihan_toida_txt" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-3 text-right"><label>Chọn làm thông số mặc định?</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:batbuoc"/>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Giới hạn tối đa bằng số</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:gioihan_toida" />
+			</div>
+		</div>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-3 text-right"><label>Chọn làm thông số mặc định?</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:batbuoc" />
+			</div>
 		</div>
 	</div>
 </div>

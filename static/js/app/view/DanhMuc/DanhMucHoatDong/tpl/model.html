@@ -1,39 +1,44 @@
-<div block-bind="toolbar"></div>
-<div block-bind="content" style="margin-top: 20px;">
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>ID</label></div>
-		<div class="col-md-3">
-			<input type="text" readonly data-bind="value:id" />
-		</div>
+<div style="margin-top: 30px" class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Danh mục hoạt động</h3>
 	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:mahoatdong" />
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div class="" style="text-align: left; margin-top: 20px;" block-bind="content">
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>ID</label></div>
+			<div class="col-md-3">
+				<input type="text" readonly data-bind="value:id" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Tên hoạt động</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:tenhoatdong" />
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Mã</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:mahoatdong" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Phạm vi</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:loai_hoatdong" />
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Tên hoạt động</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:tenhoatdong" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Ngành</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="dict:nganh" />
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Phạm vi</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:loai_hoatdong" />
+			</div>
 		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mục tiêu</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:muctieu" />
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Ngành</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="dict:nganh" />
+			</div>
+		</div>
+		<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Mục tiêu</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:muctieu" />
+			</div>
 		</div>
 	</div>
 </div>

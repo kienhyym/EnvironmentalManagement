@@ -3,8 +3,8 @@
 }
 
 .table-align tbody input.form-control{
-		padding-left:2px;
-		padding-right:2px;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 .table-align tr th, .table-align tr td, .table-align tfoot td{
 	text-align:center;
@@ -242,7 +242,7 @@ table,
 th,
 td {
   border-collapse: collapse;
-  border: 1px solid #E6E6E6;
+  border: 1px solid #808080;
 }
 
 th,
@@ -251,7 +251,7 @@ td {
   text-align: left;
 }
 
-.top {
+.background-colorTH {
   background: #C5DFB5;
 }
 

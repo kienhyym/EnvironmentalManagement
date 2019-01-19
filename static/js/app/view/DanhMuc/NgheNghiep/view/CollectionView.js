@@ -14,9 +14,6 @@ define(function (require) {
     	collectionName: "nghenghiep",
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",width:250,readonly: true, 
-	    	     },
 	    	     { field: "ma", label: "Mã", width:250},
 		     	 { field: "ten", label: "Tên", width:250 },
 		     	{ field: "mota", label: "Mô tả", width:250 },
