@@ -41,7 +41,6 @@ define(function (require) {
 //								path = 'baocao_nuocsach_huyen/model/'+loaibaocao;
 //							}
 						}
-//						console.log("path===",path);
 						this.getApp().getRouter().navigate(path);
 					}
 				}]

@@ -13,10 +13,10 @@ define(function (require) {
     	    var isUser = gonrinApp().currentUser != null ? gonrinApp().currentUser.hasRole('User'): false;
     	    return isUser;
     	},
-    	checkTuyendonvi:function(tuyendonvi){
+    	checkTuyendonvi:function(arrTuyendonvi){
     		var currentUser = gonrinApp().currentUser;
-    		if (currentUser !==null && (currentUser.donvi.tuyendonvi_id === tuyendonvi || currentUser.hasRole('Admin'))){
-    			return true;
+    		if (currentUser !==null && currentUser !==undefined){
+    			return (arrTuyendonvi.indexOf(currentUser.donvi.tuyendonvi_id)> -1);
     		}
     		return false;
     	},

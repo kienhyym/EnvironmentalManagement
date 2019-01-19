@@ -21,6 +21,16 @@ define(function (require) {
 	                textFormat: "DD/MM/YYYY",
 	                extraFormats: ["DDMMYYYY"],
 	            },
+	            {
+					field: "ketquavitrilaymau",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đạt", value: 1},
+						{text: "Không Đạt", value: 0}
+					]
+				}
 			]
 		},
 

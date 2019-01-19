@@ -6,6 +6,7 @@ define(function (require) {
 
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/collection.html'),
         schema = require('json!schema/KetQuaNgoaiKiemChatLuongNuocSachSchema.json');
+    var TemplateHelper		= require('app/bases/TemplateHelper');
 
 
     return Gonrin.CollectionView.extend({
@@ -16,6 +17,19 @@ define(function (require) {
         uiControl: {
             fields: [
             {
+                field: "nambaocao",
+                label: "Năm báo cáo",
+                
+            },
+            {
+                field: "ngaybaocao",
+                label: "Ngày báo cáo",
+                template:function(rowData){
+	    	    	 var template_helper = new TemplateHelper();
+	    	    	 return template_helper.datetimeFormat(rowData.ngaybaocao, "DD/MM/YYYY");
+	    	     }
+            },
+            {
                 field: "donvicapnuoc_id",
                 label: "Tên đơn vị cấp nước",
                 foreign: "donvicapnuoc",
@@ -24,18 +38,13 @@ define(function (require) {
                 
             },
             {
-                field: "nambaocao",
-                label: "Năm báo cáo",
-                
-            },
-            {
-                field: "ngaybaocao",
-                label: "Ngày báo cáo",
-                
-            },
-            {
                 field: "diachi_donvicapnuoc",
                 label: "Địa chỉ",
+                
+            },
+            {
+                field: "tendonvi_ngoaikiem",
+                label: "Đơn vị ngoại kiểm",
                 
             },
 
