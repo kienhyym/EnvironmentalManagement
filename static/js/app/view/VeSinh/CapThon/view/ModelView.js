@@ -237,8 +237,12 @@ define(function (require) {
 							contentType: "application/json",
 							success: function (data) {
 								if (!!data && !!data.objects && (data.objects.length > 0)){
+									var id = data.objects[0].id;
 									self.model.set(data.objects[0]);
+									self.model.set("id",id);
 									self.model.set("nambaocao",nambaocao);
+									self.model.set("kybaocao",kybaocao);
+									self.model.set("loaikybaocao",loaikybaocao);
 									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 									self.$el.find("#nhatieuthonhvs").html("");
 									for(var i=0; i< nhatieuthonhvs.length; i++){

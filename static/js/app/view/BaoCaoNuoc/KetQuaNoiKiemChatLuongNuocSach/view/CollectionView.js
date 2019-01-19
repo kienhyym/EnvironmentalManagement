@@ -6,6 +6,7 @@ define(function (require) {
 
     var template = require('text!app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/tpl/collection.html'),
         schema = require('json!schema/KetQuaNoiKiemChatLuongNuocSachSchema.json');
+    var TemplateHelper		= require('app/bases/TemplateHelper');
 
 
     return Gonrin.CollectionView.extend({
@@ -29,6 +30,10 @@ define(function (require) {
             {
                 field: "ngaybaocao",
                 label: "Ngày báo cáo",
+                template:function(rowData){
+	    	    	 var template_helper = new TemplateHelper();
+	    	    	 return template_helper.datetimeFormat(rowData.ngaybaocao, "DD/MM/YYYY");
+	    	     }
             },
             {
                 field: "diachi_donvicapnuoc",
@@ -41,6 +46,10 @@ define(function (require) {
             {
                 field: "thoigiankiemtra",
                 label: "Thời gian kiểm tra",
+                template:function(rowData){
+	    	    	 var template_helper = new TemplateHelper();
+	    	    	 return template_helper.datetimeFormat(rowData.thoigiankiemtra, "DD/MM/YYYY");
+	    	     }
             },
             ],
             onRowClick: function (event) {
