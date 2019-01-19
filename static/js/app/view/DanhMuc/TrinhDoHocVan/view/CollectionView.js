@@ -15,7 +15,7 @@ define(function (require) {
     	uiControl:{
     		fields: [
 	    	     { field: "ma", label: "Mã", width:250},
-		     	 { field: "ten", label: "Tên", width:250 },
+		     	 { field: "ten", label: "Tên", width:250},
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

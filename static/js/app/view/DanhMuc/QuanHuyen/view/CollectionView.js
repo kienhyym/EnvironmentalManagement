@@ -14,14 +14,15 @@ define(function (require) {
         collectionName: "quanhuyen",
         uiControl: {
             fields: [
-                { field: "ma", label: "Mã", width: 250 },
-                { field: "ten", label: "Tên", width: 250 },
+                { field: "ma", label: "Mã", width:250},
+                { field: "ten", label: "Tên", width:250},
                 {
                     field: "tinhthanh_id",
                     label: "Tỉnh thành",
                     foreign: "tinhthanh",
                     foreignValueField: "id",
                     foreignTextField: "ten",
+                    width:250
                 },
 
             ],

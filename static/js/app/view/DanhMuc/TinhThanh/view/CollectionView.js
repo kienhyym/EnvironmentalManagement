@@ -15,13 +15,14 @@ define(function (require) {
     	uiControl:{
     		fields: [
 		     	 { field: "ma", label: "Mã", width:250},
-		     	 { field: "ten", label: "Tên", width:250 },
+		     	 { field: "ten", label: "Tên", width:250},
 		     	 {
 	            	 field: "quocgia_id", 
 	            	 label: "Quốc gia",
 	            	 foreign: "quocgia",
 	            	 foreignValueField: "id",
-	            	 foreignTextField: "ten",
+					 foreignTextField: "ten",
+					 width:250
 	           	 },
 	           	{
 		        	 field: "quocgia", 

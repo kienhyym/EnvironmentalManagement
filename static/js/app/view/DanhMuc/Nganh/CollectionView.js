@@ -15,8 +15,8 @@ define(function (require) {
     	uiControl:{
     		fields: [
 	    	     { field: "manganh", label: "Mã", width:250},
-		     	 { field: "tennganh", label: "Tên ngành" },
-		     	{ field: "thutu", label: "Thứ tự" },
+		     	 { field: "tennganh", label: "Tên ngành", width:250},
+		     	{ field: "thutu", label: "Thứ tự", width:250},
 		     ],
 		     onRowClick: function(event) {
 		    	if(event.rowId) {

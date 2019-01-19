@@ -13,11 +13,7 @@ define(function (require) {
 		urlPrefix: "/api/v1/",
 		collectionName: "danhmuchoatdong",
 		uiControl: {
-			fields: [{
-					field: "id",
-					label: "ID",
-					readonly: true,
-				},
+			fields: [
 				{
 					field: "mahoatdong",
 					label: "Mã",

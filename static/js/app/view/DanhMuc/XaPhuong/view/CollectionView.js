@@ -21,7 +21,8 @@ define(function (require) {
 	            	 label: "Quận Huyện",
 	            	 foreign: "quanhuyen",
 	            	 foreignValueField: "id",
-	            	 foreignTextField: "ten",
+					 foreignTextField: "ten",
+					 width:250
 	           	 },
 		     ],
 		     onRowClick: function(event){
