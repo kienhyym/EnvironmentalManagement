@@ -231,11 +231,11 @@ define(function (require) {
 			
 			self.$el.find("#danhsachhoatdong_list").append(`
 			<tr>
-                <td class="top text-center">(1)</td>
-                <td class="top text-center">(2)</td>
-                <td class="top text-center">(3)</td>
-                <td class="top" colspan="3"></td>
-                <td class="top"></td>
+                <td class="background-colorTH text-center">(1)</td>
+                <td class="background-colorTH text-center">(2)</td>
+                <td class="background-colorTH text-center">(3)</td>
+                <td class="background-colorTH" colspan="3"></td>
+                <td class="background-colorTH"></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
                 <td colspan="3">

@@ -205,13 +205,6 @@
   background-color: #C5DFB5;
 }
 
-table,
-th,
-td {
-  border: 1px solid #C5DFB5;
-  border-collapse: collapse;
-}
-
 th,
 td {
   padding: 5px;
@@ -242,7 +235,15 @@ table,
 th,
 td {
   border-collapse: collapse;
+  border: 1px solid #E6E6E6;
+}
+
+.is-table tr th, .is-table tr td,
+.is-table thead tr td, .is-table thead tr th,
+.is-table tbody tr td, .is-table tbody tr th,
+.is-table tfoot tr td, .is-table tfoot tr th, .is-table {
   border: 1px solid #808080;
+  border-collapse: collapse;
 }
 
 th,
@@ -253,6 +254,9 @@ td {
 
 .background-colorTH {
   background: #C5DFB5;
+}
+.text-top {
+  vertical-align: top;
 }
 
 #grid tr:nth-child(even) {

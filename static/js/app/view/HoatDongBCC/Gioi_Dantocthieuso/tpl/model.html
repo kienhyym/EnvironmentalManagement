@@ -2,47 +2,52 @@
 	.sd {
 		width: 10%;
 	}
+
 	.sd2 {
 		width: 18%;
 	}
 </style>
 <div style="margin-top: 30px;" class="panel panel-default">
-	<div class="panel-heading"><h4>Giới và Dân tộc thiểu số</h4></div>
+	<div class="panel-heading">
+		<h4>Giới và Dân tộc thiểu số</h4>
+	</div>
 	<!-- <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div> -->
 	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		
+
 		<div class="row" style=" margin-top: 20px">
 			<div class="form-group col-md-6">
 				<label>Năm đánh giá:</label>
-				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control" >
+				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control">
 			</div>
 			<div class="col-md-6 form-group">
 				<label>Kỳ đánh giá:</label>
 				<input id="kydanhgia" type="text" class="form-control">
 			</div>
-			
+
 			<div id="tinhthanh" class="col-md-6 form-group " style="display:none;">
 				<label>Chọn Tỉnh/Thành phố</label>
-				<input  type="text" class="form-control">
+				<input type="text" class="form-control">
 			</div>
 			<div class="col-md-6 form-group">
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
 			</div>
 		</div>
-	
+
 		<div class="row">
-			<table  class="table-align">
-				<thead >
-					<tr id="header_report">
-						<th  class="top sd2" >Kết quả mong đợi</th>
-						<th  class="top sd2" >Chỉ số</th>
-						<th  class="top sd" >Ngành y tế</th>
-						<th  class="top sd">Ngành giáo dục</th>
-						<th  class="top sd">Tổng</th>
-					</tr>
-				</thead>
-				<tbody id="danhsachdonvi"></tbody>
-			</table>
+			<div class="col-md-12">
+				<table class="table-align is-table">
+					<thead>
+						<tr id="header_report">
+							<th class="background-colorTH sd2">Kết quả mong đợi</th>
+							<th class="background-colorTH sd2">Chỉ số</th>
+							<th class="background-colorTH sd">Ngành y tế</th>
+							<th class="background-colorTH sd">Ngành giáo dục</th>
+							<th class="background-colorTH sd">Tổng</th>
+						</tr>
+					</thead>
+					<tbody id="danhsachdonvi"></tbody>
+				</table>
+			</div>
 		</div>
 
 	</div>
