@@ -112,11 +112,11 @@
 					<tbody>
 						<tr>
 							<td colspan="2" style="width:50%">Tổng số mẫu nước làm thử nghiệm (mẫu)</td>
-							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_laphoso_theoquydinh_noikiem" /></td>
+							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_maunuoc_thunghiem_noikiem" /></td>
 						</tr>
 						<tr>
 							<td colspan="2">Tổng số mẫu đạt quy chuẩn (mẫu)</td>
-							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_hoso_daydu_theoquydinh_noikiem" /></td>
+							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_mau_dat_quychuan_noikiem" /></td>
 						</tr>
 						<tr>
 							<td colspan="2">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
@@ -124,7 +124,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
-							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_thunghiem_daydu_thongso_noikiem" /></td>
+							<td colspan="2"><input type="text" disabled class="form-control" data-bind="value:tong_mau_khongdat_quychuan_noikiem" /></td>
 						</tr>
 						<tr>
 							<td colspan="2">Tỷ lệ mẫu không đạt quy chuẩn</td>
@@ -132,7 +132,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">Các thông số không đạt</td>
-							<td colspan="2"></td>
+							<td colspan="2" id="thongso_khongdat_noikiem_value"></td>
 						</tr>
 						
 					</tbody>
@@ -140,7 +140,6 @@
 				<table class="table" id="thongso_khongdat_noikiem">
 					<thead>
 						<tr>
-							<th  class="top">Đơn vị cấp nước</th>
 							<th  class="top">Thông số không đạt</th>
 							<th  class="top">Kết quả thử nghiệm</th>
 							<th  class="top">giới hạn tối đa cho phép</th>
@@ -166,8 +165,9 @@
 					<thead>
 						<tr>
 							<th  class="top" style="min-width: 8%">STT</th>
-							<th  class="top" style="min-width: 50%">Tên đơn vị thực hiện ngoại kiểm</th>
+							<th  class="top" style="min-width: 35%">Tên đơn vị thực hiện ngoại kiểm</th>
 							<th  class="top">Nội dung ngoại kiểm</th>
+							<th  class="top">Ngày kiểm tra</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -258,7 +258,7 @@
 						</tr>
 						<tr>
 							<td>Các thông số không đạt</td>
-							<td></td>
+							<td id="thongso_khongdat_ngoaikiem_value"></td>
 						</tr>
 						
 					</tbody>
@@ -266,7 +266,6 @@
 				<table class="table" id="thongso_khongdat_ngoaikiem">
 					<thead>
 						<tr>
-							<th  class="top">Đơn vị cấp nước</th>
 							<th  class="top">Thông số không đạt</th>
 							<th  class="top">Kết quả thử nghiệm</th>
 							<th  class="top">giới hạn tối đa cho phép</th>
@@ -283,7 +282,7 @@
 			<div class="col-md-12">
 				<h3 style="padding-bottom:10px;">D. Đề Xuất, kiến nghị</h3>
 				<div  class="form-group">
-					<textarea rows="3" class="form-control"></textarea>
+					<textarea rows="3" class="form-control" data-bind="value:ketluan_dexuat"></textarea>
 				</div>
 			</div>
 			

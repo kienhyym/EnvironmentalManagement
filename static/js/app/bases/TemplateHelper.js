@@ -1,6 +1,7 @@
 define(function(require) {
 	"use strict";
-	
+	 var $           = require('jquery'),
+     Backbone    = require('backbone');
 	var currencyFormat = {
 		symbol : "VNĐ",		// default currency symbol is '$'
 		format : "%v %s",	// controls output: %s = symbol, %v = value (can be object, see docs)

@@ -29,9 +29,11 @@ require.config({
 require(['jquery', 'gonrin', 'app/router',
 		'app/bases/Nav/NavbarView',
 		'text!app/bases/tpl/layout.html',
-		'i18n!app/nls/app'
+		'i18n!app/nls/app',
+		'app/bases/TemplateHelper'
+
 	],
-	function ($, Gonrin, Router, Nav, layout, lang) {
+	function ($, Gonrin, Router, Nav, layout, lang, TemplateHelper) {
 		$.ajaxSetup({
 			headers: {
 				'content-type': 'application/json'
@@ -46,6 +48,7 @@ require(['jquery', 'gonrin', 'app/router',
 			router: new Router(),
 			lang: lang,
 			mapKyBaoCao: {},
+			template_helper: new TemplateHelper(),
 			//layout: layout,
 			initialize: function () {
 				this.nav = new Nav();

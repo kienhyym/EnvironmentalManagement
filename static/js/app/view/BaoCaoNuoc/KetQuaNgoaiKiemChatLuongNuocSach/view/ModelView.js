@@ -750,14 +750,17 @@ define(function (require) {
 		
 		onChangeEvents: function () {
 			var self = this;
-			
-			self.model.on("change:tong_thongso_khongdat",function(){
-            	var thunghiem_chatluong_nuoc = self.model.get("tong_thongso_khongdat");
-            	if(!!thunghiem_chatluong_nuoc && thunghiem_chatluong_nuoc != 0){
-            		self.$el.find("#danhsachthongsokhongdat").show();
-            	}else{
-            		self.$el.find("#danhsachthongsokhongdat").hide();
-            	}
+			var tong_thongso_khongdat = self.model.get("danhsachthongso_khongdat") != null ? self.getApp().toInt(self.model.get("danhsachthongso_khongdat").length):0;
+			self.model.set("tong_thongso_khongdat", tong_thongso_khongdat);
+			self.model.on("change:danhsachthongso_khongdat",function(){
+				var tong_thongso_khongdat = self.model.get("danhsachthongso_khongdat") != null ? self.getApp().toInt(self.model.get("danhsachthongso_khongdat").length):0;
+				self.model.set("tong_thongso_khongdat", tong_thongso_khongdat);
+//            	var thunghiem_chatluong_nuoc = self.model.get("tong_thongso_khongdat");
+//            	if(!!thunghiem_chatluong_nuoc && thunghiem_chatluong_nuoc != 0){
+//            		self.$el.find("#danhsachthongsokhongdat").show();
+//            	}else{
+//            		self.$el.find("#danhsachthongsokhongdat").hide();
+//            	}
             });
 			 self.model.on("change:thunghiem_chatluong_nuoc",function(){
             	var thunghiem_chatluong_nuoc = self.model.get("thunghiem_chatluong_nuoc");

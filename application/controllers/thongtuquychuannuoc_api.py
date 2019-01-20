@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import hashlib
 import ujson
+import copy
 from application.extensions import apimanager
 from application.server import app
 from application.database import db
@@ -90,7 +91,7 @@ async def prepost_tonghopketqua_chatluongnuoc(request=None, data=None, Model=Non
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     if "nambaocao" not in data or data["nambaocao"] is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
-    if ("loaikybaocao" not in data['loaikybaocao'] or data is None or "kybaocao" not in data['kybaocao'] is None or data['loaikybaocao'] != LoaiKyBaoCao.QUY):
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None or data['loaikybaocao'] != LoaiKyBaoCao.QUY):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
 
     record = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(and_(TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id == data["donvicapnuoc_id"],\
@@ -105,6 +106,17 @@ async def prepost_tonghopketqua_chatluongnuoc(request=None, data=None, Model=Non
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    await process_baocao_tonghopketqua_chatluongnuoc(currentuser, data)
+    
+async def preput_tonghopketqua_chatluongnuoc(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None or data['loaikybaocao'] != LoaiKyBaoCao.QUY):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+
     await process_baocao_tonghopketqua_chatluongnuoc(currentuser, data)
     
 async def process_baocao_tonghopketqua_chatluongnuoc(currentuser=None, data=None):
@@ -183,7 +195,7 @@ async def process_baocao_noikiem_tonghopketqua(startDate=None, endDate=None, dat
                 tong_maunuoc_thunghiem_noikiem += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if(vitrimau.ketquavitrilaymau ==1):
+                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
                             tong_mau_dat_quychuan_noikiem += 1
                         else:
                             tong_mau_khongdat_quychuan_noikiem +=1
@@ -191,16 +203,17 @@ async def process_baocao_noikiem_tonghopketqua(startDate=None, endDate=None, dat
                 #danh sach ket qua cac thong so
                 if baocao.ketquanoikiemchatluongnuoc is not None:
                     for thongso in baocao.ketquanoikiemchatluongnuoc:
-                        if thongso.danhgia == 0:
+                        if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
                             obj_thongso = to_dict(thongso)
-                            
-                            for mauthongso in thongso.ketquakiemtra:
-                                if mauthongso.danhgia == 0:
-                                    item_thongso_khongdat_noikiem = obj_thongso
-                                    item_thongso_khongdat_noikiem['mavitrimau'] = mauthongso.mavitrimau
-                                    item_thongso_khongdat_noikiem['tenvitrimau'] = mauthongso.tenvitrimau
-                                    item_thongso_khongdat_noikiem['ketqua'] = mauthongso.ketqua
-                                    item_thongso_khongdat_noikiem['ngaykiemtra'] = mauthongso.ngaykiemtra
+                            for mauthongso in obj_thongso["ketquakiemtra"]:
+                                if mauthongso["danhgia"] == 0:
+                                    item_thongso_khongdat_noikiem = copy.deepcopy(obj_thongso)
+                                    item_thongso_khongdat_noikiem['mavitri'] = mauthongso["mavitri"]
+                                    item_thongso_khongdat_noikiem['tenvitri'] = mauthongso["tenvitri"]
+                                    item_thongso_khongdat_noikiem['ketqua'] = mauthongso["ketqua"]
+                                    item_thongso_khongdat_noikiem['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+                                    item_thongso_khongdat_noikiem['danhgia'] = mauthongso["danhgia"]
+
                                     thongso_khongdat_noikiem.append(item_thongso_khongdat_noikiem)
     
     
@@ -254,7 +267,8 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                 item_donvi_ngoaikiem["thunghiem_chatluong_nuoc"] = baocao.thunghiem_chatluong_nuoc
                 item_donvi_ngoaikiem["loai_donvi_kiemtra"] = baocao.loai_donvi_kiemtra
                 item_donvi_ngoaikiem["thanhphan_doankiemtra"] = baocao.thanhphan_doankiemtra
-                donvi_thuchien_ngoaikiem.append(item_donvi_ngoaikiem)
+                item_donvi_ngoaikiem["ngaykiemtra"] = str(baocao.thoigiankiemtra)
+                donvi_thuchien_ngoaikiem.append(ujson.loads(ujson.dumps(item_donvi_ngoaikiem)))
                 
                 if baocao.laphoso_theoquydinh == 1:
                     tong_laphoso_theoquydinh_ngoaikiem += 1
@@ -285,7 +299,7 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                 tong_maunuoc_thunghiem_ngoaikiem += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if(vitrimau.ketquavitrilaymau ==1):
+                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
                             tong_mau_dat_quychuan_ngoaikiem += 1
                         else:
                             tong_mau_khongdat_quychuan_ngoaikiem +=1
@@ -293,16 +307,16 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                 #danh sach ket qua cac thong so
                 if baocao.ketquangoaikiemchatluongnuoc is not None:
                     for thongso in baocao.ketquangoaikiemchatluongnuoc:
-                        if thongso.danhgia == 0:
+                        if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
                             obj_thongso = to_dict(thongso)
-                            
-                            for mauthongso in thongso.ketquakiemtra:
-                                if mauthongso.danhgia == 0:
-                                    item_thongso_khongdat = obj_thongso
-                                    item_thongso_khongdat['mavitrimau'] = mauthongso.mavitrimau
-                                    item_thongso_khongdat['tenvitrimau'] = mauthongso.tenvitrimau
-                                    item_thongso_khongdat['ketqua'] = mauthongso.ketqua
-                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso.ngaykiemtra
+                            for mauthongso in obj_thongso["ketquakiemtra"]:
+                                if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                    item_thongso_khongdat = copy.deepcopy(obj_thongso)
+                                    item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
+                                    item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
+                                    item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
+                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+                                    item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
                                     thongso_khongdat_ngoaikiem.append(item_thongso_khongdat)
     
     
@@ -319,7 +333,11 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
     data["tong_maunuoc_thunghiem_ngoaikiem"] = tong_maunuoc_thunghiem_ngoaikiem
     data["tong_mau_dat_quychuan_ngoaikiem"] = tong_mau_dat_quychuan_ngoaikiem
     data["tong_mau_khongdat_quychuan_ngoaikiem"] = tong_mau_khongdat_quychuan_ngoaikiem
-    data["thongso_khongdat_ngoaikiem"] = thongso_khongdat_ngoaikiem          
+    data["thongso_khongdat_ngoaikiem"] = thongso_khongdat_ngoaikiem  
+    data["donvi_thuchien_ngoaikiem"] = donvi_thuchien_ngoaikiem  
+    data["tong_solan_ngoaikiem"] = tong_solan_ngoaikiem
+    
+            
                         
                         
                         
@@ -333,7 +351,7 @@ apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
 apimanager.create_api(TongHopKetQuaKiemTraChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_tonghopketqua_chatluongnuoc], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_tonghopketqua_chatluongnuoc], PUT_SINGLE=[auth_func, preput_tonghopketqua_chatluongnuoc], DELETE_SINGLE=[auth_func]),
     collection_name='tonghop_ketqua_chatluong_nuocsach')
 
 apimanager.create_api(BaoCaoNuocSachHuyenTinh,

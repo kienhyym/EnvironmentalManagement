@@ -68,7 +68,7 @@ class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
     congsuat_thietke = db.Column(DECIMAL)
     tongso_hogiadinh = db.Column(db.Integer, default=0)
     nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)
-    tansuat_noikiem = db.Column(db.String)
+    tansuat_noikiem = db.Column(db.Integer)
     thoigiankiemtra = db.Column(db.DateTime())
     nguoikiemtra = db.Column(db.String)
     
@@ -179,7 +179,14 @@ class TongHopKetQuaKiemTraChatLuongNuocSach(CommonModel):
     congsuat_thietke = db.Column(DECIMAL)
     tongso_hogiadinh = db.Column(db.Integer)
     nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)
-    tansuat_noikiem = db.Column(db.String)
+    tansuat_noikiem = db.Column(db.Integer)
+    
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
+    xaphuong = relationship('XaPhuong')
     
     #lay so lieu tu bao cao 1B cong don len
     tong_laphoso_theoquydinh_noikiem = db.Column(db.Integer, default=0)
