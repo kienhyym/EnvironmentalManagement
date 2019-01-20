@@ -238,10 +238,10 @@ td {
   border: 2px solid #E6E6E6;
 }
 
-.is-table tr th, .is-table tr td,
-.is-table thead tr td, .is-table thead tr th,
-.is-table tbody tr td, .is-table tbody tr th,
-.is-table tfoot tr td, .is-table tfoot tr th, .is-table {
+.is-table, .is-table tr th, .is-table tr td,
+.is-table thead tr td, .is-table thead tr th, .is-table thead td, .is-table thead th,
+.is-table tbody tr td, .is-table tbody tr th, .is-table tbody td, .is-table tbody th,
+.is-table tfoot tr td, .is-table tfoot tr th, .is-table tfoot td, .is-table tfoot th {
   border: 2px solid #808080;
   border-collapse: collapse;
 }

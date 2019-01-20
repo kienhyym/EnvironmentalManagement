@@ -59,7 +59,8 @@ define(function (require) {
 		uiControl: {
 			fields: [{
 					field: "id",
-					label: "ID"
+					label: "ID",
+					visible: false
 				},
 				{
 					field: "donvi_ten",
