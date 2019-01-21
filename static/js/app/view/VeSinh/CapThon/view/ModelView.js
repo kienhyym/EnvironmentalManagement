@@ -411,11 +411,15 @@ define(function (require) {
 				self.model.on("change:thuocsuprsws", function(){
 					self.check_chuongtrinhSUP();
 				});
+
+					self.$el.find(".remove_columns").hide();
+
 				self.model.on("change:thonxom", function(event, name){
 
 					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
 						self.get_danhsachho();
 					}
+					
 				});
 			}
 		},
@@ -438,6 +442,7 @@ define(function (require) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
 						self.$el.find("#nhatieuthonhvs").html("");
 						self.model.set("nhatieuthonhvs",[]);
+						self.$el.find(".remove_columns").show();
 						$.each(data.objects, function(idx, obj){
 							var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
 			                view.model.set("id",gonrin.uuid());
@@ -454,6 +459,7 @@ define(function (require) {
 							
 						});
 						self.renderTinhTongI();
+						self.check_chuongtrinhSUP();
 					}else{
 						self.getApp().notify("Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!");
 					}
