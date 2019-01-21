@@ -62,9 +62,6 @@ define(function (require) {
 	    	},
     	},
     	render:function(){
-//    		if (this.getApp().data("quocgia_id") !== null){
-//    			this.uiControl.filters = {"quocgia_id": {"$eq": this.getApp().data("quocgia_id")}};
-//    		}
     		
     		var self= this;
     		var filter = new CustomFilterView({
@@ -80,6 +77,7 @@ define(function (require) {
 				] };
     			self.uiControl.filters = filters;
     		}
+    		self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -96,6 +94,7 @@ define(function (require) {
 						self.uiControl.filters = null;
 					}
 				}
+				self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
 				self.applyBindings();
     		});
     		return this;

@@ -37,6 +37,7 @@ define(function (require) {
 		    	}
     	},
 	    render:function(){
+	    	 self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
 	    	 this.applyBindings();
 	    	 return this;
     	},

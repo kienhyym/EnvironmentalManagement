@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!tapp/view/tpl/HeThong/User/changeprofile.html');
+    var template 			= require('text!app/view/tpl/HeThong/User/changeprofile.html');
     
     return Gonrin.ModelDialogView.extend({
     	template : template,
@@ -29,9 +29,8 @@ define(function (require) {
   			    	    				macongdan: self.$el.find('#profile_macongdan').val(),
   			    	    				phone: self.$el.find('#profile_phone').val(),
   			    	    				email: self.$el.find('#profile_email').val(),
-  			    	    				hoten: self.$el.find('#profile_name').val()
+  			    	    				fullname: self.$el.find('#profile_name').val()
   			    	    		}
-  			    	    		self.getApp().showloading();
   			    	    		$.ajax({
 	  				    				url: (self.getApp().serviceURL || "")+'/api/v1/user/changeprofile',
 	  				    				method: 'POST',
@@ -42,10 +41,10 @@ define(function (require) {
 	  				    			  		self.getApp().hideloading();
 	  				    			  		self.getApp().currentUser.fullname = data.fullname;
 	  				    			  		self.getApp().currentUser.email = data.email;
-	  				    			  		self.getApp().currentUser.id_card = data.id_card;
-	  				    			  		self.getApp().currentUser.phone_number = data.phone_number;
+	  				    			  		self.getApp().currentUser.macongdan = data.macongdan;
+	  				    			  		self.getApp().currentUser.phone = data.phone;
 		  				    			    if(!data.fullname || data.fullname === ""){
-		  				    			    	data.fullname = data.id;
+		  				    			    	data.fullname = data.email;
 		  				    			    }
 		  				    			   $("#fullname").html(data.fullname);
 		  				    			    
@@ -82,8 +81,8 @@ define(function (require) {
     		var currentUser = self.getApp().currentUser;
     		console.log(currentUser);
     		if (!!currentUser){
-    			self.$el.find('#profile_macongdan').val(currentUser.id_card),
-				self.$el.find('#profile_phone').val(currentUser.phone_number),
+    			self.$el.find('#profile_macongdan').val(currentUser.macongdan),
+				self.$el.find('#profile_phone').val(currentUser.phone),
 				self.$el.find('#profile_email').val(currentUser.email),
 				self.$el.find('#profile_name').val(currentUser.fullname)
     		}

@@ -5,9 +5,7 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 		    = require('text!app/view/tpl/HeThong/User/profile.html');
-//    	schema 				= require('json!app/view/HeThong/User/Schema.json');
     var ChangePasswordView  = require('app/view/HeThong/User/view/ChangePasswordView');
-    var AddressDialogView      = require('app/view/HeThong/User/Address/AddressDialogView');
     var ProfileDialogView      = require('app/view/HeThong/User/view/ProfileDialogView');
     
     return Gonrin.ModelView.extend({
@@ -31,14 +29,6 @@ define(function (require) {
     				profile.dialog();
     				
     			});
-    			
-    			self.$el.find("#changeaddress").unbind("click").bind("click", function(){
-    				var address = new AddressDialogView({"viewData":currentUser.id});
-    				address.dialog();
-    				
-    			});
-    			
-    			
     		}else{
     			self.getApp().getRouter().navigate("/login");
     		}

@@ -57,9 +57,10 @@ define(function (require) {
     	    	},
     	},
     	render:function(){
-    		if (this.getApp().data("quanhuyen_id") !== null){
-    			this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}};
-    		}
+    		var currentUser = this.getApp().currentUser;
+	    	 if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
+               this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
+            }
     		var self = this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),

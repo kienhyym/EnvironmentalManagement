@@ -83,47 +83,60 @@ async def get_current_user(request):
         "error_message":error_msg
     }, status = 520)
     
-@app.route('/user/changepw', methods=['POST'])
-async def user_changepw(request):
-    currentUser = current_user(request)
-    if currentUser is not None:
-        password = request.json.get('password', None)
-        newpassword = request.json.get('newpassword', None)
-        cfpassword = request.json.get('confirm', None)
-        if((password is not None) and (newpassword is not None) and (cfpassword is not None)):
-            if(newpassword  == cfpassword):
-                if auth.verify_password(password, currentUser.password):
-                    passwd = auth.encrypt_password(newpassword)
-                    user = db.session.query(User).filter(User.id == currentUser.id).first()
-                    user.password = passwd
-                    db.session.commit()
-                    return json({"error_message":"Thay đổi thành công"},status=200)
-                else:
-                    return json({"error_code":"PARAMS_ERROR","error_message":"Mật khẩu không đúng"},status=520)
-            else:
-                return json({"error_code":"PARAMS_ERROR","error_message":"Mật khẩu không khớp với xác nhận, vui lòng kiểm tra lại"},status=520)
-        else:
-            return json({"error_code":"PARAMS_ERROR","error_message":"Parameters are not correct"},status=520)
-    return json({"error_code":"ERROR_SESSION","error_message":"Session expired!"},status=520)   
 
-@app.route('/user/changephone', methods=['POST'])
-async def user_change_phone(request):
-    currentUser = current_user(request)
-    if currentUser is not None:
-        phone = request.json.get('phone', None)
-        if(phone is not None):
-            user = db.session.query(User).filter(User.phone == phone).filter(User.id != currentUser.id).first()
-            if(user is not None):
-                return json({"error_code":"PARAMS_ERROR","error_message":u"Số điện thoại đã tồn tại"},status=520)
-            else:
-                check_current_user = db.session.query(User).filter(User.id == currentUser.id).first()
-                check_current_user.phone = phone
+@app.route("api/v1/user/changepw", methods=["POST"])
+async def change_password(request):
+    currentUser = await current_user(request)
+    if currentUser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Phiên làm việc hết hạn!"}, status=520)
+    data = request.json
+    if data is not None:
+        if 'newpassword' not in data or 'confirm' not in data or data['newpassword'] != data['confirm']:
+            return json({"error_code": ERROR_CODE["CONFIRM_ERROR"], "error_message": "Mật khẩu không khớp, vui lòng kiểm tra lại"}, status=520)
+        
+        if 'newpassword' in data and data['newpassword'] is not None and 'password' in data:
+            user = db.session.query(User).filter(User.id == currentUser.id).first()
+            if user is not None:
+#                 if auth.verify_password(data['password'], user.password, user.salt) != True:
+#                     return json({"error_code": ERROR_CODE["AUTH_ERROR"], "error_message": "Mật khẩu không đúng"}, status=520)
+                
+                user.password = auth.encrypt_password(data['newpassword'])
+#                 db.session.add(user)
                 db.session.commit()
-                return json({"error_message":"Thay đổi số điện thoại thành công"},status=200)
-        else:
-            return json({"error_code":"PARAMS_ERROR","error_message":"Tham số không hợp lệ"},status=520)
-        pass
-    return json({"error_code":"ERROR_SESSION","error_message":"Phiên làm việc hết hạn, vui lòng đăng nhập lại!"},status=520)     
+                return json({"error_message": "Thay đổi mật khẩu thành công!"})
+            else:
+                return json({"error_code": "NOT_FOUND_USER", "error_message": "Không tìm thấy tài khoản trong hệ thống!"}, status=520)
+
+    else:        
+        return json({"error_code": "PARAMS_ERROR", "error_message": "Có lỗi xảy ra, vui lòng thực hiện lại sau"}, status=520)
+                    
+@app.route("api/v1/user/changeprofile", methods=["POST"])
+async def update_profile(request):
+    currentUser = await current_user(request)
+    if currentUser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Phiên làm việc hết hạn!"}, status=520)
+    data = request.json
+    if (data is None or "email" not in data or data["email"] is None or "phone" not in data or data["phone"] is None):
+        return json({"error_code":"PARAM_ERROR","error_message":"Tham số không hợp lệ, vui lòng thực hiện lại sau!"}, status=520)
+    user = User.query.filter(or_(User.phone == data['phone'], User.email == data['email'])).filter(User.id != currentUser.id).first()
+    if user is not None:
+        if user.email == data['email']:
+            return json({"error_code":"USER_EXISTED","error_message":"Email đã tồn tại trong hệ thống, vui lòng kiểm tra và đăng nhập lại!"}, status=520)
+        elif data['phone'] is not None and user.phone == data['phone']:
+            return json({"error_code":"USER_EXISTED","error_message":"Số điện thoại đã tồn tại trong hệ thống, vui lòng kiểm tra và đăng nhập lại!"}, status=520)
+    
+    user = db.session.query(User).filter(User.id == currentUser.id).first()
+    if user is None:
+        return json({"error_code":"PARAM_ERROR","error_message":"Không tìm thấy tài khoản trong hệ thống!"}, status=520)
+
+    user.email = data['email']
+    user.phone = data['phone']
+    user.fullname = data['fullname']
+    if "macongdan" in data and data["macongdan"] is not None:
+        user.macongdan = data["macongdan"]
+    db.session.commit()
+    user_info = await get_user_with_permission(user)
+    return json(user_info)
 
 
 @app.route('/api/v1/donvilist')

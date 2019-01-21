@@ -57,10 +57,12 @@ define(function (require) {
     	    	},
     	},
     	render:function(){
-    		if (this.getApp().data("tinhthanh_id") !== null){
-    			this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}};
-    		}
+    		var currentUser = this.getApp().currentUser;
+            if (currentUser!==null && currentUser!== undefined && this.getApp().data("tinhthanh_id") !== null &&  currentUser.donvi.tuyendonvi_id>=2 && currentUser.donvi.tuyendonvi_id!==10) {
+                this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id") } };
+            }
     		var self= this;
+    		self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
     			sessionKey: self.collectionName +"_filter"

@@ -52,9 +52,11 @@ define(function (require) {
     	    	},
     	},
     	render:function(){
-    		if (this.getApp().data("xaphuong_id") !== null){
-    			this.uiControl.filters = {"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}};
-    		}
+    		var currentUser = this.getApp().currentUser;
+            if (currentUser!==null && currentUser!== undefined && this.getApp().data("xaphuong_id") !== null &&  currentUser.donvi.tuyendonvi_id>=3 && currentUser.donvi.tuyendonvi_id!==10) {
+                this.uiControl.filters = { "xaphuong_id": { "$eq": this.getApp().data("xaphuong_id") } };
+            }
+    		this.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),

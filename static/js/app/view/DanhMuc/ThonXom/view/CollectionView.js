@@ -33,6 +33,11 @@ define(function (require) {
 		    	}
     	},
 	     render:function(){
+	        var currentUser = this.getApp().currentUser;
+            if (currentUser!==null && currentUser!== undefined && this.getApp().data("xaphuong_id") !== null &&  currentUser.donvi.tuyendonvi_id>=3 && currentUser.donvi.tuyendonvi_id!==10) {
+                this.uiControl.filters = { "xaphuong_id": { "$eq": this.getApp().data("xaphuong_id") } };
+            }
+	    	 this.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
 	    	 this.applyBindings();
 	    	 return this;
     	},

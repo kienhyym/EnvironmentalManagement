@@ -105,7 +105,7 @@ define(function (require) {
 						self.applyBindings();
 					},
 					error: function () {
-						self.getApp().notify("Get data Eror");
+						self.getApp().notify("Lỗi lấy dữ liệu");
 					},
 				});
 			} else {
