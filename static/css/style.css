@@ -3,8 +3,8 @@
 }
 
 .table-align tbody input.form-control{
-		padding-left:2px;
-		padding-right:2px;
+		padding-left: 2px;
+		padding-right: 2px;
 	}
 .table-align tr th, .table-align tr td, .table-align tfoot td{
 	text-align:center;
@@ -205,13 +205,6 @@
   background-color: #C5DFB5;
 }
 
-table,
-th,
-td {
-  border: 1px solid #C5DFB5;
-  border-collapse: collapse;
-}
-
 th,
 td {
   padding: 5px;
@@ -242,13 +235,25 @@ table,
 th,
 td {
   border-collapse: collapse;
-  border: 1px solid #E6E6E6;
+  border: 2px solid #E6E6E6;
+}
+
+.is-table, .is-table tr th, .is-table tr td,
+.is-table thead tr td, .is-table thead tr th, .is-table thead td, .is-table thead th,
+.is-table tbody tr td, .is-table tbody tr th, .is-table tbody td, .is-table tbody th,
+.is-table tfoot tr td, .is-table tfoot tr th, .is-table tfoot td, .is-table tfoot th {
+  border: 2px solid #808080;
+  border-collapse: collapse;
 }
 
 th,
 td {
   padding: 5px;
   text-align: left;
+}
+
+.background-colorTH {
+  background: #C5DFB5;
 }
 
 .top {

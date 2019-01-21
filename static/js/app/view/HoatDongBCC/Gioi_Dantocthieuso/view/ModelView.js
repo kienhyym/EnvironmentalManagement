@@ -101,8 +101,8 @@ define(function (require) {
 								self.$el.find("#danhsachdonvi").html("");
 								
 								var th = self.$el.find("#header_report").html('');
-								th.append('<th  class="top sd2" >Kết quả mong đợi</th>');
-								th.append('<th  class="top sd2" >Chỉ số</th>');
+								th.append('<th  class="background-colorTH sd2" >Kết quả mong đợi</th>');
+								th.append('<th  class="background-colorTH sd2" >Chỉ số</th>');
 								
 								var tr = $('<tr>');
 								tr.append('<td rowspan="6">NÂNG CAO NĂNG LỰC</td>');
@@ -116,10 +116,10 @@ define(function (require) {
 								var tr5 = $('<tr>');
 								tr5.append("<td>% người tham gia là DTTS</td>");
 								var tr6 = $('<tr>');
-								tr6.append("<td>phụ nữ là giảng viên, tuyên truyền viên</td>");
+								tr6.append("<td>Phụ nữ là giảng viên, tuyên truyền viên</td>");
 								for(var i=0; i<data.danhsachnganh.length; i++){
 									var data_nganh = data.danhsachnganh[i];
-									th.append('<th  class="top" >Ngành '+data_nganh.tennganh+'</th>')
+									th.append('<th  class="background-colorTH" >Ngành '+data_nganh.tennganh+'</th>')
 									tr.append('<td>' + data_nganh.tongnguoi_duocdaotao + "</td>");
 									tr2.append('<td>' + data_nganh.tongnguoi_thamgia_nu + "</td>");
 									var tyle_nguoithamgia_nu = 0;
@@ -135,7 +135,7 @@ define(function (require) {
 									tr5.append('<td>' + tyle_dantocthieuso.toFixed(2) + "</td>");
 									tr6.append('<td></td>"');
 								}
-								th.append('<th  class="top" >Tổng số</th>');
+								th.append('<th  class="background-colorTH" >Tổng số</th>');
 								
 //								tr.append('<td>' + data.tongnguoi_duocdaotao_yte + "</td>");
 //								tr.append('<td>' + data.tongnguoi_duocdaotao_giaoduc + "</td>");

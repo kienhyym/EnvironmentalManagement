@@ -66,25 +66,25 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": 0,
-							"text": "Nam"
-						},
-						{
-							"value": 1,
-							"text": "Nữ"
-						},
+						"value": 0,
+						"text": "Nam"
+					},
+					{
+						"value": 1,
+						"text": "Nữ"
+					},
 					],
-					value:0
+					value: 0
 				},
 			]
 		},
 
 		tools: [
 			{
-			name: "defaultgr",
-			type: "group",
-			groupClass: "toolbar-group",
-			buttons: [{
+				name: "defaultgr",
+				type: "group",
+				groupClass: "toolbar-group",
+				buttons: [{
 					name: "back",
 					type: "button",
 					buttonClass: "btn-default btn-sm",
@@ -102,18 +102,40 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
+						var tenchuho = self.model.get("tenchuho");
+						var gioitinh = self.model.get("gioitinh");
+						var dantoc = self.model.get("dantoc");
+						var tinhthanh = self.model.get("tinhthanh");
+						var quanhuyen = self.model.get("quanhuyen");
+						var xaphuong = self.model.get("xaphuong");
+						var thonxom = self.model.get("thonxom");
+						if (tenchuho === null || tenchuho === "") {
+							self.getApp().notify({ message: "Tên chủ hộ không được để trống!" }, { type: "danger" });
+						} else if (gioitinh === null || gioitinh === "") {
+							self.getApp().notify({ message: "Giới tính của chủ hộ không được để trống!" }, { type: "danger" });
+						} else if (dantoc === null || dantoc === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên dân tộc!" }, { type: "danger" });
+						} else if (tinhthanh === null || tinhthanh === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên tỉnh thành!" }, { type: "danger" });
+						} else if (quanhuyen === null || quanhuyen === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên quận huyện!" }, { type: "danger" });
+						} else if (xaphuong === null || xaphuong === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên xã phường!" }, { type: "danger" });
+						} else if (thonxom === null || thonxom === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên thôn xóm!" }, { type: "danger" });
+						} else {
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(self.collectionName + "/collection");
 
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+								},
+								error: function (model, xhr, options) {
+									self.getApp().notify('Lưu thông tin không thành công!');
 
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Lưu thông tin không thành công!');
-
-							}
-						});
+								}
+							});
+						}
 					}
 				},
 				{
@@ -138,25 +160,25 @@ define(function (require) {
 						});
 					}
 				},
-			],
-		}],
+				],
+			}],
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");
-			
+
 			var currentUser = self.getApp().currentUser;
-			if(!!currentUser && !!currentUser.donvi){
-				if (!!currentUser.donvi.tinhthanh_id){
-					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+			if (!!currentUser && !!currentUser.donvi) {
+				if (!!currentUser.donvi.tinhthanh_id) {
+					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
 				}
-				if (!!currentUser.donvi.quanhuyen_id){
-					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+				if (!!currentUser.donvi.quanhuyen_id) {
+					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
 				}
-				if (!!currentUser.donvi.xaphuong_id){
-					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+				if (!!currentUser.donvi.xaphuong_id) {
+					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong", currentUser.donvi.xaphuong);
 					self.getApp().data("xaphuong_id", currentUser.donvi.xaphuong_id);
 				}
 			}

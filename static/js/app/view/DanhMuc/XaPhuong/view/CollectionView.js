@@ -14,10 +14,6 @@ define(function (require) {
     	collectionName: "xaphuong",
     	uiControl:{
 	    	fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",width:250,readonly: true, 
-	    	     },
-		     	 
 		     	 { field: "ma", label: "Mã", width:250},
 		     	 { field: "ten", label: "Tên", width:250 },
 		     	 {
@@ -25,7 +21,8 @@ define(function (require) {
 	            	 label: "Quận Huyện",
 	            	 foreign: "quanhuyen",
 	            	 foreignValueField: "id",
-	            	 foreignTextField: "ten",
+					 foreignTextField: "ten",
+					 width:250
 	           	 },
 		     ],
 		     onRowClick: function(event){

@@ -1,20 +1,22 @@
 <style type="text/css">
-	.sd {
+	.same {
 		width: 6%;
 	}
-	.sd2 {
+	.same3 {
 		width: 8%;
 	}
 </style>
 <div style="margin-top: 30px;" class="panel panel-default">
-	<div class="panel-heading"><h4>Biểu mẫu đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Xã/Phường</h4></div>
+	<div class="panel-heading">
+		<h4>Biểu mẫu đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Xã/Phường</h4>
+	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		
-		<div style="margin-top: 30px;">
+
+		<div class="row" style="margin-top: 30px;">
 			<div class="form-inline form-group col-md-6">
 				<label>Năm đánh giá:</label>
-				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:nambaocao">
+				<input type="text" placeholder="YYYY" class="form-control" data-bind="value:nambaocao">
 			</div>
 			<div class="col-md-6 form-group form-inline ">
 				<label>Kỳ đánh giá:</label>
@@ -22,8 +24,9 @@
 			</div>
 		</div>
 		<div class="table1">
-			<h3 style="padding-bottom:10px;">I. Thông tin chung</h3>
+			<h3 style="margin-bottom:10px;">I. Thông tin chung</h3>
 			<div class="row">
+				<div class="col-md-12">
 					<table>
 						<tbody>
 							<tr>
@@ -72,69 +75,73 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
 			</div>
 		</div>
 		<div class="table2">
-			<h3>II. Thông tin về nhà tiêu HVS</h3>
-		</div>
-	
-		<div class="row">
-			<table  class="table-align">
-				<thead id="header_table_sup">
-					<tr>
-						<th rowspan="2" class="top" style="min-width: 20%">Tên thôn</th>
-						<th rowspan="2" class="top">Hộ có nữ là chủ hộ</th>
-						<th rowspan="2" class="top">Tổng số hộ DTTS</th>
-						<th rowspan="2" class="top sd">Tổng số hộ nghèo</th>
-						<th colspan="6" class="top">Loại nhà tiêu đang sử dụng</th>
-						<th colspan="3" class="top">Đánh giá tình trạng vệ sinh</th>
-						<th rowspan="2" class="top sd">Có điểm rửa tay với xà phòng và nước</th>
-					</tr>
-					<tr>
-						<th class="top sd">Tự hoại</th>
-						<th class="top sd">Thẩm đội</th>
-						<th class="top sd">2 ngăn</th>
-						<th class="top sd">Chìm có ống thông hơi</th>
-						<th class="top sd">Loại khác</th>
-						<th class="top sd">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
-						<th class="top sd">Hợp vệ sinh</th>
-						<th class="top sd">Không hợp vệ sinh</th>
-						<th class="top sd">Cải thiện</th>
-					</tr>
-				</thead>
-				<thead id="header_table_notsup" style="display:none;">
-					<tr>
-						<th rowspan="2" class="top" style="min-width: 30%">Tên thôn</th>
-						<th rowspan="2" class="top sd2">Hộ có nữ là chủ hộ</th>
-						<!-- <th rowspan="2" class="top">Tổng số hộ DTTS</th>
-						<th rowspan="2" class="top sd">Tổng số hộ nghèo</th> -->
-						<th colspan="6" class="top">Loại nhà tiêu đang sử dụng</th>
-						<th colspan="2" class="top">Đánh giá tình trạng vệ sinh</th>
-						<!-- <th rowspan="2" class="top sd">Có điểm rửa tay với xà phòng và nước</th> -->
-					</tr>
-					<tr>
-						<th class="top sd2">Tự hoại</th>
-						<th class="top sd2">Thẩm đội</th>
-						<th class="top sd2">2 ngăn</th>
-						<th class="top sd2">Chìm có ống thông hơi</th>
-						<th class="top sd2">Loại khác</th>
-						<th class="top sd2">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
-						<th class="top sd2">Hợp vệ sinh</th>
-						<th class="top sd2">Không hợp vệ sinh</th>
-						<!-- <th class="top sd">Cải thiện</th> -->
-					</tr>
-				</thead>
-				<tbody id="danhsachdonvi"></tbody>
-				<tfoot id="tongcongi"></tfoot>
-			</table>
+			<h3 style="margin-bottom: 10px;">II. Thông tin về nhà tiêu HVS</h3>
 		</div>
 
-		<div>
-			<div class="text-justify">Ghi chú: (3) theo tổng từng thôn,
-				(4) số hộ DTTS: tổng số hộ DTTS, (5) tổng số hộ nghèo, (12)&(13)
-				theo tổng số từng thôn, (14) và (15) áp dụng xã trong chương trình
-				SupRSWS</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table-align is-table">
+					<thead id="header_table_sup">
+						<tr>
+							<th rowspan="2" class="background-colorTH" style="min-width: 17%">Tên thôn</th>
+							<th rowspan="2" class="background-colorTH same">Hộ có nữ là chủ hộ</th>
+							<th rowspan="2" class="background-colorTH same">Tổng số hộ DTTS</th>
+							<th rowspan="2" class="background-colorTH same">Tổng số hộ nghèo</th>
+							<th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử dụng</th>
+							<th colspan="3" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
+							<th rowspan="2" class="background-colorTH" style="width: 7%;">Có điểm rửa tay với xà phòng và nước</th>
+						</tr>
+						<tr>
+							<th class="background-colorTH same">Tự hoại</th>
+							<th class="background-colorTH same">Thẩm đội</th>
+							<th class="background-colorTH same">2 ngăn</th>
+							<th class="background-colorTH same">Chìm có ống thông hơi</th>
+							<th class="background-colorTH same">Loại khác</th>
+							<th class="background-colorTH same">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
+							<th class="background-colorTH same">Hợp vệ sinh</th>
+							<th class="background-colorTH same">Không hợp vệ sinh</th>
+							<th class="background-colorTH same">Cải thiện</th>
+						</tr>
+					</thead>
+					<thead id="header_table_notsup" style="display:none;">
+						<tr>
+							<th rowspan="2" class="background-colorTH" style="min-width: 17%">Tên thôn</th>
+							<th rowspan="2" class="background-colorTH same3">Hộ có nữ là chủ hộ</th>
+							<!-- <th rowspan="2" class="background-colorTH">Tổng số hộ DTTS</th>
+						<th rowspan="2" class="background-colorTH sd">Tổng số hộ nghèo</th> -->
+							<th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử dụng</th>
+							<th colspan="2" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
+							<!-- <th rowspan="2" class="background-colorTH sd">Có điểm rửa tay với xà phòng và nước</th> -->
+						</tr>
+						<tr>
+							<th class="background-colorTH same3">Tự hoại</th>
+							<th class="background-colorTH same3">Thẩm đội</th>
+							<th class="background-colorTH same3">2 ngăn</th>
+							<th class="background-colorTH same3">Chìm có ống thông hơi</th>
+							<th class="background-colorTH same3">Loại khác</th>
+							<th class="background-colorTH same3">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
+							<th class="background-colorTH same3">Hợp vệ sinh</th>
+							<th class="background-colorTH same3">Không hợp vệ sinh</th>
+							<!-- <th class="background-colorTH sd">Cải thiện</th> -->
+						</tr>
+					</thead>
+					<tbody id="danhsachdonvi"></tbody>
+					<tfoot id="tongcongi"></tfoot>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-justify">Ghi chú: (3) theo tổng từng thôn,
+					(4) số hộ DTTS: tổng số hộ DTTS, (5) tổng số hộ nghèo, (12)&(13)
+					theo tổng số từng thôn, (14) và (15) áp dụng xã trong chương trình
+					SupRSWS</div>
+			</div>
 		</div>
 	</div>
-
 </div>

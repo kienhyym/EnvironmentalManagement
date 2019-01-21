@@ -1,58 +1,61 @@
 <style type="text/css">
 	.sd {
 		width: 6%;
+		vertical-align: top;
 	}
+
 	.sd2 {
 		width: 17%;
+		vertical-align: top;
 	}
 </style>
 <div style="margin-top: 30px;" class="panel panel-default">
-	<div class="panel-heading"><h4>Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững</h4></div>
+	<div class="panel-heading">
+		<h4>Tiến độ thực hiện duy trì vệ sinh toàn xã bền vững</h4>
+	</div>
 	<!-- <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div> -->
 	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		
 		<div class="row" style=" margin-top: 20px">
 			<div class="form-group col-md-6">
 				<label>Năm đánh giá:</label>
-				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control" >
+				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control">
 			</div>
 			<div class="col-md-6 form-group">
 				<label>Kỳ đánh giá:</label>
 				<input id="kydanhgia" type="text" class="form-control">
 			</div>
-			
+
 			<div id="tinhthanh" class="col-md-6 form-group " style="display:none;">
 				<label>Chọn Tỉnh/Thành phố</label>
-				<input  type="text" class="form-control">
+				<input type="text" class="form-control">
 			</div>
 			<div class="col-md-6 form-group">
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
 			</div>
 		</div>
-	
+
 		<div class="row">
-			<table  class="table-align">
-				<thead >
-					<tr>
-						<th  class="top sd2" >Tên Tỉnh</th>
-						<th  class="top sd2" >Tên Huyện</th>
-						<th  class="top sd2" >Tên Xã</th>
-						<th  class="top sd">Năm đạt VSTX</th>
-						<th  class="top sd">Năm đạt VSTX bền vững</th>
-						<th  class="top sd">Tổng số Trường học</th>
-						<th  class="top sd">Tổng số Trường học HVS</th>
-						<th  class="top sd">% Trường học duy trì được tình trạng vệ sinh</th>
-						<th  class="top sd">Tổng số Trạm y tế</th>
-						<th  class="top sd">Tổng số Trạm y tế HVS</th>
-						<th  class="top sd">% Trạm y tế duy trì được tình trạng vệ sinh</th>
-
-					</tr>
-				</thead>
-				<tbody id="danhsachdonvi"></tbody>
-				<tfoot id="tongcongi"></tfoot>
-			</table>
+			<div class="col-md-12">
+				<table class="table-align is-table">
+					<thead>
+						<tr>
+							<th class="background-colorTH sd2">Tên Tỉnh</th>
+							<th class="background-colorTH sd2">Tên Huyện</th>
+							<th class="background-colorTH sd2">Tên Xã</th>
+							<th class="background-colorTH sd">Năm đạt VSTX</th>
+							<th class="background-colorTH sd">Năm đạt VSTX bền vững</th>
+							<th class="background-colorTH sd">Tổng số Trường học</th>
+							<th class="background-colorTH sd">Tổng số Trường học HVS</th>
+							<th class="background-colorTH sd">% Trường học duy trì được tình trạng vệ sinh</th>
+							<th class="background-colorTH sd">Tổng số Trạm y tế</th>
+							<th class="background-colorTH sd">Tổng số Trạm y tế HVS</th>
+							<th class="background-colorTH sd">% Trạm y tế duy trì được tình trạng vệ sinh</th>
+						</tr>
+					</thead>
+					<tbody id="danhsachdonvi"></tbody>
+					<tfoot id="tongcongi"></tfoot>
+				</table>
+			</div>
 		</div>
-
 	</div>
-
 </div>

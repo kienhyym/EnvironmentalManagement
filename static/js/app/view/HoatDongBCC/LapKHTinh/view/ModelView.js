@@ -259,7 +259,7 @@ define(function (require) {
 			var self = this;
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
-			<tr class="top">
+			<tr class="background-colorTH">
                 <td colspan="2">(1)</td>
                 <td>(2)</td>
                 <td>(3)</td>

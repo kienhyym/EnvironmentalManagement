@@ -12,189 +12,180 @@
     }
 </style>
 <div style="margin-top: 30px" class="panel panel-default">
-    <div class="panel-heading"><h4>Thu thập thông tin về công trình cấp nước và vệ sinh trong Trường học/ Trạm y tế</h4></div>
+    <div class="panel-heading">
+        <h4>Thu thập thông tin về công trình cấp nước và vệ sinh trong Trường học/ Trạm y tế</h4>
+    </div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-        <div style="margin-top: 30px;">
-			<div class="form-inline form-group col-md-6">
-				<label>Năm đánh giá:</label>
-				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:nambaocao">
-			</div>
-			<div class="col-md-6 form-group form-inline ">
-				<label>Kỳ đánh giá:</label>
-				<input id="kydanhgia" disabled type="text" class="form-control">
-			</div>
-		</div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <th colspan="2">Thông tin địa bàn
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    Tên Tỉnh: <input type="text" class="form-control" data-bind="dict:tinhthanh" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    Tên Huyện: <input type="text" class="form-control" data-bind="dict:quanhuyen" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    Tên Xã: <input type="text" class="form-control" data-bind="dict:xaphuong" />
-                                                </div>
-                                                <div class="col-md-6">
-                                                    Tên Trường học/Trạm y tế: <input type="text" class="form-control"
-                                                        data-bind="value:ten_truong_tramyte" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    Mã Trường/trạm: <input type="text" class="form-control" data-bind="value:ma_truong_tramyte" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </th>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td class="description">Loại Trường học/trạm (khoanh 1)</td>
-                                    <td><input type="text" class="form-control" data-bind="value:loai_truong_tramyte" /></td>
-                                </tr>
-                                <tr id="buoihoc">
-                                    <td class="description">NẾU LÀ TRƯỜNG HỌC, GHI SỐ BUỔI HỌC VÀ SỐ HỌC SINH MỖI BUỔI
-                                        HỌC</td>
-                                    <td>
-                                        Số buổi học: <input type="text" class="form-control" data-bind="value:truong_sobuoihoc" /><br>
-                                        Số học sinh mỗi buổi học: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_moibuoi" /><br>
-                                        Số học sinh nam: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nam" /><br>
-                                        Số học sinh nữ: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nu" /><br>
-                                    </td>
-                                </tr>
-                                <tr id="loaidiemtruong">
-                                    <td class="description">LOẠI ĐIỂM TRƯỜNG</td>
-                                    <td><input type="text" class="form-control" data-bind="value:loaidiem_truong" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        Tên người trả lời: <input type="text" class="form-control" data-bind="value:tennguoitraloi" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        Vị trí/chức vụ người trả lời: <input type="text" class="form-control" data-bind="value:chucvu_nguoitraloi" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        Số điện thoai/thông tin liên lạc khác: <input type="text" class="form-control"
-                                            data-bind="value:thongtinlienlac" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="form-inline form-group col-md-6">
+                <label>Năm đánh giá:</label>
+                <input type="text" placeholder="YYYY" class="form-control" data-bind="value:nambaocao">
             </div>
-
-            <div class="row" style="margin-top: 30px;">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <caption>PHẦN 1: Nguồn nước ăn/uống của trường học/trạm y tế</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="stt">1.1</td>
-                                    <td class="content">
-                                        Nguồn nước ăn uống chính của trường học/trạm y tế<br>
-                                        <br>
-                                        QUAN SÁT NGUỒN NƯỚC <br>
-                                        KÈM THEO KẾT QUẢ XÉT NGHIỆM CHẤT LƯỢNG NƯỚC TRONG VÒNG 6 THÁNG
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" data-bind="value:nguonnuocchinh" /><br>
-                                        <input id="nguonnuocchinh_loaikhac" type="text" class="form-control" data-bind="value:nguonnuocchinh_loaikhac" />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="col-md-6 form-group form-inline ">
+                <label>Kỳ đánh giá:</label>
+                <input id="kydanhgia" disabled type="text" class="form-control">
             </div>
-            <div class="row" style="margin-top: 30px;">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <caption>PHẦN 2: Công trình vệ sinh</caption>
-                            <tbody>
-                                <tr>
-                                    <td class="stt">2.1</td>
-                                    <td class="content">
-                                        Trường học/trạm y tế có tổng cộng bao nhiêu khu vệ sinh?<br>
-                                        Hoàn thiện bảng hỏi này và kèm theo một bảng phụ lục khu vệ sinh cho từng khu
-                                        vệ sinh
-                                        đang được sử dụng ở trường học.<br>
-                                        <br>
-                                        Khu vệ sinh ở đây được định nghĩa là công trình có lối đi riêng. Ví dụ nếu có
-                                        một khu
-                                        vực gồm một lối đi dẫn đến những chậu xí cho nam và một lối đi riêng khác dẫn
-                                        đến các
-                                        chậu xí cho nữ thì sẽ tính là 2 khu vệ sinh.
-                                    </td>
-                                    <td>
-                                        Số khu vệ sinh trong trường/trạm: <input type="text" class="form-control"
-                                            data-bind="value:sokhuvesinh_truong_tramyte" /><br>
-                                        Số khu vệ sinh cho học sinh nam: <input type="text" class="form-control"
-                                            data-bind="value:sokhuvesinh_truong_hossinh_nam" /><br>
-                                        Số khu vệ sinh cho học sinh nữ: <input type="text" class="form-control"
-                                            data-bind="value:sokhuvesinh_truong_hocsinh_nu" /><br>
-                                        Số khu vệ sinh cho giáo viên nam: <input type="text" class="form-control"
-                                            data-bind="value:sokhuvesinh_truong_giaovien_nam" /><br>
-                                        Số khu vệ sinh cho giáo viên nữ: <input type="text" class="form-control"
-                                            data-bind="value:sokhuvesinh_truong_giaovien_nu" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">2.2 Hãy hoàn thành phiếu dưới đây cho tất cả các nhà vệ sinh
-                                        đang được sử dụng của trường/trạm</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <h4 style="text-align: center; font-weight: bold;">Danh Sách Phiếu Thu Thập Thông Tin Về Cấp
-                            Nước Và Vệ Sinh Cho Từng Khu Vệ Sinh Ở Trường Học </h4>
-                    </div>
-                </div>
-            </div>
-            <!-- <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Phiếu</button> -->
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <div id="phieu_chitiet_vesinh_capnuoc_truong_tramyte" data-bind="list:phieuchitiet"></div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="row">
             <div class="form-group">
-            	<h5>KẾT LUẬN </h5>
-            	<input disabled type="text" class="form-control" data-bind="value:ketluan" />
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <th colspan="2">Thông tin địa bàn
+                                <div class="row" style="margin-top: 15px;">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tên Tỉnh</label>
+                                                <input type="text" class="form-control" data-bind="dict:tinhthanh" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tên Huyện</label>
+                                                <input type="text" class="form-control" data-bind="dict:quanhuyen" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tên Xã</label>
+                                                <input type="text" class="form-control" data-bind="dict:xaphuong" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tên Trường học/Trạm y tế</label>
+                                                <input type="text" class="form-control" data-bind="value:ten_truong_tramyte" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mã Trường/trạm</label>
+                                                <input type="text" class="form-control" data-bind="value:ma_truong_tramyte" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td class="description">Loại Trường học/trạm (khoanh 1)</td>
+                                <td><input type="text" class="form-control" data-bind="value:loai_truong_tramyte" /></td>
+                            </tr>
+                            <tr id="buoihoc">
+                                <td class="description">NẾU LÀ TRƯỜNG HỌC, GHI SỐ BUỔI HỌC VÀ SỐ HỌC SINH MỖI BUỔI
+                                    HỌC</td>
+                                <td>
+                                    Số buổi học: <input type="text" class="form-control" data-bind="value:truong_sobuoihoc" /><br>
+                                    Số học sinh mỗi buổi học: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_moibuoi" /><br>
+                                    Số học sinh nam: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nam" /><br>
+                                    Số học sinh nữ: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nu" /><br>
+                                </td>
+                            </tr>
+                            <tr id="loaidiemtruong">
+                                <td class="description">LOẠI ĐIỂM TRƯỜNG</td>
+                                <td><input type="text" class="form-control" data-bind="value:loaidiem_truong" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Tên người trả lời: <input type="text" class="form-control" data-bind="value:tennguoitraloi" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Vị trí/chức vụ người trả lời: <input type="text" class="form-control" data-bind="value:chucvu_nguoitraloi" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    Số điện thoai/thông tin liên lạc khác: <input type="text" class="form-control"
+                                        data-bind="value:thongtinlienlac" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </div>
+
+        <div class="row" style="margin-top: 30px;">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <h3 style="margin-bottom: 10px;">PHẦN 1: Nguồn nước ăn/uống của trường học/trạm y tế</h3>
+                        <tbody>
+                            <tr>
+                                <td class="stt">1.1</td>
+                                <td class="content">
+                                    Nguồn nước ăn uống chính của trường học/trạm y tế<br>
+                                    <br>
+                                    QUAN SÁT NGUỒN NƯỚC <br>
+                                    KÈM THEO KẾT QUẢ XÉT NGHIỆM CHẤT LƯỢNG NƯỚC TRONG VÒNG 6 THÁNG
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" data-bind="value:nguonnuocchinh" /><br>
+                                    <input id="nguonnuocchinh_loaikhac" type="text" class="form-control" data-bind="value:nguonnuocchinh_loaikhac" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <h3 style="margin-bottom: 10px;">PHẦN 2: Công trình vệ sinh</h3>
+                        <tbody>
+                            <tr>
+                                <td class="stt">2.1</td>
+                                <td class="content">
+                                    Trường học/trạm y tế có tổng cộng bao nhiêu khu vệ sinh?<br>
+                                    Hoàn thiện bảng hỏi này và kèm theo một bảng phụ lục khu vệ sinh cho từng khu
+                                    vệ sinh
+                                    đang được sử dụng ở trường học.<br>
+                                    <br>
+                                    Khu vệ sinh ở đây được định nghĩa là công trình có lối đi riêng. Ví dụ nếu có
+                                    một khu
+                                    vực gồm một lối đi dẫn đến những chậu xí cho nam và một lối đi riêng khác dẫn
+                                    đến các
+                                    chậu xí cho nữ thì sẽ tính là 2 khu vệ sinh.
+                                </td>
+                                <td>
+                                    Số khu vệ sinh trong trường/trạm: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_tramyte" /><br>
+                                    Số khu vệ sinh cho học sinh nam: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_hossinh_nam" /><br>
+                                    Số khu vệ sinh cho học sinh nữ: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_hocsinh_nu" /><br>
+                                    Số khu vệ sinh cho giáo viên nam: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nam" /><br>
+                                    Số khu vệ sinh cho giáo viên nữ: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nu" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">2.2 Hãy hoàn thành phiếu dưới đây cho tất cả các nhà vệ sinh
+                                    đang được sử dụng của trường/trạm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <h4 style="text-align: center; font-weight: bold;">Danh Sách Phiếu Thu Thập Thông Tin Về Cấp
+                        Nước Và Vệ Sinh Cho Từng Khu Vệ Sinh Ở Trường Học </h4>
+                </div>
+            </div>
+        </div>
+        <!-- <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Phiếu</button> -->
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div id="phieu_chitiet_vesinh_capnuoc_truong_tramyte" data-bind="list:phieuchitiet"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <h5>KẾT LUẬN </h5>
+            <input disabled type="text" class="form-control" data-bind="value:ketluan" />
+        </div>
     </div>
 </div>

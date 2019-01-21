@@ -151,43 +151,43 @@ define(function (require) {
 		validate: function () {
 			var self = this;
 			if (!self.model.get("tinhthanh")) {
-				self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
 				return;
 			}
 			if (!self.model.get("quanhuyen")) {
-				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "danger"});
 				return;
 			}
 //			if (!self.model.get("xaphuong")) {
-//				self.getApp().notify({message: "Xã phường không được để trống"},{type: "warning"});
+//				self.getApp().notify({message: "Xã phường không được để trống"},{type: "danger"});
 //				return;
 //			}
 			if (!self.model.get("ten")) {
-				self.getApp().notify({message: "Tên đơn vị cấp nước không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tên đơn vị cấp nước không được để trống"},{type: "danger"});
 				return;
 			}
 			if (!self.model.get("congsuat")) {
-				self.getApp().notify({message: "Công suất thiết kế không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Công suất thiết kế không được để trống"},{type: "danger"});
 				return;
 			}
 			if (!self.model.get("tongso_hogiadinh")) {
-				self.getApp().notify({message: "Tổng số hộ gia đình không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tổng số hộ gia đình không được để trống"},{type: "danger"});
 				return;
 			}
 			if (self.model.get("nguonnuoc_nguyenlieu") === null || self.model.get("nguonnuoc_nguyenlieu") === "" ) {
-				self.getApp().notify({message: "Nguồn nước nguyên liệu không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Nguồn nước nguyên liệu không được để trống"},{type: "danger"});
 				return;
 			}
 			if (self.model.get("phuongphap_khutrung") === null || self.model.get("phuongphap_khutrung") === "") {
-				self.getApp().notify({message: "Phương pháp khử trùng không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Phương pháp khử trùng không được để trống"},{type: "danger"});
 				return;
 			}
 			if (!self.model.get("tansuat_noikiem")) {
-				self.getApp().notify({message: "Tần suất thực hiện nội kiểm không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Tần suất thực hiện nội kiểm không được để trống"},{type: "danger"});
 				return;
 			}
 			if (!self.model.get("diachi")) {
-				self.getApp().notify({message: "Địa chỉ cụ thể không được để trống"},{type: "warning"});
+				self.getApp().notify({message: "Địa chỉ cụ thể không được để trống"},{type: "danger"});
 				return;
 			}
 			return true;

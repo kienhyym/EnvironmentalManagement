@@ -21,21 +21,21 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [{
-							"value": "tinh",
-							"text": "Tỉnh"
-						},
-						{
-							"value": "huyen",
-							"text": "Huyện"
-						},
-						{
-							"value": "xa",
-							"text": "Xã"
-						},
-						{
-							"value": "thon",
-							"text": "Thôn"
-						},
+						"value": "tinh",
+						"text": "Tỉnh"
+					},
+					{
+						"value": "huyen",
+						"text": "Huyện"
+					},
+					{
+						"value": "xa",
+						"text": "Xã"
+					},
+					{
+						"value": "thon",
+						"text": "Thôn"
+					},
 					],
 				},
 				{
@@ -49,10 +49,10 @@ define(function (require) {
 
 		tools: [
 			{
-			name: "defaultgr",
-			type: "group",
-			groupClass: "toolbar-group",
-			buttons: [{
+				name: "defaultgr",
+				type: "group",
+				groupClass: "toolbar-group",
+				buttons: [{
 					name: "back",
 					type: "button",
 					buttonClass: "btn-default btn-sm",
@@ -70,18 +70,29 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
+						var tenhoatdong = self.model.get("tenhoatdong");
+						var loai_hoatdong = self.model.get("loai_hoatdong");
+						var nganh = self.model.get("nganh");
 
-						self.model.save(null, {
-							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
-								self.getApp().getRouter().navigate(self.collectionName + "/collection");
+						if (tenhoatdong === null || tenhoatdong === "") {
+							self.getApp().notify({ message: "Tên hoạt động không được để trống!" }, { type: "danger" });
+						} else if (loai_hoatdong === null || loai_hoatdong === "") {
+							self.getApp().notify({ message: "Bạn chưa chọn phạm vi hoạt động!" }, { type: "danger" });
+						} else if (nganh === null || nganh === undefined) {
+							self.getApp().notify({ message: "Bạn chưa chọn tên ngành!" }, { type: "danger" });
+						} else {
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(self.collectionName + "/collection");
 
-							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Lưu thông tin không thành công!');
+								},
+								error: function (model, xhr, options) {
+									self.getApp().notify('Lưu thông tin không thành công!');
 
-							}
-						});
+								}
+							});
+						}
 					}
 				},
 				{
@@ -106,8 +117,8 @@ define(function (require) {
 						});
 					}
 				},
-			],
-		}],
+				],
+			}],
 		render: function () {
 			var self = this;
 			var id = this.getApp().getRouter().getParam("id");

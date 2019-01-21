@@ -5,7 +5,7 @@
 		<div class="row" style=" margin-top: 20px">
 			<div class="form-group col-md-6">
 				<label>Năm đánh giá:</label>
-				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control" >
+				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control">
 			</div>
 			<div class="col-md-6 form-group">
 				<label>Kỳ đánh giá:</label>
@@ -13,15 +13,15 @@
 			</div>
 			<div id="tinhthanh" class="col-md-6 col-sm-6 col-xs-12 form-group">
 				<label>Chọn Tỉnh/Thành phố</label>
-				<input  type="text" class="form-control" data-bind="dict:tinhthanh">
+				<input type="text" class="form-control" data-bind="dict:tinhthanh">
 			</div>
 			<div id="quanhuyen" class="col-md-6 col-sm-6 col-xs-12 form-group">
 				<label>Chọn Quận/Huyện</label>
-				<input  type="text" class="form-control" data-bind="dict:quanhuyen">
+				<input type="text" class="form-control" data-bind="dict:quanhuyen">
 			</div>
 			<div id="xaphuong" class="col-md-6 col-sm-6 col-xs-12 form-group">
 				<label>Chọn Xã/Phường</label>
-				<input  type="text" class="form-control" data-bind="dict:xaphuong">
+				<input type="text" class="form-control" data-bind="dict:xaphuong">
 			</div>
 			<!-- <div id="thonxom" class="col-md-6 form-group">
 				<label>Chọn Thôn/Xóm</label>
@@ -33,7 +33,7 @@
 		</div>
 
 		<div class="table1">
-			<h3 style="padding-bottom:10px;">I. Thông tin chung</h3>
+			<h3 style="margin-bottom:10px;">I. Thông tin chung</h3>
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table">
@@ -54,7 +54,7 @@
 										<div class="col-lg-8 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê
 											duyệt:</div>
 										<div class="col-lg-4 form-group">
-											<input type="text" data-bind="value:ngay_pheduyet"/>
+											<input type="text" data-bind="value:ngay_pheduyet" />
 										</div>
 										<div class="col-lg-8 form-group">
 											<span class="glyphicon glyphicon-arrow-right"></span> Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt
@@ -84,31 +84,33 @@
 		</div>
 
 		<div class="row">
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="top text-center">Hoạt động</th>
-						<th class="top text-center">Mục tiêu</th>
-						<th class="top text-center">Tiến độ thực hiện/Kết quả đạt được</th>
-						<th colspan="3" class="top text-center">Số người tham gia</th>
-						<th class="top"></th>
-					</tr>
-				</thead>
-				<tbody id="danhsachhoatdong_list">
-				</tbody>
-				<tfoot>
-					<!-- <td style="min-width: 125px;"><input style="margin-bottom: 10px;" type="text" class="form-control" data-bind="value:hoatdong" /></td>
+			<div class="col-md-12">
+				<table class="table table-align is-table">
+					<thead>
+						<tr>
+							<th class="background-colorTH text-center">Hoạt động</th>
+							<th class="background-colorTH text-center">Mục tiêu</th>
+							<th class="background-colorTH text-center">Tiến độ thực hiện/Kết quả đạt được</th>
+							<th colspan="3" class="background-colorTH text-center">Số người tham gia</th>
+							<!-- <th class="background-colorTH"></th> -->
+						</tr>
+					</thead>
+					<tbody id="danhsachhoatdong_list">
+					</tbody>
+					<tfoot>
+						<!-- <td style="min-width: 125px;"><input style="margin-bottom: 10px;" type="text" class="form-control" data-bind="value:hoatdong" /></td>
                     <td style="min-width: 111px;"><input type="text" class="form-control" data-bind="value:muctieu" /></td>
                     <td style="min-width: 100px;"><input type="text" class="form-control" data-bind="value:ketqua_datduoc" /></td>
                     <td><input type="text" class="form-control" data-bind="value:tongsonguoi_thamgia" /></td>
                     <td><input type="text" class="form-control" data-bind="value:songuoi_lanu" /></td>
                     <td><input type="text" class="form-control" data-bind="value:songuoi_dantocthieuso" /></td> -->
-				</tfoot>
-			</table>
+					</tfoot>
+				</table>
+			</div>
 		</div>
-		<br>
-		<div class="text" style="margin-left: 10px">
-			<div class="row">
+
+		<div class="row">
+			<div class="col-md-12">
 				<div class="text-justify">
 					<p style="text-decoration: underline;">Ghi chú:</p>
 					- (1) Hoạt động: ghi tên hoạt động, có thể bổ sung các hoạt động khác mà tỉnh đã triển khai<br>
