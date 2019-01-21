@@ -95,7 +95,7 @@ define(function (require) {
 						var pass = self.model.get("password");
 						var cfpass = self.model.get("cfpassword");
 						var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
-						// console.log(donvi_tuyendonvi.id);
+						 console.log(donvi_tuyendonvi);
 						var tinhthanh = self.model.get("tinhthanh");
 						var quanhuyen = self.model.get("quanhuyen");
 						var xaphuong = self.model.get("xaphuong");
@@ -104,38 +104,24 @@ define(function (require) {
 						} else if (captren == null || captren == undefined) {
 							self.getApp().notify({ message: "Bạn chưa chọn cơ quan cấp trên" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
-							console.log(email);
 							self.getApp().notify({ message: "Email không hợp lệ" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
 							self.getApp().notify({ message: "Tên người dùng không được để trống" }, { type: "danger" });
-						}
-						else if (self.validatePhone(phone) === false) {
+						}else if (self.validatePhone(phone) === false) {
 							self.getApp().notify({ message: "Số điện thoại không đúng định dạng" }, { type: "danger" });
 						} else if (pass == null || pass == "") {
 							self.getApp().notify({ message: "Mật khẩu không được để trống" }, { type: "danger" });
-						}
-						else if (pass == null || pass != cfpass) {
+						}else if (pass == null || pass != cfpass) {
 							self.getApp().notify({ message: "Xác nhận mật khẩu không đúng, vui lòng kiểm tra lại" }, { type: "danger" });
 						} else if (donvi_tuyendonvi == null || donvi_tuyendonvi == undefined) {
 							self.getApp().notify({ message: "Bạn chưa chọn khối cơ quan" }, { type: "danger" });
-						} else if (donvi_tuyendonvi.id === 2) {
-							if (tinhthanh == null || tinhthanh == undefined) {
+						} else if ((donvi_tuyendonvi.id ===2 || donvi_tuyendonvi.id ===3 || donvi_tuyendonvi.id ===4) && (tinhthanh == null || tinhthanh == undefined)) {
 								self.getApp().notify({ message: "Tỉnh thành không được để trống" }, { type: "danger" });
-							}
-						} else if (donvi_tuyendonvi.id === 3) {
-							if (tinhthanh == null || tinhthanh == undefined) {
-								self.getApp().notify({ message: "Tỉnh thành không được để trống" }, { type: "danger" });
-							} else if (quanhuyen == null || quanhuyen == undefined) {
-								self.getApp().notify({ message: "Quận huyện không được để trống" }, { type: "danger" });
-							}
-						} else if (donvi_tuyendonvi.id === 4) {
-							if (tinhthanh == null || tinhthanh === undefined) {
-								self.getApp().notify({ message: "Tỉnh thành không được để trống" }, { type: "danger" });
-							} else if (quanhuyen == null || quanhuyen == undefined) {
-								self.getApp().notify({ message: "Quận huyện không được để trống" }, { type: "danger" });
-							} else if (xaphuong == null || xaphuong == undefined) {
+							
+						} else if ((donvi_tuyendonvi.id ===3 || donvi_tuyendonvi.id ===4) && (quanhuyen == null || quanhuyen == undefined)) {
+							self.getApp().notify({ message: "Quận huyện không được để trống" }, { type: "danger" });
+						} else if (donvi_tuyendonvi.id ===4 && (xaphuong == null || xaphuong == undefined)) {
 								self.getApp().notify({ message: "Xã phường không được để trống" }, { type: "danger" });
-							}
 						} else {
 							self.model.save(null, {
 								success: function (model, respose, options) {

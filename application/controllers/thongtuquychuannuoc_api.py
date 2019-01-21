@@ -374,6 +374,7 @@ async def preput_baocao_nuocsach_huyentinh(request=None, data=None, Model=None, 
     await process_baocao_nuocsach_huyentinh(currentuser, data)               
                         
 async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
+    
     kybaocao = data['kybaocao']
     loaikybaocao = data["loaikybaocao"]
     startDate = date(data['nambaocao'], 1,1)
