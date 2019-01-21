@@ -337,9 +337,394 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
     data["donvi_thuchien_ngoaikiem"] = donvi_thuchien_ngoaikiem  
     data["tong_solan_ngoaikiem"] = tong_solan_ngoaikiem
     
+
+
+ 
+async def prepost_baocao_nuocsach_huyentinh(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+
+    record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.donvi_id == currentuser.donvi_id, \
+                                                      BaoCaoNuocSachHuyenTinh.loaikybaocao == data['loaikybaocao'], \
+                                                      BaoCaoNuocSachHuyenTinh.kybaocao == data['kybaocao'], \
+                                                      BaoCaoNuocSachHuyenTinh.nambaocao == data['nambaocao'])).first()
+    
+    if record is not None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+      
+    data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
+    data['donvi_id'] = currentuser.donvi_id
+    data['nguoibaocao_id'] = currentuser.id
+    await process_baocao_nuocsach_huyentinh(currentuser, data)       
+    
+async def preput_baocao_nuocsach_huyentinh(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+
+    await process_baocao_nuocsach_huyentinh(currentuser, data)               
+                        
+async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
+    kybaocao = data['kybaocao']
+    loaikybaocao = data["loaikybaocao"]
+    startDate = date(data['nambaocao'], 1,1)
+    endDate = date(data['nambaocao'], 1,1)
+    if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.QUY):
+        if(kybaocao == 1):
+            startDate = date(data['nambaocao'], 1,1)
+            endDate = date(data['nambaocao'], 3,31)
+        elif(kybaocao == 2):
+            startDate = date(data['nambaocao'], 4,1)
+            endDate = date(data['nambaocao'], 6,30)
+        elif(kybaocao == 3):
+            startDate = date(data['nambaocao'], 7,1)
+            endDate = date(data['nambaocao'], 9,30)
+        elif(kybaocao == 4):
+            startDate = date(data['nambaocao'], 10,1)
+            endDate = date(data['nambaocao'], 12,31)
+    elif (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.SAUTHANG and kybaocao == 1):
+        startDate = date(data['nambaocao'], 1,1)
+        endDate = date(data['nambaocao'], 6,30)
+    elif (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
+        startDate = date(data['nambaocao'], 1,1)
+        endDate = date(data['nambaocao'], 12,31)
+
+    
+    danhmuc_donvicapnuoc = None
+    baocao_ngoaikiems = None
+    baocao_tonghops = None
+    if currentuser.donvi.tuyendonvi_id == 2:
+        danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
+            filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                DonViCapNuoc.congsuat>=1000)).all()
+                
+        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 1, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao >= startDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao <= endDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+                 
+        # ket qua noi kiem nuoc cua cac dong vi
+        baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
+                and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke>=1000,\
+                TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+    elif currentuser.donvi.tuyendonvi_id == 3:
+        danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
+            filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                DonViCapNuoc.congsuat<1000)).all()
+        
+        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 2, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao >= startDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao <= endDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+        
+        baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
+                and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke<1000,\
+                TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+        print("baocao_tonghops===",baocao_tonghops)
+    #thong ke don vi cap nuoc
+    tong_donvi_capnuoc = 0
+    tong_hogiadinh_duoccungcapnuoc = 0
+    
+    if danhmuc_donvicapnuoc is not None and len(danhmuc_donvicapnuoc)>0:
+        tong_donvi_capnuoc = len(danhmuc_donvicapnuoc)
+        for donvi_capnuoc in danhmuc_donvicapnuoc:
+            if donvi_capnuoc is not None:
+                tong_hogiadinh_duoccungcapnuoc += donvi_capnuoc.tongso_hogiadinh
+    data["tong_donvi_capnuoc"] = tong_donvi_capnuoc
+    data["tong_hogiadinh_duoccungcapnuoc"] = tong_hogiadinh_duoccungcapnuoc
+    
+    await process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems, data)
+    await process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops, data)
+
+    
+async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=None, data=None):
+    #thong ke bao cao ngoai kiem
+    tong_donvi_capnuoc_thuchien_ngoaikiem = 0
+    
+    tongdat_laphoso_theoquydinh_ngoaikiem = 0
+    tongdat_hoso_daydu_theoquydinh_ngoaikiem = 0
+    tongdat_somau_thunghiem_dungquydinh_ngoaikiem = 0
+    tongdat_thunghiem_daydu_thongso_ngoaikiem = 0
+    tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem = 0
+    tongdat_thuchien_baocao_daydu_ngoaikiem = 0
+    tongdat_thuchien_congkhai_thongtin_ngoaikiem = 0
+    tongdat_thuchien_bienphap_khacphuc_ngoaikiem = 0
+    
+    tong_maunuoc_thunghiem_ngoaikiem_trungtam = 0
+    tong_mau_dat_quychuan_ngoaikiem_trungtam = 0
+    tong_mau_khongdat_quychuan_ngoaikiem_trungtam = 0
+    thongso_khongdat_ngoaikiem_trungtam = []
+    
+    if baocao_ngoaikiems is not None:
+        tong_donvi_capnuoc_thuchien_ngoaikiem = len(baocao_ngoaikiems)
+        for baocao in baocao_ngoaikiems:
+            baocao = copy.deepcopy(baocao)
+            if baocao is not None:
+                if baocao.laphoso_theoquydinh == 1:
+                    tongdat_laphoso_theoquydinh_ngoaikiem += 1
+                    
+                if baocao.hoso_daydu_theoquydinh == 1:
+                    tongdat_hoso_daydu_theoquydinh_ngoaikiem += 1
+                    
+                if baocao.somau_thunghiem_dungquydinh == 1:
+                    tongdat_somau_thunghiem_dungquydinh_ngoaikiem += 1
+                    
+                if baocao.thunghiem_daydu_thongso == 1:
+                    tongdat_thunghiem_daydu_thongso_ngoaikiem += 1
+                    
+                if baocao.tansuat_thuchien_noikiem_dungquydinh == 1:
+                    tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem += 1
+                    
+                if baocao.thuchien_baocao_daydu == 1:
+                    tongdat_thuchien_baocao_daydu_ngoaikiem += 1
+                    
+                if baocao.thuchien_congkhai_thongtin == 1:
+                    tongdat_thuchien_congkhai_thongtin_ngoaikiem += 1
+                    
+                if baocao.thuchien_bienphap_khacphuc == 1:
+                    tongdat_thuchien_bienphap_khacphuc_ngoaikiem += 1
+                
+                tong_maunuoc_thunghiem_ngoaikiem_trungtam += baocao.somauvavitri
+                if baocao.danhsachvitrilaymau is not None:
+                    for vitrimau in baocao.danhsachvitrilaymau:
+                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                            tong_mau_dat_quychuan_ngoaikiem_trungtam += 1
+                        else:
+                            tong_mau_khongdat_quychuan_ngoaikiem_trungtam +=1
+                
+                #danh sach ket qua cac thong so
+                if baocao.ketquangoaikiemchatluongnuoc is not None and baocao.thunghiem_chatluong_nuoc == 1:
+                    for thongso in baocao.ketquangoaikiemchatluongnuoc:
+                        if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
+                            obj_thongso = to_dict(thongso)
+                            for mauthongso in obj_thongso["ketquakiemtra"]:
+                                if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                    item_thongso_khongdat = copy.deepcopy(obj_thongso)
+                                    item_thongso_khongdat['donvicapnuoc_id'] = str(baocao.donvicapnuoc_id)
+                                    item_thongso_khongdat['tendonvicapnuoc'] = baocao.tendonvicapnuoc
+                                    item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
+                                    item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
+                                    item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
+                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+                                    item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+                                    thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
+    
+    data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem
+    data["tongdat_hoso_daydu_theoquydinh_ngoaikiem"] = tongdat_hoso_daydu_theoquydinh_ngoaikiem
+    data["tongdat_somau_thunghiem_dungquydinh_ngoaikiem"] = tongdat_somau_thunghiem_dungquydinh_ngoaikiem
+    data["tongdat_thunghiem_daydu_thongso_ngoaikiem"] = tongdat_thunghiem_daydu_thongso_ngoaikiem
+    data["tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem"] = tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem
+    data["tongdat_thuchien_baocao_daydu_ngoaikiem"] = tongdat_thuchien_baocao_daydu_ngoaikiem
+    data["tongdat_thuchien_congkhai_thongtin_ngoaikiem"] = tongdat_thuchien_congkhai_thongtin_ngoaikiem
+    data["tongdat_thuchien_bienphap_khacphuc_ngoaikiem"] = tongdat_thuchien_bienphap_khacphuc_ngoaikiem
+    
+    data["tong_maunuoc_thunghiem_ngoaikiem_trungtam"] = tong_maunuoc_thunghiem_ngoaikiem_trungtam
+    data["tong_mau_dat_quychuan_ngoaikiem_trungtam"] = tong_mau_dat_quychuan_ngoaikiem_trungtam
+    data["tong_mau_khongdat_quychuan_ngoaikiem_trungtam"] = tong_mau_khongdat_quychuan_ngoaikiem_trungtam
+    data["thongso_khongdat_ngoaikiem_trungtam"] = thongso_khongdat_ngoaikiem_trungtam  
+    data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = tong_donvi_capnuoc_thuchien_ngoaikiem
+  
+
+async def process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops=None, data=None):
+    
+    arr_donvicapnuoc = []
+    hoso_quanly_noikiem = []
+    tong_maunuoc_thunghiem_noikiem = 0
+    tong_mau_dat_quychuan_noikiem = 0
+    tong_mau_khongdat_quychuan_noikiem = 0
+    thongso_khongdat_noikiem = []
+    
+    danhsach_donvi_ngoaikiem = []
+    hoso_quanly_ngoaikiem_baocao = []
+    tong_maunuoc_thunghiem_ngoaikiem_baocao = 0
+    tong_mau_dat_quychuan_ngoaikiem_baocao = 0
+    tong_mau_khongdat_quychuan_ngoaikiem_baocao = 0
+    thongso_khongdat_ngoaikiem_baocao = []
+    for bc in baocao_tonghops:
+        baocao = copy.deepcopy(bc)
+        
+        if (data["loaikybaocao"] == LoaiKyBaoCao.QUY):
+            if (baocao.kybaocao == data["kybaocao"]):
+                item_hoso_quanly_noikiem ={}
+                item_hoso_quanly_noikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                item_hoso_quanly_noikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                item_hoso_quanly_noikiem["congsuat_thietke"] = float(baocao.congsuat_thietke)
+                item_hoso_quanly_noikiem["tong_laphoso_theoquydinh_noikiem"] = baocao.tong_laphoso_theoquydinh_noikiem
+                item_hoso_quanly_noikiem["tong_hoso_daydu_theoquydinh_noikiem"] = baocao.tong_hoso_daydu_theoquydinh_noikiem
+                item_hoso_quanly_noikiem["tong_somau_thunghiem_dungquydinh_noikiem"] = baocao.tong_somau_thunghiem_dungquydinh_noikiem
+                item_hoso_quanly_noikiem["tong_thunghiem_daydu_thongso_noikiem"] = baocao.tong_thunghiem_daydu_thongso_noikiem
+                item_hoso_quanly_noikiem["tong_tansuat_thuchien_noikiem_dungquydinh_noikiem"] = baocao.tong_tansuat_thuchien_noikiem_dungquydinh_noikiem
+                item_hoso_quanly_noikiem["tong_thuchien_baocao_daydu_noikiem"] = baocao.tong_thuchien_baocao_daydu_noikiem
+                item_hoso_quanly_noikiem["tong_thuchien_congkhai_thongtin_noikiem"] = baocao.tong_thuchien_congkhai_thongtin_noikiem
+                item_hoso_quanly_noikiem["tong_thuchien_bienphap_khacphuc_dat_noikiem"] = baocao.tong_thuchien_bienphap_khacphuc_dat_noikiem
+                hoso_quanly_noikiem.append(item_hoso_quanly_noikiem)
+                tong_maunuoc_thunghiem_noikiem += baocao.tong_maunuoc_thunghiem_noikiem
+                tong_mau_dat_quychuan_noikiem += baocao.tong_mau_dat_quychuan_noikiem
+                tong_mau_khongdat_quychuan_noikiem += baocao.tong_mau_khongdat_quychuan_noikiem
+
+                if baocao.thongso_khongdat_noikiem is not None:
+                    for thongso in baocao.thongso_khongdat_noikiem:
+                        item_thongso_khongdat_noikiem = copy.deepcopy(thongso)
+                        item_thongso_khongdat_noikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                        item_thongso_khongdat_noikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                        thongso_khongdat_noikiem.append(item_thongso_khongdat_noikiem)
+                
+                if baocao.donvi_thuchien_ngoaikiem is not None:
+                    for item in baocao.donvi_thuchien_ngoaikiem:
+                        obj_donvi_ngoaikiem = copy.deepcopy(item)
+                        obj_donvi_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                        obj_donvi_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                        danhsach_donvi_ngoaikiem.append(obj_donvi_ngoaikiem)
+                
+                item_hoso_quanly_ngoaikiem ={}
+                item_hoso_quanly_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                item_hoso_quanly_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                item_hoso_quanly_ngoaikiem["congsuat_thietke"] = float(baocao.congsuat_thietke)
+                item_hoso_quanly_ngoaikiem["tong_laphoso_theoquydinh_ngoaikiem"] = baocao.tong_laphoso_theoquydinh_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_hoso_daydu_theoquydinh_ngoaikiem"] = baocao.tong_hoso_daydu_theoquydinh_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_somau_thunghiem_dungquydinh_ngoaikiem"] = baocao.tong_somau_thunghiem_dungquydinh_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_thunghiem_daydu_thongso_ngoaikiem"] = baocao.tong_thunghiem_daydu_thongso_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem"] = baocao.tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_thuchien_baocao_daydu_ngoaikiem"] = baocao.tong_thuchien_baocao_daydu_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_thuchien_congkhai_thongtin_ngoaikiem"] = baocao.tong_thuchien_congkhai_thongtin_ngoaikiem
+                item_hoso_quanly_ngoaikiem["tong_thuchien_bienphap_khacphuc_dat_ngoaikiem"] = baocao.tong_thuchien_bienphap_khacphuc_dat_ngoaikiem
+                hoso_quanly_ngoaikiem_baocao.append(item_hoso_quanly_ngoaikiem)
+                
+                tong_maunuoc_thunghiem_ngoaikiem_baocao += baocao.tong_maunuoc_thunghiem_ngoaikiem
+                tong_mau_dat_quychuan_ngoaikiem_baocao += baocao.tong_mau_dat_quychuan_ngoaikiem
+                tong_mau_khongdat_quychuan_ngoaikiem_baocao += baocao.tong_mau_khongdat_quychuan_ngoaikiem
+                
+                if baocao.thongso_khongdat_ngoaikiem is not None:
+                    for item in baocao.thongso_khongdat_ngoaikiem:
+                        obj_thongso_khongdat_ngoaikiem = copy.deepcopy(item)
+                        obj_thongso_khongdat_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                        obj_thongso_khongdat_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                        thongso_khongdat_ngoaikiem_baocao.append(obj_thongso_khongdat_ngoaikiem)
+                
+        elif (data["loaikybaocao"] == LoaiKyBaoCao.SAUTHANG or data["loaikybaocao"] == LoaiKyBaoCao.NAM):
+            if baocao.donvicapnuoc_id not in arr_donvicapnuoc:
+                item_hoso_quanly_noikiem ={}
+                item_hoso_quanly_noikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                item_hoso_quanly_noikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                item_hoso_quanly_noikiem["congsuat_thietke"] = float(baocao.congsuat_thietke)
+                item_hoso_quanly_noikiem["tong_laphoso_theoquydinh_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_hoso_daydu_theoquydinh_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_somau_thunghiem_dungquydinh_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_thunghiem_daydu_thongso_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_tansuat_thuchien_noikiem_dungquydinh_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_thuchien_baocao_daydu_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_thuchien_congkhai_thongtin_noikiem"] = 0
+                item_hoso_quanly_noikiem["tong_thuchien_bienphap_khacphuc_dat_noikiem"] = 0
+                
+                item_hoso_quanly_ngoaikiem ={}
+                item_hoso_quanly_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                item_hoso_quanly_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                item_hoso_quanly_ngoaikiem["congsuat_thietke"] = float(baocao.congsuat_thietke)
+                item_hoso_quanly_ngoaikiem["tong_laphoso_theoquydinh_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_hoso_daydu_theoquydinh_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_somau_thunghiem_dungquydinh_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_thunghiem_daydu_thongso_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_thuchien_baocao_daydu_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_thuchien_congkhai_thongtin_ngoaikiem"] = 0
+                item_hoso_quanly_ngoaikiem["tong_thuchien_bienphap_khacphuc_dat_ngoaikiem"] = 0
+                        
+                
+                for bc_quy in baocao_tonghops:
+                    baocao_quy = copy.deepcopy(bc_quy)
+                    if (baocao_quy.donvicapnuoc_id == baocao.donvicapnuoc_id):
+                        if data["loaikybaocao"] == LoaiKyBaoCao.SAUTHANG and baocao_quy.kybaocao>2:
+                            continue
+                        item_hoso_quanly_noikiem["tong_laphoso_theoquydinh_noikiem"] += baocao_quy.tong_laphoso_theoquydinh_noikiem
+                        item_hoso_quanly_noikiem["tong_hoso_daydu_theoquydinh_noikiem"] += baocao_quy.tong_hoso_daydu_theoquydinh_noikiem
+                        item_hoso_quanly_noikiem["tong_somau_thunghiem_dungquydinh_noikiem"] += baocao_quy.tong_somau_thunghiem_dungquydinh_noikiem
+                        item_hoso_quanly_noikiem["tong_thunghiem_daydu_thongso_noikiem"] += baocao_quy.tong_thunghiem_daydu_thongso_noikiem
+                        item_hoso_quanly_noikiem["tong_tansuat_thuchien_noikiem_dungquydinh_noikiem"] += baocao_quy.tong_tansuat_thuchien_noikiem_dungquydinh_noikiem
+                        item_hoso_quanly_noikiem["tong_thuchien_baocao_daydu_noikiem"] += baocao_quy.tong_thuchien_baocao_daydu_noikiem
+                        item_hoso_quanly_noikiem["tong_thuchien_congkhai_thongtin_noikiem"] += baocao_quy.tong_thuchien_congkhai_thongtin_noikiem
+                        item_hoso_quanly_noikiem["tong_thuchien_bienphap_khacphuc_dat_noikiem"] += baocao_quy.tong_thuchien_bienphap_khacphuc_dat_noikiem
+                        
+                        tong_maunuoc_thunghiem_noikiem += baocao_quy.tong_maunuoc_thunghiem_noikiem
+                        tong_mau_dat_quychuan_noikiem += baocao_quy.tong_mau_dat_quychuan_noikiem
+                        tong_mau_khongdat_quychuan_noikiem += baocao_quy.tong_mau_khongdat_quychuan_noikiem
+                        
+                        if baocao_quy.thongso_khongdat_noikiem is not None:
+                            for thongso in baocao_quy.thongso_khongdat_noikiem:
+                                item_thongso_khongdat_noikiem = copy.deepcopy(thongso)
+                                item_thongso_khongdat_noikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                                item_thongso_khongdat_noikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                                thongso_khongdat_noikiem.append(item_thongso_khongdat_noikiem)
+                        
+                        if baocao_quy.donvi_thuchien_ngoaikiem is not None:
+                            for item in baocao_quy.donvi_thuchien_ngoaikiem:
+                                obj_donvi_ngoaikiem = copy.deepcopy(item)
+                                obj_donvi_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                                obj_donvi_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                                danhsach_donvi_ngoaikiem.append(obj_donvi_ngoaikiem)
+                        
+                        item_hoso_quanly_ngoaikiem["tong_laphoso_theoquydinh_ngoaikiem"] += baocao_quy.tong_laphoso_theoquydinh_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_hoso_daydu_theoquydinh_ngoaikiem"] += baocao_quy.tong_hoso_daydu_theoquydinh_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_somau_thunghiem_dungquydinh_ngoaikiem"] += baocao_quy.tong_somau_thunghiem_dungquydinh_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_thunghiem_daydu_thongso_ngoaikiem"] += baocao_quy.tong_thunghiem_daydu_thongso_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem"] += baocao_quy.tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_thuchien_baocao_daydu_ngoaikiem"] += baocao_quy.tong_thuchien_baocao_daydu_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_thuchien_congkhai_thongtin_ngoaikiem"] += baocao_quy.tong_thuchien_congkhai_thongtin_ngoaikiem
+                        item_hoso_quanly_ngoaikiem["tong_thuchien_bienphap_khacphuc_dat_ngoaikiem"] += baocao_quy.tong_thuchien_bienphap_khacphuc_dat_ngoaikiem
+                        
+                        tong_maunuoc_thunghiem_ngoaikiem_baocao += baocao_quy.tong_maunuoc_thunghiem_ngoaikiem
+                        tong_mau_dat_quychuan_ngoaikiem_baocao += baocao_quy.tong_mau_dat_quychuan_ngoaikiem
+                        tong_mau_khongdat_quychuan_ngoaikiem_baocao += baocao_quy.tong_mau_khongdat_quychuan_ngoaikiem
+                        if baocao_quy.thongso_khongdat_ngoaikiem is not None:
+                            for item in baocao_quy.thongso_khongdat_ngoaikiem:
+                                obj_thongso_khongdat_ngoaikiem = copy.deepcopy(item)
+                                obj_thongso_khongdat_ngoaikiem["tendonvicapnuoc"] = baocao.tendonvicapnuoc
+                                obj_thongso_khongdat_ngoaikiem["donvicapnuoc_id"] = str(baocao.donvicapnuoc_id)
+                                thongso_khongdat_ngoaikiem_baocao.append(obj_thongso_khongdat_ngoaikiem)
+                               
+                hoso_quanly_noikiem.append(item_hoso_quanly_noikiem)
+                hoso_quanly_ngoaikiem_baocao.append(item_hoso_quanly_ngoaikiem)
+                
+                
+        if (baocao.donvicapnuoc_id not in arr_donvicapnuoc):
+            arr_donvicapnuoc.append(baocao.donvicapnuoc_id)        
+                
             
-                        
-                        
+        
+    data["hoso_quanly_noikiem"] = hoso_quanly_noikiem
+    data["tong_maunuoc_thunghiem_noikiem"] = tong_maunuoc_thunghiem_noikiem
+    data["tong_mau_dat_quychuan_noikiem"] = tong_mau_dat_quychuan_noikiem
+    data["tong_mau_khongdat_quychuan_noikiem"] = tong_mau_khongdat_quychuan_noikiem
+    data["thongso_khongdat_noikiem"] = thongso_khongdat_noikiem
+    
+    data["danhsach_donvi_ngoaikiem"] = danhsach_donvi_ngoaikiem
+    data["hoso_quanly_ngoaikiem_baocao"] = hoso_quanly_ngoaikiem_baocao
+    data["tong_maunuoc_thunghiem_ngoaikiem_baocao"] = tong_maunuoc_thunghiem_ngoaikiem_baocao
+    data["tong_mau_dat_quychuan_ngoaikiem_baocao"] = tong_mau_dat_quychuan_ngoaikiem_baocao
+    data["tong_mau_khongdat_quychuan_ngoaikiem_baocao"] = tong_mau_khongdat_quychuan_ngoaikiem_baocao
+    data["thongso_khongdat_ngoaikiem_baocao"] = thongso_khongdat_ngoaikiem_baocao
+    
+    
+        
+
+
+
                         
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -357,7 +742,7 @@ apimanager.create_api(TongHopKetQuaKiemTraChatLuongNuocSach,
 apimanager.create_api(BaoCaoNuocSachHuyenTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func,prepost_baocao_nuocsach_huyentinh], PUT_SINGLE=[auth_func, preput_baocao_nuocsach_huyentinh], DELETE_SINGLE=[auth_func]),
     collection_name='baocao_nuocsach_huyentinh')
 
 apimanager.create_api(BaoCaoVienChuyenNganhNuoc,

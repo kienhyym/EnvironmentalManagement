@@ -335,6 +335,7 @@ define(function (require) {
                 self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
                 self.model.set("nguonnuoc_nguyenlieu", data.nguonnuoc_nguyenlieu);
                 self.model.set("diachi_donvicapnuoc", data.diachi);
+                self.model.set("tendonvicapnuoc", data.ten);
             });
             
             self.$el.find("#them_thongso_khongdat").unbind("click").bind("click", function () {

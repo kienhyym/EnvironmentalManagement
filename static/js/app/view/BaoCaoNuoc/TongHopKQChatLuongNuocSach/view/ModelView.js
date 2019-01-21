@@ -131,6 +131,7 @@ define(function(require) {
 				self.model.save(null, {
 					success: function (model, respose, options) {
 						self.getApp().notify("Lưu thông tin thành công");
+						
 					},
 					error: function (xhr, status, error) {
 						try {

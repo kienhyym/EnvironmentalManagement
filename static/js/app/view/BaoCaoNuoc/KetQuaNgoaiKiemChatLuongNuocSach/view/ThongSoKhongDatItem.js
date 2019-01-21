@@ -29,7 +29,8 @@ define(function (require) {
 					dataSource: [
 						{text: "Đạt", value: 1},
 						{text: "Không Đạt", value: 0}
-					]
+					],
+					value:0
 				}
 			]
 		},

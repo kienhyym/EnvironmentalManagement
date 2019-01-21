@@ -1,6 +1,6 @@
 <div style="margin-top: 30px;" class="panel panel-default">
     <div class="panel-heading">
-        <h4>Báo cáo dành cho Trung tâm y tế Huyện và Trung tâm kiểm soát bệnh tật tỉnh</h4>
+        <h3></h3>
     </div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
     <div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
@@ -22,11 +22,11 @@
                     <tbody>
                         <tr>
                             <td colspan="2">Tổng số đơn vị cấp nước</td>
-                            <td colspan="2"><input type="text" class="form-control" data-bind="value:tong_donvi_capnuoc" /></td>
+                            <td colspan="2"><input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Tổng số HGĐ được cung cấp nước</td>
-                            <td colspan="2"><input type="text" class="form-control" data-bind="value:tong_hogiadinh_duoccungcapnuoc" /></td>
+                            <td colspan="2"><input disabled type="text" class="form-control" data-bind="value:tong_hogiadinh_duoccungcapnuoc" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Tổng số HGĐ trên địa bàn huyện</td>
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">Tỷ lệ (%)</td>
-                            <td colspan="2"><input type="text" disabled class="form-control" /></td>
+                            <td colspan="2"><input id="tyle_hogiadinh_capnuocsach_diaban" type="text" disabled class="form-control" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +48,7 @@
                     <tbody>
                         <tr>
                             <td colspan="2">Số đơn vị cấp nước được thực hiện ngoại kiểm</td>
-                            <td colspan="2"><input type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_thuchien_ngoaikiem" /></td>
+                            <td colspan="2"><input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_thuchien_ngoaikiem" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Số kinh phí được cấp cho công tác ngoại kiểm</td>
@@ -132,7 +132,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
-                            <td colspan="2"><input type="text" disabled class="form-control" id="tyle_maudatchuan_ngoaikiem_trungtam" /></td>
+                            <td colspan="2"><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_ngoaikiem_trungtam" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
@@ -140,11 +140,11 @@
                         </tr>
                         <tr>
                             <td colspan="2">Tỷ lệ mẫu không đạt quy chuẩn</td>
-                            <td colspan="2"><input type="text" disabled class="form-control" id="tyle_mau_khongdatchuan_ngoaikiem_trungtam" /></td>
+                            <td colspan="2"><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_ngoaikiem_trungtam" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Các thông số không đạt</td>
-                            <td colspan="2"></td>
+                            <td colspan="2" id="thongso_khongdat_ngoaikiem_trungtam_value"></td>
                         </tr>
 
                     </tbody>
@@ -205,7 +205,7 @@
                         </tr>
                         <tr>
                             <td>Tỷ lệ mẫu đạt quy chuẩn (%)</td>
-                            <td><input type="text" disabled class="form-control" id="tyle_maudatchuan_noikiem" /></td>
+                            <td><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_noikiem" /></td>
                         </tr>
                         <tr>
                             <td>Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
@@ -213,11 +213,11 @@
                         </tr>
                         <tr>
                             <td>Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
-                            <td><input type="text" disabled class="form-control" id="tyle_mau_khongdatchuan_noikiem" /></td>
+                            <td><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_noikiem" /></td>
                         </tr>
                         <tr>
                             <td>Các thông số không đạt</td>
-                            <td></td>
+                            <td id="thongso_khongdat_noikiem_value"></td>
                         </tr>
 
                     </tbody>
@@ -251,6 +251,7 @@
                             <th class="top">Tên đơn vị cấp nước</th>
                             <th class="top">Tên đơn vị thực hiện ngoại kiểm</th>
                             <th class="top">Nội dung ngoại kiểm</th>
+                            <th class="top">Ngày kiểm tra</th>
                         </tr>
                     </thead>
                     <tbody id="danhsach_donvi_ngoaikiem">
@@ -276,7 +277,7 @@
                             <th class="top">Thực hiện các biện pháp khắc phục</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="body_hoso_quanly_ngoaikiem_baocao">
                     </tbody>
                 </table>
             </div>
@@ -296,7 +297,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
-                            <td colspan="2"><input type="text" disabled class="form-control" id="tyle_maudatchuan_noikiem" /></td>
+                            <td colspan="2"><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_ngoaikiem_baocao" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
@@ -304,11 +305,11 @@
                         </tr>
                         <tr>
                             <td colspan="2">Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
-                            <td colspan="2"><input type="text" disabled class="form-control" id="tyle_mau_khongdatchuan_noikiem" /></td>
+                            <td colspan="2"><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_ngoaikiem_baocao" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">Các thông số không đạt</td>
-                            <td colspan="2"></td>
+                            <td colspan="2" id="thongso_khongdat_ngoaikiem_baocao_value"></td>
                         </tr>
 
                     </tbody>
@@ -340,7 +341,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <h3 style="padding-bottom:10px;">Đ. Đề Xuất</h3>
+                <h3 style="padding-bottom:10px;">E. Đề Xuất</h3>
                 <div class="form-group">
                     <textarea rows="3" class="form-control" data-bind="value:dexuat"></textarea>
                 </div>

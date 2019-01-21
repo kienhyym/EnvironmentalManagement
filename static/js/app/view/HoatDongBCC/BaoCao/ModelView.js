@@ -159,7 +159,7 @@ define(function (require) {
                     { text: "Qúy IV", value: "quy4" },
                     { text: "6 tháng đầu năm", value: "6thangdau" },
                     { text: "6 tháng cuối năm", value: "6thangcuoi" },
-                    { text: "Tổng kết năm", value: "nam" }
+                    { text: "Báo cáo năm", value: "nam" }
                 ],
 			});
 		},

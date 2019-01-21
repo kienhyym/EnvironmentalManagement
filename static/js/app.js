@@ -71,15 +71,15 @@ require(['jquery', 'gonrin', 'app/router',
 			hideloading: function () {
 				$("#loading").addClass("hidden");
 			},
-			create_UUID: function () {
-				var dt = new Date().getTime();
-				var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-					var r = (dt + Math.random() * 16) % 16 | 0;
-					dt = Math.floor(dt / 16);
-					return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-				});
-				return uuid;
-			},
+//			create_UUID: function () {
+//				var dt = new Date().getTime();
+//				var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+//					var r = (dt + Math.random() * 16) % 16 | 0;
+//					dt = Math.floor(dt / 16);
+//					return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+//				});
+//				return uuid;
+//			},
 			getCurrentUser: function () {
 				var self = this;
 //				token = storejs.get('X-USER-TOKEN');
@@ -280,7 +280,7 @@ require(['jquery', 'gonrin', 'app/router',
 					"nam": {
 						"loaikybaocao": 4,
 						"kybaocao": 1,
-						"text": "Tổng kết năm",
+						"text": "Báo cáo năm",
 					}
 				};
 			}
