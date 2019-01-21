@@ -6,12 +6,12 @@
 			<label>Đơn Vị</label> <input id="donvi" data-bind="dict:donvi" type="text" />
 		</div>
 	</div>
-	<div style="margin-top: 30px" class="panel panel-default">
+	<div style="margin-top: 30px; min-height: 500px;" class="panel panel-default">
 		<div class="panel-heading">
-			<h3>Danh sách các tỉnh Viện quản lý</h3>
+			<h3>Danh sách các tỉnh do Viện quản lý</h3>
 		</div>
 		<div class="row">
-			<div class="container" style="width: 100%;">
+			<div class="container" style="width: 95%;" id="dstinhthanh">
 				<div class="row-fluid" id="content" style="margin-top: 30px;">
 					<button class="btn btn-sm btn-success" style="margin-bottom: 10px; margin-left: 15px;" id="addTinh">Thêm
 						tỉnh</button>
@@ -20,7 +20,7 @@
 							<thead>
 								<tr>
 									<th>Tên tỉnh</th>
-									<th></th>
+									<th id="xoatinh"></th>
 								</tr>
 							</thead>
 							<tbody id="dsTinh"></tbody>
