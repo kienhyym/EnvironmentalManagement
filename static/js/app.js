@@ -29,9 +29,11 @@ require.config({
 require(['jquery', 'gonrin', 'app/router',
 		'app/bases/Nav/NavbarView',
 		'text!app/bases/tpl/layout.html',
-		'i18n!app/nls/app'
+		'i18n!app/nls/app',
+		'app/bases/TemplateHelper'
+
 	],
-	function ($, Gonrin, Router, Nav, layout, lang) {
+	function ($, Gonrin, Router, Nav, layout, lang, TemplateHelper) {
 		$.ajaxSetup({
 			headers: {
 				'content-type': 'application/json'
@@ -46,6 +48,7 @@ require(['jquery', 'gonrin', 'app/router',
 			router: new Router(),
 			lang: lang,
 			mapKyBaoCao: {},
+			template_helper: new TemplateHelper(),
 			//layout: layout,
 			initialize: function () {
 				this.nav = new Nav();
@@ -68,15 +71,15 @@ require(['jquery', 'gonrin', 'app/router',
 			hideloading: function () {
 				$("#loading").addClass("hidden");
 			},
-			create_UUID: function () {
-				var dt = new Date().getTime();
-				var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-					var r = (dt + Math.random() * 16) % 16 | 0;
-					dt = Math.floor(dt / 16);
-					return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-				});
-				return uuid;
-			},
+//			create_UUID: function () {
+//				var dt = new Date().getTime();
+//				var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+//					var r = (dt + Math.random() * 16) % 16 | 0;
+//					dt = Math.floor(dt / 16);
+//					return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+//				});
+//				return uuid;
+//			},
 			getCurrentUser: function () {
 				var self = this;
 //				token = storejs.get('X-USER-TOKEN');
@@ -277,7 +280,7 @@ require(['jquery', 'gonrin', 'app/router',
 					"nam": {
 						"loaikybaocao": 4,
 						"kybaocao": 1,
-						"text": "Tổng kết năm",
+						"text": "Báo cáo năm",
 					}
 				};
 			}

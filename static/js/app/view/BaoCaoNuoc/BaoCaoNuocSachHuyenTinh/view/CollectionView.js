@@ -29,7 +29,6 @@ define(function (require) {
 						var currentUser = self.getApp().currentUser;
 						if(currentUser !== null){
 							var currentRoute = self.getApp().getRouter().currentRoute().fragment;
-							console.log("currentRoute===",currentRoute);
 							if(currentRoute.indexOf('baocao_nuocsach_huyen')>=0){
 								path = 'baocao_nuocsach_huyen/model/'+loaibaocao;
 							}else if(currentRoute.indexOf('baocao_nuocsach_tinh')>=0){
@@ -70,8 +69,15 @@ define(function (require) {
             ],
 			onRowClick: function (event) {
 				if (event.rowId) {
+					var path = "";
 					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
-					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
+					var currentRoute = this.getApp().getRouter().currentRoute().fragment;
+					if(currentRoute.indexOf('baocao_nuocsach_huyen')>=0){
+						path = 'baocao_nuocsach_huyen/model/'+loaibaocao;
+					}else if(currentRoute.indexOf('baocao_nuocsach_tinh')>=0){
+						path = 'baocao_nuocsach_tinh/model/'+loaibaocao;
+					}
+					path += '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 
@@ -85,7 +91,14 @@ define(function (require) {
 				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
 				return;
 			}else{
+				
 				var txt_header = "Danh sách báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
+				console.log("self.getApp().currentUser.tuyendonvi_id===",self.getApp().currentUser.donvi.tuyendonvi_id);
+				if(self.getApp().currentUser.donvi.tuyendonvi_id === 3){
+					txt_header = "Danh sách báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
+				}else{
+					txt_header = "Danh sách báo cáo dành cho Trung tâm kiểm soát bệnh tật Tỉnh - "+itemkybaocao.text;
+				}
 				self.$el.find(".panel-heading h3").html(txt_header);
 				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
 					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},

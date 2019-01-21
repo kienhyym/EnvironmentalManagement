@@ -61,8 +61,15 @@ define(function (require) {
             }
         },
         render: function () {
-            this.applyBindings();
+        	var self = this;
+        	self.uiControl.filters = {"$and":[{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+			self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}, 
+				{"field": "tendonvicapnuoc", "direction": "desc"}, 
+				{"field": "congsuat_thietke", "direction": "desc"},
+				{"field": "ngaybaocao", "direction": "desc"}];
+			this.applyBindings();
             return this;
+        	
         },
     });
 

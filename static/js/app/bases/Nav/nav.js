@@ -1783,9 +1783,9 @@ define(function (require) {
 //					"collectionName": "baocao_vienchuyennganh_nuoc",
 //					"route": "baocao_vienchuyennganh_nuoc/collection",
 //					"$ref": "app/view/BaoCaoNuoc/BaoCaoVienChuyenNganhNuoc/view/CollectionView",
-					"tuyendonvi": 2,
+					"tuyendonvi": 1,
 					"visible": function () {
-						return this.checkTuyendonvi([2,10]);
+						return this.checkTuyendonvi([1,10]);
 					},
 					"entries": [
 						{
