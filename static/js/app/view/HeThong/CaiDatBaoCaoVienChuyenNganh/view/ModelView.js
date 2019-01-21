@@ -59,7 +59,7 @@ define(function (require) {
         ],
         uiControl: [],
         render: function () {
-            console.log("render cai dat bao cao");
+            // console.log("render cai dat bao cao");
             var self = this;
             self.renderCombobox();
             //            self.loadTinhThanh();
@@ -154,9 +154,10 @@ define(function (require) {
                         if (data.objects.length == 0) {
                             self.getApp().notify({ "message": "Không tìm thấy đơn vị cấp Viện nào trong hệ thống. Vui lòng tạo thêm đơn vị trước khi cài đặt!" }, { "type": "danger" });
                             self.$el.find("#dstinhthanh").hide();
-                        } else {
-                            $comboboxEl.data('gonrin').setValue((data.objects && data.objects.length > 0) ? data.objects[0].id : null);
-                        }
+                        } 
+                        // else {
+                        //     $comboboxEl.data('gonrin').setValue((data.objects && data.objects.length > 0) ? data.objects[0].id : null);
+                        // }
                     }
                     $comboboxEl.on('change.gonrin', function (e) {
                         //                        var path = self.collectionName + '/model?donvi_id=' + e.value;
@@ -164,6 +165,7 @@ define(function (require) {
                         //                    	console.log(".....", e);
                         self.loadTinhThanh(e.value);
                     });
+                    $comboboxEl.data('gonrin').setValue((data.objects && data.objects.length > 0) ? data.objects[0].id : null);
                 },
                 error: function (xhr, status, error) {
                     self.getApp().notify("Lỗi tải các đơn vị của viện");

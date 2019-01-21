@@ -235,7 +235,6 @@ define(function (require) {
                 <td class="background-colorTH text-center">(2)</td>
                 <td class="background-colorTH text-center">(3)</td>
                 <td class="background-colorTH" colspan="3"></td>
-                <td class="background-colorTH"></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
                 <td colspan="3">
@@ -245,7 +244,6 @@ define(function (require) {
                 <td>Tổng số người tham gia</td>
                 <td>Số người tham gia là nữ</td>
                 <td>Số người tham gia là DTTS</td>
-                <td></td>
             </tr>`);
 
 			if (!data) {
