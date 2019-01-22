@@ -304,7 +304,7 @@ define(function (require) {
                     self.model.set("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
                     // console.log(ketquanoikiemchatluongnuoc);
                     self.changeSoMau();
-                    self.applyBindings("ketquanoikiemchatluongnuoc");
+                    self.applyBindings();
                 });
             });
             var id = this.getApp().getRouter().getParam("id");
@@ -342,7 +342,7 @@ define(function (require) {
             self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquanoikiemchatluongnuoc").empty();
             
-            console.log("somau===",somau);
+            // console.log("somau===",somau);
             if (!!somau & (somau > 0)) {
             	self.renderViTriMau();
 //            	self.calculator_ketqua_vitri();
@@ -389,7 +389,7 @@ define(function (require) {
                 	if (!!danhsachvitrilaymau && danhsachvitrilaymau.length === somau){
                 		mavitrimau = danhsachvitrilaymau[j].mavitri;
                 	}
-                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(mavitrimau);
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).addClass("background-colorTH").html(mavitrimau);
                     self.$el.find("#mauvitri_header_before").before(el);
                     self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }

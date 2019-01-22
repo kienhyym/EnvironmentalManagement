@@ -112,13 +112,13 @@
                     <td><input type="number" class="form-control" data-bind="value:somauvavitri" /></td>
                 </div>
                 <div class="col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
-                    <table class="table">
+                    <table class="table is-table">
                         <thead>
                             <tr>
-                                <th>Mã vị trí lấy mẫu</th>
-                                <th>Tên vị trí lấy mẫu</th>
-                                <th>Ngày lấy mẫu</th>
-                                <th>Kết quả</th>
+                                <th class="background-colorTH text-center">Mã vị trí lấy mẫu</th>
+                                <th class="background-colorTH text-center">Tên vị trí lấy mẫu</th>
+                                <th class="background-colorTH text-center">Ngày lấy mẫu</th>
+                                <th class="background-colorTH text-center">Kết quả</th>
                             </tr>
                         </thead>
                         <tbody id="danhsachvitrilaymau"></tbody>
@@ -127,16 +127,16 @@
             </div>
         </div>
 
-        <div style="margin-bottom: 30px;margin-top: 20px;">
-            <table>
+        <div style="margin-top: 20px; overflow: scroll;">
+            <table class="is-table">
                 <thead>
-                    <tr style="text-align: center">
-                        <th rowspan="2" id="removeButton"></th>
-                        <th rowspan="2">STT</th>
-                        <th rowspan="2">Các thông số</th>
-                        <th id="ketquathunghiem">Kết quả thử nghiệm</th>
-                        <th style="width:150px" rowspan="2">Giới hạn tối đa cho phép</th>
-                        <th style="width:150px" rowspan="2">Đánh giá (đạt/không đạt)</th>
+                    <tr>
+                        <th rowspan="2" id="removeButton" class="background-colorTH"></th>
+                        <th rowspan="2" class="background-colorTH text-center">STT</th>
+                        <th rowspan="2" style="min-width: 200px;" class="background-colorTH text-center">Các thông số</th>
+                        <th id="ketquathunghiem" class="background-colorTH text-center">Kết quả thử nghiệm</th>
+                        <th style="min-width: 150px" rowspan="2" class="background-colorTH text-center">Giới hạn tối đa cho phép</th>
+                        <th style="min-width: 150px" rowspan="2" class="background-colorTH text-center">Đánh giá (đạt/không đạt)</th>
                     </tr>
                     <tr>
                         <th id="mauvitri_header_before"></th>
@@ -144,9 +144,15 @@
                 </thead>
                 <tbody id="ketquanoikiemchatluongnuoc"></tbody>
             </table>
-            <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
         </div>
-        <div style="margin-botton: 10px;">
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
             <p>- Dấu (*) chỉ áp dụng cho đơn vị cấp nước khai thác nước ngầm.
                 <br />- Dấu (**) chỉ áp dụng cho các đơn vị cấp nước sử dụng Clo làm phương pháp khử trùng.</p>
         </div>
