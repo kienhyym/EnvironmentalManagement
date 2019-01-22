@@ -22,7 +22,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-6">Tổng số tỉnh trên khu vực phụ trách</td>
-                            <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tong_tinh_phutrach" /></td>
+                            <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_tinh_phutrach" /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Số tỉnh có báo cáo</td>
@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Tỷ lệ (%)</td>
-                            <td class="col-md-6"><input type="text" disabled class="form-control" /></td>
+                            <td class="col-md-6"><input id="tyle_hogiadinh_capnuocsach_diaban" type="text" disabled class="form-control" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
-                            <td class="col-md-6"><input type="text" disabled class="form-control" id="tyle_maudatchuan_ngoaikiem_vien" /></td>
+                            <td class="col-md-6"><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_ngoaikiem_vien" /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                             <td class="col-md-6">Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
-                            <td class="col-md-6"><input type="text" disabled class="form-control" id="tyle_mau_khongdatchuan_ngoaikiem_vien" /></td>
+                            <td class="col-md-6"><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_ngoaikiem_vien" /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Các thông số không đạt</td>
@@ -108,12 +108,12 @@
                     <thead>
                         <tr>
                             <th rowspan="2">Nội dung</th>
-                            <th colspan="3">Tỉnh</th>
+                            <th colspan="3">Tỉnh (số lần không đạt))</th>
                         </tr>
                         <tr id="danhsach_tinh">
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="body_ketqua_noikiem_tinhthanh">
                         <tr>
                             <td>Tổng số đơn vị cấp nước</td>
                             <td></td>
@@ -146,18 +146,6 @@
                         </tr>
                         <tr>
                             <td>Tỷ lệ mẫu nước không đạt quy chuẩn</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Coliform</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>E.Coli</td>
                             <td></td>
                             <td></td>
                             <td></td>

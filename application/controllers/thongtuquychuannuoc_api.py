@@ -31,10 +31,20 @@ apimanager.create_api(MapVienChuyenNganhNuocVaTinh,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     collection_name='map_vienchuyennganhnuoc_tinh')
 
+
+async def pre_process_thongso_chatluong_nuoc(request=None, data=None, Model=None, **kw):
+    if "batbuoc" in data and data['batbuoc'] is not None:
+        if(data['batbuoc'] == 'false' or data['batbuoc'] == False):
+            data['batbuoc'] = False
+        else:
+            batbuoc['batbuoc'] = True
+    else:
+        data['batbuoc'] = False
+
 apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_process_thongso_chatluong_nuoc], PUT_SINGLE=[auth_func, pre_process_thongso_chatluong_nuoc], DELETE_SINGLE=[auth_func]),
     collection_name='thongsobaocaochatluongnuoc')
 
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
@@ -751,7 +761,7 @@ async def prepost_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Mode
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
-    await preprocess_baocao_vien_chuyennganh_nuocsach(currentuser, data)       
+    await process_baocao_vien_chuyennganh_nuocsach(currentuser, data)       
     
 async def preput_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -762,7 +772,7 @@ async def preput_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Model
     if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
 
-    await preprocess_baocao_vien_chuyennganh_nuocsach(currentuser, data)
+    await process_baocao_vien_chuyennganh_nuocsach(currentuser, data)
 
 async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
     
@@ -775,9 +785,9 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
     
     vien_info = db.session.query(MapVienChuyenNganhNuocVaTinh).filter(MapVienChuyenNganhNuocVaTinh.donvi_id == currentuser.donvi_id).first()
     if(vien_info is not None and vien_info.danhsachtinhthanh is not None):
-        tong_tinh_phutrach = len(danhsach_tinh.danhsachtinhthanh)
+        tong_tinh_phutrach = len(vien_info.danhsachtinhthanh)
         tinhthanh_ids =[]
-        for item_tinh in danhsach_tinh.danhsachtinhthanh:
+        for item_tinh in vien_info.danhsachtinhthanh:
             tinhthanh_ids.append(item_tinh["id"])
         
         
@@ -798,8 +808,8 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
                 tong_hogiadinh_duoccungcapnuoc += baocao.tong_hogiadinh_duoccungcapnuoc
                 tong_hogiadinh_diaban += baocao.tong_hogiadinh_diaban
                 bc_tinhthanh = {}
-                bc_tinhthanh["tentinhthanh"] = baocao.tinhthanh.ten
-                bc_tinhthanh["tinhthanh_id"] = baocao.tinhthanh_id
+                bc_tinhthanh["tentinhthanh"] = bacao_tinh.tinhthanh.ten
+                bc_tinhthanh["tinhthanh_id"] = str(baocao.tinhthanh_id)
                 bc_tinhthanh["tong_donvi_capnuoc"] = baocao.tong_donvi_capnuoc
                 bc_tinhthanh["tong_maunuoc_thunghiem_noikiem"] = baocao.tong_maunuoc_thunghiem_noikiem
                 bc_tinhthanh["tong_mau_dat_quychuan_noikiem"] = baocao.tong_mau_dat_quychuan_noikiem
@@ -808,18 +818,19 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
                 danhsach_thongso_noikiem_khongdat = []
                 if danhmuc_thongso is not None:
                     for ts in danhmuc_thongso:
-                        item_thongso = ts
+                        item_thongso = to_dict(ts)
                         item_thongso["solan_khongdat"] = 0
                         danhsach_thongso_noikiem_khongdat.append(item_thongso)
                 item_thongso_noikiem_khongdat = []
                 if baocao.thongso_khongdat_noikiem is not None:
                     for thongso_khongdat  in baocao.thongso_khongdat_noikiem:
                         for idx, val in enumerate(danhsach_thongso_noikiem_khongdat):
-                            if(thongso_khongdat.id == danhsach_thongso_noikiem_khongdat[idx]['id']):
+                            print("danhsach_thongso_noikiem_khongdat[idx]====",danhsach_thongso_noikiem_khongdat[idx])
+                            if(thongso_khongdat['id'] == danhsach_thongso_noikiem_khongdat[idx]['id']):
                                 danhsach_thongso_noikiem_khongdat[idx]["solan_khongdat"] +=1
                                 break;
                 
-                bc_tinhthanh["thongso_khongdat_noikiem"] = danhsach_thongso_noikiem_khongdat
+                bc_tinhthanh["thongso_khongdat_noikiem"] = ujson.loads(ujson.dumps(danhsach_thongso_noikiem_khongdat))
                 ketqua_kiemtra_noikiem_tinh.append(bc_tinhthanh)
                 
                 
@@ -915,7 +926,7 @@ apimanager.create_api(BaoCaoNuocSachHuyenTinh,
 apimanager.create_api(BaoCaoVienChuyenNganhNuoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_baocao_vien_chuyennganh_nuocsach], PUT_SINGLE=[auth_func, preput_baocao_vien_chuyennganh_nuocsach], DELETE_SINGLE=[auth_func]),
     collection_name='baocao_vienchuyennganh_nuoc')
 
 
