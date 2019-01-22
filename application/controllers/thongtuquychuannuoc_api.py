@@ -764,19 +764,13 @@ async def preput_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Model
 
     await preprocess_baocao_vien_chuyennganh_nuocsach(currentuser, data)
 
-async def preprocess_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
+async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
     
     tong_tinh_phutrach = 0
     tong_tinh_cobaocao = 0
     tong_donvi_capnuoc_phutrach = 0
     tong_hogiadinh_duoccungcapnuoc = 0
     tong_hogiadinh_diaban = 0
-    
-    tong_maunuoc_thunghiem_ngoaikiem_vien = 0
-    tong_mau_dat_quychuan_ngoaikiem_vien = 0
-    tong_mau_khongdat_quychuan_ngoaikiem_vien = 0
-    thongso_khongdat_ngoaikiem_vien = []
-
     ketqua_kiemtra_noikiem_tinh = []
     
     vien_info = db.session.query(MapVienChuyenNganhNuocVaTinh).filter(MapVienChuyenNganhNuocVaTinh.donvi_id == currentuser.donvi_id).first()
@@ -817,17 +811,87 @@ async def preprocess_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=Non
                         item_thongso = ts
                         item_thongso["solan_khongdat"] = 0
                         danhsach_thongso_noikiem_khongdat.append(item_thongso)
-                bc_tinhthanh["thongso_khongdat_noikiem"] = baocao.thongso_khongdat_noikiem
                 item_thongso_noikiem_khongdat = []
                 if baocao.thongso_khongdat_noikiem is not None:
                     for thongso_khongdat  in baocao.thongso_khongdat_noikiem:
                         for idx, val in enumerate(danhsach_thongso_noikiem_khongdat):
-                            danhsach_thongso_noikiem_khongdat[idx]["solan_khongdat"] +=1
-                        if(thongso_id == map_thongso[str(thongso_id)]):
-                            map_thongso[thongso_id]["solan_khongdat"] += 1
-                            
-                    
+                            if(thongso_khongdat.id == danhsach_thongso_noikiem_khongdat[idx]['id']):
+                                danhsach_thongso_noikiem_khongdat[idx]["solan_khongdat"] +=1
+                                break;
+                
+                bc_tinhthanh["thongso_khongdat_noikiem"] = danhsach_thongso_noikiem_khongdat
+                ketqua_kiemtra_noikiem_tinh.append(bc_tinhthanh)
+                
+                
+    data["tong_tinh_phutrach"] = tong_tinh_phutrach
+    data["tong_tinh_cobaocao"] = tong_tinh_cobaocao
+    data["tong_donvi_capnuoc_phutrach"] = tong_donvi_capnuoc_phutrach
+    data["tong_hogiadinh_duoccungcapnuoc"] = tong_hogiadinh_duoccungcapnuoc
+    data["tong_hogiadinh_diaban"] = tong_hogiadinh_diaban
+    data["ketqua_kiemtra_noikiem_tinh"] = ketqua_kiemtra_noikiem_tinh
+    
+    await process_baocao_vien_chuyennganh_ngoaikiem(currentuser, data)
 
+async def process_baocao_vien_chuyennganh_ngoaikiem(currentuser=None, data=None):
+    
+    kybaocao = data['kybaocao']
+    loaikybaocao = data["loaikybaocao"]
+    startDate = date(data['nambaocao'], 1,1)
+    endDate = date(data['nambaocao'], 1,1)
+    if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.SAUTHANG):
+        startDate = date(data['nambaocao'], 1,1)
+        endDate = date(data['nambaocao'], 6,30)
+    elif (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
+        startDate = date(data['nambaocao'], 1,1)
+        endDate = date(data['nambaocao'], 12,31)
+
+    tong_maunuoc_thunghiem_ngoaikiem_vien = 0
+    tong_mau_dat_quychuan_ngoaikiem_vien = 0
+    tong_mau_khongdat_quychuan_ngoaikiem_vien = 0
+    thongso_khongdat_ngoaikiem_vien = []
+    
+    
+    baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao >= startDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao <= endDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+                 
+    if baocao_ngoaikiems is not None and len(baocao_ngoaikiems)>0:
+        for bc in baocao_ngoaikiems:
+            baocao = copy.deepcopy(bc)
+            if baocao is not None:
+                tong_maunuoc_thunghiem_ngoaikiem_vien += baocao.somauvavitri
+                if baocao.danhsachvitrilaymau is not None:
+                    for vitrimau in baocao.danhsachvitrilaymau:
+                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                            tong_mau_dat_quychuan_ngoaikiem_vien += 1
+                        else:
+                            tong_mau_khongdat_quychuan_ngoaikiem_vien +=1
+                
+                #danh sach ket qua cac thong so
+                if baocao.ketquangoaikiemchatluongnuoc is not None and baocao.thunghiem_chatluong_nuoc == 1:
+                    for thongso in baocao.ketquangoaikiemchatluongnuoc:
+                        if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
+                            obj_thongso = to_dict(thongso)
+                            for mauthongso in obj_thongso["ketquakiemtra"]:
+                                if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                    item_thongso_khongdat = copy.deepcopy(obj_thongso)
+                                    item_thongso_khongdat['donvicapnuoc_id'] = str(baocao.donvicapnuoc_id)
+                                    item_thongso_khongdat['tendonvicapnuoc'] = baocao.tendonvicapnuoc
+                                    item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
+                                    item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
+                                    item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
+                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+                                    item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+                                    thongso_khongdat_ngoaikiem_vien.append(item_thongso_khongdat)
+    
+    data["tong_maunuoc_thunghiem_ngoaikiem_vien"] = tong_maunuoc_thunghiem_ngoaikiem_vien
+    data["tong_mau_dat_quychuan_ngoaikiem_vien"] = tong_mau_dat_quychuan_ngoaikiem_vien
+    data["tong_mau_khongdat_quychuan_ngoaikiem_vien"] = tong_mau_khongdat_quychuan_ngoaikiem_vien
+    data["thongso_khongdat_ngoaikiem_vien"] = thongso_khongdat_ngoaikiem_vien
+    
+    
+    
                         
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

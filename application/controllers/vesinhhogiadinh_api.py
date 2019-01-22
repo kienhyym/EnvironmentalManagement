@@ -407,14 +407,21 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
                                                       BaoCao.nambaocao == nambaocao_truoc)).first()    
     
     if baocaokytruoc is not None:
+        if baocaokytruoc.tong_soho is None:
+            baocaokytruoc.tong_soho = 0
+        if baocaokytruoc.tong_khongnhatieu is None:
+            baocaokytruoc.tong_khongnhatieu = 0
         data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_soho - baocaokytruoc.tong_khongnhatieu
-        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs
-        data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs
-        data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs
-        data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs
-        data["tong_soho_conhatieu_vip_hvs_truocbaocao"] = baocaokytruoc.tong_ongthonghoi_hvs
-        data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs
-        data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hvs
+        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
+        data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs if baocaokytruoc.tong_tuhoai_hvs is not None else 0
+        data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs  if baocaokytruoc.tong_thamdoi_hvs is not None else 0
+        data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs if baocaokytruoc.tong_2ngan_hvs is not None else 0
+        data["tong_soho_conhatieu_vip_hvs_truocbaocao"] = baocaokytruoc.tong_ongthonghoi_hvs if baocaokytruoc.tong_ongthonghoi_hvs is not None else 0
+        data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs if baocaokytruoc.tong_caithien_hvs is not None else 0
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hv if baocaokytruoc.tong_caithien_hongheo_hv is not None else 0
+        
+                
+        
         
         nhatieuthon_kytruoc  = baocaokytruoc.nhatieuthonhvs
         nhatieuthon_kyhientai = data["nhatieuthonhvs"]
@@ -466,23 +473,26 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
     baocaokytruoc = db.session.query(BaoCao).filter(and_(BaoCao.donvi_id == currentuser.donvi_id, BaoCao.id !=data['id'])).order_by(desc(BaoCao.created_at)).first()    
     print("baocaokytruoc",to_dict(baocaokytruoc))
     if baocaokytruoc is not None:
-        
+        if baocaokytruoc.tong_soho is None:
+            baocaokytruoc.tong_soho = 0
+        if baocaokytruoc.tong_khongnhatieu is None:
+            baocaokytruoc.tong_khongnhatieu = 0
         data["tong_soho_conhatieu_truocbaocao"] = (int(baocaokytruoc.tong_soho) - int(baocaokytruoc.tong_khongnhatieu))
-        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs
-        data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs
-        data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs
-        data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs
-        data["tong_soho_conhatieu_vip_hvs_truocbaocao"] = baocaokytruoc.tong_ongthonghoi_hvs
-        data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs
-        data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hvs
+        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
+        data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs if baocaokytruoc.tong_tuhoai_hvs is not None else 0
+        data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs  if baocaokytruoc.tong_thamdoi_hvs is not None else 0
+        data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs if baocaokytruoc.tong_2ngan_hvs is not None else 0
+        data["tong_soho_conhatieu_vip_hvs_truocbaocao"] = baocaokytruoc.tong_ongthonghoi_hvs if baocaokytruoc.tong_ongthonghoi_hvs is not None else 0
+        data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs if baocaokytruoc.tong_caithien_hvs is not None else 0
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hv if baocaokytruoc.tong_caithien_hongheo_hv is not None else 0
         
-        data["tong_soho_conhatieu_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap
-        data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap
-        data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap
-        data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap
-        data["tong_soho_conhatieu_vip_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap
-        data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap
-        data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap
+        data["tong_soho_conhatieu_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_vip_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap is not None else 0
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap is not None else 0
                 
     
 async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
