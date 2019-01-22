@@ -211,18 +211,18 @@ define(function (require) {
                     var self = this;
                     var nambaocao = self.model.get("nambaocao");
                 	if(!(toInt(nambaocao) >= 1900 && toInt(nambaocao) <= 3000)){
-                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
                     } else if(!self.model.get("ngaybaocao")){
-                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
                     }
                     else if(!self.model.get("donvicapnuoc")){
-                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
                     }
                     else if(!self.model.get("thoigiankiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
                     }
                     else if(!self.model.get("nguoikiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
                     } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
@@ -280,7 +280,7 @@ define(function (require) {
             
             self.$el.find("#addItem").unbind("click").bind("click", function () {
                 var view = new ThongSoBaoCaoChatLuongNuocView();
-                view.dialog();
+                view.dialog({ size: "large"});
                 var ketquanoikiemchatluongnuoc = self.model.get('ketquanoikiemchatluongnuoc');
                 view.on("ThongSo_onSelected", function (data) {
                     for (var i = 0; i < ketquanoikiemchatluongnuoc.length; i++) {
@@ -302,8 +302,8 @@ define(function (require) {
                     };
                     ketquanoikiemchatluongnuoc.push(item);
                     self.model.set("ketquanoikiemchatluongnuoc", ketquanoikiemchatluongnuoc);
-                    
-//                    self.changeSoMau();
+                    // console.log(ketquanoikiemchatluongnuoc);
+                    self.changeSoMau();
                     self.applyBindings();
                 });
             });
@@ -342,7 +342,7 @@ define(function (require) {
             self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquanoikiemchatluongnuoc").empty();
             
-            console.log("somau===",somau);
+            // console.log("somau===",somau);
             if (!!somau & (somau > 0)) {
             	self.renderViTriMau();
 //            	self.calculator_ketqua_vitri();
@@ -389,7 +389,7 @@ define(function (require) {
                 	if (!!danhsachvitrilaymau && danhsachvitrilaymau.length === somau){
                 		mavitrimau = danhsachvitrilaymau[j].mavitri;
                 	}
-                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(mavitrimau);
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).addClass("background-colorTH").html(mavitrimau);
                     self.$el.find("#mauvitri_header_before").before(el);
                     self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }
@@ -525,7 +525,7 @@ define(function (require) {
 //                    break;
 //                }
 //            }
-////            self.applyBinding("ketquanoikiemchatluongnuoc");
+// //            self.applyBinding("ketquanoikiemchatluongnuoc");
 //        },
         prepareBaocao: function () {
             var self = this;
