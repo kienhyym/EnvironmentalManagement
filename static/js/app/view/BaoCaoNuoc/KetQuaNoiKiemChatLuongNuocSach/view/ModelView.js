@@ -531,7 +531,7 @@ define(function (require) {
             var self = this;
             self.model.set("ketquanoikiemchatluongnuoc", []);
             
-            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
+            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc?results_per_page=1000&max_results_per_page=1000";
             $.ajax({
                 url: url,
         		data: {"q": JSON.stringify({"results_per_page":1000})},
