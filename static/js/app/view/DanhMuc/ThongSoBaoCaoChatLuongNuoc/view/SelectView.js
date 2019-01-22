@@ -55,7 +55,7 @@ define(function (require) {
     		var self= this;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
-    			sessionKey: self.collectionName +"_filter"
+    			sessionKey: "ThongSoNuoc_filter"
     		});
     		filter.render();
     		this.uiControl.orderBy = [{"field": "tenthongso", "direction": "desc"}];

@@ -1536,6 +1536,10 @@ define(function (require) {
 			"text": "Chất lượng nước sạch",
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
+			"tuyendonvi": 4,
+			"visible": function () {
+				return this.checkTuyendonvi([1,2,3,10]);
+			},
 			"entries": [
 				{
 					"text": "Phiếu kết quả nội kiểm chất lượng nước sạch",

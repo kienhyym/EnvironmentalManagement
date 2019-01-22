@@ -317,17 +317,17 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                 #danh sach ket qua cac thong so
                 if baocao.ketquangoaikiemchatluongnuoc is not None:
                     for thongso in baocao.ketquangoaikiemchatluongnuoc:
-                        if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
-                            obj_thongso = to_dict(thongso)
-                            for mauthongso in obj_thongso["ketquakiemtra"]:
-                                if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
-                                    item_thongso_khongdat = copy.deepcopy(obj_thongso)
-                                    item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
-                                    item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
-                                    item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
-                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
-                                    item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
-                                    thongso_khongdat_ngoaikiem.append(item_thongso_khongdat)
+#                         if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
+                        obj_thongso = to_dict(thongso)
+                        for mauthongso in obj_thongso["ketquakiemtra"]:
+                            if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                item_thongso_khongdat = copy.deepcopy(obj_thongso)
+                                item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
+                                item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
+                                item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
+                                item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+                                item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+                                thongso_khongdat_ngoaikiem.append(item_thongso_khongdat)
     
     
     data["tong_laphoso_theoquydinh_ngoaikiem"] = tong_laphoso_theoquydinh_ngoaikiem

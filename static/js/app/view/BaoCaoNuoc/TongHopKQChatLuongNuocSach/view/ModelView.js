@@ -131,6 +131,11 @@ define(function(require) {
 				self.model.save(null, {
 					success: function (model, respose, options) {
 						self.getApp().notify("Lưu thông tin thành công");
+						self.applyBindings();
+						self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"), "thongso_khongdat_noikiem");
+						self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem"), "thongso_khongdat_ngoaikiem");
+						self.render_donvi_ngoaikiem();
+						self.apply_tyle();
 						
 					},
 					error: function (xhr, status, error) {
@@ -157,7 +162,9 @@ define(function(require) {
             self.model.destroy({
               success: function(model, response) {
                 self.getApp().notify('Xoá dữ liệu thành công');
-                self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+				self.getApp().getRouter().navigate(self.collectionName 
+						+ "/collection?loaikybaocao="+routeloaibaocao);
               },
               error: function(model, xhr, options) {
                 self.getApp().notify('Xoá dữ liệu không thành công!');
