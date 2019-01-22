@@ -517,16 +517,16 @@ define(function (require) {
         	}
         	return result;
         },
-       updateKetqua: function (obj) {
-           var self = this;
-           for (var i = 0; i < self.model.get("ketquanoikiemchatluongnuoc").length; i++) {
-               if (self.model.get("ketquanoikiemchatluongnuoc")[i].id === obj.id) {
-                   self.model.get("ketquanoikiemchatluongnuoc")[i] = obj;
-                   break;
-               }
-           }
-//            self.applyBinding("ketquanoikiemchatluongnuoc");
-       },
+//        updateKetqua: function (obj) {
+//            var self = this;
+//            for (var i = 0; i < self.model.get("ketquanoikiemchatluongnuoc").length; i++) {
+//                if (self.model.get("ketquanoikiemchatluongnuoc")[i].id === obj.id) {
+//                    self.model.get("ketquanoikiemchatluongnuoc")[i] = obj;
+//                    break;
+//                }
+//            }
+// //            self.applyBinding("ketquanoikiemchatluongnuoc");
+//        },
         prepareBaocao: function () {
             var self = this;
             self.model.set("ketquanoikiemchatluongnuoc", []);

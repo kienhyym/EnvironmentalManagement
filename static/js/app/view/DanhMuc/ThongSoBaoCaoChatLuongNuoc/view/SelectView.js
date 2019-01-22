@@ -82,7 +82,12 @@ define(function (require) {
 					}
 				}
 				self.applyBindings();
-    		});
+			});
+			self.$el.find("#tbl_container_grid table").attr({"style":"overflow-x: hidden; word-break: break-word;"});
+			console.log(self.$el.find(".grid-header th"));
+			self.$el.find(".grid-header thead tr th").attr({"style":"min-width: 100px;"});
+			
+
     		return this;
     	},
     	
