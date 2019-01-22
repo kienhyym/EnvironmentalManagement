@@ -260,10 +260,6 @@ td {
   background: #C5DFB5;
 }
 
-.text-center {
-  text-align: center;
-}
-
 #grid tr:nth-child(even) {
   background-color: #f2f2f2;
 }
