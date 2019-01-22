@@ -224,15 +224,15 @@ define(function (require) {
                     else if(!self.model.get("nguoikiemtra")){
                     	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
                     } else {
-                    self.model.save(null, {
-                        success: function (model, respose, options) {
-                            self.getApp().notify("Lưu thông tin thành công");
-                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-                        },
-                        error: function (model, xhr, options) {
-                            self.getApp().notify('Lưu thông tin không thành công!');
-                        }
-                    });
+	                    self.model.save(null, {
+	                        success: function (model, respose, options) {
+	                            self.getApp().notify("Lưu thông tin thành công");
+	                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+	                        },
+	                        error: function (model, xhr, options) {
+	                            self.getApp().notify('Lưu thông tin không thành công!');
+	                        }
+	                    });
                    }
                 }
             },
@@ -401,6 +401,7 @@ define(function (require) {
         renderKetQua: function (danhsachthongso) {
             var self = this;
 //            var danhsachthongso = self.model.get("ketquanoikiemchatluongnuoc");
+            self.$el.find("#ketquanoikiemchatluongnuoc").html("");
             $.each(danhsachthongso, function (idx, obj) {
                 var view = new KetQuaNoiKiemChatLuongNuocItemView();
                 obj["sothutu"] = idx + 1;

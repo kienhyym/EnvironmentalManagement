@@ -231,6 +231,7 @@ define(function(require) {
     render_thongso_khongdat:function(thongso_khongdat, elementID){
     	var self = this;
     	if(!!thongso_khongdat && thongso_khongdat.length>0){
+    		self.$el.find("#body_"+elementID).html("");
     		$.each(thongso_khongdat, function(idx,thongso){
     			
     			var tr = $("<tr>");
@@ -251,6 +252,7 @@ define(function(require) {
     	var self = this;
     	var donvi_ngoaikiems = self.model.get("donvi_thuchien_ngoaikiem");
     	if(!!donvi_ngoaikiems && donvi_ngoaikiems.length>0){
+    		self.$el.find("#danhsach_donvi_ngoaikiem").html("");
     		$.each(donvi_ngoaikiems, function(idx,donvi){
     			
     			var tr = $("<tr>");
