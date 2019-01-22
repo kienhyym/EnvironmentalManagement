@@ -211,18 +211,18 @@ define(function (require) {
                     var self = this;
                     var nambaocao = self.model.get("nambaocao");
                 	if(!(toInt(nambaocao) >= 1900 && toInt(nambaocao) <= 3000)){
-                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
                     } else if(!self.model.get("ngaybaocao")){
-                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
                     }
                     else if(!self.model.get("donvicapnuoc")){
-                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
                     }
                     else if(!self.model.get("thoigiankiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
                     }
                     else if(!self.model.get("nguoikiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "warning"});
+                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
                     } else {
                     self.model.save(null, {
                         success: function (model, respose, options) {
@@ -280,7 +280,7 @@ define(function (require) {
             
             self.$el.find("#addItem").unbind("click").bind("click", function () {
                 var view = new ThongSoBaoCaoChatLuongNuocView();
-                view.dialog();
+                view.dialog({ size: "large"});
                 var ketquanoikiemchatluongnuoc = self.model.get('ketquanoikiemchatluongnuoc');
                 view.on("ThongSo_onSelected", function (data) {
                     for (var i = 0; i < ketquanoikiemchatluongnuoc.length; i++) {

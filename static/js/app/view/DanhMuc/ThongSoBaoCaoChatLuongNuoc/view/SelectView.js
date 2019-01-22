@@ -44,7 +44,8 @@ define(function (require) {
  	    	    	field: "mathongso",label:"Mã Thông Số",
  	    	     },
  	    	     { field: "tenthongso", label: "Tên Thông số"},
- 	    	     { field: "gioihan_toida_txt", label: "Giới hạn tối đa"}
+				  { field: "gioihan_toida_txt", label: "Giới hạn tối đa"},
+				  { field: "gioihan_toithieu_txt", label: "Giới hạn tối thiểu"}
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
@@ -83,11 +84,7 @@ define(function (require) {
 				}
 				self.applyBindings();
 			});
-			self.$el.find("#tbl_container_grid table").attr({"style":"overflow-x: hidden; word-break: break-word;"});
-			console.log(self.$el.find(".grid-header th"));
-			self.$el.find(".grid-header thead tr th").attr({"style":"min-width: 100px;"});
-			
-
+			self.$el.find("#tbl_container_grid table").attr({"style": "table-layout: fixed"});
     		return this;
     	},
     	
