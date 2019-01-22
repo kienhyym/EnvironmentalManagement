@@ -37,7 +37,7 @@ async def pre_process_thongso_chatluong_nuoc(request=None, data=None, Model=None
         if(data['batbuoc'] == 'false' or data['batbuoc'] == False):
             data['batbuoc'] = False
         else:
-            batbuoc['batbuoc'] = True
+            data['batbuoc'] = True
     else:
         data['batbuoc'] = False
 
