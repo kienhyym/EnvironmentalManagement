@@ -240,6 +240,12 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     kybaocao = db.Column(db.SmallInteger, nullable=False, default=1)
     loaikybaocao = db.Column(db.Integer, nullable=False)#thang=1,quy=2,6thang=3,nam=4
     
+    loaibaocao = db.Column(db.SmallInteger, nullable=False, default=1)#captinh=1, caphuyen=2
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    
     tong_donvi_capnuoc = db.Column(db.Integer, default=0)
     tong_hogiadinh_duoccungcapnuoc = db.Column(db.Integer, default=0)
     tong_hogiadinh_diaban = db.Column(db.Integer, default=0)

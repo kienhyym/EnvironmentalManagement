@@ -24,6 +24,13 @@ define(function (require) {
 					label: "TRANSLATE:CREATE",
 					command: function () {
 						var self = this;
+						var currentUser = self.getApp().currentUser;
+						if(!!currentUser){
+							if(currentUser.donvi.tuyendonvi_id !==10){
+								self.getApp().notify("Tài khoản hiện tại không có chức năng làm báo cáo cấp Viện");
+								return;
+							}
+						}
 						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
 						var path = this.collectionName + '/model/'+loaibaocao;
 						this.getApp().getRouter().navigate(path);

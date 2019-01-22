@@ -160,6 +160,13 @@ define(function (require) {
                     },
                 });
             } else {
+            	var currentUser = self.getApp().currentUser;
+				if(!!currentUser){
+					if(currentUser.donvi.tuyendonvi_id !==10){
+						self.getApp().notify("Tài khoản hiện tại không có chức năng làm báo cáo cấp Viện");
+						return;
+					}
+				}
                 self.applyBindings();
             }
 

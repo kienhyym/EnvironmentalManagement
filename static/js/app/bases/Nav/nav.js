@@ -150,13 +150,13 @@ define(function (require) {
 					"text": "Cài đặt Viện Chuyên Ngành Nước Sạch",
 					"type": "view",
 					"collectionName": "map_vienchuyennganhnuoc_tinh",
-					"route": "map_vienchuyennganhnuoc_tinh/model(/:id)",
-					"href": "map_vienchuyennganhnuoc_tinh/model?donvi_id",
+					"route": "map_vienchuyennganhnuoc_tinh/model",
+//					"href": "map_vienchuyennganhnuoc_tinh/model?donvi_id",
 					"$ref": "app/view/HeThong/CaiDatBaoCaoVienChuyenNganh/view/ModelView",
 					"icon": "glyphicon glyphicon-cog",
 					"tuyendonvi": 1,
 					"visible": function () {
-						return this.checkTuyendonvi([1]);
+						return this.checkTuyendonvi([1,10]);
 					}
 				}
 			]
@@ -165,6 +165,9 @@ define(function (require) {
 			"text": "Danh Mục",
 			"icon": "glyphicon glyphicon-menu-hamburger",
 			"type": "category",
+			"visible": function () {
+				return this.checkTuyendonvi([1,2,3,4]);
+			},
 			"entries": [
 				{
 					"text": "Dân Tộc",
@@ -367,6 +370,9 @@ define(function (require) {
 			"text": "Vệ sinh hộ gia đình",
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
+			"visible": function () {
+				return this.checkTuyendonvi([1,2,3,4]);
+			},
 			"entries": [
 				{
 					"text": "Thống kê giám sát vệ sinh",
@@ -849,6 +855,9 @@ define(function (require) {
 			"text": "Chương trình SUPRSWS",
 			"icon": "glyphicon glyphicon-tasks",
 			"type": "category",
+			"visible": function () {
+				return this.checkTuyendonvi([1,2,3,4]);
+			},
 			"entries": [
 				{
 					"text": "Kế hoạch BCC",

@@ -360,6 +360,7 @@ async def prepost_baocao_nuocsach_huyentinh(request=None, data=None, Model=None,
     data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
+    
     await process_baocao_nuocsach_huyentinh(currentuser, data)       
     
 async def preput_baocao_nuocsach_huyentinh(request=None, data=None, Model=None, **kw):
@@ -404,6 +405,8 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     baocao_ngoaikiems = None
     baocao_tonghops = None
     if currentuser.donvi.tuyendonvi_id == 2:
+        data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
+        data["loaibaocao"] = 1
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
             filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
                 DonViCapNuoc.congsuat>=1000)).all()
@@ -421,6 +424,11 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                 TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
                 TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     elif currentuser.donvi.tuyendonvi_id == 3:
+        data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
+        data["tinhthanh"] = currentuser.donvi.tinhthanh
+        data["quanhuyen_id"] = currentuser.donvi.quanhuyen_id
+        data["quanhuyen"] = currentuser.donvi.quanhuyen
+        data["loaibaocao"] = 2
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
             filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
                 DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
@@ -723,8 +731,102 @@ async def process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops=None,
     
     
         
+async def prepost_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
 
+    record = db.session.query(BaoCaoVienChuyenNganhNuoc).filter(and_(BaoCaoVienChuyenNganhNuoc.donvi_id == currentuser.donvi_id, \
+                                                      BaoCaoVienChuyenNganhNuoc.loaikybaocao == data['loaikybaocao'], \
+                                                      BaoCaoVienChuyenNganhNuoc.kybaocao == data['kybaocao'], \
+                                                      BaoCaoVienChuyenNganhNuoc.nambaocao == data['nambaocao'])).first()
+    
+    if record is not None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+      
+    data['tinhtrang'] = TinhTrangBaocaoEnum.taomoi
+    data['donvi_id'] = currentuser.donvi_id
+    data['nguoibaocao_id'] = currentuser.id
+    await preprocess_baocao_vien_chuyennganh_nuocsach(currentuser, data)       
+    
+async def preput_baocao_vien_chuyennganh_nuocsach(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    if ("loaikybaocao" not in data or data['loaikybaocao']  is None or "kybaocao" not in data or data["kybaocao"] is None):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
 
+    await preprocess_baocao_vien_chuyennganh_nuocsach(currentuser, data)
+
+async def preprocess_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
+    
+    tong_tinh_phutrach = 0
+    tong_tinh_cobaocao = 0
+    tong_donvi_capnuoc_phutrach = 0
+    tong_hogiadinh_duoccungcapnuoc = 0
+    tong_hogiadinh_diaban = 0
+    
+    tong_maunuoc_thunghiem_ngoaikiem_vien = 0
+    tong_mau_dat_quychuan_ngoaikiem_vien = 0
+    tong_mau_khongdat_quychuan_ngoaikiem_vien = 0
+    thongso_khongdat_ngoaikiem_vien = []
+
+    ketqua_kiemtra_noikiem_tinh = []
+    
+    vien_info = db.session.query(MapVienChuyenNganhNuocVaTinh).filter(MapVienChuyenNganhNuocVaTinh.donvi_id == currentuser.donvi_id).first()
+    if(vien_info is not None and vien_info.danhsachtinhthanh is not None):
+        tong_tinh_phutrach = len(danhsach_tinh.danhsachtinhthanh)
+        tinhthanh_ids =[]
+        for item_tinh in danhsach_tinh.danhsachtinhthanh:
+            tinhthanh_ids.append(item_tinh["id"])
+        
+        
+        danhmuc_thongso = db.session.query(ThongSoBaoCaoChatLuongNuoc).all()
+        
+            
+        danhsach_baocao_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
+                              BaoCaoNuocSachHuyenTinh.tinhthanh_id.in_(tinhthanh_ids), \
+                              BaoCaoNuocSachHuyenTinh.loaikybaocao == data['loaikybaocao'], \
+                              BaoCaoNuocSachHuyenTinh.kybaocao == data['kybaocao'], \
+                              BaoCaoNuocSachHuyenTinh.nambaocao == data['nambaocao'])).all()
+        
+        if (danhsach_baocao_tinh is not None):
+            tong_tinh_cobaocao = len(danhsach_baocao_tinh)
+            for bacao_tinh in danhsach_baocao_tinh:
+                baocao = copy.deepcopy(bacao_tinh)
+                tong_donvi_capnuoc_phutrach += baocao.tong_donvi_capnuoc
+                tong_hogiadinh_duoccungcapnuoc += baocao.tong_hogiadinh_duoccungcapnuoc
+                tong_hogiadinh_diaban += baocao.tong_hogiadinh_diaban
+                bc_tinhthanh = {}
+                bc_tinhthanh["tentinhthanh"] = baocao.tinhthanh.ten
+                bc_tinhthanh["tinhthanh_id"] = baocao.tinhthanh_id
+                bc_tinhthanh["tong_donvi_capnuoc"] = baocao.tong_donvi_capnuoc
+                bc_tinhthanh["tong_maunuoc_thunghiem_noikiem"] = baocao.tong_maunuoc_thunghiem_noikiem
+                bc_tinhthanh["tong_mau_dat_quychuan_noikiem"] = baocao.tong_mau_dat_quychuan_noikiem
+                bc_tinhthanh["tong_mau_khongdat_quychuan_noikiem"] = baocao.tong_mau_khongdat_quychuan_noikiem
+                
+                danhsach_thongso_noikiem_khongdat = []
+                if danhmuc_thongso is not None:
+                    for ts in danhmuc_thongso:
+                        item_thongso = ts
+                        item_thongso["solan_khongdat"] = 0
+                        danhsach_thongso_noikiem_khongdat.append(item_thongso)
+                bc_tinhthanh["thongso_khongdat_noikiem"] = baocao.thongso_khongdat_noikiem
+                item_thongso_noikiem_khongdat = []
+                if baocao.thongso_khongdat_noikiem is not None:
+                    for thongso_khongdat  in baocao.thongso_khongdat_noikiem:
+                        for idx, val in enumerate(danhsach_thongso_noikiem_khongdat):
+                            danhsach_thongso_noikiem_khongdat[idx]["solan_khongdat"] +=1
+                        if(thongso_id == map_thongso[str(thongso_id)]):
+                            map_thongso[thongso_id]["solan_khongdat"] += 1
+                            
+                    
 
                         
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,

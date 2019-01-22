@@ -33,10 +33,11 @@ define(function (require) {
 		    	}
     	},
 	     render:function(){
+	    	 var self = this;
 	    	 var currentUser = this.getApp().currentUser;
-	            if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
-	                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
-	            }
+	    	 if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
+                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
+             }
 	    	 this.applyBindings();
 	    	 return this;
     	}
