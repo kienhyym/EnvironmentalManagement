@@ -534,7 +534,6 @@ define(function (require) {
             var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc?results_per_page=1000&max_results_per_page=1000";
             $.ajax({
                 url: url,
-        		data: {"q": JSON.stringify({"results_per_page":1000})},
                 method: "GET",
                 contentType: "application/json",
                 success: function (data) {

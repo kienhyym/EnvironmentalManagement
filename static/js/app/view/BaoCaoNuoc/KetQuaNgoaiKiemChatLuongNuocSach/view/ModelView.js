@@ -656,7 +656,9 @@ define(function (require) {
         prepareBaocao: function () {
             var self = this;
             self.model.set("ketquangoaikiemchatluongnuoc", []);
-            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
+//            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
+            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc?results_per_page=1000&max_results_per_page=1000";
+
             $.ajax({
                 url: url,
                 method: "GET",
