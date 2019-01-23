@@ -58,7 +58,7 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "Đã hooàn thành dự thảo", value: 2},
+						{text: "Đã hoàn thành dự thảo", value: 2},
 						{text: "Đang xây dựng", value: 1},
 						{text: "Chưa xây dựng", value: 0}
 					],
@@ -222,7 +222,6 @@ define(function (require) {
 //							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);
 							self.renderKetQua(response.danhsachnganh);
 							}
-						}
 					},
 					error: function(xhr) {
 						self.getApp().notify({message: xhr.responseJSON.error_message}, {type: "danger"});
@@ -280,9 +279,9 @@ define(function (require) {
 											<td class="text-left">&nbsp;&nbsp; - ${hoatdong.tenhoatdong}</td>
 											<td>${hoatdong.muctieu}</td>
 											<td>${hoatdong.tiendo ? hoatdong.tiendo : ''}</td>
-											<td class="text-center">${hoatdong.songuoithamgia}</td>
-											<td class="text-center">${hoatdong.songuoithamgia_nu}</td>
-											<td class="text-center">${hoatdong.songuoithamgia_dtts}</td>
+											<td class="text-center">${hoatdong.songuoithamgia ? hoatdong.songuoithamgia : ''}</td>
+											<td class="text-center">${hoatdong.songuoithamgia_nu ? hoatdong.songuoithamgia_nu : '' }</td>
+											<td class="text-center">${hoatdong.songuoithamgia_dtts ? hoatdong.songuoithamgia_dtts : ''}</td>
 									</tr>`);
 								});
 							}
