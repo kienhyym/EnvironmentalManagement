@@ -29,6 +29,10 @@ define(function (require) {
 		        	 visible: false
 		         },
 		     ],
+		     pagination: {
+	            	page: 1,
+	            	pageSize: 100
+	            },
 		     onRowClick: function(event){
 		    		if(event.rowId){
 		        		var path = this.collectionName + '/model?id='+ event.rowId;

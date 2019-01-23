@@ -27,9 +27,14 @@ define(function (require) {
 		        		this.getApp().getRouter().navigate(path);
 		        }
 		    	
-		    }
+		    },
+		    pagination: {
+            	page: 1,
+            	pageSize: 100
+            }
     	},
 	    render:function(){
+	    	 
 	    	 this.uiControl.orderBy = [{"field": "mathongso", "direction": "asc"}];
 	    	 this.applyBindings();
 	    	 return this;

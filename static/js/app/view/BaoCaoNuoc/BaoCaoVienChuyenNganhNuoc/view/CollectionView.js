@@ -56,6 +56,10 @@ define(function (require) {
 				},
 
 			],
+			pagination: {
+            	page: 1,
+            	pageSize: 100
+            },
 			onRowClick: function (event) {
 				if (event.rowId) {
 					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");

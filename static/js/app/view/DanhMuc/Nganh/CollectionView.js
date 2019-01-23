@@ -18,6 +18,10 @@ define(function (require) {
 		     	 { field: "tennganh", label: "Tên ngành", width:250},
 		     	{ field: "thutu", label: "Thứ tự", width:250},
 		     ],
+		     pagination: {
+	            	page: 1,
+	            	pageSize: 100
+	            },
 		     onRowClick: function(event) {
 		    	if(event.rowId) {
 		        		var path = 'nganh/model?id='+ event.rowId;
