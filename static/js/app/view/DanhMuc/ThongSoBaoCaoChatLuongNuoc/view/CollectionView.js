@@ -30,7 +30,7 @@ define(function (require) {
 		    }
     	},
 	    render:function(){
-	    	 this.uiControl.orderBy = [{"field": "tenthongso", "direction": "desc"}];
+	    	 this.uiControl.orderBy = [{"field": "mathongso", "direction": "asc"}];
 	    	 this.applyBindings();
 	    	 return this;
     	},

@@ -58,7 +58,7 @@ define(function (require) {
     			sessionKey: "ThongSoNuoc_filter"
     		});
     		filter.render();
-    		this.uiControl.orderBy = [{"field": "tenthongso", "direction": "desc"}];
+    		this.uiControl.orderBy = [{"field": "mathongso", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
