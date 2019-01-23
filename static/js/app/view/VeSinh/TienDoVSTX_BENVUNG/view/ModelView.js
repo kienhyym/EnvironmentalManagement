@@ -75,7 +75,7 @@ define(function (require) {
 					if(currentUser.donvi.tuyendonvi_id === 1){
 						tinhthanh_id = self.$el.find("#tinhthanh input").data('gonrin').getValue();
 					}
-					if(toInt(nambaocao)<2000 && toInt(nambaocao)>3000){
+					if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
 						self.getApp().notify("Năm không hợp lệ, vui lòng kiểm tra lại");
 						return;
 					}

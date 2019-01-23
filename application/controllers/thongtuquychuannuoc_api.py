@@ -951,38 +951,115 @@ async def TimKiemBaoCaoNuoc(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     record = None
     tuyendonvi = None
+    response = None
     if(donvicapnuoc_id is not None and donvicapnuoc_id != ""):
         record = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(and_(TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id == donvicapnuoc_id,\
-                                                      TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == data['loaikybaocao'], \
-                                                      TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao == data['kybaocao'], \
-                                                      TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).first()
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == loaikybaocao, \
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao == kybaocao, \
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == nambaocao)).first()
+        if (record is not None):
+            response = to_dict(record)
+            response["donvicapnuoc"] = to_dict(record.donvicapnuoc)                                            
         tuyendonvi = "donvicapnuoc"                                              
     elif(viennuocsach_id is not None and viennuocsach_id != ""):
         record = db.session.query(BaoCaoVienChuyenNganhNuoc).filter(and_(BaoCaoVienChuyenNganhNuoc.donvi_id == viennuocsach_id, \
-                                                      BaoCaoVienChuyenNganhNuoc.loaikybaocao == data['loaikybaocao'], \
-                                                      BaoCaoVienChuyenNganhNuoc.kybaocao == data['kybaocao'], \
-                                                      BaoCaoVienChuyenNganhNuoc.nambaocao == data['nambaocao'])).first()
-    
+                                                      BaoCaoVienChuyenNganhNuoc.loaikybaocao == loaikybaocao, \
+                                                      BaoCaoVienChuyenNganhNuoc.kybaocao == kybaocao, \
+                                                      BaoCaoVienChuyenNganhNuoc.nambaocao == nambaocao)).first()
+        if (record is not None):
+            response = to_dict(record)                                         
         tuyendonvi = "viennuocsach"
     else:
         if(quanhuyen_id is not None and quanhuyen_id!=""):
             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == quanhuyen_id, \
                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
-                                                        BaoCaoNuocSachHuyenTinh.loaikybaocao == data['loaikybaocao'], \
-                                                        BaoCaoNuocSachHuyenTinh.kybaocao == data['kybaocao'], \
-                                                        BaoCaoNuocSachHuyenTinh.nambaocao == data['nambaocao'])).first()
+                                                        BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+                                                        BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+                                                        BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
+            if (record is not None):
+                response = to_dict(record)
             tuyendonvi = "quanhuyen"                                            
         elif(tinhthanh_id is not None and tinhthanh_id!=""):
             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinhthanh_id, \
                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
-                                                        BaoCaoNuocSachHuyenTinh.loaikybaocao == data['loaikybaocao'], \
-                                                        BaoCaoNuocSachHuyenTinh.kybaocao == data['kybaocao'], \
-                                                        BaoCaoNuocSachHuyenTinh.nambaocao == data['nambaocao'])).first()
+                                                        BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+                                                        BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+                                                        BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
+            if (record is not None):
+                response = to_dict(record)
             tuyendonvi = "tinhthanh"                                            
     if record is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của đơn vị, vui lòng kiểm tra lại"}, status=520)
     else:    
-        return json({"data":to_dict(record), "tuyendonvi":tuyendonvi})
+        return json({"data":response, "tuyendonvi":tuyendonvi})
+    
+    
+@app.route('/api/v1/timkiemdonvi_chualambaocao', methods=['GET'])
+async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+    tinhthanh_id = request.args.get("tinhthanh_id", None)
+    quanhuyen_id = request.args.get("quanhuyen_id", None)
+    viennuocsach_id = request.args.get("viennuocsach_id", None)
+    
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    record = None
+    tuyendonvi = None
+    response = None
+    donvicapnuocs = None
+    if(quanhuyen_id is not None and quanhuyen_id!=""  and quanhuyen_id !="undefined"):
+        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == quanhuyen_id).filter(DonViCapNuoc.congsuat <1000 ).all()
+#     if(donvicapnuoc_id is not None and donvicapnuoc_id != ""):
+#         record = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(and_(TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id == donvicapnuoc_id,\
+#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == loaikybaocao, \
+#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao == kybaocao, \
+#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == nambaocao)).first()
+#         if (record is not None):
+#             response = to_dict(record)
+#             response["donvicapnuoc"] = to_dict(record.donvicapnuoc)                                            
+#         tuyendonvi = "donvicapnuoc"                                              
+#     elif(viennuocsach_id is not None and viennuocsach_id != ""):
+#         record = db.session.query(BaoCaoVienChuyenNganhNuoc).filter(and_(BaoCaoVienChuyenNganhNuoc.donvi_id == viennuocsach_id, \
+#                                                       BaoCaoVienChuyenNganhNuoc.loaikybaocao == loaikybaocao, \
+#                                                       BaoCaoVienChuyenNganhNuoc.kybaocao == kybaocao, \
+#                                                       BaoCaoVienChuyenNganhNuoc.nambaocao == nambaocao)).first()
+#         if (record is not None):
+#             response = to_dict(record)                                         
+#         tuyendonvi = "viennuocsach"
+#     else:
+#         if(quanhuyen_id is not None and quanhuyen_id!=""):
+#             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == quanhuyen_id, \
+#                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
+#                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+#                                                         BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+#                                                         BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
+#             if (record is not None):
+#                 response = to_dict(record)
+#             tuyendonvi = "quanhuyen"                                            
+#         elif(tinhthanh_id is not None and tinhthanh_id!=""):
+#             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinhthanh_id, \
+#                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
+#                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+#                                                         BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+#                                                         BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
+#             if (record is not None):
+#                 response = to_dict(record)
+#             tuyendonvi = "tinhthanh"                                            
+    if record is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của đơn vị, vui lòng kiểm tra lại"}, status=520)
+    else:    
+        return json({"data":response, "tuyendonvi":tuyendonvi})
+    
+    
+
 # apimanager.create_api(KQNgoaiKiemChatLuong,
 #     methods=['GET', 'POST', 'DELETE', 'PUT'],
 #     url_prefix='/api/v1',

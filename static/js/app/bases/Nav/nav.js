@@ -1833,6 +1833,17 @@ define(function (require) {
 						},
 					]
 				},
+				{
+					"text": "Tìm kiếm báo cáo Nước sạch",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "timkiembaocao",
+					"route": "timkiembaocaonuoc",
+					"$ref": "app/view/BaoCaoNuoc/TimKiemBaoCaoNuoc/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([1,2,3,10]);
+					},
+				} 
 			],
 		},
 	];
