@@ -432,6 +432,12 @@ define(function (require) {
                     self.calculator_ketqua_vitri();
                     view.destroy();
                     view.remove();
+
+                    if(itemketquanoikiem.length == 0) {
+                        self.$el.find("#removeButton").hide();
+                    } else {
+                        self.$el.find("#removeButton").show();
+                    }
                 });
             });
         },

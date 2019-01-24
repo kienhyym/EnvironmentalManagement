@@ -483,7 +483,7 @@ define(function (require) {
                 ketquangoaikiemchatluongnuoc.push(item);
                 self.model.set("ketquangoaikiemchatluongnuoc", ketquangoaikiemchatluongnuoc);
                 self.applyBinding("ketquangoaikiemchatluongnuoc");
-//                self.changeSoMau();
+                self.changeSoMau();
                 view.destroy();
                 view.remove();
             });
@@ -533,7 +533,7 @@ define(function (require) {
                 	if (!!danhsachvitrilaymau && danhsachvitrilaymau.length === somau){
                 		mavitrimau = danhsachvitrilaymau[j].mavitri;
                 	}
-                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).html(mavitrimau);
+                    var el = $("<th>").attr("id", "mauvitri_header").css({ "text-align": "center" }).addClass("background-colorTH").html(mavitrimau);
                     self.$el.find("#mauvitri_header_before").before(el);
                     self.$el.find("#ketquathunghiem").attr("colspan", j + 1);
                 }
@@ -569,7 +569,13 @@ define(function (require) {
                     self.applyBinding("ketquangoaikiemchatluongnuoc");
                     self.calculator_ketqua_vitri();
                     view.destroy();
-                    view.remove();
+					view.remove();
+					
+					if(itemketquangoaikiem.length == 0) {
+                        self.$el.find("#removeButton").hide();
+                    } else {
+                        self.$el.find("#removeButton").show();
+                    }
                 });
             });
         },
