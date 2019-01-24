@@ -114,7 +114,7 @@ async def reset_password(request):
          
         
         redisdb.delete("sessions:" + token)         
-        user = User.query.filter(User.id == uid_current).first()
+        user = User.query.filter(User.id == str(uid_current.decode('ascii'))).first()
         if (user is not None):
             user.password = auth.encrypt_password(password)
             auth.login_user(request, user)
