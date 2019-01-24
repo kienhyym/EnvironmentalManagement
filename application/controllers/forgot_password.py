@@ -12,6 +12,8 @@ from application.database import redisdb,db
 from gatco_restapi.helpers import to_dict
 from application.server import app
 from application.extensions import  jinja
+from application.extensions import auth
+
 
 from gatco.response import json, text
 from application.client import HTTPClient
@@ -76,7 +78,8 @@ async def send_reset_password_instructions(request, user):
 async def resetpw_email(request):
     if request.method == 'GET':
         token = request.args.get("token", None)
-        return jinja.render('email/reset_password.html', request, token=token)
+        static_url = app.config.get("DOMAIN_URL")+"/"+app.config.get("STATIC_URL", "")
+        return jinja.render('email/reset_password.html', request, static_url = static_url, token=token)
     
     if request.method == 'POST':
         email = request.json.get("email", None)
@@ -95,7 +98,9 @@ async def resetpw_email(request):
 async def reset_password(request):
     if request.method == 'GET':
         token = request.args.get("token", None)
-        return jinja.render('email/reset_password.html', request, token=token)
+        static_url = app.config.get("DOMAIN_URL")+"/"+app.config.get("STATIC_URL", "")
+        return jinja.render('email/reset_password.html', request, static_url = static_url, token=token)
+    
      
     if request.method == 'POST':
         print(request.form)
@@ -114,7 +119,7 @@ async def reset_password(request):
          
         
         redisdb.delete("sessions:" + token)         
-        user = User.query.filter(User.id == uid_current).first()
+        user = User.query.filter(User.id == str(uid_current.decode('ascii'))).first()
         if (user is not None):
             user.password = auth.encrypt_password(password)
             auth.login_user(request, user)
