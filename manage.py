@@ -159,79 +159,69 @@ def create_default_models():
         db.session.add(dantoc)
         db.session.commit()
 
-    # #add tinhthanh, quoc gia    
-    quocgias = QuocGia(ma = "VN", ten = "Việt nam")
+@manager.command
+def add_danhsach_quocgia_tinhthanh():   
+    quocgias = QuocGia(ma = "VN", ten = "Việt Nam")
     db.session.add(quocgias)
     db.session.flush() 
     db.session.commit()
-
-    
-    quocgia_default = db.session.query(QuocGia).filter(QuocGia.ma == 'VN').first()
-    print("===quocgia===== ", quocgia_default)
-    db.session.add(quocgia_default)
-    db.session.flush()
-    db.session.commit()
     try:
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-        json_url_infotinhthanh = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
-        data_infotinhthanh = json.load(open(json_url_infotinhthanh))
-        for item_infotinhthanh in data_infotinhthanh:
-            tinhthanhinfo = db.session.query(TinhThanh).filter(TinhThanh.ma == item_infotinhthanh["matinhthanh"]).first()
-            
-            if tinhthanhinfo is None:
-                print("tinhthanh===", item_infotinhthanh)
-                tinhthanhinfo = TinhThanh(ten = item_infotinhthanh["tentinhthanh"], ma = item_infotinhthanh["matinhthanh"], quocgia_id =quocgia_default.id)
-                db.session.add(tinhthanhinfo)
+        json_url_dstinhthanh = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dstinhthanh = json.load(open(json_url_dstinhthanh))
+        for item_dstinhthanh in data_dstinhthanh:
+            tinhthanh_filter = db.session.query(TinhThanh).filter(TinhThanh.ma == item_dstinhthanh["matinhthanh"]).first()
+            if tinhthanh_filter is None:
+                quocgia_filter = db.session.query(QuocGia).filter(QuocGia.ma == 'VN').first()
+                tinhthanh_filter = TinhThanh(ten = item_dstinhthanh["tentinhthanh"], ma = item_dstinhthanh["matinhthanh"], quocgia_id = quocgia_filter.id)
+                db.session.add(tinhthanh_filter)
                 db.session.commit()
-
     except Exception as e:
-        print("===error===",e)    
-    db.session.commit()
+        print("TINH THANH ERROR",e)
+
 
 @manager.command
-def add_quanhuyen():
+def add_danhsach_quanhuyen():
     try:
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-        json_url_infoquanhuyen = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
-        data_infoquanhuyen = json.load(open(json_url_infoquanhuyen))
-        for item_infoquanhuyen in data_infoquanhuyen:
-            quanhuyeninfo = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_infoquanhuyen["maquanhuyen"]).first()
-            if quanhuyeninfo is None:
-                print("quanhuyen===", item_infoquanhuyen)
-                tinhthanhfilter = db.session.query(TinhThanh).filter(TinhThanh.ma == item_infoquanhuyen["matinhthanh"]).first()
-                quanhuyeninfo = QuanHuyen(ten = item_infoquanhuyen["tenquanhuyen"], ma = item_infoquanhuyen["maquanhuyen"], tinhthanh_id = tinhthanhfilter.id)
-                db.session.add(quanhuyeninfo)
+        json_url_dsquanhuyen = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dsquanhuyen = json.load(open(json_url_dsquanhuyen))
+        for item_dsquanhuyen in data_dsquanhuyen:
+            quanhuyen_filter = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_dsquanhuyen["maquanhuyen"]).first()
+            if quanhuyen_filter is None:
+                tinhthanh_filter = db.session.query(TinhThanh).filter(TinhThanh.ma == item_dsquanhuyen["matinhthanh"]).first()
+                quanhuyen_filter = QuanHuyen(ten = item_dsquanhuyen["tenquanhuyen"], ma = item_dsquanhuyen["maquanhuyen"], tinhthanh_id = tinhthanh_filter.id)
+                db.session.add(quanhuyen_filter)
                 db.session.commit()
     except Exception as e:
-        print("errrrrorrr====", e)
+        print("QUAN HUYEN ERROR", e)
 
 @manager.command
-def add_xaphuong():
+def add_danhsach_xaphuong():
     try:
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-        json_url_infoxaphuong = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
-        data_infoxaphuong = json.load(open(json_url_infoxaphuong))
-        for item_infoxaphuong in data_infoxaphuong:
-            xaphuonginfo = db.session.query(XaPhuong).filter(XaPhuong.ma == item_infoxaphuong["maxaphuong"]).first()
-
-            if xaphuonginfo is None:
-                quanhuyenfilter = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_infoxaphuong["maquanhuyen"]).first()
-                xaphuonginfo = XaPhuong(ten = item_infoxaphuong["tenxaphuong"], ma = item_infoxaphuong["maxaphuong"], quanhuyen_id = quanhuyenfilter.id)
-                db.session.add(xaphuonginfo)
+        json_url_dsxaphuong = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dsxaphuong = json.load(open(json_url_dsxaphuong))
+        for item_dsxaphuong in data_dsxaphuong:
+            xaphuong_filter = db.session.query(XaPhuong).filter(XaPhuong.ma == item_dsxaphuong["maxaphuong"]).first()
+            if xaphuong_filter is None:
+                quanhuyen_filter = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_dsxaphuong["maquanhuyen"]).first()
+                xaphuong_filter = XaPhuong(ten = item_dsxaphuong["tenxaphuong"], ma = item_dsxaphuong["maxaphuong"], quanhuyen_id = quanhuyen_filter.id)
+                db.session.add(xaphuong_filter)
                 db.session.commit()
     except Exception as e:
-        print("errrrrorrr xa phuong====", e)
+        print("XA PHUONG ERROR", e)
 
 
     
 @manager.command
 def run():
-    add_quanhuyen()
-    # add_xaphuong()
     role = db.session.query(Role).filter(Role.name == 'User').first()
     if role is None:
         create_default_models()
-        
+        add_danhsach_quocgia_tinhthanh()
+        add_danhsach_quanhuyen()
+        add_danhsach_xaphuong()
         print("Khoi tao du lieu mau")
         
     run_app(host="0.0.0.0", port=9070)
