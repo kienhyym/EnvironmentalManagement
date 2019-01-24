@@ -315,7 +315,6 @@ def congdonTongCong(Baocao, current_user, data=None):
     
     resp = []
     for baocao, donvi in baocaos:
-        print("baocathon=====",baocao)
         resp.append(to_dict(baocao))
 #         for c in Baocao.__table__.c:
 #             if c.name not in notdict:
@@ -477,7 +476,6 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
 
 async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, data=None):
     baocaokytruoc = db.session.query(BaoCao).filter(and_(BaoCao.donvi_id == currentuser.donvi_id, BaoCao.id !=data['id'])).order_by(desc(BaoCao.created_at)).first()    
-    print("baocaokytruoc",to_dict(baocaokytruoc))
     if baocaokytruoc is not None:
         if baocaokytruoc.tong_soho is None:
             baocaokytruoc.tong_soho = 0
@@ -604,7 +602,6 @@ async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **k
         obj['danhsachbaocao'] = list_baocao
         
     result = obj
-    print(result)
     
 async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
@@ -614,7 +611,6 @@ async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw
         list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
-    print(result)
     
 async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
