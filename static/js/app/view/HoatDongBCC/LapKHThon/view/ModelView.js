@@ -13,6 +13,10 @@ define(function (require) {
 	var DMHoatDongSelectView = require('app/view/DanhMuc/DanhMucHoatDong/view/SelectView');
 	var HoatDongItemView = require('app/view/HoatDongBCC/HoatDong/HoatDongItemView');
 
+	function toInt(x) {
+		return parseInt(x) ? parseInt(x) : 0;
+	}
+
 	var params = {
 		"filters": {
 			"$and": [
@@ -128,19 +132,26 @@ define(function (require) {
 						if (!self.validate()) {
 							return;
 						}
-						self.model.save(null, {	
-							success: function (model, respose, options) {
-								self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
-								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
-							},
-							error: function (model, xhr, options) {
-								try {
-									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-								} catch (err) {
-									self.getApp().notify({ message: 'Lưu thông tin không thành công!' }, { type: "danger", delay: 1000 });
+						var giangvien = self.model.get("giangvien");
+						var giangvien_nu = self.model.get("giangvien_nu");
+						if (toInt(giangvien) < toInt(giangvien_nu)) {
+							self.getApp().notify({message: "Tổng số giảng viên là nữ không hợp lệ!"}, {type: "danger"});
+						}
+						else {
+							self.model.save(null, {	
+								success: function (model, respose, options) {
+									self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
+									self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
+								},
+								error: function (model, xhr, options) {
+									try {
+										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									} catch (err) {
+										self.getApp().notify({ message: 'Lưu thông tin không thành công!' }, { type: "danger", delay: 1000 });
+									}
 								}
-							}
-						});
+							});
+						}
 					}
 				},
 				{
