@@ -329,6 +329,7 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                                 item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
                                 item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
                                 item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+                                item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
                                 thongso_khongdat_ngoaikiem.append(item_thongso_khongdat)
     
     
@@ -545,6 +546,7 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                     item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
                                     item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
                                     item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+                                    item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
                                     thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
     
     data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem

@@ -12,6 +12,7 @@ from gatco_restapi.helpers import to_dict
 from application.controllers.helpers import *
 from sqlalchemy import or_
 from datetime import datetime
+import time
  
  
 async def get_user_with_permission(user):
@@ -244,106 +245,108 @@ async def register(request):
     return json(tuyendv_tw,status=200)
     return json(tuyendv_so,status=200)
     return json({"error_code": "ERROR", "error_msg": error_msg},status=520)
-
-@app.route('/api/resetpw', methods=["POST", "GET"])
-async def resetpw(request):
-    error_msg = None
-    if request.method == 'POST':
-        email = request.json.get("email", None)
-        if ((email is None) or (email == '')):
-            error_msg = u"Xin mời nhập email!"
-            
-        if(error_msg is None):
-            user = db.session.query(User).filter(User.email == email).first()
-            if(user is not None):
-                await send_reset_password_instructions(request, user)
-                return json({"error": 0, "error_msg": u"Yêu cầu thành công, mời bạn kiểm tra lại email để thiết lập lại mật khẩu!"})
-            else:
-                error_msg = u"Email không tồn tại!"
-    return json({"error_code": "UNKNOW_ERROR", "error_msg": error_msg}, status=520)
-
-    
-async def send_mail(subject, recipient, body):
-    #new_obj = request.json
-
-    #Thanks: https://github.com/cole/aiosmtplib/issues/1
-    host = app.config.get('MAIL_SERVER_HOST')
-    port = app.config.get('MAIL_SERVER_PORT')
-    user = app.config.get('MAIL_SERVER_USER')
-    password = app.config.get('MAIL_SERVER_PASSWORD')
-
-    loop = asyncio.get_event_loop()
-
-    #server = aiosmtplib.SMTP(host, port, loop=loop, use_tls=False, use_ssl=True)
-    server = aiosmtplib.SMTP(hostname=host, port=port, loop=loop, use_tls=False)
-    await server.connect()
-
-    await server.starttls()
-    await server.login(user, password)
-
-    async def send_a_message():
-        message = MIMEText(body)
-        message['From'] = app.config.get('MAIL_SERVER_USER')
-        #message['To'] = ','.join(new_obj.get('email_to'))
-        message['To'] = recipient
-        message['Subject'] = subject
-        await server.send_message(message)
-
-    await send_a_message()
-
-async def send_reset_password_instructions(request, user):
-    #token = generate_reset_password_token(user)
-    payload = {
-        "user_id": user.id,
-        "user_email": user.email,
-        'exprire': time.time() + app.config.get('USER_FORGOT_PASSWORD_EXPIRATION_DELTA', 0)
-    }
-    token = jwt.encode(payload)
-    
-    #reset_link = url_for_security('reset_password', token=token, _external=True)
-    reset_link = app.config.get("DOMAIN_URL")+"/api/reset_password?token=" + token
-    subject = app.config.get('EMAIL_SUBJECT_PASSWORD_RESET')
-    
-    #get template for forgot password
-    #mailbody = reset_link
-    mailbody = jinja.render_string('security/email/reset_instructions.txt',request, reset_link=reset_link) 
-    scheduler = AsyncIOScheduler()
-    scheduler.add_job(send_mail,args=[subject, user.email, mailbody])
-    scheduler.start()
-    
-@app.route('/api/reset_password', methods=["POST","GET"])
-async def reset_password(request):
-    if request.method == 'GET':
-        token = request.args.get("token", None)
-        return jinja.render('security/reset_password.html', request, token=token)
-    
-    if request.method == 'POST':
-        print(request.form)
-        token = request.form.get("token", None)
-        password = request.form.get("password", None)
-        confirm_password = request.form.get("confirm_password", None)
-        
-        if token is None:
-            return text(u'Liên kết không hợp lệ!')
-        
-        if password != confirm_password:
-            return text(u'mật khẩu không khớp!')
-        
-       
-        payload = jwt.decode(token)
-        user_id = payload["user_id"]
-        user_email = payload["user_email"]
-        exprire = payload["exprire"]
-        
-        if exprire < time.time():
-            return text(u'Liên kết đã hết hạn!')
-        
-        user = User.query.filter(User.id == user_id).first()
-        if (user is not None) and (user.email == user_email):
-            user.password = auth.encrypt_password(password)
-            auth.login_user(request, user)
-            db.session.commit()
-        return text(u'bạn đã lấy lại mật khẩu thành công. mời bạn đăng nhập lại để sử dụng!')
+# 
+# @app.route('/api/resetpw', methods=["POST", "GET"])
+# async def resetpw(request):
+#     error_msg = None
+#     if request.method == 'POST':
+#         email = request.json.get("email", None)
+#         if ((email is None) or (email == '')):
+#             error_msg = u"Xin mời nhập email!"
+#             
+#         if(error_msg is None):
+#             user = db.session.query(User).filter(User.email == email).first()
+#             if(user is not None):
+#                 await send_reset_password_instructions(request, user)
+#                 return json({"error_message": u"Yêu cầu thành công, mời bạn kiểm tra lại email để thiết lập lại mật khẩu!"})
+#             else:
+#                 error_msg = u"Email không tồn tại!"
+#     return json({"error_code": "UNKNOW_ERROR", "error_message": error_msg}, status=520)
+# 
+#     
+# async def send_mail(subject, recipient, body):
+#     #new_obj = request.json
+# 
+#     #Thanks: https://github.com/cole/aiosmtplib/issues/1
+#     host = app.config.get('MAIL_SERVER_HOST')
+#     port = app.config.get('MAIL_SERVER_PORT')
+#     user = app.config.get('MAIL_SERVER_USER')
+#     password = app.config.get('MAIL_SERVER_PASSWORD')
+# 
+#     loop = asyncio.get_event_loop()
+# 
+#     #server = aiosmtplib.SMTP(host, port, loop=loop, use_tls=False, use_ssl=True)
+#     server = aiosmtplib.SMTP(hostname=host, port=port, loop=loop, use_tls=False)
+#     await server.connect()
+# 
+#     await server.starttls()
+#     await server.login(user, password)
+# 
+#     async def send_a_message():
+#         message = MIMEText(body)
+#         message['From'] = app.config.get('MAIL_SERVER_USER')
+#         #message['To'] = ','.join(new_obj.get('email_to'))
+#         message['To'] = recipient
+#         message['Subject'] = subject
+#         await server.send_message(message)
+# 
+#     await send_a_message()
+# 
+# async def send_reset_password_instructions(request, user):
+#     #token = generate_reset_password_token(user)
+#     payload = {
+#         "user_id": user.id,
+#         "user_email": user.email,
+#         'exprire': time.time() + app.config.get('USER_FORGOT_PASSWORD_EXPIRATION_DELTA', 0)
+#     }
+#     token = jwt.encode(payload)
+#     
+#     #reset_link = url_for_security('reset_password', token=token, _external=True)
+#     reset_link = app.config.get("DOMAIN_URL")+"/api/reset_password?token=" + token
+#     subject = app.config.get('EMAIL_SUBJECT_PASSWORD_RESET')
+#     
+#     #get template for forgot password
+#     #mailbody = reset_link
+#     mailbody = jinja.render_string('email/reset_instructions.txt',request, reset_link=reset_link) 
+#     scheduler = AsyncIOScheduler()
+#     scheduler.add_job(send_mail,args=[subject, user.email, mailbody])
+#     scheduler.start()
+#     
+# @app.route('/api/reset_password', methods=["POST","GET"])
+# async def reset_password(request):
+#     if request.method == 'GET':
+#         token = request.args.get("token", None)
+#         return jinja.render('email/reset_password.html', request, token=token)
+#     
+#     if request.method == 'POST':
+#         print(request.form)
+#         token = request.form.get("token", None)
+#         password = request.form.get("password", None)
+#         confirm_password = request.form.get("confirm_password", None)
+#         
+#         if token is None:
+#             return text(u'Liên kết không hợp lệ!')
+#         
+#         if password != confirm_password:
+#             return text(u'mật khẩu không khớp!')
+#         
+#        
+#         payload = jwt.decode(token)
+#         user_id = payload["user_id"]
+#         user_email = payload["user_email"]
+#         exprire = payload["exprire"]
+#         
+#         if exprire < time.time():
+#             return text(u'Liên kết đã hết hạn!')
+#         
+#         user = User.query.filter(User.id == user_id).first()
+#         if (user is not None) and (user.email == user_email):
+#             user.password = auth.encrypt_password(password)
+#             auth.login_user(request, user)
+#             db.session.commit()
+#             return text(u'bạn đã lấy lại mật khẩu thành công. mời bạn đăng nhập lại để sử dụng!')
+#         else:
+#             return text('Không tìm thấy tài khoản trong hệ thống, vui lòng thử lại sau!')
 
 
 def valid_phone(phone):

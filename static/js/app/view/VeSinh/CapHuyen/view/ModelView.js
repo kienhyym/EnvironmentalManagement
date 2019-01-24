@@ -281,6 +281,7 @@ define(function (require) {
 			self.model.set("tong_diemruatay", 0);
 			
 			self.model.set("tong_sothon",0);
+			self.$el.find("#danhsachdonvi").html("");
 			danhsachbaocao.forEach(element => {
 				total_chuholanu += toInt(element.tong_chuholanu);
 				total_sohongheo += toInt(element.tong_sohongheo);

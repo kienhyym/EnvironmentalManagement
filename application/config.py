@@ -12,3 +12,14 @@ class Config(object):
     SECRET_KEY = 'acndef'
     SESSION_COOKIE_SALT = 'salt_key'
     DOMAIN_URL = 'http://127.0.0.1:9070'
+    
+    
+    MAIL_SERVER_HOST = 'smtp.gmail.com'
+    MAIL_SERVER_PORT = 587
+    MAIL_SERVER_USER = 'cucvsmtboyte@gmail.com'
+    MAIL_SERVER_PASSWORD = '123456abcA'
+    #'somevabe.com@gmail.com'
+    #'123abc!@#'
+    MAIL_SERVER_USE_TLS = False
+    MAIL_SERVER_USE_SSL = True
+    EMAIL_SUBJECT_PASSWORD_RESET = "Cục quản lý môi trường - Bộ YTế"
