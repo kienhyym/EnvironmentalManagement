@@ -374,7 +374,7 @@ define(function (require) {
         add_thongso_khongdat: function(){
         	var self = this;
         	var dsThongSo = new ThongSoBaoCaoChatLuongNuocView();
-        	dsThongSo.dialog();
+        	dsThongSo.dialog({size: "large"});
         	var danhsachthongso_khongdat = self.model.get("danhsachthongso_khongdat");
         	if (danhsachthongso_khongdat == null){
         		danhsachthongso_khongdat = []
@@ -460,7 +460,7 @@ define(function (require) {
         add_thongso_ngoaikiem: function(){
         	var self = this;
             var view = new ThongSoBaoCaoChatLuongNuocView();
-            view.dialog();
+            view.dialog({size: "large"});
             var ketquangoaikiemchatluongnuoc = self.model.get('ketquangoaikiemchatluongnuoc');
             view.on("ThongSo_onSelected", function (data) {
                 for (var i = 0; i < ketquangoaikiemchatluongnuoc.length; i++) {
