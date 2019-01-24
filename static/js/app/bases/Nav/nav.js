@@ -1843,6 +1843,17 @@ define(function (require) {
 					"visible": function () {
 						return this.checkTuyendonvi([1,2,3,10]);
 					},
+				},
+				{
+					"text": "Tìm kiếm đơn vị chưa gửi báo cáo",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "timkiem_donvi_chua_gui_baocao",
+					"route": "timkiem_donvi_chua_gui_baocao",
+					"$ref": "app/view/BaoCaoNuoc/TimKiemDonViChuaGuiBaoCaoNuoc/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([1,2,3,10]);
+					},
 				} 
 			],
 		},
