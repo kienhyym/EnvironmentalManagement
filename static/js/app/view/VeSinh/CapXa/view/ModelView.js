@@ -297,7 +297,7 @@ define(function (require) {
 			self.model.set("tong_caithien_hongheo", 0);
 			self.model.set("tong_caithien_hongheo_hvs", 0);
 			self.model.set("tong_diemruatay", 0);
-
+			self.$el.find("#danhsachdonvi").html("");
 			danhsachbaocao.forEach(element => {
 				self.renderItemView(element);
 				total_chuholanu += toInt(element.tong_chuholanu);

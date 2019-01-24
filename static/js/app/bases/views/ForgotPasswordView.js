@@ -10,62 +10,24 @@ define(function (require) {
 
     return Gonrin.View.extend({
         render: function () {
-
+        	var self = this;
             this.$el.html(template());
-            this.handleRegister();
+            this.$el.find("#submit_forgot").unbind("click").bind("click", function(){
+            	 self.processForgotPass();
+            });
             return this;
         },
-        handleRegister : function(){
-        	var self = this;
-        	$('.login-form').validate({
-                errorElement: 'span', //default input error message container
-                errorClass: 'help-block', // default input error message class
-                focusInvalid: false, // do not focus the last invalid input
-                rules: {
-                    email: {
-                        required: true
-                    }
-                },
-
-                messages: {
-                    email: {
-                        required: "Email is required."
-                    }
-                },
-
-                invalidHandler: function(event, validator) { //display error alert on form submit   
-                    $('.alert-danger', $('.login-form')).show();
-                },
-
-                highlight: function(element) { // hightlight error inputs
-                    $(element)
-                        .closest('.form-group').addClass('has-error'); // set error class to the control group
-                },
-
-                success: function(label) {
-                    label.closest('.form-group').removeClass('has-error');
-                    label.remove();
-                },
-
-                errorPlacement: function(error, element) {
-                    error.insertAfter(element.closest('.input-icon'));
-                },
-
-                submitHandler: function(form) {
-                    //form.submit(); // form validation success, call ajax form submit
-                	self.processForgotPass();
-                }
-            });
-        	
-        },
-        events: {
-       	 //'click #login-btn' : 'processLogin',
-       	 //'click button#submit-btn': 'processLogin'
-       	},
-
+       	validateEmail: function (email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		},
        	processForgotPass: function(){
-       		
+       		var self = this;
        		var email = this.$('[name=email]').val();
+       		if(email === null || email=== "" || self.validateEmail(email) === false){
+       			self.getApp().notify("Email không hợp lệ, vui lòng kiểm tra lại");
+       			return;
+       		}
        		var data = JSON.stringify({
        			email: email
        		});
@@ -80,8 +42,7 @@ define(function (require) {
 	    		    },
        		    dataType: 'json',
        		    success: function (data) {
-       		    	$('.form-actions').html('<label class="control-label">'+data.error_msg+'</label>');
-       		    	//self.getApp().getRouter().navigate("login");
+       		    	$('.form-actions').html('<label class="control-label">'+data.error_message+'</label>');
        		    },
        		    error: function(xhr, status, error){
     		    	try {

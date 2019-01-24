@@ -236,6 +236,7 @@ define(function (require) {
 			
 			self.model.set("tong_sothon",0);
 			self.model.set("tong_soxa",0);
+			self.$el.find("#danhsachdonvi").html("");
 			danhsachbaocao.forEach(element => {
 				console.log("element======",element);
 				total_chuholanu += toInt(element.tong_chuholanu);

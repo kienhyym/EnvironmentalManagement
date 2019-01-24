@@ -31,5 +31,5 @@ aiosmtplib
 apscheduler
 aiohttp
 Pillow
-Flask-Login==0.3.2
-Flask-Mail==0.9.1
+redis
+apscheduler

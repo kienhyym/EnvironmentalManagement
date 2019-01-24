@@ -6,6 +6,7 @@ def init_controllers(app):
     import application.controllers.danhmuc_api
     import application.controllers.donvi_api
     import application.controllers.user
+    import application.controllers.forgot_password
 #     import application.controllers.baocao_api
     import application.controllers.vesinhhogiadinh_api
 #     import application.controllers.model_hdhgd_api
