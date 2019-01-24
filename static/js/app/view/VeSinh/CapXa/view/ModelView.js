@@ -139,6 +139,7 @@ define(function (require) {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
+									self.compute_baocao();
 //									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 //									self.getApp().getRouter().navigate(self.collectionName 
 //											+ "/collection?loaikybaocao="+routeloaibaocao);
@@ -191,6 +192,7 @@ define(function (require) {
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
+								self.compute_baocao();
 							},
 							error: function (xhr, status, error) {
                             	try {
@@ -244,78 +246,9 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
-//						self.$el.find("#nambaocao").attr({"disabled":true});
 						var danhsachbaocao = data.attributes.danhsachbaocao;
 						self.model.set("danhsachbaocao",danhsachbaocao);
-						var total_chuholanu = 0;
-						var total_sohongheo = 0;
-						var total_dtts = 0;
-						var total_soNam = 0;
-						var total_soNu = 0;
-						var total_danso = 0;
-						var total_soho = 0;
-						self.model.set("tong_tuhoai", 0);
-						self.model.set("tong_tuhoai_hvs", 0);
-						self.model.set("tong_thamdoi", 0);
-						self.model.set("tong_thamdoi_hvs", 0);
-						self.model.set("tong_2ngan", 0);
-						self.model.set("tong_2ngan_hvs", 0);
-						self.model.set("tong_ongthonghoi", 0);
-						self.model.set("tong_ongthonghoi_hvs", 0);
-						self.model.set("tong_loaikhac", 0);
-						self.model.set("tong_khongnhatieu", 0);
-						self.model.set("tong_hopvs", 0);
-						self.model.set("tong_khonghopvs", 0);
-						self.model.set("tong_caithien", 0);
-						self.model.set("tong_caithien_hvs", 0);
-						self.model.set("tong_caithien_hongheo", 0);
-						self.model.set("tong_caithien_hongheo_hvs", 0);
-						self.model.set("tong_diemruatay", 0);
-
-						danhsachbaocao.forEach(element => {
-							self.renderItemView(element);
-							total_chuholanu += toInt(element.tong_chuholanu);
-							total_sohongheo += toInt(element.tong_sohongheo);
-							total_dtts += toInt(element.tong_sohodtts);
-							total_soNam += toInt(element.tong_nam);
-							total_soNu += toInt(element.tong_nu);
-							total_soho += toInt(element.tong_soho);
-							total_danso += toInt(element.tong_danso);
-							
-							
-							self.model.set("tong_tuhoai", (toInt(self.model.get("tong_tuhoai"))+toInt(element.tong_tuhoai)));
-							self.model.set("tong_tuhoai_hvs", (toInt(self.model.get("tong_tuhoai_hvs"))+toInt(element.tong_tuhoai_hvs)));
-
-							self.model.set("tong_thamdoi", (toInt(self.model.get("tong_thamdoi"))+toInt(element.tong_thamdoi)));
-							self.model.set("tong_thamdoi_hvs", (toInt(self.model.get("tong_thamdoi_hvs"))+toInt(element.tong_thamdoi_hvs)));
-
-							self.model.set("tong_2ngan", (toInt(self.model.get("tong_2ngan"))+toInt(element.tong_2ngan)));
-							self.model.set("tong_2ngan_hvs", (toInt(self.model.get("tong_2ngan_hvs"))+toInt(element.tong_2ngan_hvs)));
-							
-							self.model.set("tong_ongthonghoi", (toInt(self.model.get("tong_ongthonghoi"))+toInt(element.tong_ongthonghoi)));
-							self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
-							
-							self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
-							self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
-							self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
-							self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
-							self.model.set("tong_caithien", (toInt(self.model.get("tong_caithien"))+toInt(element.tong_caithien)));
-							self.model.set("tong_caithien_hvs", (toInt(self.model.get("tong_caithien_hvs"))+toInt(element.tong_caithien)));
-							self.model.set("tong_caithien_hongheo", (toInt(self.model.get("tong_caithien_hongheo"))+toInt(element.tong_caithien_hongheo)));
-							self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
-							self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
-
-						});
-						self.model.set("tong_chuholanu", total_chuholanu);
-						self.model.set("tong_sohongheo", total_sohongheo);
-						self.model.set("tong_sohodtts", total_dtts);
-						self.model.set("tong_nam", total_soNam);
-						self.model.set("tong_nu", total_soNu);
-						self.model.set("tong_danso", total_danso);
-						self.model.set("tong_soho", total_soho);
-						self.model.set("tong_sothon", danhsachbaocao.length);
-						self.renderTinhTongI(danhsachbaocao);
-						self.model.trigger("change");
+						self.compute_baocao();
 						self.applyBindings();
 					},
 					error: function () {
@@ -336,6 +269,79 @@ define(function (require) {
 				});
 			}
 
+		},
+		compute_baocao: function(){
+			var self = this;
+			var danhsachbaocao = self.model.get("danhsachbaocao");
+			var total_chuholanu = 0;
+			var total_sohongheo = 0;
+			var total_dtts = 0;
+			var total_soNam = 0;
+			var total_soNu = 0;
+			var total_danso = 0;
+			var total_soho = 0;
+			self.model.set("tong_tuhoai", 0);
+			self.model.set("tong_tuhoai_hvs", 0);
+			self.model.set("tong_thamdoi", 0);
+			self.model.set("tong_thamdoi_hvs", 0);
+			self.model.set("tong_2ngan", 0);
+			self.model.set("tong_2ngan_hvs", 0);
+			self.model.set("tong_ongthonghoi", 0);
+			self.model.set("tong_ongthonghoi_hvs", 0);
+			self.model.set("tong_loaikhac", 0);
+			self.model.set("tong_khongnhatieu", 0);
+			self.model.set("tong_hopvs", 0);
+			self.model.set("tong_khonghopvs", 0);
+			self.model.set("tong_caithien", 0);
+			self.model.set("tong_caithien_hvs", 0);
+			self.model.set("tong_caithien_hongheo", 0);
+			self.model.set("tong_caithien_hongheo_hvs", 0);
+			self.model.set("tong_diemruatay", 0);
+
+			danhsachbaocao.forEach(element => {
+				self.renderItemView(element);
+				total_chuholanu += toInt(element.tong_chuholanu);
+				total_sohongheo += toInt(element.tong_sohongheo);
+				total_dtts += toInt(element.tong_sohodtts);
+				total_soNam += toInt(element.tong_nam);
+				total_soNu += toInt(element.tong_nu);
+				total_soho += toInt(element.tong_soho);
+				total_danso += toInt(element.tong_danso);
+				
+				
+				self.model.set("tong_tuhoai", (toInt(self.model.get("tong_tuhoai"))+toInt(element.tong_tuhoai)));
+				self.model.set("tong_tuhoai_hvs", (toInt(self.model.get("tong_tuhoai_hvs"))+toInt(element.tong_tuhoai_hvs)));
+
+				self.model.set("tong_thamdoi", (toInt(self.model.get("tong_thamdoi"))+toInt(element.tong_thamdoi)));
+				self.model.set("tong_thamdoi_hvs", (toInt(self.model.get("tong_thamdoi_hvs"))+toInt(element.tong_thamdoi_hvs)));
+
+				self.model.set("tong_2ngan", (toInt(self.model.get("tong_2ngan"))+toInt(element.tong_2ngan)));
+				self.model.set("tong_2ngan_hvs", (toInt(self.model.get("tong_2ngan_hvs"))+toInt(element.tong_2ngan_hvs)));
+				
+				self.model.set("tong_ongthonghoi", (toInt(self.model.get("tong_ongthonghoi"))+toInt(element.tong_ongthonghoi)));
+				self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
+				
+				self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
+				self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
+				self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
+				self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
+				self.model.set("tong_caithien", (toInt(self.model.get("tong_caithien"))+toInt(element.tong_caithien)));
+				self.model.set("tong_caithien_hvs", (toInt(self.model.get("tong_caithien_hvs"))+toInt(element.tong_caithien)));
+				self.model.set("tong_caithien_hongheo", (toInt(self.model.get("tong_caithien_hongheo"))+toInt(element.tong_caithien_hongheo)));
+				self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
+				self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
+
+			});
+			self.model.set("tong_chuholanu", total_chuholanu);
+			self.model.set("tong_sohongheo", total_sohongheo);
+			self.model.set("tong_sohodtts", total_dtts);
+			self.model.set("tong_nam", total_soNam);
+			self.model.set("tong_nu", total_soNu);
+			self.model.set("tong_danso", total_danso);
+			self.model.set("tong_soho", total_soho);
+			self.model.set("tong_sothon", danhsachbaocao.length);
+			self.renderTinhTongI(danhsachbaocao);
+			self.model.trigger("change");
 		},
 		renderItemView: function(element){
 			var self = this;
