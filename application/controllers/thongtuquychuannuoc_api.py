@@ -1086,7 +1086,7 @@ async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy đơn vị chưa báo cáo"}, status=520)
     else:    
         
-        return json({"data":response,"type":tuyendonvi})
+        return json(ujson.loads(ujson.dumps({"data":response,"type":tuyendonvi})))
     
     
 
