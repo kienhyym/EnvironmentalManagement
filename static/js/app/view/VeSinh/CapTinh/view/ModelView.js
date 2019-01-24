@@ -98,13 +98,13 @@ define(function (require) {
 											+ "/collection?loaikybaocao="+routeloaibaocao);
 								},
 								error: function (xhr, status, error) {
-									try {
-										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-									}
-									catch (err) {
-										self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
-									}
-								}
+	                            	try {
+	                                    self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+	                                }
+	                                catch (err) {
+	                                    self.getApp().notify({ message: error.xhr.responseText }, { type: "danger", delay: 1000 });
+	                                }
+	                            }
 							});
 						}else{
 							self.getApp().notify("Tài khoản hiện tại không có quyền sửa báo cáo này,\n Chỉ có đơn vị tạo báo cáo mới được phép sửa báo cáo này")
@@ -117,23 +117,35 @@ define(function (require) {
 					buttonClass: "btn-primary btn-sm",
 					label: "Cộng dồn",
 					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
+						return true;
+//						return this.getApp().getRouter().getParam("id") !== null;
 					},
 					command: function () {
 						var self = this;
-						self.model.unset("danhsachbaocao");
+//						self.model.unset("danhsachbaocao");
+						var nambaocao = self.model.get("nambaocao");
+						var tinhthanh = self.model.get("tinhthanh");
+						
+						if(nambaocao === null || nambaocao === ""){
+							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+							return;
+						}else if(tinhthanh === null){
+							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
+							return;
+						}
+						self.model.set("tentinh",self.model.get("tinhthanh").ten);
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công");
 							},
 							error: function (xhr, status, error) {
-								try {
-									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-								}
-								catch (err) {
-									self.getApp().notify({ message: xhr.responseText }, { type: "danger", delay: 1000 });
-								}
-							}
+                            	try {
+                                    self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                                }
+                                catch (err) {
+                                    self.getApp().notify({ message: error.xhr.responseText }, { type: "danger", delay: 1000 });
+                                }
+                            }
 						});
 					}
 				},
@@ -158,6 +170,7 @@ define(function (require) {
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
 				if (!!currentUser.donvi.tinhthanh_id){
+					self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
 				}
