@@ -13,6 +13,7 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "donvicapnuoc",
+    	bindings:"data-donvicapnuoc-bind",
     	tools : [
     	    {
     	    	name: "defaultgr",
