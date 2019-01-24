@@ -11,7 +11,9 @@ from gatco.response import json, text, html
 
 from .helpers import *
 from application.models.model_thongtuquychuannuoc import *
-from sqlalchemy import or_, and_
+from application.models.model_danhmuc import TinhThanh, QuanHuyen
+from application.models.model_user import DonVi
+from sqlalchemy import or_, and_,desc, asc
 from application.client import HTTPClient
 from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime, date
@@ -1001,7 +1003,6 @@ async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
     kybaocao = request.args.get("kybaocao", None)
     tinhthanh_id = request.args.get("tinhthanh_id", None)
     quanhuyen_id = request.args.get("quanhuyen_id", None)
-    viennuocsach_id = request.args.get("viennuocsach_id", None)
     
     currentuser = await current_user(request)
     if currentuser is None:
@@ -1011,52 +1012,79 @@ async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
     if "nambaocao" is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
-    record = None
-    tuyendonvi = None
-    response = None
+    tuyendonvi = "address"
+    response = []
     donvicapnuocs = None
     if(quanhuyen_id is not None and quanhuyen_id!=""  and quanhuyen_id !="undefined"):
-        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == quanhuyen_id).filter(DonViCapNuoc.congsuat <1000 ).all()
-#     if(donvicapnuoc_id is not None and donvicapnuoc_id != ""):
-#         record = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(and_(TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id == donvicapnuoc_id,\
-#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == loaikybaocao, \
-#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao == kybaocao, \
-#                                                       TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == nambaocao)).first()
-#         if (record is not None):
-#             response = to_dict(record)
-#             response["donvicapnuoc"] = to_dict(record.donvicapnuoc)                                            
-#         tuyendonvi = "donvicapnuoc"                                              
-#     elif(viennuocsach_id is not None and viennuocsach_id != ""):
-#         record = db.session.query(BaoCaoVienChuyenNganhNuoc).filter(and_(BaoCaoVienChuyenNganhNuoc.donvi_id == viennuocsach_id, \
-#                                                       BaoCaoVienChuyenNganhNuoc.loaikybaocao == loaikybaocao, \
-#                                                       BaoCaoVienChuyenNganhNuoc.kybaocao == kybaocao, \
-#                                                       BaoCaoVienChuyenNganhNuoc.nambaocao == nambaocao)).first()
-#         if (record is not None):
-#             response = to_dict(record)                                         
-#         tuyendonvi = "viennuocsach"
-#     else:
-#         if(quanhuyen_id is not None and quanhuyen_id!=""):
-#             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == quanhuyen_id, \
-#                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
-#                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
-#                                                         BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
-#                                                         BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
-#             if (record is not None):
-#                 response = to_dict(record)
-#             tuyendonvi = "quanhuyen"                                            
-#         elif(tinhthanh_id is not None and tinhthanh_id!=""):
-#             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinhthanh_id, \
-#                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
-#                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
-#                                                         BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
-#                                                         BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
-#             if (record is not None):
-#                 response = to_dict(record)
-#             tuyendonvi = "tinhthanh"                                            
-    if record is None:
-        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của đơn vị, vui lòng kiểm tra lại"}, status=520)
+        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == quanhuyen_id).filter(DonViCapNuoc.congsuat <1000).order_by(desc(DonViCapNuoc.congsuat)).all()
+    elif(tinhthanh_id is not None and tinhthanh_id!=""  and tinhthanh_id !="undefined"):
+        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.tinhthanh_id == tinhthanh_id).order_by(desc(DonViCapNuoc.congsuat)).all()
+    elif (currentuser.donvi.tuyendonvi_id == 3):
+        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id).filter(DonViCapNuoc.congsuat <1000 ).order_by(desc(DonViCapNuoc.congsuat)).all()
+    elif (currentuser.donvi.tuyendonvi_id == 2):
+        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).order_by(desc(DonViCapNuoc.congsuat)).all()
+    
+    if donvicapnuocs is None:
+        if (currentuser.donvi.tuyendonvi_id == 1):
+            danhsach_vien = db.session.query(DonVi).filter(DonVi.tuyendonvi_id ==10).order_by(asc(DonVi.ten)).all()
+            if danhsach_vien is not None and len(danhsach_vien):
+                for vien in danhsach_vien:
+                    check_vien = db.session.query(BaoCaoVienChuyenNganhNuoc).filter(and_(BaoCaoVienChuyenNganhNuoc.donvi_id == vien.id, \
+                                                              BaoCaoVienChuyenNganhNuoc.loaikybaocao == loaikybaocao, \
+                                                              BaoCaoVienChuyenNganhNuoc.kybaocao == kybaocao, \
+                                                              BaoCaoVienChuyenNganhNuoc.nambaocao == nambaocao)).count()
+                    if (check_vien is not None or check_vien<=0):
+                        objdata = to_dict(vien)
+                        objdata["type"] ="viennuocsach"
+                        response.append(objdata)                                      
+            tuyendonvi = "viennuocsach"
+            danhsach_tinhthanh = db.session.query(TinhThanh).all()
+            if danhsach_tinhthanh is  not None and len(danhsach_tinhthanh)>0:
+                for tinh in danhsach_tinhthanh:
+                    
+                    bc_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinh.id, \
+                          BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
+                          BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+                          BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+                          BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).count()
+                    if bc_tinh is None or bc_tinh <=0:
+                        objdata = to_dict(tinh)
+                        objdata["type"] ="tinhthanh"
+                        response.append(objdata)
+        elif (currentuser.donvi.tuyendonvi_id == 10):
+            vien_info = db.session.query(MapVienChuyenNganhNuocVaTinh).filter(MapVienChuyenNganhNuocVaTinh.donvi_id == currentuser.donvi.id).all()
+            if vien_info is not None and vien_info.danhsachtinhthanh is not None:
+                for tinh in vien_info.danhsachtinhthanh:
+                    bc_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinh.id, \
+                          BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
+                          BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
+                          BaoCaoNuocSachHuyenTinh.kybaocao == kybaocao, \
+                          BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).count()
+                    if bc_tinh is None or bc_tinh <=0:
+                        objdata = to_dict(tinh)
+                        objdata["type"] ="tinhthanh"
+                        response.append(objdata)
+            tuyendonvi = "tinhthanh"
+    else:
+        for donvi in donvicapnuocs:
+            bc_donvi = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(and_(TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id == donvi.id,\
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == loaikybaocao, \
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao == kybaocao, \
+                                                      TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == nambaocao)).count()
+            if bc_donvi is None or bc_donvi <=0:
+                response.append(donvi)
+                objdata = to_dict(donvi)
+                objdata["tinhthanh"] = to_dict(donvi.tinhthanh) if donvi.tinhthanh is not None else None
+                objdata["quanhuyen"] = to_dict(donvi.quanhuyen) if donvi.quanhuyen is not None else None
+                objdata["type"] ="donvicapnuoc"
+                response.append(objdata)
+        tuyendonvi = "donvicapnuoc"
+                      
+    if response is None or len(response) == 0:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy đơn vị chưa báo cáo"}, status=520)
     else:    
-        return json({"data":response, "tuyendonvi":tuyendonvi})
+        
+        return json({"data":response,"type":tuyendonvi})
     
     
 

@@ -58,7 +58,7 @@ define(function (require) {
     	},
     	render:function(){
     		var currentUser = this.getApp().currentUser;
-	    	 if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
+	    	 if (this.getApp().data("quanhuyen_id") !== null) {
                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
             }
     		var self = this;
