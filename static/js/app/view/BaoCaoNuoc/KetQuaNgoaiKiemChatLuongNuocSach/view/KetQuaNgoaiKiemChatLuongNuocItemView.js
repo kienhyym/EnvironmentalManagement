@@ -108,11 +108,11 @@ define(function (require) {
         },
         check_thongso: function(objthongso, ketquathongso){
         	var result = 0;
-        	if (ketquathongso && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida == null && ketquathongso >= objthongso.gioihan_toithieu){ 
+        	if (objthongso !== null && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida == null && ketquathongso >= objthongso.gioihan_toithieu){ 
         		result = 1;
-        	}else if (ketquathongso && objthongso.gioihan_toithieu == null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida){
+        	}else if (objthongso !== null && objthongso.gioihan_toithieu == null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida){
         		result = 1;
-        	} else if (ketquathongso && !!objthongso.gioihan_toithieu && !!objthongso.gioihan_toida && ketquathongso <= objthongso.gioihan_toida && ketquathongso >= objthongso.gioihan_toithieu){
+        	} else if (objthongso !== null && objthongso.gioihan_toithieu !== null && objthongso.gioihan_toida !== null && ketquathongso <= objthongso.gioihan_toida && ketquathongso >= objthongso.gioihan_toithieu){
         		result = 1;
         	}
         	return result;
