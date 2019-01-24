@@ -495,7 +495,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap is not None else 0
     
 #     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-    list_baocao = congdonTongCong(VSCapThon,currentuser, obj)
+    list_baocao = congdonTongCong(VSCapThon,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     
 async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
