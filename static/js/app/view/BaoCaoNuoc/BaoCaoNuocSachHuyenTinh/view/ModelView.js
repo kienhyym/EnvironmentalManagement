@@ -289,7 +289,7 @@ define(function (require) {
         			var tr = $("<tr>");
         			if(elementID === "thongso_khongdat_ngoaikiem_baocao"){
         				var tendonvingoaikiem = "";
-        				if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem!== "undefined"){
+        				if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){
         					tendonvingoaikiem = thongso.tendonvingoaikiem;
         				}
         				tr.append('<td>'+tendonvingoaikiem+'</td>');
