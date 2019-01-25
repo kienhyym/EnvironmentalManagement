@@ -208,7 +208,6 @@ define(function(require) {
             self.model.set("tongso_hogiadinh", data.tongso_hogiadinh);
             self.model.set("nguonnuoc_nguyenlieu", toInt(data.nguonnuoc_nguyenlieu));
             self.model.set("diachi_donvicapnuoc", data.diachi);
-            self.applyBindings();
         });
 		if (id) {
 			this.model.set('id', id);
