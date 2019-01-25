@@ -48,7 +48,7 @@ define(function (require) {
 		render: function () {
 			var self = this;
 			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
-				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}}, {"congsuat":{"$gte":1000}}]};
+				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
