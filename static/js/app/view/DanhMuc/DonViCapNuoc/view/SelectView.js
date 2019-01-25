@@ -14,6 +14,7 @@ define(function (require) {
     	urlPrefix: "/api/v1/",
     	collectionName: "donvicapnuoc",
     	bindings:"data-donvicapnuoc-bind",
+		bindingBlocks: 'block-donvicapnuoc-bind',
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -28,9 +29,10 @@ define(function (require) {
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) {    			    	    			
-		    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
 		    	    			self.getApp().trigger("DonViCapNuoc_onSelected", this.uiControl.selectedItems[0]);
+		    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
 		    	    		}
+		    	    		self.destroy();
 		    	    		self.close();
 		    	    	}
 		    	    },

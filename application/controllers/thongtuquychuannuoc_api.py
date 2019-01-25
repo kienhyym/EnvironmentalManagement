@@ -207,7 +207,7 @@ async def process_baocao_noikiem_tonghopketqua(startDate=None, endDate=None, dat
                 tong_maunuoc_thunghiem_noikiem += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                        if( vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] ==1):
                             tong_mau_dat_quychuan_noikiem += 1
                         else:
                             tong_mau_khongdat_quychuan_noikiem +=1
@@ -311,7 +311,7 @@ async def process_baocao_ngoaikiem_tonghopketqua(startDate=None, endDate=None, d
                 tong_maunuoc_thunghiem_ngoaikiem += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                        if( vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] ==1):
                             tong_mau_dat_quychuan_ngoaikiem += 1
                         else:
                             tong_mau_khongdat_quychuan_ngoaikiem +=1
@@ -526,7 +526,7 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                 tong_maunuoc_thunghiem_ngoaikiem_trungtam += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                        if( vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] ==1):
                             tong_mau_dat_quychuan_ngoaikiem_trungtam += 1
                         else:
                             tong_mau_khongdat_quychuan_ngoaikiem_trungtam +=1
@@ -878,7 +878,7 @@ async def process_baocao_vien_chuyennganh_ngoaikiem(currentuser=None, data=None)
                 tong_maunuoc_thunghiem_ngoaikiem_vien += baocao.somauvavitri
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
-                        if( vitrimau is not None and vitrimau["ketqua"] is not None and vitrimau["ketqua"] ==1):
+                        if( vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] ==1):
                             tong_mau_dat_quychuan_ngoaikiem_vien += 1
                         else:
                             tong_mau_khongdat_quychuan_ngoaikiem_vien +=1
