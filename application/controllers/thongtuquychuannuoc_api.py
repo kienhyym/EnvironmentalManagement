@@ -13,7 +13,7 @@ from .helpers import *
 from application.models.model_thongtuquychuannuoc import *
 from application.models.model_danhmuc import TinhThanh, QuanHuyen
 from application.models.model_user import DonVi
-from sqlalchemy import or_, and_,desc, asc
+from sqlalchemy import or_, and_, desc, asc
 from application.client import HTTPClient
 from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime, date
@@ -420,9 +420,11 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     if currentuser.donvi.tuyendonvi_id == 2:
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["loaibaocao"] = 1
+        danhsach_kybaocao = [1,2]
+        if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
+            danhsach_kybaocao = [1,2,3,4]
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
-            filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-                DonViCapNuoc.congsuat>=1000)).all()
+            filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).all()
                 
         baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
                  KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 1, \
@@ -433,7 +435,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
         # ket qua noi kiem nuoc cua cac dong vi
         baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
                 and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-                TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke>=1000,\
+                TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao.in_(danhsach_kybaocao), \
                 TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
                 TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     elif currentuser.donvi.tuyendonvi_id == 3:
