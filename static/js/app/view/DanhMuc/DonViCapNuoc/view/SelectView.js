@@ -14,6 +14,7 @@ define(function (require) {
     	urlPrefix: "/api/v1/",
     	collectionName: "donvicapnuoc",
     	bindings:"data-donvicapnuoc-bind",
+		bindingBlocks: 'block-donvicapnuoc-bind',
     	tools : [
     	    {
     	    	name: "defaultgr",
