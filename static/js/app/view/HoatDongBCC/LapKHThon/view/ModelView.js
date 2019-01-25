@@ -143,11 +143,12 @@ define(function (require) {
 									self.getApp().notify({message: "Lưu thông tin thành công"}, {type: "success"});
 									self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
 								},
-								error: function (model, xhr, options) {
+								error: function (xhr, status, error) {
 									try {
-										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-									} catch (err) {
-										self.getApp().notify({ message: 'Lưu thông tin không thành công!' }, { type: "danger", delay: 1000 });
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+									catch (err) {
+									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
 									}
 								}
 							});

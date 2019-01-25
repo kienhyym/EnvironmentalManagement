@@ -42,9 +42,13 @@ define(function (require) {
 
 								self.getApp().notify("Lưu đơn vị thành công!");
 							},
-							error: function (model, xhr, options) {
-								console.log($.parseJSON(xhr.responseText).message);
-								self.getApp().notify("Lưu đơn vị không thành công!");
+							error: function (xhr, status, error) {
+								try {
+								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+								}
 							},
 							complete: function () {
 								self.getApp().hideloading();

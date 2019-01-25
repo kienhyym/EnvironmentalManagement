@@ -88,7 +88,7 @@ define(function (require) {
 				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
 				return;
 			}else{
-				var txt_header = "Danh sách báo cáo cấp Thôn - "+itemkybaocao.text;
+				var txt_header = "Danh sách báo cáo cấp Tỉnh - "+itemkybaocao.text;
 				self.$el.find(".panel-heading h3").html(txt_header);
 				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
 					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
