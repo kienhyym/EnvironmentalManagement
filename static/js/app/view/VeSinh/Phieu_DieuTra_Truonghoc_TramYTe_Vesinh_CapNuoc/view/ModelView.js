@@ -237,7 +237,7 @@ define(function (require) {
                                     self.getApp().notify({message: "Bạn phải nhập số khu vệ sinh trong trường trạm trước khi thêm mới phiếu!"}, {type: "danger"});
                                     return;
                                 }
-                                if (sokhuvesinh_truong_tramyte >= phieuchitiet.length) {
+                                if (sokhuvesinh_truong_tramyte > phieuchitiet.length) {
                                     var view = new Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView({ "viewData": self.model.toJSON() });
                                     view.dialog({
                                         size: "large"
