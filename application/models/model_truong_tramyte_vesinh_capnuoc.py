@@ -46,6 +46,7 @@ class Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc(CommonModel):
     thongtinlienlac = db.Column(db.String)
     nguonnuocchinh = db.Column(db.Integer)
     nguonnuocchinh_loaikhac = db.Column(db.String)
+    chatluongnuocuong = db.Column(db.Integer)
     sokhuvesinh_truong_tramyte = db.Column(db.Integer)
     sokhuvesinh_truong_hossinh_nam = db.Column(db.Integer)
     sokhuvesinh_truong_hocsinh_nu = db.Column(db.Integer)

@@ -13,6 +13,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "quanhuyen",
+		bindings:"data-quanhuyen-bind",
 		state: null,
 		tools: [
 			{

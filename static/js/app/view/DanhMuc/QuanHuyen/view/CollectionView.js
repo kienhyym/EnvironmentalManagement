@@ -12,6 +12,7 @@ define(function (require) {
         modelSchema: schema,
         urlPrefix: "/api/v1/",
         collectionName: "quanhuyen",
+        bindings:"data-quanhuyen-bind",
         uiControl: {
             fields: [
                 { field: "ma", label: "Mã", width:250},

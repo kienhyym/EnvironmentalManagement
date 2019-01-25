@@ -12,6 +12,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "nganh",
+		bindings:"data-nganh-bind",
 		tools: [
 			{
 				name: "defaultgr",

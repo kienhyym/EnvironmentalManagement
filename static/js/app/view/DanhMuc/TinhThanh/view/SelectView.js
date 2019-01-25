@@ -12,7 +12,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "tinhthanh",
+		collectionName: "tinhthanh",
+		bindings:"data-tinhthanh-bind",
     	textField: "ten",
 //    	valueField: "id",
     	tools : [

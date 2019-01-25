@@ -12,7 +12,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "quanhuyen",
+		collectionName: "quanhuyen",
+		bindings:"data-quanhuyen-bind",
     	textField: "ten",
     	valueField: "id",
     	tools : [

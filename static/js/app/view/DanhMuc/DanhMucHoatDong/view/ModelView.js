@@ -13,6 +13,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "danhmuchoatdong",
+		bindings:"data-danhmuchoatdong-bind",
 		uiControl: {
 			fields: [
 				{

@@ -13,6 +13,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "xaphuong",
+		bindings:"data-xaphuong-bind",
 		state: null,
 		tools: [
 			{

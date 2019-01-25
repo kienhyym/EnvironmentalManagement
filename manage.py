@@ -16,7 +16,7 @@ from application import run_app
 from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
-from application.models.model_danhmuc import DanToc, QuocGia, TinhThanh
+from application.models.model_danhmuc import DanToc, QuocGia, TinhThanh, QuanHuyen, XaPhuong
 
 
 # Instance
@@ -114,7 +114,7 @@ def create_dantoc_model():
 
 #@app.route('/createdata', methods=['GET'])
 @manager.command
-def create_test_models():  
+def create_default_models():  
     #add tuyen donvi  
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url_tuyendonvi = os.path.join(SITE_ROOT, "static/js/app/enum", "TuyenDonViEnum.json")
@@ -128,7 +128,7 @@ def create_test_models():
     donvi = DonVi( ten=u'Cục quản lý môi trường bộ Y Tế ', captren = None, tuyendonvi_id = tuyendonvi.id)
     db.session.add(donvi)
     db.session.flush()
-    
+    db.session.commit()
     
     #add role
     role1 = Role(id=1,name='Admin')
@@ -137,7 +137,8 @@ def create_test_models():
     db.session.add(role2)
     role3 = Role(id=3,name='User')
     db.session.add(role3)
-    
+    db.session.commit()
+
     #add user test     
     user1 = User(email='admin', fullname='Admin', password=auth.encrypt_password('123456'),donvi_id=donvi.id,active=True)
     user1.roles.append(role1)
@@ -147,30 +148,69 @@ def create_test_models():
     user2 = User(email='cucmtyy', fullname='Cục Môi Trường Y Tế', password=auth.encrypt_password('123456'),donvi_id=donvi.id,active=True)
     user2.roles.append(role2)
     db.session.add(user2)
-    
+    db.session.commit()
     
     #add dantoc
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json");
+    json_url_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json")
     data_dantoc = json.load(open(json_url_dantoc))
     for item_dantoc in data_dantoc:
         dantoc = DanToc(ma = item_dantoc["value"], ten = item_dantoc["text"])
         db.session.add(dantoc)
-        
-    #add tinhthanh, quoc gia    
-    quocgias = QuocGia(ma = "VN", ten = "Việt nam")
+        db.session.commit()
+
+@manager.command
+def add_danhsach_quocgia_tinhthanh():   
+    quocgias = QuocGia(ma = "VN", ten = "Việt Nam")
     db.session.add(quocgias)
     db.session.flush() 
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url_tinhthanh = os.path.join(SITE_ROOT, "static/js/app/enum", "TinhThanhEnum.json")
-    data_tinhthanh = json.load(open(json_url_tinhthanh))
-    for item_tinhthanh in data_tinhthanh:
-        print(item_tinhthanh)
-        tinhthanhs = TinhThanh(ma = item_tinhthanh["slug"], ten = item_tinhthanh["name"], quocgia_id = quocgias.id)
-        db.session.add(tinhthanhs)
-
-         
     db.session.commit()
+    try:
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url_dstinhthanh = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dstinhthanh = json.load(open(json_url_dstinhthanh))
+        for item_dstinhthanh in data_dstinhthanh:
+            tinhthanh_filter = db.session.query(TinhThanh).filter(TinhThanh.ma == item_dstinhthanh["matinhthanh"]).first()
+            if tinhthanh_filter is None:
+                quocgia_filter = db.session.query(QuocGia).filter(QuocGia.ma == 'VN').first()
+                tinhthanh_filter = TinhThanh(ten = item_dstinhthanh["tentinhthanh"], ma = item_dstinhthanh["matinhthanh"], quocgia_id = quocgia_filter.id)
+                db.session.add(tinhthanh_filter)
+                db.session.commit()
+    except Exception as e:
+        print("TINH THANH ERROR",e)
+
+
+@manager.command
+def add_danhsach_quanhuyen():
+    try:
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url_dsquanhuyen = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dsquanhuyen = json.load(open(json_url_dsquanhuyen))
+        for item_dsquanhuyen in data_dsquanhuyen:
+            quanhuyen_filter = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_dsquanhuyen["maquanhuyen"]).first()
+            if quanhuyen_filter is None:
+                tinhthanh_filter = db.session.query(TinhThanh).filter(TinhThanh.ma == item_dsquanhuyen["matinhthanh"]).first()
+                quanhuyen_filter = QuanHuyen(ten = item_dsquanhuyen["tenquanhuyen"], ma = item_dsquanhuyen["maquanhuyen"], tinhthanh_id = tinhthanh_filter.id)
+                db.session.add(quanhuyen_filter)
+                db.session.commit()
+    except Exception as e:
+        print("QUAN HUYEN ERROR", e)
+
+@manager.command
+def add_danhsach_xaphuong():
+    try:
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url_dsxaphuong = os.path.join(SITE_ROOT, "static/js/app/enum", "ThongTinTinhThanh.json")
+        data_dsxaphuong = json.load(open(json_url_dsxaphuong))
+        for item_dsxaphuong in data_dsxaphuong:
+            xaphuong_filter = db.session.query(XaPhuong).filter(XaPhuong.ma == item_dsxaphuong["maxaphuong"]).first()
+            if xaphuong_filter is None:
+                quanhuyen_filter = db.session.query(QuanHuyen).filter(QuanHuyen.ma == item_dsxaphuong["maquanhuyen"]).first()
+                xaphuong_filter = XaPhuong(ten = item_dsxaphuong["tenxaphuong"], ma = item_dsxaphuong["maxaphuong"], quanhuyen_id = quanhuyen_filter.id)
+                db.session.add(xaphuong_filter)
+                db.session.commit()
+    except Exception as e:
+        print("XA PHUONG ERROR", e)
 
 
     
@@ -178,7 +218,10 @@ def create_test_models():
 def run():
     role = db.session.query(Role).filter(Role.name == 'User').first()
     if role is None:
-        create_test_models()
+        create_default_models()
+        add_danhsach_quocgia_tinhthanh()
+        add_danhsach_quanhuyen()
+        add_danhsach_xaphuong()
         print("Khoi tao du lieu mau")
         
     run_app(host="0.0.0.0", port=9070)

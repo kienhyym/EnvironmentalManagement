@@ -11,7 +11,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "xaphuong",
+		collectionName: "xaphuong",
+		bindings:"data-xaphuong-bind",
     	uiControl:{
 	    	fields: [
 		     	 { field: "ma", label: "Mã", width:250},
