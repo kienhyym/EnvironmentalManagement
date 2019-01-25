@@ -189,8 +189,14 @@ define(function (require) {
                 	var txt_header = "Báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
     				if(self.getApp().currentUser.donvi.tuyendonvi_id === 3){
     					txt_header = "Báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
+    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quản ngoại kiểm của Trung tâm y tế Huyện");
+    					self.$el.find("#tong_hogiadinh_diaban_txt").html("Tổng số HGĐ trên địa bàn huyện");
+
+    					
     				}else{
     					txt_header = "Báo cáo dành cho Trung tâm kiểm soát bệnh tật Tỉnh - "+itemkybaocao.text;
+    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quản ngoại kiểm của Trung tâm kiểm soát bệnh tật Tỉnh");
+    					self.$el.find("#tong_hogiadinh_diaban_txt").html("Tổng số HGĐ trên địa bàn tỉnh");
     				}
     				self.$el.find(".panel-heading h3").html(txt_header);
                     self.model.set("loaikybaocao", itemkybaocao.loaikybaocao);
