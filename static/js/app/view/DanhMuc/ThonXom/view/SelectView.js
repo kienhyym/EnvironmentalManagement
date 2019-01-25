@@ -12,7 +12,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "thonxom",
+		collectionName: "thonxom",
+		bindings:"data-thonxom-bind",
     	textField: "ten",
     	valueField: "id",
     	tools : [

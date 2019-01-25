@@ -11,7 +11,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "thongsobaocaochatluongnuoc",
+		collectionName: "thongsobaocaochatluongnuoc",
+		bindings:"data-thongsobaocaochatluongnuoc-bind",
     	uiControl:{
     		fields: [
 	    	     { 

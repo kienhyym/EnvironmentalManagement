@@ -12,6 +12,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "dantoc",
+		bindings:"data-dantoc-bind",
 		tools: [
 			{
 				name: "defaultgr",

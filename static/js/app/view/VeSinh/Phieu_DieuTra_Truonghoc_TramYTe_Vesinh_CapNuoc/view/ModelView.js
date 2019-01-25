@@ -140,6 +140,25 @@ define(function (require) {
                     ]
                 },
                 {
+                    field: "chatluongnuocuong",
+                    uicontrol: "radio",
+                    textField: "text",
+                    valueField: "value",
+                    dataSource: [
+                    	{
+	                        value: 1,
+	                        text: "Có - Đạt"
+	                    }, {
+	                        value: 0,
+	                        text: "Có - Không đạt"
+                        },
+                        {
+	                        value: 96,
+	                        text: "Không có"
+	                    }
+                    ]
+                },
+                {
                     field: "phieuchitiet",
                     uicontrol: "grid",
                     refresh: true,
@@ -209,52 +228,76 @@ define(function (require) {
                             label: "Thêm Phiếu",
                             command: function () {
                                 var self = this;
-                                var view = new Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView({ "viewData": self.model.toJSON() });
-                                view.dialog({
-                                    size: "large"
-                                });
-                                view.$el.find("#quansat_khuvesinh_loaikhac").hide();
-                                view.model.on("change:quansat_khuvesinh", function () {
-                                	if (view.model.get("quansat_khuvesinh") == 96) {
-                                		view.$el.find("#quansat_khuvesinh_loaikhac").show();
-                                	} else{
-                                		view.$el.find("#quansat_khuvesinh_loaikhac").hide();
-                                	}
-                    			});
-                                
-                                view.model.on("change:congtrinh_ruatay", function () {
-                                	if (view.model.get("congtrinh_ruatay") == 2) {
-                                		view.$el.find("#quansat_congtrinh_ruatay").hide();
-                                	} else{
-                                		view.$el.find("#quansat_congtrinh_ruatay").show();
-                                	}
-                    			});
-                                
-                                view.model.on("change:khu_ditieu", function () {
-                                	if (view.model.get("khu_ditieu") == 1) {
-                                		view.$el.find("#thongtinkhuditieu").show();
-                                	} else{
-                                		view.$el.find("#thongtinkhuditieu").hide();
-                                	}
-                    			});
-
-                                var tentruongtram = self.model.get("ten_truong_tramyte");
-                                view.model.set("ten_truong_tramyte", tentruongtram);
-                                var tentruongtram = self.model.get("ma_truong_tramyte");
-                                view.model.set("ma_truong_tramyte", tentruongtram);
-
-                                view.on('close', function (data) {
-
-                                    var phieuchitiet = self.model.get('phieuchitiet');
-                                    if (phieuchitiet == null) {
-                                        phieuchitiet = [];
+                                var phieuchitiet = self.model.get('phieuchitiet');
+                                if (phieuchitiet == null){
+                                    phieuchitiet = []
+                                }
+                                var sokhuvesinh_truong_tramyte = self.model.get('sokhuvesinh_truong_tramyte');
+                                if (sokhuvesinh_truong_tramyte == null || sokhuvesinh_truong_tramyte == ''){
+                                    self.getApp().notify({message: "Bạn phải nhập số khu vệ sinh trong trường trạm trước khi thêm mới phiếu!"}, {type: "danger"});
+                                    return;
+                                }
+                                if (sokhuvesinh_truong_tramyte >= phieuchitiet.length) {
+                                    var view = new Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView({ "viewData": self.model.toJSON() });
+                                    view.dialog({
+                                        size: "large"
+                                    });
+                                    view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                                    view.model.on("change:quansat_khuvesinh", function () {
+                                        if (view.model.get("quansat_khuvesinh") == 96) {
+                                            view.$el.find("#quansat_khuvesinh_loaikhac").show();
+                                        } else{
+                                            view.$el.find("#quansat_khuvesinh_loaikhac").hide();
+                                        }
+                                        
+                                        if (view.model.get("quansat_khuvesinh") == 4 || view.model.get("quansat_khuvesinh") == 6) {
+                                            view.$el.find("#nuocthaichaydidau").show();
+                                        } else {
+                                            view.$el.find("#nuocthaichaydidau").hide();
+                                        }
+                                    });
+                                    
+                                    view.model.on("change:congtrinh_ruatay", function () {
+                                        if (view.model.get("congtrinh_ruatay") == 2) {
+                                            view.$el.find("#quansat_congtrinh_ruatay").hide();
+                                        } else{
+                                            view.$el.find("#quansat_congtrinh_ruatay").show();
+                                        }
+                                    });
+                                    
+                                    view.model.on("change:khu_ditieu", function () {
+                                        if (view.model.get("khu_ditieu") == 1) {
+                                            view.$el.find("#thongtinkhuditieu").show();
+                                        } else{
+                                            view.$el.find("#thongtinkhuditieu").hide();
+                                        }
+                                    });
+                                    var nguonnuocchinh_value = view.viewData.nguonnuocchinh;
+                                    if (nguonnuocchinh_value == 5 || nguonnuocchinh_value == 6){
+                                        view.$el.find("#khoangcach_nguonnuoc_bechua").hide();
+                                    } else {
+                                        view.$el.find("#khoangcach_nguonnuoc_bechua").show();
                                     }
-                                    view.model.set("id", gonrin.uuid());
-                                    phieuchitiet.push(view.model.toJSON());
-                                    self.model.set("phieuchitiet", phieuchitiet);
-                                    self.model.trigger("change:phieuchitiet");
-                                    self.applyBindings();
-                                });
+                                    var tentruongtram = self.model.get("ten_truong_tramyte");
+                                    view.model.set("ten_truong_tramyte", tentruongtram);
+                                    var tentruongtram = self.model.get("ma_truong_tramyte");
+                                    view.model.set("ma_truong_tramyte", tentruongtram);
+
+                                    view.on('close', function (data) {
+
+                                        var phieuchitiet = self.model.get('phieuchitiet');
+                                        if (phieuchitiet == null) {
+                                            phieuchitiet = [];
+                                        }
+                                        view.model.set("id", gonrin.uuid());
+                                        phieuchitiet.push(view.model.toJSON());
+                                        self.model.set("phieuchitiet", phieuchitiet);
+                                        self.model.trigger("change:phieuchitiet");
+                                        self.applyBindings();
+                                    });
+                                } else {
+                                    self.getApp().notify({message: "Không thể tạo thêm phiếu thu thập"}, {type: "danger"});
+                                }
 
                             }
                         },
@@ -272,7 +315,13 @@ define(function (require) {
                             		view.$el.find("#quansat_khuvesinh_loaikhac").show();
                             	} else{
                             		view.$el.find("#quansat_khuvesinh_loaikhac").hide();
-                            	}
+                                }
+                                
+                                if (view.model.get("quansat_khuvesinh") == 4 || view.model.get("quansat_khuvesinh") == 6) {
+                                    view.$el.find("#nuocthaichaydidau").show();
+                                } else {
+                                    view.$el.find("#nuocthaichaydidau").hide();
+                                }
                 			});
                             
                             view.model.on("change:congtrinh_ruatay", function () {
@@ -289,7 +338,13 @@ define(function (require) {
                             	} else{
                             		view.$el.find("#thongtinkhuditieu").hide();
                             	}
-                			});
+                            });
+                            var nguonnuocchinh_value = view.viewData.nguonnuocchinh;
+                            if (nguonnuocchinh_value == 5 || nguonnuocchinh_value == 6){
+                                view.$el.find("#khoangcach_nguonnuoc_bechua").hide();
+                            } else {
+                                view.$el.find("#khoangcach_nguonnuoc_bechua").show();
+                            }
                             
                             view.model.set(event.rowData);
                             view.dialog({

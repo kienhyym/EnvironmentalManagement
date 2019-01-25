@@ -12,7 +12,8 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "quocgia",
+		collectionName: "quocgia",
+		bindings:"data-quocgia-bind",
     	textField: "ten",
     	valueField: "id",
     	tools : [

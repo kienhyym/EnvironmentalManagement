@@ -12,6 +12,7 @@ define(function (require) {
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
 		collectionName: "quocgia",
+		bindings:"data-quocgia-bind",
 		tools: [
 			{
 				name: "defaultgr",

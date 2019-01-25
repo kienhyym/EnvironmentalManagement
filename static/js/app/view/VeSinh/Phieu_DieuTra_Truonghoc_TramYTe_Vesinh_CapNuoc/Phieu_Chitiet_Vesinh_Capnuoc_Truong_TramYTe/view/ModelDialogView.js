@@ -139,20 +139,20 @@ define(function (require) {
 
                     },],
                 },
-                {
-                    field: "capnuocsach",
-                    uicontrol: "radio",
-                    textField: "text",
-                    valueField: "value",
-                    dataSource: [{
-                        value: 1,
-                        text: "Có",
-                    }, {
-                        value: 2,
-                        text: "Không",
+                // {
+                //     field: "capnuocsach",
+                //     uicontrol: "radio",
+                //     textField: "text",
+                //     valueField: "value",
+                //     dataSource: [{
+                //         value: 1,
+                //         text: "Có",
+                //     }, {
+                //         value: 2,
+                //         text: "Không",
 
-                    },],
-                },
+                //     },],
+                // },
                 {
                     field: "congtrinh_ruatay",
                     uicontrol: "radio",
@@ -500,12 +500,7 @@ define(function (require) {
         		return 1;
         	}else{
         		return 0;
-        	}
-        	
-        		
-        		
-        		
-        	
+        	} 	
         }
     });
 });
