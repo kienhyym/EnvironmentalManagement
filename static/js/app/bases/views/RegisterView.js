@@ -130,12 +130,12 @@ define(function (require) {
 								},
 								error: function (xhr, status, error) {
 									try {
-										self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
 									catch (err) {
-										self.getApp().notify({ message: "Có lỗi xảy ra, vui lòng thử lại sau!" }, { type: "danger", delay: 1000 });
+										self.getApp().notify({ message: "Đăng kí thông tin không thành công"}, { type: "danger", delay: 1000 });
 									}
-								},
+								}
 							});
 						}
 					},

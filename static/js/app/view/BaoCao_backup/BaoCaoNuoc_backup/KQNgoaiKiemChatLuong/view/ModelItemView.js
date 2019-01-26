@@ -194,10 +194,14 @@ define(function (require) {
 			                            
 			                            
 			                        },
-			                        error: function (model, xhr, options) {
-			                            self.getApp().notify({message: 'Vui lòng nhập số!'},{type: "danger"});
-			                           
-			                        }
+			                        error: function (xhr, status, error) {
+										try {
+											self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										}
+										catch (err) {
+											self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+										}
+									}
 			                    });
 			    	    	}
 			    	    },

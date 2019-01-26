@@ -52,10 +52,14 @@ define(function (require) {
     	        	        				   self.getApp().notify("Lưu cài đặt thành công");
     	        	        				   self.getApp().getRouter().refresh();
     	        	        			   },
-    	        	        			   error: function (model, xhr, options) {
-    	        	        				   self.getApp().notify($.parseJSON(xhr.responseText).errormessage);
-
-    	        	        			   }
+    	        	        			   error: function (xhr, status, error) {
+											try {
+											  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+											}
+											catch (err) {
+											  self.getApp().notify({ message: "Lưu cài đặt không thành công"}, { type: "danger", delay: 1000 });
+											}
+										}
     	        	        		   });
     	        	        	   }
     	        	           }],

@@ -98,13 +98,13 @@ define(function (require) {
 											+ "/collection?loaikybaocao="+routeloaibaocao);
 								},
 								error: function (xhr, status, error) {
-	                            	try {
-	                                    self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-	                                }
-	                                catch (err) {
-	                                    self.getApp().notify({ message: error.xhr.responseText }, { type: "danger", delay: 1000 });
-	                                }
-	                            }
+									try {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+									catch (err) {
+									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+									}
+								}
 							});
 						}else{
 							self.getApp().notify("Tài khoản hiện tại không có quyền sửa báo cáo này,\n Chỉ có đơn vị tạo báo cáo mới được phép sửa báo cáo này")
@@ -140,13 +140,13 @@ define(function (require) {
 								self.compute_baocao();
 							},
 							error: function (xhr, status, error) {
-                            	try {
-                                    self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-                                }
-                                catch (err) {
-                                    self.getApp().notify({ message: error.xhr.responseText }, { type: "danger", delay: 1000 });
-                                }
-                            }
+								try {
+								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+								}
+							}
 						});
 					}
 				},
