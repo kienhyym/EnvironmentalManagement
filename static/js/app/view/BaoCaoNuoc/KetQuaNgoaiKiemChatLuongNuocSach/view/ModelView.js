@@ -259,9 +259,9 @@ define(function (require) {
                 name: "save",
                 type: "button",
                 buttonClass: "btn-success btn-sm",
-                label: "TRANSLATE:SAVE",
+				label: "TRANSLATE:SAVE",
                 command: function () {
-                    var self = this;
+					var self = this;
                     var nambaocao = self.model.get("nambaocao");
                     var ngaybaocao = self.model.get("ngaybaocao");
                     var donvicapnuoc = self.model.get("donvicapnuoc");
@@ -281,6 +281,7 @@ define(function (require) {
                     } else if(somauvavitri > 10){
                     	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
                     } else {
+					self.$el.find(".btn-success").prop('disabled', true);
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Lưu thông tin thành công");
@@ -294,7 +295,7 @@ define(function (require) {
 							  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
 							}
 						}
-                    	});
+                    });
                     }
                 }
             },
@@ -322,7 +323,7 @@ define(function (require) {
             ],
         }],
         render: function () {
-            var self = this;
+			var self = this;
             var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
             if (ketquangoaikiemchatluongnuoc == null){
             	self.$el.find("[id=removeButton]").hide();
@@ -351,13 +352,13 @@ define(function (require) {
                 this.model.set('id', id);
                 this.model.fetch({
                     success: function (data) {
+						self.onChangeEvents();
                     	self.applyBindings();
                         self.model.on("change:somauvavitri", function () {
                             self.changeSoMau(true);
                         });
                         self.changeSoMau();
                         self.render_thongsokhongdat();
-                        self.onChangeEvents();
                     },
                     error: function () {
                         self.getApp().notify("Lỗi lấy dữ liệu");
