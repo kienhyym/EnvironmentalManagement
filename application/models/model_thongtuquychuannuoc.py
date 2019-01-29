@@ -95,6 +95,8 @@ class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
     
     kiennghi = db.Column(db.String)
     ketluan = db.Column(db.String)
+    
+
 
 
 ##MauSo 1 ket qua ngoai kiem nuoc sach
@@ -225,6 +227,7 @@ class TongHopKetQuaKiemTraChatLuongNuocSach(CommonModel):
     
     ketluan_dexuat = db.Column(db.String)
     
+Index('tonghop_ketqua_chatluong_nuocsach_uq_idx',TongHopKetQuaKiemTraChatLuongNuocSach.donvicapnuoc_id, TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao, TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao, TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao, TongHopKetQuaKiemTraChatLuongNuocSach.donvi_id, unique=True)
     
     
 ##Bao cao so 4,5 -(theo mau 4,5 trong thong tu 41)
@@ -284,6 +287,8 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     
     nhanxet = db.Column(db.String)
     dexuat = db.Column(db.String)
+    
+Index('baocao_nuocsach_huyentinh',BaoCaoNuocSachHuyenTinh.loaibaocao, BaoCaoNuocSachHuyenTinh.loaikybaocao, BaoCaoNuocSachHuyenTinh.kybaocao, BaoCaoNuocSachHuyenTinh.nambaocao, BaoCaoNuocSachHuyenTinh.donvi_id, unique=True)
 
 
 

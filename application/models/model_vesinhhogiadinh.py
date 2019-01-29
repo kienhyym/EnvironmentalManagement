@@ -373,6 +373,9 @@ class TienDoVeSinhToanXa(CommonModel):
     tong_danso_xa = db.Column(db.Integer)
     tyle_giadinh_chulanu = db.Column(db.DECIMAL)
     tyle_hogiadinh_dtts = db.Column(db.DECIMAL)
+    
+Index('tiendovesinhtoanxa_uq_idx', TienDoVeSinhToanXa.loaikybaocao, TienDoVeSinhToanXa.kybaocao, TienDoVeSinhToanXa.nambaocao, TienDoVeSinhToanXa.donvi_id, unique=True)
+
 
     
    

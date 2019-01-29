@@ -1548,6 +1548,10 @@ define(function (require) {
 					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
 					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
 					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+					"tuyendonvi": 3,
+					"visible": function () {
+						return this.checkTuyendonvi([1,2,3]);
+					},
 				},
 				{
 					"type": "view",
