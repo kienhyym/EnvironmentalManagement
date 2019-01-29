@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from application.database import db
 from application.database.model import CommonModel
-from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON, UniqueConstraint)
+from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer, String, Text,JSON,Index, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import  UUID, JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship

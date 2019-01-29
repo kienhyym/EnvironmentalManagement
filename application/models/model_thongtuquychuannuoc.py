@@ -3,7 +3,7 @@ import uuid
 from application.database import db
 from application.database.model import CommonModel
 
-from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer,SmallInteger, String, Text,JSON, UniqueConstraint)
+from sqlalchemy import (DECIMAL, Boolean, Column, Date, DateTime, Float,ForeignKey, Integer,SmallInteger, String, Text,JSON,Index, UniqueConstraint)
 from sqlalchemy.dialects.postgresql import  UUID, JSONB
 from sqlalchemy.orm import *
 from sqlalchemy.orm import backref, relationship
@@ -288,7 +288,7 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     nhanxet = db.Column(db.String)
     dexuat = db.Column(db.String)
     
-Index('baocao_nuocsach_huyentinh',BaoCaoNuocSachHuyenTinh.loaibaocao, BaoCaoNuocSachHuyenTinh.loaikybaocao, BaoCaoNuocSachHuyenTinh.kybaocao, BaoCaoNuocSachHuyenTinh.nambaocao, BaoCaoNuocSachHuyenTinh.donvi_id, unique=True)
+Index('baocao_nuocsach_huyentinh_uq_idx',BaoCaoNuocSachHuyenTinh.loaibaocao, BaoCaoNuocSachHuyenTinh.loaikybaocao, BaoCaoNuocSachHuyenTinh.kybaocao, BaoCaoNuocSachHuyenTinh.nambaocao, BaoCaoNuocSachHuyenTinh.donvi_id, unique=True)
 
 
 
