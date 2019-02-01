@@ -54,8 +54,8 @@ define(function (require) {
     	},
     	render:function() {
     		var self= this;
-//    		var filters = this.viewFilters();
-//    		console.log("filters ", filters);
+			var filters = this.viewFilters();
+			console.log("filters ", filters);
     		var filter_loaihoatdong = "";
     		if(self.viewData && self.viewData.loai_hoatdong){
     			filter_loaihoatdong = {"loai_hoatdong":{"$eq": self.viewData.loai_hoatdong }};
@@ -73,7 +73,11 @@ define(function (require) {
 					{"tenhoatdong": {"$like": text }},
 				]};
     			if (filter_loaihoatdong && filter_loaihoatdong !== ""){
-    				query = {"$and":{filter_loaihoatdong,query}};
+					// query = {"$and":{filter_hoatdong, query}};
+					query = {"$and": [
+						{"loai_hoatdong": {"$eq": self.viewData.loai_hoatdong}},
+						query
+					]};
     			}
     			self.uiControl.filters = query;
     			self.uiControl.orderBy = [{"field": "mahoatdong", "direction": "asc"},{"field": "loai_hoatdong", "direction": "asc"}];
@@ -94,17 +98,24 @@ define(function (require) {
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
-    			var $col = self.getCollectionElement();
+				console.log(self.uiControl.filters);
+				var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
 						var query = { "$or": [
 							{"mahoatdong": {"$like": text }},
 							{"tenhoatdong": {"$like": text }},
-						] };
+						]};
+						if (filter_loaihoatdong && filter_loaihoatdong !== ""){
+		    				filters = {"$and": [
+								{"loai_hoatdong": {"$eq": self.viewData.loai_hoatdong}},
+								query
+							]};
+		    			}
 //						filters = self.viewFilters();
 //						filters.filters['$and'].push(query);
-						$col.data('gonrin').filter(query);
+						$col.data('gonrin').filter(filters);
 					} else {
 						self.uiControl.filters = null;
 //						filters = this.viewFilters();
