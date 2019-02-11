@@ -109,9 +109,12 @@ define(function (require) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
 					{"tenchuho": {"$like": text }},
-				] };
+				]};
     			if (filter_thonxom && filter_thonxom !== ""){
-    				filters = {"$and":{filter_thonxom,filters}};
+    				filters = {"$and": [
+						{"thonxom_id": {"$eq": self.viewData.thonxom_id}},
+						filters
+					]};
     			}
     			self.uiControl.filters = filters;
     			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
@@ -131,11 +134,14 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
-							{"ten": {"$like": text }},
+						var query = { "$or": [
+							{"tenchuho": {"$like": text }},
 						] };
 						if (filter_thonxom && filter_thonxom !== ""){
-		    				filters = {"$and":{filter_thonxom,filters}};
+		    				filters = {"$and": [
+								{"thonxom_id": {"$eq": self.viewData.thonxom_id}},
+								query
+							]};
 		    			}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
