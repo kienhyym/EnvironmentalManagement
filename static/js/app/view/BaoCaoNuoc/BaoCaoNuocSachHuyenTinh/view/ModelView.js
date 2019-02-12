@@ -275,11 +275,12 @@ define(function (require) {
         	if(!!donvi_ngoaikiems && donvi_ngoaikiems.length>0){
         		$.each(donvi_ngoaikiems, function(idx,donvi){
         			
-        			var tr = $("<tr>");
+					var tr = $("<tr>");
+					var donvi_noidung_ngoaikiem = donvi.noidung_ngoaikiem ? donvi.noidung_ngoaikiem : "";
 //        			tr.append('<td>'+(idx+1)+'</td>');
         			tr.append('<td>'+donvi.tendonvicapnuoc+'</td>');
         			tr.append('<td>'+donvi.tendonvi+'</td>');
-        			tr.append('<td>'+donvi.noidung_ngoaikiem+'</td>');
+        			tr.append('<td>'+donvi_noidung_ngoaikiem+'</td>');
         			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(donvi.ngaykiemtra, "DD/MM/YYYY")+'</td>');
         			self.$el.find("#danhsach_donvi_ngoaikiem").append(tr);
         		});
@@ -292,7 +293,9 @@ define(function (require) {
         		self.$el.find("#body_"+elementID).html("");
         		$.each(thongso_khongdat, function(idx,thongso){
         			
-        			var tr = $("<tr>");
+					var tr = $("<tr>");
+					var thongso_gioihan_toida_txt = thongso.gioihan_toida_txt ? thongso.gioihan_toida_txt : "";
+					var thongso_ketqua = thongso.ketqua ? thongso.ketqua : "";
         			if(elementID === "thongso_khongdat_ngoaikiem_baocao"){
         				var tendonvingoaikiem = "";
         				if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){
@@ -302,8 +305,8 @@ define(function (require) {
         			}
         			tr.append('<td>'+thongso.tendonvicapnuoc+'</td>');
         			tr.append('<td>'+thongso.tenthongso+'</td>');
-        			tr.append('<td>'+thongso.ketqua+'</td>');
-        			tr.append('<td>'+thongso.gioihan_toida_txt+'</td>');
+        			tr.append('<td>'+thongso_ketqua+'</td>');
+        			tr.append('<td>'+thongso_gioihan_toida_txt+'</td>');
         			tr.append('<td>'+thongso.tenvitri+'</td>');
         			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(thongso.ngaykiemtra, "DD/MM/YYYY")+'</td>');
         			self.$el.find("#body_"+elementID).append(tr);
