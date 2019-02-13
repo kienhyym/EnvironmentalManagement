@@ -23,7 +23,7 @@ async def preprocess_kehoachbcc(request=None, data=None, Model=None, **kw):
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
 
-    if request.method == "POST":
+    if request.method == "POST" or request.method == "PUT":
         if "nambaocao" not in data or data["nambaocao"] is None:
             return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
         
@@ -151,6 +151,8 @@ async def ThongKe_Gioi_DanTocThieuSo(request):
         tongnguoi_dantocthieuso = 0
         tong_giangvien = 0
         tong_giangvien_nu = 0
+        
+        check_nganh = True
         for nganh in ds_nganh:
             nganh = to_dict(nganh)
             
@@ -170,19 +172,21 @@ async def ThongKe_Gioi_DanTocThieuSo(request):
             hoatdongbccs = records.all()
             for _ in hoatdongbccs:
                 baocao = to_dict(_)
+                if check_nganh == True:
+                    tong_giangvien += int(baocao["giangvien"]) if "giangvien" in baocao and baocao["giangvien"] is not None else 0
+                    tong_giangvien_nu += int(baocao["giangvien_nu"]) if "giangvien_nu" in baocao and baocao["giangvien_nu"] is not None else 0
+                            
                 if 'danhsach_hoatdong' in baocao and isinstance(baocao['danhsach_hoatdong'], list):
 #                     tong_giangvien_nganh += int(baocao["giangvien"]) if "giangvien" in baocao and baocao["giangvien"] is not None else 0
 #                     tong_giangvien_nu_nganh += int(baocao["giangvien_nu"]) if "giangvien_nu" in baocao and baocao["giangvien_nu"] is not None else 0
                     for hoatdong in baocao['danhsach_hoatdong']:
                         if hoatdong['nganh_id'] == nganh['id']:
-                            tong_giangvien += int(baocao["giangvien"]) if "giangvien" in baocao and baocao["giangvien"] is not None else 0
-                            tong_giangvien_nu += int(baocao["giangvien_nu"]) if "giangvien_nu" in baocao and baocao["giangvien_nu"] is not None else 0
                             
                             tongnguoi_duocdaotao_nganh += int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0
                             tongnguoi_thamgia_nu_nganh += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
                             tongnguoi_dantocthieuso_nganh += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
 #             thongke = {}
-                
+            check_nganh = False    
             data_in_nganh["tongnguoi_duocdaotao"] = int(tongnguoi_duocdaotao_nganh)
             data_in_nganh["tongnguoi_thamgia_nu"] = int(tongnguoi_thamgia_nu_nganh)
             data_in_nganh["tongnguoi_dantocthieuso"] = int(tongnguoi_dantocthieuso_nganh)
