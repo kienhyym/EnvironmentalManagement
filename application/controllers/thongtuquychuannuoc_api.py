@@ -976,7 +976,9 @@ async def TimKiemBaoCaoNuoc(request):
             response = to_dict(record)                                         
         tuyendonvi = "viennuocsach"
     else:
-        if(quanhuyen_id is not None and quanhuyen_id!=""):
+        if currentuser.donvi.tuyendonvi_id === 3:
+            if(quanhuyen_id is None or quanhuyen_id == ""):
+                quanhuyen_id = currentuser.donvi.quanhuyen_id
             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == quanhuyen_id, \
                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 2, \
                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
@@ -984,8 +986,10 @@ async def TimKiemBaoCaoNuoc(request):
                                                         BaoCaoNuocSachHuyenTinh.nambaocao == nambaocao)).first()
             if (record is not None):
                 response = to_dict(record)
-            tuyendonvi = "quanhuyen"                                            
-        elif(tinhthanh_id is not None and tinhthanh_id!=""):
+            tuyendonvi = "quanhuyen"     
+        elif currentuser.donvi.tuyendonvi_id === 2:
+            if(tinhthanh_id is None or tinhthanh_id == ""):
+                tinhthanh_id = currentuser.donvi.tinhthanh_id                                       
             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinhthanh_id, \
                                                         BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
                                                         BaoCaoNuocSachHuyenTinh.loaikybaocao == loaikybaocao, \
