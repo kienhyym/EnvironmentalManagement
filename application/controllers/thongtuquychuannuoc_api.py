@@ -987,7 +987,7 @@ async def TimKiemBaoCaoNuoc(request):
             if (record is not None):
                 response = to_dict(record)
             tuyendonvi = "quanhuyen"     
-        elif currentuser.donvi.tuyendonvi_id === 2:
+        elif currentuser.donvi.tuyendonvi_id == 2:
             if(tinhthanh_id is None or tinhthanh_id == ""):
                 tinhthanh_id = currentuser.donvi.tinhthanh_id                                       
             record = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == tinhthanh_id, \
