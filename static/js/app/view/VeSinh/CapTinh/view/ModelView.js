@@ -73,8 +73,8 @@ define(function (require) {
 						var nambaocao = self.model.get("nambaocao");
 						var tinhthanh = self.model.get("tinhthanh");
 						
-						if(nambaocao === null || nambaocao === ""){
-							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 							return;
 						}else if(tinhthanh === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
@@ -126,8 +126,8 @@ define(function (require) {
 						var nambaocao = self.model.get("nambaocao");
 						var tinhthanh = self.model.get("tinhthanh");
 						
-						if(nambaocao === null || nambaocao === ""){
-							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 							return;
 						}else if(tinhthanh === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
@@ -136,7 +136,7 @@ define(function (require) {
 						self.model.set("tentinh",self.model.get("tinhthanh").ten);
 						self.model.save(null, {
 							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
+								self.getApp().notify("Cộng dồn thông tin thành công");
 								self.compute_baocao();
 							},
 							error: function (xhr, status, error) {
@@ -144,7 +144,7 @@ define(function (require) {
 								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 								}
 								catch (err) {
-								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+								  self.getApp().notify({ message: "Cộng dồn thông tin không thành công"}, { type: "danger", delay: 1000 });
 								}
 							}
 						});
