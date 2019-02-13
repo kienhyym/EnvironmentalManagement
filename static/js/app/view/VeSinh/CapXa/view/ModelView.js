@@ -113,8 +113,8 @@ define(function (require) {
 						var tinhthanh = self.model.get("tinhthanh");
 						var quanhuyen = self.model.get("quanhuyen");
 						var xaphuong = self.model.get("xaphuong");
-						if(nambaocao === null || nambaocao === ""){
-							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 							return;
 						}else if(tinhthanh === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
@@ -123,7 +123,7 @@ define(function (require) {
 							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
 							return;
 						}else if(xaphuong === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phương"},{type: "danger"});
+							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
 							return;
 						}
 						self.model.set("tenxa",self.model.get("xaphuong").ten);
@@ -159,6 +159,24 @@ define(function (require) {
 						}
 					}
 				},
+				// {
+				// 	name: "excel",
+				// 	type: "button",
+				// 	buttonClass: "btn-sm btn-secondary",
+				// 	label: "Xuất Excel",
+				// 	command: function () {
+				// 		var id = this.model.get("id");
+				// 		var url = "/export/excel/" + this.collectionName + "/" + id;
+				// 		window.open(url, "_blank")
+				// 		console.log(url);
+				// 		// self.getApp().getRouter().navigate(self.collectionName + "/collection");
+				// 	},
+				// 	visible: function () {
+				// 		// var id = this.model.get("id");
+				// 		// return (id !== null);
+				// 		return true;
+				// 	}
+				// },
 				{
 					name: "count",
 					type: "button",
@@ -175,8 +193,8 @@ define(function (require) {
 						var tinhthanh = self.model.get("tinhthanh");
 						var quanhuyen = self.model.get("quanhuyen");
 						var xaphuong = self.model.get("xaphuong");
-						if(nambaocao === null || nambaocao === ""){
-							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 							return;
 						}else if(tinhthanh === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
@@ -191,7 +209,7 @@ define(function (require) {
 						self.model.set("tenxa",self.model.get("xaphuong").ten);
 						self.model.save(null, {
 							success: function (model, respose, options) {
-								self.getApp().notify("Lưu thông tin thành công");
+								self.getApp().notify("Cộng dồn thông tin thành công");
 								self.compute_baocao();
 							},
 							error: function (xhr, status, error) {
@@ -199,7 +217,7 @@ define(function (require) {
 								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 								}
 								catch (err) {
-								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+								  self.getApp().notify({ message: "Cộng dồn thông tin không thành công"}, { type: "danger", delay: 1000 });
 								}
 							}
 						});
@@ -273,6 +291,9 @@ define(function (require) {
 		compute_baocao: function(){
 			var self = this;
 			var danhsachbaocao = self.model.get("danhsachbaocao");
+			if (danhsachbaocao.length == 0){
+				self.$el.find("#danhsachdonvi").hide();
+			}
 			var total_chuholanu = 0;
 			var total_sohongheo = 0;
 			var total_dtts = 0;

@@ -9,6 +9,10 @@ define(function (require) {
     var QuanHuyenSelectView = require('app/view/DanhMuc/QuanHuyen/view/SelectView');
     var Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeView = require('app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/ModelDialogView');
 
+    function toInt(x) {
+		return parseInt(x) ? parseInt(x) : 0;
+	}
+
     return Gonrin.ModelView.extend({
         template: template,
         modelSchema: schema,
@@ -409,7 +413,15 @@ define(function (require) {
     						var xaphuong = self.model.get("xaphuong");
     						var tennguoitraloi = self.model.get("tennguoitraloi");
     						var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
-    						var thongtinlienlac = self.model.get("thongtinlienlac");
+                            var thongtinlienlac = self.model.get("thongtinlienlac");
+                            var truong_sohocsinh_moibuoi = self.model.get("truong_sohocsinh_moibuoi");
+                            var truong_sohocsinh_nam = self.model.get("truong_sohocsinh_nam");
+                            var truong_sohocsinh_nu = self.model.get("truong_sohocsinh_nu");
+                            var sokhuvesinh_truong_tramyte = self.model.get("sokhuvesinh_truong_tramyte");
+                            var sokhuvesinh_truong_hossinh_nam = self.model.get("sokhuvesinh_truong_hossinh_nam");
+                            var sokhuvesinh_truong_hocsinh_nu = self.model.get("sokhuvesinh_truong_hocsinh_nu");
+                            var sokhuvesinh_truong_giaovien_nam = self.model.get("sokhuvesinh_truong_giaovien_nam");
+                            var sokhuvesinh_truong_giaovien_nu = self.model.get("sokhuvesinh_truong_giaovien_nu");
     						if(tinhthanh === null || tinhthanh === ""){
     							self.getApp().notify({message: "Chưa chọn tên tỉnh"},{type: "danger"});
     						} else if(quanhuyen === null || quanhuyen === ""){
@@ -418,15 +430,20 @@ define(function (require) {
     							self.getApp().notify({message: "Chưa chọn tên xã"},{type: "danger"});
     						} else if(tentruongtram === null || tentruongtram === ""){
     							self.getApp().notify({message: "Chưa nhập tên trường học/trạm y tế!"},{type: "danger"});
-    						}else if(matruongtram === null || matruongtram === ""){
+    						} else if(matruongtram === null || matruongtram === ""){
     							self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
-    						} else if(tennguoitraloi === null || tennguoitraloi === ""){
+                            } else if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
+                                self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
+                            } else if(tennguoitraloi === null || tennguoitraloi === ""){
     							self.getApp().notify({message: "Chưa nhập tên người trả lời"},{type: "danger"});
     						} else if(chucvu_nguoitraloi === null || chucvu_nguoitraloi === ""){
     							self.getApp().notify({message: "Chưa nhập chức vụ người trả lời"},{type: "danger"});
     						} else if(thongtinlienlac === null || thongtinlienlac === ""){
     							self.getApp().notify({message: "Chưa nhập thông tin liên lạc người trả lời"},{type: "danger"});
-    						} else {
+                            } else if (toInt(sokhuvesinh_truong_hossinh_nam) + toInt(sokhuvesinh_truong_hocsinh_nu)
+                                + toInt(sokhuvesinh_truong_giaovien_nam) + toInt(sokhuvesinh_truong_giaovien_nu) > toInt(sokhuvesinh_truong_tramyte)) {
+                                self.getApp().notify({message: "Số khu vệ sinh không hợp lệ!!!!"}, {type: "danger"});
+                            } else {
                             self.model.save(null,
                                 {
                                     success: function (model, respose, options) {

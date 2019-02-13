@@ -148,8 +148,8 @@ define(function (require) {
 						var xaphuong = self.model.get("xaphuong");
 						var thonxom = self.model.get("thonxom");
 
-						if(nambaocao === null || nambaocao === ""){
-							self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
+						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 						}else if(tinhthanh === null){
 							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
 						}else if(quanhuyen === null){
@@ -336,25 +336,27 @@ define(function (require) {
 					return;
 				}
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
-				view_hogiadinh.dialog();
+				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("onSelected", function(data){
 					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
 	                view.model.set("id",gonrin.uuid());
-	                var  danhsachho = self.model.get("nhatieuthonhvs");
+					var  danhsachho = self.model.get("nhatieuthonhvs");
 	                for(var i=0; i< danhsachho.length; i++){
 	                	var item_hogiadinh = danhsachho[i];
 	                	if(item_hogiadinh.maho === data.id){
-	                		self.getApp().notify("Hộ gia đình đã tồn tại trong báo cáo");
+	                		self.getApp().notify({message: "Hộ gia đình đã tồn tại trong báo cáo!"}, {type: "danger"});
 	                		return;
 	                	}
 	                }
 	                view.model.set("tenchuho", data.tenchuho);
-	                view.model.set("maho", data.maho);
+	                view.model.set("maho", data.id);
 	                view.model.set("gioitinh", data.gioitinh);
 	                view.model.set("dantoc_id", data.dantoc_id);
-	                view.model.set("dantoc", data.dantoc);
+					view.model.set("dantoc", data.dantoc);
+					view.model.set("tendantoc",data.dantoc.ten)
 	                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-	                self.renderItemView(view.model.toJSON());
+					self.renderItemView(view.model.toJSON());
+					self.check_chuongtrinhSUP();
 				});
 				
             });
@@ -372,9 +374,10 @@ define(function (require) {
 						
 						self.applyBindings();
 						self.renderTinhTongI();
-//						if (self.model.get("nhatieuthonhvs").length === 0) {
+						if (self.model.get("nhatieuthonhvs").length === 0) {
 //							self.$el.find("#addItem").click();
-//						}
+							self.$el.find("#nhatieuthonhvs").hide();
+						}
 						
 					},
 					error: function () {
@@ -439,8 +442,7 @@ define(function (require) {
 			                var item_nhatieu_thon = view.model.toJSON();
 			                item_nhatieu_thon["stt"] = idx+1;
 			                self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-			                self.renderItemView(item_nhatieu_thon);
-							
+							self.renderItemView(item_nhatieu_thon);
 						});
 						self.renderTinhTongI();
 						self.check_chuongtrinhSUP();
@@ -471,8 +473,10 @@ define(function (require) {
 			var self  =this;
             var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
             view.model.set(data);
-            view.render();
-            self.$el.find("#nhatieuthonhvs").append(view.$el);
+			view.render();
+			
+			self.$el.find("#nhatieuthonhvs").append(view.$el);
+			
 			view.$el.find("#itemRemove").unbind('click').bind('click',{obj:data}, function(e){
             	var fields = self.model.get("nhatieuthonhvs");
             	var data = e.data.obj;
@@ -482,7 +486,10 @@ define(function (require) {
                 	   }
                 	}
                 self.model.set("nhatieuthonhvs", fields);
-                self.model.trigger("change");
+				self.model.trigger("change");
+				if (self.model.get("nhatieuthonhvs").length === 0){
+					self.$el.find("#nhatieuthonhvs").hide();
+				}
                 self.renderTinhTongI();
                 view.destroy();
                 view.remove();
