@@ -335,6 +335,10 @@ define(function (require) {
 		validate : function() {
 			const self = this;
 			var nambaocao = self.model.get("nambaocao");
+			if (nambaocao === null || nambaocao === ""){
+				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+				return;
+			}
 			if (toInt(nambaocao)<1900 || toInt(nambaocao)>3000) {
 				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;

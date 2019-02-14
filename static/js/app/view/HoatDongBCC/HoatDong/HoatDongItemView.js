@@ -63,8 +63,7 @@ define(function (require) {
 			this.model.on("change", function() {
 				self.trigger("change", self.model.toJSON());
 			});
-			
 			this.applyBindings();
-		},
+		}
 	});
 });

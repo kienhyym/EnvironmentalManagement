@@ -70,14 +70,7 @@ define(function (require) {
 					command: function () {
 						var self = this;
 						var id = this.getApp().getRouter().getParam("id");
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tentinh",self.model.get("tinhthanh").ten);
@@ -123,14 +116,7 @@ define(function (require) {
 					command: function () {
 						var self = this;
 //						self.model.unset("danhsachbaocao");
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tentinh",self.model.get("tinhthanh").ten);
@@ -238,7 +224,6 @@ define(function (require) {
 			self.model.set("tong_soxa",0);
 			self.$el.find("#danhsachdonvi").html("");
 			danhsachbaocao.forEach(element => {
-				console.log("element======",element);
 				total_chuholanu += toInt(element.tong_chuholanu);
 				total_sohongheo += toInt(element.tong_sohongheo);
 				total_dtts += toInt(element.tong_sohodtts);
@@ -331,6 +316,24 @@ define(function (require) {
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 		},
+		validate: function(){
+			const self = this;
+			var nambaocao = self.model.get("nambaocao");
+			var tinhthanh = self.model.get("tinhthanh");
+			if(nambaocao === null || nambaocao === ""){
+				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+				return;
+			} 
+			if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
+			if(tinhthanh === null || tinhthanh === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành!"},{type: "danger"});
+				return;
+			}
+			return true;
+		}
 	});
 
 });

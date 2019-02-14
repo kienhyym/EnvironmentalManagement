@@ -71,27 +71,24 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;
-							var nam_datvesinh_toanxa = self.model.get("nam_datvesinh_toanxa");
-							var nam_datvesinh_toanxa_benvung = self.model.get("nam_datvesinh_toanxa_benvung");
-							if (toInt(nam_datvesinh_toanxa_benvung) < toInt(nam_datvesinh_toanxa) + 2) {
-								self.getApp().notify({ message: "Năm đạt vệ sinh xã bền vững không hợp lệ!" }, { type: "danger" });
-							} else {
-								self.model.save(null, {
-									success: function (model, respose, options) {
-										self.getApp().notify("Lưu thông tin thành công");
-										self.getApp().getRouter().navigate(self.collectionName + "/collection");
-
-									},
-									error: function (xhr, status, error) {
-										try {
-										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-										}
-										catch (err) {
-										  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
-										}
-									}
-								});
+							if(!self.validate()){
+								return;
 							}
+							self.model.save(null, {
+								success: function (model, respose, options) {
+									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().getRouter().navigate(self.collectionName + "/collection");
+
+								},
+								error: function (xhr, status, error) {
+									try {
+										self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+									catch (err) {
+										self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+									}
+								}
+							});
 						}
 					},
 					{
@@ -154,8 +151,25 @@ define(function (require) {
 			} else {
 				self.applyBindings();
 			}
-
 		},
+		validate: function(){
+			const self = this;
+			var nam_datvesinh_toanxa = self.model.get("nam_datvesinh_toanxa");
+			var nam_datvesinh_toanxa_benvung = self.model.get("nam_datvesinh_toanxa_benvung");
+			if (toInt(nam_datvesinh_toanxa)<1900 || toInt(nam_datvesinh_toanxa)>3000) {
+				self.getApp().notify({message: "Năm đạt vệ sinh toàn xã không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
+			if (toInt(nam_datvesinh_toanxa_benvung)<1900 || toInt(nam_datvesinh_toanxa_benvung)>3000) {
+				self.getApp().notify({message: "Năm đạt vệ sinh toàn xã bền vững không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
+			if (toInt(nam_datvesinh_toanxa_benvung) < toInt(nam_datvesinh_toanxa) + toInt(2)) {
+				self.getApp().notify({ message: "Năm đạt vệ sinh xã bền vững không hợp lệ!" }, { type: "danger" });
+				return;
+			}
+			return true;
+		}
 	});
 
 });

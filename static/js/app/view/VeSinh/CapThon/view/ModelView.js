@@ -142,26 +142,12 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						var quanhuyen = self.model.get("quanhuyen");
-						var xaphuong = self.model.get("xaphuong");
-						var thonxom = self.model.get("thonxom");
-
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
-						}else if(quanhuyen === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
-						}else if(xaphuong === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
-						}else if(thonxom === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm"},{type: "danger"});
-						}else {
+						if (!self.validate()){
+							return;
+						}
 							self.model.save(null, {
 								success: function (model, respose, options) {
-									self.getApp().notify("Lưu thông tin thành công");
+									self.getApp().notify("Lưu thông tin thành công!");
 									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 									self.getApp().getRouter().navigate(self.collectionName 
 											+ "/collection?loaikybaocao="+routeloaibaocao);
@@ -172,13 +158,10 @@ define(function (require) {
 									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
 									catch (err) {
-									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+									  self.getApp().notify({ message: "Lưu thông tin không thành công!"}, { type: "danger", delay: 1000 });
 									}
 								}
-							});
-						}	
-
-
+							});	
 					}
 				},
 				{
@@ -297,6 +280,18 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
+			self.model.on("change:tong_nam", function() {
+				var tong_nu = self.model.get("tong_nu");
+				var tong_nam = self.model.get("tong_nam");
+				var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+				self.model.set("tong_danso" , tong_dantrongthon)
+			});
+			self.model.on("change:tong_nu", function() {
+				var tong_nu = self.model.get("tong_nu");
+				var tong_nam = self.model.get("tong_nam");
+				var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+				self.model.set("tong_danso" , tong_dantrongthon)
+			});
 			var id = this.getApp().getRouter().getParam("id");
 			var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 			if (routeloaibaocao!==null){
@@ -573,10 +568,10 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("tong_sohongheo", sohongheo);
 			
-			var tong_nu = self.model.get("tong_nu");
-			var tong_nam = self.model.get("tong_nam");
-			var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-			self.model.set("tong_danso" , tong_dantrongthon)
+			// var tong_nu = self.model.get("tong_nu");
+			// var tong_nam = self.model.get("tong_nam");
+			// var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+			// self.model.set("tong_danso" , tong_dantrongthon)
 
 			var tong_dtts = self.tongViewi.model.get("dtts");
 			self.model.set("tong_sohodtts", tong_dtts);
@@ -614,14 +609,69 @@ define(function (require) {
 			self.model.set("tong_diemruatay", self.tongViewi.model.get("diemruataycoxaphong"));
 
 		},
-
-		checkDate: function(dateInput){  
+		checkDate: function(dateInput){
 			var self = this;
 			var re = /(2[0-9]{3})\b/g;
 			var OK = re.exec(dateInput);  
 			if(!OK){
 				self.getApp().notify({message: "Năm đánh giá không hợp lệ"},{type: "danger"})
 			}
+		},
+		validate: function() {
+			const self = this;
+			var nambaocao = self.model.get("nambaocao");
+			var tinhthanh = self.model.get("tinhthanh");
+			var quanhuyen = self.model.get("quanhuyen");
+			var xaphuong = self.model.get("xaphuong");
+			var thuocsuprsws = self.model.get("thuocsuprsws");
+			var thonxom = self.model.get("thonxom");
+			var tong_nu = self.model.get("tong_nu");
+			var tong_nam = self.model.get("tong_nam");
+			if(nambaocao === null || nambaocao === ""){
+				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+				return;
+			} 
+			if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			} 
+			if(tinhthanh === null || tinhthanh === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành!"},{type: "danger"});
+				return;
+			}
+			if(quanhuyen === null || quanhuyen === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện!"},{type: "danger"});
+				return;
+			}
+			if(xaphuong === null || xaphuong === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường!"},{type: "danger"});
+				return;
+			}
+			if (thuocsuprsws === null || thuocsuprsws === ""){
+				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
+				return;
+			}
+			if(thonxom === null || thonxom === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm!"},{type: "danger"});
+				return;
+			}
+			if(tong_nu === null || tong_nu === ""){
+				self.getApp().notify({message: "Chưa nhập tổng số nữ trong thôn!"},{type: "danger"});
+				return;
+			}
+			if(toInt(tong_nu) < 0){
+				self.getApp().notify({message: "Tổng số nữ trong thôn không hợp lệ!"},{type: "danger"});
+				return;
+			}
+			if(tong_nam === null || tong_nam === ""){
+				self.getApp().notify({message: "Chưa nhập tổng số nam trong thôn!"},{type: "danger"});
+				return;
+			}
+			if(toInt(tong_nam) < 0){
+				self.getApp().notify({message: "Tổng số nam trong thôn không hợp lệ!"},{type: "danger"});
+				return;
+			}
+			return true;
 		},
 	});
 

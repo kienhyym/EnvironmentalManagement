@@ -43,6 +43,8 @@ define(function (require) {
 					field: "nganh",
 					uicontrol: "ref",
 					textField: "tennganh",
+					foreignRemoteField: "id",
+					foreignField: "nganh_id",
 					dataSource: NganhSelectView
 				},
 			]

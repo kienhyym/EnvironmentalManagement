@@ -58,10 +58,11 @@ define(function (require) {
     	    	},
     	},
     	render:function(){
+			var self= this;
             if (this.getApp().data("tinhthanh_id") !== null) {
                 this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id") } };
-            }
-    		var self= this;
+			}
+
     		self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
@@ -71,9 +72,13 @@ define(function (require) {
     		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
+    			var query = { "$or": [
 					{"ten": {"$like": text }},
-				] };
+				]};
+				var filters = {"$and": [
+					{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+					query
+				]};
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -83,9 +88,16 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
+						var query = { "$or": [
 							{"ten": {"$like": text }},
-						] };
+						]};
+						// console.log("tinhthanh===", this.getApp().data("tinhthanh_id"));
+						// if (this.uiControl.filters && this.uiControl.filters !== null){
+						var filters = {"$and": [
+							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+							query
+						]};
+						// }
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

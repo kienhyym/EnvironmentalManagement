@@ -238,7 +238,7 @@ define(function (require) {
                                     phieuchitiet = []
                                 }
                                 var sokhuvesinh_truong_tramyte = self.model.get('sokhuvesinh_truong_tramyte');
-                                if (sokhuvesinh_truong_tramyte == null || sokhuvesinh_truong_tramyte == ''){
+                                if (sokhuvesinh_truong_tramyte === null || sokhuvesinh_truong_tramyte === ""){
                                     self.getApp().notify({message: "Bạn phải nhập số khu vệ sinh trong trường trạm trước khi thêm mới phiếu!"}, {type: "danger"});
                                     return;
                                 }
@@ -560,6 +560,8 @@ define(function (require) {
             var tennguoitraloi = self.model.get("tennguoitraloi");
             var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
             var thongtinlienlac = self.model.get("thongtinlienlac");
+            var nguonnuocchinh = self.model.get("nguonnuocchinh");
+            var nguonnuocchinh_loaikhac = self.model.get("nguonnuocchinh_loaikhac");
             var truong_sobuoihoc = self.model.get("truong_sobuoihoc");
             var truong_sohocsinh_moibuoi = self.model.get("truong_sohocsinh_moibuoi");
             var truong_sohocsinh_nam = self.model.get("truong_sohocsinh_nam");
@@ -597,6 +599,22 @@ define(function (require) {
                 self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
                 return;
             }
+            if (toInt(truong_sobuoihoc) < 0){
+                self.getApp().notify({message: "Số buổi học không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_moibuoi) < 0){
+                self.getApp().notify({message: "Số học sinh mỗi buổi học không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_nam) < 0){
+                self.getApp().notify({message: "Số học sinh nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_nu) < 0){
+                self.getApp().notify({message: "Số học sinh nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
             if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
                 self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
                 return;
@@ -613,6 +631,12 @@ define(function (require) {
                 self.getApp().notify({message: "Chưa nhập thông tin liên lạc người trả lời"},{type: "danger"});
                 return;
             }
+            if(nguonnuocchinh === 96){
+                if(nguonnuocchinh_loaikhac === null || nguonnuocchinh_loaikhac === ""){
+                    self.getApp().notify({message: "Nguồn nước khác không được để trống"},{type: "danger"});
+                    return;
+                }
+            }
             if (sokhuvesinh_truong_tramyte === null || sokhuvesinh_truong_tramyte === ""){
                 self.getApp().notify({message: "Số khu vệ sinh trong trường/trạm không được để trống!"},{type: "danger"});
                 return;
@@ -621,9 +645,25 @@ define(function (require) {
                 self.getApp().notify({message: "Số khu vệ sinh trong trường/trạm không hợp lệ!"},{type: "danger"});
                 return;
             }
+            if (sokhuvesinh_truong_hossinh_nam < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho học sinh nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_hocsinh_nu < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho học sinh nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_giaovien_nam < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho giáo viên nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_giaovien_nu < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho giáo viên nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
             if (toInt(sokhuvesinh_truong_hossinh_nam) + toInt(sokhuvesinh_truong_hocsinh_nu)
                 + toInt(sokhuvesinh_truong_giaovien_nam) + toInt(sokhuvesinh_truong_giaovien_nu) > toInt(sokhuvesinh_truong_tramyte)) {
-                self.getApp().notify({message: "Số khu vệ sinh không hợp lệ!!!!"}, {type: "danger"});
+                self.getApp().notify({message: "Số khu vệ sinh không hợp lệ!"}, {type: "danger"});
                 return;
             }
             return true;

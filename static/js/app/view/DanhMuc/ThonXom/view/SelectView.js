@@ -67,9 +67,13 @@ define(function (require) {
     		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
+    			var query = { "$or": [
 					{"ten": {"$like": text }},
-				] };
+				]};
+				var filters = {"$and": [
+					{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
+					query
+				]};
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -79,9 +83,13 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
+						var query = { "$or": [
 							{"ten": {"$like": text }},
-						] };
+						]};
+						var filters = {"$and": [
+							{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
+							query
+						]};
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
