@@ -390,7 +390,7 @@ define(function (require) {
                         label: "TRANSLATE:SAVE",
                         command: function () {
                             var self = this;
-                            self.getApp().notify("Lưu thông tin thành công");
+                            self.getApp().notify("Thêm phiếu thành công");
                             self.trigger("close", self.model.toJSON());
                             self.close();
                         }
@@ -405,7 +405,7 @@ define(function (require) {
                         },
                         command: function () {
                             var self = this;
-                            self.getApp().notify('Xoá dữ liệu thành công');
+                            self.getApp().notify('Xoá phiếu thành công');
                             self.trigger("delete", self.model.toJSON());
                             self.close();
                         }
