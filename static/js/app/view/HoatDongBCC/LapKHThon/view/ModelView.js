@@ -345,11 +345,7 @@ define(function (require) {
 		validate : function() {
 			const self = this;
 			var nambaocao = self.model.get("nambaocao");
-			// var hoatDongItemView = new HoatDongItemView();
-			// var songuoithamgia = hoatDongItemView.model.get("songuoithamgia");
-			// var songuoithamgia_nu = hoatDongItemView.model.get("songuoithamgia_nu");
-			// var songuoithamgia_dtts = hoatDongItemView.model.get("songuoithamgia_dtts");
-			// var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
+			var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
 			if (nambaocao === null || nambaocao === ""){
 				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
 				return;
@@ -424,30 +420,36 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
-			// if(songuoithamgia === null || songuoithamgia === ""){
-			// 	self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
-			// 	return;
-			// }
-			// if(toInt(songuoithamgia) < 0){
-			// 	self.getApp().notify({message: "Tổng số người tham gia không hợp lệ!"},{type: "danger"});
-			// 	return;
-			// }
-			// if(songuoithamgia_nu === null || songuoithamgia_nu === ""){
-			// 	self.getApp().notify({message: "Số người tham gia là nữ không được để trống!"},{type: "danger"});
-			// 	return;
-			// }
-			// if(toInt(songuoithamgia_nu) < 0){
-			// 	self.getApp().notify({message: "Số người tham gia là nữ không hợp lệ!"},{type: "danger"});
-			// 	return;
-			// }
-			// if(songuoithamgia_dtts === null || songuoithamgia_dtts === ""){
-			// 	self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"},{type: "danger"});
-			// 	return;
-			// }
-			// if(toInt(songuoithamgia_dtts) < 0){
-			// 	self.getApp().notify({message: "Số người tham gia là DTTS không hợp lệ!"},{type: "danger"});
-			// 	return;
-			// }
+			for (var i = 0; i < danhsach_hoatdong.length; i++){
+				// var hoatDongItemView = new HoatDongItemView();
+				// var songuoithamgia = hoatDongItemView.model.get("songuoithamgia");
+				// var songuoithamgia_nu = hoatDongItemView.model.get("songuoithamgia_nu");
+				// var songuoithamgia_dtts = hoatDongItemView.model.get("songuoithamgia_dtts");
+				if(danhsach_hoatdong[i].songuoithamgia === null || danhsach_hoatdong[i].songuoithamgia === ""){
+					self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia) < 0){
+					self.getApp().notify({message: "Tổng số người tham gia không hợp lệ!"},{type: "danger"});
+					return;
+				}
+				if(danhsach_hoatdong[i].songuoithamgia_nu === null || danhsach_hoatdong[i].songuoithamgia_nu === ""){
+					self.getApp().notify({message: "Số người tham gia là nữ không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0){
+					self.getApp().notify({message: "Số người tham gia là nữ không hợp lệ!"},{type: "danger"});
+					return;
+				}
+				if(danhsach_hoatdong[i].songuoithamgia_dtts === null || danhsach_hoatdong[i].songuoithamgia_dtts === ""){
+					self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0){
+					self.getApp().notify({message: "Số người tham gia là DTTS không hợp lệ!"},{type: "danger"});
+					return;
+				}
+			}
 			return true;
 		},
 	});

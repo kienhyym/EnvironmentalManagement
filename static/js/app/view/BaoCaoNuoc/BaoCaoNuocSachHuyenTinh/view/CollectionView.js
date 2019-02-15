@@ -97,7 +97,7 @@ define(function (require) {
 			}else{
 				
 				var txt_header = "Danh sách báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
-				console.log("self.getApp().currentUser.tuyendonvi_id===",self.getApp().currentUser.donvi.tuyendonvi_id);
+				// console.log("self.getApp().currentUser.tuyendonvi_id===",self.getApp().currentUser.donvi.tuyendonvi_id);
 				if(self.getApp().currentUser.donvi.tuyendonvi_id === 3){
 					txt_header = "Danh sách báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
 				}else{

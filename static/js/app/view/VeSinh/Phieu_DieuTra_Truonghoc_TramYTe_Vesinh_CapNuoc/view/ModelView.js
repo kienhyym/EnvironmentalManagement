@@ -511,10 +511,10 @@ define(function (require) {
                 } else {
                 	var danhsachchitiet = self.model.get("phieuchitiet");
                     for(var i=0;i<danhsachchitiet.length; i++){
-                    	console.log(danhsachchitiet[i])
+                    	// console.log(danhsachchitiet[i])
                     	if(danhsachchitiet[i] && (danhsachchitiet[i].ketluan ===0 || danhsachchitiet[i].ketluan ==='0')){
                     		self.model.set("ketluan",0);
-                    		console.log("chay vao day ko???");
+                    		// console.log("chay vao day ko???");
                     		return;
                     	}
                     }

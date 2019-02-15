@@ -134,7 +134,7 @@ define(function (require) {
 						method: "GET",
 						contentType: "application/json",
 						success: function (response) {
-							console.log(response);
+							// console.log(response);
 							if (response && !!response){
 								var view = null;
 								if(response.tuyendonvi ==="donvicapnuoc"){

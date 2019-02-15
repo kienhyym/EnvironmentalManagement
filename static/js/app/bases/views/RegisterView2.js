@@ -28,7 +28,7 @@ define(function (require) {
 				dataType: "json",
 				contentType: "application/json",
 				success: function(data) {
-					console.log('success ', data);
+					// console.log('success ', data);
 					self.$el.find('input#tuyendv_tw').combobox({
 						textField: "ten",
 						valueField: "id",
@@ -60,7 +60,7 @@ define(function (require) {
 				dataType: "json",
 				contentType: "application/json",
 				success: function(data) {
-					console.log('success ', data);
+					// console.log('success ', data);
 					self.$el.find('input#captren_id').combobox({
 						textField: "ten",
 						valueField: "id",

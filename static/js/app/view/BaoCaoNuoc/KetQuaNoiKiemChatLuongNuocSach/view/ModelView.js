@@ -376,13 +376,13 @@ define(function (require) {
                         		arr_ketquakiemtra.push(item_vitrilaymau);
                             	
                         	}else{
-                        		console.log("chay vao day la loi roi???? line 362");
+                        		// console.log("chay vao day la loi roi???? line 362");
                         	}
                         }
                     	obj["ketquakiemtra"] = arr_ketquakiemtra;
 
                     } else if (old_thongso_ketqua.length > somau) {
-                    	console.log("chay vao thay doi thong so ket qua hay ko?");
+                    	// console.log("chay vao thay doi thong so ket qua hay ko?");
                     	obj["ketquakiemtra"].length = somau;
                     }
                     danhsachthongso_new.push(obj);

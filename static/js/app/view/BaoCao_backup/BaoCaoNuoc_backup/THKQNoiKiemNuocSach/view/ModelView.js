@@ -182,7 +182,7 @@ define(function(require) {
             self.applyBindings();
             self.renderTinhTongI();
             self.registerTinhTong();
-            console.log("success");
+            // console.log("success");
             if (self.model.get("hosotheodoi").length === 0) {
               self.$el.find("#addItem button").click();
             }
@@ -210,7 +210,7 @@ define(function(require) {
       var self = this;
       self.model.on("change:hosotheodoi", function() {
         //console.log("hosotheodoi ", self.model.get('hosotheodoi'));
-        console.log("this change event");
+        // console.log("this change event");
         self.renderTinhTongI();
 
       });

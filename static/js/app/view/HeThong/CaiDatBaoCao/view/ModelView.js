@@ -118,7 +118,7 @@ define(function (require) {
     		});
     	},
     	render:function(){
-    		console.log("render cai dat bao cao");
+    		// console.log("render cai dat bao cao");
     		var self = this;
     		var tuyendonvi_id = this.getApp().getRouter().getParam("tuyendonvi_id");
 

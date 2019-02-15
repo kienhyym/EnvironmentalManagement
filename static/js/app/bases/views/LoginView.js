@@ -56,7 +56,7 @@ define(function (require) {
 	 		    },
        		    dataType: 'json',
        		    success: function (data) {
-       		    	console.log(data);
+       		    	// console.log(data);
 //       		    	$.ajaxSetup({
 //       		    	    headers: {
 //       		    	    	'X-USER-TOKEN': data.token

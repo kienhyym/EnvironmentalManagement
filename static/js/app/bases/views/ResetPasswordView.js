@@ -48,7 +48,7 @@ define(function (require) {
        		    	});
        		    },
        		    error: function(xhr, textStatus, errorThrown) {
-       		    	console.log(xhr)
+       		    	// console.log(xhr)
 	            	try {
 						var data_error = $.parseJSON(xhr.responseJSON);
 						self.getApp().notify(data_error.error_message);

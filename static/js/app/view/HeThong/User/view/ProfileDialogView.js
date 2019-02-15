@@ -52,7 +52,7 @@ define(function (require) {
 	  				    			  		self.close();
 	  				    			  	},
 	  	  				    	    error: function (request, status, error) {
-	  	  				    	    	console.log(request)
+	  	  				    	    	// console.log(request)
 	  	  				    	    	self.getApp().hideloading();
 	  	  				    	        self.getApp().notify("Có lỗi xảy ra, Vui lòng thử lại sau");
 	  	  				    	        
@@ -79,7 +79,7 @@ define(function (require) {
     	render: function(){
     		var self = this;
     		var currentUser = self.getApp().currentUser;
-    		console.log(currentUser);
+    		// console.log(currentUser);
     		if (!!currentUser){
     			self.$el.find('#profile_macongdan').val(currentUser.macongdan),
 				self.$el.find('#profile_phone').val(currentUser.phone),

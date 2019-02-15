@@ -86,7 +86,7 @@ define(function (require) {
 			    	 				dataType: "json",
 			    					contentType: "application/json",
 			    	 				success: function(data) {
-			    	 					console.log(self.model.toJSON());
+			    	 					// console.log(self.model.toJSON());
 			    	 					//self.getApp().getRouter().navigate(self.collectionName + "/collection");
 			    	 					self.getApp().notify("Đăng ký tài khoản thành công");
 			    	 				},

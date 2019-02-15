@@ -393,7 +393,7 @@ define(function (require) {
         		thongsoKhongDatView.model.set("gioihan_toithieu", dataThongSo.gioihan_toithieu);
         		thongsoKhongDatView.render();
         		self.$el.find("#danhsachthongso_khongdat").append(thongsoKhongDatView.$el);
-        		console.log("model to JSON", thongsoKhongDatView.model.toJSON());
+        		// console.log("model to JSON", thongsoKhongDatView.model.toJSON());
         		danhsachthongso_khongdat.push(thongsoKhongDatView.model.toJSON());
         		thongsoKhongDatView.on("change", function (event) {
                 	var ds_khongdat = self.model.get("danhsachthongso_khongdat");
@@ -504,7 +504,7 @@ define(function (require) {
                 } else {
                 	self.$el.find("[id=removeButton]").show();
                 }
-                console.log("changeSoMau.danhsachthongso===",danhsachthongso);
+                // console.log("changeSoMau.danhsachthongso===",danhsachthongso);
                 var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
                 if (danhsachvitrilaymau === null) {
                 	danhsachvitrilaymau = [];
@@ -519,7 +519,7 @@ define(function (require) {
                         	if(item_vitrilaymau !== null && item_vitrilaymau !== undefined){
                         		arr_ketquakiemtra.push(item_vitrilaymau);
                         	}else{
-                        		console.log("chay vao day ngoai kiem la loi roi???? line 362");
+                        		// console.log("chay vao day ngoai kiem la loi roi???? line 362");
                         	}
                         }
                     	obj["ketquakiemtra"] = arr_ketquakiemtra;

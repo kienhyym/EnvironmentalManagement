@@ -108,7 +108,7 @@ define(function (require) {
 						method: "GET",
 						contentType: "application/json",
 						success: function (response) {
-							console.log(response);
+							// console.log(response);
 							if (response && !!response){
 								var html_header_tuyendonvi = `<table class="table-align is-table">
 													<thead>
