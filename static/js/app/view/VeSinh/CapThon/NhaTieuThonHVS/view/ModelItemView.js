@@ -253,20 +253,20 @@ define(function (require) {
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);
 			});
-			self.model.on("change:hopvesinh",function(){
-				if(self.model.get("hopvesinh")===1){
-					self.model.set("khonghopvesinh",0);
-				}else{
-					self.model.set("khonghopvesinh",1);
-				}			
-			});
-			self.model.on("change:khonghopvesinh",function(){
-				if(self.model.get("khonghopvesinh")===1){
-					self.model.set("hopvesinh",0);
-				}else{
-					self.model.set("hopvesinh",1);
-				}			
-			});
+			// self.model.on("change:hopvesinh",function(){
+			// 	if(self.model.get("hopvesinh")===1){
+			// 		self.model.set("khonghopvesinh",0);
+			// 	}else{
+			// 		self.model.set("khonghopvesinh",1);
+			// 	}			
+			// });
+			// self.model.on("change:khonghopvesinh",function(){
+			// 	if(self.model.get("khonghopvesinh")===1){
+			// 		self.model.set("hopvesinh",0);
+			// 	}else{
+			// 		self.model.set("hopvesinh",1);
+			// 	}			
+			// });
 			self.model.on("change", function () {
 				
 				self.trigger("change", {
@@ -283,8 +283,80 @@ define(function (require) {
 //			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 //				self.remove(true);
 //			});
+			self.choose_one_in_all();
 			self.applyBindings();
 		},
+		choose_one_in_all: function() {
+			const self = this;
+			self.model.on("change:tuhoai", function() {
+				if(self.model.get("tuhoai") === 1){
+					self.model.set("haingan", 0);
+					self.model.set("thamdoi", 0);
+					self.model.set("chimco_oth", 0);
+					self.model.set("loaikhac", null);
+				}
+			});
+			self.model.on("change:thamdoi", function() {
+				if(self.model.get("thamdoi") === 1){
+					self.model.set("tuhoai", 0);
+					self.model.set("haingan", 0);
+					self.model.set("chimco_oth", 0);
+					self.model.set("loaikhac", null);
+				}
+			});
+			self.model.on("change:haingan", function() {
+				if(self.model.get("haingan") === 1){
+					self.model.set("tuhoai", 0);
+					self.model.set("thamdoi", 0);
+					self.model.set("chimco_oth", 0);
+					self.model.set("loaikhac", null);
+				}
+			});
+			self.model.on("change:chimco_oth", function() {
+				if(self.model.get("chimco_oth") === 1){
+					self.model.set("tuhoai", 0);
+					self.model.set("thamdoi", 0);
+					self.model.set("haingan", 0);
+					self.model.set("loaikhac", null);
+				}
+			});
+			self.model.on("change:loaikhac", function() {
+				if(self.model.get("loaikhac") || self.model.get("loaikhac") === 0){
+					self.model.set("tuhoai", 0);
+					self.model.set("thamdoi", 0);
+					self.model.set("haingan", 0);
+					self.model.set("chimco_oth", 0);
+				}
+			});
+			self.model.on("change:khongconhatieu",function(){
+				if(self.model.get("khongconhatieu") === 1){
+					self.model.set("hopvesinh", 0);
+					self.model.set("khonghopvesinh", 0);
+					self.model.set("caithien", 0);
+				}
+			});
+			self.model.on("change:hopvesinh",function(){
+				if(self.model.get("hopvesinh") === 1){
+					self.model.set("khongconhatieu", 0);
+					self.model.set("khonghopvesinh", 0);
+					self.model.set("caithien", 0);
+				}
+			});
+			self.model.on("change:khonghopvesinh",function(){
+				if(self.model.get("khonghopvesinh") === 1){
+					self.model.set("khongconhatieu", 0);
+					self.model.set("hopvesinh", 0);
+					self.model.set("caithien", 0);
+				}
+			});
+			self.model.on("change:caithien",function(){
+				if(self.model.get("caithien") === 1){
+					self.model.set("khongconhatieu", 0);
+					self.model.set("hopvesinh", 0);
+					self.model.set("khonghopvesinh", 0);
+				}
+			});
+		}
 	});
 
 });

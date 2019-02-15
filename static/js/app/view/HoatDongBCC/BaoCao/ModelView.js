@@ -118,7 +118,7 @@ define(function (require) {
 			var self = this;
 			self.setDefaultData();
 			self.onChangeEvents();
-//			self.applyBindings();
+			self.applyBindings();
 			self.$el.find("table.table input").attr({"disabled":true});
 		},
 		
