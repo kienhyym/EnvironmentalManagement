@@ -38,7 +38,7 @@ define(function (require) {
     			    	    		var pass = self.$el.find("#password").val();
     			                    var newpass = self.$el.find("#newpassword").val();
     			                    var confirm = self.$el.find("#confirm_password").val();
-    			                    console.log(newpass, confirm, pass);
+    			                    // console.log(newpass, confirm, pass);
     			                    if(newpass === confirm && newpass!==''){
     			                    	$.ajax({
       	  				    				url: (self.getApp().serviceURL || "")+'/api/v1/user/changepw',
@@ -51,7 +51,7 @@ define(function (require) {
       	  				    			  		self.close();
       	  				    			  	},
     		  	  				    	    error: function (request, status, error) {
-    		  	  				    	    	console.log(request);
+    		  	  				    	    	// console.log(request);
     		  	  				    	        self.getApp().notify('Cập nhật không thành công!');
 
     		  	  				    	    }

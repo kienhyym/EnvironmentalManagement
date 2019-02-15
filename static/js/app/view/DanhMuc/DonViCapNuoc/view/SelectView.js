@@ -83,18 +83,31 @@ define(function (require) {
     		} else {
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
     		}
-//    		if(!filter.isEmptyFilter()) {
-//    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-//    			var filters = {"$or":[
-//    				{"ma": {"$like": text }},
-//    				{"diachi": {"$like": text }},
-//					{"ten": {"$like": text }},
-//				] };
-//    			self.uiControl.filters = filters;
-//    			self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
-//    		}else{
-//    			self.uiControl.filters = null;
-//    		}
+			if(!filter.isEmptyFilter()) {
+				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+				var query = {"$or":[
+					{"ma": {"$like": text }},
+					{"diachi": {"$like": text }},
+						{"ten": {"$like": text }},
+					]};
+				if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
+					var filters = {"$and": [
+						{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+						{"congsuat":{"$gte":1000}},
+						query
+					]};
+				} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
+					var filters = {"$and": [
+						{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+						{"congsuat":{"$lt":1000}},
+						query
+					]};
+				}
+				self.uiControl.filters = filters;
+				self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
+			}else{
+				self.uiControl.filters = null;
+			}
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -102,11 +115,24 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
+						var query = { "$or": [
 		    				{"ma": {"$like": text }},
 		    				{"diachi": {"$like": text }},
 							{"ten": {"$like": text }},
-						] };
+						]};
+						if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
+		    				var filters = {"$and": [
+								{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+								{"congsuat":{"$gte":1000}},
+								query
+							]};
+		    			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
+							var filters = {"$and": [
+								{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+								{"congsuat":{"$lt":1000}},
+								query
+							]};
+						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

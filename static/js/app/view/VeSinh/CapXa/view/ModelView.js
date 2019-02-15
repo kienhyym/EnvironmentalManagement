@@ -109,21 +109,7 @@ define(function (require) {
 					command: function () {
 						var self = this;
 						var id = this.getApp().getRouter().getParam("id");
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						var quanhuyen = self.model.get("quanhuyen");
-						var xaphuong = self.model.get("xaphuong");
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
-							return;
-						}else if(quanhuyen === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
-							return;
-						}else if(xaphuong === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tenxa",self.model.get("xaphuong").ten);
@@ -189,21 +175,7 @@ define(function (require) {
 					command: function () {
 						var self = this;
 //						self.model.unset("danhsachbaocao");
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						var quanhuyen = self.model.get("quanhuyen");
-						var xaphuong = self.model.get("xaphuong");
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
-							return;
-						}else if(quanhuyen === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
-							return;
-						}else if(xaphuong === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Xã/Phương"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tenxa",self.model.get("xaphuong").ten);
@@ -211,6 +183,7 @@ define(function (require) {
 							success: function (model, respose, options) {
 								self.getApp().notify("Cộng dồn thông tin thành công");
 								self.compute_baocao();
+								self.check_chuongtrinhSUP();
 							},
 							error: function (xhr, status, error) {
 								try {
@@ -431,6 +404,39 @@ define(function (require) {
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 		},
+		validate: function() {
+			const self = this;
+			var nambaocao = self.model.get("nambaocao");
+			var tinhthanh = self.model.get("tinhthanh");
+			var quanhuyen = self.model.get("quanhuyen");
+			var xaphuong = self.model.get("xaphuong");
+			var thuocsuprsws = self.model.get("thuocsuprsws");
+			if (nambaocao === null || nambaocao === ""){
+				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+				return;
+			}
+			if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
+			if(tinhthanh === null){
+				self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
+				return;
+			} 
+			if(quanhuyen === null){
+				self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
+				return;
+			}
+			if(xaphuong === null){
+				self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
+				return;
+			}
+			if (thuocsuprsws === null || thuocsuprsws === ""){
+				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
+				return;
+			}
+			return true;
+		}
 
 	});
 

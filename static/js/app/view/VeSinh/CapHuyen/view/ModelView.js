@@ -97,18 +97,7 @@ define(function (require) {
 					command: function () {
 						var self = this;
 						var id = this.getApp().getRouter().getParam("id");
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						var quanhuyen = self.model.get("quanhuyen");
-						
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
-							return;
-						}else if(quanhuyen === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tenhuyen",self.model.get("quanhuyen").ten);
@@ -154,18 +143,7 @@ define(function (require) {
 					},
 					command: function () {
 						var self = this;
-						var nambaocao = self.model.get("nambaocao");
-						var tinhthanh = self.model.get("tinhthanh");
-						var quanhuyen = self.model.get("quanhuyen");
-						
-						if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-							self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-							return;
-						}else if(tinhthanh === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành"},{type: "danger"});
-							return;
-						}else if(quanhuyen === null){
-							self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện"},{type: "danger"});
+						if (!self.validate()){
 							return;
 						}
 						self.model.set("tenhuyen",self.model.get("quanhuyen").ten);
@@ -377,6 +355,29 @@ define(function (require) {
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 		},
+		validate: function() {
+			const self = this;
+			var nambaocao = self.model.get("nambaocao");
+			var tinhthanh = self.model.get("tinhthanh");
+			var quanhuyen = self.model.get("quanhuyen");
+			if(nambaocao === null || nambaocao === ""){
+				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+				return;
+			}
+			if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
+			if(tinhthanh === null || tinhthanh === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Tỉnh/Thành!"},{type: "danger"});
+				return;
+			}
+			if(quanhuyen === null || tinhthanh === undefined){
+				self.getApp().notify({message: "Chưa chọn thông tin Quận/Huyện!"},{type: "danger"});
+				return;
+			}
+			return true;
+		}
 	});
 
 });

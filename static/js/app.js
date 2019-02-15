@@ -152,7 +152,7 @@ require(['jquery', 'gonrin', 'app/router',
 						dataType: "json",
 						contentType: "application/json",
 						success: function (data) {
-							console.log("data : ", data);
+							// console.log("data : ", data);
 						},
 						error: function (xhr, status, error) {
 

@@ -58,11 +58,12 @@ define(function (require) {
     	    	},
     	},
     	render:function(){
+			var self = this;
     		var currentUser = this.getApp().currentUser;
 	    	 if (this.getApp().data("quanhuyen_id") !== null) {
                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
             }
-    		var self = this;
+			self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
     			sessionKey: self.collectionName +"_filter"
@@ -71,10 +72,14 @@ define(function (require) {
     		
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
+    			var query = { "$or": [
 					{"ten": {"$like": text }},
-				] };
-    			self.uiControl.filters = filters;
+				]};
+				var filters = {"$and": [
+					{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+					query
+				]};
+				self.uiControl.filters = filters;
     		}
     		self.applyBindings();
     		
@@ -83,9 +88,13 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
+						var query = { "$or": [
 							{"ten": {"$like": text }},
-						] };
+						]};
+						var filters = {"$and": [
+							{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+							query
+						]};
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

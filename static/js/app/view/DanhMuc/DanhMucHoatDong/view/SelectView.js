@@ -54,8 +54,8 @@ define(function (require) {
     	},
     	render:function() {
     		var self= this;
-			var filters = this.viewFilters();
-			console.log("filters ", filters);
+			// var filters = this.viewFilters();
+			// console.log("filters ", filters);
     		var filter_loaihoatdong = "";
     		if(self.viewData && self.viewData.loai_hoatdong){
     			filter_loaihoatdong = {"loai_hoatdong":{"$eq": self.viewData.loai_hoatdong }};
@@ -98,7 +98,6 @@ define(function (require) {
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
-				console.log(self.uiControl.filters);
 				var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
@@ -108,7 +107,7 @@ define(function (require) {
 							{"tenhoatdong": {"$like": text }},
 						]};
 						if (filter_loaihoatdong && filter_loaihoatdong !== ""){
-		    				filters = {"$and": [
+		    				var filters = {"$and": [
 								{"loai_hoatdong": {"$eq": self.viewData.loai_hoatdong}},
 								query
 							]};

@@ -95,34 +95,35 @@ define(function (require) {
 						var pass = self.model.get("password");
 						var cfpass = self.model.get("cfpassword");
 						var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
-						 console.log(donvi_tuyendonvi);
 						var tinhthanh = self.model.get("tinhthanh");
 						var quanhuyen = self.model.get("quanhuyen");
 						var xaphuong = self.model.get("xaphuong");
+						var donvi_sodienthoai = self.model.get("donvi_sodienthoai");
 						if (donvi_ten == null || donvi_ten == "") {
-							self.getApp().notify({ message: "Tên đơn vị không được để trống" }, { type: "danger" });
+							self.getApp().notify({ message: "Tên đơn vị không được để trống!" }, { type: "danger" });
 						} else if (captren == null || captren == undefined) {
-							self.getApp().notify({ message: "Bạn chưa chọn cơ quan cấp trên" }, { type: "danger" });
+							self.getApp().notify({ message: "Chưa chọn cơ quan cấp trên!" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
 							self.getApp().notify({ message: "Email không hợp lệ" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
-							self.getApp().notify({ message: "Tên người dùng không được để trống" }, { type: "danger" });
-						}else if (self.validatePhone(phone) === false) {
-							self.getApp().notify({ message: "Số điện thoại không đúng định dạng" }, { type: "danger" });
+							self.getApp().notify({ message: "Tên người dùng không được để trống!" }, { type: "danger" });
+						}else if (self.validatePhone(phone) === false || self.validatePhone(donvi_sodienthoai) === false) {
+							self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
 						} else if (pass == null || pass == "") {
-							self.getApp().notify({ message: "Mật khẩu không được để trống" }, { type: "danger" });
+							self.getApp().notify({ message: "Mật khẩu không được để trống!" }, { type: "danger" });
 						}else if (pass == null || pass != cfpass) {
-							self.getApp().notify({ message: "Xác nhận mật khẩu không đúng, vui lòng kiểm tra lại" }, { type: "danger" });
+							self.getApp().notify({ message: "Xác nhận mật khẩu không đúng, vui lòng kiểm tra lại!" }, { type: "danger" });
 						} else if (donvi_tuyendonvi == null || donvi_tuyendonvi == undefined) {
-							self.getApp().notify({ message: "Bạn chưa chọn khối cơ quan" }, { type: "danger" });
+							self.getApp().notify({ message: "Chưa chọn khối cơ quan!" }, { type: "danger" });
 						} else if ((donvi_tuyendonvi.id ===2 || donvi_tuyendonvi.id ===3 || donvi_tuyendonvi.id ===4) && (tinhthanh == null || tinhthanh == undefined)) {
-								self.getApp().notify({ message: "Tỉnh thành không được để trống" }, { type: "danger" });
+								self.getApp().notify({ message: "Chưa chọn tỉnh thành!" }, { type: "danger" });
 							
 						} else if ((donvi_tuyendonvi.id ===3 || donvi_tuyendonvi.id ===4) && (quanhuyen == null || quanhuyen == undefined)) {
-							self.getApp().notify({ message: "Quận huyện không được để trống" }, { type: "danger" });
+							self.getApp().notify({ message: "Chưa chọn quận huyện!" }, { type: "danger" });
 						} else if (donvi_tuyendonvi.id ===4 && (xaphuong == null || xaphuong == undefined)) {
-								self.getApp().notify({ message: "Xã phường không được để trống" }, { type: "danger" });
+								self.getApp().notify({ message: "Chưa chọn xã phường!" }, { type: "danger" });
 						} else {
+							self.$el.find(".btn-success").prop('disabled', true);
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().getRouter().navigate("/login");
@@ -133,7 +134,7 @@ define(function (require) {
 										self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
 									catch (err) {
-										self.getApp().notify({ message: "Đăng kí thông tin không thành công"}, { type: "danger", delay: 1000 });
+										self.getApp().notify({ message: "Đăng kí thông tin không thành công!"}, { type: "danger", delay: 1000 });
 									}
 								}
 							});
@@ -153,11 +154,14 @@ define(function (require) {
 						self.applyBindings();
 					},
 					error: function () {
-						self.getApp().notify("Lỗi lấy dữ liệu");
+						self.getApp().notify("Lỗi lấy dữ liệu!");
 					},
 				});
 			} else {
 				self.applyBindings();
+				// console.log("self getFE===", self.getFieldElement("quanhuyen"));
+				// console.log("tinhthanhid====", self.model.get("tinhthanh_id"));
+				// self.getFieldElement("quanhuyen").data("gonrin").setFilters({ "tinhthanh_id": { "$eq": self.model.get("tinhthanh_id")}});
 			}
 
 		},
@@ -165,12 +169,17 @@ define(function (require) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
 		},
-		validatePhone: function (phone) {
-			if (phone == null || phone == undefined) {
+		validatePhone: function(inputPhone) {
+			if (inputPhone == null || inputPhone == undefined) {
 				return false;
 			}
-			var regex_phone = /(0[1-9])+([0-9]{8})\b/g;
-			return phone.match(regex_phone);
-		}
+            var phoneno = /(09|08|07|05|03)+[0-9]{8}/g;
+            const result = inputPhone.match(phoneno);
+            if (result && result == inputPhone) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 	});
 });

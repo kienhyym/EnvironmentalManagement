@@ -99,7 +99,7 @@ define(function (require) {
 		    	    	label: "TRANSLATE:SAVE",
 		    	    	command: function(){
 		    	    		var self = this;
-		    	    		console.log(self.model.toJSON());
+		    	    		// console.log(self.model.toJSON());
 		                    self.model.save(null,{
 		                        success: function (model, respose, options) {
 		                            self.getApp().notify("Lưu thông tin thành công");

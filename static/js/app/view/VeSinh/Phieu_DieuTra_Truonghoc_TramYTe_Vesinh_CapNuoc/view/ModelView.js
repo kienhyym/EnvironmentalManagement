@@ -207,7 +207,7 @@ define(function (require) {
                             width: "50px",
                             command: [
                                 {
-                                    "label": "Delete",
+                                    "label": "Xoá phiếu",
                                     "action": function (params, args) {
                                         var self = this;
                                         var fields = self.model.get("phieuchitiet");
@@ -217,6 +217,7 @@ define(function (require) {
                                                 fields.splice(i, 1);
                                             }
                                         }
+                                        self.getApp().notify("Xoá phiếu thành công");
                                         self.applyBindings();
                                     },
                                     "class": "btn-danger btn-sm"
@@ -237,7 +238,7 @@ define(function (require) {
                                     phieuchitiet = []
                                 }
                                 var sokhuvesinh_truong_tramyte = self.model.get('sokhuvesinh_truong_tramyte');
-                                if (sokhuvesinh_truong_tramyte == null || sokhuvesinh_truong_tramyte == ''){
+                                if (sokhuvesinh_truong_tramyte === null || sokhuvesinh_truong_tramyte === ""){
                                     self.getApp().notify({message: "Bạn phải nhập số khu vệ sinh trong trường trạm trước khi thêm mới phiếu!"}, {type: "danger"});
                                     return;
                                 }
@@ -406,44 +407,9 @@ define(function (require) {
                         label: "TRANSLATE:SAVE",
                         command: function () {
                             var self = this;
-                            var tentruongtram = self.model.get("ten_truong_tramyte");
-    						var matruongtram = self.model.get("ma_truong_tramyte");
-    						var tinhthanh = self.model.get("tinhthanh");
-    						var quanhuyen = self.model.get("quanhuyen");
-    						var xaphuong = self.model.get("xaphuong");
-    						var tennguoitraloi = self.model.get("tennguoitraloi");
-    						var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
-                            var thongtinlienlac = self.model.get("thongtinlienlac");
-                            var truong_sohocsinh_moibuoi = self.model.get("truong_sohocsinh_moibuoi");
-                            var truong_sohocsinh_nam = self.model.get("truong_sohocsinh_nam");
-                            var truong_sohocsinh_nu = self.model.get("truong_sohocsinh_nu");
-                            var sokhuvesinh_truong_tramyte = self.model.get("sokhuvesinh_truong_tramyte");
-                            var sokhuvesinh_truong_hossinh_nam = self.model.get("sokhuvesinh_truong_hossinh_nam");
-                            var sokhuvesinh_truong_hocsinh_nu = self.model.get("sokhuvesinh_truong_hocsinh_nu");
-                            var sokhuvesinh_truong_giaovien_nam = self.model.get("sokhuvesinh_truong_giaovien_nam");
-                            var sokhuvesinh_truong_giaovien_nu = self.model.get("sokhuvesinh_truong_giaovien_nu");
-    						if(tinhthanh === null || tinhthanh === ""){
-    							self.getApp().notify({message: "Chưa chọn tên tỉnh"},{type: "danger"});
-    						} else if(quanhuyen === null || quanhuyen === ""){
-    							self.getApp().notify({message: "Chưa chọn tên huyện"},{type: "danger"});
-    						} else if(xaphuong === null || xaphuong === ""){
-    							self.getApp().notify({message: "Chưa chọn tên xã"},{type: "danger"});
-    						} else if(tentruongtram === null || tentruongtram === ""){
-    							self.getApp().notify({message: "Chưa nhập tên trường học/trạm y tế!"},{type: "danger"});
-    						} else if(matruongtram === null || matruongtram === ""){
-    							self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
-                            } else if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
-                                self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
-                            } else if(tennguoitraloi === null || tennguoitraloi === ""){
-    							self.getApp().notify({message: "Chưa nhập tên người trả lời"},{type: "danger"});
-    						} else if(chucvu_nguoitraloi === null || chucvu_nguoitraloi === ""){
-    							self.getApp().notify({message: "Chưa nhập chức vụ người trả lời"},{type: "danger"});
-    						} else if(thongtinlienlac === null || thongtinlienlac === ""){
-    							self.getApp().notify({message: "Chưa nhập thông tin liên lạc người trả lời"},{type: "danger"});
-                            } else if (toInt(sokhuvesinh_truong_hossinh_nam) + toInt(sokhuvesinh_truong_hocsinh_nu)
-                                + toInt(sokhuvesinh_truong_giaovien_nam) + toInt(sokhuvesinh_truong_giaovien_nu) > toInt(sokhuvesinh_truong_tramyte)) {
-                                self.getApp().notify({message: "Số khu vệ sinh không hợp lệ!!!!"}, {type: "danger"});
-                            } else {
+                            if (!self.validate()) {
+                                return;
+                            }
                             self.model.save(null,
                                 {
                                     success: function (model, respose, options) {
@@ -462,7 +428,6 @@ define(function (require) {
                                         }
                                     }
                                 });
-    						}
                         }
                     },
                     {
@@ -533,9 +498,11 @@ define(function (require) {
                 if (self.model.get("loai_truong_tramyte") == 7) {
                     self.$el.find("#buoihoc").hide();
                     self.$el.find("#loaidiemtruong").hide();
+                    self.$el.find(".choose_tramyte_hidden").hide();
                 } else {
                     self.$el.find("#buoihoc").show();
                     self.$el.find("#loaidiemtruong").show();
+                    self.$el.find(".choose_tramyte_hidden").show();
                 }
             });
             
@@ -544,10 +511,10 @@ define(function (require) {
                 } else {
                 	var danhsachchitiet = self.model.get("phieuchitiet");
                     for(var i=0;i<danhsachchitiet.length; i++){
-                    	console.log(danhsachchitiet[i])
+                    	// console.log(danhsachchitiet[i])
                     	if(danhsachchitiet[i] && (danhsachchitiet[i].ketluan ===0 || danhsachchitiet[i].ketluan ==='0')){
                     		self.model.set("ketluan",0);
-                    		console.log("chay vao day ko???");
+                    		// console.log("chay vao day ko???");
                     		return;
                     	}
                     }
@@ -582,5 +549,124 @@ define(function (require) {
             }
 
         },
+        validate: function() {
+            const self = this;
+            var nambaocao = self.model.get("nambaocao");
+            var tentruongtram = self.model.get("ten_truong_tramyte");
+            var matruongtram = self.model.get("ma_truong_tramyte");
+            var tinhthanh = self.model.get("tinhthanh");
+            var quanhuyen = self.model.get("quanhuyen");
+            var xaphuong = self.model.get("xaphuong");
+            var tennguoitraloi = self.model.get("tennguoitraloi");
+            var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
+            var thongtinlienlac = self.model.get("thongtinlienlac");
+            var nguonnuocchinh = self.model.get("nguonnuocchinh");
+            var nguonnuocchinh_loaikhac = self.model.get("nguonnuocchinh_loaikhac");
+            var truong_sobuoihoc = self.model.get("truong_sobuoihoc");
+            var truong_sohocsinh_moibuoi = self.model.get("truong_sohocsinh_moibuoi");
+            var truong_sohocsinh_nam = self.model.get("truong_sohocsinh_nam");
+            var truong_sohocsinh_nu = self.model.get("truong_sohocsinh_nu");
+            var sokhuvesinh_truong_tramyte = self.model.get("sokhuvesinh_truong_tramyte");
+            var sokhuvesinh_truong_hossinh_nam = self.model.get("sokhuvesinh_truong_hossinh_nam");
+            var sokhuvesinh_truong_hocsinh_nu = self.model.get("sokhuvesinh_truong_hocsinh_nu");
+            var sokhuvesinh_truong_giaovien_nam = self.model.get("sokhuvesinh_truong_giaovien_nam");
+            var sokhuvesinh_truong_giaovien_nu = self.model.get("sokhuvesinh_truong_giaovien_nu");
+            if (nambaocao === null || nambaocao === ""){
+                self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+                return;
+            }
+            if (toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+                self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+                return;
+            }
+            if(tinhthanh === null || tinhthanh === ""){
+                self.getApp().notify({message: "Chưa chọn tên tỉnh"},{type: "danger"});
+                return;
+            } 
+            if(quanhuyen === null || quanhuyen === ""){
+                self.getApp().notify({message: "Chưa chọn tên huyện"},{type: "danger"});
+                return;
+            } 
+            if(xaphuong === null || xaphuong === ""){
+                self.getApp().notify({message: "Chưa chọn tên xã"},{type: "danger"});
+                return;
+            } 
+            if(tentruongtram === null || tentruongtram === ""){
+                self.getApp().notify({message: "Chưa nhập tên trường học/trạm y tế!"},{type: "danger"});
+                return;
+            } 
+            if(matruongtram === null || matruongtram === ""){
+                self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sobuoihoc) < 0){
+                self.getApp().notify({message: "Số buổi học không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_moibuoi) < 0){
+                self.getApp().notify({message: "Số học sinh mỗi buổi học không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_nam) < 0){
+                self.getApp().notify({message: "Số học sinh nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_nu) < 0){
+                self.getApp().notify({message: "Số học sinh nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
+                self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
+                return;
+            } 
+            if(tennguoitraloi === null || tennguoitraloi === ""){
+                self.getApp().notify({message: "Chưa nhập tên người trả lời"},{type: "danger"});
+                return;
+            }
+            if(chucvu_nguoitraloi === null || chucvu_nguoitraloi === ""){
+                self.getApp().notify({message: "Chưa nhập chức vụ người trả lời"},{type: "danger"});
+                return;
+            }
+            if(thongtinlienlac === null || thongtinlienlac === ""){
+                self.getApp().notify({message: "Chưa nhập thông tin liên lạc người trả lời"},{type: "danger"});
+                return;
+            }
+            if(nguonnuocchinh === 96){
+                if(nguonnuocchinh_loaikhac === null || nguonnuocchinh_loaikhac === ""){
+                    self.getApp().notify({message: "Nguồn nước khác không được để trống"},{type: "danger"});
+                    return;
+                }
+            }
+            if (sokhuvesinh_truong_tramyte === null || sokhuvesinh_truong_tramyte === ""){
+                self.getApp().notify({message: "Số khu vệ sinh trong trường/trạm không được để trống!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_tramyte < 0){
+                self.getApp().notify({message: "Số khu vệ sinh trong trường/trạm không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_hossinh_nam < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho học sinh nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_hocsinh_nu < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho học sinh nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_giaovien_nam < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho giáo viên nam không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (sokhuvesinh_truong_giaovien_nu < 0){
+                self.getApp().notify({message: "Số khu vệ sinh cho giáo viên nữ không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if (toInt(sokhuvesinh_truong_hossinh_nam) + toInt(sokhuvesinh_truong_hocsinh_nu)
+                + toInt(sokhuvesinh_truong_giaovien_nam) + toInt(sokhuvesinh_truong_giaovien_nu) > toInt(sokhuvesinh_truong_tramyte)) {
+                self.getApp().notify({message: "Số khu vệ sinh không hợp lệ!"}, {type: "danger"});
+                return;
+            }
+            return true;
+        }
     });
 });

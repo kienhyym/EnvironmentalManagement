@@ -6,6 +6,10 @@ define(function (require) {
 
     var template = require('text!app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/tpl/model.html'),
         schema = require('json!app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTe/view/Phieu_Chitiet_Vesinh_Capnuoc_Truong_TramYTeSchema.json');
+        
+    function toInt(x) {
+        return parseInt(x) ? parseInt(x) : 0;
+    }
 
     return Gonrin.ModelDialogView.extend({
         template: template,
@@ -390,8 +394,12 @@ define(function (require) {
                         label: "TRANSLATE:SAVE",
                         command: function () {
                             var self = this;
-                            self.getApp().notify("Lưu thông tin thành công");
+                            if (!self.validate()){
+                                return;
+                            }
+                            self.getApp().notify("Thêm phiếu thành công");
                             self.trigger("close", self.model.toJSON());
+                            self.$el.find(".btn-success").prop('disabled', true);
                             self.close();
                         }
                     },
@@ -401,11 +409,12 @@ define(function (require) {
                         buttonClass: "btn-danger btn-sm",
                         label: "TRANSLATE:DELETE",
                         visible: function () {
-                            return this.getApp().getRouter().getParam("id") !== null;
+                            return false;
+                            // return this.getApp().getRouter().getParam("id") !== null;
                         },
                         command: function () {
                             var self = this;
-                            self.getApp().notify('Xoá dữ liệu thành công');
+                            self.getApp().notify('Xoá phiếu thành công');
                             self.trigger("delete", self.model.toJSON());
                             self.close();
                         }
@@ -501,6 +510,38 @@ define(function (require) {
         	}else{
         		return 0;
         	} 	
-        }
+        },
+        validate: function() {
+            const self = this;
+            var ten_khu_khaosat = self.model.get("ten_khu_khaosat");
+            var soluong_chauxi = self.model.get("soluong_chauxi");
+            var khu_ditieu_dientich = self.model.get("khu_ditieu_dientich");
+            var khu_ditieu_sochau = self.model.get("khu_ditieu_sochau");
+            var quansat_khuvesinh = self.model.get("quansat_khuvesinh");
+            var quansat_khuvesinh_loaikhac = self.model.get("quansat_khuvesinh_loaikhac");
+            if(ten_khu_khaosat === null || ten_khu_khaosat === ""){
+                self.getApp().notify({message: "Tên khu vệ sinh không được để trống!"},{type: "danger"});
+                return;
+            }
+            if (quansat_khuvesinh === 96){
+                if (quansat_khuvesinh_loaikhac === null || quansat_khuvesinh_loaikhac === ""){
+                    self.getApp().notify({message: "Loại nhà vệ sinh khác không được để trống"},{type: "danger"});
+                    return;
+                }
+            }
+            if(toInt(soluong_chauxi) < 0){
+                self.getApp().notify({message: "Số chậu xí không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if(toInt(khu_ditieu_dientich) < 0){
+                self.getApp().notify({message: "Diện tích khu đi tiểu không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            if(toInt(khu_ditieu_sochau) < 0){
+                self.getApp().notify({message: "Số chậu khu đi tiểu không hợp lệ!"},{type: "danger"});
+                return;
+            }
+            return true;
+        },
     });
 });

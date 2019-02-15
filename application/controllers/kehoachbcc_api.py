@@ -36,8 +36,11 @@ async def preprocess_kehoachbcc(request=None, data=None, Model=None, **kw):
                                                                 TienDoKeHoachBCC.nambaocao == data['nambaocao'],
                                                                 TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).first()
                                                                 
-        if record is not None:
+        if record is not None and request.method == "POST":
             return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+        
+        if record is None and request.method == "PUT":
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo, vui lòng kiểm tra lại"}, status=520)
         
         baocao_donvicon = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi.captren_id,\
                                                             TienDoKeHoachBCC.loaikybaocao == data['loaikybaocao'], \

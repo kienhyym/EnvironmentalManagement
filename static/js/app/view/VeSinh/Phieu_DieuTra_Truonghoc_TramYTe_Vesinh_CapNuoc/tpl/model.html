@@ -73,10 +73,10 @@
                                 <td class="description">NẾU LÀ TRƯỜNG HỌC, GHI SỐ BUỔI HỌC VÀ SỐ HỌC SINH MỖI BUỔI
                                     HỌC</td>
                                 <td>
-                                    Số buổi học: <input type="text" class="form-control" data-bind="value:truong_sobuoihoc" /><br>
-                                    Số học sinh mỗi buổi học: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_moibuoi" /><br>
-                                    Số học sinh nam: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nam" /><br>
-                                    Số học sinh nữ: <input type="text" class="form-control" data-bind="value:truong_sohocsinh_nu" /><br>
+                                    Số buổi học: <input type="number" class="form-control" data-bind="value:truong_sobuoihoc" /><br>
+                                    Số học sinh mỗi buổi học: <input type="number" class="form-control" data-bind="value:truong_sohocsinh_moibuoi" /><br>
+                                    Số học sinh nam: <input type="number" class="form-control" data-bind="value:truong_sohocsinh_nam" /><br>
+                                    Số học sinh nữ: <input type="number" class="form-control" data-bind="value:truong_sohocsinh_nu" /><br>
                                 </td>
                             </tr>
                             <tr id="loaidiemtruong">
@@ -158,11 +158,15 @@
                                     chậu xí cho nữ thì sẽ tính là 2 khu vệ sinh.
                                 </td>
                                 <td>
-                                    Số khu vệ sinh trong trường/trạm: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_tramyte" /><br>
-                                    Số khu vệ sinh cho học sinh nam: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_hossinh_nam" /><br>
-                                    Số khu vệ sinh cho học sinh nữ: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_hocsinh_nu" /><br>
-                                    Số khu vệ sinh cho giáo viên nam: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nam" /><br>
-                                    Số khu vệ sinh cho giáo viên nữ: <input type="text" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nu" />
+                                    <div>
+                                        Số khu vệ sinh trong trường/trạm: <input type="number" class="form-control" data-bind="value:sokhuvesinh_truong_tramyte" /><br>
+                                    </div>
+                                    <div class="choose_tramyte_hidden">
+                                    Số khu vệ sinh cho học sinh nam: <input type="number" class="form-control" data-bind="value:sokhuvesinh_truong_hossinh_nam" /><br>
+                                    Số khu vệ sinh cho học sinh nữ: <input type="number" class="form-control" data-bind="value:sokhuvesinh_truong_hocsinh_nu" /><br>
+                                    Số khu vệ sinh cho giáo viên nam: <input type="number" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nam" /><br>
+                                    Số khu vệ sinh cho giáo viên nữ: <input type="number" class="form-control" data-bind="value:sokhuvesinh_truong_giaovien_nu" />
+                                    </div>
                                 </td>
                             </tr>
                             <tr>

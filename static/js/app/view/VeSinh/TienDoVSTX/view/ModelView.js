@@ -148,7 +148,7 @@ define(function (require) {
 								tr_tong.append("<td></td>");
 								self.$el.find("#danhsachdonvi").append(tr_tong);
 							}
-							console.log(data);
+							// console.log(data);
 						},
 						error: function (xhr, status, error) {
 	 	 			       try {
