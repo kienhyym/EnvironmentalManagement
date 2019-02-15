@@ -233,7 +233,11 @@ async def baocao_theo_cap(request):
             "error_code": "PARAM_ERROR",
             "error_message": "Vui lòng chọn thông tin tỉnh thành"
         }, status=520)
-    
+        
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
     # TÌM KIẾM TẤT CẢ NGÀNH
     ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
     
@@ -251,7 +255,7 @@ async def baocao_theo_cap(request):
     baocao_data = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nambaocao == nambaocao,\
                                                           TienDoKeHoachBCC.kybaocao == kydanhgia,\
                                                           TienDoKeHoachBCC.loaikybaocao == loaikybaocao))
-    tuyendonvi = 2#cap tinh
+    tuyendonvi = currentuser.donvi.tuyendonvi_id
     if tinhthanh is not None:
         baocao_data = baocao_data.filter(TienDoKeHoachBCC.tinhthanh_id == tinhthanh)
         tuyendonvi = 2
@@ -263,6 +267,13 @@ async def baocao_theo_cap(request):
     if xaphuong is not None:
         baocao_data = baocao_data.filter(TienDoKeHoachBCC.xaphuong_id == xaphuong)
         tuyendonvi = 4
+        
+    if tuyendonvi == 2:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.tuyendonvi == "tinh")
+    elif tuyendonvi == 3:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.tuyendonvi == "huyen")
+    elif tuyendonvi == 4:
+        baocao_data = baocao_data.filter(TienDoKeHoachBCC.tuyendonvi == "xa")
 #     if thonxom is not None:
 #         baocao_data = baocao_data.filter(TienDoKeHoachBCC.thonxom_id == thonxom)
     
