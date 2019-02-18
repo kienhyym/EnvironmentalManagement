@@ -629,12 +629,26 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     
+async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
+    objects = to_dict(result)
+    results = []
+    i =1
+    for obj in objects:
+        if obj is not None:
+            obj_tmp = to_dict(obj)
+            obj_tmp["STT"] = i
+            i++
+            results.push(obj_tmp)
+            
+    result = results
+   
+    
 
 apimanager.create_api(HoGiaDinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_hogiadinh]),
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
 
