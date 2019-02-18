@@ -116,7 +116,8 @@ require(['jquery', 'gonrin', 'app/router',
 			postLogin: function (data) {
 				var self = this;
 				$("body").attr({'style':'background-color: #fff !important;'});
-
+				var tpl = gonrin.template(layout)({});
+				$('body').html(tpl);
 //				$('body').html(layout);
 				self.showloading();
 				self.currentUser = new Gonrin.User(data);
