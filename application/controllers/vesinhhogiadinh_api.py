@@ -630,19 +630,20 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     data['nguoibaocao_id'] = currentuser.id
     
 async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
-    objects = to_dict(result["objects"])
-    datas = []
-    i =1
-    print("objects==",objects)
-    for obj in objects:
-        if obj is not None:
-            obj_tmp = to_dict(obj)
-            print("obj_tmp===",obj_tmp)
-            obj_tmp["STT"] = i
-            i = i +1
-            datas.push(obj_tmp)
-            
-    result = datas
+    if result is not None and "objects" in result:
+        objects = to_dict(result["objects"])
+        datas = []
+        i =1
+        print("objects==",objects)
+        for obj in objects:
+            if obj is not None:
+                obj_tmp = to_dict(obj)
+                print("obj_tmp===",obj_tmp)
+                obj_tmp["STT"] = i
+                i = i +1
+                datas.append(obj_tmp)
+                
+        result = datas
    
     
 
