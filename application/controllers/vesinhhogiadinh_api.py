@@ -633,6 +633,7 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
     objects = to_dict(result)
     datas = []
     i =1
+    print("objects==",objects)
     for obj in objects:
         if obj is not None:
             obj_tmp = to_dict(obj)
