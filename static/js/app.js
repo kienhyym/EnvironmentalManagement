@@ -51,6 +51,8 @@ require(['jquery', 'gonrin', 'app/router',
 			template_helper: new TemplateHelper(),
 			//layout: layout,
 			initialize: function () {
+				var tpl = gonrin.template(layout)({});
+				$('body').html(tpl);
 				this.nav = new Nav();
 				this.nav.render();
 				this.getCurrentUser();
@@ -115,7 +117,7 @@ require(['jquery', 'gonrin', 'app/router',
 				var self = this;
 				$("body").attr({'style':'background-color: #fff !important;'});
 
-				$('body').html(layout);
+//				$('body').html(layout);
 				self.showloading();
 				self.currentUser = new Gonrin.User(data);
 				if (!!data.donvi.tinhthanh_id){
