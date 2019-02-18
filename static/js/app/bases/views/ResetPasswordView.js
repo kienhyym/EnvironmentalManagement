@@ -4,13 +4,12 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin            	= require('gonrin'),
-        tpl                 = require('text!app/bases/tpl/resetpassword.html'),
-        template = _.template(tpl);
-
+        tpl                 = require('text!app/bases/tpl/resetpassword.html');
+    var template = gonrin.template(tpl)({});
     return Gonrin.View.extend({
         render: function () {
         	var self = this;
-        	self.$el.html(template());
+        	self.$el.html(template);
         	self.$el.find('[name=account]').val(self.viewData.user_id);
         	self.$el.find("#btn_resetpw").unbind('click').bind('click', function(){
         		self.processForgotPass();
