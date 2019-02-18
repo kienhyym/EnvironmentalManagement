@@ -630,7 +630,7 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     data['nguoibaocao_id'] = currentuser.id
     
 async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
-    objects = to_dict(result.objects)
+    objects = to_dict(result["objects"])
     datas = []
     i =1
     print("objects==",objects)
