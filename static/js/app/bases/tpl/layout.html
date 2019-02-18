@@ -5,7 +5,7 @@
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
 				<a class="font-weight-bold" style="min-width: 400px;text-transform: uppercase; font-weight:900; color:#619C27;" id="logo" href=".">
-				<img src="static/images/logo_moitruongyte.png" height="40px" alt="logo" class="logo-default"/>
+				<img src="{% print(static_url) %}/images/logo_moitruongyte.png" height="40px" alt="logo" class="logo-default"/>
 				Vệ sinh nhà tiêu và chất lượng nước sạch
 				</a>
 				<div class="menu-toggler sidebar-toggler hide">
@@ -24,7 +24,7 @@
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 					<li class="dropdown dropdown-user">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" class="img-circle" src="static/images/icons/user.png"/>
+						<img alt="" class="img-circle" src="{% print(static_url) %}/images/icons/user.png"/>
 						<span id="fullname" class="username username-hide-on-mobile">
 						... </span>
 						<i class="fa fa-angle-down"></i>
