@@ -7,6 +7,7 @@ define(function (require) {
 //        storejs				= require('store'),
         tpl                 = require('text!app/bases/tpl/login.html'),
         template = _.template(tpl);
+    var tpl = gonrin.template(tpl)({});
     return Gonrin.View.extend({
         render: function () {
         	var self = this;
@@ -14,7 +15,7 @@ define(function (require) {
         	self.getApp().currentUser = null;
 			$("body").attr({'style':'background-color: #e9ecf3 !important;'});
 
-            this.$el.html(template());
+            this.$el.html(tpl);
             
             $("#recover_account").unbind('click').bind('click', function(){
             	self.getApp().getRouter().navigate("recorver");
