@@ -635,10 +635,11 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
     i =1
     for obj in objects:
         if obj is not None:
-            print("obj===",obj)
-            obj["STT"] = i
+            obj_tmp = to_dict(obj)
+            print("obj_tmp===",obj_tmp)
+            obj_tmp["STT"] = i
             i = i +1
-            datas.push(obj)
+            datas.push(obj_tmp)
             
     result = datas
    
