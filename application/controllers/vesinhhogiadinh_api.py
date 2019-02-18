@@ -637,7 +637,7 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
         if obj is not None:
             obj_tmp = to_dict(obj)
             obj_tmp["STT"] = i
-            i++
+            i = i +1
             results.push(obj_tmp)
             
     result = results
