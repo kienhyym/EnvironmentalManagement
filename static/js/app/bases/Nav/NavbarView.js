@@ -155,7 +155,7 @@ define(function (require) {
 				var displayName = !!currentUser? currentUser.fullname: "";
 				nav_list.prepend('<div class="user-panel">'+
 	                                      '<div class="pull-left image">'+
-	                                        '<img alt="User Image" class="img-circle" src="{% print(static_url) %}/images/user.png">'+
+	                                        '<img alt="User Image" class="img-circle" src="'+static_url+'/images/user.png">'+
 	                                      '</div>'+
 	                                      '<div class="pull-left info">'+
 	                                        '<p style="font-size:18px;"><b>'+displayName +'</b></p>'+
