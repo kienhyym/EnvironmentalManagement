@@ -203,6 +203,7 @@ define(function (require) {
 								kybaocao_truoc = 1;
 							}
 						}
+						73: //data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})}, 
 						var filters = {
 								filters: {
 									"$and": [
@@ -412,7 +413,9 @@ define(function (require) {
 						"$and": [
 							{ "thonxom_id": { "$eq": self.model.get("thonxom").id } }
 						]
-					}
+					},
+					order_by:[{"field": "tenchuho", "direction": "asc"}], 
+					limit:10000
 				}
 			var url = self.getApp().serviceURL + "/api/v1/hogiadinh";
 			$.ajax({
