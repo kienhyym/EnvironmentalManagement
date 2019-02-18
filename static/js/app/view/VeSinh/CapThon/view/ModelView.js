@@ -419,7 +419,7 @@ define(function (require) {
 			$.ajax({
 				url: url,
 				method: "GET",
-				data: "q=" + JSON.stringify(filters)+"&page=1&results_per_page="+1000,
+				data: "q=" + JSON.stringify(filters)+"&page=1&results_per_page="+100000+"&max_results_per_page=1000000",
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
