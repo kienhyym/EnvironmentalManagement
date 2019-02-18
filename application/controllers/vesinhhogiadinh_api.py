@@ -631,15 +631,16 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     
 async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
     objects = to_dict(result)
-    results = []
+    datas = []
     i =1
     for obj in objects:
         if obj is not None:
+            print("obj===",obj)
             obj["STT"] = i
             i = i +1
-            results.push(obj)
+            datas.push(obj)
             
-    result = results
+    result = datas
    
     
 
