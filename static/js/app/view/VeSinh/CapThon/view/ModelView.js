@@ -413,14 +413,13 @@ define(function (require) {
 							{ "thonxom_id": { "$eq": self.model.get("thonxom").id } }
 						]
 					},
-					order_by:[{"field": "tenchuho", "direction": "asc"}], 
-					limit:10000
+					order_by:[{"field": "tenchuho", "direction": "asc"}]
 				}
 			var url = self.getApp().serviceURL + "/api/v1/hogiadinh";
 			$.ajax({
 				url: url,
 				method: "GET",
-				data: "q=" + JSON.stringify(filters),
+				data: "q=" + JSON.stringify(filters)+"&page=1&results_per_page="+1000,
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
