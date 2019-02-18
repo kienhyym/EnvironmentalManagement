@@ -203,7 +203,6 @@ define(function (require) {
 								kybaocao_truoc = 1;
 							}
 						}
-						73: //data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})}, 
 						var filters = {
 								filters: {
 									"$and": [
