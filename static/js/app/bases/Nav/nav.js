@@ -267,7 +267,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/ThonXom/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
-						return this.checkTuyendonvi([1,2,3,4]);
+						return this.checkTuyendonvi([4]);
 					}
 				},
 				{
@@ -285,7 +285,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/HoGiaDinh/view/CollectionView",
 					"tuyendonvi": 4,
 					"visible": function () {
-						return this.checkTuyendonvi([1,2,3,4]);
+						return this.checkTuyendonvi([4]);
 					}
 				},
 				{
