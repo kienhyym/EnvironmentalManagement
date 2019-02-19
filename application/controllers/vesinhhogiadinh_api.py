@@ -634,6 +634,10 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
         objects = to_dict(result["objects"])
         datas = []
         i =1
+        page = request.args.get("page",None)
+        results_per_page = request.args.get("results_per_page",None)
+        if page is not None and results_per_page is not None and page != 1:
+            i = i + results_per_page*page
         for obj in objects:
             if obj is not None:
                 obj_tmp = to_dict(obj)
