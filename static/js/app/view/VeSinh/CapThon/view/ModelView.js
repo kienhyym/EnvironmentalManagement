@@ -417,9 +417,11 @@ define(function (require) {
 				}
 			var url = self.getApp().serviceURL + "/api/v1/hogiadinh";
 			$.ajax({
-				url: url,
+				url: url+"?results_per_page="+100000+"&max_results_per_page=1000000",
 				method: "GET",
-				data: "q=" + JSON.stringify(filters)+"&page=1&results_per_page="+100000+"&max_results_per_page=1000000",
+	    		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
+
+				data: "q=" + JSON.stringify(filters),
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){

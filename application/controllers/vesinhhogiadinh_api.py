@@ -653,7 +653,7 @@ apimanager.create_api(HoGiaDinh,
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
 
-apimanager.create_api(VSCapThon,
+apimanager.create_api(VSCapThon, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func,entity_pregetmany], POST=[auth_func, baocao_prepost_vscapthon], PUT_SINGLE=[auth_func, pre_put_vscapthon], DELETE_SINGLE=[auth_func]),

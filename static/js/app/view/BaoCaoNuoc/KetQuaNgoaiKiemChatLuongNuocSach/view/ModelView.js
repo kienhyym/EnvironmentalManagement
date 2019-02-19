@@ -665,7 +665,7 @@ define(function (require) {
             var self = this;
             self.model.set("ketquangoaikiemchatluongnuoc", []);
 //            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc";
-            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc?results_per_page=1000&max_results_per_page=1000";
+            var url = self.getApp().serviceURL + "/api/v1/thongsobaocaochatluongnuoc?results_per_page=1000&max_results_per_page=10000";
 
             $.ajax({
                 url: url,
