@@ -49,7 +49,8 @@ apimanager.create_api(XaPhuong,
     collection_name='xaphuong')
 
 
-async def entity_pregetmany_thonxom(request=None, search_params=None):
+async def entity_pregetmany_thonxom(search_params=None, **kw):
+    request = kw.get("request", None)
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
