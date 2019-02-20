@@ -644,15 +644,33 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
                 obj_tmp["STT"] = i
                 i = i +1
                 datas.append(obj_tmp)
-                
         result = datas
+
+async def entity_pregetmany_hogiadinh(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        currdonvi = currentUser.donvi
+        dshogiadinhid = None
+        if(currdonvi is not None):
+            if currdonvi.tuyendonvi_id == 2:
+                dshogiadinhid = db.session.query(HoGiaDinh.id).filter(HoGiaDinh.tinhthanh_id == currdonvi.tinhthanh_id).all()
+            elif currdonvi.tuyendonvi_id == 3:
+                dshogiadinhid = db.session.query(HoGiaDinh.id).filter(HoGiaDinh.quanhuyen_id == currdonvi.quanhuyen_id).all()
+            elif currdonvi.tuyendonvi_id == 4:
+                dshogiadinhid = db.session.query(HoGiaDinh.id).filter(HoGiaDinh.xaphuong_id == currdonvi.xaphuong_id).all()
+        print("dshogiadinhid==== ho gia dinh====",dshogiadinhid)
+        if dshogiadinhid is not None and len(dshogiadinhid) >0:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": dshogiadinhid}}]} \
+                                    or {"id":{"$in": dshogiadinhid}}
+    print("search_params ho gia dinh====",search_params)
    
     
 
 apimanager.create_api(HoGiaDinh,max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany_hogiadinh], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_hogiadinh]),
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
