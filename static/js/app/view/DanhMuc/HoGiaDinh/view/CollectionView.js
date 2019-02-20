@@ -84,22 +84,23 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
-				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().currentUser.donvi.tinhthanh_id}};
-				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "asc"},{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-
-			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().currentUser.donvi.quanhuyen_id}};
-				self.uiControl.orderBy = [{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-
-    		} else if (this.getApp().data("xaphuong_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===4){
-				this.uiControl.filters = {"xaphuong_id": {"$eq": this.getApp().currentUser.donvi.xaphuong_id}};
-				self.uiControl.orderBy = [{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-    		}
-//			self.uiControl.orderBy = [{"field": "tinhthanh", "direction": "asc"},
-//				{"field": "quanhuyen", "direction": "asc"},
-//				{"field": "xaphuong", "direction": "asc"},
-//				{"field": "tenchuho", "direction": "asc"}];
+//			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
+//				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().currentUser.donvi.tinhthanh_id}};
+//				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "asc"},{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+//
+//			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
+//				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().currentUser.donvi.quanhuyen_id}};
+//				self.uiControl.orderBy = [{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+//
+//    		} else if (this.getApp().data("xaphuong_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===4){
+//				this.uiControl.filters = {"xaphuong_id": {"$eq": this.getApp().currentUser.donvi.xaphuong_id}};
+//				self.uiControl.orderBy = [{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+//    		}
+			self.uiControl.orderBy = [{"field": "tinhthanh_id", "direction": "asc"},
+				{"field": "quanhuyen_id", "direction": "asc"},
+				{"field": "xaphuong_id", "direction": "asc"},
+				{"field": "thonxom_id", "direction": "asc"},
+				{"field": "tenchuho", "direction": "asc"}];
 
 			this.applyBindings();
 			return this;
