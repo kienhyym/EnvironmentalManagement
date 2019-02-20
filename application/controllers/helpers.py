@@ -50,10 +50,10 @@ async def current_user(request):
 def auth_func(request=None, **kw):
     uid = auth.current_user(request)
     if uid is None:
-        return json({"error_code":"SESSION_EXPIRED","error_message":"auth_func can not found uid"},status=520)
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên làm việc, vui lòng đăng nhập lại!"},status=520)
     
 def deny_func(request=None, **kw):
-    return json({"error_code":"PERMISSION_DENY","error_message":"permission deny"},status=520)
+    return json({"error_code":"PERMISSION_DENY","error_message":"Không có quyền thực hiện hành động này!"},status=520)
     
 async def hasRole(request, role):
     currentUser = await current_user(request)
@@ -66,9 +66,9 @@ async def check_admin(request=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         if not currentUser.has_role('Admin'):
-            return json({"error_code":"PERMISSION_DENY","error_message":"you don't have privileges"},status=520)
+            return json({"error_code":"PERMISSION_DENY","error_message":"Không có quyền thực hiện hành động này!"},status=520)
     else:    
-        return json({"error_code":"SESSION_EXPIRED","error_message":"not found session"},status=520)
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên làm việc, vui lòng đăng nhập lại!"},status=520)
 
     
 def role_pregetmany(search_params=None, **kw):
