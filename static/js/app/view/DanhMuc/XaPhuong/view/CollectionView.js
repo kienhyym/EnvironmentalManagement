@@ -43,6 +43,7 @@ define(function (require) {
 	    	 if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
                 this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
              }
+			 self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
 	    	 this.applyBindings();
 	    	 return this;
     	}
