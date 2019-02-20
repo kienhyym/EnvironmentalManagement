@@ -59,7 +59,7 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
             if currdonvi.tuyendonvi_id == 2:
                 dshuyenid = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
                 if dshuyenid is not None and len(dshuyenid)>0:
-                    dsxaphuongid = db.session.query(XaPhuong.id).filter(XaPhuong.quanhuyen_id.in_(dshuyen)).all()
+                    dsxaphuongid = db.session.query(XaPhuong.id).filter(XaPhuong.quanhuyen_id.in_(dshuyenid)).all()
             elif currdonvi.tuyendonvi_id == 3:
                 dsxaphuongid = db.session.query(XaPhuong.id).filter(XaPhuong.quanhuyen_id == currdonvi.quanhuyen_id).all()
             elif currdonvi.tuyendonvi_id == 4:
