@@ -64,8 +64,8 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
                 dsxaphuongid = db.session.query(XaPhuong.id).filter(XaPhuong.quanhuyen_id == currdonvi.quanhuyen_id).all()
             elif currdonvi.tuyendonvi_id == 4:
                 dsxaphuongid = [currdonvi.xaphuong_id]
-        
-        if len(dsxaphuongid>0):
+        print("dsxaphuongid====",dsxaphuongid)
+        if len(dsxaphuongid) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]} \
                                     or {"xaphuong_id":{"$in": dsxaphuongid}}
     print("search_params thon xom====",search_params)
