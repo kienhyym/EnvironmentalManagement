@@ -51,7 +51,7 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
                 quyenhuyenids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
             elif currdonvi.tuyendonvi_id == 3:
                 quyenhuyenids = [currdonvi.quanhuyen_id]
-        print("dsquanhuyenid====",query_ids)
+        print("dsquanhuyenid====",quyenhuyenids)
         if quyenhuyenids is not None and len(quyenhuyenids) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]} \
                                     or {"quanhuyen_id":{"$in": quyenhuyenids}}
