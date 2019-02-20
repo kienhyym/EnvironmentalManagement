@@ -40,12 +40,30 @@ apimanager.create_api(QuanHuyen,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func,prepost_danhmuc], PUT_SINGLE=[auth_func,prepost_danhmuc]),
     collection_name='quanhuyen')
 
-
+async def entity_pregetmany_xaphuong(search_params=None, **kw):
+    request = kw.get("request", None)
+    currentUser = await current_user(request)
+    if currentUser is not None:
+        currdonvi = currentUser.donvi
+        query_ids = None
+        if(currdonvi is not None):
+            if currdonvi.tuyendonvi_id == 2:
+                query_ids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
+            elif currdonvi.tuyendonvi_id == 3:
+                query_ids = [currdonvi.quanhuyen_id]
+        print("dsquanhuyenid====",query_ids)
+        if query_ids is not None and len(query_ids) >0:
+            quyenhuyenids = []
+            for qh in query_ids:
+                quyenhuyenids.append(str(qh))
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]} \
+                                    or {"quanhuyen_id":{"$in": quyenhuyenids}}
+    print("search_params xaphuong====",search_params)
 
 apimanager.create_api(XaPhuong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[], POST=[auth_func,prepost_danhmuc], PUT_SINGLE=[auth_func,prepost_danhmuc]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[entity_pregetmany_xaphuong], POST=[auth_func,prepost_danhmuc], PUT_SINGLE=[auth_func,prepost_danhmuc]),
     collection_name='xaphuong')
 
 
@@ -54,7 +72,7 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
-        dsxaphuongid = []
+        dsxaphuongid = None
         if(currdonvi is not None):
             if currdonvi.tuyendonvi_id == 2:
                 dshuyenid = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
@@ -65,7 +83,10 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
             elif currdonvi.tuyendonvi_id == 4:
                 dsxaphuongid = [currdonvi.xaphuong_id]
         print("dsxaphuongid====",dsxaphuongid)
-        if len(dsxaphuongid) >0:
+        if dsxaphuongid is not None and len(dsxaphuongid) >0:
+            xaphuongids = []
+            for xp in dsxaphuongid:
+                xaphuongids.append(str(xp))
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]} \
                                     or {"xaphuong_id":{"$in": dsxaphuongid}}
     print("search_params thon xom====",search_params)
