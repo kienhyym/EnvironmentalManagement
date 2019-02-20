@@ -45,17 +45,14 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
-        query_ids = None
+        quyenhuyenids = None
         if(currdonvi is not None):
             if currdonvi.tuyendonvi_id == 2:
-                query_ids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
+                quyenhuyenids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
             elif currdonvi.tuyendonvi_id == 3:
-                query_ids = [currdonvi.quanhuyen_id]
+                quyenhuyenids = [currdonvi.quanhuyen_id]
         print("dsquanhuyenid====",query_ids)
-        if query_ids is not None and len(query_ids) >0:
-            quyenhuyenids = []
-            for qh in query_ids:
-                quyenhuyenids.append(str(qh))
+        if quyenhuyenids is not None and len(quyenhuyenids) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]} \
                                     or {"quanhuyen_id":{"$in": quyenhuyenids}}
     print("search_params xaphuong====",search_params)
@@ -84,9 +81,6 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
                 dsxaphuongid = [currdonvi.xaphuong_id]
         print("dsxaphuongid====",dsxaphuongid)
         if dsxaphuongid is not None and len(dsxaphuongid) >0:
-            xaphuongids = []
-            for xp in dsxaphuongid:
-                xaphuongids.append(str(xp))
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]} \
                                     or {"xaphuong_id":{"$in": dsxaphuongid}}
     print("search_params thon xom====",search_params)
