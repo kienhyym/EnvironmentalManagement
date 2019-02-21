@@ -45,7 +45,7 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
-        quyenhuyenids = None
+        dsquanhuyenid = None
         if(currdonvi is not None):
             if currdonvi.tuyendonvi_id == 2:
                 quyenhuyenids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
