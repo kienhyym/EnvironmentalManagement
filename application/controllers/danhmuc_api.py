@@ -53,8 +53,7 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
                 quyenhuyenids = [currdonvi.quanhuyen_id]
         print("dsquanhuyenid====",quyenhuyenids)
         if quyenhuyenids is not None and len(quyenhuyenids) >0:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]} \
-                                    or {"quanhuyen_id":{"$in": quyenhuyenids}}
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]}
     print("search_params xaphuong====",search_params)
 
 apimanager.create_api(XaPhuong,
@@ -81,8 +80,7 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
                 dsxaphuongid = [currdonvi.xaphuong_id]
         print("dsxaphuongid====",dsxaphuongid)
         if dsxaphuongid is not None and len(dsxaphuongid) >0:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]} \
-                                    or {"xaphuong_id":{"$in": dsxaphuongid}}
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]}
     print("search_params thon xom====",search_params)
 
 apimanager.create_api(ThonXom,
