@@ -335,15 +335,18 @@ def get_danhsach_baocao_capduoi(Baocao, current_user, data=None):
                'nambaocao','kybaocao','mabaocao','nguoibaocao_id','thoigianbaocao','tinhtrang']
     
     curdonvi_id = current_user.donvi_id
-    baocaos = db.session.query(Baocao, DonVi).\
-            filter(Baocao.donvi_id == DonVi.id).\
-            filter(DonVi.captren_id == data['donvi_id']).\
+    print("curdonvi_id===",curdonvi_id)
+    print("data.donvi_id====",data['donvi_id'])
+    donvis = db.session.query(Donvi.id).filter(Donvi.captren_id == data['donvi_id']).all()
+    print("donvis====",donvis)
+    baocaos = db.session.query(Baocao).\
+            filter(Baocao.donvi_id.in_(donvis)).\
             filter(Baocao.loaikybaocao == data['loaikybaocao']).\
             filter(Baocao.kybaocao == data['kybaocao']).\
             filter(Baocao.nambaocao == data['nambaocao']).all()
-    
+    print("baocaos======",baocaos)
     resp = []
-    for baocao, donvi in baocaos:
+    for baocao in baocaos:
         resp.append(to_dict(baocao))
     return resp
 
