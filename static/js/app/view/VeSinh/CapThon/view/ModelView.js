@@ -369,7 +369,10 @@ define(function (require) {
 							self.renderItemView(nhatieuthonhvs[i]);
 							
 						}
-						
+						self.model.on("change:thonxom", function(){
+							self.get_danhsachho();
+						});
+						console.log("thon xom ten la===", self.model.get("thonxom").ten);
 						self.applyBindings();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -427,6 +430,7 @@ define(function (require) {
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
+						self.$el.find("#nhatieuthonhvs").show();
 						self.$el.find("#nhatieuthonhvs").html("");
 						self.model.set("nhatieuthonhvs",[]);
 						self.$el.find(".remove_columns").show();
@@ -447,7 +451,9 @@ define(function (require) {
 						self.renderTinhTongI();
 						self.check_chuongtrinhSUP();
 					}else{
-						self.getApp().notify("Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!");
+						self.$el.find("#nhatieuthonhvs").html("");
+						self.model.set("nhatieuthonhvs",[]);
+						self.getApp().notify({message: "Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!"}, {type: "danger"});
 					}
 				},
 				error: function (xhr, status, error) {
@@ -487,9 +493,9 @@ define(function (require) {
                 	}
                 self.model.set("nhatieuthonhvs", fields);
 				self.model.trigger("change");
-				if (self.model.get("nhatieuthonhvs").length === 0){
-					self.$el.find("#nhatieuthonhvs").hide();
-				}
+				// if (self.model.get("nhatieuthonhvs").length === 0){
+				// 	self.$el.find("#nhatieuthonhvs").hide();
+				// }
                 self.renderTinhTongI();
                 view.destroy();
                 view.remove();

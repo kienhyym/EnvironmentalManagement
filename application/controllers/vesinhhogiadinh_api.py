@@ -361,6 +361,7 @@ async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
+    data['tenthon'] = data['thonxom']['ten']
     await process_baocao_vesinh_capthon(currentuser,data)
     
 async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):

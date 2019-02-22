@@ -298,6 +298,7 @@ define(function (require) {
 					if (routeloaibaocao!==null){
 						path = 'vscapxa/model/'+routeloaibaocao+'?id=' + id;
 					}
+					console.log("path", path);
 					self.getApp().getRouter().navigate(path);
 				});
 				

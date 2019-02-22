@@ -95,10 +95,10 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-//						Backbone.history.history.back();
-						var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
-						self.getApp().getRouter().navigate(self.collectionName 
-								+ "/collection?loaikybaocao="+routeloaibaocao);
+						Backbone.history.history.back();
+						// var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+						// self.getApp().getRouter().navigate(self.collectionName 
+						// 		+ "/collection?loaikybaocao="+routeloaibaocao);
 					}
 				},
 				{
