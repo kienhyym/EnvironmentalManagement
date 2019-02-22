@@ -337,7 +337,7 @@ def get_danhsach_baocao_capduoi(Baocao, current_user, data=None):
     curdonvi_id = current_user.donvi_id
     print("curdonvi_id===",curdonvi_id)
     print("data.donvi_id====",data['donvi_id'])
-    donvis = db.session.query(Donvi.id).filter(Donvi.captren_id == data['donvi_id']).all()
+    donvis = db.session.query(DonVi.id).filter(DonVi.captren_id == data['donvi_id']).all()
     print("donvis====",donvis)
     baocaos = db.session.query(Baocao).\
             filter(Baocao.donvi_id.in_(donvis)).\
