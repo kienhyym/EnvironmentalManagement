@@ -156,10 +156,11 @@ define(function (require) {
 			}
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
-				if (!!currentUser.donvi.tinhthanh_id){
+				if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2){
 					self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+					self.$el.find("#tinhthanh").prop('disabled', true);
 				}
 			}
 			if (id) {

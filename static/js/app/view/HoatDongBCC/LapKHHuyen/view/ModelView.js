@@ -221,13 +221,15 @@ define(function (require) {
 			var self = this;
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi) {
-				if (!!currentUser.donvi.tinhthanh_id) {
+				if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2) {
 					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
+					self.$el.find("#tinhthanh").prop('disabled', true);
 				}
-				if (!!currentUser.donvi.quanhuyen_id){
+				if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3){
 					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
 					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
+					self.$el.find("#quanhuyen").prop('disabled', true);
 				}
 			}
 			self.model.set("tuyendonvi", "huyen");

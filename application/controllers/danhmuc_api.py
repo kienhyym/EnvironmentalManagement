@@ -45,16 +45,15 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
-        quyenhuyenids = None
+        dsquanhuyenid = None
         if(currdonvi is not None):
             if currdonvi.tuyendonvi_id == 2:
-                quyenhuyenids = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
+                dsquanhuyenid = db.session.query(QuanHuyen.id).filter(QuanHuyen.tinhthanh_id == currdonvi.tinhthanh_id).all()
             elif currdonvi.tuyendonvi_id == 3 or currdonvi.tuyendonvi_id == 4:
-                quyenhuyenids = [currdonvi.quanhuyen_id]
-        print("dsquanhuyenid====",quyenhuyenids)
-        if quyenhuyenids is not None and len(quyenhuyenids) >0:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": quyenhuyenids}}]} \
-                                    or {"quanhuyen_id":{"$in": quyenhuyenids}}
+                dsquanhuyenid = [currdonvi.quanhuyen_id]
+        if dsquanhuyenid is not None and len(dsquanhuyenid) >0:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": dsquanhuyenid}}]} \
+                                    or {"quanhuyen_id":{"$in": dsquanhuyenid}}
     print("search_params xaphuong====",search_params)
 
 apimanager.create_api(XaPhuong,
