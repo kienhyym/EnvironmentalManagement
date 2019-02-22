@@ -101,14 +101,6 @@ def create_quocgia_tinhthanh():
     
     db.session.commit()
 
-@manager.command
-def create_dantoc_model():
-    check_exist_dantoc = db.session.query(DanToc).count()
-    if (check_exist_dantoc == 0):
-        
-            
-            
-        db.session.commit()
 
 
 
