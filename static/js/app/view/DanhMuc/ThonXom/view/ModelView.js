@@ -102,6 +102,16 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
+
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.xaphuong_id && currentUser.donvi.tuyendonvi_id === 4){
+					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+					self.model.set("xaphuong",currentUser.donvi.xaphuong);
+					self.$el.find("#xaphuong").prop('disabled', true);
+				}
+			}
+
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
