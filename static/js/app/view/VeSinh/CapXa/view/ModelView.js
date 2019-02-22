@@ -215,24 +215,7 @@ define(function (require) {
 				}
 			}
 			
-			var currentUser = self.getApp().currentUser;
-			if(!!currentUser && !!currentUser.donvi){
-				if (!!currentUser.donvi.tinhthanh_id){
-					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-					self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
-				}
-				if (!!currentUser.donvi.quanhuyen_id){
-					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-					self.getApp().data("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
-				}
-				if (!!currentUser.donvi.xaphuong_id){
-					self.getApp().data("xaphuong_id",currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
-					self.model.set("xaphuong",currentUser.donvi.xaphuong);
-				}
-			}
+			
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -253,6 +236,24 @@ define(function (require) {
 					}
 				});
 			} else {
+				var currentUser = self.getApp().currentUser;
+				if(!!currentUser && !!currentUser.donvi){
+					if (!!currentUser.donvi.tinhthanh_id){
+						self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+						self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+						self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+					}
+					if (!!currentUser.donvi.quanhuyen_id){
+						self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+						self.getApp().data("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+						self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+					}
+					if (!!currentUser.donvi.xaphuong_id){
+						self.getApp().data("xaphuong_id",currentUser.donvi.xaphuong_id);
+						self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+						self.model.set("xaphuong",currentUser.donvi.xaphuong);
+					}
+				}
 				self.applyBindings();
 				self.check_chuongtrinhSUP();
 				self.model.on("change:thuocsuprsws", function(){

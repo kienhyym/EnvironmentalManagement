@@ -354,7 +354,6 @@ async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     data['ngaybaocao'] = str(datetime.now())
     await process_baocao_vesinh_capthon(currentuser,data)
     
-    
 async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
@@ -370,7 +369,6 @@ async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):
     list_baocao = congdonTongCong(VSCapThon,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapXa,data)
-    
     
 async def pre_put_vscaphuyen(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
@@ -584,10 +582,10 @@ async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     
 #     list_baocao = congdonTongCong(VSCapThon,currentuser, obj['nambaocao'])
 #     obj['danhsachbaocao'] = list_baocao
-    list_baocao = []
-    if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapThon,currentuser, obj)
-        obj['danhsachbaocao'] = list_baocao
+#     list_baocao = []
+#     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
+#         list_baocao = congdonTongCong(VSCapThon,currentuser, obj)
+#         obj['danhsachbaocao'] = list_baocao
     result = obj
     
 async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **kw):
