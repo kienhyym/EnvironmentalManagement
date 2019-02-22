@@ -267,7 +267,7 @@ define(function (require) {
 		compute_baocao: function(){
 			var self = this;
 			var danhsachbaocao = self.model.get("danhsachbaocao");
-			if (danhsachbaocao.length == 0){
+			if (!danhsachbaocao || danhsachbaocao.length == 0){
 				self.$el.find("#danhsachdonvi").hide();
 			}
 			var total_chuholanu = 0;

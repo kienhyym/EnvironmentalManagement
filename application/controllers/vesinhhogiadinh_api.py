@@ -329,6 +329,24 @@ def congdonTongCong(Baocao, current_user, data=None):
 #                     resp[c.name] = resp[c.name] +  val
     return resp
 
+
+def get_danhsach_baocao_capduoi(Baocao, current_user, data=None):
+    notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
+               'nambaocao','kybaocao','mabaocao','nguoibaocao_id','thoigianbaocao','tinhtrang']
+    
+    curdonvi_id = current_user.donvi_id
+    baocaos = db.session.query(Baocao, DonVi).\
+            filter(Baocao.donvi_id == DonVi.id).\
+            filter(DonVi.captren_id == data['donvi_id']).\
+            filter(Baocao.loaikybaocao == data['loaikybaocao']).\
+            filter(Baocao.kybaocao == data['kybaocao']).\
+            filter(Baocao.nambaocao == data['nambaocao']).all()
+    
+    resp = []
+    for baocao, donvi in baocaos:
+        resp.append(to_dict(baocao))
+    return resp
+
 async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
@@ -582,10 +600,10 @@ async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     
 #     list_baocao = congdonTongCong(VSCapThon,currentuser, obj['nambaocao'])
 #     obj['danhsachbaocao'] = list_baocao
-#     list_baocao = []
-#     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-#         list_baocao = congdonTongCong(VSCapThon,currentuser, obj)
-#         obj['danhsachbaocao'] = list_baocao
+    list_baocao = []
+    if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
+        list_baocao = get_danhsach_baocao_capduoi(VSCapThon,currentuser, obj)
+        obj['danhsachbaocao'] = list_baocao
     result = obj
     
 async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **kw):
@@ -596,7 +614,7 @@ async def reponse_caphuyen_get_single(request=None, Model=None, result=None, **k
 #     obj['danhsachbaocao'] = list_baocao
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapXa,currentuser, obj)
+        list_baocao = get_danhsach_baocao_capduoi(VSCapXa,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
         
     result = obj
@@ -606,7 +624,7 @@ async def reponse_captinh_get_single(request=None, Model=None, result=None, **kw
     obj = to_dict(result)
     list_baocao = []
     if (obj['tinhtrang'] == TinhTrangBaocaoEnum.taomoi):
-        list_baocao = congdonTongCong(VSCapHuyen,currentuser, obj)
+        list_baocao = get_danhsach_baocao_capduoi(VSCapHuyen,currentuser, obj)
         obj['danhsachbaocao'] = list_baocao
     result = obj
     
