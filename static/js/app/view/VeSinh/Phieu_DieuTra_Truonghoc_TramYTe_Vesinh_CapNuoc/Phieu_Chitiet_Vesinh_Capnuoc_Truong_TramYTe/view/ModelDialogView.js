@@ -283,16 +283,11 @@ define(function (require) {
                         text: "Nước thải chảy đến ống thoát nước hở hoặc cống hở ",
                     }, {
                         value: 2,
-                        text: "Nước thải chảy vào các chỗ trữ nước (ví dụ: ao, hồ)",
+                        text: "Nước thải chảy vào các chỗ trữ nước (ví dụ: ao, hồ) hoặc các công trình hở",
 
                     },
                     {
                         value: 3,
-                        text: "hoặc các công trình hở",
-
-                    },
-                    {
-                        value: 4,
                         text: "Nước thải chảy đến hố thấm hoặc cống kín",
 
                     },
@@ -463,7 +458,7 @@ define(function (require) {
         check_danhgia_nhatieu:function(){
         	var self=this;
         	var tieuchichinh = false;
-        	var tieuchiphu = 0;
+            var tieuchiphu = 0;
         	
         	if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
         		self.model.get("sannha_rannut") ===1 &&
@@ -471,7 +466,7 @@ define(function (require) {
         		self.model.get("bechua_rannut") ===1 &&
         		self.model.get("khoangcach_nguonnuoc_bechua") ===1 &&
         		self.model.get("hoatdong_binhthuong") ===1 &&
-        		self.model.get("capnuocsach") ===1 &&
+        		// self.model.get("capnuocsach") ===1 &&
         		self.model.get("congtrinh_ruatay") ===1 &&
         		self.model.get("mailop_nhavesinh") ===1 &&
         		(((self.viewData.loai_truong_tramyte ===1 || 
@@ -498,8 +493,7 @@ define(function (require) {
         	}
         	if (self.model.get("nuocthai_chaydidau")===1 || 
         			self.model.get("nuocthai_chaydidau")===2 || 
-        			self.model.get("nuocthai_chaydidau")===3 || 
-        			self.model.get("nuocthai_chaydidau")===4){
+        			self.model.get("nuocthai_chaydidau")===3){
         		tieuchiphu +=1;
         	}
         	if (self.model.get("bexi_docao")===1){
@@ -510,15 +504,17 @@ define(function (require) {
         	}
         	
         	if(tieuchichinh === true && tieuchiphu >=3){
-        		return 1;
+                return 1;
         	}else{
-        		return 0;
+                return 0;
+                
         	} 	
         },
         validate: function() {
             const self = this;
             var ten_khu_khaosat = self.model.get("ten_khu_khaosat");
             var soluong_chauxi = self.model.get("soluong_chauxi");
+            var khu_ditieu = self.model.get("khu_ditieu");
             var khu_ditieu_dientich = self.model.get("khu_ditieu_dientich");
             var khu_ditieu_sochau = self.model.get("khu_ditieu_sochau");
             var quansat_khuvesinh = self.model.get("quansat_khuvesinh");
@@ -533,17 +529,23 @@ define(function (require) {
                     return;
                 }
             }
-            if(toInt(soluong_chauxi) < 0){
+            if (soluong_chauxi === null || soluong_chauxi === ""){
+                self.getApp().notify({message: "Số chậu xí không được để trống!"},{type: "danger"});
+                return;
+            }
+            if(toInt(soluong_chauxi) < 0 || Number.isInteger(soluong_chauxi) === false){
                 self.getApp().notify({message: "Số chậu xí không hợp lệ!"},{type: "danger"});
                 return;
             }
-            if(toInt(khu_ditieu_dientich) < 0){
-                self.getApp().notify({message: "Diện tích khu đi tiểu không hợp lệ!"},{type: "danger"});
-                return;
-            }
-            if(toInt(khu_ditieu_sochau) < 0){
-                self.getApp().notify({message: "Số chậu khu đi tiểu không hợp lệ!"},{type: "danger"});
-                return;
+            if (khu_ditieu === 1){
+                if(toInt(khu_ditieu_dientich) < 0){
+                    self.getApp().notify({message: "Diện tích khu đi tiểu không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if(toInt(khu_ditieu_sochau) < 0 || Number.isInteger(khu_ditieu_sochau) === false){
+                    self.getApp().notify({message: "Số chậu khu đi tiểu không hợp lệ!"},{type: "danger"});
+                    return;
+                }
             }
             return true;
         },

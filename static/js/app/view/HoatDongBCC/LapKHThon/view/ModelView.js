@@ -296,6 +296,13 @@ define(function (require) {
                 hoatDongItemView.remove();
             });
 			hoatDongItemView.on("change", function(data) {
+				// if (data.songuoithamgia === null || data.songuoithamgia === ""){
+				// 	self.getApp().notify({message: "Số người tham gia không được để trống!"}, {type: "danger"});
+				// 	return;
+				// } else if (data.songuoithamgia_dtts === null || data.songuoithamgia_dtts === ""){
+				// 	self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"}, {type: "danger"});
+				// 	return;
+				// }
 				var dshoatdong = self.model.get("danhsach_hoatdong");
 				dshoatdong.forEach(function(item, idx) {
 					if (item.id == data.id) {
@@ -410,7 +417,7 @@ define(function (require) {
 					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không được để trống!"},{type: "danger"});
 					return;
 				}
-				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0) {
+				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0 || Number.isInteger(self.model.get("sohoatdong_cotloi_pheduyet")) === false) {
 					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không hợp lệ!"},{type: "danger"});
 					return;
 				}
@@ -419,7 +426,7 @@ define(function (require) {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0) {
+			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 || Number.isInteger(self.model.get("sohoatdong_cotloi_hoanthanh")) === false) {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không hợp lệ!"},{type: "danger"});
 				return;
 			}
@@ -427,7 +434,7 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("giangvien")) < 0) {
+			if (toInt(self.model.get("giangvien")) < 0 || Number.isInteger(self.model.get("giangvien")) === false) {
 				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
@@ -435,7 +442,7 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("giangvien_nu")) < 0) {
+			if (toInt(self.model.get("giangvien_nu")) < 0 || Number.isInteger(self.model.get("giangvien_nu")) === false) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
