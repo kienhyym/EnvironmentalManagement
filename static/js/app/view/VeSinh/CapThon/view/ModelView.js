@@ -345,6 +345,7 @@ define(function (require) {
 					self.getApp().notify("Chưa chọn thông tin thôn/xóm");
 					return;
 				}
+				self.$el.find("#nhatieuthonhvs").show();
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("onSelected", function(data){
@@ -513,9 +514,9 @@ define(function (require) {
                 	}
                 self.model.set("nhatieuthonhvs", fields);
 				self.model.trigger("change");
-				// if (self.model.get("nhatieuthonhvs").length === 0){
-				// 	self.$el.find("#nhatieuthonhvs").hide();
-				// }
+				if (self.model.get("nhatieuthonhvs").length === 0){
+					self.$el.find("#nhatieuthonhvs").hide();
+				}
                 self.renderTinhTongI();
                 view.destroy();
                 view.remove();
