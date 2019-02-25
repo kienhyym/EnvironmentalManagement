@@ -136,6 +136,10 @@ define(function (require) {
 									self.getApp().getRouter().navigate("hoatdongbcc/caphuyen/collection?loaikybaocao=" + currentPeriod);
 								},
 								error: function (xhr, status, error) {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									}
 									try {
 									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
@@ -164,6 +168,10 @@ define(function (require) {
 								self.getApp().getRouter().navigate("hoatdongbcc/caphuyen/collection?loaikybaocao=" + currentPeriod);
 							},
 							error: function (model, xhr, options) {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								}
 								self.getApp().notify('Xoá dữ liệu không thành công!');
 							}
 						});
@@ -186,7 +194,11 @@ define(function (require) {
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);
 					},
-					error: function (xhr) {
+					error: function (xhr, error) {
+						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+							self.getApp().getRouter().navigate("login");
+						}
 						self.getApp().notify({message: xhr.toString()}, {type: "danger"});
 					},
 				});
@@ -325,6 +337,10 @@ define(function (require) {
 						});
 					},
 					error: function (xhr, status, error) {
+						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+							self.getApp().getRouter().navigate("login");
+						}
 						self.getApp().notify("Không lấy được danh sách hoạt động, vui lòng thử lại sau!");
 					},
 				});

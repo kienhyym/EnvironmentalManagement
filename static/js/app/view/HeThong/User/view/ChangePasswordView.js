@@ -50,7 +50,11 @@ define(function (require) {
       	  				    			  		self.getApp().notify('Thay đổi mật khẩu thành công!');
       	  				    			  		self.close();
       	  				    			  	},
-    		  	  				    	    error: function (request, status, error) {
+    		  	  				    	    error: function (request, status, error, xhr) {
+												if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+													self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+													self.getApp().getRouter().navigate("login");
+												}
     		  	  				    	    	// console.log(request);
     		  	  				    	        self.getApp().notify('Cập nhật không thành công!');
 

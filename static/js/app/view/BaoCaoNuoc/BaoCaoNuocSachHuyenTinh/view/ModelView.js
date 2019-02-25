@@ -96,6 +96,10 @@ define(function (require) {
 
                             },
                             error: function (xhr, status, error) {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								}
 								try {
 								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 								}
@@ -134,6 +138,10 @@ define(function (require) {
                             self.apply_tyle();
                         },
                         error: function (xhr, status, error) {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							}
 							try {
 							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 							}
@@ -168,6 +176,10 @@ define(function (require) {
         					self.getApp().getRouter().navigate(path);
                         },
                         error: function (model, xhr, options) {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							}
                             self.getApp().notify('Xoá dữ liệu không thành công!');
 
                         }
@@ -217,7 +229,11 @@ define(function (require) {
                         self.render_donvi_ngoaikiem();
                         self.apply_tyle();
                     },
-                    error: function () {
+                    error: function (xhr) {
+						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+							self.getApp().getRouter().navigate("login");
+						}
                         self.getApp().notify("Lỗi không lấy được dữ liệu");
                     },
                 });

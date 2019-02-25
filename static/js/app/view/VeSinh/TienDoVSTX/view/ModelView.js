@@ -151,6 +151,10 @@ define(function (require) {
 							// console.log(data);
 						},
 						error: function (xhr, status, error) {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							}
 	 	 			       try {
 	 	 			    	    var msgJson = $.parseJSON(xhr.responseText); 
 	 	 			    	    if(msgJson){

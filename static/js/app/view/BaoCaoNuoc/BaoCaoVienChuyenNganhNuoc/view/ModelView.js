@@ -70,6 +70,10 @@ define(function (require) {
 
                             },
                             error: function (xhr, status, error) {
+                                if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								}
                                 try {
                                   self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
                                 }
@@ -103,6 +107,10 @@ define(function (require) {
                             self.render_ketqua_noikiem_tinhthanh(self.model.get("ketqua_kiemtra_noikiem_tinh"));
                         },
                         error: function (xhr, status, error) {
+                            if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                                self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                                self.getApp().getRouter().navigate("login");
+                            }
                             try {
                               self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
                             }
@@ -129,6 +137,10 @@ define(function (require) {
                             self.getApp().getRouter().navigate(self.collectionName + "/collection");
                         },
                         error: function (model, xhr, options) {
+                            if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                                self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                                self.getApp().getRouter().navigate("login");
+                            }
                             self.getApp().notify('Xoá dữ liệu không thành công!');
 
                         }
@@ -161,7 +173,11 @@ define(function (require) {
                         self.render_ketqua_noikiem_tinhthanh(self.model.get("ketqua_kiemtra_noikiem_tinh"));
                         self.apply_tyle();
                     },
-                    error: function () {
+                    error: function (xhr) {
+                        if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                            self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                            self.getApp().getRouter().navigate("login");
+                        }
                         self.getApp().notify("Lỗi không lấy được dữ liệu");
                     },
                 });

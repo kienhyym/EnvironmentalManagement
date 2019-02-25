@@ -165,6 +165,10 @@ define(function (require) {
 						},
 						error: function (xhr, status, error) {
 							self.$el.find("#content_baocao").html("");
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							}
 	 	 			       try {
 	 	 			    	    var msgJson = $.parseJSON(xhr.responseText); 
 	 	 			    	    if(msgJson){
