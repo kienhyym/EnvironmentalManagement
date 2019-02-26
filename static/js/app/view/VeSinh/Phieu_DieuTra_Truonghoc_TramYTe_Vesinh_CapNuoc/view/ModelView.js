@@ -551,7 +551,7 @@ define(function (require) {
                     success: function (data) {
                         self.applyBindings();
                     },
-                    error: function (xhr) {
+                    error: function (xhr, error) {
                         if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
                             self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
                             self.getApp().getRouter().navigate("login");
