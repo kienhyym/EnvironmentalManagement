@@ -156,12 +156,10 @@ define(function (require) {
 			self.model.on("change:donvi_tuyendonvi", function(){
 				var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
 				if (donvi_tuyendonvi.id === 2){
-					console.log("vao day nayy");
 					self.$el.find("#quanhuyen").hide();
 					self.$el.find("#xaphuong").hide();
 				}
 				if (donvi_tuyendonvi.id === 3){
-					console.log("vao day nayy");
 					self.$el.find("#xaphuong").hide();
 				}
 				
