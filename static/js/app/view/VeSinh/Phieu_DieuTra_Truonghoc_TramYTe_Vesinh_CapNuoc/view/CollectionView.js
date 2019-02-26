@@ -33,7 +33,8 @@ define(function (require) {
             fields: [
                 {
 					field: "nambaocao",
-					label: "Năm báo cáo"
+                    label: "Năm báo cáo",
+                    width: 120
 				},
                 {
                     field: "tinhthanh",
