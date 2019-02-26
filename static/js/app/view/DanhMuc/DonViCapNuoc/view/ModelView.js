@@ -103,7 +103,12 @@ define(function (require) {
 							},
 							error: function (xhr, status, error) {
 								try {
-								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
 								}
 								catch (err) {
 								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -127,9 +132,18 @@ define(function (require) {
 								self.getApp().notify('Xoá dữ liệu thành công');
 								self.getApp().getRouter().navigate(self.collectionName + "/collection");
 							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Xoá dữ liệu không thành công!');
-
+							error: function (xhr, status, error) {
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+								}
 							}
 						});
 					}
@@ -138,6 +152,19 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
+			var currentUser = self.getApp().currentUser;
+			if(!!currentUser && !!currentUser.donvi){
+				if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2){
+					self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+					self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+					self.$el.find("#tinhthanh").prop('disabled', true);
+				}
+				if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3){
+					self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+					self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+					self.$el.find("#quanhuyen").prop('disabled', true);
+				}
+			}
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
@@ -145,9 +172,19 @@ define(function (require) {
 					success: function (data) {
 						self.applyBindings();
 					},
-					error: function () {
-						self.getApp().notify("Lỗi lấy dữ liệu");
-					},
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
+						}
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
+					}
 				});
 			} else {
 				self.applyBindings();

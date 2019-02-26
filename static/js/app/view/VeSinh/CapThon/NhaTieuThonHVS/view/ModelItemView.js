@@ -293,6 +293,7 @@ define(function (require) {
 					self.model.set("haingan", 0);
 					self.model.set("thamdoi", 0);
 					self.model.set("chimco_oth", 0);
+					self.model.set("khongconhatieu", 0);
 					self.model.set("loaikhac", null);
 				}
 			});
@@ -301,6 +302,7 @@ define(function (require) {
 					self.model.set("tuhoai", 0);
 					self.model.set("haingan", 0);
 					self.model.set("chimco_oth", 0);
+					self.model.set("khongconhatieu", 0);
 					self.model.set("loaikhac", null);
 				}
 			});
@@ -309,6 +311,7 @@ define(function (require) {
 					self.model.set("tuhoai", 0);
 					self.model.set("thamdoi", 0);
 					self.model.set("chimco_oth", 0);
+					self.model.set("khongconhatieu", 0);
 					self.model.set("loaikhac", null);
 				}
 			});
@@ -317,6 +320,7 @@ define(function (require) {
 					self.model.set("tuhoai", 0);
 					self.model.set("thamdoi", 0);
 					self.model.set("haingan", 0);
+					self.model.set("khongconhatieu", 0);
 					self.model.set("loaikhac", null);
 				}
 			});
@@ -326,34 +330,26 @@ define(function (require) {
 					self.model.set("thamdoi", 0);
 					self.model.set("haingan", 0);
 					self.model.set("chimco_oth", 0);
+					self.model.set("khongconhatieu", 0);
 				}
 			});
-			self.model.on("change:khongconhatieu",function(){
+			self.model.on("change:khongconhatieu", function() {
 				if(self.model.get("khongconhatieu") === 1){
-					self.model.set("hopvesinh", 0);
-					self.model.set("khonghopvesinh", 0);
-					self.model.set("caithien", 0);
+					self.model.set("tuhoai", 0);
+					self.model.set("thamdoi", 0);
+					self.model.set("haingan", 0);
+					self.model.set("chimco_oth", 0);
+					self.model.set("loaikhac", null);
 				}
 			});
 			self.model.on("change:hopvesinh",function(){
 				if(self.model.get("hopvesinh") === 1){
-					self.model.set("khongconhatieu", 0);
 					self.model.set("khonghopvesinh", 0);
-					self.model.set("caithien", 0);
 				}
 			});
 			self.model.on("change:khonghopvesinh",function(){
 				if(self.model.get("khonghopvesinh") === 1){
-					self.model.set("khongconhatieu", 0);
 					self.model.set("hopvesinh", 0);
-					self.model.set("caithien", 0);
-				}
-			});
-			self.model.on("change:caithien",function(){
-				if(self.model.get("caithien") === 1){
-					self.model.set("khongconhatieu", 0);
-					self.model.set("hopvesinh", 0);
-					self.model.set("khonghopvesinh", 0);
 				}
 			});
 		}

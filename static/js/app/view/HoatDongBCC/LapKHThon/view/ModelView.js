@@ -144,7 +144,12 @@ define(function (require) {
 								},
 								error: function (xhr, status, error) {
 									try {
-									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+											self.getApp().getRouter().navigate("login");
+										} else {
+										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										}
 									}
 									catch (err) {
 									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -170,8 +175,18 @@ define(function (require) {
 								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
 								self.getApp().getRouter().navigate("hoatdongbcc/capthon/collection?loaikybaocao=" + currentPeriod);
 							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Xoá dữ liệu không thành công!');
+							error: function (xhr, status, error) {
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+								}
 							}
 						});
 					}
@@ -193,9 +208,19 @@ define(function (require) {
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);
 					},
-					error: function (xhr) {
-						self.getApp().notify({message: xhr.toString()}, {type: "danger"});
-					},
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
+						}
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
+					}
 				});
 			} else {
 				self.setDefaultData();
@@ -284,6 +309,13 @@ define(function (require) {
                 hoatDongItemView.remove();
             });
 			hoatDongItemView.on("change", function(data) {
+				// if (data.songuoithamgia === null || data.songuoithamgia === ""){
+				// 	self.getApp().notify({message: "Số người tham gia không được để trống!"}, {type: "danger"});
+				// 	return;
+				// } else if (data.songuoithamgia_dtts === null || data.songuoithamgia_dtts === ""){
+				// 	self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"}, {type: "danger"});
+				// 	return;
+				// }
 				var dshoatdong = self.model.get("danhsach_hoatdong");
 				dshoatdong.forEach(function(item, idx) {
 					if (item.id == data.id) {
@@ -336,8 +368,18 @@ define(function (require) {
 						});
 					},
 					error: function (xhr, status, error) {
-						self.getApp().notify("Không lấy được danh sách hoạt động, vui lòng thử lại sau!");
-					},
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
+						}
+						catch (err) {
+						  self.getApp().notify({ message: "Không lấy được danh sách hoạt động, vui lòng thử lại sau"}, { type: "danger", delay: 1000 });
+						}
+					}
 				});
 			} else {
 				for(var i=0; i< danhsachhoatdong.length; i++){
@@ -394,7 +436,7 @@ define(function (require) {
 					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không được để trống!"},{type: "danger"});
 					return;
 				}
-				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0) {
+				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0 || Number.isInteger(self.model.get("sohoatdong_cotloi_pheduyet")) === false) {
 					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không hợp lệ!"},{type: "danger"});
 					return;
 				}
@@ -403,7 +445,7 @@ define(function (require) {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0) {
+			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 || Number.isInteger(self.model.get("sohoatdong_cotloi_hoanthanh")) === false) {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không hợp lệ!"},{type: "danger"});
 				return;
 			}
@@ -411,7 +453,7 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("giangvien")) < 0) {
+			if (toInt(self.model.get("giangvien")) < 0 || Number.isInteger(self.model.get("giangvien")) === false) {
 				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
@@ -419,7 +461,7 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không được để trống!"},{type: "danger"});
 				return;
 			}
-			if (toInt(self.model.get("giangvien_nu")) < 0) {
+			if (toInt(self.model.get("giangvien_nu")) < 0 || Number.isInteger(self.model.get("giangvien_nu")) === false) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}

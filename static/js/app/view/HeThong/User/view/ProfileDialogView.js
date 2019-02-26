@@ -51,7 +51,11 @@ define(function (require) {
 	  				    			  		self.getApp().notify("Cập nhập thông tin thành công!");
 	  				    			  		self.close();
 	  				    			  	},
-	  	  				    	    error: function (request, status, error) {
+	  	  				    	    error: function (request, status, error, xhr) {
+										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+											self.getApp().getRouter().navigate("login");
+										}
 	  	  				    	    	// console.log(request)
 	  	  				    	    	self.getApp().hideloading();
 	  	  				    	        self.getApp().notify("Có lỗi xảy ra, Vui lòng thử lại sau");

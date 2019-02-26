@@ -155,10 +155,15 @@ define(function (require) {
 								},
 								error: function (xhr, status, error) {
 									try {
-									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+											self.getApp().getRouter().navigate("login");
+										} else {
+										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										}
 									}
 									catch (err) {
-									  self.getApp().notify({ message: "Lưu thông tin không thành công!"}, { type: "danger", delay: 1000 });
+									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
 									}
 								}
 							});	
@@ -246,8 +251,18 @@ define(function (require) {
 								}
 							},
 							error: function (xhr, status, error) {
-								self.getApp().notify("Lỗi không tìm thấy báo cáo kỳ trước!");
-							},
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Lỗi không tìm thấy báo cáo kỳ trước!"}, { type: "danger", delay: 1000 });
+								}
+							}
 						});	
 					}
 				},
@@ -269,9 +284,18 @@ define(function (require) {
 										+ "/collection?loaikybaocao="+routeloaibaocao);
 
 							},
-							error: function (model, xhr, options) {
-								self.getApp().notify('Xoá dữ liệu không thành công!');
-
+							error: function (xhr, status, error) {
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+								}
 							}
 						});
 					}
@@ -283,14 +307,24 @@ define(function (require) {
 			self.model.on("change:tong_nam", function() {
 				var tong_nu = self.model.get("tong_nu");
 				var tong_nam = self.model.get("tong_nam");
-				var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-				self.model.set("tong_danso" , tong_dantrongthon)
+				if (Number.isInteger(tong_nam) === true){
+					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+					self.model.set("tong_danso" , tong_dantrongthon)
+				} else {
+					self.getApp().notify({message:"Tổng số nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					return;
+				}
 			});
 			self.model.on("change:tong_nu", function() {
 				var tong_nu = self.model.get("tong_nu");
 				var tong_nam = self.model.get("tong_nam");
-				var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-				self.model.set("tong_danso" , tong_dantrongthon)
+				if (Number.isInteger(tong_nu) === true){
+					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+					self.model.set("tong_danso" , tong_dantrongthon)
+				} else {
+					self.getApp().notify({message:"Tổng số nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					return;
+				}
 			});
 			var id = this.getApp().getRouter().getParam("id");
 			var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
@@ -333,6 +367,7 @@ define(function (require) {
 					self.getApp().notify("Chưa chọn thông tin thôn/xóm");
 					return;
 				}
+				self.$el.find("#nhatieuthonhvs").show();
 				var view_hogiadinh = new HoGiaDinhSelectView({"viewData":{"thonxom_id":self.model.get("thonxom").id}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("onSelected", function(data){
@@ -369,7 +404,9 @@ define(function (require) {
 							self.renderItemView(nhatieuthonhvs[i]);
 							
 						}
-						
+						self.model.on("change:thonxom", function(){
+							self.get_danhsachho();
+						});
 						self.applyBindings();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -378,8 +415,18 @@ define(function (require) {
 						}
 						
 					},
-					error: function () {
-						self.getApp().notify("Lỗi lấy thông tin cấp thôn");
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
+						}
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
 					},
 					complete:function(){
 						self.check_chuongtrinhSUP();
@@ -427,6 +474,7 @@ define(function (require) {
 				contentType: "application/json",
 				success: function (data) {
 					if (!!data && !!data.objects && (data.objects.length > 0)){
+						self.$el.find("#nhatieuthonhvs").show();
 						self.$el.find("#nhatieuthonhvs").html("");
 						self.model.set("nhatieuthonhvs",[]);
 						self.$el.find(".remove_columns").show();
@@ -447,12 +495,24 @@ define(function (require) {
 						self.renderTinhTongI();
 						self.check_chuongtrinhSUP();
 					}else{
-						self.getApp().notify("Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!");
+						self.$el.find("#nhatieuthonhvs").html("");
+						self.model.set("nhatieuthonhvs",[]);
+						self.getApp().notify({message: "Không tìm thấy danh sách hộ gia đình, vui lòng kiểm tra lại danh mục hộ gia đình!"}, {type: "danger"});
 					}
 				},
 				error: function (xhr, status, error) {
-					self.getApp().notify("Không lấy được danh sách hộ gia đình, vui lòng thử lại sau!");
-				},
+					try {
+						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+							self.getApp().getRouter().navigate("login");
+						} else {
+						  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+						}
+					}
+					catch (err) {
+					  self.getApp().notify({ message: "Không lấy được danh sách hộ gia đình, vui lòng thử lại sau"}, { type: "danger", delay: 1000 });
+					}
+				}
 			});	
 		},
 		check_chuongtrinhSUP:function(){
@@ -664,12 +724,20 @@ define(function (require) {
 				self.getApp().notify({message: "Chưa nhập tổng số nữ trong thôn!"},{type: "danger"});
 				return;
 			}
+			if(Number.isInteger(tong_nu) === false){
+				self.getApp().notify({message: "Tổng số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				return;
+			}
 			if(toInt(tong_nu) < 0){
 				self.getApp().notify({message: "Tổng số nữ trong thôn không hợp lệ!"},{type: "danger"});
 				return;
 			}
 			if(tong_nam === null || tong_nam === ""){
 				self.getApp().notify({message: "Chưa nhập tổng số nam trong thôn!"},{type: "danger"});
+				return;
+			}
+			if(Number.isInteger(tong_nam) === false){
+				self.getApp().notify({message: "Tổng số nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			if(toInt(tong_nam) < 0){

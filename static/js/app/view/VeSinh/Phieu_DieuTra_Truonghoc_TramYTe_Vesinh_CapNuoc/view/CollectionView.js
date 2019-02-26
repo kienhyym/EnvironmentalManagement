@@ -32,6 +32,11 @@ define(function (require) {
         uiControl: {
             fields: [
                 {
+					field: "nambaocao",
+                    label: "Năm báo cáo",
+                    width: 120
+				},
+                {
                     field: "tinhthanh",
                     textField: "ten",
                     label: "Tên Tỉnh",

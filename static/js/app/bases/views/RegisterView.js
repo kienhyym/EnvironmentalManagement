@@ -99,15 +99,22 @@ define(function (require) {
 						var quanhuyen = self.model.get("quanhuyen");
 						var xaphuong = self.model.get("xaphuong");
 						var donvi_sodienthoai = self.model.get("donvi_sodienthoai");
+
 						if (donvi_ten == null || donvi_ten == "") {
 							self.getApp().notify({ message: "Tên đơn vị không được để trống!" }, { type: "danger" });
 						} else if (captren == null || captren == undefined) {
 							self.getApp().notify({ message: "Chưa chọn cơ quan cấp trên!" }, { type: "danger" });
+						} else if (donvi_sodienthoai == null || donvi_sodienthoai == "") {
+							self.getApp().notify({ message: "Số điện thoại của đơn vị không được để trống!" }, { type: "danger" });
+						} else if (self.validatePhone(donvi_sodienthoai) === false) {
+							self.getApp().notify({ message: "Số điện thoại của đơn vị không đúng định dạng!" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
 							self.getApp().notify({ message: "Email không hợp lệ" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
 							self.getApp().notify({ message: "Tên người dùng không được để trống!" }, { type: "danger" });
-						}else if (self.validatePhone(phone) === false || self.validatePhone(donvi_sodienthoai) === false) {
+						} else if  (phone == null || phone == ""){
+							self.getApp().notify({ message: "Số điện thoại không được để trống!" }, { type: "danger" });
+						} else if (self.validatePhone(phone) === false) {
 							self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
 						} else if (pass == null || pass == "") {
 							self.getApp().notify({ message: "Mật khẩu không được để trống!" }, { type: "danger" });
@@ -146,6 +153,17 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			self.model.on("change:donvi_tuyendonvi", function(){
+				var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
+				if (donvi_tuyendonvi.id === 2){
+					self.$el.find("#quanhuyen").hide();
+					self.$el.find("#xaphuong").hide();
+				}
+				if (donvi_tuyendonvi.id === 3){
+					self.$el.find("#xaphuong").hide();
+				}
+				
+			})
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);

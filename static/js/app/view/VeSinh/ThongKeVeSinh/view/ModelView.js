@@ -128,18 +128,18 @@ define(function (require) {
 							
 						},
 						error: function (xhr, status, error) {
-	 	 			       try {
-	 	 			    	    var msgJson = $.parseJSON(xhr.responseText); 
-	 	 			    	    if(msgJson){
-	 	 			    	    	self.getApp().notify(msgJson.error_message);
-	 	 			    	    }
-	 	 			    	} catch(err) {
-	 	 			    		self.getApp().notify("Lỗi truy cập dữ liệu, vui lòng thử lại sau");
-	 	 			    		
-	 	 			    	
-	 	 			    	}
-	 	 			    
-	 	 			    },
+							try {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								} else {
+								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
+							}
+							catch (err) {
+							  self.getApp().notify({ message: "Lỗi truy cập dữ liệu, vui lòng thử lại sau"}, { type: "danger", delay: 1000 });
+							}
+						},
 	 	 			    complete:function(){
 	 	 			    	var donvi = self.getApp().currentUser.donvi;
 							if (donvi.tuyendonvi_id ===1 || donvi.tuyendonvi_id ===2){

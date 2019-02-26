@@ -50,11 +50,19 @@ define(function (require) {
       	  				    			  		self.getApp().notify('Thay đổi mật khẩu thành công!');
       	  				    			  		self.close();
       	  				    			  	},
-    		  	  				    	    error: function (request, status, error) {
-    		  	  				    	    	// console.log(request);
-    		  	  				    	        self.getApp().notify('Cập nhật không thành công!');
-
-    		  	  				    	    }
+												  error: function (xhr, status, error) {
+													try {
+														if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+															self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+															self.getApp().getRouter().navigate("login");
+														} else {
+														  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+														}
+													}
+													catch (err) {
+													  self.getApp().notify({ message: "Thay đổi mật khẩu không thành công"}, { type: "danger", delay: 1000 });
+													}
+												}
       	  				    			  	
       	  				    			});
     			                    }else{

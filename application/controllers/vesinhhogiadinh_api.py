@@ -114,15 +114,15 @@ async def ThongKe_VESINH(request):
             tong_diemruatay = baocao.tong_diemruatay
     
         
-        results['tyle_conhatieu'] = 0 if tong_soho == 0 else ((tong_soho - tong_khongnhatieu)/tong_soho)*100
-        results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else (tong_hopvs/tong_soho)*100
-        results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else (tong_tuhoai_hvs/tong_soho)*100
-        results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else (tong_thamdoi_hvs/tong_soho)*100
-        results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else (tong_2ngan_hvs/tong_soho)*100
-        results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else (tong_ongthonghoi_hvs/tong_soho)*100
-        results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else (tong_caithien_hvs/tong_soho)*100
-        results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else (tong_caithien_hongheo_hvs/tong_soho)*100
-        results['tyle_diemruatay'] =  0 if tong_soho == 0 else (tong_diemruatay/tong_soho)*100
+        results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - tong_khongnhatieu)/tong_soho)*100, 2)
+        results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else round((tong_hopvs/tong_soho)*100, 2)
+        results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else round((tong_tuhoai_hvs/tong_soho)*100, 2)
+        results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else round((tong_thamdoi_hvs/tong_soho)*100, 2)
+        results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else round((tong_2ngan_hvs/tong_soho)*100, 2)
+        results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else round((tong_ongthonghoi_hvs/tong_soho)*100, 2)
+        results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hvs/tong_soho)*100, 2)
+        results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hongheo_hvs/tong_soho)*100, 2)
+        results['tyle_diemruatay'] =  0 if tong_soho == 0 else round((tong_diemruatay/tong_soho)*100, 2)
         results['tentinhthanh'] = tentinhthanh
         results['tenquanhuyen'] = tenquanhuyen
         results['tenxaphuong'] = tenxaphuong
@@ -361,6 +361,7 @@ async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
+    data['tenthon'] = data['thonxom']['ten']
     await process_baocao_vesinh_capthon(currentuser,data)
     
 async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):
