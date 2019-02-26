@@ -223,12 +223,18 @@ define(function (require) {
 							self.renderKetQua(response.danhsachnganh);
 							}
 					},
-					error: function(xhr, error) {
-						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-							self.getApp().getRouter().navigate("login");
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
 						}
-						self.getApp().notify({message: xhr.responseJSON.error_message}, {type: "danger"});
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
 					}
 				});
 			});

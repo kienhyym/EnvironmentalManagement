@@ -96,12 +96,13 @@ define(function (require) {
 
                             },
                             error: function (xhr, status, error) {
-								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-									self.getApp().getRouter().navigate("login");
-								}
 								try {
-								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+								  	self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
 								}
 								catch (err) {
 								  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -138,12 +139,13 @@ define(function (require) {
                             self.apply_tyle();
                         },
                         error: function (xhr, status, error) {
-							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-								self.getApp().getRouter().navigate("login");
-							}
 							try {
-							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								} else {
+							  	self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
 							}
 							catch (err) {
 							  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -175,13 +177,18 @@ define(function (require) {
         					}
         					self.getApp().getRouter().navigate(path);
                         },
-                        error: function (model, xhr, options, error) {
-							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-								self.getApp().getRouter().navigate("login");
+                        error: function (xhr, status, error) {
+							try {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								} else {
+							  	self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
 							}
-                            self.getApp().notify('Xoá dữ liệu không thành công!');
-
+							catch (err) {
+							  self.getApp().notify({ message: "Xoá dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+							}
                         }
                     });
                 }
@@ -229,13 +236,19 @@ define(function (require) {
                         self.render_donvi_ngoaikiem();
                         self.apply_tyle();
                     },
-                    error: function (xhr, error) {
-						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-							self.getApp().getRouter().navigate("login");
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
 						}
-                        self.getApp().notify("Lỗi không lấy được dữ liệu");
-                    },
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
+					}
                 });
             } else {
                 self.applyBindings();

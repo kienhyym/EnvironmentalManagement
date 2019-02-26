@@ -132,12 +132,13 @@ define(function (require) {
 	
 								},
 								error: function (xhr, status, error) {
-									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-										self.getApp().getRouter().navigate("login");
-									}
 									try {
-									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+											self.getApp().getRouter().navigate("login");
+										} else {
+										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										}
 									}
 									catch (err) {
 									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -190,12 +191,13 @@ define(function (require) {
 								self.check_chuongtrinhSUP();
 							},
 							error: function (xhr, status, error) {
-								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-									self.getApp().getRouter().navigate("login");
-								}
 								try {
-								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
 								}
 								catch (err) {
 								  self.getApp().notify({ message: "Cộng dồn thông tin không thành công"}, { type: "danger", delay: 1000 });
@@ -232,12 +234,18 @@ define(function (require) {
 						self.compute_baocao();
 						self.applyBindings();
 					},
-					error: function (xhr, error) {
-						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-							self.getApp().getRouter().navigate("login");
+					error: function (xhr, status, error) {
+						try {
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+								self.getApp().getRouter().navigate("login");
+							} else {
+							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+							}
 						}
-						self.getApp().notify("Lỗi không lấy được dữ liệu");
+						catch (err) {
+						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+						}
 					},
 					complete:function(){
 						self.check_chuongtrinhSUP();

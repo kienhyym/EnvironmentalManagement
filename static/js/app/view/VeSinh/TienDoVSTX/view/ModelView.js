@@ -151,22 +151,18 @@ define(function (require) {
 							// console.log(data);
 						},
 						error: function (xhr, status, error) {
-							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-								self.getApp().getRouter().navigate("login");
+							try {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								} else {
+								  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
 							}
-	 	 			       try {
-	 	 			    	    var msgJson = $.parseJSON(xhr.responseText); 
-	 	 			    	    if(msgJson){
-	 	 			    	    	self.getApp().notify(msgJson.error_message);
-	 	 			    	    }
-	 	 			    	} catch(err) {
-	 	 			    		self.getApp().notify("Lỗi truy cập dữ liệu, vui lòng thử lại sau");
-	 	 			    		
-	 	 			    	
-	 	 			    	}
-	 	 			    
-	 	 			    }
+							catch (err) {
+							  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+							}
+						}
 					});
 					
 					

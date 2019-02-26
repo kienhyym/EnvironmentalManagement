@@ -46,15 +46,16 @@ define(function (require) {
                                     //                                    self.getApp().getRouter().navigate(self.collectionName + "/collection");
                                 },
                                 error: function (xhr, status, error) {
-                                    if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-										self.getApp().getRouter().navigate("login");
-									}
                                     try {
-                                      self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                                        if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                                            self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                                            self.getApp().getRouter().navigate("login");
+                                        } else {
+                                          self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                                        }
                                     }
                                     catch (err) {
-                                      self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+                                      self.getApp().notify({ message: "Lưu cài đặt không thành công"}, { type: "danger", delay: 1000 });
                                     }
                                 }
                             });
@@ -98,17 +99,20 @@ define(function (require) {
                     self.renderDanhSachTinhThanh();
                 },
                 error: function (xhr, status, error) {
-                    if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-                        self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-                        self.getApp().getRouter().navigate("login");
-                    }
                     try {
                         self.model.set("danhsachtinhthanh", []);
                         self.renderDanhSachTinhThanh();
-                    } catch (e) {
-                        // error
+                        if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                            self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                            self.getApp().getRouter().navigate("login");
+                        } else {
+                          self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                        }
                     }
-                },
+                    catch (err) {
+                      self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+                    }
+                }
             });
         },
 
@@ -177,12 +181,18 @@ define(function (require) {
                     $comboboxEl.data('gonrin').setValue((data.objects && data.objects.length > 0) ? data.objects[0].id : null);
                 },
                 error: function (xhr, status, error) {
-                    if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-                        self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-                        self.getApp().getRouter().navigate("login");
+                    try {
+                        if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                            self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                            self.getApp().getRouter().navigate("login");
+                        } else {
+                          self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                        }
                     }
-                    self.getApp().notify("Lỗi tải các đơn vị của viện");
-                },
+                    catch (err) {
+                      self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+                    }
+                }
             });
         },
 
