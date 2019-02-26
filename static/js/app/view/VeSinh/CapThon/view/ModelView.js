@@ -277,7 +277,7 @@ define(function (require) {
 										+ "/collection?loaikybaocao="+routeloaibaocao);
 
 							},
-							error: function (model, xhr, options) {
+							error: function (model, xhr, options, error) {
 								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
 									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 									self.getApp().getRouter().navigate("login");
@@ -403,7 +403,7 @@ define(function (require) {
 						}
 						
 					},
-					error: function (xhr) {
+					error: function (xhr, error) {
 						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
 							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 							self.getApp().getRouter().navigate("login");

@@ -142,7 +142,7 @@ define(function (require) {
 									self.getApp().notify({message:"Lưu thông tin thành công"}, {type:"success"});
 									self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
 								},
-								error: function (model, xhr, options) {
+								error: function (model, xhr, options, error) {
 									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
 										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 										self.getApp().getRouter().navigate("login");
@@ -173,7 +173,7 @@ define(function (require) {
 								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
 								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
 							},
-							error: function (model, xhr, options) {
+							error: function (model, xhr, options, error) {
 								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
 									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 									self.getApp().getRouter().navigate("login");

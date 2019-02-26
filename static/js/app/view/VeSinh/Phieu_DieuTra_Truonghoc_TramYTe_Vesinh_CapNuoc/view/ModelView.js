@@ -451,7 +451,7 @@ define(function (require) {
 									self.getApp().getRouter().navigate(self.collectionName 
 											+ "/collection?loaikybaocao="+routeloaibaocao);
 	                                },
-                                error: function (model, xhr, options) {
+                                error: function (model, xhr, options, error) {
                                     if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
                                         self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
                                         self.getApp().getRouter().navigate("login");
