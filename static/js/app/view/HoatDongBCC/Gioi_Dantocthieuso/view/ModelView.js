@@ -123,14 +123,14 @@ define(function (require) {
 									tr.append('<td>' + data_nganh.tongnguoi_duocdaotao + "</td>");
 									tr2.append('<td>' + data_nganh.tongnguoi_thamgia_nu + "</td>");
 									var tyle_nguoithamgia_nu = 0;
-									if(data.tongnguoi_duocdaotao >0){
-										tyle_nguoithamgia_nu = (data_nganh.tongnguoi_thamgia_nu/data.tongnguoi_duocdaotao);
+									if(data_nganh.tongnguoi_duocdaotao >0){
+										tyle_nguoithamgia_nu = (data_nganh.tongnguoi_thamgia_nu/data_nganh.tongnguoi_duocdaotao) * 100;
 									}
 									tr3.append('<td>' + tyle_nguoithamgia_nu.toFixed(2) + "</td>");
 									tr4.append('<td>' + data_nganh.tongnguoi_dantocthieuso + "</td>");
 									var tyle_dantocthieuso = 0;
-									if(data.tongnguoi_dantocthieuso>0){
-										tyle_dantocthieuso = (data_nganh.tongnguoi_dantocthieuso/data.tongnguoi_dantocthieuso);
+									if(data_nganh.tongnguoi_duocdaotao>0){
+										tyle_dantocthieuso = (data_nganh.tongnguoi_dantocthieuso/data_nganh.tongnguoi_duocdaotao) * 100;
 									}
 									tr5.append('<td>' + tyle_dantocthieuso.toFixed(2) + "</td>");
 									tr6.append('<td></td>"');
@@ -157,8 +157,8 @@ define(function (require) {
 //									tyle_nguoithamgia_nu_giaoduc = (data.tongnguoi_thamgia_nu_giaoduc/data.tongnguoi_duocdaotao_giaoduc);
 //								}
 								var tyle_nguoithamgia_nu = 0;
-								if(data.tongnguoi_thamgia>0){
-									tyle_nguoithamgia_nu = (data.tongnguoi_thamgia_nu/data.tongnguoi_thamgia);
+								if(data.tongnguoi_duocdaotao>0){
+									tyle_nguoithamgia_nu = (data.tongnguoi_thamgia_nu/data.tongnguoi_duocdaotao) * 100;
 								}
 								
 //								tr3.append('<td>' + tyle_nguoithamgia_nu_yte + "</td>");
@@ -179,8 +179,8 @@ define(function (require) {
 //									tyle_dantocthieuso_yte = (data.tongnguoi_dantocthieuso_yte/data.tongnguoi_dantocthieuso);
 //									tyle_dantocthieuso_giaoduc = (data.tongnguoi_dantocthieuso_giaoduc/data.tongnguoi_dantocthieuso);
 //								}
-								if(data.tongnguoi_thamgia>0){
-									tyle_dantocthieuso = (data.tongnguoi_dantocthieuso/data.tongnguoi_thamgia);
+								if(data.tongnguoi_duocdaotao>0){
+									tyle_dantocthieuso = (data.tongnguoi_dantocthieuso/data.tongnguoi_duocdaotao) * 100;
 								}
 								
 //								tr5.append('<td>' + tyle_dantocthieuso_yte + "</td>");

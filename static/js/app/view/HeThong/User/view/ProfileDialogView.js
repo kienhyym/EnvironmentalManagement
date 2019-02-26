@@ -51,7 +51,7 @@ define(function (require) {
 	  				    			  		self.getApp().notify("Cập nhập thông tin thành công!");
 	  				    			  		self.close();
 	  				    			  	},
-	  	  				    	    error: function (request, status, error, xhr) {
+	  	  				    	    error: function (xhr, status, error) {
 										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
 											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 											self.getApp().getRouter().navigate("login");
