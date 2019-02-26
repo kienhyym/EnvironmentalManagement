@@ -102,7 +102,7 @@ define(function (require) {
                     }
                     self.model.save(null, {
                         success: function (model, respose, options) {
-                            self.getApp().notify("Cộng dồn thành công");
+                            self.getApp().notify("Cộng dồn thông tin thành công");
                             self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_vien"),"thongso_khongdat_ngoaikiem_vien");
                             self.apply_tyle();
                             self.render_ketqua_noikiem_tinhthanh(self.model.get("ketqua_kiemtra_noikiem_tinh"));
@@ -117,7 +117,7 @@ define(function (require) {
                                 }
                             }
                             catch (err) {
-                              self.getApp().notify({ message: "Cộng dồn không thành công"}, { type: "danger", delay: 1000 });
+                              self.getApp().notify({ message: "Cộng dồn thông tin không thành công"}, { type: "danger", delay: 1000 });
                             }
                         }
                     });
