@@ -206,6 +206,40 @@ define(function (require) {
 						});
 					}
 				},
+				{
+					name: "delete",
+					type: "button",
+					buttonClass: "btn-danger btn-sm",
+					label: "TRANSLATE:DELETE",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") !== null;
+					},
+					command: function () {
+						var self = this;
+						self.model.destroy({
+							success: function (model, response) {
+								self.getApp().notify('Xoá dữ liệu thành công');
+								var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+								self.getApp().getRouter().navigate(self.collectionName 
+										+ "/collection?loaikybaocao="+routeloaibaocao);
+
+							},
+							error: function (xhr, status, error) {
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									}
+								}
+								catch (err) {
+								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+								}
+							}
+						});
+					}
+				},
 			],
 		}],
 

@@ -117,6 +117,7 @@ define(function (require) {
 								tr5.append("<td>% người tham gia là DTTS</td>");
 								var tr6 = $('<tr>');
 								tr6.append("<td>Phụ nữ là giảng viên, tuyên truyền viên</td>");
+								console.log("data======", data);
 								for(var i=0; i<data.danhsachnganh.length; i++){
 									var data_nganh = data.danhsachnganh[i];
 									th.append('<th  class="background-colorTH" >Ngành '+data_nganh.tennganh+'</th>')
@@ -130,7 +131,7 @@ define(function (require) {
 									tr4.append('<td>' + data_nganh.tongnguoi_dantocthieuso + "</td>");
 									var tyle_dantocthieuso = 0;
 									if(data.tongnguoi_dantocthieuso>0){
-										tyle_dantocthieuso = (data_nganh.tongnguoi_dantocthieuso/data.tongnguoi_dantocthieuso);
+										tyle_dantocthieuso = (data_nganh.tongnguoi_dantocthieuso/data.tongnguoi_duocdaotao);
 									}
 									tr5.append('<td>' + tyle_dantocthieuso.toFixed(2) + "</td>");
 									tr6.append('<td></td>"');

@@ -56,13 +56,9 @@ define(function (require) {
 						command: function () {
 							var self = this;
 							var tenthongso = self.model.get("tenthongso");
-							var gioihan_toithieu = self.model.get("gioihan_toithieu");
 							if (tenthongso === null || tenthongso === "") {
 								self.getApp().notify({ message: "Tên thông số không được để trống!" }, { type: "danger" });
-							} else if($.isNumeric(gioihan_toithieu) === false){
-								self.getApp().notify({ message: "Giới hạn tối thiểu bằng số không hợp lệ!" }, { type: "danger" });
-							} 
-							else {
+							} else {
 								self.model.save(null, {
 									success: function (model, respose, options) {
 										self.getApp().notify("Lưu thông tin thành công");
