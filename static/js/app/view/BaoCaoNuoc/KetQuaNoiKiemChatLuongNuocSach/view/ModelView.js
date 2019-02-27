@@ -224,10 +224,12 @@ define(function (require) {
                     else if(!self.model.get("nguoikiemtra")){
                     	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
                     } else {
+                        self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
 	                    self.model.save(null, {
 	                        success: function (model, respose, options) {
 	                            self.getApp().notify("Lưu thông tin thành công");
-	                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                                self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
+                                self.getApp().getRouter().navigate(self.collectionName + "/collection");
 	                        },
 	                        error: function (xhr, status, error) {
                                 try {

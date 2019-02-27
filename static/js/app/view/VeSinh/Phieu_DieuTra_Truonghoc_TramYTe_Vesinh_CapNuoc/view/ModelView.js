@@ -580,6 +580,7 @@ define(function (require) {
             var tinhthanh = self.model.get("tinhthanh");
             var quanhuyen = self.model.get("quanhuyen");
             var xaphuong = self.model.get("xaphuong");
+            var loai_truong_tramyte = self.model.get("loai_truong_tramyte");
             var tennguoitraloi = self.model.get("tennguoitraloi");
             var chucvu_nguoitraloi = self.model.get("chucvu_nguoitraloi");
             var thongtinlienlac = self.model.get("thongtinlienlac");
@@ -594,6 +595,7 @@ define(function (require) {
             var sokhuvesinh_truong_hocsinh_nu = self.model.get("sokhuvesinh_truong_hocsinh_nu");
             var sokhuvesinh_truong_giaovien_nam = self.model.get("sokhuvesinh_truong_giaovien_nam");
             var sokhuvesinh_truong_giaovien_nu = self.model.get("sokhuvesinh_truong_giaovien_nu");
+            var numbers = /^[0-9]+$/;
             if (nambaocao === null || nambaocao === ""){
                 self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
                 return;
@@ -622,26 +624,34 @@ define(function (require) {
                 self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
                 return;
             }
-            if (toInt(truong_sobuoihoc) < 0){
-                self.getApp().notify({message: "Số buổi học không hợp lệ!"},{type: "danger"});
-                return;
+            if(loai_truong_tramyte === 1 || loai_truong_tramyte === 2 || loai_truong_tramyte === 3
+                || loai_truong_tramyte === 4 || loai_truong_tramyte === 5 || loai_truong_tramyte === 6){
+
+                if (truong_sobuoihoc === null || truong_sobuoihoc === ""){
+                    self.getApp().notify({message: "Số buổi học không được để trống!"},{type: "danger"});
+                    return;
+                }
+                if (toInt(truong_sobuoihoc) < 0 || Number.isInteger(truong_sobuoihoc) === false){
+                    self.getApp().notify({message: "Số buổi học không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if (toInt(truong_sohocsinh_moibuoi) < 0){
+                    self.getApp().notify({message: "Số học sinh mỗi buổi học không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if (toInt(truong_sohocsinh_nam) < 0){
+                    self.getApp().notify({message: "Số học sinh nam không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if (toInt(truong_sohocsinh_nu) < 0){
+                    self.getApp().notify({message: "Số học sinh nữ không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
+                    self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
+                    return;
+                } 
             }
-            if (toInt(truong_sohocsinh_moibuoi) < 0){
-                self.getApp().notify({message: "Số học sinh mỗi buổi học không hợp lệ!"},{type: "danger"});
-                return;
-            }
-            if (toInt(truong_sohocsinh_nam) < 0){
-                self.getApp().notify({message: "Số học sinh nam không hợp lệ!"},{type: "danger"});
-                return;
-            }
-            if (toInt(truong_sohocsinh_nu) < 0){
-                self.getApp().notify({message: "Số học sinh nữ không hợp lệ!"},{type: "danger"});
-                return;
-            }
-            if (toInt(truong_sohocsinh_nam) + toInt(truong_sohocsinh_nu) > toInt(truong_sohocsinh_moibuoi)) {
-                self.getApp().notify({message: "Số học sinh nam hoặc nữ không hợp lệ!"}, {type: "danger"});
-                return;
-            } 
             if(tennguoitraloi === null || tennguoitraloi === ""){
                 self.getApp().notify({message: "Chưa nhập tên người trả lời"},{type: "danger"});
                 return;

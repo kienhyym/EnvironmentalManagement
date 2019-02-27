@@ -281,11 +281,12 @@ define(function (require) {
                     } else if(somauvavitri > 10){
                     	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
                     } else {
-					self.$el.find(".btn-success").prop('disabled', true);
+						self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Lưu thông tin thành công");
-                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+							self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
+							self.getApp().getRouter().navigate(self.collectionName + "/collection");
                         },
                         error: function (xhr, status, error) {
 							try {

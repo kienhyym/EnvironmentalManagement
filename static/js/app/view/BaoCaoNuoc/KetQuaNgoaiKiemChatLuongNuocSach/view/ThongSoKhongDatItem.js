@@ -22,7 +22,7 @@ define(function (require) {
 	                extraFormats: ["DDMMYYYY"],
 	            },
 	            {
-					field: "ketquavitrilaymau",
+					field: "danhgiavitrilaymau",
 					uicontrol: "combobox",
 					textField: "text",
 					valueField: "value",

@@ -279,11 +279,16 @@ define(function (require) {
         		self.$el.find("#body_"+elementID).html("");
         		$.each(thongso_khongdat, function(idx,thongso){
         			
-        			var tr = $("<tr>");
+                    var tr = $("<tr>");
+                    var thongso_gioihan_toida_txt = thongso.gioihan_toida_txt ? thongso.gioihan_toida_txt : "";
+                    var thongso_ketqua = thongso.ketqua;
+					if (thongso_ketqua === null || thongso_ketqua === ""){
+						thongso_ketqua = "";
+					}
         			tr.append('<td>'+thongso.tendonvicapnuoc+'</td>');
         			tr.append('<td>'+thongso.tenthongso+'</td>');
-        			tr.append('<td>'+thongso.ketqua+'</td>');
-        			tr.append('<td>'+thongso.gioihan_toida_txt+'</td>');
+        			tr.append('<td>'+thongso_ketqua+'</td>');
+        			tr.append('<td>'+thongso_gioihan_toida_txt+'</td>');
         			tr.append('<td>'+thongso.tenvitri+'</td>');
         			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(thongso.ngaykiemtra, "DD/MM/YYYY")+'</td>');
         			self.$el.find("#body_"+elementID).append(tr);

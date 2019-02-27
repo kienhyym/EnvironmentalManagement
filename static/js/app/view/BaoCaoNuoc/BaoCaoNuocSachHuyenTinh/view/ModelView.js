@@ -324,7 +324,10 @@ define(function (require) {
         			
 					var tr = $("<tr>");
 					var thongso_gioihan_toida_txt = thongso.gioihan_toida_txt ? thongso.gioihan_toida_txt : "";
-					var thongso_ketqua = thongso.ketqua ? thongso.ketqua : "";
+					var thongso_ketqua = thongso.ketqua;
+					if (thongso_ketqua === null || thongso_ketqua === ""){
+						thongso_ketqua = "";
+					}
         			if(elementID === "thongso_khongdat_ngoaikiem_baocao"){
         				var tendonvingoaikiem = "";
         				if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){

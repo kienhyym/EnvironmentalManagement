@@ -7,6 +7,10 @@ define(function (require) {
 	var template = require('text!app/view/tpl/DanhMuc/ThongSoBaoCaoChatLuongNuoc/model.html'),
 		schema = require('json!schema/ThongSoBaoCaoChatLuongNuocSchema.json');
 
+	function toInt(x) {
+		return parseInt(x) ? parseInt(x) : 0;
+		}
+
 	return Gonrin.ModelView.extend({
 		template: template,
 		modelSchema: schema,
@@ -55,10 +59,9 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;
-							var tenthongso = self.model.get("tenthongso");
-							if (tenthongso === null || tenthongso === "") {
-								self.getApp().notify({ message: "Tên thông số không được để trống!" }, { type: "danger" });
-							} else {
+							if (!self.validate()) {
+								return false;
+							}
 								self.model.save(null, {
 									success: function (model, respose, options) {
 										self.getApp().notify("Lưu thông tin thành công");
@@ -79,7 +82,6 @@ define(function (require) {
 										}
 									}
 								});
-							}
 						}
 					},
 					{
@@ -143,6 +145,23 @@ define(function (require) {
 			}
 
 		},
+		validate: function(){
+			var self = this;
+			var tenthongso = self.model.get("tenthongso");
+			var gioihan_toithieu = self.model.get("gioihan_toithieu");
+			var gioihan_toida = self.model.get("gioihan_toida");
+			if (tenthongso === null || tenthongso === "") {
+				self.getApp().notify({ message: "Tên thông số không được để trống!" }, { type: "danger" });
+				return false;
+			}
+			// if(gioihan_toithieu !== null || gioihan_toida !== null){
+			// 	if(gioihan_toithieu > gioihan_toida){
+			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp lệ!" }, { type: "danger" });
+			// 	return false;
+			// 	}
+			// }
+			return true;
+		}
 	});
 
 });

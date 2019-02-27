@@ -51,8 +51,10 @@ define(function (require) {
 		    }
     	},
 	    render:function(){
-	    	 this.applyBindings();
-	    	 return this;
+			var self = this;
+			self.uiControl.filters = {"$and":[{"donvi_id":{"$eq": self.getApp().currentUser.donvi_id}}]};
+			this.applyBindings();
+			return this;
     	},
     });
 
