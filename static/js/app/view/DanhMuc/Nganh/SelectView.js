@@ -36,6 +36,7 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
+				{ field: "stt", label: "STT" },
 	    	     { field: "manganh", label: "Mã", width: 150 },
 		     	 { field: "tennganh", label: "Tên ngành" },
 		    ],

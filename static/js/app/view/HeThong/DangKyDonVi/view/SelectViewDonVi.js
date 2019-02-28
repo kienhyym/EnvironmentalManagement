@@ -8,6 +8,7 @@ define(function (require) {
 		schema = require('json!schema/DonViSchema.json');
 
 	var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/view/SelectView');
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionDialogView.extend({
 
@@ -34,8 +35,40 @@ define(function (require) {
 			},
 		},
 		render: function () {
-			this.applyBindings();
-			return this;
+			var self = this;
+
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			filter.render();
+			 
+			if(!filter.isEmptyFilter()) {
+    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+    			var filters = { "$or": [
+					{"ten": {"$like": text }},
+				] };
+    			self.uiControl.filters = filters;
+    		}
+			self.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = { "$or": [
+							{"ten": {"$like": text }},
+						]};
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
+	    	 return this;
 		},
 
 	});

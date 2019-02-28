@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/DanhMuc/DanhMucHoatDong/tpl/collection.html'),
 		schema = require('json!schema/DanhMucHoatDongSchema.json');
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -15,6 +16,10 @@ define(function (require) {
 		bindings:"data-danhmuchoatdong-bind",
 		uiControl: {
 			fields: [
+				{
+					field: "stt",
+					label: "STT"
+				},
 				{
 					field: "mahoatdong",
 					label: "Mã",
@@ -63,8 +68,41 @@ define(function (require) {
 			}
 		},
 		render: function () {
+			var self = this;
 			this.uiControl.orderBy = [{"field": "loai_hoatdong", "direction": "asc"},{"field": "tenhoatdong", "direction": "asc"}];
+
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			filter.render();
+
+			if(!filter.isEmptyFilter()) {
+    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+    			var filters = { "$or": [
+					{"tenhoatdong": {"$like": text }},
+				] };
+				self.uiControl.filters = filters;
+				self.uiControl.orderBy = [{"field": "tenhoatdong", "direction": "asc"}];
+    		}
 			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = { "$or": [
+							{"tenhoatdong": {"$like": text }},
+						] };
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
 			return this;
 		},
 	});

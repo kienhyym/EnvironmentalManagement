@@ -37,8 +37,9 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{ field: "stt", label: "STT"},
+	    	     { field: "ma", label: "Mã"},
+		     	 { field: "ten", label: "Tên"},
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

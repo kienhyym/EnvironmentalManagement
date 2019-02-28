@@ -46,6 +46,10 @@ define(function (require) {
 //	    	     { 
 //	    	    	field: "id",label:"ID",width:150,readonly: true, 
 //	    	     },
+				{
+					field: "stt",
+					label: "STT"
+				},
 	    	     { field: "ma", label: "Mã", width:200},
 		     	 { field: "ten", label: "Tên", width:250 },
 //		     	{

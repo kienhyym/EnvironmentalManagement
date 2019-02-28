@@ -76,7 +76,7 @@ define(function (require) {
 					if (text !== null){
 						var filters = { "$or": [
 							{"tennganh": {"$like": text }},
-						] };
+						]};
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

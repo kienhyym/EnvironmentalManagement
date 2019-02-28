@@ -6,6 +6,7 @@ define(function (require) {
 
     var template = require('text!app/view/tpl/DanhMuc/QuanHuyen/collection.html'),
         schema = require('json!schema/QuanHuyenSchema.json');
+    var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
     return Gonrin.CollectionView.extend({
         template: template,
@@ -15,15 +16,18 @@ define(function (require) {
         bindings:"data-quanhuyen-bind",
         uiControl: {
             fields: [
-                { field: "ma", label: "Mã", width:250},
-                { field: "ten", label: "Tên", width:250},
+                {
+					field: "stt",
+					label: "STT"
+				},
+                { field: "ma", label: "Mã"},
+                { field: "ten", label: "Tên"},
                 {
                     field: "tinhthanh_id",
                     label: "Tỉnh thành",
                     foreign: "tinhthanh",
                     foreignValueField: "id",
-                    foreignTextField: "ten",
-                    width:250
+                    foreignTextField: "ten"
                 },
 
             ],
@@ -44,9 +48,49 @@ define(function (require) {
             if (currentUser!==null && currentUser!== undefined && this.getApp().data("tinhthanh_id") !== null &&  currentUser.donvi.tuyendonvi_id>=2 && currentUser.donvi.tuyendonvi_id!==10) {
                 this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id") } };
             }
-            self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
-            this.applyBindings();
-            return this;
+            self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+
+            var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			filter.render();
+
+			if(!filter.isEmptyFilter()) {
+    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+    			var query = { "$or": [
+                    {"ten": {"$like": text }},
+                ]};
+                var filters = {"$and": [
+					{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+					query
+				]};
+				self.uiControl.filters = filters;
+				self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+    		}
+			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var query = { "$or": [
+                            {"ten": {"$like": text }},
+                        ]};
+                        var filters = {"$and": [
+							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+							query
+						]};
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
+			return this;
         }
     });
 });

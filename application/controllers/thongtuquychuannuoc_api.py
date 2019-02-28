@@ -21,10 +21,36 @@ from gatco_restapi.helpers import to_dict
 
 
 
-apimanager.create_api(DonViCapNuoc,
+async def postprocess_donvicapnuoc(request=None, Model=None, result=None, **kw):
+    if result is not None and "objects" in result:
+        objects = to_dict(result["objects"])
+        datas = []
+        i =1
+        page = request.args.get("page",None)
+        results_per_page = request.args.get("results_per_page",None)
+        if page is not None and results_per_page is not None and int(page) != 1:
+            i = i + int(results_per_page)*int(page)
+        for obj in objects:
+            if obj is not None:
+                obj_tmp = to_dict(obj)
+                obj_tmp["stt"] = i
+                i = i +1
+                datas.append(obj_tmp)
+        result = datas
+
+async def prepost_put_donvicapnuoc(request=None, data=None, Model=None, **kw):
+    if "stt" in data:
+        del data['stt']
+    objects_danhmuc = ['dantoc','thonxom', 'xaphuong', 'quocgia', 'tinhthanh', 'quanhuyen']
+    for obj in objects_danhmuc:
+        if obj in data and "stt" in data[obj]:
+            del data[obj]['stt']
+
+apimanager.create_api(DonViCapNuoc, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_put_donvicapnuoc], PUT_SINGLE=[auth_func, prepost_put_donvicapnuoc], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_donvicapnuoc]),
     collection_name='donvicapnuoc')
 
 apimanager.create_api(MapVienChuyenNganhNuocVaTinh,
@@ -43,10 +69,28 @@ async def pre_process_thongso_chatluong_nuoc(request=None, data=None, Model=None
     else:
         data['batbuoc'] = False
 
+async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
+    if result is not None and "objects" in result:
+        objects = to_dict(result["objects"])
+        datas = []
+        i =1
+        page = request.args.get("page",None)
+        results_per_page = request.args.get("results_per_page",None)
+        if page is not None and results_per_page is not None and int(page) != 1:
+            i = i + int(results_per_page)*int(page)
+        for obj in objects:
+            if obj is not None:
+                obj_tmp = to_dict(obj)
+                obj_tmp["stt"] = i
+                i = i +1
+                datas.append(obj_tmp)
+        result = datas
+
 apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_process_thongso_chatluong_nuoc], PUT_SINGLE=[auth_func, pre_process_thongso_chatluong_nuoc], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
     collection_name='thongsobaocaochatluongnuoc')
 
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):

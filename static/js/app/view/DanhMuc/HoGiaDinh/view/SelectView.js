@@ -37,6 +37,10 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				{
+					field: "stt",
+					label: "STT"
+				},
+				{
 					field: "tenchuho",
 					label: "Tên chủ hộ"
 				},
