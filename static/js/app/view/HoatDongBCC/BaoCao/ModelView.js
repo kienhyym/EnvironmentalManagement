@@ -118,7 +118,7 @@ define(function (require) {
 			var self = this;
 			self.setDefaultData();
 			self.onChangeEvents();
-			self.applyBindings();
+			// self.applyBindings();
 			self.$el.find("table.table input").attr({"disabled":true});
 		},
 		
@@ -205,6 +205,7 @@ define(function (require) {
 					type: "GET",
 					success: function(response) {
 						if (response) {
+							console.log(response);
 							self.model.set(response);
 							self.applyBindings();
 							if (self.model.get("tiendo_pheduyet") == 1) {

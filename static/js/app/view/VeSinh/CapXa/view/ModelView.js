@@ -276,7 +276,6 @@ define(function (require) {
 						if (self.getApp().currentUser !== null 
 								&& self.getApp().currentUser.donvi_id == self.model.get("donvi_id")){
 							self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
-							self.$el.find(".toolbar .btn-group [btn-name='count']").hide();
 						}
 					},
 					error: function (xhr, status, error) {

@@ -154,9 +154,16 @@ define(function (require) {
 				self.getApp().notify({ message: "Tên thông số không được để trống!" }, { type: "danger" });
 				return false;
 			}
-			// if(gioihan_toithieu !== null || gioihan_toida !== null){
-			// 	if(gioihan_toithieu > gioihan_toida){
-			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp lệ!" }, { type: "danger" });
+			if(gioihan_toithieu !== null && gioihan_toida !== null){
+				if(gioihan_toithieu > gioihan_toida){
+				self.getApp().notify({ message: "Giới hạn tối thiểu hoặc tối đa không hợp lệ!" }, { type: "danger" });
+				return false;
+				}
+			}
+			// if(gioihan_toithieu !== ""){
+			// 	console.log("gioihan_toithieu", gioihan_toithieu);
+			// 	if($.isNumeric(gioihan_toithieu) === false){
+			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp ==lệ!" }, { type: "danger" });
 			// 	return false;
 			// 	}
 			// }

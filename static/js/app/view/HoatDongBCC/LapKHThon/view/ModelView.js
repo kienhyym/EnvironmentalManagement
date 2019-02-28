@@ -309,13 +309,6 @@ define(function (require) {
                 hoatDongItemView.remove();
             });
 			hoatDongItemView.on("change", function(data) {
-				// if (data.songuoithamgia === null || data.songuoithamgia === ""){
-				// 	self.getApp().notify({message: "Số người tham gia không được để trống!"}, {type: "danger"});
-				// 	return;
-				// } else if (data.songuoithamgia_dtts === null || data.songuoithamgia_dtts === ""){
-				// 	self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"}, {type: "danger"});
-				// 	return;
-				// }
 				var dshoatdong = self.model.get("danhsach_hoatdong");
 				dshoatdong.forEach(function(item, idx) {
 					if (item.id == data.id) {
@@ -474,7 +467,7 @@ define(function (require) {
 					self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia) < 0){
+				if(toInt(danhsach_hoatdong[i].songuoithamgia) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia) === false){
 					self.getApp().notify({message: "Tổng số người tham gia không hợp lệ!"},{type: "danger"});
 					return;
 				}
@@ -482,7 +475,7 @@ define(function (require) {
 					self.getApp().notify({message: "Số người tham gia là nữ không được để trống!"},{type: "danger"});
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0){
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_nu) === false){
 					self.getApp().notify({message: "Số người tham gia là nữ không hợp lệ!"},{type: "danger"});
 					return;
 				}
@@ -490,7 +483,7 @@ define(function (require) {
 					self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"},{type: "danger"});
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0){
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_dtts) === false){
 					self.getApp().notify({message: "Số người tham gia là DTTS không hợp lệ!"},{type: "danger"});
 					return;
 				}
