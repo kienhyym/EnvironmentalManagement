@@ -595,7 +595,6 @@ define(function (require) {
             var sokhuvesinh_truong_hocsinh_nu = self.model.get("sokhuvesinh_truong_hocsinh_nu");
             var sokhuvesinh_truong_giaovien_nam = self.model.get("sokhuvesinh_truong_giaovien_nam");
             var sokhuvesinh_truong_giaovien_nu = self.model.get("sokhuvesinh_truong_giaovien_nu");
-            var numbers = /^[0-9]+$/;
             if (nambaocao === null || nambaocao === ""){
                 self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
                 return;
