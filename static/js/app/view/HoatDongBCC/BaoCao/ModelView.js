@@ -253,7 +253,7 @@ define(function (require) {
                 <td class="background-colorTH" colspan="3"></td>
             </tr>
             <tr class="custom" style="background: #F0F0F0;;">
-                <td colspan="3">
+                <td colspan="3" style="text-align: left;">
 					<p>DLI 1.1 Kế hoạch Truyền thông Thay đổi Hành vi đã phê duyệt được thực hiện ở tỉnh:</p>
                     <p>Liệt kê các hoạt động được thực hiện theo kế hoạch BCC</p>
                 </td>
@@ -269,7 +269,7 @@ define(function (require) {
 			data.forEach(function(nganh, idx) {
 				if (nganh && (nganh.manganh || nganh.tennganh)) {
 					self.$el.find("#danhsachhoatdong_list").append(`<tr>
-		                <td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; font-size: 14px;">${nganh.tennganh.toLocaleUpperCase()}</td>
+		                <td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; font-size: 14px; text-align: left">${nganh.tennganh.toLocaleUpperCase()}</td>
 		                <td class="text-center"></td>
 		                <td class="text-center"></td>
 		                <td class="text-center"></td>
@@ -278,7 +278,7 @@ define(function (require) {
 					if (nganh && nganh.tuyendonvis) {
 						nganh.tuyendonvis.forEach(function(tuyen, idx) {							
 							self.$el.find("#danhsachhoatdong_list").append(`<tr>
-									<td colspan="3" class="text-left" style="color: #e30303; font-weight: bold;">&nbsp;&nbsp;${tuyen.tuyen}</td>
+									<td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; text-align: left;">&nbsp;&nbsp;${tuyen.tuyen}</td>
 									<td class="text-center"></td>
 									<td class="text-center"></td>
 									<td class="text-center"></td>

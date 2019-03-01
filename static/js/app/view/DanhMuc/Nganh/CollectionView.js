@@ -17,7 +17,7 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				{
-					field: "STT",
+					field: "stt",
 					label: "STT"
 				},
 	    	     { field: "manganh", label: "Mã"},
@@ -70,7 +70,7 @@ define(function (require) {
 			self.applyBindings();
 
 			filter.on('filterChanged', function(evt) {
-    			var $col = self.getCollectionElement();
+				var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
