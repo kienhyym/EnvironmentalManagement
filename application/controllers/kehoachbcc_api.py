@@ -73,10 +73,37 @@ async def getDanhmuchoatdong(request):
     return json(to_dict(danhmuclist),status=200)
    
 
+async def prepost_put_danhmuchoatdong(request=None, data=None, Model=None, **kw):
+    if "stt" in data:
+        del data['stt']
+    objects_danhmuc = ['dantoc','thonxom', 'xaphuong', 'quocgia', 'tinhthanh', 'quanhuyen', 'nganh']
+    for obj in objects_danhmuc:
+        if obj in data and "stt" in data[obj]:
+            del data[obj]['stt']
+
+
+async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
+    if result is not None and "objects" in result:
+        objects = to_dict(result["objects"])
+        datas = []
+        i =1
+        page = request.args.get("page",None)
+        results_per_page = request.args.get("results_per_page",None)
+        if page is not None and results_per_page is not None and int(page) != 1:
+            i = i + int(results_per_page)*int(page)
+        for obj in objects:
+            if obj is not None:
+                obj_tmp = to_dict(obj)
+                obj_tmp["stt"] = i
+                i = i +1
+                datas.append(obj_tmp)
+        result = datas
+
 apimanager.create_api(DanhMucHoatDong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_put_danhmuchoatdong], PUT_SINGLE=[auth_func, prepost_put_danhmuchoatdong], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
     collection_name='danhmuchoatdong')
 
  

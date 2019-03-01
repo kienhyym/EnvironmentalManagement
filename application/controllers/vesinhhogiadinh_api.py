@@ -642,10 +642,18 @@ async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
         for obj in objects:
             if obj is not None:
                 obj_tmp = to_dict(obj)
-                obj_tmp["STT"] = i
+                obj_tmp["stt"] = i
                 i = i +1
                 datas.append(obj_tmp)
         result = datas
+
+async def prepost_put_hogiadinh(request=None, data=None, Model=None, **kw):
+    if "stt" in data:
+        del data['stt']
+    objects_danhmuc = ['dantoc','thonxom', 'xaphuong', 'quocgia', 'tinhthanh', 'quanhuyen']
+    for obj in objects_danhmuc:
+        if obj in data and "stt" in data[obj]:
+            del data[obj]['stt']
 
 async def entity_pregetmany_hogiadinh(search_params=None, **kw):
     request = kw.get("request", None)
@@ -668,10 +676,10 @@ async def entity_pregetmany_hogiadinh(search_params=None, **kw):
    
     
 
-apimanager.create_api(HoGiaDinh,max_results_per_page=1000000,
+apimanager.create_api(HoGiaDinh, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany_hogiadinh], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany_hogiadinh], POST=[auth_func, prepost_put_hogiadinh], PUT_SINGLE=[auth_func, prepost_put_hogiadinh], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_hogiadinh]),
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')

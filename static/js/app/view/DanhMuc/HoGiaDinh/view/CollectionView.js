@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/DanhMuc/HoGiaDinh/tpl/collection.html'),
 		schema = require('json!schema/HoGiaDinhSchema.json');
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -16,7 +17,7 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "STT",
+					field: "stt",
 					label: "STT"
 				},
 				{
@@ -102,7 +103,37 @@ define(function (require) {
 				{"field": "thonxom_id", "direction": "asc"},
 				{"field": "tenchuho", "direction": "asc"}];
 
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			filter.render();
+
+			if(!filter.isEmptyFilter()) {
+				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+    			var filters = { "$or": [
+					{"tenchuho": {"$like": text }},
+				]};
+				self.uiControl.filters = filters;
+			}
 			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = { "$or": [
+							{"tenchuho": {"$like": text }},
+						]};
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
 			return this;
 		},
 	});

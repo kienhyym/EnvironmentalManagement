@@ -38,6 +38,10 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
+					{
+						field: "stt",
+						label: "STT"
+					},
     				 { field: "ma", label: "Mã"},
     		     	 { field: "ten", label: "Tên" },
     		     	{

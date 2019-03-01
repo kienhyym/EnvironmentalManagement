@@ -394,8 +394,9 @@ define(function (require) {
                             }
                             self.getApp().notify("Thêm phiếu thành công");
                             self.trigger("close", self.model.toJSON());
-                            self.$el.find(".btn-success").prop('disabled', true);
+                            self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
                             self.close();
+
                         }
                     },
                     {
@@ -536,7 +537,7 @@ define(function (require) {
                 }
             }
             if (soluong_chauxi === null || soluong_chauxi === ""){
-                self.getApp().notify({message: "Số chậu xí không được để trống!"},{type: "danger"});
+                self.getApp().notify({message: "Số chậu xí không được để trống hoặc không hợp lệ!"},{type: "danger"});
                 return;
             }
             if(toInt(soluong_chauxi) < 0 || Number.isInteger(soluong_chauxi) === false){
@@ -544,8 +545,16 @@ define(function (require) {
                 return;
             }
             if (khu_ditieu === 1){
+                if (khu_ditieu_dientich === null || khu_ditieu_dientich === ""){
+                    self.getApp().notify({message: "Diện tích khu đi tiểu không được để trống hoặc không hợp lệ!"},{type: "danger"});
+                    return;
+                }
                 if(toInt(khu_ditieu_dientich) < 0){
                     self.getApp().notify({message: "Diện tích khu đi tiểu không hợp lệ!"},{type: "danger"});
+                    return;
+                }
+                if (khu_ditieu_sochau === null || khu_ditieu_sochau === ""){
+                    self.getApp().notify({message: "Số chậu khu đi tiểu không được để trống hoặc không hợp lệ!"},{type: "danger"});
                     return;
                 }
                 if(toInt(khu_ditieu_sochau) < 0 || Number.isInteger(khu_ditieu_sochau) === false){

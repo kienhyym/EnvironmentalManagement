@@ -130,10 +130,11 @@ define(function (require) {
 						} else if (donvi_tuyendonvi.id ===4 && (xaphuong == null || xaphuong == undefined)) {
 								self.getApp().notify({ message: "Chưa chọn xã phường!" }, { type: "danger" });
 						} else {
-							self.$el.find(".btn-success").prop('disabled', true);
+							self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().getRouter().navigate("/login");
+									self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
 									self.getApp().notify("Đăng ký thông tin thành công, Vui lòng chờ cấp trên duyệt tài khoản!");
 								},
 								error: function (xhr, status, error) {

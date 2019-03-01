@@ -413,6 +413,16 @@ define(function (require) {
 //							self.$el.find("#addItem").click();
 							self.$el.find("#nhatieuthonhvs").hide();
 						}
+
+						if (self.getApp().currentUser !== null 
+									&& self.getApp().currentUser.donvi_id !== self.model.get("donvi_id")){
+								self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
+								self.$el.find(".toolbar .btn-group [btn-name='delete']").hide();
+						}
+						if (self.getApp().currentUser !== null 
+								&& self.getApp().currentUser.donvi_id == self.model.get("donvi_id")){
+							self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
+						}
 						
 					},
 					error: function (xhr, status, error) {
@@ -633,10 +643,10 @@ define(function (require) {
 			var sohongheo = self.tongViewi.model.get("hongheo");
 			self.model.set("tong_sohongheo", sohongheo);
 			
-			// var tong_nu = self.model.get("tong_nu");
-			// var tong_nam = self.model.get("tong_nam");
-			// var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-			// self.model.set("tong_danso" , tong_dantrongthon)
+			var tong_nu = self.model.get("tong_nu");
+			var tong_nam = self.model.get("tong_nam");
+			var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+			self.model.set("tong_danso" , tong_dantrongthon)
 
 			var tong_dtts = self.tongViewi.model.get("dtts");
 			self.model.set("tong_sohodtts", tong_dtts);
@@ -692,6 +702,7 @@ define(function (require) {
 			var thonxom = self.model.get("thonxom");
 			var tong_nu = self.model.get("tong_nu");
 			var tong_nam = self.model.get("tong_nam");
+			var tong_danso = self.model.get("tong_danso");
 			if(nambaocao === null || nambaocao === ""){
 				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
 				return;
@@ -742,6 +753,10 @@ define(function (require) {
 			}
 			if(toInt(tong_nam) < 0){
 				self.getApp().notify({message: "Tổng số nam trong thôn không hợp lệ!"},{type: "danger"});
+				return;
+			}
+			if(toInt(tong_danso) <= 0){
+				self.getApp().notify({message: "Số nam hoặc số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			return true;

@@ -6,7 +6,8 @@ define(function (require) {
     
     var template 			= require('text!app/view/tpl/DanhMuc/XaPhuong/collection.html'),
     	schema 				= require('json!schema/XaPhuongSchema.json');
-    
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
+
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -15,15 +16,18 @@ define(function (require) {
 		bindings:"data-xaphuong-bind",
     	uiControl:{
 	    	fields: [
-		     	 { field: "ma", label: "Mã", width:250},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{
+					field: "stt",
+					label: "STT"
+				},
+		     	 { field: "ma", label: "Mã"},
+		     	 { field: "ten", label: "Tên"},
 		     	 {
 	            	 field: "quanhuyen_id", 
 	            	 label: "Quận Huyện",
 	            	 foreign: "quanhuyen",
 	            	 foreignValueField: "id",
-					 foreignTextField: "ten",
-					 width:250
+					 foreignTextField: "ten"
 	           	 },
 		     ],
 		     pagination: {
@@ -38,14 +42,46 @@ define(function (require) {
 		    	}
     	},
 	     render:function(){
-	    	 var self = this;
+	    	var self = this;
 //	    	 var currentUser = this.getApp().currentUser;
 //	    	 if (currentUser!==null && currentUser!== undefined && this.getApp().data("quanhuyen_id") !== null &&  currentUser.donvi.tuyendonvi_id >=3 && currentUser.donvi.tuyendonvi_id!==10) {
 //                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
 //             }
-			 self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
-	    	 this.applyBindings();
-	    	 return this;
+			self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			filter.render();
+
+			if(!filter.isEmptyFilter()) {
+    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+    			var filters = { "$or": [
+                    {"ten": {"$like": text }},
+				]};
+				self.uiControl.filters = filters;
+				self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+    		}
+			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = { "$or": [
+                            {"ten": {"$like": text }},
+						] };
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
+			return this;
     	}
     	
     });

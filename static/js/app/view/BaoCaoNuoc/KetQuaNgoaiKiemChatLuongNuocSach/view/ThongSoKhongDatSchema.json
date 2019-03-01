@@ -29,5 +29,8 @@
 	},
 	"ketquavitrilaymau": {
 		"type": "number"
+    },
+    "danhgiavitrilaymau": {
+		"type": "number"
 	}
 }

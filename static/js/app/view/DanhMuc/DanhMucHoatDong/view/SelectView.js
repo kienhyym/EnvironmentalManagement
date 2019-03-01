@@ -37,6 +37,7 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
+				{ field: "stt", label: "STT"},
 	    	     { field: "mahoatdong", label: "Mã"},
 		     	 { field: "tenhoatdong", label: "Tên" },
 		     	 { field: "loai_hoatdong", label: "Phạm vi" },
