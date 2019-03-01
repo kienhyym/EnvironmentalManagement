@@ -205,7 +205,6 @@ define(function (require) {
 					type: "GET",
 					success: function(response) {
 						if (response) {
-							console.log(response);
 							self.model.set(response);
 							self.applyBindings();
 							if (self.model.get("tiendo_pheduyet") == 1) {
