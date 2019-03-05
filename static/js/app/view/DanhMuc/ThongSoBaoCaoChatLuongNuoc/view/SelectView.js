@@ -28,7 +28,9 @@ define(function (require) {
     			    	    	label: "TRANSLATE:SELECT",
     			    	    	command: function(){
     			    	    		var self = this;
-    			    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) {    			    	    			
+    			    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) { 
+										var get_data_onSelected = this.uiControl.selectedItems[0];
+										delete get_data_onSelected.stt;   			    	    			
     			    	    			self.trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
     			    	    			self.getApp().trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
 
