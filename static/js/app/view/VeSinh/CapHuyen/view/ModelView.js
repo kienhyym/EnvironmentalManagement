@@ -260,10 +260,6 @@ define(function (require) {
 								self.$el.find(".toolbar .btn-group [btn-name='delete']").hide();
 								self.$el.find(".toolbar .btn-group [btn-name='count']").hide();
 						}
-						if (self.getApp().currentUser !== null 
-									&& self.getApp().currentUser.donvi_id == self.model.get("donvi_id")){
-								self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
-						}
 					},
 					error: function (xhr, status, error) {
 						try {

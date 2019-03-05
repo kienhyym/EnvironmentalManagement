@@ -242,6 +242,7 @@ define(function (require) {
                                 }
                                 catch (err) {
                                   self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+                                  self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
                                 }
                             }
 	                    });
@@ -574,6 +575,7 @@ define(function (require) {
             $.ajax({
                 url: url,
                 method: "GET",
+                data: {"q": JSON.stringify({"order_by":[{"field": "tenthongso", "direction": "asc"}]})},
                 contentType: "application/json",
                 success: function (data) {
                 	var danhsachthongso = [];

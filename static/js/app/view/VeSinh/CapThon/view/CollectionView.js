@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/VeSinh/CapThon/tpl/collection.html'),
 		schema = require('json!schema/VSCapThonSchema.json');
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -113,6 +114,23 @@ define(function (require) {
 					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
+
+				// var filterBtn = self.$el.find("#filterBtn");
+				// filterBtn.unbind("click").bind("click", function () {
+				// 	console.log("clicked!!!!!", self.collection.toJSON());
+				// 	var filter_thon = self.$el.find("#filter_thon").val();
+				// 	var filter_nam = self.$el.find("#filter_nam").val();
+				// 	console.log("filter_thon", filter_thon);
+				// 	console.log("filter_nam", filter_nam);
+				// 	var filters = { filters: {"$and" :[{"nambaocao":{"$eq": filter_nam}}]}}
+				// 							// { "tenthon": { "$eq": filter_thon }}]}}
+				// 	console.log("filters", filters);
+				// 	var $col = self.getCollectionElement();
+				// 	console.log("0as0d0a----", $col);
+				// 	self.uiControl.filters = filters;
+
+				// });
+				self.applyBindings();
 				return this;
 			}
 		},

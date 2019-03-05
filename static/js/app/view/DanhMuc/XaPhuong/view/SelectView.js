@@ -28,7 +28,9 @@ define(function (require) {
 		    	    	buttonClass: "btn-success btn-sm",
 		    	    	label: "TRANSLATE:SELECT",
 		    	    	command: function(){
-		    	    		var self = this;
+							var self = this;
+							var get_data_onSelected = this.uiControl.selectedItems[0];
+							delete get_data_onSelected.stt;
 		    	    		self.trigger("onSelected");
 		    	    		var selected_items = self.uiControl.selectedItems;
 		    	    		if(!!selected_items && selected_items.length>0){

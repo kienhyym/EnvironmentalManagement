@@ -299,6 +299,7 @@ define(function (require) {
 							}
 							catch (err) {
 							  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+							  self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
 							}
 						}
                     });

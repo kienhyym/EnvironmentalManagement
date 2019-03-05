@@ -163,7 +163,7 @@ define(function (require) {
 										}
 									}
 									catch (err) {
-									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+									  self.getApp().notify({ message: "Báo cáo đã tồn tại, vui lòng kiểm tra lại!"}, { type: "danger", delay: 1000 });
 									}
 								}
 							});	
@@ -419,11 +419,6 @@ define(function (require) {
 								self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
 								self.$el.find(".toolbar .btn-group [btn-name='delete']").hide();
 						}
-						if (self.getApp().currentUser !== null 
-								&& self.getApp().currentUser.donvi_id == self.model.get("donvi_id")){
-							self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
-						}
-						
 					},
 					error: function (xhr, status, error) {
 						try {
