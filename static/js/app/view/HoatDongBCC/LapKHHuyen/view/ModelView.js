@@ -197,6 +197,8 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
+						self.$el.find("#tinhthanh").prop('disabled', true);
+						self.$el.find("#quanhuyen").prop('disabled', true);
 						self.applyBindings();
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);
@@ -405,36 +407,28 @@ define(function (require) {
 					self.getApp().notify({message: "Chưa chọn ngày phê duyệt kế hoạch BCC!"},{type: "danger"});
 					return;
 				}
-				if (self.model.get("sohoatdong_cotloi_pheduyet") === null || self.model.get("sohoatdong_cotloi_pheduyet") === "") {
-					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không được để trống!"},{type: "danger"});
-					return;
-				}
-				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0) {
+				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0 || 
+					Number.isInteger(self.model.get("sohoatdong_cotloi_pheduyet")) === false ||
+					self.model.get("sohoatdong_cotloi_pheduyet") === null || self.model.get("sohoatdong_cotloi_pheduyet") === "") {
 					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không hợp lệ!"},{type: "danger"});
 					return;
 				}
 			}
-			if (self.model.get("sohoatdong_cotloi_hoanthanh") === null || self.model.get("sohoatdong_cotloi_hoanthanh") === "") {
-				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không được để trống!"},{type: "danger"});
-				return;
-			}
-			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0) {
+			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 || 
+				Number.isInteger(self.model.get("sohoatdong_cotloi_hoanthanh")) === false ||
+				self.model.get("sohoatdong_cotloi_hoanthanh") === null || self.model.get("sohoatdong_cotloi_hoanthanh") === "") {
 				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không hợp lệ!"},{type: "danger"});
 				return;
 			}
-			if (self.model.get("giangvien") === null || self.model.get("giangvien") === "") {
-				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không được để trống!"},{type: "danger"});
-				return;
-			}
-			if (toInt(self.model.get("giangvien")) < 0) {
+			if (toInt(self.model.get("giangvien")) < 0 ||
+				Number.isInteger(self.model.get("giangvien")) === false ||
+				self.model.get("giangvien") === null || self.model.get("giangvien") === "") {
 				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
-			if (self.model.get("giangvien_nu") === null || self.model.get("giangvien_nu") === "") {
-				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không được để trống!"},{type: "danger"});
-				return;
-			}
-			if (toInt(self.model.get("giangvien_nu")) < 0) {
+			if (toInt(self.model.get("giangvien_nu")) < 0 ||
+				Number.isInteger(self.model.get("giangvien_nu")) === false ||
+				self.model.get("giangvien_nu") === null || self.model.get("giangvien_nu") === "") {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}

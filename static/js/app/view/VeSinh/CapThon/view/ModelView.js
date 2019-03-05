@@ -163,7 +163,7 @@ define(function (require) {
 										}
 									}
 									catch (err) {
-									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+									  self.getApp().notify({ message: "Báo cáo đã tồn tại, vui lòng kiểm tra lại!"}, { type: "danger", delay: 1000 });
 									}
 								}
 							});	

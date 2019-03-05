@@ -52,7 +52,12 @@ define(function (require) {
     	},
 	    render:function(){
 			var self = this;
-			self.uiControl.filters = {"$and":[{"donvi_id":{"$eq": self.getApp().currentUser.donvi_id}}]};
+			if (this.getApp().currentUser.donvi.tuyendonvi_id === 2){
+				self.uiControl.filters = {"$and":[{"donvi_id":{"$eq": self.getApp().currentUser.donvi_id}}]};
+				self.uiControl.orderBy = [{"field": "nam_datvesinh_toanxa", "direction": "asc"}];
+			} else {
+				self.uiControl.orderBy = [{"field": "nam_datvesinh_toanxa", "direction": "asc"}];
+			}
 			this.applyBindings();
 			return this;
     	},

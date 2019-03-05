@@ -204,6 +204,9 @@ define(function (require) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
+						self.$el.find("#tinhthanh").prop('disabled', true);
+						self.$el.find("#quanhuyen").prop('disabled', true);
+						self.$el.find("#xaphuong").prop('disabled', true);
 						self.applyBindings();
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);

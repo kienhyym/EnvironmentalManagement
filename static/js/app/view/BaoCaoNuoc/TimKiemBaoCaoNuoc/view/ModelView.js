@@ -188,7 +188,7 @@ define(function (require) {
 								}
 							}
 							catch (err) {
-							  self.getApp().notify({ message: "Lỗi truy cập dữ liệu, vui lòng thử lại sau!"}, { type: "danger", delay: 1000 });
+							  self.getApp().notify({ message: "Không tìm thấy báo cáo trên hệ thống, vui lòng thử lại!"}, { type: "danger", delay: 1000 });
 							}
 	 	 			    
 	 	 			    },
