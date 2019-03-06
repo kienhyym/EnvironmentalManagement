@@ -30,7 +30,7 @@ define(function (require) {
 							var self = this;
 							var get_data_onSelected = this.uiControl.selectedItems[0];
 							delete get_data_onSelected.stt;
-		    	    		self.trigger("onSelected");
+		    	    		self.trigger("onSelected", get_data_onSelected);
 		    	    		self.close();
 		    	    	}
 		    	    },

@@ -38,7 +38,7 @@ define(function (require) {
     	},
 	    render:function(){
 			var self = this;
-			this.uiControl.orderBy = [{"field": "tenthongso", "direction": "asc"}];
+			this.uiControl.orderBy = [{"field": "created_at", "direction": "asc"}];
 			 
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),

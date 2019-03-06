@@ -31,8 +31,8 @@ define(function (require) {
 		    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) { 
 								var get_data_onSelected = this.uiControl.selectedItems[0];
 								delete get_data_onSelected.stt;   			    	    			
-		    	    			self.getApp().trigger("DonViCapNuoc_onSelected", this.uiControl.selectedItems[0]);
-		    	    			self.trigger("onSelected", this.uiControl.selectedItems[0]);
+		    	    			self.getApp().trigger("DonViCapNuoc_onSelected", get_data_onSelected);
+		    	    			self.trigger("onSelected", get_data_onSelected);
 		    	    		}
 		    	    		self.destroy();
 		    	    		self.close();
