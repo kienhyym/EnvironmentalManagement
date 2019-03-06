@@ -371,8 +371,7 @@ async def pre_put_vscapthon(request=None, data=None, Model=None, **kw):
                                                       VSCapThon.loaikybaocao == data['loaikybaocao'], \
                                                       VSCapThon.kybaocao == data['kybaocao'], \
                                                       VSCapThon.nambaocao == data['nambaocao'])).first()
-    print("record====", record)
-    print("data===", data)
+                                                      
     # if record is None:
     #     return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo của đơn vị không tồn tại, vui lòng kiểm tra lại"}, status=520)
     if (record is not None and str(record.id) != data['id']):
