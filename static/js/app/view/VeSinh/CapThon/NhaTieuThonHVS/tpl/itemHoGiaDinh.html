@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Thông tin hộ gia đình</h3>
+    </div>
+    <div style="margin-left: 16px; margin-top: 20px; margin-right: 16px;" block-bind="content">
+        <div class="table1">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="is-table">
+                        <tbody>
+                            <tr>
+                                <td>Thông tin hộ gia đình</td>
+                                <td><input type="text" class="form-control" bind-item-data="dict:hogiadinh" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Có là hộ nghèo không?</td>
+                                <td><input type="text" class="form-control" bind-item-data="value:hongheo" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Loại nhà tiêu đang sử dụng</td>
+                                <td><input type="radio" name="loainhatieusudung" value="tuhoai"/>Tự hoại<br>
+                                    <input type="radio" name="loainhatieusudung" value="thamdoi"/>Thẩm dội<br>
+                                    <input type="radio" name="loainhatieusudung" value="haingan"/>Hai ngăn<br>
+                                    <input type="radio" name="loainhatieusudung" value="chimco_oth"/>Chìm có ống thông hơi<br>
+                                    <input type="radio" name="loainhatieusudung" value="khongconhatieu"/>Không có nhà tiêu(bao gồm cầu tiêu ao cá)<br>
+                                    <input type="radio" name="loainhatieusudung" value="loaikhac"/>Loại khác<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Đánh giá tình trạng vệ sinh</td>
+                                <td>
+                                    <input type="radio" name="danhgiatinhtrangvesinh" value="hopvesinh"/>Hợp vệ sinh<br>
+                                    <input type="radio" name="danhgiatinhtrangvesinh" value="khonghopvesinh"/>Không hợp vệ sinh<br>
+                                    <input type="radio" name="danhgiatinhtrangvesinh" value="caithien"/>Cải thiện<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Có điểm rửa tay với nước và xà phòng không?</td>
+                                <td><input type="text" class="form-control"
+                                        bind-item-data="value:diemruataycoxaphong" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="text-right" style="margin-bottom: 10px;" block-bind="toolbar"></div>
+    </div>
+</div>
