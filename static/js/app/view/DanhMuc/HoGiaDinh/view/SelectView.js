@@ -126,11 +126,10 @@ define(function (require) {
     			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		}else{
     			if (filter_thonxom && filter_thonxom !== ""){
-    				self.uiControl.filters = filter_thonxom;
+					self.uiControl.filters = filter_thonxom;
     			}else{
-    				self.uiControl.filters = null;
-    			}
-    			
+					// self.uiControl.filters = null;
+    			}	
     		}
     		
     		self.applyBindings();
