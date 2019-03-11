@@ -358,7 +358,7 @@ define(function (require) {
 									self.$el.find("#nhatieuthonhvs").html("");
 									for(var i=0; i< nhatieuthonhvs.length; i++){
 										nhatieuthonhvs[i]['stt'] = i+1;
-										self.renderItemView(nhatieuthonhvs[i]);
+										self.renderItemView(nhatieuthonhvs[i], null);
 										
 									}
 									
@@ -493,18 +493,19 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData":{"thonxom_id": self.model.get("thonxom").id}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function(data){
-					console.log("data hien pop-up========", data);
 					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-	                view.model.set("id",gonrin.uuid());
-					var  danhsachho = self.model.get("nhatieuthonhvs");
+	        view.model.set("id",gonrin.uuid());
+					var danhsachho = self.model.get("nhatieuthonhvs");
 	                for(var i=0; i< danhsachho.length; i++){
 	                	var item_hogiadinh = danhsachho[i];
-	                	if(item_hogiadinh.maho === data.id){
+	                	if(item_hogiadinh.maho === data.hogiadinh.id){
 	                		self.getApp().notify({message: "Hộ gia đình đã tồn tại trong báo cáo!"}, {type: "danger"});
 	                		return;
 	                	}
 	                }
 					view.model.set("tenchuho", data.hogiadinh.tenchuho);
+					view.model.set("hogiadinh", data.hogiadinh);
+					view.model.set("hogiadinh_id", data.hogiadinh_id);
 					view.model.set("maho", data.hogiadinh.id);
 					view.model.set("gioitinh", data.hogiadinh.gioitinh);
 					view.model.set("dantoc_id", data.hogiadinh.dantoc_id);
@@ -520,9 +521,10 @@ define(function (require) {
 					view.model.set("hopvesinh",data.hopvesinh);
 					view.model.set("khonghopvesinh",data.khonghopvesinh);
 					view.model.set("caithien",data.caithien);
+					view.model.set("diemruataycoxaphong",data.diemruataycoxaphong);
 					
 					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-					self.renderItemView(view.model.toJSON());
+					self.renderItemView(view.model.toJSON(), null);
 					self.renderTinhTongI();
 					self.check_chuongtrinhSUP();
 				});
@@ -535,7 +537,7 @@ define(function (require) {
 						self.$el.find("#nhatieuthonhvs").html("");
 						for(var i=0; i< nhatieuthonhvs.length; i++){
 							nhatieuthonhvs[i]['stt'] = i+1;
-							self.renderItemView(nhatieuthonhvs[i]);
+							self.renderItemView(nhatieuthonhvs[i], null);
 							
 						}
 						// self.model.on("change:thonxom", function(){
@@ -665,14 +667,64 @@ define(function (require) {
 				self.$el.find("#header_table_sup").show();
 			}
 		},
-		renderItemView:function(data){
+		renderItemView: function(data, element_id){
 			var self  =this;
 			var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+			
+			if (element_id == null || element_id == "" || element_id == undefined){
+				element_id = gonrin.uuid();
+				view.$el.attr("id",element_id );
+				console.log("nhay len trennnnn======");
+			} else {
+				view.setElement($('#'+ element_id));
+				console.log("nhay xuong duoiiii===");
+			}
 			view.model.set(data);
-			console.log("dataa=====aa=a=aa==", data)
+			
+			console.log("view el====", view.$el);
+			if(self.$el.find("#"+element_id).length ===0){
+				self.$el.find("#nhatieuthonhvs").append(view.$el);
+			}else{
+				console.log("co element",self.$el.find("#"+element_id))
+				// self.$el.find("#"+element_id).html("");
+				// self.$el.find('#'+ element_id).html(view.$el.html());
+			}
 			view.render();
-			console.log("nhatieuhopvesinh====", view.$el);
-			self.$el.find("#nhatieuthonhvs").append(view.$el);
+			
+			view.$el.unbind('click').bind('click', function () {
+				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData": {"obj_hogiadinh": data, "thonxom_id": self.model.get("thonxom").id}});
+				view_hogiadinh.dialog({size: "large"});
+				view_hogiadinh.on("close", function (data_hogiadinh) {
+					console.log("data closed pop-up", data_hogiadinh);
+					// view.model.set("tenchuho", data.hogiadinh.tenchuho);
+					// view.model.set("maho", data.hogiadinh.maho);
+					// view.model.set("gioitinh", data.hogiadinh.gioitinh);
+					// view.model.set("dantoc_id", data.hogiadinh.dantoc_id);
+					// view.model.set("dantoc", data.hogiadinh.dantoc);
+					// view.model.set("tendantoc",data.hogiadinh.dantoc.ten);
+					// var hogiadinh = {"tenchuho": data.hogiadinh.tenchuho, "maho": data.hogiadinh.maho, "tendantoc": data.hogiadinh.tendantoc,
+          //       "gioitinh": data.hogiadinh.gioitinh, "dantoc": data.hogiadinh.dantoc, "dantoc_id": data.hogiadinh.dantoc_id};
+					// view.model.set("hogiadinh", hogiadinh);
+			
+					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
+					console.log("nhatieuthonhvs", data_nhatieuthonhvs);
+					data_nhatieuthonhvs.forEach(function (item, idx) {
+						if (data_nhatieuthonhvs[idx].id === data_hogiadinh.id){
+							// console.log("data_nhatieuthonhvs idx==id", data_nhatieuthonhvs[idx].id);
+							// console.log("data====id", data.id);
+							data_nhatieuthonhvs[idx] = data_hogiadinh;
+						}
+						view.model.set(data_hogiadinh);
+						view.applyBindings();
+						view_hogiadinh.viewData = {"viewData": {"obj_hogiadinh": data_hogiadinh, "thonxom_id": self.model.get("thonxom").id}};
+						// self.renderItemView(data_hogiadinh, element_id);
+					});
+					// console.log(data_nhatieuthonhvs);
+					// var id_element = view.$el.attr('id');
+					// console.log("id_element", id_element);
+					// self.$el.find("tr[id =" + id_element + "]").append(view.$el); 
+				});
+			});
 			
 			view.$el.find("#itemRemove").unbind('click').bind('click',{obj:data}, function(e){
             	var fields = self.model.get("nhatieuthonhvs");

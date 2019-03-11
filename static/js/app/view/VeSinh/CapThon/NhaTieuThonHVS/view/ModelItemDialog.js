@@ -54,77 +54,29 @@ define(function (require) {
 						},
 					],
 				},
-				{
-                    field: "loainhatieudangsudung",
-                    uicontrol: "radio",
-                    textField: "text",
-                    valueField: "value",
-                    dataSource: [{
-                        value: 1,
-                        text: "Tự hoại",
-                    }, {
-                        value: 2,
-                        text: "Thẩm dội",
-
-                    }, {
-                        value: 3,
-                        text: "Hai ngăn",
-
-                    }, {
-                        value: 4,
-                        text: "Chìm có ống thông hơi",
-
-                    }, {
-                        value: 5,
-                        text: "Không có nhà tiêu(bao gồm cầu tiêu ao cá)",
-
-                    }, {
-                        value: 6,
-                        text: "Loại khác",
-
-                    },],
-				},
-				{
-                    field: "danhgiatinhtrangvesinh",
-                    uicontrol: "radio",
-                    textField: "text",
-                    valueField: "value",
-                    dataSource: [{
-                        value: 1,
-                        text: "Hợp vệ sinh",
-                    }, {
-                        value: 2,
-                        text: "Không hợp vệ sinh",
-
-                    }, {
-                        value: 3,
-                        text: "Cải thiện",
-
-                    }],
-                },
-                {
-					field: "loaikhac",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"text": "Dùng chung"
-						},
-						{
-							"value": 2,
-							"text": "Một ngăn"
-						},
-						{
-							"value": 3,
-							"text": " Chìm không OTH"
-						},
-						{
-							"value": 0,
-							"text": "Không có"
-						}
-					],
-				},
+                // {
+				// 	field: "loaikhac",
+				// 	uicontrol: "combobox",
+				// 	textField: "text",
+				// 	valueField: "value",
+				// 	dataSource: [{
+				// 			"value": 1,
+				// 			"text": "Dùng chung"
+				// 		},
+				// 		{
+				// 			"value": 2,
+				// 			"text": "Một ngăn"
+				// 		},
+				// 		{
+				// 			"value": 3,
+				// 			"text": " Chìm không OTH"
+				// 		},
+				// 		{
+				// 			"value": 0,
+				// 			"text": "Không có"
+				// 		}
+				// 	],
+				// },
 			]
 		},
 
@@ -175,10 +127,10 @@ define(function (require) {
                             if(khongconhatieu === true){
                                 self.model.set("khongconhatieu", 1);
                             }
-                            var loaikhac = self.$el.find("input[value=loaikhac]").prop('checked');
-                            if(loaikhac === true){
-                                self.model.set("loaikhac", 1);
-                            }
+                            // var loaikhac = self.$el.find("input[value=loaikhac]").prop('checked');
+                            // if(loaikhac === true){
+                            //     self.model.set("loaikhac", 1);
+                            // }
                             var hopvesinh = self.$el.find("input[value=hopvesinh]").prop('checked');
                             if(hopvesinh === true){
                                 self.model.set("hopvesinh", 1);
@@ -191,39 +143,70 @@ define(function (require) {
                             if(caithien === true){
                                 self.model.set("caithien", 1);
                             }
-                            self.getApp().notify("Thêm phiếu thành công");
+                            self.getApp().notify("Thêm hộ gia đình thành công");
+                            var hogiadinh = self.model.get("hogiadinh");
+                            // console.log("ho gia dinh===",hogiadinh);
+                            self.model.set("tenchuho", hogiadinh.tenchuho);
+                            self.model.set("tendantoc", hogiadinh.tendantoc);
+                            self.model.set("gioitinh", hogiadinh.gioitinh);
+                            self.model.set("dantoc_id", hogiadinh.dantoc_id);
+                            self.model.set("dantoc", hogiadinh.dantoc);
+                            self.model.set("tendantoc", hogiadinh.dantoc.ten);
+                            self.model.set("maho", hogiadinh.id);
                             self.trigger("close", self.model.toJSON());
                             // self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
                             self.close();
 
                         }
                     },
-                    {
-                        name: "delete",
-                        type: "button",
-                        buttonClass: "btn-danger btn-sm",
-                        label: "TRANSLATE:DELETE",
-                        visible: function () {
-                            return false;
-                            // return this.getApp().getRouter().getParam("id") !== null;
-                        },
-                        command: function () {
-                            var self = this;
-                            self.getApp().notify('Xoá phiếu thành công');
-                            self.trigger("delete", self.model.toJSON());
-                            self.close();
-                        }
-                    },
+                    
                 ],
             }],
 		render: function () {
             var self = this;
-			self.model.on("change", function () {
-				self.trigger("change", {
-					"oldData": self.model.previousAttributes(),
-					"data": self.model.toJSON()
-				});
-			});
+            var dataHoGiaDinh = self.viewData.obj_hogiadinh;
+            if (!!dataHoGiaDinh){
+                console.log("dataHoGiaDinh", dataHoGiaDinh);
+                var hogiadinh = {"tenchuho": dataHoGiaDinh.tenchuho, "maho": dataHoGiaDinh.maho, "tendantoc": dataHoGiaDinh.tendantoc,
+                "gioitinh": dataHoGiaDinh.gioitinh, "dantoc": dataHoGiaDinh.dantoc, "dantoc_id": dataHoGiaDinh.dantoc_id};
+                self.model.set("hogiadinh", hogiadinh);
+                self.model.set("hongheo", dataHoGiaDinh.hongheo);
+                self.model.set("diemruataycoxaphong", dataHoGiaDinh.diemruataycoxaphong);
+                self.model.set("id", dataHoGiaDinh.id);
+                self.model.set("maho", dataHoGiaDinh.maho);
+                self.model.set("tenchuho", dataHoGiaDinh.tenchuho);
+                self.model.set("tendantoc", dataHoGiaDinh.tendantoc);
+                self.model.set("gioitinh", dataHoGiaDinh.gioitinh);
+                self.model.set("dantoc", dataHoGiaDinh.dantoc);
+                self.model.set("dantoc_id", dataHoGiaDinh.dantoc_id);
+                if(dataHoGiaDinh.tuhoai === 1){
+                    self.$el.find("input[value=tuhoai]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.thamdoi === 1){
+                    self.$el.find("input[value=thamdoi]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.haingan === 1){
+                    self.$el.find("input[value=haingan]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.chimco_oth === 1){
+                    self.$el.find("input[value=chimco_oth]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.khongconhatieu === 1){
+                    self.$el.find("input[value=khongconhatieu]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.khonghopvesinh === 1){
+                    self.$el.find("input[value=khonghopvesinh]").prop('checked', true);
+                }
+                if(dataHoGiaDinh.hopvesinh === 1){
+                    self.$el.find("input[value=hopvesinh]").prop('checked', true);
+                }
+            }
+			// self.model.on("change", function () {
+			// 	self.trigger("change", {
+			// 		"oldData": self.model.previousAttributes(),
+			// 		"data": self.model.toJSON()
+			// 	});
+			// });
 			// if (self.viewData && self.viewData.chuongtrinhsup === 0){
 			// 	self.$el.find(".chuongtrinhsup").hide();
 				
@@ -233,7 +216,7 @@ define(function (require) {
             self.applyBindings();
             self.getFieldElement("hogiadinh").data("gonrin").setFilters({"thonxom_id": { "$eq": self.viewData.thonxom_id}});
 
-		}
+        },
 	});
 
 });

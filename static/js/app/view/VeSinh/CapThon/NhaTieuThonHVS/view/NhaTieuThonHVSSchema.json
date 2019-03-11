@@ -67,5 +67,11 @@
     "diemruataycoxaphong": {
         "type": "number",
         "default":0
+    },
+    "hogiadinh": {
+        "type": "dict"
+    },
+    "hogiadinh_id": {
+        "type": "string"
     }
 }
