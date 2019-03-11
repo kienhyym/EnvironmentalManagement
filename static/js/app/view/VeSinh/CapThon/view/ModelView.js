@@ -494,7 +494,7 @@ define(function (require) {
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function(data){
 					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-	        view.model.set("id",gonrin.uuid());
+					view.model.set("id",gonrin.uuid());
 					var danhsachho = self.model.get("nhatieuthonhvs");
 	                for(var i=0; i< danhsachho.length; i++){
 	                	var item_hogiadinh = danhsachho[i];
@@ -522,13 +522,13 @@ define(function (require) {
 					view.model.set("khonghopvesinh",data.khonghopvesinh);
 					view.model.set("caithien",data.caithien);
 					view.model.set("diemruataycoxaphong",data.diemruataycoxaphong);
-					
+					view.applyBindings();
 					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
 					self.renderItemView(view.model.toJSON(), null);
 					self.renderTinhTongI();
 					self.check_chuongtrinhSUP();
 				});
-      });
+			});
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -674,18 +674,14 @@ define(function (require) {
 			if (element_id == null || element_id == "" || element_id == undefined){
 				element_id = gonrin.uuid();
 				view.$el.attr("id",element_id );
-				console.log("nhay len trennnnn======");
 			} else {
 				view.setElement($('#'+ element_id));
-				console.log("nhay xuong duoiiii===");
 			}
 			view.model.set(data);
 			
-			console.log("view el====", view.$el);
 			if(self.$el.find("#"+element_id).length ===0){
 				self.$el.find("#nhatieuthonhvs").append(view.$el);
 			}else{
-				console.log("co element",self.$el.find("#"+element_id))
 				// self.$el.find("#"+element_id).html("");
 				// self.$el.find('#'+ element_id).html(view.$el.html());
 			}
@@ -707,18 +703,24 @@ define(function (require) {
 					// view.model.set("hogiadinh", hogiadinh);
 			
 					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
-					console.log("nhatieuthonhvs", data_nhatieuthonhvs);
 					data_nhatieuthonhvs.forEach(function (item, idx) {
 						if (data_nhatieuthonhvs[idx].id === data_hogiadinh.id){
-							// console.log("data_nhatieuthonhvs idx==id", data_nhatieuthonhvs[idx].id);
-							// console.log("data====id", data.id);
 							data_nhatieuthonhvs[idx] = data_hogiadinh;
 						}
-						view.model.set(data_hogiadinh);
-						view.applyBindings();
-						view_hogiadinh.viewData = {"viewData": {"obj_hogiadinh": data_hogiadinh, "thonxom_id": self.model.get("thonxom").id}};
-						// self.renderItemView(data_hogiadinh, element_id);
+						
+						
 					});
+					for( var i = 0; i < data_nhatieuthonhvs.length; i++){
+						if (data_nhatieuthonhvs[i].id === data_hogiadinh.id){
+							data_nhatieuthonhvs[i] = data_hogiadinh;
+							break;
+						}
+	                }
+					self.model.set("nhatieuthonhvs",data_nhatieuthonhvs);
+					view.model.set(data_hogiadinh);
+					view.applyBindings();
+					data = data_hogiadinh
+//					view_hogiadinh.viewData = {"viewData": {"obj_hogiadinh": data_hogiadinh, "thonxom_id": self.model.get("thonxom").id}};
 					// console.log(data_nhatieuthonhvs);
 					// var id_element = view.$el.attr('id');
 					// console.log("id_element", id_element);
@@ -733,7 +735,7 @@ define(function (require) {
                 	   if ( fields[i].id === data.id) {
                 		   fields.splice(i, 1); 
                 	   }
-                	}
+                }
                 self.model.set("nhatieuthonhvs", fields);
 				self.model.trigger("change");
 				if (self.model.get("nhatieuthonhvs").length === 0){
