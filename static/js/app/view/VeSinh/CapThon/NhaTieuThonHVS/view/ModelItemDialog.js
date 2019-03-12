@@ -54,29 +54,90 @@ define(function (require) {
 						},
 					],
 				},
-                // {
-				// 	field: "loaikhac",
-				// 	uicontrol: "combobox",
-				// 	textField: "text",
-				// 	valueField: "value",
-				// 	dataSource: [{
-				// 			"value": 1,
-				// 			"text": "Dùng chung"
-				// 		},
-				// 		{
-				// 			"value": 2,
-				// 			"text": "Một ngăn"
-				// 		},
-				// 		{
-				// 			"value": 3,
-				// 			"text": " Chìm không OTH"
-				// 		},
-				// 		{
-				// 			"value": 0,
-				// 			"text": "Không có"
-				// 		}
-				// 	],
-				// },
+                {
+					field: "loaikhac",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							"value": 1,
+							"text": "Dùng chung"
+						},
+						{
+							"value": 2,
+							"text": "Một ngăn"
+						},
+						{
+							"value": 3,
+							"text": "Chìm không OTH"
+                        },
+                        {
+							"value": 0,
+							"text": "Không có"
+						}
+					],
+                },
+                {
+					field: "loainhatieusudung",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+							value: 1,
+							text: "Tự hoại",
+						},
+						{
+							value: 2,
+							text: "Thẩm đội",
+                        },
+                        {
+							value: 3,
+							text: "Hai ngăn",
+                        },
+                        {
+							value: 4,
+							text: "Chìm có ống thông hơi",
+                        },
+                        {
+							value: 5,
+							text: "Không có nhà tiêu(bao gồm cầu tiêu ao cá)",
+                        },
+                        {
+							value: 6,
+							text: "Loại khác",
+						},
+					],
+                },
+                {
+					field: "danhgiatinhtrangvesinh",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+                            value: 1,
+                            text: "Hợp vệ sinh",
+						},
+						{
+							value: 2,
+							text: "Không hợp vệ sinh",
+                        }
+					],
+				},
+                {
+					field: "caithien",
+					uicontrol: "radio",
+					textField: "text",
+					valueField: "value",
+					dataSource: [{
+                            value: 1,
+                            text: "Có",
+						},
+						{
+							value: 0,
+							text: "Không",
+						},
+					],
+				},
 			]
 		},
 
@@ -107,52 +168,36 @@ define(function (require) {
                                 self.getApp().notify({message: "Vui lòng chọn hộ gia đình!"}, {type: "danger"});
                                 return;
                             }
-                            var tuhoai = self.$el.find("input[value=tuhoai]").prop('checked');
-                            if(tuhoai === true){
+                            var loainhatieusudung = self.model.get("loainhatieusudung");
+                            var danhgiatinhtrangvesinh = self.model.get("danhgiatinhtrangvesinh");
+                            var loaikhac = self.model.get("loaikhac");
+                            if (loainhatieusudung == 1){
                                 self.model.set("tuhoai", 1);
-                            }
-                            var thamdoi = self.$el.find("input[value=thamdoi]").prop('checked');
-                            if(thamdoi === true){
+                            } else if (loainhatieusudung == 2){
                                 self.model.set("thamdoi", 1);
-                            }
-                            var haingan = self.$el.find("input[value=haingan]").prop('checked');
-                            if(haingan === true){
+                            }else if (loainhatieusudung == 3){
                                 self.model.set("haingan", 1);
-                            }
-                            var chimco_oth = self.$el.find("input[value=chimco_oth]").prop('checked');
-                            if(chimco_oth === true){
+                            }else if (loainhatieusudung == 4){
                                 self.model.set("chimco_oth", 1);
-                            }
-                            var khongconhatieu = self.$el.find("input[value=khongconhatieu]").prop('checked');
-                            if(khongconhatieu === true){
+                            }else if (loainhatieusudung == 5){
                                 self.model.set("khongconhatieu", 1);
+                            }else if (loainhatieusudung == 6){
+                                self.model.set("loaikhac", loaikhac);
                             }
-                            // var loaikhac = self.$el.find("input[value=loaikhac]").prop('checked');
-                            // if(loaikhac === true){
-                            //     self.model.set("loaikhac", 1);
-                            // }
-                            var hopvesinh = self.$el.find("input[value=hopvesinh]").prop('checked');
-                            if(hopvesinh === true){
+                            if (danhgiatinhtrangvesinh == 1){
                                 self.model.set("hopvesinh", 1);
-                            }
-                            var khonghopvesinh = self.$el.find("input[value=khonghopvesinh]").prop('checked');
-                            if(khonghopvesinh === true){
+                            }else if (danhgiatinhtrangvesinh == 2){
                                 self.model.set("khonghopvesinh", 1);
                             }
-                            var caithien = self.$el.find("input[value=caithien]").prop('checked');
-                            if(caithien === true){
-                                self.model.set("caithien", 1);
-                            }
-                            self.getApp().notify("Thêm hộ gia đình thành công");
+                            // self.getApp().notify("Thêm hộ gia đình thành công");
                             var hogiadinh = self.model.get("hogiadinh");
-                            // console.log("ho gia dinh===",hogiadinh);
-                            self.model.set("tenchuho", hogiadinh.tenchuho);
-                            self.model.set("tendantoc", hogiadinh.tendantoc);
-                            self.model.set("gioitinh", hogiadinh.gioitinh);
-                            self.model.set("dantoc_id", hogiadinh.dantoc_id);
-                            self.model.set("dantoc", hogiadinh.dantoc);
-                            self.model.set("tendantoc", hogiadinh.dantoc.ten);
+                            // self.model.set("id", hogiadinh.id);
                             self.model.set("maho", hogiadinh.id);
+                            self.model.set("tenchuho", hogiadinh.tenchuho);
+                            self.model.set("tendantoc", hogiadinh.dantoc.ten);
+                            self.model.set("gioitinh", hogiadinh.gioitinh);
+                            self.model.set("dantoc", hogiadinh.dantoc);
+                            self.model.set("dantoc_id", hogiadinh.dantoc_id);
                             self.trigger("close", self.model.toJSON());
                             // self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
                             self.close();
@@ -164,13 +209,59 @@ define(function (require) {
             }],
 		render: function () {
             var self = this;
+            self.$el.find("#choose_loaikhac").hide();
+            var chuongtrinhsup = self.viewData.chuongtrinhsup;
+            if (chuongtrinhsup == 0){
+                self.$el.find("#hidden_hongheo").hide();
+                self.$el.find("#hidden_diemruatay").hide();
+                self.$el.find("#hidden_caithien").hide();
+            }
+            self.model.on("change", function() {
+                var loainhatieusudung = self.model.get("loainhatieusudung");
+                if (loainhatieusudung == 6){
+                    self.$el.find("#choose_loaikhac").show();
+                } else{
+                    self.$el.find("#choose_loaikhac").hide();
+                }
+            });   
+            self.model.on("change:hongheo", function() {
+                var choose_hogiadinh = self.model.get("hogiadinh");
+                if (choose_hogiadinh == undefined || choose_hogiadinh == null){
+                    self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
+                    return;
+                }
+            });
+            self.model.on("change:loainhatieusudung", function() {
+                var choose_hogiadinh = self.model.get("hogiadinh");
+                if (choose_hogiadinh == undefined || choose_hogiadinh == null){
+                    self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
+                }
+            });
+            self.model.on("change:danhgiatinhtrangvesinh", function() {
+                var choose_hogiadinh = self.model.get("hogiadinh");
+                if (choose_hogiadinh == undefined || choose_hogiadinh == null){
+                    self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
+                }
+            });
+            self.model.on("change:caithien", function() {
+                var choose_hogiadinh = self.model.get("hogiadinh");
+                if (choose_hogiadinh == undefined || choose_hogiadinh == null){
+                    self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
+                }
+            });
+            self.model.on("change:diemruataycoxaphong", function() {
+                var choose_hogiadinh = self.model.get("hogiadinh");
+                if (choose_hogiadinh == undefined || choose_hogiadinh == null){
+                    self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
+                }
+            });
             var dataHoGiaDinh = self.viewData.obj_hogiadinh;
             if (!!dataHoGiaDinh){
-                console.log("dataHoGiaDinh", dataHoGiaDinh);
-                var hogiadinh = {"tenchuho": dataHoGiaDinh.tenchuho, "maho": dataHoGiaDinh.maho, "tendantoc": dataHoGiaDinh.tendantoc,
+                var hogiadinh = {"tenchuho": dataHoGiaDinh.tenchuho, "id": dataHoGiaDinh.maho, 
                 "gioitinh": dataHoGiaDinh.gioitinh, "dantoc": dataHoGiaDinh.dantoc, "dantoc_id": dataHoGiaDinh.dantoc_id};
                 self.model.set("hogiadinh", hogiadinh);
                 self.model.set("hongheo", dataHoGiaDinh.hongheo);
+                self.model.set("caithien", dataHoGiaDinh.caithien);
                 self.model.set("diemruataycoxaphong", dataHoGiaDinh.diemruataycoxaphong);
                 self.model.set("id", dataHoGiaDinh.id);
                 self.model.set("maho", dataHoGiaDinh.maho);
@@ -180,25 +271,24 @@ define(function (require) {
                 self.model.set("dantoc", dataHoGiaDinh.dantoc);
                 self.model.set("dantoc_id", dataHoGiaDinh.dantoc_id);
                 if(dataHoGiaDinh.tuhoai === 1){
-                    self.$el.find("input[value=tuhoai]").prop('checked', true);
-                }
-                if(dataHoGiaDinh.thamdoi === 1){
-                    self.$el.find("input[value=thamdoi]").prop('checked', true);
-                }
-                if(dataHoGiaDinh.haingan === 1){
-                    self.$el.find("input[value=haingan]").prop('checked', true);
-                }
-                if(dataHoGiaDinh.chimco_oth === 1){
-                    self.$el.find("input[value=chimco_oth]").prop('checked', true);
-                }
-                if(dataHoGiaDinh.khongconhatieu === 1){
-                    self.$el.find("input[value=khongconhatieu]").prop('checked', true);
-                }
-                if(dataHoGiaDinh.khonghopvesinh === 1){
-                    self.$el.find("input[value=khonghopvesinh]").prop('checked', true);
+                    self.model.set("loainhatieusudung", 1);
+                } else if(dataHoGiaDinh.thamdoi === 1){
+                    self.model.set("loainhatieusudung", 2);
+                }else if(dataHoGiaDinh.haingan === 1){
+                    self.model.set("loainhatieusudung", 3);
+                }else if(dataHoGiaDinh.chimco_oth === 1){
+                    self.model.set("loainhatieusudung", 4);
+                }else if(dataHoGiaDinh.khongconhatieu === 1){
+                    self.model.set("loainhatieusudung", 5);
+                }else if(dataHoGiaDinh.loaikhac >= 0){
+                    self.model.set("loainhatieusudung", 6);
+                    self.$el.find("#choose_loaikhac").show();
+                    self.model.set("loaikhac", dataHoGiaDinh.loaikhac);
                 }
                 if(dataHoGiaDinh.hopvesinh === 1){
-                    self.$el.find("input[value=hopvesinh]").prop('checked', true);
+                    self.model.set("danhgiatinhtrangvesinh", 1);
+                }else if(dataHoGiaDinh.khonghopvesinh === 1){
+                    self.model.set("danhgiatinhtrangvesinh", 2);
                 }
             }
 			// self.model.on("change", function () {
@@ -215,7 +305,6 @@ define(function (require) {
 			// }
             self.applyBindings();
             self.getFieldElement("hogiadinh").data("gonrin").setFilters({"thonxom_id": { "$eq": self.viewData.thonxom_id}});
-
         },
 	});
 

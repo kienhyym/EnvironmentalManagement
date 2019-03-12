@@ -65,10 +65,16 @@
         "default":0
     },
     "caithien": {
-        "type": "number",
-        "default":0
+        "type": "number"
     },
     "diemruataycoxaphong": {
         "type": "number"
+    },
+    "loainhatieusudung": {
+        "type": "number"
+    },
+    "danhgiatinhtrangvesinh": {
+        "type": "number"
     }
+
 }

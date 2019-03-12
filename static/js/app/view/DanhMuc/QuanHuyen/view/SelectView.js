@@ -79,7 +79,7 @@ define(function (require) {
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var query = { "$or": [
-					{"ten": {"$like": text }},
+					{"ten": {"$likeI": text }},
 				]};
 				var filters = {"$and": [
 					{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
@@ -95,7 +95,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var query = { "$or": [
-							{"ten": {"$like": text }},
+							{"ten": {"$likeI": text }},
 						]};
 						// console.log("tinhthanh===", this.getApp().data("tinhthanh_id"));
 						// if (this.uiControl.filters && this.uiControl.filters !== null){

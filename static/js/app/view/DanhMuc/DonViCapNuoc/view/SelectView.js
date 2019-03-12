@@ -92,9 +92,9 @@ define(function (require) {
 			if(!filter.isEmptyFilter()) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
 				var query = {"$or":[
-					{"ma": {"$like": text }},
-					{"diachi": {"$like": text }},
-						{"ten": {"$like": text }},
+					{"ma": {"$likeI": text }},
+					{"diachi": {"$likeI": text }},
+						{"ten": {"$likeI": text }},
 					]};
 				if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
 					var filters = {"$and": [
@@ -132,9 +132,9 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var query = { "$or": [
-		    				{"ma": {"$like": text }},
-		    				{"diachi": {"$like": text }},
-							{"ten": {"$like": text }},
+		    				{"ma": {"$likeI": text }},
+		    				{"diachi": {"$likeI": text }},
+							{"ten": {"$likeI": text }},
 						]};
 						if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
 		    				var filters = {"$and": [

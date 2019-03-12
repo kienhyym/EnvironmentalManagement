@@ -112,7 +112,7 @@ define(function (require) {
 			if(!filter.isEmptyFilter()) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"tenchuho": {"$like": text }},
+					{"tenchuho": {"$likeI": text }},
 				]};
 				self.uiControl.filters = filters;
 			}
@@ -124,7 +124,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"tenchuho": {"$like": text }},
+							{"tenchuho": {"$likeI": text }},
 						]};
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

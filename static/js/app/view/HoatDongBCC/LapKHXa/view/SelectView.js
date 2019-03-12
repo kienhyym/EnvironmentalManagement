@@ -43,12 +43,12 @@ define(function (require) {
 				var filters = {
 					"$or": [{
 							"id": {
-								"$like": text
+								"$likeI": text
 							}
 						},
 						{
 							"nganh": {
-								"$like": text
+								"$likeI": text
 							}
 						},
 					]
@@ -65,12 +65,12 @@ define(function (require) {
 						var filters = {
 							"$or": [{
 									"id": {
-										"$like": text
+										"$likeI": text
 									}
 								},
 								{
 									"nganh": {
-										"$like": text
+										"$likeI": text
 									}
 								},
 							]

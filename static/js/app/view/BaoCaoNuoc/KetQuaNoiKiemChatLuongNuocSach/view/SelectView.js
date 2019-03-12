@@ -46,8 +46,8 @@ define(function (require) {
 				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
 				var filters = {
 					"$or": [
-						{ "tendonvicapnuoc": { "$like": text } },
-						{ "madonvicapnuoc": { "$like": text } },
+						{ "tendonvicapnuoc": { "$likeI": text } },
+						{ "madonvicapnuoc": { "$likeI": text } },
 					]
 				};
 				self.uiControl.filters = filters;
@@ -61,8 +61,8 @@ define(function (require) {
 					if (text !== null) {
 						var filters = {
 							"$or": [
-								{ "tendonvicapnuoc": { "$like": text } },
-								{ "madonvicapnuoc": { "$like": text } },
+								{ "tendonvicapnuoc": { "$likeI": text } },
+								{ "madonvicapnuoc": { "$likeI": text } },
 							]
 						};
 						$col.data('gonrin').filter(filters);
