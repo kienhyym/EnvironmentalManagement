@@ -371,6 +371,7 @@ define(function (require) {
 					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
 					self.getApp().notify("Thêm hộ gia đình thành công");
 					self.renderItemView(view.model.toJSON(), null);
+					self.$el.find("#tongcongi").show();
 					self.renderTinhTongI();
 					self.check_chuongtrinhSUP();
 				});
@@ -386,9 +387,11 @@ define(function (require) {
 							self.renderItemView(nhatieuthonhvs[i], null);
 							
 						}
-						// self.model.on("change:thonxom", function(){
-						// 	self.get_danhsachho();
-						// });
+						self.model.on("change:thonxom", function(){
+							self.$el.find("#nhatieuthonhvs").html("");
+							self.model.set("nhatieuthonhvs",[]);
+							self.$el.find("#tongcongi").hide();
+						});
 						self.applyBindings();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
@@ -430,13 +433,15 @@ define(function (require) {
 					self.check_chuongtrinhSUP();
 				});
 
-					// self.$el.find(".remove_columns").hide();
+					self.$el.find(".remove_columns").hide();
 
-				// self.model.on("change:thonxom", function(event, name){
-				// 	if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
-				// 		self.get_danhsachho();
-				// 	}		
-				// });
+				self.model.on("change:thonxom", function(event, name){
+					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
+						self.$el.find("#nhatieuthonhvs").html("");
+						self.model.set("nhatieuthonhvs",[]);
+						self.$el.find("#tongcongi").hide();
+					}		
+				});
 			}
 		},
 		check_chuongtrinhSUP:function(){

@@ -224,7 +224,7 @@ td {
 }
 
 .classSize14 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 table {
@@ -276,7 +276,7 @@ td {
 
 body {
   color: #666;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 p,
@@ -310,7 +310,7 @@ button {
   justify-content: center;
   padding: 0;
   background: #ae3c33;
-  font-size: 16px;
+  font-size: 15px;
   color: #fff;
   text-transform: uppercase;
   border-radius: 20px;
@@ -385,7 +385,7 @@ button {
   background-color: #ebebeb;
   border: 1px solid #ccc;
   color: #000;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bolder;
 }
 

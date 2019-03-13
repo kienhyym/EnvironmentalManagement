@@ -101,6 +101,7 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
+			// self.$el.find("thead tr").css("vertical-align", top);
 			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
 			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
 			if (itemkybaocao === null || itemkybaocao ==="undefined"){
@@ -115,23 +116,73 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
 
-				var filterBtn = self.$el.find("#filterBtn");
-				filterBtn.unbind("click").bind("click", function () {
-					console.log("clicked!!!!!", self.collection.toJSON());
-					var filter_thon = self.$el.find("#filter_thon").val();
-					var filter_nam = self.$el.find("#filter_nam").val();
-					console.log("filter_thon", filter_thon);
-					console.log("filter_nam", filter_nam);
-					var filters = { filters: {"$and" :[{"nambaocao":{"$eq": filter_nam}}]}}
-											// { "tenthon": { "$eq": filter_thon }}]}}
-					console.log("filters", filters);
-					var $col = self.getCollectionElement();
-					console.log("0as0d0a----", $col);
-					self.uiControl.filters = filters;
+				// var filterBtn = self.$el.find("#filterBtn");
+				// filterBtn.unbind("click").bind("click", function () {
+				// 	// console.log("clicked!!!!!", self.collection.toJSON());
+				// 	var filter_thon = self.$el.find("#filter_thon").val();
+				// 	var filter_nam = self.$el.find("#filter_nam").val();
+				// 	console.log("filter_thon", filter_thon);
+				// 	console.log("filter_nam", filter_nam);
+				// 	var filters = {
+				// 		"filters": {
+				// 			"$and": [
+				// 				{
+				// 					"nambaocao": {
+				// 						"$likeI": filter_nam
+				// 					}
+				// 				},
+				// 				{
+				// 					"thonxom": {
+				// 						"$likeI": filter_thon
+				// 					}
+				// 				}
+				// 			]
+				// 		},
+				// 		"order_by": [
+				// 			{
+				// 				"field": "created_at",
+				// 				"direction": "desc"
+				// 			},
+				// 		]
+				// 	}
+				// 	console.log("filters====", filters);
+				// 	self.uiControl.filters = filters;
+				// });
+				// self.applyBindings();
+				// return this;
 
+				var filter = new CustomFilterView({
+					el: self.$el.find("#grid_search"),
+					sessionKey: self.collectionName +"_filter"
 				});
+				filter.render();
+				 
+				if(!filter.isEmptyFilter()) {
+					var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+					var filters = { "$or": [
+						{"nambaocao": {"$like": text }},
+					] };
+					self.uiControl.filters = filters;
+				}
 				self.applyBindings();
-				return this;
+	
+				filter.on('filterChanged', function(evt) {
+					var $col = self.getCollectionElement();
+					var text = !!evt.data.text ? evt.data.text.trim() : "";
+					if ($col) {
+						if (text !== null){
+							var filters = { "$or": [
+								{"nambaocao": {"$like": text }},
+							]};
+							$col.data('gonrin').filter(filters);
+							//self.uiControl.filters = filters;
+						} else {
+							self.uiControl.filters = null;
+						}
+					}
+					self.applyBindings();
+				});
+				 return this;
 			}
 		},
 	});
