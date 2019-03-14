@@ -393,6 +393,7 @@ define(function (require) {
 							self.$el.find("#tongcongi").hide();
 						});
 						self.applyBindings();
+						self.search_dshogiadinh();
 						self.renderTinhTongI();
 						if (self.model.get("nhatieuthonhvs").length === 0) {
 							self.$el.find("#nhatieuthonhvs").hide();
@@ -433,7 +434,7 @@ define(function (require) {
 					self.check_chuongtrinhSUP();
 				});
 
-					self.$el.find(".remove_columns").hide();
+				// self.$el.find(".remove_columns").hide();
 
 				self.model.on("change:thonxom", function(event, name){
 					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
@@ -708,6 +709,34 @@ define(function (require) {
 			}
 			return true;
 		},
+		search_dshogiadinh: function(){
+			var self = this;
+			var search_data = self.$el.find("#search_data");
+			search_data.unbind("keyup").bind("keyup", function () {
+				var search_data = self.$el.find("#search_data").val();
+				var arr = self.model.get("nhatieuthonhvs");
+				var filterObj = gonrin.query(arr, {tenchuho: {$like: search_data}});
+				if (filterObj === undefined || filterObj.length == 0){
+					self.getApp().notify({message: "Không tìm thấy chủ hộ, vui lòng thử lại!"}, {type: "danger"});
+				} else{
+					self.$el.find("#nhatieuthonhvs").html("");
+					for(var i=0; i< filterObj.length; i++){
+						self.renderItemView(filterObj[i], null);
+						
+					}
+				}
+			});
+		},
+		// render_search: function(data){
+		// 	var self = this;
+		// 	console.log("data====", data);
+		// 	self.$el.find("#nhatieuthonhvs").html("");
+		// 	var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+		// 	for (var i = 0; i < data.length; i ++){
+		// 		console.log("data iiiiiiiiiiii", data[i]);
+		// 		self.$el.find("#nhatieuthonhvs").append(view.$el);
+		// 	}
+		// }
 	});
 
 });
