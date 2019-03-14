@@ -356,12 +356,30 @@ async def baocao_prepost_vscapthon(request=None, data=None, Model=None, **kw):
     data['ngaybaocao'] = str(datetime.now())
     await process_baocao_vesinh_capthon(currentuser,data)
     
-async def pre_put_vscapthon(request=None, instance_id=None, data=None, **kw):
+async def pre_put_vscapthon(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "thonxom_id" not in data or data["thonxom_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn thôn xóm"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    
+    record = db.session.query(VSCapThon).filter(and_(VSCapThon.donvi_id == currentuser.donvi_id,\
+                                                      VSCapThon.thonxom_id == data['thonxom_id'], \
+                                                      VSCapThon.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapThon.kybaocao == data['kybaocao'], \
+                                                      VSCapThon.nambaocao == data['nambaocao'])).first()
+                                                      
+    # if record is None:
+    #     return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo của đơn vị không tồn tại, vui lòng kiểm tra lại"}, status=520)
+    if (record is not None and str(record.id) != data['id']):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo của đơn vị đã tồn tại, vui lòng kiểm tra lại"}, status=520)
     
     data['tenthon'] = data['thonxom']['ten']
+    data['nguoibaocao_id'] = currentuser.id
+    data['ngaybaocao'] = str(datetime.now())
     await process_baocao_vesinh_capthon(currentuser,data)
     
 async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):

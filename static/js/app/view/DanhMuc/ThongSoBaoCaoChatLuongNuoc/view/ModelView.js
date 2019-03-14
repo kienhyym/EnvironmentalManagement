@@ -160,10 +160,17 @@ define(function (require) {
 				return false;
 				}
 			}
-			// if(gioihan_toithieu !== ""){
-			// 	console.log("gioihan_toithieu", gioihan_toithieu);
-			// 	if($.isNumeric(gioihan_toithieu) === false){
-			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp ==lệ!" }, { type: "danger" });
+			// if(gioihan_toithieu !== "" || gioihan_toithieu !== null){
+			// 	console.log("toi thieu vao day =>>>", gioihan_toithieu);
+			// 	if(Number.isInteger(gioihan_toithieu) === false || gioihan_toithieu == null){
+			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp lệ!" }, { type: "danger" });
+			// 	return false;
+			// 	}
+			// }
+			// if(gioihan_toida !== "" || gioihan_toida !== null){
+			// 	console.log("toi da vao day =>>>", gioihan_toida);
+			// 	if(Number.isInteger(gioihan_toida) === false || gioihan_toithieu == null){
+			// 	self.getApp().notify({ message: "Giới hạn tối đa không hợp lệ!" }, { type: "danger" });
 			// 	return false;
 			// 	}
 			// }

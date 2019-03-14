@@ -31,7 +31,7 @@ define(function (require) {
 							var self = this;
 							var get_data_onSelected = this.uiControl.selectedItems[0];
 							delete get_data_onSelected.stt;
-		    	    		self.trigger("onSelected", this.uiControl.selectedItems[0]);
+		    	    		self.trigger("onSelected", get_data_onSelected);
 		    	    		var selected_items = self.uiControl.selectedItems;
 		    	    		if(!!selected_items && selected_items.length>0){
 								self.getApp().data("tinhthanh_id", selected_items[0]["id"]);
@@ -80,7 +80,7 @@ define(function (require) {
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"ten": {"$like": text }},
+					{"ten": {"$likeI": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -93,7 +93,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"ten": {"$like": text }},
+							{"ten": {"$likeI": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

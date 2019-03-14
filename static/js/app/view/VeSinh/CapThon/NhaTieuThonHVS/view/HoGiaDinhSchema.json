@@ -6,6 +6,12 @@
     "stt": {
         "type": "number"
     },
+    "hogiadinh": {
+        "type": "dict"
+    },
+    "hogiadinh_id": {
+        "type": "string"
+    },
     "dantoc_id": {
         "type": "string"
     },
@@ -25,9 +31,7 @@
         "type": "string"
     },
     "hongheo": {
-        "type": "number",
-        "default":0
-    },
+        "type": "number"    },
     "tuhoai": {
         "type": "number",
         "default":0
@@ -61,17 +65,16 @@
         "default":0
     },
     "caithien": {
-        "type": "number",
-        "default":0
+        "type": "number"
     },
     "diemruataycoxaphong": {
-        "type": "number",
-        "default":0
+        "type": "number"
     },
-    "hogiadinh": {
-        "type": "dict"
+    "loainhatieusudung": {
+        "type": "number"
     },
-    "hogiadinh_id": {
-        "type": "string"
+    "danhgiatinhtrangvesinh": {
+        "type": "number"
     }
+
 }

@@ -30,7 +30,7 @@ define(function (require) {
 							var self = this;
 							var get_data_onSelected = this.uiControl.selectedItems[0];
 							delete get_data_onSelected.stt;
-		    	    		self.trigger("onSelected");
+		    	    		self.trigger("onSelected", get_data_onSelected);
 		    	    		self.close();
 		    	    	}
 		    	    },
@@ -60,8 +60,8 @@ define(function (require) {
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"ma": {"$like": text }},
-					{"ten": {"$like": text }},
+					{"ma": {"$likeI": text }},
+					{"ten": {"$likeI": text }},
 				] };
     			self.uiControl.filters = filters;
     			self.uiControl.orderBy = [{"field": "ma", "direction": "asc"}];
@@ -74,8 +74,8 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"ten": {"$like": text }},
-							{"ma": {"$like": text }},
+							{"ten": {"$likeI": text }},
+							{"ma": {"$likeI": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

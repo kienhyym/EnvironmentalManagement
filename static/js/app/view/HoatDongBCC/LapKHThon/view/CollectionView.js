@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!../tpl/collection.html'),
 		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
+	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -104,6 +105,51 @@ define(function (require) {
 					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
+				
+
+				self.$el.find("#filterBtn").attr({ "style": "margin-top: 26px;" });
+				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
+				var filter_thon = self.$el.find("#filter_thon");
+				filter_thon.find("input").ref({
+					textField: "ten",
+					valueField: "id",
+					dataSource: ThonXomSelectView,
+				});
+
+				var filterBtn = self.$el.find("#filterBtn");
+				filterBtn.unbind("click").bind("click", function () {
+					var filter_nam = self.$el.find("#filter_nam").val();
+					var filter_thon_data = self.$el.find("#filter_thon_data").val();
+					var $col = self.getCollectionElement();
+					if (!!filter_nam && !!filter_thon_data) {
+						var filters = {
+							"$and": [
+								{
+									"nambaocao": {
+										"$eq": filter_nam
+									}
+								},
+								{
+									"thonxom_id": {
+										"$eq": filter_thon_data
+									}
+								}
+							]
+						}
+						$col.data('gonrin').filter(filters);
+					} else {
+						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
+					}
+				});
+				self.$el.find("#clear").unbind("click").bind("click", function () {
+					var $col = self.getCollectionElement();
+					var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"tuyendonvi": {"$eq": "thon"}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+					$col.data('gonrin').filter(filters);
+				});
+				self.applyBindings();
 				return this;
 			}
 		},

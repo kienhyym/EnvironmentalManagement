@@ -6,7 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/VeSinh/CapThon/tpl/collection.html'),
 		schema = require('json!schema/VSCapThonSchema.json');
-	var CustomFilterView    = require('app/bases/views/CustomFilterView');
+	var ThonXomSelectView = require('app/view/DanhMuc/ThonXom/view/SelectView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -18,17 +18,17 @@ define(function (require) {
 			type: "group",
 			groupClass: "toolbar-group",
 			buttons: [{
-					name: "CREATE",
-					type: "button",
-					buttonClass: "btn-success btn-sm",
-					label: "TRANSLATE:CREATE",
-					command: function () {
-						var self = this;
-						var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
-						var path = this.collectionName + '/model/'+loaibaocao;
-						this.getApp().getRouter().navigate(path);
-					}
-				}]
+				name: "CREATE",
+				type: "button",
+				buttonClass: "btn-success btn-sm",
+				label: "TRANSLATE:CREATE",
+				command: function () {
+					var self = this;
+					var loaibaocao = self.getApp().getRouter().getParam("loaikybaocao");
+					var path = this.collectionName + '/model/' + loaibaocao;
+					this.getApp().getRouter().navigate(path);
+				}
+			}]
 		}],
 		uiControl: {
 			fields: [
@@ -68,10 +68,10 @@ define(function (require) {
 					field: "tong_soho",
 					label: "Tổng số hộ"
 				},
-//				{
-//					field: "tong_chuholanu",
-//					label: "Số hộ nữ là chủ hộ"
-//				},
+				//				{
+				//					field: "tong_chuholanu",
+				//					label: "Số hộ nữ là chủ hộ"
+				//				},
 				{
 					field: "tong_sohongheo",
 					label: "Số hộ nghèo"
@@ -88,48 +88,74 @@ define(function (require) {
 
 			],
 			pagination: {
-            	page: 1,
-            	pageSize: 100
-            },
+				page: 1,
+				pageSize: 100
+			},
 			onRowClick: function (event) {
 				if (event.rowId) {
 					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
-					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
+					var path = this.collectionName + '/model/' + loaibaocao + '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
 		},
 		render: function () {
 			var self = this;
+			// self.$el.find("thead tr").css("vertical-align", top);
 			var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
 			var itemkybaocao = self.getApp().mapKyBaoCao[loaibaocao];
-			if (itemkybaocao === null || itemkybaocao ==="undefined"){
+			if (itemkybaocao === null || itemkybaocao === "undefined") {
 				self.getApp().notify("Đường dẫn không hợp lệ, vui lòng thử lại sau");
 				return;
-			}else{
-				var txt_header = "Danh sách báo cáo cấp Thôn - "+itemkybaocao.text;
+			} else {
+				var txt_header = "Danh sách báo cáo cấp Thôn - " + itemkybaocao.text;
 				self.$el.find(".panel-heading h3").html(txt_header);
-				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
-				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
+				self.uiControl.filters = {
+					"$and": [{ "loaikybaocao": { "$eq": itemkybaocao.loaikybaocao } },
+					{ "kybaocao": { "$eq": itemkybaocao.kybaocao } },
+					{ "donvi_id": { "$eq": self.getApp().currentUser.donvi_id } }]
+				};
+				self.uiControl.orderBy = [{ "field": "nambaocao", "direction": "desc" }];
 				this.applyBindings();
 
-				// var filterBtn = self.$el.find("#filterBtn");
-				// filterBtn.unbind("click").bind("click", function () {
-				// 	console.log("clicked!!!!!", self.collection.toJSON());
-				// 	var filter_thon = self.$el.find("#filter_thon").val();
-				// 	var filter_nam = self.$el.find("#filter_nam").val();
-				// 	console.log("filter_thon", filter_thon);
-				// 	console.log("filter_nam", filter_nam);
-				// 	var filters = { filters: {"$and" :[{"nambaocao":{"$eq": filter_nam}}]}}
-				// 							// { "tenthon": { "$eq": filter_thon }}]}}
-				// 	console.log("filters", filters);
-				// 	var $col = self.getCollectionElement();
-				// 	console.log("0as0d0a----", $col);
-				// 	self.uiControl.filters = filters;
+				self.$el.find("#filterBtn").attr({ "style": "margin-top: 26px;" });
+				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
+				var filter_thon = self.$el.find("#filter_thon");
+				filter_thon.find("input").ref({
+					textField: "ten",
+					valueField: "id",
+					dataSource: ThonXomSelectView,
+				});
 
-				// });
+				var filterBtn = self.$el.find("#filterBtn");
+				filterBtn.unbind("click").bind("click", function () {
+					var filter_nam = self.$el.find("#filter_nam").val();
+					var filter_thon_data = self.$el.find("#filter_thon_data").val();
+					var $col = self.getCollectionElement();
+					if (!!filter_nam && !!filter_thon_data) {
+						var filters = {
+							"$and": [
+								{
+									"nambaocao": {
+										"$eq": filter_nam
+									}
+								},
+								{
+									"thonxom_id": {
+										"$eq": filter_thon_data
+									}
+								}
+							]
+						}
+						$col.data('gonrin').filter(filters);
+					} else {
+						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
+					}
+				});
+				self.$el.find("#clear").unbind("click").bind("click", function () {
+					var $col = self.getCollectionElement();
+					$col.data('gonrin').filter(null);
+				});
 				self.applyBindings();
 				return this;
 			}

@@ -31,8 +31,8 @@ define(function (require) {
     			    	    		if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) { 
 										var get_data_onSelected = this.uiControl.selectedItems[0];
 										delete get_data_onSelected.stt;   			    	    			
-    			    	    			self.trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
-    			    	    			self.getApp().trigger("ThongSo_onSelected", this.uiControl.selectedItems[0]);
+    			    	    			self.trigger("ThongSo_onSelected", get_data_onSelected);
+    			    	    			self.getApp().trigger("ThongSo_onSelected", get_data_onSelected);
 
     			    	    		}
     			    	    		self.close();
@@ -65,7 +65,7 @@ define(function (require) {
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"tenthongso": {"$like": text }},
+					{"tenthongso": {"$likeI": text }},
 				] };
     			self.uiControl.filters = filters;
     		}
@@ -77,7 +77,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"tenthongso": {"$like": text }},
+							{"tenthongso": {"$likeI": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

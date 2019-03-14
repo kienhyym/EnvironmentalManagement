@@ -29,7 +29,7 @@ define(function (require) {
 							var self = this;
 							var get_data_onSelected = this.uiControl.selectedItems[0];
 							delete get_data_onSelected.stt;
-		    	    		self.trigger("onSelected", this.uiControl.selectedItems[0]);
+		    	    		self.trigger("onSelected", get_data_onSelected);
 		    	    		self.close();
 		    	    	}
 		    	    },
@@ -114,7 +114,7 @@ define(function (require) {
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"tenchuho": {"$like": text }},
+					{"tenchuho": {"$likeI": text }},
 				]};
     			if (filter_thonxom && filter_thonxom !== ""){
     				filters = {"$and": [
@@ -126,11 +126,10 @@ define(function (require) {
     			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		}else{
     			if (filter_thonxom && filter_thonxom !== ""){
-    				self.uiControl.filters = filter_thonxom;
+					self.uiControl.filters = filter_thonxom;
     			}else{
-    				self.uiControl.filters = null;
-    			}
-    			
+					// self.uiControl.filters = null;
+    			}	
     		}
     		
     		self.applyBindings();
@@ -141,7 +140,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var query = { "$or": [
-							{"tenchuho": {"$like": text }},
+							{"tenchuho": {"$likeI": text }},
 						] };
 						if (filter_thonxom && filter_thonxom !== ""){
 		    				filters = {"$and": [

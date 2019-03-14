@@ -6,6 +6,8 @@ define(function (require) {
 
 	var template = require('text!app/view/VeSinh/CapXa/tpl/collection.html'),
 		schema = require('json!schema/VSCapXaSchema.json');
+	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
+	
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -117,6 +119,49 @@ define(function (require) {
 					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
+				
+				self.$el.find("#filterBtn").attr({ "style": "margin-top: 26px;" });
+				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
+				var filter_xa = self.$el.find("#filter_xa");
+				filter_xa.find("input").ref({
+					textField: "ten",
+					valueField: "id",
+					dataSource: XaPhuongSelectView,
+				});
+
+				var filterBtn = self.$el.find("#filterBtn");
+				filterBtn.unbind("click").bind("click", function () {
+					var filter_nam = self.$el.find("#filter_nam").val();
+					var filter_xa_data = self.$el.find("#filter_xa_data").val();
+					var $col = self.getCollectionElement();
+					if (!!filter_nam && !!filter_xa_data) {
+						var filters = {
+							"$and": [
+								{
+									"nambaocao": {
+										"$eq": filter_nam
+									}
+								},
+								{
+									"xaphuong_id": {
+										"$eq": filter_xa_data
+									}
+								}
+							]
+						}
+						$col.data('gonrin').filter(filters);
+					} else {
+						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
+					}
+				});
+				self.$el.find("#clear").unbind("click").bind("click", function () {
+					var $col = self.getCollectionElement();
+					var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+					$col.data('gonrin').filter(filters);
+				});
+				self.applyBindings();
 				return this;
 			}
 		},

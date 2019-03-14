@@ -156,16 +156,20 @@ define(function (require) {
 				// 	buttonClass: "btn-sm btn-secondary",
 				// 	label: "Xuất Excel",
 				// 	command: function () {
-				// 		var id = this.model.get("id");
-				// 		var url = "/export/excel/" + this.collectionName + "/" + id;
-				// 		window.open(url, "_blank")
-				// 		console.log(url);
-				// 		// self.getApp().getRouter().navigate(self.collectionName + "/collection");
+				// 		var self = this;
+				// 		// to do something
+				// 		var doc = new jsPDF();
+				// 		var source = $('#exportPDF').first();
+				// 		console.log("srccccc===", source);
+				// 		doc.fromHTML($('#exportPDF').html(), 15, 15, {
+				// 			'width': 170,
+				// 			// 'elementHandlers': specialElementHandlers
+				// 		});
+				// 		doc.save('Test.pdf');
+				// 		console.log("model to JSON", self.model.toJSON());
 				// 	},
 				// 	visible: function () {
-				// 		// var id = this.model.get("id");
-				// 		// return (id !== null);
-				// 		return true;
+				// 		return this.getApp().getRouter().getParam("id") !== null;
 				// 	}
 				// },
 				{

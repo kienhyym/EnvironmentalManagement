@@ -575,7 +575,7 @@ define(function (require) {
             $.ajax({
                 url: url,
                 method: "GET",
-                data: {"q": JSON.stringify({"order_by":[{"field": "tenthongso", "direction": "asc"}]})},
+                data: {"q": JSON.stringify({"order_by":[{"field": "created_at", "direction": "asc"}]})},
                 contentType: "application/json",
                 success: function (data) {
                 	var danhsachthongso = [];

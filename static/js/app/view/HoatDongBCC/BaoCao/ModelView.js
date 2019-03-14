@@ -268,7 +268,7 @@ define(function (require) {
 			data.forEach(function(nganh, idx) {
 				if (nganh && (nganh.manganh || nganh.tennganh)) {
 					self.$el.find("#danhsachhoatdong_list").append(`<tr>
-		                <td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; font-size: 14px; text-align: left">${nganh.tennganh.toLocaleUpperCase()}</td>
+		                <td colspan="3" class="text-left" style="color: #e30303; font-weight: bold; font-size: 16px; text-align: left">${nganh.tennganh.toLocaleUpperCase()}</td>
 		                <td class="text-center"></td>
 		                <td class="text-center"></td>
 		                <td class="text-center"></td>

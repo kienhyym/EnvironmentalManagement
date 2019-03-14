@@ -38,7 +38,7 @@ define(function (require) {
     	},
 	    render:function(){
 			var self = this;
-			this.uiControl.orderBy = [{"field": "tenthongso", "direction": "asc"}];
+			this.uiControl.orderBy = [{"field": "created_at", "direction": "asc"}];
 			 
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
@@ -49,7 +49,7 @@ define(function (require) {
 			if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
     			var filters = { "$or": [
-					{"tenthongso": {"$like": text }},
+					{"tenthongso": {"$likeI": text }},
 				] };
 				self.uiControl.filters = filters;
 				self.uiControl.orderBy = [{"field": "tenthongso", "direction": "asc"}];
@@ -62,7 +62,7 @@ define(function (require) {
 				if ($col) {
 					if (text !== null){
 						var filters = { "$or": [
-							{"tenthongso": {"$like": text }},
+							{"tenthongso": {"$likeI": text }},
 						] };
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

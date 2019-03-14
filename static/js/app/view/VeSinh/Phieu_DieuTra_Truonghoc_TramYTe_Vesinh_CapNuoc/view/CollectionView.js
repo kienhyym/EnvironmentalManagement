@@ -83,7 +83,7 @@ define(function (require) {
                 	if(rowData.ketluan ===1){
                 		return "Hợp vệ sinh";
                 	}else{
-                		return "không hợp vệ sinh";
+                		return "Không hợp vệ sinh";
                 	}
                 }
                 },
@@ -116,6 +116,50 @@ define(function (require) {
 					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
+                
+                
+                self.$el.find("#filterBtn").attr({ "style": "margin-top: 26px;" });
+				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
+				// var filter_truongtram = self.$el.find("#filter_truongtram");
+				// filter_truongtram.find("input").ref({
+				// 	textField: "ten",
+				// 	valueField: "id",
+				// 	dataSource: ThonXomSelectView,
+				// });
+
+				var filterBtn = self.$el.find("#filterBtn");
+				filterBtn.unbind("click").bind("click", function () {
+					var filter_nam = self.$el.find("#filter_nam").val();
+					var filter_tentruongtram = self.$el.find("#filter_tentruongtram").val();
+					var $col = self.getCollectionElement();
+					if (!!filter_nam && !!filter_tentruongtram) {
+						var filters = {
+							"$and": [
+								{
+									"nambaocao": {
+										"$eq": filter_nam
+									}
+								},
+								{
+									"ten_truong_tramyte": {
+										"$likeI": filter_tentruongtram
+									}
+								}
+							]
+						}
+						$col.data('gonrin').filter(filters);
+					} else {
+						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
+					}
+				});
+				self.$el.find("#clear").unbind("click").bind("click", function () {
+					var $col = self.getCollectionElement();
+					var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+					$col.data('gonrin').filter(filters);
+				});
+				self.applyBindings();
 				return this;
 			}
         },
