@@ -251,6 +251,7 @@ define(function (require) {
 					success: function (data) {
 						self.$el.find("#nambaocao").attr({"disabled":true});
 						self.applyBindings();
+						self.search_nhatieuhvs();
 						var danhsachbaocao = data.attributes.danhsachbaocao;
 						self.model.set("danhsachbaocao",danhsachbaocao);
 						self.compute_baocao();
@@ -440,7 +441,25 @@ define(function (require) {
 				return;
 			}
 			return true;
-		}
+		},
+		search_nhatieuhvs: function(){
+			var self = this;
+			var search_data = self.$el.find("#search_data");
+			search_data.unbind("keyup").bind("keyup", function () {
+				var search_data = self.$el.find("#search_data").val();
+				var arr = self.model.get("danhsachbaocao");
+				var filterObj = gonrin.query(arr, {tenxa: {$like: search_data}});
+				if (filterObj.length == 0){
+					self.$el.find("#danhsachdonvi").hide();
+				} else{
+					self.$el.find("#danhsachdonvi").show();
+					self.$el.find("#danhsachdonvi").html("");
+					for(var i=0; i< filterObj.length; i++){
+						self.compute_baocao();
+					}
+				}
+			});
+		},
 	});
 
 });
