@@ -6,8 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/VeSinh/CapXa/tpl/collection.html'),
 		schema = require('json!schema/VSCapXaSchema.json');
-	var XaPhuongSelectView = require('app/view/DanhMuc/XaPhuong/view/SelectView');
-	
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -120,49 +119,47 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
 				
-				self.$el.find("#filterBtn").attr({ "style": "margin-top: 26px;" });
-				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
-				var filter_xa = self.$el.find("#filter_xa");
-				filter_xa.find("input").ref({
-					textField: "ten",
-					valueField: "id",
-					dataSource: XaPhuongSelectView,
-				});
 
-				var filterBtn = self.$el.find("#filterBtn");
-				filterBtn.unbind("click").bind("click", function () {
-					var filter_nam = self.$el.find("#filter_nam").val();
-					var filter_xa_data = self.$el.find("#filter_xa_data").val();
-					var $col = self.getCollectionElement();
-					if (!!filter_nam && !!filter_xa_data) {
-						var filters = {
-							"$and": [
-								{
-									"nambaocao": {
-										"$eq": filter_nam
-									}
-								},
-								{
-									"xaphuong_id": {
-										"$eq": filter_xa_data
-									}
-								}
-							]
-						}
-						$col.data('gonrin').filter(filters);
-					} else {
-						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
-					}
+				var filter = new CustomFilterView({
+					el: self.$el.find("#grid_search"),
+					sessionKey: self.collectionName +"_filter"
 				});
-				self.$el.find("#clear").unbind("click").bind("click", function () {
+				filter.render();
+				 
+				if(!filter.isEmptyFilter()) {
 					var $col = self.getCollectionElement();
-					var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+					var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+					var filters = {"$and":[
+							{"nambaocao": {"$eq": text}},
+							{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+							{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+							{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 					$col.data('gonrin').filter(filters);
-				});
+				}
 				self.applyBindings();
-				return this;
+	
+				filter.on('filterChanged', function(evt) {
+					var $col = self.getCollectionElement();
+					var text = !!evt.data.text ? evt.data.text.trim() : "";
+					if ($col) {
+						if (text){
+							var filters = {"$and":[
+								{"nambaocao": {"$eq": text}},
+								{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+								{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+								{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							$col.data('gonrin').filter(filters);
+						} else {
+
+							var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+							{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+							{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							$col.data('gonrin').filter(filters);
+						}
+					}
+					self.applyBindings();
+				});
+				 return this;
 			}
 		},
 	});

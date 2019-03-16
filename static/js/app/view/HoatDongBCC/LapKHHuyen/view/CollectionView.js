@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!../tpl/collection.html'),
 		schema = require('json!schema/TienDoKeHoachBCCSchema.json');
+	var CustomFilterView    = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -104,7 +105,51 @@ define(function (require) {
 					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
-				return this;
+				
+
+				var filter = new CustomFilterView({
+					el: self.$el.find("#grid_search"),
+					sessionKey: self.collectionName +"_filter"
+				});
+				filter.render();
+				 
+				if(!filter.isEmptyFilter()) {
+					var $col = self.getCollectionElement();
+					var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+					var filters = {"$and":[
+							{"nambaocao": {"$eq": text}},
+							{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+							{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+							{"tuyendonvi": {"$eq": "huyen"}},
+							{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+					$col.data('gonrin').filter(filters);
+				}
+				self.applyBindings();
+	
+				filter.on('filterChanged', function(evt) {
+					var $col = self.getCollectionElement();
+					var text = !!evt.data.text ? evt.data.text.trim() : "";
+					if ($col) {
+						if (text){
+							var filters = {"$and":[
+								{"nambaocao": {"$eq": text}},
+								{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+								{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+								{"tuyendonvi": {"$eq": "huyen"}},
+								{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							$col.data('gonrin').filter(filters);
+						} else {
+
+							var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+							{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+							{"tuyendonvi": {"$eq": "huyen"}},
+							{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							$col.data('gonrin').filter(filters);
+						}
+					}
+					self.applyBindings();
+				});
+				 return this;
 			}
 		},
 	});

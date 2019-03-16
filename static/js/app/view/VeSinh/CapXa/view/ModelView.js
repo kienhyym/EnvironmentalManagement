@@ -271,6 +271,7 @@ define(function (require) {
 						self.model.set("danhsachbaocao",danhsachbaocao);
 						self.compute_baocao();
 						self.applyBindings();
+						self.search_dshogiadinh();
 						if (self.getApp().currentUser !== null 
 									&& self.getApp().currentUser.donvi_id !== self.model.get("donvi_id")){
 								self.$el.find(".toolbar .btn-group [btn-name='save']").hide();
@@ -503,7 +504,26 @@ define(function (require) {
 				return;
 			}
 			return true;
-		}
+		},
+		search_dshogiadinh: function(){
+			var self = this;
+			var search_data = self.$el.find("#search_data");
+			search_data.unbind("keyup").bind("keyup", function () {
+				var search_data = self.$el.find("#search_data").val();
+				var arr = self.model.get("danhsachbaocao");
+				var filterObj = gonrin.query(arr, {tenthon: {$like: search_data}});
+				if (filterObj.length == 0){
+					self.$el.find("#danhsachdonvi").hide();
+				} else{
+					self.$el.find("#danhsachdonvi").show();
+					self.$el.find("#danhsachdonvi").html("");
+					for(var i=0; i< filterObj.length; i++){
+						self.renderItemView(filterObj[i]);
+						self.check_chuongtrinhSUP();
+					}
+				}
+			});
+		},
 
 	});
 

@@ -371,6 +371,7 @@ define(function (require) {
 					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
 					self.getApp().notify("Thêm hộ gia đình thành công");
 					self.renderItemView(view.model.toJSON(), null);
+					self.search_dshogiadinh();
 					self.$el.find("#tongcongi").show();
 					self.renderTinhTongI();
 					self.check_chuongtrinhSUP();
@@ -716,27 +717,18 @@ define(function (require) {
 				var search_data = self.$el.find("#search_data").val();
 				var arr = self.model.get("nhatieuthonhvs");
 				var filterObj = gonrin.query(arr, {tenchuho: {$like: search_data}});
-				if (filterObj === undefined || filterObj.length == 0){
-					self.getApp().notify({message: "Không tìm thấy chủ hộ, vui lòng thử lại!"}, {type: "danger"});
+				if (filterObj.length == 0){
+					self.$el.find("#nhatieuthonhvs").hide();
 				} else{
+					self.$el.find("#nhatieuthonhvs").show();
 					self.$el.find("#nhatieuthonhvs").html("");
 					for(var i=0; i< filterObj.length; i++){
 						self.renderItemView(filterObj[i], null);
-						
+						self.check_chuongtrinhSUP();
 					}
 				}
 			});
 		},
-		// render_search: function(data){
-		// 	var self = this;
-		// 	console.log("data====", data);
-		// 	self.$el.find("#nhatieuthonhvs").html("");
-		// 	var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-		// 	for (var i = 0; i < data.length; i ++){
-		// 		console.log("data iiiiiiiiiiii", data[i]);
-		// 		self.$el.find("#nhatieuthonhvs").append(view.$el);
-		// 	}
-		// }
 	});
 
 });

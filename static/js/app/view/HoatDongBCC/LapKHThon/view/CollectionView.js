@@ -119,30 +119,120 @@ define(function (require) {
 				var filterBtn = self.$el.find("#filterBtn");
 				filterBtn.unbind("click").bind("click", function () {
 					var filter_nam = self.$el.find("#filter_nam").val();
+					const isNumeric = /^\d+$/;
 					var filter_thon_data = self.$el.find("#filter_thon_data").val();
 					var $col = self.getCollectionElement();
-					if (!!filter_nam && !!filter_thon_data) {
+					if (!filter_nam && !filter_thon_data){
+						self.getApp().notify({ message: "Mời bạn nhập thông tin cần tìm kiếm vào bộ lọc!" }, { type: "danger" });
+						return;
+					} else if (!filter_thon_data && filter_nam){
+						if (isNumeric.test(filter_nam) === false){
+							self.getApp().notify({ message: "Năm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+							return;
+						}
 						var filters = {
-							"$and": [
+                            "$and": [
+                                {
+                                    "nambaocao": {
+                                        "$eq": filter_nam
+                                    }
+                                },
+                                {
+                                    "loaikybaocao": {
+                                        "$eq": itemkybaocao.loaikybaocao
+                                    }
+                                },
+                                {
+                                    "kybaocao": {
+                                        "$eq": itemkybaocao.kybaocao
+                                    }
+								},
 								{
-									"nambaocao": {
-										"$eq": filter_nam
+									"tuyendonvi": {
+										"$eq": "thon"
 									}
 								},
 								{
-									"thonxom_id": {
-										"$eq": filter_thon_data
+									"donvi_id": {
+										"$eq": self.getApp().currentUser.donvi_id
 									}
 								}
-							]
+                            ]
 						}
 						$col.data('gonrin').filter(filters);
-					} else {
-						self.getApp().notify({ message: "Mời bạn nhập đầy đủ thông tin vào bộ lọc!" }, { type: "danger" });
+					} else if (filter_thon_data && !filter_nam){
+						var filters = {
+                            "$and": [
+                                {
+                                    "thonxom_id": {
+                                        "$eq": filter_thon_data
+                                    }
+                                },
+                                {
+                                    "loaikybaocao": {
+                                        "$eq": itemkybaocao.loaikybaocao
+                                    }
+                                },
+                                {
+                                    "kybaocao": {
+                                        "$eq": itemkybaocao.kybaocao
+                                    }
+								},
+								{
+									"tuyendonvi": {
+										"$eq": "thon"
+									}
+								},
+								{
+									"donvi_id": {
+										"$eq": self.getApp().currentUser.donvi_id
+									}
+								}
+                            ]
+						}
+						$col.data('gonrin').filter(filters);
+					} else if (filter_nam && filter_thon_data){
+						var filters = {
+                            "$and": [
+                                {
+                                    "nambaocao": {
+                                        "$eq": filter_nam
+                                    }
+                                },
+                                {
+                                    "thonxom_id": {
+                                        "$eq": filter_thon_data
+                                    }
+                                },
+                                {
+                                    "loaikybaocao": {
+                                        "$eq": itemkybaocao.loaikybaocao
+                                    }
+                                },
+                                {
+                                    "kybaocao": {
+                                        "$eq": itemkybaocao.kybaocao
+                                    }
+								},
+								{
+									"tuyendonvi": {
+										"$eq": "thon"
+									}
+								},
+								{
+									"donvi_id": {
+										"$eq": self.getApp().currentUser.donvi_id
+									}
+								}
+                            ]
+                        }
+                        $col.data('gonrin').filter(filters);
 					}
 				});
 				self.$el.find("#clear").unbind("click").bind("click", function () {
 					var $col = self.getCollectionElement();
+					self.$el.find("#filter_nam").val("");
+					self.$el.find("#filter_thon input").data('gonrin').setValue(null);
 					var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
 					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
 					{"tuyendonvi": {"$eq": "thon"}},
