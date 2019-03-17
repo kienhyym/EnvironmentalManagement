@@ -42,29 +42,29 @@ define(function (require) {
 //						},
 //					],
 //				},
-				{
-					field: "loaikhac",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"text": "Dùng chung"
-						},
-						{
-							"value": 2,
-							"text": "Một ngăn"
-						},
-						{
-							"value": 3,
-							"text": " Chìm không OTH"
-						},
-						{
-							"value": 0,
-							"text": "Không có"
-						}
-					],
-				},
+//				{
+//					field: "loaikhac",
+//					uicontrol: "combobox",
+//					textField: "text",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"text": "Dùng chung"
+//						},
+//						{
+//							"value": 2,
+//							"text": "Một ngăn"
+//						},
+//						{
+//							"value": 3,
+//							"text": " Chìm không OTH"
+//						},
+//						{
+//							"value": 0,
+//							"text": "Không có"
+//						}
+//					],
+//				},
 				{
 					field: "hongheo",
 					uicontrol: "checkbox",
@@ -351,6 +351,38 @@ define(function (require) {
 				if(self.model.get("khonghopvesinh") === 1){
 					self.model.set("hopvesinh", 0);
 				}
+			});
+			dataSource: [{
+//				"value": 1,
+//				"text": "Dùng chung"
+//			},
+//			{
+//				"value": 2,
+//				"text": "Một ngăn"
+//			},
+//			{
+//				"value": 3,
+//				"text": "Chìm không OTH"
+//			},
+//			{
+//				"value": 0,
+//				"text": "Không có"
+//			}
+			self.model.on("change:loaikhac", function() {
+				switch(self.model.get("loaikhac")) {
+				  case 1:
+				    self.$el.find("#loaikhac").html("Dùng chung");
+				    break;
+				  case 2:
+					  self.$el.find("#loaikhac").html("Một ngăn");
+					  break;
+				  case 3:
+					  self.$el.find("#loaikhac").html("Chìm không OTH");
+					  break;
+				  default:
+					  self.$el.find("#loaikhac").html("");
+				    // code block
+				} 
 			});
 		}
 	});

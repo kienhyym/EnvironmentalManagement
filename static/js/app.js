@@ -175,19 +175,19 @@ require(['jquery', 'gonrin', 'app/router',
 			get_currentRoute_loaibaocao:function(){
 				var self = this;
 				var currentRoute = self.router.currentRoute()['fragment'];
-				if (currentRoute.indexOf('model/quy1')>=0){
+				if (currentRoute.indexOf('quy1')>=0){
 					return "quy1";
-				}else if (currentRoute.indexOf('model/quy2')>=0){
+				}else if (currentRoute.indexOf('quy2')>=0){
 					return "quy2";
-				}else if (currentRoute.indexOf('model/quy3')>=0){
+				}else if (currentRoute.indexOf('quy3')>=0){
 					return "quy3";
-				}else if (currentRoute.indexOf('model/quy4')>=0){
+				}else if (currentRoute.indexOf('quy4')>=0){
 					return "quy4";
-				}else if (currentRoute.indexOf('model/6thangdau')>=0){
+				}else if (currentRoute.indexOf('6thangdau')>=0){
 					return "6thangdau";
-				}else if (currentRoute.indexOf('model/6thangcuoi')>=0){
+				}else if (currentRoute.indexOf('6thangcuoi')>=0){
 					return "6thangcuoi";
-				}else if (currentRoute.indexOf('model/nam')>=0){
+				}else if (currentRoute.indexOf('nam')>=0){
 					return "nam";
 				}else{
 					return null;
