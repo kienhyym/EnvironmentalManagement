@@ -99,7 +99,7 @@ define(function (require) {
 				
 				var filter = new CustomFilterView({
 					el: self.$el.find("#grid_search"),
-					sessionKey: self.collectionName +"_filter"
+					sessionKey: self.collectionName + loaibaocao +"_filter"
 				});
 				filter.render();
 				 

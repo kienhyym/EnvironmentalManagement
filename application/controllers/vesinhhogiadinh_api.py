@@ -175,14 +175,14 @@ async def ThongKe_TienDo_VSTX(request):
             bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
             bcxa['tentinhthanh'] = baocao.tinhthanh.ten
             bcxa['tongxa'] = len(records)
-            bcxa['tyle_nhatieu_caithien'] = (baocao.tong_caithien/baocao.tong_soho)*100 if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
-            bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100  if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
+            bcxa['tyle_nhatieu_caithien'] = round((baocao.tong_caithien/baocao.tong_soho)*100, 2) if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
+            bcxa['tyle_diemruatay'] = round((baocao.tong_diemruatay/baocao.tong_soho)*100, 2)  if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
             bcxa['tong_soho'] = baocao.tong_soho
             bcxa['tong_danso'] = baocao.tong_danso
             bcxa['tong_chuholanu'] = baocao.tong_chuholanu
             bcxa['tong_sohodtts'] = baocao.tong_sohodtts
-            bcxa['tyle_chuholanu'] = (baocao.tong_chuholanu/baocao.tong_soho)*100  if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
-            bcxa['tyle_hodtts'] = (baocao.tong_sohodtts/baocao.tong_soho)*100 if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
+            bcxa['tyle_chuholanu'] = round((baocao.tong_chuholanu/baocao.tong_soho)*100, 2)  if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
+            bcxa['tyle_hodtts'] = round((baocao.tong_sohodtts/baocao.tong_soho)*100, 2) if (baocao.tong_soho is not None and baocao.tong_soho >0) else 0
 
             record_truong_tram = db.session.query(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc).filter(
                 and_(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.xaphuong_id == baocao.xaphuong_id, \
@@ -215,11 +215,11 @@ async def ThongKe_TienDo_VSTX(request):
                 bcxa['tongso_tramyte_hvs']= tongso_tramyte_hvs
                 bcxa['tongso_hocsinh']= tongso_hocsinh
                 if(tongso_truong>0):
-                    bcxa['tyle_truong_hvs']= (tongso_truong_hvs/tongso_truong)*100
+                    bcxa['tyle_truong_hvs']= round((tongso_truong_hvs/tongso_truong)*100, 2)
                 else:
                     bcxa['tyle_truong_hvs'] = 0
                 if tongso_tramyte >0:
-                    bcxa['tyle_tramyte_hvs']= (tongso_tramyte_hvs/tongso_tramyte)*100
+                    bcxa['tyle_tramyte_hvs']= round((tongso_tramyte_hvs/tongso_tramyte)*100, 2)
                 else:
                     bcxa['tyle_tramyte_hvs'] = 0
             results.append(bcxa)
@@ -292,11 +292,11 @@ async def ThongKe_TienDo_VSTX_BENVUNG(request):
                 bcxa['tongso_tramyte']= tongso_tramyte
                 bcxa['tongso_tramyte_hvs']= tongso_tramyte_hvs
                 if(tongso_truong>0):
-                    bcxa['tyle_truong_hvs']= (tongso_truong_hvs/tongso_truong)*100
+                    bcxa['tyle_truong_hvs']= round((tongso_truong_hvs/tongso_truong)*100, 2)
                 else:
                     bcxa['tyle_truong_hvs'] = 0
                 if tongso_tramyte >0:
-                    bcxa['tyle_tramyte_hvs']= (tongso_tramyte_hvs/tongso_tramyte)*100
+                    bcxa['tyle_tramyte_hvs']= round((tongso_tramyte_hvs/tongso_tramyte)*100, 2)
                 else:
                     bcxa['tyle_tramyte_hvs'] = 0
             results.append(bcxa)

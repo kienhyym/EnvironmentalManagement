@@ -119,10 +119,11 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
 				
+				
 
 				var filter = new CustomFilterView({
 					el: self.$el.find("#grid_search"),
-					sessionKey: self.collectionName +"_filter"
+					sessionKey: self.collectionName + loaibaocao +"_filter"
 				});
 				filter.render();
 				 

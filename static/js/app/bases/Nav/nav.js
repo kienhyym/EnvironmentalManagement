@@ -392,7 +392,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapthon",
@@ -400,7 +400,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapThon/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapthon",
@@ -408,7 +408,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapThon/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapthon",
@@ -416,7 +416,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapThon/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapthon",
@@ -511,7 +511,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapxa",
@@ -519,7 +519,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapXa/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapxa",
@@ -527,7 +527,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapXa/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapxa",
@@ -535,7 +535,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapXa/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscapxa",
@@ -627,7 +627,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaphuyen",
@@ -635,7 +635,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapHuyen/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaphuyen",
@@ -643,7 +643,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapHuyen/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaphuyen",
@@ -651,7 +651,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapHuyen/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaphuyen",
@@ -743,7 +743,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaptinh",
@@ -751,7 +751,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaptinh",
@@ -759,7 +759,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaptinh",
@@ -767,7 +767,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/CapTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "vscaptinh",
@@ -891,7 +891,7 @@ define(function (require) {
 									},
 									"entries": [
 										{
-											"text": "Qúy I",
+											"text": "Quý I",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -899,7 +899,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHThon/view/CollectionView",
 										},
 										{
-											"text": "Qúy II",
+											"text": "Quý II",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -907,7 +907,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHThon/view/CollectionView",
 										},
 										{
-											"text": "Qúy III",
+											"text": "Quý III",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -915,7 +915,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHThon/view/CollectionView",
 										},
 										{
-											"text": "Qúy IV",
+											"text": "Quý IV",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1011,7 +1011,7 @@ define(function (require) {
 									},
 									"entries": [
 										{
-											"text": "Qúy I",
+											"text": "Quý I",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1019,7 +1019,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHXa/view/CollectionView",
 										},
 										{
-											"text": "Qúy II",
+											"text": "Quý II",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1027,7 +1027,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHXa/view/CollectionView",
 										},
 										{
-											"text": "Qúy III",
+											"text": "Quý III",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1035,7 +1035,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHXa/view/CollectionView",
 										},
 										{
-											"text": "Qúy IV",
+											"text": "Quý IV",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1130,7 +1130,7 @@ define(function (require) {
 									},
 									"entries": [
 										{
-											"text": "Qúy I",
+											"text": "Quý I",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1138,7 +1138,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
 										},
 										{
-											"text": "Qúy II",
+											"text": "Quý II",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1146,7 +1146,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
 										},
 										{
-											"text": "Qúy III",
+											"text": "Quý III",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1154,7 +1154,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHHuyen/view/CollectionView",
 										},
 										{
-											"text": "Qúy IV",
+											"text": "Quý IV",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1248,7 +1248,7 @@ define(function (require) {
 									},
 									"entries": [
 										{
-											"text": "Qúy I",
+											"text": "Quý I",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1256,7 +1256,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
 										},
 										{
-											"text": "Qúy II",
+											"text": "Quý II",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1264,7 +1264,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
 										},
 										{
-											"text": "Qúy III",
+											"text": "Quý III",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1272,7 +1272,7 @@ define(function (require) {
 											"$ref": "app/view/HoatDongBCC/LapKHTinh/view/CollectionView",
 										},
 										{
-											"text": "Qúy IV",
+											"text": "Quý IV",
 											"icon": "glyphicon glyphicon-tasks",
 											"type": "view",
 											"collectionName": "tiendo_kehoach_bcc",
@@ -1424,7 +1424,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
@@ -1432,7 +1432,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
@@ -1440,7 +1440,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
@@ -1448,7 +1448,7 @@ define(function (require) {
 							"$ref": "app/view/VeSinh/Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "phieu_dieutra_truonghoc_tramyte_vesinh_capnuoc",
@@ -1584,7 +1584,7 @@ define(function (require) {
 //					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
@@ -1592,7 +1592,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
@@ -1600,7 +1600,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
@@ -1608,7 +1608,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
@@ -1658,7 +1658,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Qúy I",
+							"text": "Quý I",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
@@ -1666,7 +1666,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy II",
+							"text": "Quý II",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
@@ -1674,7 +1674,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy III",
+							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
@@ -1682,7 +1682,7 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 						},
 						{
-							"text": "Qúy IV",
+							"text": "Quý IV",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
