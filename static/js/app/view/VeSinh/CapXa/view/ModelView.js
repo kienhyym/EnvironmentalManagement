@@ -125,10 +125,10 @@ define(function (require) {
 							self.model.save(null, {
 								success: function (model, respose, options) {
 									self.getApp().notify("Lưu thông tin thành công");
-									self.compute_baocao();
-//									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
-//									self.getApp().getRouter().navigate(self.collectionName 
-//											+ "/collection?loaikybaocao="+routeloaibaocao);
+									// self.compute_baocao();
+									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+									self.getApp().getRouter().navigate(self.collectionName 
+											+ "/collection?loaikybaocao="+routeloaibaocao);
 	
 								},
 								error: function (xhr, status, error) {
@@ -509,7 +509,7 @@ define(function (require) {
 			var self = this;
 			var search_data = self.$el.find("#search_data");
 			search_data.unbind("keyup").bind("keyup", function () {
-				var search_data = self.$el.find("#search_data").val();
+				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
 				var filterObj = gonrin.query(arr, {tenthon: {$like: search_data}});
 				if (filterObj.length == 0){

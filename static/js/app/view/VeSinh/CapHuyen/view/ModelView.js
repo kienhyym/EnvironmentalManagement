@@ -359,7 +359,6 @@ define(function (require) {
 					if (routeloaibaocao!==null){
 						path = 'vscapxa/model/'+routeloaibaocao+'?id=' + id;
 					}
-					console.log("path", path);
 					self.getApp().getRouter().navigate(path);
 				});
 				
@@ -446,7 +445,7 @@ define(function (require) {
 			var self = this;
 			var search_data = self.$el.find("#search_data");
 			search_data.unbind("keyup").bind("keyup", function () {
-				var search_data = self.$el.find("#search_data").val();
+				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
 				var filterObj = gonrin.query(arr, {tenxa: {$like: search_data}});
 				if (filterObj.length == 0){
