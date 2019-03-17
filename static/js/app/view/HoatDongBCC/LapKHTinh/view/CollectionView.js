@@ -65,8 +65,13 @@ define(function (require) {
 				}
 			],
 			onRowClick: function (event) {
+//				if (event.rowId) {
+//					var path = 'hoatdongbcc/captinh/model/quy1?id=' + event.rowId;
+//					this.getApp().getRouter().navigate(path);
+//				}
 				if (event.rowId) {
-					var path = 'hoatdongbcc/captinh/model/quy1?id=' + event.rowId;
+					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
+					var path = 'hoatdongbcc/captinh/model/'+event.loaikybaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
