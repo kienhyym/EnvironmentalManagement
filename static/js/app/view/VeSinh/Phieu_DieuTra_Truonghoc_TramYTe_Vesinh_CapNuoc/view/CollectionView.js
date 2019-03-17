@@ -122,9 +122,9 @@ define(function (require) {
 				self.$el.find("#clear").attr({ "style": "margin-top: 26px;" });
 				var filterBtn = self.$el.find("#filterBtn");
 				filterBtn.unbind("click").bind("click", function () {
-					var filter_nam = self.$el.find("#filter_nam").val();
+					var filter_nam = self.$el.find("#filter_nam").val().trim();
 					const isNumeric = /^\d+$/;
-					var filter_tentruongtram = self.$el.find("#filter_tentruongtram").val();
+					var filter_tentruongtram = self.$el.find("#filter_tentruongtram").val().trim();
 					var $col = self.getCollectionElement();
 					if (!filter_nam && !filter_tentruongtram){
 						self.getApp().notify({ message: "Mời bạn nhập thông tin cần tìm kiếm vào bộ lọc!" }, { type: "danger" });
