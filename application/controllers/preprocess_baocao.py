@@ -22,7 +22,6 @@ async def reponse_caphuyen_single(request=None, Model=None, result=None, **kw):
         capxas.append(to_dict(xas))
     obj['capxa'] = capxas
     result = obj
-    print(result)
 
 async def pre_post_huyen(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -49,7 +48,6 @@ async def reponse_capxa_single(request=None, Model=None, result=None, **kw):
         thons.append(to_dict(thon))
     obj['capthon'] = thons
     result = obj
-    print(result)
 
 async def pre_post_capxa(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)

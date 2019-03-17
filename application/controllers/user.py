@@ -388,7 +388,6 @@ async def set_user_passwd(data=None,**kw):
         if(data['password']  == data['confirmpassword']):
             data['password'] = auth.encrypt_password(data['password'])
             del data['confirmpassword']
-            print('DATA : ', to_dict(data))
         else:
             return json({"error_code": "PARAM_ERROR", "error_message":"Mật khẩu không khớp"},status=520)
     else:

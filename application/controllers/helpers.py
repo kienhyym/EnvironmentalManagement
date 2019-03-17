@@ -87,6 +87,5 @@ async def entity_pregetmany(search_params=None, **kw):
         if currdonvi.id != 1:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"donvi_id":{"$in": donvichildids}}]} \
                                     or {"donvi_id":{"$in": donvichildids}}
-    print("search_params====",search_params)
                                 
 

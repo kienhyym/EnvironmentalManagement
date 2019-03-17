@@ -103,7 +103,6 @@ async def reset_password(request):
     
      
     if request.method == 'POST':
-        print(request.form)
         token = request.form.get("token", None)
         password = request.form.get("password", None)
         confirm_password = request.form.get("confirm_password", None)

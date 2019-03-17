@@ -143,7 +143,6 @@ def create_default_models():
     db.session.commit()
     
     #add dantoc
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url_dantoc = os.path.join(SITE_ROOT, "static/js/app/enum", "DanTocEnum.json")
     data_dantoc = json.load(open(json_url_dantoc))
     for item_dantoc in data_dantoc:

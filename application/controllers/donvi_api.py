@@ -42,7 +42,6 @@ async def DonVitree(request):
                
     if data is not None:
         obj = data.dump()
-        print(obj)
         return  json(to_dict(obj))
     else:
         return json({})
@@ -107,7 +106,6 @@ async def addUserDonvi(request):
             userinfo.macongdan = str(uuid.uuid1())
             db.session.add(userinfo)
                 
-            print(to_dict(userinfo))
             return json({"uid": userinfo.id, "name":userinfo.fullname, "phone":userinfo.phone}, status=200)
         return json({"error_code": "ADD_USER_FAILED", "error_message": error_msg},status=520)
  
