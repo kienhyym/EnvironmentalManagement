@@ -353,7 +353,9 @@ define(function (require) {
 				}
 			});
 			self.model.on("change:loaikhac", function() {
-				switch(self.model.get("loaikhac")) {
+				var loaikhac = self.model.get("loaikhac");
+				console.log("loaikhac====",loaikhac);
+				switch(loaikhac) {
 				  case 1:
 				    self.$el.find("#loaikhac").html("Dùng chung");
 				    break;

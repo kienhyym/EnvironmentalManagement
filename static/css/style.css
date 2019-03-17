@@ -2,6 +2,10 @@
 	vertical-align: middle;
 }
 
+thread > tr > th {
+	border: 1px solid #665d5d80;
+}
+
 .table-align tbody input.form-control{
 		padding-left: 2px;
 		padding-right: 2px;
