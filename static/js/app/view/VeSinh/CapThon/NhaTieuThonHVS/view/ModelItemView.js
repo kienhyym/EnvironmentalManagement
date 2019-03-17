@@ -352,22 +352,6 @@ define(function (require) {
 					self.model.set("hopvesinh", 0);
 				}
 			});
-			dataSource: [{
-//				"value": 1,
-//				"text": "Dùng chung"
-//			},
-//			{
-//				"value": 2,
-//				"text": "Một ngăn"
-//			},
-//			{
-//				"value": 3,
-//				"text": "Chìm không OTH"
-//			},
-//			{
-//				"value": 0,
-//				"text": "Không có"
-//			}
 			self.model.on("change:loaikhac", function() {
 				switch(self.model.get("loaikhac")) {
 				  case 1:
