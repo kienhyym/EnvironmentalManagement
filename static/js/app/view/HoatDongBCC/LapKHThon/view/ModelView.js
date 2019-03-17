@@ -208,6 +208,7 @@ define(function (require) {
 						self.$el.find("#quanhuyen").prop('disabled', true);
 						self.$el.find("#xaphuong").prop('disabled', true);
 						self.applyBindings();
+						self.search_HoatDong();
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);
 					},
@@ -454,10 +455,6 @@ define(function (require) {
 				return;
 			}
 			for (var i = 0; i < danhsach_hoatdong.length; i++){
-				// var hoatDongItemView = new HoatDongItemView();
-				// var songuoithamgia = hoatDongItemView.model.get("songuoithamgia");
-				// var songuoithamgia_nu = hoatDongItemView.model.get("songuoithamgia_nu");
-				// var songuoithamgia_dtts = hoatDongItemView.model.get("songuoithamgia_dtts");
 				if(danhsach_hoatdong[i].songuoithamgia === null || danhsach_hoatdong[i].songuoithamgia === ""){
 					self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
 					return;
@@ -485,5 +482,22 @@ define(function (require) {
 			}
 			return true;
 		},
+		search_HoatDong: function() {
+			var self = this;
+			var search_data = self.$el.find("#search_data");
+			search_data.unbind("keyup").bind("keyup", function () {
+				var search_data = self.$el.find("#search_data").val().trim();
+				var arr = self.model.get("danhsach_hoatdong");
+				var filterObj = gonrin.query(arr, {tenhoatdong: {$like: search_data}});
+				if (filterObj.length == 0){
+					// self.getApp().notify({message: "Không tìm thấy hoạt động!"},{type: "danger"});
+				} else{
+					for(var i=0; i< filterObj.length; i++){
+						self.renderHoatDongView(filterObj[i]);
+						self.renderDanhSach(filterObj);
+					}
+				}
+			});
+		}
 	});
 });
