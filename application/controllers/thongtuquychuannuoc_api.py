@@ -505,7 +505,6 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                 TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke<1000,\
                 TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
                 TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
-        print("baocao_tonghops===",baocao_tonghops)
     #thong ke don vi cap nuoc
     tong_donvi_capnuoc = 0
     tong_hogiadinh_duoccungcapnuoc = 0
@@ -875,7 +874,6 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
                 if baocao.thongso_khongdat_noikiem is not None:
                     for thongso_khongdat  in baocao.thongso_khongdat_noikiem:
                         for idx, val in enumerate(danhsach_thongso_noikiem_khongdat):
-                            print("danhsach_thongso_noikiem_khongdat[idx]====",danhsach_thongso_noikiem_khongdat[idx])
                             if(thongso_khongdat['id'] == danhsach_thongso_noikiem_khongdat[idx]['id']):
                                 danhsach_thongso_noikiem_khongdat[idx]["solan_khongdat"] +=1
                                 break;

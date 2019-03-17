@@ -85,7 +85,6 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
         if dsquanhuyenid is not None and len(dsquanhuyenid) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"quanhuyen_id":{"$in": dsquanhuyenid}}]} \
                                     or {"quanhuyen_id":{"$in": dsquanhuyenid}}
-    print("search_params xaphuong====",search_params)
 
 apimanager.create_api(XaPhuong, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -110,11 +109,9 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
                 dsxaphuongid = db.session.query(XaPhuong.id).filter(XaPhuong.quanhuyen_id == currdonvi.quanhuyen_id).all()
             elif currdonvi.tuyendonvi_id == 4:
                 dsxaphuongid = [currdonvi.xaphuong_id]
-        print("dsxaphuongid====",dsxaphuongid)
         if dsxaphuongid is not None and len(dsxaphuongid) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"xaphuong_id":{"$in": dsxaphuongid}}]} \
                                     or {"xaphuong_id":{"$in": dsxaphuongid}}
-    print("search_params thon xom====",search_params)
 
 apimanager.create_api(ThonXom, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],

@@ -102,7 +102,8 @@ async def ThongKe_VESINH(request):
 #                 bcxa['tyle_caithien_hongheo_hvs'] = (baocao.tong_caithien_hongheo_hvs/baocao.tong_soho)*100
 #                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
 #                 
-            tong_soho += baocao.tong_soho
+            
+            tong_soho += baocao.tong_soho if baocao.tong_soho is not None else 0
             tong_khongnhatieu = baocao.tong_khongnhatieu
             tong_hopvs = baocao.tong_hopvs
             tong_tuhoai_hvs = baocao.tong_tuhoai_hvs
@@ -686,11 +687,9 @@ async def entity_pregetmany_hogiadinh(search_params=None, **kw):
                 dshogiadinhid = db.session.query(HoGiaDinh.id).filter(HoGiaDinh.quanhuyen_id == currdonvi.quanhuyen_id).all()
             elif currdonvi.tuyendonvi_id == 4:
                 dshogiadinhid = db.session.query(HoGiaDinh.id).filter(HoGiaDinh.xaphuong_id == currdonvi.xaphuong_id).all()
-        print("dshogiadinhid==== ho gia dinh====",dshogiadinhid)
         if dshogiadinhid is not None and len(dshogiadinhid) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": dshogiadinhid}}]} \
                                     or {"id":{"$in": dshogiadinhid}}
-    print("search_params ho gia dinh====",search_params)
    
     
 
