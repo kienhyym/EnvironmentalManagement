@@ -73,9 +73,10 @@ define(function (require) {
             	pageSize: 100
             },
 			onRowClick: function (event) {
+				console.log("event===",event);
 				if (event.rowId) {
 					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
-					var path = this.collectionName + '/model/'+loaibaocao+ '?id=' + event.rowId;
+					var path = this.collectionName + '/model/'+event.loaikybaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
