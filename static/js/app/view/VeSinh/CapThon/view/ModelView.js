@@ -483,6 +483,7 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData": {"obj_hogiadinh": data, "thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function (data_hogiadinh) {
+					data_hogiadinh['stt'] = data['stt'];
 					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 					for( var i = 0; i < data_nhatieuthonhvs.length; i++){
 						if (data_nhatieuthonhvs[i].maho === data_hogiadinh.maho){
