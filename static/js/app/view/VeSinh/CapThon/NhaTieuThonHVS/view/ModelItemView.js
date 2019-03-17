@@ -325,7 +325,23 @@ define(function (require) {
 				}
 			});
 			self.model.on("change:loaikhac", function() {
-				if(self.model.get("loaikhac") || self.model.get("loaikhac") === 0){
+				var loaikhac = self.model.get("loaikhac");
+				console.log("loaikhac====",loaikhac);
+				switch(loaikhac) {
+					  case 1:
+					    self.$el.find("#loaikhac").html("Dùng chung");
+					    break;
+					  case 2:
+						  self.$el.find("#loaikhac").html("Một ngăn");
+						  break;
+					  case 3:
+						  self.$el.find("#loaikhac").html("Chìm không OTH");
+						  break;
+					  default:
+						  self.$el.find("#loaikhac").html("");
+				    // code block
+				} 
+				if(loaikhac || loaikhac != 0){
 					self.model.set("tuhoai", 0);
 					self.model.set("thamdoi", 0);
 					self.model.set("haingan", 0);
@@ -351,24 +367,6 @@ define(function (require) {
 				if(self.model.get("khonghopvesinh") === 1){
 					self.model.set("hopvesinh", 0);
 				}
-			});
-			self.model.on("change:loaikhac", function() {
-				var loaikhac = self.model.get("loaikhac");
-				console.log("loaikhac====",loaikhac);
-				switch(loaikhac) {
-				  case 1:
-				    self.$el.find("#loaikhac").html("Dùng chung");
-				    break;
-				  case 2:
-					  self.$el.find("#loaikhac").html("Một ngăn");
-					  break;
-				  case 3:
-					  self.$el.find("#loaikhac").html("Chìm không OTH");
-					  break;
-				  default:
-					  self.$el.find("#loaikhac").html("");
-				    // code block
-				} 
 			});
 		}
 	});
