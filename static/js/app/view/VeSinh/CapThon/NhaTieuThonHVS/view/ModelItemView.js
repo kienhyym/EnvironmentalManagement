@@ -285,6 +285,21 @@ define(function (require) {
 //			});
 			self.choose_one_in_all();
 			self.applyBindings();
+			var loaikhac = self.model.get("loaikhac");
+			switch(loaikhac) {
+				  case 1:
+				    self.$el.find("#loaikhac").html("Dùng chung");
+				    break;
+				  case 2:
+					  self.$el.find("#loaikhac").html("Một ngăn");
+					  break;
+				  case 3:
+					  self.$el.find("#loaikhac").html("Chìm không OTH");
+					  break;
+				  default:
+					  self.$el.find("#loaikhac").html("");
+			    // code block
+			} 
 		},
 		choose_one_in_all: function() {
 			const self = this;
