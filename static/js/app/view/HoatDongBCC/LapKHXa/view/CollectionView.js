@@ -72,7 +72,7 @@ define(function (require) {
 //				}
 				if (event.rowId) {
 					var loaibaocao = this.getApp().getRouter().getParam("loaikybaocao");
-					var path = 'hoatdongbcc/capxa/model/'+event.loaikybaocao+ '?id=' + event.rowId;
+					var path = 'hoatdongbcc/capxa/model/'+loaibaocao+ '?id=' + event.rowId;
 					this.getApp().getRouter().navigate(path);
 				}
 			}
