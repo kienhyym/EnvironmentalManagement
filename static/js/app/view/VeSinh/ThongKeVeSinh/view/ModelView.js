@@ -105,8 +105,8 @@ define(function (require) {
 						method: "GET",
 						contentType: "application/json",
 						success: function (obj) {
+							self.$el.find("#danhsachdonvi").html("");
 							if (obj && !!obj.tentinhthanh && obj.tentinhthanh!==""){
-								self.$el.find("#danhsachdonvi").html("");
 								var tr = $('<tr id="danhsachdonvi">');
 								tr.append('<td class="tinhthanh">' + obj.tentinhthanh + '</td>');
 								tr.append('<td class="quanhuyen">' + obj.tenquanhuyen + '</td>');
