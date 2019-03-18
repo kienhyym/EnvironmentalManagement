@@ -118,7 +118,7 @@ define(function (require) {
 			var self = this;
 			self.setDefaultData();
 			self.onChangeEvents();
-			// self.applyBindings();
+			self.applyBindings();
 			self.$el.find("table.table input").attr({"disabled":true});
 		},
 		
@@ -206,7 +206,7 @@ define(function (require) {
 					success: function(response) {
 						if (response) {
 							self.model.set(response);
-							self.applyBindings();
+//							self.applyBindings();
 							if (self.model.get("tiendo_pheduyet") == 1) {
 								if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
 									self.$el.find("#pheduyet_extra").removeClass("hide");
