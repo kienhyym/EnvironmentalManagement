@@ -43,7 +43,7 @@ define(function (require) {
 				el: self.$el.find("#grid_search"),
 				sessionKey: self.collectionName +"_filter"
 			});
-			// $("#search_input").attr("placeholder", "Nhập số điện thoại...");
+			$("#search_input").attr("placeholder", "Nhập tên vai trò...");
 			filter.render();
 			this.applyBindings();
 
@@ -52,10 +52,7 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
-							{"name": {"$likeI": text }},
-							{"description": {"$likeI": text }},
-						]};
+						var filters = {"name": {"$likeI": text }};
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
