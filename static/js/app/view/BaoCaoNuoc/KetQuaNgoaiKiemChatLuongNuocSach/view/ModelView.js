@@ -727,11 +727,11 @@ define(function (require) {
                 },
                 error: function (xhr, status, error) {
 					try {
-						if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+						if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
 							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 							self.getApp().getRouter().navigate("login");
 						} else {
-						  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+						  self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 						}
 					}
 					catch (err) {

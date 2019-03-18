@@ -287,8 +287,8 @@ define(function (require) {
 							if (tuyen && tuyen.hoatdong) {
 								tuyen.hoatdong.forEach(function(hoatdong, idx) {
 									self.$el.find("#danhsachhoatdong_list").append(`<tr>
-											<td class="text-left">&nbsp;&nbsp; - ${hoatdong.tenhoatdong}</td>
-											<td>${hoatdong.muctieu}</td>
+											<td class="text-left">&nbsp;&nbsp; - ${hoatdong.tenhoatdong ? hoatdong.tenhoatdong : ''}</td>
+											<td>${hoatdong.muctieu ? hoatdong.muctieu : ''}</td>
 											<td>${hoatdong.tiendo ? hoatdong.tiendo : ''}</td>
 											<td class="text-center">${hoatdong.songuoithamgia ? hoatdong.songuoithamgia : ''}</td>
 											<td class="text-center">${hoatdong.songuoithamgia_nu ? hoatdong.songuoithamgia_nu : '' }</td>

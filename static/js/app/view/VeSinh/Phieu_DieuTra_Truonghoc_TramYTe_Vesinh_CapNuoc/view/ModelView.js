@@ -623,6 +623,10 @@ define(function (require) {
                 self.getApp().notify({message: "Chưa nhập mã trường học/trạm y tế"},{type: "danger"});
                 return;
             }
+            if(loai_truong_tramyte == null || loai_truong_tramyte == ""){
+                self.getApp().notify({message: "Chưa chọn loại trường/trạm"},{type: "danger"});
+                return;
+            }
             if(loai_truong_tramyte === 1 || loai_truong_tramyte === 2 || loai_truong_tramyte === 3
                 || loai_truong_tramyte === 4 || loai_truong_tramyte === 5 || loai_truong_tramyte === 6){
 
