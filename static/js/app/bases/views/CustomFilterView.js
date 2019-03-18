@@ -39,7 +39,7 @@ define(function(require) {
 				timer = setTimeout(function() {
 					var val = $textEl.val();
 					self.model.set("text", val);
-				}, 700);
+				}, 500);
     		});
 
     		$textEl.unbind("keypress").bind("keypress", function($event) {
