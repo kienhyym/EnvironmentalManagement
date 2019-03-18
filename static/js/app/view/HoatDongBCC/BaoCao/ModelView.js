@@ -206,6 +206,7 @@ define(function (require) {
 					success: function(response) {
 						if (response) {
 							self.model.set(response);
+							self.applyBinding("ngay_pheduyet");
 							if (self.model.get("tiendo_pheduyet") == 1) {
 								if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
 									self.$el.find("#pheduyet_extra").removeClass("hide");
@@ -221,7 +222,7 @@ define(function (require) {
 //							self.model.set('songuoithamgia_dtts', response.tongsonguoithamgia_dtts);
 							self.renderKetQua(response.danhsachnganh);
 							}
-						self.applyBindings();
+						
 					},
 					error: function (xhr, status, error) {
 						try {
