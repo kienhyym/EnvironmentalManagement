@@ -28,7 +28,7 @@ define(function(require) {
     		//session here
     		this.getDataFromSession();
     		this.applyBindings();
-    		
+    		self.model.set("text","");
     		self.model.on("change", function() {
     			self.triggerFilter();
     		});

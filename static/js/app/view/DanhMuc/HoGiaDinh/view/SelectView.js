@@ -107,9 +107,10 @@ define(function (require) {
     			el: self.$el.find("#grid_search"),
     			sessionKey: "HoGiaDinh_filter"
     		});
+    		
     		filter.render();
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
-
+    		filter.model.set("text","");
 			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
@@ -128,7 +129,6 @@ define(function (require) {
 						filters
 					]};
     			}
-    			console.log("filters====",filters);
     			self.uiControl.filters = filters;
     			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		}else{
