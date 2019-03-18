@@ -203,6 +203,7 @@ define(function (require) {
 									self.model.set("loaikybaocao",loaikybaocao);
 									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 									self.$el.find("#nhatieuthonhvs").html("");
+									self.$el.find("#tongcongi").show();
 									for(var i=0; i< nhatieuthonhvs.length; i++){
 										nhatieuthonhvs[i]['stt'] = i+1;
 										self.renderItemView(nhatieuthonhvs[i], null);
@@ -211,7 +212,7 @@ define(function (require) {
 									
 									self.applyBindings();
 									self.renderTinhTongI();
-									
+									self.search_dshogiadinh();
 									
 									
 									
