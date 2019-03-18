@@ -298,7 +298,6 @@ define(function (require) {
 					  break;
 				  default:
 					  self.$el.find("#loaikhac").html("");
-			    // code block
 			} 
 		},
 		choose_one_in_all: function() {
@@ -354,7 +353,6 @@ define(function (require) {
 						  break;
 					  default:
 						  self.$el.find("#loaikhac").html("");
-				    // code block
 				} 
 				if(loaikhac || loaikhac != 0){
 					self.model.set("tuhoai", 0);
