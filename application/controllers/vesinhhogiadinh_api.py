@@ -103,17 +103,16 @@ async def ThongKe_VESINH(request):
 #                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
 #                 
             
-            print("Thong ke ve sinh baocao====",to_dict(baocao))
             tong_soho += baocao.tong_soho if baocao.tong_soho is not None else 0
-            tong_khongnhatieu = baocao.tong_khongnhatieu
-            tong_hopvs = baocao.tong_hopvs
-            tong_tuhoai_hvs = baocao.tong_tuhoai_hvs
-            tong_thamdoi_hvs = baocao.tong_thamdoi_hvs
-            tong_2ngan_hvs = baocao.tong_2ngan_hvs
-            tong_ongthonghoi_hvs = baocao.tong_ongthonghoi_hvs
-            tong_caithien_hvs = baocao.tong_caithien_hvs
-            tong_caithien_hongheo_hvs = baocao.tong_caithien_hongheo_hvs
-            tong_diemruatay = baocao.tong_diemruatay
+            tong_khongnhatieu += baocao.tong_khongnhatieu
+            tong_hopvs += baocao.tong_hopvs
+            tong_tuhoai_hvs += baocao.tong_tuhoai_hvs
+            tong_thamdoi_hvs += baocao.tong_thamdoi_hvs
+            tong_2ngan_hvs += baocao.tong_2ngan_hvs
+            tong_ongthonghoi_hvs += baocao.tong_ongthonghoi_hvs
+            tong_caithien_hvs += baocao.tong_caithien_hvs
+            tong_caithien_hongheo_hvs += baocao.tong_caithien_hongheo_hvs
+            tong_diemruatay += baocao.tong_diemruatay
     
         
         results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - tong_khongnhatieu)/tong_soho)*100, 2)
