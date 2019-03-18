@@ -8,6 +8,6 @@ define({
         "SELECT": "Chọn",
         "CANCEL": "Huỷ",
         "CLOSE": "Đóng",
-        "NO_RECORDS_FOUND":"Chưa có dữ liệu"
+        "no_records_found":"Chưa có dữ liệu"
     }
 });
