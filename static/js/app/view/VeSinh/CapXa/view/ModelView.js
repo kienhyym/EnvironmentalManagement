@@ -323,6 +323,7 @@ define(function (require) {
 				}
 				self.applyBindings();
 				self.check_chuongtrinhSUP();
+				self.search_dshogiadinh();
 				self.model.on("change:thuocsuprsws", function(){
 					self.check_chuongtrinhSUP();
 				});
