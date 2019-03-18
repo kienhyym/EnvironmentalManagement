@@ -52,7 +52,7 @@ define(function (require) {
 	  				    			  		self.close();
 	  				    			  	},
 	  	  				    	    error: function (xhr, status, error) {
-										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
 											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 											self.getApp().getRouter().navigate("login");
 										}

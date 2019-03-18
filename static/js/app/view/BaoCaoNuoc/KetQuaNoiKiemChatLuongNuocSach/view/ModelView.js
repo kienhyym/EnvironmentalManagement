@@ -210,6 +210,7 @@ define(function (require) {
                 command: function () {
                     var self = this;
                     var nambaocao = self.model.get("nambaocao");
+                    var somauvavitri = self.model.get("somauvavitri");
                 	if(!(toInt(nambaocao) >= 1900 || toInt(nambaocao) <= 3000)){
                     	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
                     } else if(!self.model.get("ngaybaocao")){
@@ -223,6 +224,8 @@ define(function (require) {
                     }
                     else if(!self.model.get("nguoikiemtra")){
                     	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
+                    } else if(somauvavitri <= 0){
+                        self.getApp().notify({message: "Số mẫu và vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
                     } else {
                         self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
 	                    self.model.save(null, {
