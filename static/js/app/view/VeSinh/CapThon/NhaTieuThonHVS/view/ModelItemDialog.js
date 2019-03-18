@@ -160,13 +160,37 @@ define(function (require) {
                         label: "TRANSLATE:SAVE",
                         command: function () {
                             var self = this;
-                            if (self.model.get("hogiadinh") === null || self.model.get("hogiadinh") === ""){
+                            var chuongtrinhsup = self.viewData.chuongtrinhsup;
+                            console.log("chuongtrinhsup", chuongtrinhsup);
+                            if (!self.model.get("hogiadinh")){
                                 self.getApp().notify({message: "Vui lòng chọn hộ gia đình!"}, {type: "danger"});
+                                return;
+                            }
+                            if (self.model.get("loainhatieusudung") == null || self.model.get("loainhatieusudung") == ""){
+                                self.getApp().notify({message: "Vui lòng chọn loại nhà tiêu đang sử dụng!"}, {type: "danger"});
                                 return;
                             }
                             if (self.model.get("loainhatieusudung") == 6 && !self.model.get("loaikhac")){
                                 self.getApp().notify({message: "Vui lòng chọn loại khác!"}, {type: "danger"});
                                 return;
+                            }
+                            if (self.model.get("danhgiatinhtrangvesinh") == null || self.model.get("danhgiatinhtrangvesinh") == ""){
+                                self.getApp().notify({message: "Vui lòng chọn đánh giá tình trạng vệ sinh!"}, {type: "danger"});
+                                return;
+                            }
+                            if (chuongtrinhsup === 1){
+                                if (self.model.get("hongheo") == null){
+                                    self.getApp().notify({message: "Có thuộc diện hộ nghèo không?"}, {type: "danger"});
+                                    return; 
+                                }
+                                if (self.model.get("caithien") == null){
+                                    self.getApp().notify({message: "Có thuộc diện được cải thiện hay không?"}, {type: "danger"});
+                                    return; 
+                                }
+                                if (self.model.get("diemruataycoxaphong") == null){
+                                    self.getApp().notify({message: "Có điểm rửa tay với nước xà phòng hay không?"}, {type: "danger"});
+                                    return; 
+                                }
                             }
                             var loainhatieusudung = self.model.get("loainhatieusudung");
                             var danhgiatinhtrangvesinh = self.model.get("danhgiatinhtrangvesinh");
