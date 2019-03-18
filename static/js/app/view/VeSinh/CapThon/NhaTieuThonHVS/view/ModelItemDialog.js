@@ -164,6 +164,10 @@ define(function (require) {
                                 self.getApp().notify({message: "Vui lòng chọn hộ gia đình!"}, {type: "danger"});
                                 return;
                             }
+                            if (self.model.get("loainhatieusudung") == 6 && !self.model.get("loaikhac")){
+                                self.getApp().notify({message: "Vui lòng chọn loại khác!"}, {type: "danger"});
+                                return;
+                            }
                             var loainhatieusudung = self.model.get("loainhatieusudung");
                             var danhgiatinhtrangvesinh = self.model.get("danhgiatinhtrangvesinh");
                             var loaikhac = self.model.get("loaikhac");
