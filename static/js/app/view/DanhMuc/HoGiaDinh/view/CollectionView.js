@@ -85,18 +85,18 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-//			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
-//				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().currentUser.donvi.tinhthanh_id}};
-//				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "asc"},{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-//
-//			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-//				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().currentUser.donvi.quanhuyen_id}};
-//				self.uiControl.orderBy = [{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-//
-//    		} else if (this.getApp().data("xaphuong_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===4){
-//				this.uiControl.filters = {"xaphuong_id": {"$eq": this.getApp().currentUser.donvi.xaphuong_id}};
-//				self.uiControl.orderBy = [{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
-//    		}
+			if (this.getApp().currentUser !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
+				this.uiControl.filters = {"tinhthanh_id": {"$eq": this.getApp().currentUser.donvi.tinhthanh_id}};
+				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "asc"},{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+
+			} else if (this.getApp().currentUser !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
+				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().currentUser.donvi.quanhuyen_id}};
+				self.uiControl.orderBy = [{"field": "xaphuong_id", "direction": "asc"},{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+
+    		} else if (this.getApp().currentUser !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===4){
+				this.uiControl.filters = {"xaphuong_id": {"$eq": this.getApp().currentUser.donvi.xaphuong_id}};
+				self.uiControl.orderBy = [{"field": "thonxom_id", "direction": "asc"},{"field": "tenchuho", "direction": "asc"}];
+    		}
 			self.uiControl.orderBy = [{"field": "tinhthanh_id", "direction": "asc"},
 				{"field": "quanhuyen_id", "direction": "asc"},
 				{"field": "xaphuong_id", "direction": "asc"},
@@ -109,27 +109,33 @@ define(function (require) {
 			});
 			filter.render();
 
-			if(!filter.isEmptyFilter()) {
-				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
-					{"tenchuho": {"$likeI": text }},
-				]};
-				self.uiControl.filters = filters;
-			}
+//			if(!filter.isEmptyFilter()) {
+//				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+//    			var filters = { "$or": [
+//					{"tenchuho": {"$likeI": text }},
+//				]};
+//				self.uiControl.filters = filters;
+//			}
 			this.applyBindings();
 
 			filter.on('filterChanged', function(evt) {
     			var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
+					var default_filter = self.uiControl.filters;
 					if (text !== null){
-						var filters = { "$or": [
-							{"tenchuho": {"$likeI": text }},
-						]};
+						
+		    			var filters = {"tenchuho": {"$likeI": text }};
+		    			if (default_filter !==null  && default_filter!== ""){
+		    				filters = { "$and": [
+		    					filters,
+		    					default_filter
+		    				]};
+		    			}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
-						self.uiControl.filters = null;
+						self.uiControl.filters = default_filter;
 					}
 				}
 				self.applyBindings();
