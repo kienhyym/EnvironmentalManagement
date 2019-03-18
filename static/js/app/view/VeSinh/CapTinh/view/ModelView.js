@@ -399,9 +399,9 @@ define(function (require) {
 			var self = this;
 			var search_data = self.$el.find("#search_data");
 			search_data.unbind("keyup").bind("keyup", function () {
-				var search_data = self.$el.find("#search_data").val();
+				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
-				var filterObj = gonrin.query(arr, {tenxa: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenhuyen: {$like: search_data}});
 				if (filterObj.length == 0){
 					self.$el.find("#danhsachdonvi").hide();
 				} else{

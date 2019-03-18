@@ -72,7 +72,7 @@ define(function (require) {
 
 			var filterBtn = self.$el.find("#filterBtn");
 			filterBtn.unbind("click").bind("click", function () {
-				var filter_nam = self.$el.find("#filter_nam").val();
+				var filter_nam = self.$el.find("#filter_nam").val().trim();
 				const isNumeric = /^\d+$/;
 				var filter_xa_data = self.$el.find("#filter_xa_data").val();
 				var $col = self.getCollectionElement();

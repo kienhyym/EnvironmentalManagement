@@ -208,6 +208,7 @@ define(function (require) {
 						self.$el.find("#quanhuyen").prop('disabled', true);
 						self.$el.find("#xaphuong").prop('disabled', true);
 						self.applyBindings();
+						self.search_HoatDong();
 						self.onChangeEvents();
 						self.renderDanhSach(data.attributes.danhsach_hoatdong);
 					},
@@ -386,6 +387,7 @@ define(function (require) {
 		validate : function() {
 			const self = this;
 			var nambaocao = self.model.get("nambaocao");
+			var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
 			if (nambaocao === null || nambaocao === ""){
 				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
 				return;
@@ -448,7 +450,50 @@ define(function (require) {
 				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
 				return;
 			}
+			for (var i = 0; i < danhsach_hoatdong.length; i++){
+				if(danhsach_hoatdong[i].songuoithamgia === null || danhsach_hoatdong[i].songuoithamgia === ""){
+					self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia) === false){
+					self.getApp().notify({message: "Tổng số người tham gia không hợp lệ!"},{type: "danger"});
+					return;
+				}
+				if(danhsach_hoatdong[i].songuoithamgia_nu === null || danhsach_hoatdong[i].songuoithamgia_nu === ""){
+					self.getApp().notify({message: "Số người tham gia là nữ không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_nu) === false){
+					self.getApp().notify({message: "Số người tham gia là nữ không hợp lệ!"},{type: "danger"});
+					return;
+				}
+				if(danhsach_hoatdong[i].songuoithamgia_dtts === null || danhsach_hoatdong[i].songuoithamgia_dtts === ""){
+					self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"},{type: "danger"});
+					return;
+				}
+				if(toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_dtts) === false){
+					self.getApp().notify({message: "Số người tham gia là DTTS không hợp lệ!"},{type: "danger"});
+					return;
+				}
+			}
 			return true;
 		},
+		search_HoatDong: function() {
+			var self = this;
+			var search_data = self.$el.find("#search_data");
+			search_data.unbind("keyup").bind("keyup", function () {
+				var search_data = self.$el.find("#search_data").val().trim();
+				var arr = self.model.get("danhsach_hoatdong");
+				var filterObj = gonrin.query(arr, {tenhoatdong: {$like: search_data}});
+				if (filterObj.length == 0){
+					// self.getApp().notify({message: "Không tìm thấy hoạt động!"},{type: "danger"});
+				} else{
+					for(var i=0; i< filterObj.length; i++){
+						self.renderHoatDongView(filterObj[i]);
+						self.renderDanhSach(filterObj);
+					}
+				}
+			});
+		}
 	});
 });
