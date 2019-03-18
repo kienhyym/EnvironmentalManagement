@@ -103,7 +103,7 @@ async def ThongKe_VESINH(request):
 #                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
 #                 
             
-            print("Thong ke ve sinh baocao====",baocao)
+            print("Thong ke ve sinh baocao====",to_dict(baocao))
             tong_soho += baocao.tong_soho if baocao.tong_soho is not None else 0
             tong_khongnhatieu = baocao.tong_khongnhatieu
             tong_hopvs = baocao.tong_hopvs
