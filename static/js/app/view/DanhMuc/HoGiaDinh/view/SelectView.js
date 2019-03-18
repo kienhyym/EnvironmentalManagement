@@ -110,7 +110,6 @@ define(function (require) {
     		
     		filter.render();
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
-    		filter.model.set("text","");
 			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
