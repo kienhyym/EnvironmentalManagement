@@ -113,15 +113,22 @@ define(function (require) {
 			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		if(!filter.isEmptyFilter()) {
     			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
-					{"tenchuho": {"$likeI": text }},
-				]};
+    			var default_filter = self.uiControl.filters;
+    			var filters = {"tenchuho": {"$likeI": text }};
+    			
+    			if (default_filter !==null  && default_filter!== ""){
+    				filters = { "$and": [
+    					filters,
+    					default_filter
+    				]};
+    			}
     			if (filter_thonxom && filter_thonxom !== ""){
     				filters = {"$and": [
 						{"thonxom_id": {"$eq": self.viewData.thonxom_id}},
 						filters
 					]};
     			}
+    			console.log("filters====",filters);
     			self.uiControl.filters = filters;
     			self.uiControl.orderBy = [{"field": "tenchuho", "direction": "asc"}];
     		}else{
@@ -139,13 +146,23 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var query = { "$or": [
-							{"tenchuho": {"$likeI": text }},
-						] };
-						if (filter_thonxom && filter_thonxom !== ""){
+						var default_filter = self.uiControl.filters;
+		    			var filters = {"tenchuho": {"$likeI": text }};
+		    			
+		    			if (default_filter !==null  && default_filter!== ""){
+		    				filters = { "$and": [
+		    					filters,
+		    					default_filter
+		    				]};
+		    			}
+						
+//						var query = { "$or": [
+//							{"tenchuho": {"$likeI": text }},
+//						] };
+						if (self.viewData && self.viewData.thonxom_id){
 		    				filters = {"$and": [
 								{"thonxom_id": {"$eq": self.viewData.thonxom_id}},
-								query
+								filters
 							]};
 		    			}
 						$col.data('gonrin').filter(filters);
@@ -154,7 +171,7 @@ define(function (require) {
 						if (filter_thonxom && filter_thonxom !== ""){
 		    				self.uiControl.filters = filter_thonxom;
 		    			}else{
-		    				self.uiControl.filters = null;
+//		    				self.uiControl.filters = null;
 		    			}
 						
 					}
