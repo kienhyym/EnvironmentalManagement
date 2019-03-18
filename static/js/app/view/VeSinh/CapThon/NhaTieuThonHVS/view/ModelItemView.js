@@ -283,8 +283,9 @@ define(function (require) {
 //			self.$el.find("#itemRemove").unbind("click").bind("click", function () {
 //				self.remove(true);
 //			});
-			self.choose_one_in_all();
+			
 			self.applyBindings();
+			self.choose_one_in_all();
 			var loaikhac = self.model.get("loaikhac");
 			switch(loaikhac) {
 				  case 1:
@@ -340,7 +341,6 @@ define(function (require) {
 			});
 			self.model.on("change:loaikhac", function() {
 				var loaikhac = self.model.get("loaikhac");
-				console.log("loaikhac====",loaikhac);
 				switch(loaikhac) {
 					  case 1:
 					    self.$el.find("#loaikhac").html("Dùng chung");
@@ -354,7 +354,7 @@ define(function (require) {
 					  default:
 						  self.$el.find("#loaikhac").html("");
 				} 
-				if(loaikhac || loaikhac != 0){
+				if(!!loaikhac && loaikhac > 0){
 					self.model.set("tuhoai", 0);
 					self.model.set("thamdoi", 0);
 					self.model.set("haingan", 0);

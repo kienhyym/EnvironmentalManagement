@@ -391,6 +391,14 @@ define(function (require) {
 						self.model.on("change:thonxom", function(){
 							self.$el.find("#nhatieuthonhvs").html("");
 							self.model.set("nhatieuthonhvs",[]);
+							self.model.set("tong_soho", 0);
+							self.model.set("tong_chuholanu", 0);
+							self.model.set("tong_sohongheo", 0);
+							self.model.set("tong_sohodtts", 0);
+							self.model.set("tong_danso", 0);
+							self.model.set("tong_nam", 0);
+							self.model.set("tong_nu", 0);
+							
 							self.$el.find("#tongcongi").hide();
 						});
 						self.applyBindings();
@@ -483,6 +491,7 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData": {"obj_hogiadinh": data, "thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function (data_hogiadinh) {
+					console.log("data_hogiadinh===",data_hogiadinh);
 					data_hogiadinh['stt'] = data['stt'];
 					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 					for( var i = 0; i < data_nhatieuthonhvs.length; i++){
