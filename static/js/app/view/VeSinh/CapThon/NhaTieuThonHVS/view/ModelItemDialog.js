@@ -161,7 +161,6 @@ define(function (require) {
                         command: function () {
                             var self = this;
                             var chuongtrinhsup = self.viewData.chuongtrinhsup;
-                            console.log("chuongtrinhsup", chuongtrinhsup);
                             if (!self.model.get("hogiadinh")){
                                 self.getApp().notify({message: "Vui lòng chọn hộ gia đình!"}, {type: "danger"});
                                 return;
@@ -197,14 +196,19 @@ define(function (require) {
                             var loaikhac = self.model.get("loaikhac");
                             if (loainhatieusudung == 1){
                                 self.model.set("tuhoai", 1);
+                                self.model.set("loaikhac", 0);
                             } else if (loainhatieusudung == 2){
                                 self.model.set("thamdoi", 1);
+                                self.model.set("loaikhac", 0);
                             }else if (loainhatieusudung == 3){
                                 self.model.set("haingan", 1);
+                                self.model.set("loaikhac", 0);
                             }else if (loainhatieusudung == 4){
                                 self.model.set("chimco_oth", 1);
+                                self.model.set("loaikhac", 0);
                             }else if (loainhatieusudung == 5){
                                 self.model.set("khongconhatieu", 1);
+                                self.model.set("loaikhac", 0);
                             }else if (loainhatieusudung == 6){
                                 self.model.set("loaikhac", loaikhac);
                             }
@@ -245,6 +249,7 @@ define(function (require) {
                 if (loainhatieusudung == 6){
                     self.$el.find("#choose_loaikhac").show();
                 } else{
+                    self.model.set("loaikhac", 0);
                     self.$el.find("#choose_loaikhac").hide();
                 }
             });   

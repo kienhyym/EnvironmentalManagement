@@ -252,19 +252,25 @@ define(function (require) {
                                         if (view.model.get("quansat_khuvesinh") == 96) {
                                             view.$el.find("#quansat_khuvesinh_loaikhac").show();
                                         } else{
+                                            view.model.set("quansat_khuvesinh_loaikhac", null);
                                             view.$el.find("#quansat_khuvesinh_loaikhac").hide();
                                         }
                                         
                                         if (view.model.get("quansat_khuvesinh") == 4 || view.model.get("quansat_khuvesinh") == 6) {
                                             view.$el.find("#nuocthaichaydidau").show();
                                         } else {
+                                            view.model.set("nuocthai_chaydidau", null);
+                                            view.applyBinding("nuocthai_chaydidau");
                                             view.$el.find("#nuocthaichaydidau").hide();
                                         }
                                     });
                                     
                                     view.model.on("change:congtrinh_ruatay", function () {
                                         if (view.model.get("congtrinh_ruatay") == 2) {
+                                            view.model.set("quansat_congtrinh_ruatay", null);
+                                            view.applyBinding("quansat_congtrinh_ruatay");
                                             view.$el.find("#quansat_congtrinh_ruatay").hide();
+                                            
                                         } else{
                                             view.$el.find("#quansat_congtrinh_ruatay").show();
                                         }
@@ -274,6 +280,8 @@ define(function (require) {
                                         if (view.model.get("khu_ditieu") == 1) {
                                             view.$el.find("#thongtinkhuditieu").show();
                                         } else{
+                                            view.model.set("khu_ditieu_dientich", null);
+                                            view.model.set("khu_ditieu_sochau", null);
                                             view.$el.find("#thongtinkhuditieu").hide();
                                         }
                                     });
@@ -319,6 +327,7 @@ define(function (require) {
                             	if (view.model.get("quansat_khuvesinh") == 96) {
                             		view.$el.find("#quansat_khuvesinh_loaikhac").show();
                             	} else{
+                                    view.model.set("quansat_khuvesinh_loaikhac", null);
                             		view.$el.find("#quansat_khuvesinh_loaikhac").hide();
                                 }
                                 
@@ -331,6 +340,8 @@ define(function (require) {
                             
                             view.model.on("change:congtrinh_ruatay", function () {
                             	if (view.model.get("congtrinh_ruatay") == 2) {
+                                    view.model.set("quansat_congtrinh_ruatay", null);
+                                    view.applyBinding("quansat_congtrinh_ruatay");
                             		view.$el.find("#quansat_congtrinh_ruatay").hide();
                             	} else{
                             		view.$el.find("#quansat_congtrinh_ruatay").show();
@@ -341,6 +352,8 @@ define(function (require) {
                             	if (view.model.get("khu_ditieu") === 1) {
                             		view.$el.find("#thongtinkhuditieu").show();
                             	} else{
+                                    view.model.set("khu_ditieu_dientich", null);
+                                    view.model.set("khu_ditieu_sochau", null);
                             		view.$el.find("#thongtinkhuditieu").hide();
                             	}
                             });
@@ -540,7 +553,8 @@ define(function (require) {
             	if (self.model.get("nguonnuocchinh") == 96) {
             		self.$el.find("#nguonnuocchinh_loaikhac").show();
             	} else{
-            		self.$el.find("#nguonnuocchinh_loaikhac").hide();
+                    self.$el.find("#nguonnuocchinh_loaikhac").hide();
+                    self.model.set("nguonnuocchinh_loaikhac", null);
             	}
 			});
             var viewData = self.viewData;

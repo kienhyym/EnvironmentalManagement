@@ -194,14 +194,6 @@ define(function (require) {
 		validate: function () {
 			var self = this;
 			var tuyendonvi_id = this.getApp().currentUser.donvi.tuyendonvi_id;
-			if (!self.model.get("tinhthanh")) {
-				self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
-				return;
-			}
-			if (!self.model.get("quanhuyen")) {
-				self.getApp().notify({message: "Quận huyện không được để trống"},{type: "danger"});
-				return;
-			}
 //			if (!self.model.get("xaphuong")) {
 //				self.getApp().notify({message: "Xã phường không được để trống"},{type: "danger"});
 //				return;
@@ -239,10 +231,22 @@ define(function (require) {
 					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
 					return;
 				}
+				if (!self.model.get("tinhthanh")) {
+					self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
+					return;
+				}
+				if (!self.model.get("quanhuyen")) {
+					self.getApp().notify({message: "Quận huyện không được để trống"},{type: "danger"});
+					return;
+				}
 			}
 			if (tuyendonvi_id === 2) {
 				if (self.model.get("congsuat") < 1000){
 					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
+					return;
+				}
+				if (!self.model.get("tinhthanh")) {
+					self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
 					return;
 				}
 			}
