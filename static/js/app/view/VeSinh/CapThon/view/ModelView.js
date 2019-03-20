@@ -281,7 +281,7 @@ define(function (require) {
 					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 					self.model.set("tong_danso" , tong_dantrongthon)
 				} else {
-					self.getApp().notify({message:"Tổng số nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					self.getApp().notify({message:"Tổng số dân là nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
 					return;
 				}
 			});
@@ -292,7 +292,7 @@ define(function (require) {
 					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 					self.model.set("tong_danso" , tong_dantrongthon)
 				} else {
-					self.getApp().notify({message:"Tổng số nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					self.getApp().notify({message:"Tổng số dân là nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
 					return;
 				}
 			});
@@ -690,31 +690,23 @@ define(function (require) {
 				return;
 			}
 			if(tong_nu === null || tong_nu === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số nữ trong thôn!"},{type: "danger"});
+				self.getApp().notify({message: "Chưa nhập tổng số  dân là nữ trong thôn!"},{type: "danger"});
 				return;
 			}
-			if(Number.isInteger(tong_nu) === false){
-				self.getApp().notify({message: "Tổng số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(toInt(tong_nu) < 0){
-				self.getApp().notify({message: "Tổng số nữ trong thôn không hợp lệ!"},{type: "danger"});
+			if(Number.isInteger(tong_nu) === false || toInt(tong_nu) < 0){
+				self.getApp().notify({message: "Tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			if(tong_nam === null || tong_nam === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số nam trong thôn!"},{type: "danger"});
+				self.getApp().notify({message: "Chưa nhập tổng số dân là nam trong thôn!"},{type: "danger"});
 				return;
 			}
-			if(Number.isInteger(tong_nam) === false){
-				self.getApp().notify({message: "Tổng số nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(toInt(tong_nam) < 0){
-				self.getApp().notify({message: "Tổng số nam trong thôn không hợp lệ!"},{type: "danger"});
+			if(Number.isInteger(tong_nam) === false || toInt(tong_nam) < 0){
+				self.getApp().notify({message: "Tổng số dân là nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			if(toInt(tong_danso) <= 0){
-				self.getApp().notify({message: "Số nam hoặc số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				self.getApp().notify({message: "Tổng số dân là nam hoặc tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			return true;

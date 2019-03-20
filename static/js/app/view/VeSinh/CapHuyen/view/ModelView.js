@@ -353,7 +353,12 @@ define(function (require) {
 				tr.append('<td class="chuongtrinhsup">' + element.tong_caithien + "</td>");
 				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
+				var id_record = this.getApp().getRouter().getParam("id");
 				tr.unbind('click').bind('click', function () {
+					if (id_record == null){
+						self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+						return;
+					}
 					var id = $(this).attr('id');
 					var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 					var path = 'vscapxa/model?id=' + id;
@@ -462,7 +467,12 @@ define(function (require) {
 			tr.append('<td class="chuongtrinhsup">' + data.tong_caithien + "</td>");
 			tr.append('<td class="chuongtrinhsup">' + data.tong_diemruatay + "</td>");
 			self.$el.find("#danhsachdonvi").append(tr);
+			var id_record = this.getApp().getRouter().getParam("id");
 			tr.unbind('click').bind('click', function () {
+				if (id_record == null){
+					self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+					return;
+				}
 				var id = $(this).attr('id');
 				var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 				var path = 'vscapxa/model?id=' + id;

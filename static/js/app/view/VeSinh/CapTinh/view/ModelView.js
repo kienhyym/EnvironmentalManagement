@@ -311,7 +311,12 @@ define(function (require) {
 				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
+				var id_record = this.getApp().getRouter().getParam("id");
 				tr.unbind('click').bind('click', function () {
+					if (id_record == null){
+						self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+						return;
+					}
 					var id = $(this).attr('id');
 					var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 					var path = 'vscaphuyen/model?id=' + id;
@@ -399,6 +404,7 @@ define(function (require) {
 		search_nhatieuhvs: function(){
 			var self = this;
 			var search_data = self.$el.find("#search_data");
+			var id_record = this.getApp().getRouter().getParam("id");
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
@@ -429,6 +435,10 @@ define(function (require) {
 						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_diemruatay + "</td>");
 						self.$el.find("#danhsachdonvi").append(tr);
 						tr.unbind('click').bind('click', function () {
+							if (id_record == null){
+								self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+								return;
+							}
 							var id = $(this).attr('id');
 							var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 							var path = 'vscaphuyen/model?id=' + id;
