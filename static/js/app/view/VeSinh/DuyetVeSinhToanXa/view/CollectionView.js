@@ -36,7 +36,7 @@ define(function (require) {
 					foreignValueField: "id",
 					foreignTextField: "ten",
 				},
-	    	     { field: "nam_datvesinh_toanxa", label: "Năm đạt VSXT"},
+	    	     { field: "nam_datvesinh_toanxa", label: "Năm đạt VSTX"},
 	    	     { field: "nam_datvesinh_toanxa_benvung", label: "Năm đạt VSTX bền vững"},
 		     ],
 		     pagination: {
