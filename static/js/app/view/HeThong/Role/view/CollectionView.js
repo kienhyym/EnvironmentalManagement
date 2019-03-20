@@ -6,6 +6,7 @@ define(function (require) {
 
 	var template = require('text!app/view/tpl/HeThong/Role/collection.html'),
 		schema = require('json!schema/RoleSchema.json');
+	var CustomFilterView = require('app/bases/views/CustomFilterView');
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -14,21 +15,18 @@ define(function (require) {
 		collectionName: "role",
 		uiControl: {
 			fields: [{
-					field: "id",
-					label: "ID",
-					width: 50,
-					readonly: true,
-				},
-				{
-					field: "name",
-					label: "Tên",
-					width: 150
-				},
-				{
-					field: "description",
-					label: "Mô tả",
-					width: 150
-				},
+				field: "id",
+				label: "ID",
+				readonly: true,
+			},
+			{
+				field: "name",
+				label: "Tên"
+			},
+			{
+				field: "description",
+				label: "Mô tả"
+			},
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
@@ -39,10 +37,31 @@ define(function (require) {
 		},
 
 		render: function () {
+			var self = this;
+
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			$("#search_input").attr("placeholder", "Nhập tên vai trò...");
+			filter.render();
 			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = {"name": {"$likeI": text }};
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
 			return this;
 		},
-
 	});
-
 });

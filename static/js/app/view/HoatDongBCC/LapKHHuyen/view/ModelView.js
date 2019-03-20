@@ -468,7 +468,7 @@ define(function (require) {
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsach_hoatdong");
-				var filterObj = gonrin.query(arr, {tenhoatdong: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenhoatdong: {$likeI: search_data}});
 				if (filterObj.length == 0){
 					// self.getApp().notify({message: "Không tìm thấy hoạt động!"},{type: "danger"});
 				} else{

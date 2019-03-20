@@ -157,16 +157,15 @@ define(function (require) {
 				// 	label: "Xuất Excel",
 				// 	command: function () {
 				// 		var self = this;
-				// 		// to do something
 				// 		var doc = new jsPDF();
-				// 		var source = $('#exportPDF').first();
-				// 		console.log("srccccc===", source);
-				// 		doc.fromHTML($('#exportPDF').html(), 15, 15, {
+				// 		var source = $('#exportPDF')[0];
+				// 		console.log("source=====", source);
+				// 		doc.fromHTML(source, 15, 15, {
 				// 			'width': 170,
-				// 			// 'elementHandlers': specialElementHandlers
 				// 		});
-				// 		doc.save('Test.pdf');
-				// 		console.log("model to JSON", self.model.toJSON());
+				// 		// doc.save('test.pdf');
+				// 		doc.output("datauri");
+				
 				// 	},
 				// 	visible: function () {
 				// 		return this.getApp().getRouter().getParam("id") !== null;
@@ -262,6 +261,28 @@ define(function (require) {
 					self.$el.find("#kydanhgia").val(itemkybaocao.text);
 				}
 			}
+
+			var currentUser = self.getApp().currentUser;
+				if(!!currentUser && !!currentUser.donvi){
+					if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2){
+						self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+						self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
+						self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
+						self.$el.find("#tinhthanh").prop('disabled', true);
+					}
+					if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3){
+						self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+						self.getApp().data("quanhuyen_id",currentUser.donvi.quanhuyen_id);
+						self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
+						self.$el.find("#quanhuyen").prop('disabled', true);
+					}
+					if (!!currentUser.donvi.xaphuong_id && currentUser.donvi.tuyendonvi_id === 4){
+						self.getApp().data("xaphuong_id",currentUser.donvi.xaphuong_id);
+						self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
+						self.model.set("xaphuong",currentUser.donvi.xaphuong);
+						self.$el.find("#xaphuong").prop('disabled', true);
+					}
+				}
 			
 			if (id) {
 				this.model.set('id', id);
@@ -300,27 +321,6 @@ define(function (require) {
 					}
 				});
 			} else {
-				var currentUser = self.getApp().currentUser;
-				if(!!currentUser && !!currentUser.donvi){
-					if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2){
-						self.model.set("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-						self.getApp().data("tinhthanh_id",currentUser.donvi.tinhthanh_id);
-						self.model.set("tinhthanh",currentUser.donvi.tinhthanh);
-						self.$el.find("#tinhthanh").prop('disabled', true);
-					}
-					if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3){
-						self.model.set("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-						self.getApp().data("quanhuyen_id",currentUser.donvi.quanhuyen_id);
-						self.model.set("quanhuyen",currentUser.donvi.quanhuyen);
-						self.$el.find("#quanhuyen").prop('disabled', true);
-					}
-					if (!!currentUser.donvi.xaphuong_id && currentUser.donvi.tuyendonvi_id === 4){
-						self.getApp().data("xaphuong_id",currentUser.donvi.xaphuong_id);
-						self.model.set("xaphuong_id",currentUser.donvi.xaphuong_id);
-						self.model.set("xaphuong",currentUser.donvi.xaphuong);
-						self.$el.find("#xaphuong").prop('disabled', true);
-					}
-				}
 				self.applyBindings();
 				self.check_chuongtrinhSUP();
 				self.search_dshogiadinh();
@@ -426,9 +426,15 @@ define(function (require) {
 			tr.append("<td>" + element.tong_khonghopvs + "</td>");
 			tr.append('<td class="chuongtrinhsup">' + element.tong_caithien + "</td>");
 			tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
-				
 			self.$el.find("#danhsachdonvi").append(tr);
+
+			
+			var id_record = this.getApp().getRouter().getParam("id");
 			tr.unbind('click').bind('click', function () {
+				if (id_record == null){
+					self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+					return;
+				}
 				var id = $(this).attr('id');
 				var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 				var path = 'vscapthon/model?id=' + id;
@@ -512,7 +518,7 @@ define(function (require) {
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
-				var filterObj = gonrin.query(arr, {tenthon: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenthon: {$likeI: search_data}});
 				if (filterObj.length == 0){
 					self.$el.find("#danhsachdonvi").hide();
 				} else{

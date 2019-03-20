@@ -10,6 +10,7 @@ define(function (require) {
 	//	var TuyenDonViEnum = require('json!app/enum/TuyenDonViEnum.json');
 	//var TuyenDonViSelectView = require('app/view/DanhMuc/TuyenDonVi/SelectView');
 	var TrangThaiDangKyDonViEnum = require('json!app/enum/TrangThaiDangKyDonViEnum.json');
+	var CustomFilterView = require('app/bases/views/CustomFilterView');
 
 	//var DonViSelectView = require('app/view/HeThong/DonVi/view/TreeSelectView.js');
 
@@ -169,6 +170,29 @@ define(function (require) {
 					}
 				}
 			});
+
+			var filter = new CustomFilterView({
+				el: self.$el.find("#grid_search"),
+				sessionKey: self.collectionName +"_filter"
+			});
+			$("#search_input").attr("placeholder", "Nhập tên đơn vị...");
+			filter.render();
+			this.applyBindings();
+
+			filter.on('filterChanged', function(evt) {
+    			var $col = self.getCollectionElement();
+    			var text = !!evt.data.text ? evt.data.text.trim() : "";
+				if ($col) {
+					if (text !== null){
+						var filters = {"donvi_ten": {"$likeI": text }};
+						$col.data('gonrin').filter(filters);
+						//self.uiControl.filters = filters;
+					} else {
+						self.uiControl.filters = null;
+					}
+				}
+				self.applyBindings();
+    		});
 			return this;
 		},
 

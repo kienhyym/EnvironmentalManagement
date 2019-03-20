@@ -100,7 +100,6 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-
 						Backbone.history.history.back();
 					}
 				},
@@ -203,6 +202,7 @@ define(function (require) {
 									self.model.set("loaikybaocao",loaikybaocao);
 									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 									self.$el.find("#nhatieuthonhvs").html("");
+									self.$el.find("#tongcongi").show();
 									for(var i=0; i< nhatieuthonhvs.length; i++){
 										nhatieuthonhvs[i]['stt'] = i+1;
 										self.renderItemView(nhatieuthonhvs[i], null);
@@ -211,7 +211,7 @@ define(function (require) {
 									
 									self.applyBindings();
 									self.renderTinhTongI();
-									
+									self.search_dshogiadinh();
 									
 									
 									
@@ -281,7 +281,7 @@ define(function (require) {
 					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 					self.model.set("tong_danso" , tong_dantrongthon)
 				} else {
-					self.getApp().notify({message:"Tổng số nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					self.getApp().notify({message:"Tổng số dân là nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
 					return;
 				}
 			});
@@ -292,7 +292,7 @@ define(function (require) {
 					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
 					self.model.set("tong_danso" , tong_dantrongthon)
 				} else {
-					self.getApp().notify({message:"Tổng số nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+					self.getApp().notify({message:"Tổng số dân là nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
 					return;
 				}
 			});
@@ -491,7 +491,6 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData": {"obj_hogiadinh": data, "thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function (data_hogiadinh) {
-					console.log("data_hogiadinh===",data_hogiadinh);
 					data_hogiadinh['stt'] = data['stt'];
 					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 					for( var i = 0; i < data_nhatieuthonhvs.length; i++){
@@ -691,31 +690,23 @@ define(function (require) {
 				return;
 			}
 			if(tong_nu === null || tong_nu === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số nữ trong thôn!"},{type: "danger"});
+				self.getApp().notify({message: "Chưa nhập tổng số  dân là nữ trong thôn!"},{type: "danger"});
 				return;
 			}
-			if(Number.isInteger(tong_nu) === false){
-				self.getApp().notify({message: "Tổng số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(toInt(tong_nu) < 0){
-				self.getApp().notify({message: "Tổng số nữ trong thôn không hợp lệ!"},{type: "danger"});
+			if(Number.isInteger(tong_nu) === false || toInt(tong_nu) < 0){
+				self.getApp().notify({message: "Tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			if(tong_nam === null || tong_nam === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số nam trong thôn!"},{type: "danger"});
+				self.getApp().notify({message: "Chưa nhập tổng số dân là nam trong thôn!"},{type: "danger"});
 				return;
 			}
-			if(Number.isInteger(tong_nam) === false){
-				self.getApp().notify({message: "Tổng số nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(toInt(tong_nam) < 0){
-				self.getApp().notify({message: "Tổng số nam trong thôn không hợp lệ!"},{type: "danger"});
+			if(Number.isInteger(tong_nam) === false || toInt(tong_nam) < 0){
+				self.getApp().notify({message: "Tổng số dân là nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			if(toInt(tong_danso) <= 0){
-				self.getApp().notify({message: "Số nam hoặc số nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+				self.getApp().notify({message: "Tổng số dân là nam hoặc tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
 			return true;
@@ -726,7 +717,7 @@ define(function (require) {
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("nhatieuthonhvs");
-				var filterObj = gonrin.query(arr, {tenchuho: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenchuho: {$likeI: search_data}});
 				if (filterObj.length == 0){
 					self.$el.find("#nhatieuthonhvs").hide();
 				} else{

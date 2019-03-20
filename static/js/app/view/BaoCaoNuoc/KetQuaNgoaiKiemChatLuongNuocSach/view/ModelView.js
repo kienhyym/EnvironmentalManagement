@@ -268,8 +268,8 @@ define(function (require) {
                     var thoigiankiemtra = self.model.get("thoigiankiemtra");
                     var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
                     var somauvavitri = self.model.get("somauvavitri");
-                    if(!(toInt(nambaocao) >= 1900 || toInt(nambaocao) <= 3000)){
-                    	self.getApp().notify({message: "Chưa chọn năm báo cáo hoặc năm báo cáo không hợp lệ"},{type: "danger"});
+                    if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+                    	self.getApp().notify({message: "Năm báo cáo không hợp lệ!"},{type: "danger"});
                     } else if(ngaybaocao === null || ngaybaocao === ""){
                     	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
                     } else if(donvicapnuoc === null || donvicapnuoc === ""){

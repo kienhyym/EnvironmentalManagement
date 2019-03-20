@@ -129,6 +129,7 @@ define(function (require) {
 							success: function (model, respose, options) {
 								self.getApp().notify("Cộng dồn thông tin thành công");
 								self.compute_baocao();
+								self.search_nhatieuhvs();
 							},
 							error: function (xhr, status, error) {
 								try {
@@ -310,7 +311,12 @@ define(function (require) {
 				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
+				var id_record = this.getApp().getRouter().getParam("id");
 				tr.unbind('click').bind('click', function () {
+					if (id_record == null){
+						self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+						return;
+					}
 					var id = $(this).attr('id');
 					var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 					var path = 'vscaphuyen/model?id=' + id;
@@ -398,17 +404,49 @@ define(function (require) {
 		search_nhatieuhvs: function(){
 			var self = this;
 			var search_data = self.$el.find("#search_data");
+			var id_record = this.getApp().getRouter().getParam("id");
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsachbaocao");
-				var filterObj = gonrin.query(arr, {tenhuyen: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenhuyen: {$likeI: search_data}});
 				if (filterObj.length == 0){
 					self.$el.find("#danhsachdonvi").hide();
 				} else{
 					self.$el.find("#danhsachdonvi").show();
 					self.$el.find("#danhsachdonvi").html("");
 					for(var i=0; i< filterObj.length; i++){
-						self.compute_baocao();
+						var tr = $('<tr id="danhsachdonvi">').attr({
+							"id": filterObj[i].id
+						});
+						tr.append("<td>" + (i + 1 )+ "</td>");
+						tr.append("<td>" + filterObj[i].tenhuyen + "</td>");
+						tr.append("<td>" + filterObj[i].tong_chuholanu + "</td>");
+						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_sohodtts + "</td>");
+						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_sohongheo + "</td>");
+						tr.append("<td>" + filterObj[i].tong_tuhoai + "</td>");
+						tr.append("<td>" + filterObj[i].tong_thamdoi + "</td>");
+						tr.append("<td>" + filterObj[i].tong_2ngan + "</td>");
+						tr.append("<td>" + filterObj[i].tong_ongthonghoi + "</td>");
+						tr.append("<td>" + toInt(filterObj[i].tong_loaikhac) + "</td>");
+						tr.append("<td>" + filterObj[i].tong_khongnhatieu + "</td>");
+						tr.append("<td>" + filterObj[i].tong_hopvs + "</td>");
+						tr.append("<td>" + filterObj[i].tong_khonghopvs + "</td>");
+						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_caithien + "</td>");
+						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_diemruatay + "</td>");
+						self.$el.find("#danhsachdonvi").append(tr);
+						tr.unbind('click').bind('click', function () {
+							if (id_record == null){
+								self.getApp().notify({message: "Vui lòng nhấn lưu trước khi xem báo cáo chi tiết!"}, {type: "danger"});
+								return;
+							}
+							var id = $(this).attr('id');
+							var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+							var path = 'vscaphuyen/model?id=' + id;
+							if (routeloaibaocao!==null){
+								path = 'vscaphuyen/model/'+routeloaibaocao+'?id=' + id;
+							}
+							self.getApp().getRouter().navigate(path);
+						});
 					}
 				}
 			});
