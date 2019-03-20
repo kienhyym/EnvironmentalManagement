@@ -38,18 +38,18 @@ async def postprocess_donvicapnuoc(request=None, Model=None, result=None, **kw):
                 datas.append(obj_tmp)
         result = datas
 
-async def prepost_put_donvicapnuoc(request=None, data=None, Model=None, **kw):
-    if "stt" in data:
-        del data['stt']
-    objects_danhmuc = ['dantoc','thonxom', 'xaphuong', 'quocgia', 'tinhthanh', 'quanhuyen']
-    for obj in objects_danhmuc:
-        if obj in data and "stt" in data[obj]:
-            del data[obj]['stt']
+# async def prepost_put_donvicapnuoc(request=None, data=None, Model=None, **kw):
+#     if "stt" in data:
+#         del data['stt']
+#     objects_danhmuc = ['dantoc','thonxom', 'quocgia', 'tinhthanh', 'quanhuyen']
+#     for obj in objects_danhmuc:
+#         if obj in data and "stt" in data[obj]:
+#             del data[obj]['stt']
 
 apimanager.create_api(DonViCapNuoc, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_put_donvicapnuoc], PUT_SINGLE=[auth_func, prepost_put_donvicapnuoc], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_donvicapnuoc]),
     collection_name='donvicapnuoc')
 

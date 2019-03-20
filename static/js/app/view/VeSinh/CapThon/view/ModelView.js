@@ -100,7 +100,6 @@ define(function (require) {
 					label: "TRANSLATE:BACK",
 					command: function () {
 						var self = this;
-
 						Backbone.history.history.back();
 					}
 				},
@@ -492,7 +491,6 @@ define(function (require) {
 				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData": {"obj_hogiadinh": data, "thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
 				view_hogiadinh.dialog({size: "large"});
 				view_hogiadinh.on("close", function (data_hogiadinh) {
-					console.log("data_hogiadinh===",data_hogiadinh);
 					data_hogiadinh['stt'] = data['stt'];
 					var data_nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 					for( var i = 0; i < data_nhatieuthonhvs.length; i++){
@@ -727,7 +725,7 @@ define(function (require) {
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("nhatieuthonhvs");
-				var filterObj = gonrin.query(arr, {tenchuho: {$like: search_data}});
+				var filterObj = gonrin.query(arr, {tenchuho: {$likeI: search_data}});
 				if (filterObj.length == 0){
 					self.$el.find("#nhatieuthonhvs").hide();
 				} else{
