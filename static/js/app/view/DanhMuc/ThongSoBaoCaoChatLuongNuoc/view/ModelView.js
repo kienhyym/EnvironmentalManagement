@@ -150,21 +150,19 @@ define(function (require) {
 			var tenthongso = self.model.get("tenthongso");
 			var gioihan_toithieu = self.model.get("gioihan_toithieu");
 			var gioihan_toida = self.model.get("gioihan_toida");
-			if (tenthongso === null || tenthongso === "") {
+			if (!tenthongso) {
 				self.getApp().notify({ message: "Tên thông số không được để trống!" }, { type: "danger" });
 				return false;
 			}
-			if(gioihan_toithieu !== null && gioihan_toida !== null){
-				if(gioihan_toithieu > gioihan_toida){
-				self.getApp().notify({ message: "Giới hạn tối thiểu hoặc tối đa không hợp lệ!" }, { type: "danger" });
-				return false;
-				}
+			if(gioihan_toithieu !== null && gioihan_toida !== null && gioihan_toithieu > gioihan_toida){
+			self.getApp().notify({ message: "Giới hạn tối thiểu hoặc tối đa không hợp lệ!" }, { type: "danger" });
+			return false;
 			}
-			// if(gioihan_toithieu !== "" || gioihan_toithieu !== null){
-			// 	console.log("toi thieu vao day =>>>", gioihan_toithieu);
-			// 	if(Number.isInteger(gioihan_toithieu) === false || gioihan_toithieu == null){
-			// 	self.getApp().notify({ message: "Giới hạn tối thiểu không hợp lệ!" }, { type: "danger" });
-			// 	return false;
+
+			// if(!gioihan_toida && gioihan_toithieu !== null){
+			// 	if(Number.isInteger(gioihan_toithieu) == false){
+			// 		self.getApp().notify({ message: "Giới hạn tối thiểu không hợp lệ!" }, { type: "danger" });
+			// 		return false;
 			// 	}
 			// }
 			// if(gioihan_toida !== "" || gioihan_toida !== null){
