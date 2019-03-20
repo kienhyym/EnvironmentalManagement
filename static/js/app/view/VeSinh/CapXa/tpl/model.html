@@ -6,12 +6,12 @@
 		width: 8%;
 	}
 </style>
-<div class="panel panel-default" id="exportPDF">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h4>Biểu mẫu đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Xã/Phường</h4>
 	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content" id="exportPDF">
 
 		<div class="row" style="margin-top: 30px;">
 			<div class="form-inline form-group col-md-6">
@@ -30,7 +30,7 @@
 					<table class="is-table">
 						<tbody>
 							<tr>
-								<td>Tỉnh/Thành</td>
+								<td>Tỉnh/Thành phố</td>
 								<td><input id="tinhthanh" type="text" class="form-control" data-bind="dict:tinhthanh" /></td>
 								<td>Quận/Huyện</td>
 								<td><input id="quanhuyen" type="text" class="form-control" data-bind="dict:quanhuyen" /></td>
