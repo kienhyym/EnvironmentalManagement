@@ -252,6 +252,8 @@ define(function (require) {
                             ]
 						}
 						self.getFieldElement("captren").data("gonrin").setFilters(filterobj);
+					} else {
+						self.getFieldElement("captren").data("gonrin").setFilters(null);
 					}
 				});
 				self.model.on("change:tinhthanh", function(){
