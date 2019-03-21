@@ -157,9 +157,7 @@ define(function (require) {
 			var self = this;
 			self.model.on("change:donvi_tuyendonvi", function(){
 				var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
-				if(donvi_tuyendonvi == null){
-					self.getApp().notify({message: "Mời bạn chọn Khối cơ quan!"}, {type: "danger"});
-				} else {
+				if(donvi_tuyendonvi){
 					switch(donvi_tuyendonvi.id){
 						case 2: //cap tinh
 							self.model.set("quanhuyen", null);
