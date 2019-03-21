@@ -267,8 +267,12 @@ define(function (require) {
                     var donvicapnuoc = self.model.get("donvicapnuoc");
                     var thoigiankiemtra = self.model.get("thoigiankiemtra");
                     var thanhphan_doankiemtra = self.model.get("thanhphan_doankiemtra");
-                    var somauvavitri = self.model.get("somauvavitri");
-                    if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+					var somauvavitri = self.model.get("somauvavitri");
+					var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
+					var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
+					var tongsomau_khongdat_quychuan = self.model.get("tongsomau_khongdat_quychuan");
+					const isNumeric = /^\d+$/;
+                    if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000 || isNumeric.test(nambaocao) == false){
                     	self.getApp().notify({message: "Năm báo cáo không hợp lệ!"},{type: "danger"});
                     } else if(ngaybaocao === null || ngaybaocao === ""){
                     	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
@@ -279,8 +283,14 @@ define(function (require) {
                     } else if(thanhphan_doankiemtra === null || thanhphan_doankiemtra === ""){
                     	self.getApp().notify({message: "Chưa chọn thành phần đoàn kiểm tra"},{type: "danger"});
                     } else if(somauvavitri > 10){
-                    	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!!!"},{type: "danger"});
-                    } else {
+                    	self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!"},{type: "danger"});
+					} else if(somauvavitri < 0 || isNumeric.test(somauvavitri) == false){
+						self.getApp().notify({message: "Số vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
+					} else if(tongsomau_dat_quychuan > tongsomau_thunghiem){
+						self.getApp().notify({message: "Tổng số mẫu đạt quy chuẩn không hợp lệ!"}, {type: "danger"});
+					} else if(tongsomau_khongdat_quychuan > tongsomau_thunghiem){
+						self.getApp().notify({message: "Tổng số mẫu không đạt quy chuẩn không hợp lệ!"}, {type: "danger"});
+					} else {
 						self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
                     self.model.save(null, {
                         success: function (model, respose, options) {
@@ -855,6 +865,9 @@ define(function (require) {
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
 				var tylemau_datquychuan = 0;
+				if(tongsomau_dat_quychuan > tongsomau_thunghiem){
+					self.getApp().notify({message: "Tổng số mẫu đạt quy chuẩn không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
+				}
 				if(toInt(tongsomau_thunghiem)>0){
 					tylemau_datquychuan = (tongsomau_dat_quychuan*100/tongsomau_thunghiem).toFixed(2);
 				}
@@ -864,6 +877,9 @@ define(function (require) {
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_khongdat_quychuan = self.model.get("tongsomau_khongdat_quychuan");
 				var tyle = 0;
+				if(tongsomau_khongdat_quychuan > tongsomau_thunghiem){
+					self.getApp().notify({message: "Tổng số mẫu không đạt quy chuẩn không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
+				}
 				if(toInt(tongsomau_thunghiem)>0){
 					tyle = (tongsomau_khongdat_quychuan*100/tongsomau_thunghiem).toFixed(2);
 				}
