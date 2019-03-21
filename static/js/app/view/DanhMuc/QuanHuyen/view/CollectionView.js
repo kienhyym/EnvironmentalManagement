@@ -61,10 +61,14 @@ define(function (require) {
     			var query = { "$or": [
                     {"ten": {"$likeI": text }},
                 ]};
-                var filters = {"$and": [
-					{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
-					query
-				]};
+                if (this.getApp().data("tinhthanh_id") !== null) {
+                    var filters = {"$and": [
+                        {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+                        query
+                    ]};
+                } else {
+                    var filters = query;
+                }
 				self.uiControl.filters = filters;
 				self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
     		}
@@ -78,10 +82,14 @@ define(function (require) {
 						var query = { "$or": [
                             {"ten": {"$likeI": text }},
                         ]};
-                        var filters = {"$and": [
-							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
-							query
-						]};
+                        if (this.getApp().data("tinhthanh_id") !== null) {
+                            var filters = {"$and": [
+                                {"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+                                query
+                            ]};
+                        } else {
+                            var filters = query;
+                        }
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

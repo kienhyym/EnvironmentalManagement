@@ -29,9 +29,13 @@ define(function (require) {
 		    	    	label: "TRANSLATE:SELECT",
 		    	    	command: function(){
 							var self = this;
-							var get_data_onSelected = this.uiControl.selectedItems[0];
-							delete get_data_onSelected.stt;
-		    	    		self.trigger("onSelected", get_data_onSelected);
+							if (this.uiControl.selectedItems && this.uiControl.selectedItems.length) { 
+								var get_data_onSelected = this.uiControl.selectedItems[0];
+								delete get_data_onSelected.stt;
+								self.trigger("onSelected", get_data_onSelected);
+							} else if(this.uiControl.selectedItems.length == 0) {
+								self.trigger("onSelected");
+							}
 		    	    		var selected_items = self.uiControl.selectedItems;
 		    	    		if(!!selected_items && selected_items.length>0){
 		    	    			self.getApp().data("quanhuyen_id", selected_items[0]["id"]);
@@ -60,13 +64,13 @@ define(function (require) {
 //        	         },
     		    ],
     		    onRowClick: function(event){
-    	    		this.uiControl.selectedItems = event.selectedItems;
+					this.uiControl.selectedItems = event.selectedItems;
     	    	},
     	},
     	render:function(){
 			var self= this;
             if (this.getApp().data("tinhthanh_id") !== null) {
-                this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id") } };
+                this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id")}};
 			}
 
     		self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
@@ -81,10 +85,15 @@ define(function (require) {
     			var query = { "$or": [
 					{"ten": {"$likeI": text }},
 				]};
-				var filters = {"$and": [
-					{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
-					query
-				]};
+				if (this.getApp().data("tinhthanh_id") !== null) {
+					var filters = {"$and": [
+						{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+						query
+					]};
+				} else {
+					var filters = query;
+				}	
+				// console.log("chay vao day");
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -98,12 +107,14 @@ define(function (require) {
 							{"ten": {"$likeI": text }},
 						]};
 						// console.log("tinhthanh===", this.getApp().data("tinhthanh_id"));
-						// if (this.uiControl.filters && this.uiControl.filters !== null){
-						var filters = {"$and": [
-							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
-							query
-						]};
-						// }
+						if (this.uiControl.filters && this.uiControl.filters !== null){
+							var filters = {"$and": [
+								{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+								query
+							]};
+						} else {
+							var filters = query;
+						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
