@@ -93,13 +93,13 @@ async def change_password(request):
     data = request.json
     if data is not None:
         if 'newpassword' not in data or 'confirm' not in data or data['newpassword'] != data['confirm']:
-            return json({"error_code": ERROR_CODE["CONFIRM_ERROR"], "error_message": "Mật khẩu không khớp, vui lòng kiểm tra lại"}, status=520)
+            return json({"error_code": "PASSWORD_NOT_MATCH", "error_message": "Mật khẩu không khớp, vui lòng kiểm tra lại!"}, status=520)
         
         if 'newpassword' in data and data['newpassword'] is not None and 'password' in data:
             user = db.session.query(User).filter(User.id == currentUser.id).first()
             if user is not None:
-#                 if auth.verify_password(data['password'], user.password, user.salt) != True:
-#                     return json({"error_code": ERROR_CODE["AUTH_ERROR"], "error_message": "Mật khẩu không đúng"}, status=520)
+                if auth.verify_password(data['password'], user.password) != True:
+                    return json({"error_code": "PASSWORD_WRONG", "error_message": "Mật khẩu hiện tại không đúng, vui lòng kiểm tra lại!"}, status=520)
                 
                 user.password = auth.encrypt_password(data['newpassword'])
 #                 db.session.add(user)

@@ -66,7 +66,7 @@ define(function (require) {
       	  				    			  	
       	  				    			});
     			                    }else{
-    			                    	self.getApp().notify("Mật khẩu mới không khớp với nhập lại mật khẩu mới");
+    			                    	self.getApp().notify("Mật khẩu mới không khớp, vui lòng kiểm tra lại!");
 
     			                    }
     			    	    	}
