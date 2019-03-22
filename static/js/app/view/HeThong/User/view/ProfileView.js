@@ -25,7 +25,7 @@ define(function (require) {
     			});
     			
     			self.$el.find("#changeprofile").unbind("click").bind("click", function(){
-    				var profile = new ProfileDialogView();
+					var profile = new ProfileDialogView();
     				profile.dialog();
     				
     			});

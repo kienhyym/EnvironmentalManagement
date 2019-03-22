@@ -109,7 +109,7 @@ define(function (require) {
 						} else if (self.validatePhone(donvi_sodienthoai) === false) {
 							self.getApp().notify({ message: "Số điện thoại của đơn vị không đúng định dạng!" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
-							self.getApp().notify({ message: "Email không hợp lệ" }, { type: "danger" });
+							self.getApp().notify({ message: "Email không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
 							self.getApp().notify({ message: "Tên người dùng không được để trống!" }, { type: "danger" });
 						} else if  (phone == null || phone == ""){
