@@ -463,11 +463,31 @@ define(function (require) {
 
         },
         check_danhgia_nhatieu:function(){
-        	var self=this;
+            var self=this;
         	var tieuchichinh = false;
             var tieuchiphu = 0;
-        	
-        	if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
+
+            if(self.viewData.nguonnuocchinh == 5 || self.viewData.nguonnuocchinh == 6){
+                if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
+        		self.model.get("sannha_rannut") ===1 &&
+        		self.model.get("coloditieu_daynapkin") ===1 &&
+        		self.model.get("bechua_rannut") ===1 &&
+        		// self.model.get("khoangcach_nguonnuoc_bechua") ===1 &&
+        		self.model.get("hoatdong_binhthuong") ===1 &&
+        		// self.model.get("capnuocsach") ===1 &&
+        		self.model.get("congtrinh_ruatay") ===1 &&
+        		self.model.get("mailop_nhavesinh") ===1 &&
+        		(((self.viewData.loai_truong_tramyte ===1 || 
+        				self.viewData.loai_truong_tramyte ===7) 
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=2)||
+        		((self.viewData.loai_truong_tramyte ===2 
+        				|| self.viewData.loai_truong_tramyte ===3 
+        				|| self.viewData.loai_truong_tramyte ===4) 
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=4))){
+        		tieuchichinh = true;
+        	    }
+            } else {
+                if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
         		self.model.get("sannha_rannut") ===1 &&
         		self.model.get("coloditieu_daynapkin") ===1 &&
         		self.model.get("bechua_rannut") ===1 &&
@@ -484,7 +504,8 @@ define(function (require) {
         				|| self.viewData.loai_truong_tramyte ===4) 
         				&& self.viewData.sokhuvesinh_truong_tramyte>=4))){
         		tieuchichinh = true;
-        	}
+        	    }
+            }
         	
         	if (self.model.get("phan_dinhdong_nhavesinh")===1){
         		tieuchiphu +=1;
