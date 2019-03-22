@@ -31,6 +31,14 @@ define(function (require) {
   			    	    				email: self.$el.find('#profile_email').val(),
   			    	    				fullname: self.$el.find('#profile_name').val()
 								}
+								if(!params.macongdan){
+									self.getApp().notify({ message: "Mã công dân không được để trống!" }, { type: "danger" });
+									return;
+								}
+								if(!params.fullname){
+									self.getApp().notify({ message: "Họ và tên không được để trống!" }, { type: "danger" });
+									return;
+								}
 								if(self.validatePhone(params.phone) === false){
 									self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
 									return;

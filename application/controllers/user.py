@@ -117,14 +117,17 @@ async def update_profile(request):
     if currentUser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Phiên làm việc hết hạn!"}, status=520)
     data = request.json
-    if (data is None or "email" not in data or data["email"] is None or "phone" not in data or data["phone"] is None):
+    if (data is None or "email" not in data or data["email"] is None or "phone" not in data or data["phone"] is None or "macongdan" not in data or data["macongdan"] is None):
         return json({"error_code":"PARAM_ERROR","error_message":"Tham số không hợp lệ, vui lòng thực hiện lại sau!"}, status=520)
-    user = User.query.filter(or_(User.phone == data['phone'], User.email == data['email'])).filter(User.id != currentUser.id).first()
+    user = User.query.filter(or_(User.phone == data['phone'], User.email == data['email'], User.macongdan == data['macongdan'])).filter(User.id != currentUser.id).first()
     if user is not None:
         if user.email == data['email']:
-            return json({"error_code":"USER_EXISTED","error_message":"Email đã tồn tại trong hệ thống, vui lòng kiểm tra và đăng nhập lại!"}, status=520)
+            return json({"error_code":"USER_EXISTED","error_message":"Email đã tồn tại trong hệ thống, vui lòng kiểm tra lại!"}, status=520)
         elif data['phone'] is not None and user.phone == data['phone']:
-            return json({"error_code":"USER_EXISTED","error_message":"Số điện thoại đã tồn tại trong hệ thống, vui lòng kiểm tra và đăng nhập lại!"}, status=520)
+            return json({"error_code":"USER_EXISTED","error_message":"Số điện thoại đã tồn tại trong hệ thống, vui lòng kiểm tra lại!"}, status=520)
+        elif data['macongdan'] is not None and user.macongdan == data['macongdan']:
+            return json({"error_code":"USER_EXISTED","error_message":"Mã công dân đã tồn tại trong hệ thống, vui lòng kiểm tra lại!"}, status=520)
+
     
     user = db.session.query(User).filter(User.id == currentUser.id).first()
     if user is None:
@@ -133,8 +136,8 @@ async def update_profile(request):
     user.email = data['email']
     user.phone = data['phone']
     user.fullname = data['fullname']
-    if "macongdan" in data and data["macongdan"] is not None:
-        user.macongdan = data["macongdan"]
+    user.macongdan = data['macongdan']
+    
     db.session.commit()
     user_info = await get_user_with_permission(user)
     return json(user_info)
