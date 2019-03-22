@@ -42,12 +42,18 @@ define(function (require) {
 				sessionKey: self.collectionName +"_filter"
 			});
 			filter.render();
-			 
+			self.uiControl.orderBy = [{"field": "ten", "direction": "asc"}];
+
 			if(!filter.isEmptyFilter()) {
-    			var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-    			var filters = { "$or": [
-					{"ten": {"$likeI": text }},
-				] };
+				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+				var default_filter = self.uiControl.filters;
+				var filters = {"ten": {"$likeI": text }};
+				if (default_filter !==null  && default_filter!== ""){
+    				filters = { "$and": [
+    					filters,
+    					default_filter
+    				]};
+    			}
     			self.uiControl.filters = filters;
     		}
 			self.applyBindings();
@@ -57,18 +63,23 @@ define(function (require) {
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
 				if ($col) {
 					if (text !== null){
-						var filters = { "$or": [
-							{"ten": {"$likeI": text }},
-						]};
+						var default_filter = self.uiControl.filters;
+						var filters = {"ten": {"$likeI": text }};
+						if (default_filter !==null  && default_filter!== ""){
+		    				filters = { "$and": [
+		    					filters,
+		    					default_filter
+		    				]};
+		    			}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
-						self.uiControl.filters = null;
+						// self.uiControl.filters = null;
 					}
 				}
 				self.applyBindings();
-    		});
-	    	 return this;
+			});
+			return this;
 		},
 
 	});

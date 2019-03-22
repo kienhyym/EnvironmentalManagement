@@ -109,7 +109,7 @@ define(function (require) {
 						} else if (self.validatePhone(donvi_sodienthoai) === false) {
 							self.getApp().notify({ message: "Số điện thoại của đơn vị không đúng định dạng!" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
-							self.getApp().notify({ message: "Email không hợp lệ" }, { type: "danger" });
+							self.getApp().notify({ message: "Email không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
 							self.getApp().notify({ message: "Tên người dùng không được để trống!" }, { type: "danger" });
 						} else if  (phone == null || phone == ""){
@@ -157,15 +157,30 @@ define(function (require) {
 			var self = this;
 			self.model.on("change:donvi_tuyendonvi", function(){
 				var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
-				if (donvi_tuyendonvi.id === 2){
-					self.$el.find("#quanhuyen").hide();
-					self.$el.find("#xaphuong").hide();
+				if(donvi_tuyendonvi){
+					switch(donvi_tuyendonvi.id){
+						case 2: //cap tinh
+							self.model.set("quanhuyen", null);
+							self.model.set("xaphuong", null);
+							self.model.set("captren", null);
+							self.$el.find("#quanhuyen").hide();
+							self.$el.find("#xaphuong").hide();
+							break;
+						case 3: // cap huyen
+							self.model.set("xaphuong", null);
+							self.model.set("captren", null);
+							self.$el.find("#tinhthanh").show();
+							self.$el.find("#quanhuyen").show();
+							self.$el.find("#xaphuong").hide();
+							break;
+						default: 
+							self.$el.find("#tinhthanh").show();
+							self.$el.find("#quanhuyen").show();
+							self.$el.find("#xaphuong").show();
+							break;
+					}
 				}
-				if (donvi_tuyendonvi.id === 3){
-					self.$el.find("#xaphuong").hide();
-				}
-				
-			})
+			});
 			var id = this.getApp().getRouter().getParam("id");
 			if (id) {
 				this.model.set('id', id);
@@ -179,9 +194,79 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-				// console.log("self getFE===", self.getFieldElement("quanhuyen"));
-				// console.log("tinhthanhid====", self.model.get("tinhthanh_id"));
-				// self.getFieldElement("quanhuyen").data("gonrin").setFilters({ "tinhthanh_id": { "$eq": self.model.get("tinhthanh_id")}});
+				self.model.on("change", function(){
+					self.$el.find("#captren_input").prop('disabled', false);
+					var donvi_tuyendonvi_id = self.model.get("donvi_tuyendonvi_id");
+					var captren = self.model.get("captren");
+					var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi"); 
+					if (donvi_tuyendonvi_id == 2){
+						var filterobj = {"tuyendonvi_id": {"$eq": 1}}; 
+						self.getFieldElement("captren").data("gonrin").setFilters(filterobj);
+					} else if (donvi_tuyendonvi_id == 3){
+						if(!self.model.get("tinhthanh")){
+							self.$el.find("#captren_input").prop('disabled', true);
+							// self.$el.find("#captren").click(function(){
+							// 	self.getApp().notify({message: "Mời bạn chọn Tỉnh/Thành phố trước khi chọn Cơ quan cấp trên!"}, {type: "danger"});
+							// });
+						} else{
+							self.$el.find("#captren_input").prop('disabled', false);
+						}
+						var filters = { "$or": [
+							{"tuyendonvi_id": {"$lte": 2 }},
+							{"tuyendonvi_id": {"$gte": 10 }},
+						]};
+						var filterobj = {
+                            "$and": [
+                                {
+                                    "tinhthanh_id": {
+                                        "$eq": self.model.get("tinhthanh_id")
+                                    }
+                                },
+								filters
+                            ]
+						}
+						self.getFieldElement("captren").data("gonrin").setFilters(filterobj);
+					} else if(donvi_tuyendonvi_id == 4){
+						if(!self.model.get("quanhuyen")){
+							self.$el.find("#captren_input").prop('disabled', true);
+							// self.$el.find("#captren").click(function(){
+							// 	self.getApp().notify({message: "Mời bạn chọn Tỉnh/Thành phố trước khi chọn Cơ quan cấp trên!"}, {type: "danger"});
+							// });
+						} else{
+							self.$el.find("#captren_input").prop('disabled', false);
+						}
+						var filters = { "$or": [
+							{"tuyendonvi_id": {"$lte": 2 }},
+							{"tuyendonvi_id": {"$gte": 10 }},
+						]};
+						var filterobj = {
+                            "$and": [
+                                {
+                                    "quanhuyen_id": {
+                                        "$eq": self.model.get("quanhuyen_id")
+                                    }
+                                },
+								filters
+                            ]
+						}
+						self.getFieldElement("captren").data("gonrin").setFilters(filterobj);
+					} else {
+						self.getFieldElement("captren").data("gonrin").setFilters(null);
+					}
+				});
+				self.model.on("change:tinhthanh", function(){
+					if(self.model.previous("tinhthanh") === null || self.model.get("tinhthanh") === null || (self.model.get("tinhthanh") && self.model.previous("tinhthanh") 
+					&& self.model.previous("tinhthanh").id !== self.model.get("tinhthanh").id)){
+						self.model.set("quanhuyen", null);
+						self.model.set("xaphuong", null);
+					}
+				});
+				self.model.on("change:quanhuyen", function(){
+					if(self.model.previous("quanhuyen") === null || self.model.get("quanhuyen") === null || (self.model.get("quanhuyen") && self.model.previous("quanhuyen") 
+					&& self.model.previous("quanhuyen").id !== self.model.get("quanhuyen").id)){
+						self.model.set("xaphuong", null);
+					}
+				});
 			}
 
 		},

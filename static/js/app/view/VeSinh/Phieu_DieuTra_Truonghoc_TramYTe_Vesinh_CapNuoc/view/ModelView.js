@@ -242,7 +242,7 @@ define(function (require) {
                                     self.getApp().notify({message: "Bạn phải nhập số khu vệ sinh trong trường trạm trước khi thêm mới phiếu!"}, {type: "danger"});
                                     return;
                                 }
-                                if (!self.model.get("ten_truong_tramyte") && !self.model.get("ma_truong_tramyte")){
+                                if (!self.model.get("ten_truong_tramyte") || !self.model.get("ma_truong_tramyte")){
                                     self.getApp().notify({message: "Bạn phải nhập tên trường trạm và mã trường trạm trước khi thêm phiếu!"}, {type: "danger"});
                                     return;
                                 }

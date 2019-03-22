@@ -18,6 +18,22 @@ async def prepost_danhmuc(request=None, data=None, Model=None, **kw):
         if check_existed >0:
             return json({"error_code":"PARAMS_ERROR", "error_message":"Mã danh mục đã bị trùng, vui lòng chọn mã khác"}, status=520)
 
+async def preput_danhmuc(request=None, data=None, Model=None, **kw):
+    check_danhmuc = db.session.query(Model).filter(Model.id == data['id']).first()
+    if (check_danhmuc is not None and data is not None and str(check_danhmuc.id) == data['id'] and str(check_danhmuc.ma) == data['ma']):
+        check_danhmuc.ten = data['ten']
+    elif (check_danhmuc is not None and data is not None and str(check_danhmuc.id) == data['id'] and str(check_danhmuc.ma) != data['ma']):
+        check_existed = db.session.query(Model).filter(Model.ma == data['ma']).first()
+        if(check_existed is not None and str(check_existed.id) == data['id']):
+            check_danhmuc.ten = data['ten']
+            check_danhmuc.ma = data['ma']
+        elif(check_existed is None):
+            check_danhmuc.ten = data['ten']
+            check_danhmuc.ma = data['ma']
+        elif(check_existed is not None and str(check_existed.id) != data['id']):
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Mã danh mục đã bị trùng, vui lòng chọn mã khác"}, status=520)
+            
+
 async def prepost_put_danhmuc(request=None, data=None, Model=None, **kw):
     if "stt" in data:
         del data['stt']
@@ -89,7 +105,7 @@ async def entity_pregetmany_xaphuong(search_params=None, **kw):
 apimanager.create_api(XaPhuong, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[entity_pregetmany_xaphuong], POST=[auth_func, prepost_danhmuc, prepost_put_danhmuc], PUT_SINGLE=[auth_func, prepost_danhmuc, prepost_put_danhmuc]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[entity_pregetmany_xaphuong], POST=[auth_func, prepost_danhmuc, prepost_put_danhmuc], PUT_SINGLE=[auth_func, preput_danhmuc, prepost_put_danhmuc]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
     collection_name='xaphuong')
 
@@ -116,7 +132,7 @@ async def entity_pregetmany_thonxom(search_params=None, **kw):
 apimanager.create_api(ThonXom, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[entity_pregetmany_thonxom], POST=[auth_func, prepost_danhmuc, prepost_put_danhmuc], PUT_SINGLE=[auth_func, prepost_danhmuc, prepost_put_danhmuc]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[entity_pregetmany_thonxom], POST=[auth_func, prepost_danhmuc, prepost_put_danhmuc], PUT_SINGLE=[auth_func, preput_danhmuc, prepost_put_danhmuc]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
     collection_name='thonxom')
 

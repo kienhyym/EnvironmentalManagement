@@ -24,13 +24,29 @@ define(function (require) {
   			    	    	label: "TRANSLATE:SAVE",
   			    	    	command: function(){
   			    	    		var self = this;
-  			    	    		var currUser = self.getApp().currentUser;
+								var currUser = self.getApp().currentUser;
   			    	    		var params = {
   			    	    				macongdan: self.$el.find('#profile_macongdan').val(),
   			    	    				phone: self.$el.find('#profile_phone').val(),
   			    	    				email: self.$el.find('#profile_email').val(),
   			    	    				fullname: self.$el.find('#profile_name').val()
-  			    	    		}
+								}
+								if(!params.macongdan){
+									self.getApp().notify({ message: "Mã công dân không được để trống!" }, { type: "danger" });
+									return;
+								}
+								if(!params.fullname){
+									self.getApp().notify({ message: "Họ và tên không được để trống!" }, { type: "danger" });
+									return;
+								}
+								if(self.validatePhone(params.phone) === false){
+									self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
+									return;
+								}
+								if(self.validateEmail(params.email) === false){
+									self.getApp().notify({ message: "Email không hợp lệ, vui lòng kiểm tra!" }, { type: "danger" });
+									return;
+								}
   			    	    		$.ajax({
 	  				    				url: (self.getApp().serviceURL || "")+'/api/v1/user/changeprofile',
 	  				    				method: 'POST',
@@ -52,13 +68,19 @@ define(function (require) {
 	  				    			  		self.close();
 	  				    			  	},
 	  	  				    	    error: function (xhr, status, error) {
-										if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
-											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-											self.getApp().getRouter().navigate("login");
+										try{
+											if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
+												self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+												self.getApp().getRouter().navigate("login");
+											} else {
+												self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+											}
 										}
+										catch (err) {
 	  	  				    	    	// console.log(request)
 	  	  				    	    	self.getApp().hideloading();
-	  	  				    	        self.getApp().notify("Có lỗi xảy ra, Vui lòng thử lại sau");
+										self.getApp().notify("Có lỗi xảy ra, vui lòng thử lại sau");
+										}
 	  	  				    	        
 	  	  				    	    }
 	  				    			  	
@@ -93,7 +115,22 @@ define(function (require) {
     		 
     		this.applyBindings();
     		return this;
-    	},
+		},
+		validateEmail: function (email) {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(String(email).toLowerCase());
+		},
+		validatePhone: function(inputPhone) {
+			if (inputPhone == null || inputPhone == undefined) {
+				return false;
+			}
+            var phoneno = /(09|08|07|05|03)+[0-9]{8}/g;
+            const result = inputPhone.match(phoneno);
+            if (result && result == inputPhone) {
+                return true;
+            } else {
+                return false;
+            }
+		}	
     });
-
 });

@@ -142,6 +142,9 @@ require(['jquery', 'gonrin', 'app/router',
 				this.$toolbox = $('body').find(".tools-area");
 				this.nav = new Nav({el: this.$navbar});
 				self.nav.render();
+				if($('body').hasClass('page-navbar-closed') == true){
+					$('body').removeClass("page-navbar-closed");
+				}
 				self.hideloading();
 
 				$("#logo").unbind('click').bind('click', function () {

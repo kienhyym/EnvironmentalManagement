@@ -68,8 +68,8 @@ define(function (require) {
     	render:function(){
 			var self = this;
     		var currentUser = this.getApp().currentUser;
-	    	 if (this.getApp().data("quanhuyen_id") !== null) {
-               this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
+			if (this.getApp().data("quanhuyen_id") !== null) {
+				this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
             }
 			self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var filter = new CustomFilterView({
@@ -83,10 +83,14 @@ define(function (require) {
     			var query = { "$or": [
 					{"ten": {"$likeI": text }},
 				]};
-				var filters = {"$and": [
-					{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
-					query
-				]};
+				if (this.getApp().data("quanhuyen_id") !== null) {
+					var filters = {"$and": [
+						{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+						query
+					]};
+				} else {
+					var filters = query;
+				}
 				self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -99,10 +103,14 @@ define(function (require) {
 						var query = { "$or": [
 							{"ten": {"$likeI": text }},
 						]};
-						var filters = {"$and": [
-							{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
-							query
-						]};
+						if (this.getApp().data("quanhuyen_id") !== null) {
+							var filters = {"$and": [
+								{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+								query
+							]};
+						} else {
+							var filters = query;
+						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {

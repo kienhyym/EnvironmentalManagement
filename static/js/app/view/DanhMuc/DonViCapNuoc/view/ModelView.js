@@ -142,7 +142,7 @@ define(function (require) {
 									}
 								}
 								catch (err) {
-								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+								  self.getApp().notify({ message: "Lỗi ràng buộc, danh mục đang được sử dụng trong báo cáo!"}, { type: "danger", delay: 1000 });
 								}
 							}
 						});
