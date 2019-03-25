@@ -175,6 +175,7 @@ define(function (require) {
 							self.$el.find("#xaphuong").hide();
 							break;
 						default: 
+							self.model.set("captren", null);
 							self.$el.find("#tinhthanh").show();
 							self.$el.find("#quanhuyen").show();
 							self.$el.find("#xaphuong").show();
