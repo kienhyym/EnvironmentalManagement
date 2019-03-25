@@ -67,7 +67,7 @@ define(function (require) {
     	},
     	render:function(){
 			var self = this;
-    		var currentUser = this.getApp().currentUser;
+			var currentUser = this.getApp().currentUser;
 			if (this.getApp().data("quanhuyen_id") !== null) {
 				this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
             }
