@@ -140,6 +140,7 @@ define(function (require) {
 								error: function (xhr, status, error) {
 									try {
 										self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
 									}
 									catch (err) {
 										self.getApp().notify({ message: "Đăng kí thông tin không thành công!"}, { type: "danger", delay: 1000 });
@@ -236,7 +237,7 @@ define(function (require) {
 							self.$el.find("#captren_input").prop('disabled', false);
 						}
 						var filters = { "$or": [
-							{"tuyendonvi_id": {"$lte": 2 }},
+							{"tuyendonvi_id": {"$lte": 3 }},
 							{"tuyendonvi_id": {"$gte": 10 }},
 						]};
 						var filterobj = {

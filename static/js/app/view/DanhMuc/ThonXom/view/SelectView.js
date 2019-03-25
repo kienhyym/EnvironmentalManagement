@@ -76,10 +76,14 @@ define(function (require) {
     			var query = { "$or": [
 					{"ten": {"$likeI": text }},
 				]};
-				var filters = {"$and": [
-					{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
-					query
-				]};
+				if (this.getApp().data("xaphuong_id") !== null) {
+					var filters = {"$and": [
+						{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
+						query
+					]};
+				} else{
+					var filters = query;
+				}
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -92,10 +96,14 @@ define(function (require) {
 						var query = { "$or": [
 							{"ten": {"$likeI": text }},
 						]};
-						var filters = {"$and": [
-							{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
-							query
-						]};
+						if (this.getApp().data("xaphuong_id") !== null) {
+							var filters = {"$and": [
+								{"xaphuong_id": {"$eq": this.getApp().data("xaphuong_id")}},
+								query
+							]};
+						} else {
+							var filters = query;
+						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
