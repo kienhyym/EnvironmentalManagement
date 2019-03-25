@@ -236,7 +236,7 @@ define(function (require) {
 							self.$el.find("#captren_input").prop('disabled', false);
 						}
 						var filters = { "$or": [
-							{"tuyendonvi_id": {"$lte": 2 }},
+							{"tuyendonvi_id": {"$lte": 3 }},
 							{"tuyendonvi_id": {"$gte": 10 }},
 						]};
 						var filterobj = {
