@@ -73,10 +73,15 @@ define(function(require) {
 				var self = this;
 				var id = this.getApp().getRouter().getParam("id");
 				var nambaocao = self.model.get("nambaocao");
+				var ngaybaocao = self.model.get("ngaybaocao");
 				if(nambaocao === null || nambaocao === ""){
 					self.getApp().notify({message: "Chưa chọn năm báo cáo"},{type: "danger"});
 					return;
-				}else if(!self.model.get("donvicapnuoc")){
+				} else if(!ngaybaocao){
+					self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
+					return;
+				}
+				else if(!self.model.get("donvicapnuoc")){
                 	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "warning"});
                 	return;
                 }
