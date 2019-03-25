@@ -242,6 +242,7 @@ define(function (require) {
                                         self.getApp().getRouter().navigate("login");
                                     } else {
                                       self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                                      self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
                                     }
                                 }
                                 catch (err) {
