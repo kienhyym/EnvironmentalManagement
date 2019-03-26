@@ -48,16 +48,12 @@ async def baocao_preput_truong_tramyte(request=None, data=None, Model=None, **kw
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
 
     record = db.session.query(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc).filter(and_(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.kybaocao == data['kybaocao'], \
+                                                        Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.ma_truong_tramyte == data['ma_truong_tramyte'], \
                                                         Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.loaikybaocao == data['loaikybaocao'], \
-                                                        Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.nambaocao == data['nambaocao'], \
-                                                        Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.xaphuong_id == data['xaphuong_id'])).first()
-    
-    if (record is not None and data is not None and str(record.ma_truong_tramyte) == data['ma_truong_tramyte'] and str(record.id) == data['id']):
-        record.ma_truong_tramyte == data['ma_truong_tramyte']
-    elif (record is not None and data is not None and str(record.ma_truong_tramyte) != data['ma_truong_tramyte'] and str(record.id) != data['id']):
-        record.ma_truong_tramyte == data['ma_truong_tramyte']
-    elif (record is not None and data is not None and str(record.ma_truong_tramyte) == data['ma_truong_tramyte'] and str(record.id) != data['id']):
+                                                        Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc.nambaocao == data['nambaocao'])).first()
+    if (record is not None and str(record.id) != data['id']):
         return json({"error_code":"PARAMS_ERROR","error_message":"Mã trường trạm đã bị trùng, vui lòng kiểm tra lại!"}, status=520)
+    
 
 apimanager.create_api(Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
