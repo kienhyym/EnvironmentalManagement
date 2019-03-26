@@ -64,6 +64,7 @@ define(function (require) {
 					tinhthanh.hide();
 				}
 				self.$el.find("#remove_filter").unbind("click").bind("click", function(){
+					self.$el.find("#content_baocao").html("");
 					var nambaocao = self.$el.find("#namdanhgia").val("");
 					var kybaocao = $("#kydanhgia").data('gonrin').setValue(null);
 					var tinhthanh_id = self.$el.find("#tinhthanh input").data('gonrin').setValue("");

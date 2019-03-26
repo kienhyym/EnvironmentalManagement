@@ -261,12 +261,14 @@ define(function (require) {
 					&& self.model.previous("tinhthanh").id !== self.model.get("tinhthanh").id)){
 						self.model.set("quanhuyen", null);
 						self.model.set("xaphuong", null);
+						self.model.set("captren", null);
 					}
 				});
 				self.model.on("change:quanhuyen", function(){
 					if(self.model.previous("quanhuyen") === null || self.model.get("quanhuyen") === null || (self.model.get("quanhuyen") && self.model.previous("quanhuyen") 
 					&& self.model.previous("quanhuyen").id !== self.model.get("quanhuyen").id)){
 						self.model.set("xaphuong", null);
+						self.model.set("captren", null);
 					}
 				});
 			}
