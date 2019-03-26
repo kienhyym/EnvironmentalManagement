@@ -225,7 +225,7 @@ define(function (require) {
                     else if(!self.model.get("nguoikiemtra")){
                     	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
                     } 
-                    else if(somauvavitri <= 0){
+                    else if(somauvavitri < 0){
                         self.getApp().notify({message: "Số mẫu và vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
                     } else {
                         self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
@@ -289,6 +289,19 @@ define(function (require) {
         }],
         render: function () {
             var self = this;
+            var somauvavitri = self.model.get("somauvavitri");
+			if (somauvavitri == 0){
+				self.$el.find("#addItem").prop('disabled', true);
+			}
+			self.model.on("change:somauvavitri", function(){
+				var somauvavitri = self.model.get("somauvavitri");
+				if (somauvavitri == 0){
+                    self.$el.find("#addItem").prop('disabled', true);
+                    self.$el.find("#danhsachvitrilaymau").html("");
+				} else {
+					self.$el.find("#addItem").prop('disabled', false);
+				}
+			});
             var ketquanoikiemchatluongnuoc = self.model.get("ketquanoikiemchatluongnuoc");
             if (ketquanoikiemchatluongnuoc == null){
             	self.$el.find("[id=removeButton]").hide();
@@ -367,6 +380,13 @@ define(function (require) {
                 self.prepareBaocao();
                 self.onChangeEvents();
                 self.model.on("change:somauvavitri", function () {
+                    var somauvavitri = self.model.get("somauvavitri");
+                    if (somauvavitri == 0){
+                        self.$el.find("#addItem").prop('disabled', true);
+                        self.$el.find("#danhsachvitrilaymau").html("");
+                    } else{
+                        self.$el.find("#addItem").prop('disabled', false);
+                    }
                     self.changeSoMau();
                 });
                 self.applyBindings();

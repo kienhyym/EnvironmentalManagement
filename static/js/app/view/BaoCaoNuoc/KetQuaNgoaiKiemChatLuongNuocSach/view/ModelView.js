@@ -352,6 +352,19 @@ define(function (require) {
         }],
         render: function () {
 			var self = this;
+			var somauvavitri = self.model.get("somauvavitri");
+			if (somauvavitri == 0){
+				self.$el.find("#addItem").prop('disabled', true);
+			}
+			self.model.on("change:somauvavitri", function(){
+				var somauvavitri = self.model.get("somauvavitri");
+				if (somauvavitri == 0){
+					self.$el.find("#addItem").prop('disabled', true);
+					self.$el.find("#danhsachvitrilaymau").html("");
+				} else {
+					self.$el.find("#addItem").prop('disabled', false);
+				}
+			});
             var ketquangoaikiemchatluongnuoc = self.model.get("ketquangoaikiemchatluongnuoc");
             if (ketquangoaikiemchatluongnuoc == null){
             	self.$el.find("[id=removeButton]").hide();
@@ -405,6 +418,13 @@ define(function (require) {
             } else {
             	self.prepareBaocao();
                 self.model.on("change:somauvavitri", function () {
+					var somauvavitri = self.model.get("somauvavitri");
+                    if (somauvavitri == 0){
+                        self.$el.find("#addItem").prop('disabled', true);
+                        self.$el.find("#danhsachvitrilaymau").html("");
+                    } else {
+                        self.$el.find("#addItem").prop('disabled', false);
+                    }
                     self.changeSoMau();
                 });
                 self.onChangeEvents();
