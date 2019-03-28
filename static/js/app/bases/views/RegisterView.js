@@ -160,6 +160,9 @@ define(function (require) {
 				var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi");
 				if(donvi_tuyendonvi){
 					switch(donvi_tuyendonvi.id){
+						case 1:
+							self.$el.find("#captren").hide();
+							break;
 						case 2: //cap tinh
 							self.model.set("quanhuyen", null);
 							self.model.set("xaphuong", null);
@@ -196,12 +199,16 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
+				if(!self.model.get("donvi_tuyendonvi")){
+					self.getFieldElement("captren").data("gonrin").setFilters(null);
+					self.$el.find("#captren_input").prop('disabled', true);
+				}
 				self.model.on("change", function(){
 					self.$el.find("#captren_input").prop('disabled', false);
 					var donvi_tuyendonvi_id = self.model.get("donvi_tuyendonvi_id");
 					var captren = self.model.get("captren");
 					var donvi_tuyendonvi = self.model.get("donvi_tuyendonvi"); 
-					if (donvi_tuyendonvi_id == 2){
+					if (donvi_tuyendonvi_id == 2 || donvi_tuyendonvi_id == 10 ){
 						var filterobj = {"tuyendonvi_id": {"$eq": 1}}; 
 						self.getFieldElement("captren").data("gonrin").setFilters(filterobj);
 					} else if (donvi_tuyendonvi_id == 3){
@@ -261,12 +268,14 @@ define(function (require) {
 					&& self.model.previous("tinhthanh").id !== self.model.get("tinhthanh").id)){
 						self.model.set("quanhuyen", null);
 						self.model.set("xaphuong", null);
+						self.model.set("captren", null);
 					}
 				});
 				self.model.on("change:quanhuyen", function(){
 					if(self.model.previous("quanhuyen") === null || self.model.get("quanhuyen") === null || (self.model.get("quanhuyen") && self.model.previous("quanhuyen") 
 					&& self.model.previous("quanhuyen").id !== self.model.get("quanhuyen").id)){
 						self.model.set("xaphuong", null);
+						self.model.set("captren", null);
 					}
 				});
 			}

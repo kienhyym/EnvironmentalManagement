@@ -209,49 +209,32 @@ define(function (require) {
                 label: "TRANSLATE:SAVE",
                 command: function () {
                     var self = this;
-                    var nambaocao = self.model.get("nambaocao");
-                    var somauvavitri = self.model.get("somauvavitri");
-                	if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
-                    	self.getApp().notify({message: "Năm báo cáo không hợp lệ!"},{type: "danger"});
-                    } else if(!self.model.get("ngaybaocao")){
-                    	self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
+                    if(!self.validate()){
+                        return;
                     }
-                    else if(!self.model.get("donvicapnuoc")){
-                    	self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
-                    }
-                    else if(!self.model.get("thoigiankiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
-                    }
-                    else if(!self.model.get("nguoikiemtra")){
-                    	self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
-                    } 
-                    else if(somauvavitri < 0){
-                        self.getApp().notify({message: "Số mẫu và vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
-                    } else {
-                        self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
-	                    self.model.save(null, {
-	                        success: function (model, respose, options) {
-	                            self.getApp().notify("Lưu thông tin thành công");
-                                self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
-                                self.getApp().getRouter().navigate(self.collectionName + "/collection");
-	                        },
-	                        error: function (xhr, status, error) {
-                                try {
-                                    if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-                                        self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-                                        self.getApp().getRouter().navigate("login");
-                                    } else {
-                                      self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-                                      self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
-                                    }
-                                }
-                                catch (err) {
-                                  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
-                                  self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
+                    self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', true);
+                    self.model.save(null, {
+                        success: function (model, respose, options) {
+                            self.getApp().notify("Lưu thông tin thành công");
+                            self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
+                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                        },
+                        error: function (xhr, status, error) {
+                            try {
+                                if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+                                    self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+                                    self.getApp().getRouter().navigate("login");
+                                } else {
+                                    self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+                                    self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
                                 }
                             }
-	                    });
-                   }
+                            catch (err) {
+                                self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
+                                self.$el.find(".toolbar .btn-group .btn-success[btn-name='save']").prop('disabled', false);
+                            }
+                        }
+                    });
                 }
             },
             {
@@ -726,5 +709,42 @@ define(function (require) {
 				}
 			}
         },
+        validate: function(){
+            var self = this;
+            var nambaocao = self.model.get("nambaocao");
+            var somauvavitri = self.model.get("somauvavitri");
+            var danhsachvitrilaymau = self.model.get("danhsachvitrilaymau");
+            if(toInt(nambaocao)<1900 || toInt(nambaocao)>3000){
+                self.getApp().notify({message: "Năm báo cáo không hợp lệ!"},{type: "danger"});
+                return false;
+            }
+            if(!self.model.get("ngaybaocao")){
+                self.getApp().notify({message: "Chưa chọn ngày báo cáo"},{type: "danger"});
+                return false;
+            }
+            if(!self.model.get("donvicapnuoc")){
+                self.getApp().notify({message: "Chưa chọn tên đơn vị cấp nước"},{type: "danger"});
+                return false;
+            }
+            if(!self.model.get("thoigiankiemtra")){
+                self.getApp().notify({message: "Chưa chọn thời gian kiểm tra"},{type: "danger"});
+                return false;
+            }
+            if(!self.model.get("nguoikiemtra")){
+                self.getApp().notify({message: "Chưa chọn người kiểm tra"},{type: "danger"});
+                return false;
+            } 
+            if(somauvavitri < 0){
+                self.getApp().notify({message: "Số mẫu và vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
+                return false;
+            }
+            for(var i = 0; i< danhsachvitrilaymau.length; i++){
+                if(danhsachvitrilaymau[i].ngaykiemtra == null){
+                    self.getApp().notify({message: "Ngày lấy mẫu không hợp lệ!"},{type: "danger"});
+                    return false;
+                }
+            }
+            return true;
+        }
     });
 });
