@@ -150,27 +150,6 @@ define(function (require) {
 						}
 					}
 				},
-				// {
-				// 	name: "excel",
-				// 	type: "button",
-				// 	buttonClass: "btn-sm btn-secondary",
-				// 	label: "Xuất Excel",
-				// 	command: function () {
-				// 		var self = this;
-				// 		var doc = new jsPDF();
-				// 		var source = $('#exportPDF')[0];
-				// 		console.log("source=====", source);
-				// 		doc.fromHTML(source, 15, 15, {
-				// 			'width': 170,
-				// 		});
-				// 		// doc.save('test.pdf');
-				// 		doc.output("datauri");
-				
-				// 	},
-				// 	visible: function () {
-				// 		return this.getApp().getRouter().getParam("id") !== null;
-				// 	}
-				// },
 				{
 					name: "count",
 					type: "button",
@@ -207,6 +186,21 @@ define(function (require) {
 								}
 							}
 						});
+					}
+				},
+				{
+					name: "export_pdf",
+					type: "button",
+					buttonClass: "btn-warning btn-sm",
+					label: "TRANSLATE:EXPORT_PDF",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") !== null;
+					},
+					command: function () {
+						var self = this;
+						var filename = "baocao_"+self.model.get("tenxa")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
+						console.log("filename", filename);
+						self.getApp().exportPDF_HTML2PDF("content",filename);
 					}
 				},
 				{

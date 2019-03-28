@@ -11,9 +11,9 @@
 		<h4>Biểu mẫu đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Xã/Phường</h4>
 	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content" id="exportPDF">
+	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-		<div class="row" style="margin-top: 30px;">
+		<div data-html2canvas-ignore class="row" style="margin-top: 30px;">
 			<div class="form-inline form-group col-md-6">
 				<label>Năm báo cáo:</label>
 				<input type="text" placeholder="YYYY" class="form-control" data-bind="value:nambaocao">
@@ -39,7 +39,7 @@
 								<td rowspan="2">Xã/Phường</td>
 								<td><input id="xaphuong" type="text" class="form-control" data-bind="dict:xaphuong" /></td>
 								<td rowspan="2">Số thôn trong xã</td>
-								<td rowspan="2"><input type="number" disabled class="form-control" data-bind="value:tong_sothon" /></td>
+								<td rowspan="2" class="text-center"><span data-bind="text:tong_sothon"></span></td>
 							</tr>
 
 							<tr>
@@ -49,29 +49,29 @@
 
 							<tr>
 								<td rowspan="3">Tổng số hộ trong xã</td>
-								<th rowspan="3"><span class="form-control" data-bind="text:tong_soho" disabled></span></th>
+								<th rowspan="3" class="text-center"><span data-bind="text:tong_soho"></span></th>
 								<td>Hộ có nữ là chủ hộ</td>
-								<td><span class="form-control" data-bind="text:tong_chuholanu" disabled></span></td>
+								<td class="text-center"><span data-bind="text:tong_chuholanu"></span></td>
 							</tr>
 							<tr>
 
 								<td>Số hộ nghèo</td>
-								<td><span class="form-control" data-bind="text:tong_sohongheo" disabled></span></td>
+								<td class="text-center"><span data-bind="text:tong_sohongheo"></span></td>
 							</tr>
 							<tr>
 
 								<td>Số hộ là DTTS</td>
-								<td><span class="form-control" data-bind="text:tong_sohodtts" disabled></span></td>
+								<td class="text-center"><span data-bind="text:tong_sohodtts"></span></td>
 							</tr>
 							<tr>
 								<td rowspan="2">Tổng dân số trong xã</td>
-								<td rowspan="2"><span class="form-control" data-bind="text:tong_danso" disabled></span></td>
+								<td rowspan="2" class="text-center"><span data-bind="text:tong_danso"></span></td>
 								<td>Nữ</td>
-								<td><span disabled class="form-control" data-bind="text:tong_nu"></span></td>
+								<td class="text-center"><span data-bind="text:tong_nu"></span></td>
 							</tr>
 							<tr>
 								<td>Nam</td>
-								<td><span disabled class="form-control" data-bind="text:tong_nam"></span></td>
+								<td class="text-center"><span data-bind="text:tong_nam"></span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -82,7 +82,7 @@
 			<div class="col-md-7">
 				<h3 style="margin-bottom: 10px;">II. Thông tin về nhà tiêu HVS</h3>
 			</div>
-			<div class="col-md-5">
+			<div data-html2canvas-ignore class="col-md-5">
 				<input type="text" class="form-control" id="search_data" placeholder="Nhập tên thôn...">
 			</div>
 		</div>
