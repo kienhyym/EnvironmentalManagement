@@ -887,13 +887,9 @@ define(function (require) {
 			self.model.on("change:tongsomau_dat_quychuan", function(){
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
 				var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
-				var tongsomau_khongdat_quychuan = self.model.get("tongsomau_khongdat_quychuan");
 				var tylemau_datquychuan = 0;
 				if(toInt(tongsomau_dat_quychuan) > toInt(tongsomau_thunghiem)){
 					self.getApp().notify({message: "Tổng số mẫu đạt quy chuẩn không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
-				}
-				if (toInt(tongsomau_dat_quychuan) + toInt(tongsomau_khongdat_quychuan) > toInt(tongsomau_thunghiem)){
-					self.getApp().notify({message: "Tổng số mẫu làm thử nghiệm không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
 				}
 				if(toInt(tongsomau_thunghiem)>0){
 					tylemau_datquychuan = (tongsomau_dat_quychuan*100/tongsomau_thunghiem).toFixed(2);
@@ -902,14 +898,10 @@ define(function (require) {
 			});
 			self.model.on("change:tongsomau_khongdat_quychuan", function(){
 				var tongsomau_thunghiem = self.model.get("tongsomau_thunghiem");
-				var tongsomau_dat_quychuan = self.model.get("tongsomau_dat_quychuan");
 				var tongsomau_khongdat_quychuan = self.model.get("tongsomau_khongdat_quychuan");
 				var tyle = 0;
 				if(toInt(tongsomau_khongdat_quychuan) > toInt(tongsomau_thunghiem)){
 					self.getApp().notify({message: "Tổng số mẫu không đạt quy chuẩn không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
-				}
-				if (toInt(tongsomau_dat_quychuan) + toInt(tongsomau_khongdat_quychuan) > toInt(tongsomau_thunghiem)){
-					self.getApp().notify({message: "Tổng số mẫu làm thử nghiệm không hợp lệ, vui lòng kiểm tra lại!"}, {type: "danger"})
 				}
 				if(toInt(tongsomau_thunghiem)>0){
 					tyle = (tongsomau_khongdat_quychuan*100/tongsomau_thunghiem).toFixed(2);
