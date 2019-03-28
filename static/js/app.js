@@ -299,8 +299,8 @@ require(['jquery', 'gonrin', 'app/router',
 				  }
 				};
 				
-				 // var pdf = new jsPDF('p', 'pt', 'a4');
-				  var pdf = new jsPDF('p', 'pt', 'letter');
+				  var pdf = new jsPDF('p', 'pt', 'a4');
+//				  var pdf = new jsPDF('p', 'pt', 'letter');
 				  //A4 - 595x842 pts
 				  //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
 				  var source = $("#"+elementID).html();
@@ -320,8 +320,8 @@ require(['jquery', 'gonrin', 'app/router',
 				      'width': margins.width,
 				      'table_2'           : true,
 			          'table_2_scaleBasis': 'font', // 'font' or 'width'
-			          'table_2_fontSize'  : 13,
-			          pagesplit: true
+//			          'table_2_fontSize'  : 13,
+//			          pagesplit: true
 				    },
 				    function(dispose) {
 				      // dispose: object with X, Y of the last line add to the PDF 
@@ -330,49 +330,39 @@ require(['jquery', 'gonrin', 'app/router',
 				    }, margins);
 				  
 			},
+			exportPDF_HTML2PDF: function(elementID, filename){
+				var element = document.getElementById('content');
+				var opt = {
+				  margin:       [20,5,5,10],
+				  filename:     filename,
+				  image:        { type: 'jpeg', quality: 0.98 },
+				  pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+				  html2canvas:  {allowTaint:true, onclone: function(doc) 
+					  {doc.querySelector('#content').style.transform = 'none'} },
+				  jsPDF:{
+					  orientation: 'p',
+					  unit: 'mm',
+					  format: 'ledger',
+					  hotfixes: [] // an array of hotfix strings to enable
+					 }
+//				  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+				};
+				html2pdf().set(opt).from(element).save();
+			},
 			exportToPDF_canvas: function(elementID, filename){
-//				var specialElementHandlers = {
-//						  // element with id of "bypass" - jQuery style selector
-//						  '#ignorePDF': function(element, renderer) {
-//						    // true = "handled elsewhere, bypass text extraction"
-//						    return true;
-//						  }
-//						};
-				
+				var specialElementHandlers = {
+						  // element with id of "bypass" - jQuery style selector
+						  '#ignorePDF': function(element, renderer) {
+						    // true = "handled elsewhere, bypass text extraction"
+						    return true;
+						  }
+						};
 				 // var pdf = new jsPDF('p', 'pt', 'a4');
 				  var pdf = new jsPDF('p', 'pt', 'letter');
-				  //A4 - 595x842 pts
-				  //https://www.gnu.org/software/gv/manual/html_node/Paper-Keywords-and-paper-size-in-points.html
-
-//				  //Html source 
-				  
-//				  var margins = {
-//				    top: 10,
-//				    bottom: 10,
-//				    left: 10,
-//				    width: 595
-//				  };
-//
-//				  doc.fromHTML(
-//					source, // HTML string or DOM elem ref.
-//				    margins.left,
-//				    margins.top, {
-//				      'width': margins.width,
-//				      'elementHandlers': specialElementHandlers
-//				    },
-//				    function(dispose) {
-//				      // dispose: object with X, Y of the last line add to the PDF 
-//				      //          this allow the insertion of new lines after html
-//				      doc.save(filename+'.pdf');
-//				    }, margins);
 				  
 				  var quotes = document.getElementById(elementID);
-				  console.log("quotes===",quotes);
 				  html2canvas(quotes, {
 			            onrendered: function (canvas) {
-
-
-
 			                for (var i = 0; i <= quotes.clientHeight / 980; i++) {
 			                    //! This is all just html2canvas stuff
 			                    var srcImg = canvas;
