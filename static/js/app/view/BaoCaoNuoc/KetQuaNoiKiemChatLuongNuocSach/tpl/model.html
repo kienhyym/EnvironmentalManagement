@@ -109,7 +109,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <td><label>Số mẫu và vị trí lấy mẫu nước: </label></td>
-                    <td><input type="number" class="form-control" data-bind="value:somauvavitri" /></td>
+                    <td><input type="number" min="0" class="form-control" data-bind="value:somauvavitri" /></td>
                 </div>
                 <div class="col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
                     <table class="table is-table">
@@ -135,11 +135,13 @@
                         <th rowspan="2" class="background-colorTH text-center">STT</th>
                         <th rowspan="2" style="max-width: 400px; min-width: 400px;" class="background-colorTH text-center">Các thông số</th>
                         <th id="ketquathunghiem" class="background-colorTH text-center">Kết quả thử nghiệm</th>
-                        <th style="min-width: 150px" rowspan="2" class="background-colorTH text-center">Giới hạn tối đa cho phép</th>
+                        <th style="min-width: 150px" colspan="2" class="background-colorTH text-center">Giới hạn</th>
                         <th style="min-width: 150px" rowspan="2" class="background-colorTH text-center">Đánh giá (đạt/không đạt)</th>
                     </tr>
                     <tr>
-                        <th id="mauvitri_header_before"></th>
+                        <th class="background-colorTH text-center" id="mauvitri_header_before"></th>
+                        <th class="background-colorTH text-center">Tối thiểu</th>
+                        <th class="background-colorTH text-center">Tối đa</th>
                     </tr>
                 </thead>
                 <tbody id="ketquanoikiemchatluongnuoc"></tbody>

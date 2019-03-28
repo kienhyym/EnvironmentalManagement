@@ -211,6 +211,7 @@ define(function (require) {
 									
 									self.applyBindings();
 									self.renderTinhTongI();
+									self.check_chuongtrinhSUP();
 									self.search_dshogiadinh();
 									
 									

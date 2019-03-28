@@ -84,7 +84,7 @@ define(function (require) {
 						},
 						{
 							value: 2,
-							text: "Thẩm đội",
+							text: "Thấm đội",
                         },
                         {
 							value: 3,

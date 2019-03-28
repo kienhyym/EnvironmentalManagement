@@ -139,6 +139,18 @@ async def prepost_KetQuaNoiKiemChatLuongNuocSach(request=None, data=None, Model=
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
 
+async def preput_KetQuaNoiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    record = db.session.query(KetQuaNoiKiemChatLuongNuocSach).filter(and_(KetQuaNoiKiemChatLuongNuocSach.donvicapnuoc_id == data['donvicapnuoc_id'], \
+                                                            KetQuaNoiKiemChatLuongNuocSach.ngaybaocao == data['ngaybaocao'], \
+                                                            KetQuaNoiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).first()
+    if (record is not None and str(record.id) != data['id']):
+        return json({"error_code":"PARAMS_ERROR","error_message":"Ngày báo cáo bị trùng, vui lòng kiểm tra lại!"}, status=520)
+
 
 
 async def prepost_tonghopketqua_chatluongnuoc(request=None, data=None, Model=None, **kw):
@@ -955,7 +967,7 @@ async def process_baocao_vien_chuyennganh_ngoaikiem(currentuser=None, data=None)
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func, prepost_KetQuaNoiKiemChatLuongNuocSach], PUT_SINGLE=[auth_func, preput_KetQuaNoiKiemChatLuongNuocSach], DELETE_SINGLE=[auth_func]),
     collection_name='ketqua_noikiem_chatluong_nuocsach')
 
 
