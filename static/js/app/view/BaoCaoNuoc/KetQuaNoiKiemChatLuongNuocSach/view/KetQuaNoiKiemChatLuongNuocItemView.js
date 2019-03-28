@@ -55,6 +55,7 @@ define(function (require) {
                 self.$el.find("[id=danhgiathongso]").text("Không Đạt");
             }
             var ketquakiemtra = self.model.get("ketquakiemtra");
+            console.log("ketquakiemtra");
             $.each(ketquakiemtra, function (idx, obj) {
                 var view = new MauViTriItemView();
                 view.model.set(obj);
