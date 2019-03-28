@@ -8,6 +8,7 @@ define({
         "SELECT": "Chọn",
         "CANCEL": "Huỷ",
         "CLOSE": "Đóng",
+        "EXPORT_PDF":"Xuất PDF",
         "no_records_found":"Chưa có dữ liệu"
     }
 });
