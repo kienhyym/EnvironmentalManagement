@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông - Cấp Tỉnh/Thành phố</h3>
+		<h3>Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông - Cấp Huyện</h3>
 	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
@@ -14,6 +14,7 @@
 				<input id="kydanhgia" disabled type="text" class="form-control">
 			</div>
 		</div>
+
 		<div class="table1">
 			<h3 style="margin-bottom:10px;">I. Thông tin chung</h3>
 			<div class="row">
@@ -21,20 +22,22 @@
 					<table class="table is-table">
 						<tbody>
 							<tr>
-								<td class="col-md-6">Tỉnh/Thành phố</td>
-								<td class="col-md-6"><input id="tinhthanh" type="text" class="form-control" data-bind="dict:tinhthanh" /></td>
+								<td width="25%">Tỉnh/Thành phố</td>
+								<td width="25%"><input id="tinhthanh" type="text" class="form-control" data-bind="dict:tinhthanh" /></td>
+								<td width="25%">Quận/Huyện</td>
+								<td width="25%"><input id="quanhuyen" type="text" class="form-control" data-bind="dict:quanhuyen" /></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">1. Xây dựng dự thảo kế hoạch BCC</td>
-								<td class="col-md-6"><input type="text" class="form-control" data-bind="value:tiendo_xaydung" /></td>
+								<td colspan="2">1. Xây dựng dự thảo kế hoạch BCC</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_xaydung" /></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">2. VIHEMA và WB rà soát, chấp thuận bản kế hoạch BCC</td>
-								<td class="col-md-6"><input type="text" class="form-control" data-bind="value:tiendo_rasoat" /></td>
+								<td colspan="2">2. VIHEMA và WB rà soát, chấp thuận bản kế hoạch BCC</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:tiendo_rasoat" /></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">3. Tỉnh phê duyệt kế hoạch BCC</td>
-								<td class="col-md-6">
+								<td colspan="2">3. Tỉnh phê duyệt kế hoạch BCC</td>
+								<td colspan="2">
 									<input type="text" class="form-control" data-bind="value:tiendo_pheduyet" />
 									<div class="row hide" id="pheduyet_extra" style="margin-top: 13px">
 										<div class="col-lg-7 form-group"><span class="glyphicon glyphicon-arrow-right"></span> Ngày/tháng/năm phê
@@ -46,26 +49,26 @@
 											<span class="glyphicon glyphicon-arrow-right"></span> Số hoạt động BCC cốt lõi trong kế hoạch phê duyệt
 										</div>
 										<div class="col-lg-5 form-group">
-											<input type="number" min="0" data-bind="value:sohoatdong_cotloi_pheduyet" />
+											<input type="text" data-bind="value:sohoatdong_cotloi_pheduyet" />
 										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<td class="col-md-6">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
-								<td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:sohoatdong_cotloi_hoanthanh" /></td>
+								<td colspan="2">4. Số hoạt động BCC cốt lõi đã hoàn thành đến thời điểm báo cáo</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:sohoatdong_cotloi_hoanthanh" /></td>
 							</tr>
 							<!-- <tr>
-								<td class="col-md-6">Ngành</td>
-								<td class="col-md-6"><input type="text" class="form-control" data-bind="dict:nganh"/></td>
+								<td colspan="2">Ngành</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="dict:nganh"/></td>
 							</tr> -->
 							<tr>
-								<td class="col-md-6">Tổng số giảng viên cấp tỉnh</td>
-								<td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:giangvien" /></td>
+								<td colspan="2">Tổng số giảng viên cấp huyện</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:giangvien" /></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Tổng số giảng viên cấp tỉnh là nữ</td>
-								<td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:giangvien_nu" /></td>
+								<td colspan="2">Tổng số giảng viên cấp huyện là nữ</td>
+								<td colspan="2"><input type="text" class="form-control" data-bind="value:giangvien_nu" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -81,7 +84,6 @@
 				<input type="text" class="form-control" id="search_data" placeholder="Nhập tên hoạt động...">
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-md-12">
 				<table class="table table-align is-table">
@@ -115,7 +117,7 @@
 						</tr>
 						<tr>
 							<td colspan="4" class="text-left" style="color: red; font-weight: bold;">Hoạt động
-								cấp tỉnh</td>
+								cấp huyện</td>
 							<td></td>
 							<td></td>
 							<td></td>

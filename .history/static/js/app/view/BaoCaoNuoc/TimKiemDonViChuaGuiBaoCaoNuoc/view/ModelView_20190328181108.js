@@ -69,6 +69,7 @@ define(function (require) {
 						self.$el.find("#quanhuyen input").data('gonrin').setValue(null);
 					}
 					self.$el.find("#content_baocao").html("");
+					// self.$el.find("#quanhuyen").html("");
 					var nambaocao = self.$el.find("#namdanhgia").val("");
 					var kybaocao = $("#kydanhgia").data('gonrin').setValue(null);
 					var tinhthanh_id = self.$el.find("#tinhthanh input").data('gonrin').setValue("");

@@ -64,10 +64,6 @@ define(function (require) {
 					tinhthanh.hide();
 				}
 				self.$el.find("#remove_filter").unbind("click").bind("click", function(){
-					var donvi_id = currentUser.donvi.id;
-					if (donvi_id == 2){
-						self.$el.find("#quanhuyen input").data('gonrin').setValue(null);
-					}
 					self.$el.find("#content_baocao").html("");
 					var nambaocao = self.$el.find("#namdanhgia").val("");
 					var kybaocao = $("#kydanhgia").data('gonrin').setValue(null);
