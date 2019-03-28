@@ -184,7 +184,7 @@ define(function (require) {
 					},
 					command: function () {
 						var self = this;
-						var filename = "baocao_"+self.model.get("tenxa")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
+						var filename = "Báo Cáo "+self.model.get("tenhuyen")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
 						self.getApp().exportPDF_HTML2PDF("content",filename);
 					}
 				},
