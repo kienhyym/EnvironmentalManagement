@@ -285,21 +285,8 @@ define(function (require) {
 //						xepOnline.Formatter.Format('content',{render:'download', "filename":filename
 //				            });
 //						self.getApp().exportToPDF("content",filename);
-						
-						var element = document.getElementById('content');
-						var opt = {
-						  margin:       0,
-						  filename:     filename,
-						  image:        { type: 'jpeg', quality: 0.98 },
-						  pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
-						  html2canvas:  { scale: 2 },
-						  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-						};
-
-						// New Promise-based usage:
-						html2pdf().set(opt).from(element).save();
-//						var element = $("#content");
-//						var worker = html2pdf().from(element,"element").save(filename);
+//						self.getApp().exportToPDF_canvas("content",filename);
+						self.getApp().exportPDF_HTML2PDF("content",filename);
 					}
 				},
 			],
