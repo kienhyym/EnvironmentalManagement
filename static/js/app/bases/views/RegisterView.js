@@ -102,7 +102,7 @@ define(function (require) {
 
 						if (donvi_ten == null || donvi_ten == "") {
 							self.getApp().notify({ message: "Tên đơn vị không được để trống!" }, { type: "danger" });
-						} else if (captren == null || captren == undefined) {
+						} else if (donvi_tuyendonvi.id !== 1 && (captren == null || captren == undefined)) {
 							self.getApp().notify({ message: "Chưa chọn cơ quan cấp trên!" }, { type: "danger" });
 						} else if (donvi_sodienthoai == null || donvi_sodienthoai == "") {
 							self.getApp().notify({ message: "Số điện thoại của đơn vị không được để trống!" }, { type: "danger" });
@@ -167,18 +167,21 @@ define(function (require) {
 							self.model.set("quanhuyen", null);
 							self.model.set("xaphuong", null);
 							self.model.set("captren", null);
+							self.$el.find("#captren").show();
 							self.$el.find("#quanhuyen").hide();
 							self.$el.find("#xaphuong").hide();
 							break;
 						case 3: // cap huyen
 							self.model.set("xaphuong", null);
 							self.model.set("captren", null);
+							self.$el.find("#captren").show();
 							self.$el.find("#tinhthanh").show();
 							self.$el.find("#quanhuyen").show();
 							self.$el.find("#xaphuong").hide();
 							break;
 						default: 
 							self.model.set("captren", null);
+							self.$el.find("#captren").show();
 							self.$el.find("#tinhthanh").show();
 							self.$el.find("#quanhuyen").show();
 							self.$el.find("#xaphuong").show();
