@@ -270,6 +270,37 @@ define(function (require) {
 						});
 					}
 				},
+				{
+					name: "export_pdf",
+					type: "button",
+					buttonClass: "btn-danger btn-sm",
+					label: "TRANSLATE:EXPORT_PDF",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") !== null;
+					},
+					command: function () {
+						var self = this;
+						var filename = "baocao_"+self.model.get("tenthon")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
+//						xepOnline.Formatter.Format('content',{render:'download', "filename":filename
+//				            });
+//						self.getApp().exportToPDF("content",filename);
+						
+						var element = document.getElementById('content');
+						var opt = {
+						  margin:       0,
+						  filename:     filename,
+						  image:        { type: 'jpeg', quality: 0.98 },
+						  pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+						  html2canvas:  { scale: 2 },
+						  jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+						};
+
+						// New Promise-based usage:
+						html2pdf().set(opt).from(element).save();
+//						var element = $("#content");
+//						var worker = html2pdf().from(element,"element").save(filename);
+					}
+				},
 			],
 		}],
 		render: function () {
