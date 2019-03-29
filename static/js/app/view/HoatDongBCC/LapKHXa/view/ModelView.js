@@ -408,30 +408,30 @@ define(function (require) {
 				self.getApp().notify({message: "Chưa chọn xã phường!"},{type: "danger"});
 				return;
 			}
-			if (self.model.get("tiendo_xaydung") === null || self.model.get("tiendo_xaydung") === "") {
-				self.getApp().notify({message: "Tiến độ xây dựng không hợp lệ!"},{type: "danger"});
-				return;
-			}
-			if (self.model.get("tiendo_rasoat") === null || self.model.get("tiendo_rasoat") === "") {
-				self.getApp().notify({message: "Tiến độ rà soát không hợp lệ!"},{type: "danger"});
-				return;
-			}
-			var tiendo_pheduyet = self.model.get("tiendo_pheduyet");
-			if (tiendo_pheduyet === null || tiendo_pheduyet=== undefined) {
-				self.getApp().notify({message: "Tiến độ phê duyệt không hợp lệ!"},{type: "danger"});
-				return;
-			}else if(tiendo_pheduyet ===1){
-				if (!self.model.get("ngay_pheduyet")) {
-					self.getApp().notify({message: "Chưa chọn ngày phê duyệt kế hoạch BCC!"},{type: "danger"});
-					return;
-				}
-				if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0 || 
-					Number.isInteger(self.model.get("sohoatdong_cotloi_pheduyet")) === false ||
-					self.model.get("sohoatdong_cotloi_pheduyet") === null || self.model.get("sohoatdong_cotloi_pheduyet") === "") {
-					self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không hợp lệ!"},{type: "danger"});
-					return;
-				}
-			}
+			// if (self.model.get("tiendo_xaydung") === null || self.model.get("tiendo_xaydung") === "") {
+			// 	self.getApp().notify({message: "Tiến độ xây dựng không hợp lệ!"},{type: "danger"});
+			// 	return;
+			// }
+			// if (self.model.get("tiendo_rasoat") === null || self.model.get("tiendo_rasoat") === "") {
+			// 	self.getApp().notify({message: "Tiến độ rà soát không hợp lệ!"},{type: "danger"});
+			// 	return;
+			// }
+			// var tiendo_pheduyet = self.model.get("tiendo_pheduyet");
+			// if (tiendo_pheduyet === null || tiendo_pheduyet=== undefined) {
+			// 	self.getApp().notify({message: "Tiến độ phê duyệt không hợp lệ!"},{type: "danger"});
+			// 	return;
+			// }else if(tiendo_pheduyet ===1){
+			// 	if (!self.model.get("ngay_pheduyet")) {
+			// 		self.getApp().notify({message: "Chưa chọn ngày phê duyệt kế hoạch BCC!"},{type: "danger"});
+			// 		return;
+			// 	}
+			// 	if (toInt(self.model.get("sohoatdong_cotloi_pheduyet")) < 0 || 
+			// 		Number.isInteger(self.model.get("sohoatdong_cotloi_pheduyet")) === false ||
+			// 		self.model.get("sohoatdong_cotloi_pheduyet") === null || self.model.get("sohoatdong_cotloi_pheduyet") === "") {
+			// 		self.getApp().notify({message: "Số hoạt động BBC cốt lõi trong kế hoạch phê duyệt không hợp lệ!"},{type: "danger"});
+			// 		return;
+			// 	}
+			// }
 			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 || 
 				Number.isInteger(self.model.get("sohoatdong_cotloi_hoanthanh")) === false ||
 				self.model.get("sohoatdong_cotloi_hoanthanh") === null || self.model.get("sohoatdong_cotloi_hoanthanh") === "") {
