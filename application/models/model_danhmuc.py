@@ -24,6 +24,7 @@ class TinhThanh(CommonModel):
     ten = db.Column(String(255))
     tongdan_nam = db.Column(Integer)
     tongdan_nu = db.Column(Integer)
+    tong_hgd = db.Column(Integer)
     tongdan_dtts = db.Column(Integer)#dan toc thieu so
     quocgia_id = db.Column(UUID(as_uuid=True), ForeignKey('quocgia.id'), nullable=True)
     quocgia = relationship('QuocGia')
@@ -36,6 +37,7 @@ class QuanHuyen(CommonModel):
     ten = db.Column(String(255))
     tongdan_nam = db.Column(Integer)
     tongdan_nu = db.Column(Integer)
+    tong_hgd = db.Column(Integer)
     tongdan_dtts = db.Column(Integer)#dan toc thieu so
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
@@ -48,6 +50,7 @@ class XaPhuong(CommonModel):
     ten = db.Column(String(255))
     tongdan_nam = db.Column(Integer)
     tongdan_nu = db.Column(Integer)
+    tong_hgd = db.Column(Integer)
     tongdan_dtts = db.Column(Integer)#dan toc thieu so
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
     quanhuyen = relationship('QuanHuyen')  
@@ -60,6 +63,7 @@ class ThonXom(CommonModel):
     ten = db.Column(String(255))
     tongdan_nam = db.Column(Integer)
     tongdan_nu = db.Column(Integer)
+    tong_hgd = db.Column(Integer)
     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     xaphuong = relationship('XaPhuong') 
     
