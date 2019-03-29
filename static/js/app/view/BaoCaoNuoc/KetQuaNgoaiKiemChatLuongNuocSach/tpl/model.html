@@ -3,7 +3,7 @@
         <h3>Kết quả ngoại kiểm chất lượng nước sạch</h3>
     </div>
     <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-    <div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+    <div class="" id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
         
         <div class="table1">
             <h3 style="padding-bottom:10px; padding-top: 20px">A. Thông tin chung</h3>
@@ -49,28 +49,23 @@
                             </tr>
                             <tr>
                                 <td class="col-md-6">Công suất thiết kế</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:congsuat_thietke"
-                                        readonly="readonly" /></td>
+                                <td class="col-md-6"><span data-bind="text:congsuat_thietke"></span></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tuần suất thực hiện nội kiểm(lần/tháng)</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tansuat_noikiem"
-                                        readonly="readonly" /></td>
+                                <td class="col-md-6"><span data-bind="text:tansuat_noikiem"></span></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tổng số HGĐ được cung cấp nước</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tongso_hogiadinh"
-                                        readonly="readonly" /></td>
+                                <td class="col-md-6"><span data-bind="text:tongso_hogiadinh"></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Nguồn nước nguyên liệu</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:nguonnuoc_nguyenlieu"
-                                        readonly="readonly" /></td>
+                                <td class="col-md-6"><span data-bind="text:nguonnuoc_nguyenlieu"></span></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Địa chỉ cụ thể</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:diachi_donvicapnuoc"
-                                        readonly="readonly" /></td>
+                                <td class="col-md-6"><span data-bind="text:diachi_donvicapnuoc"></span></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Ngày kiểm tra</td>
@@ -188,7 +183,7 @@
                 </thead>
                 <tbody id="danhsachthongso_khongdat"></tbody>
             </table>
-            <button class="btn btn-sm btn-success" style="margin-top: 10px" id="them_thongso_khongdat">Thêm Thông Số</button>
+            <button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="them_thongso_khongdat">Thêm Thông Số</button>
         </div>
         <div class="table1">
             <h3 style="padding-bottom:10px;">C. Kết quả ngoại kiểm chất lượng nước</h3>
@@ -239,7 +234,7 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
+                    <button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
                 </div>
             </div>
             
