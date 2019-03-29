@@ -251,6 +251,7 @@ define(function (require) {
                                     view.dialog({
                                         size: "large"
                                     });
+                                    // view.render();
                                     view.$el.find("#quansat_khuvesinh_loaikhac").hide();
                                     view.model.on("change:quansat_khuvesinh", function () {
                                         if (view.model.get("quansat_khuvesinh") == 96) {
@@ -264,7 +265,7 @@ define(function (require) {
                                             view.$el.find("#nuocthaichaydidau").show();
                                         } else {
                                             view.model.set("nuocthai_chaydidau", null);
-                                            view.applyBinding("nuocthai_chaydidau");
+                                            // view.applyBinding("nuocthai_chaydidau");
                                             view.$el.find("#nuocthaichaydidau").hide();
                                         }
                                     });
@@ -272,7 +273,7 @@ define(function (require) {
                                     view.model.on("change:congtrinh_ruatay", function () {
                                         if (view.model.get("congtrinh_ruatay") == 2) {
                                             view.model.set("quansat_congtrinh_ruatay", null);
-                                            view.applyBinding("quansat_congtrinh_ruatay");
+                                            // view.applyBinding("quansat_congtrinh_ruatay");
                                             view.$el.find("#quansat_congtrinh_ruatay").hide();
                                             
                                         } else{
@@ -345,7 +346,7 @@ define(function (require) {
                             view.model.on("change:congtrinh_ruatay", function () {
                             	if (view.model.get("congtrinh_ruatay") == 2) {
                                     view.model.set("quansat_congtrinh_ruatay", null);
-                                    view.applyBinding("quansat_congtrinh_ruatay");
+                                    // view.applyBinding("quansat_congtrinh_ruatay");
                             		view.$el.find("#quansat_congtrinh_ruatay").hide();
                             	} else{
                             		view.$el.find("#quansat_congtrinh_ruatay").show();
