@@ -162,6 +162,8 @@ define(function (require) {
 					switch(donvi_tuyendonvi.id){
 						case 1:
 							self.$el.find("#captren").hide();
+							self.$el.find("#quanhuyen").show();
+							self.$el.find("#xaphuong").show();
 							break;
 						case 2: //cap tinh
 							self.model.set("quanhuyen", null);

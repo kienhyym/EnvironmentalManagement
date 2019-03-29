@@ -1,9 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading"><h4>Tổng hợp kết quả chất lượng nước sạch</h4></div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 
-		<div style="margin-top: 30px;">
+		<div data-html2canvas-ignore style="margin-top: 30px;">
 			<div class="form-inline form-group col-md-6">
 				<label>Năm báo cáo:</label>
 				<input type="text" placeholder="YYYY" class="form-control"  data-bind="value:nambaocao">
@@ -28,19 +28,19 @@
 						</tr>
 						<tr>
 							<td class="col-md-6">Công suất thiết kế</td>
-							<td class="col-md-6"><input type="text" disabled class="form-control" data-bind="value:congsuat_thietke" /></td>
+							<td class="col-md-6"><span data-bind="text:congsuat_thietke"></span></td>
 						</tr>
 						<tr>
 							<td class="col-md-6">Tổng số HGĐ được cung cấp nước</td>
-							<td class="col-md-6"><input type="text" disabled class="form-control" data-bind="value:tongso_hogiadinh"/></td>
+							<td class="col-md-6"><span data-bind="text:tongso_hogiadinh"></span></td>
 						</tr>
 						<tr>
 							<td class="col-md-6">Nguồn nước nguyên liệu</td>
-							<td class="col-md-6"><input type="text" disabled class="form-control" data-bind="value:nguonnuoc_nguyenlieu" /></td>
+							<td class="col-md-6"><span data-bind="text:nguonnuoc_nguyenlieu"></span></td>
 						</tr>
 						<tr>
 							<td class="col-md-6">Địa chỉ cụ thể</td>
-							<td class="col-md-6"><input type="text" disabled class="form-control" data-bind="value:diachi_donvicapnuoc" /></td>
+							<td class="col-md-6"><span data-bind="text:diachi_donvicapnuoc"></span></td>
 						</tr>
 					</tbody>
 				</table>

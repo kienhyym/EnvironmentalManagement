@@ -74,7 +74,7 @@ define(function (require) {
 					textField: "ten",
 					foreignRemoteField: "id",
 					foreignField: "quanhuyen_id",
-					dataSource: QuanHuyenSelectView
+					dataSource: QuanHuyenSelectView,
 				},
 				{
     				field: "thuocsuprsws",
@@ -236,7 +236,24 @@ define(function (require) {
 						});	
 					}
 				},				// self.getFieldElement("hogiadinh").data("gonrin").setFilters({"thonxom_id": { "$eq": self.model.get("thonxom_id")}});
-
+				{
+					name: "export_pdf",
+					type: "button",
+					buttonClass: "btn-warning btn-sm",
+					label: "TRANSLATE:EXPORT_PDF",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") !== null;
+					},
+					command: function () {
+						var self = this;
+						var filename = "baocao_"+self.model.get("tenthon")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
+//						xepOnline.Formatter.Format('content',{render:'download', "filename":filename
+//				            });
+//						self.getApp().exportToPDF("content",filename);
+//						self.getApp().exportToPDF_canvas("content",filename);
+						self.getApp().exportPDF_HTML2PDF("content",filename);
+					}
+				},
 				{
 					name: "delete",
 					type: "button",
@@ -269,24 +286,6 @@ define(function (require) {
 								}
 							}
 						});
-					}
-				},
-				{
-					name: "export_pdf",
-					type: "button",
-					buttonClass: "btn-danger btn-sm",
-					label: "TRANSLATE:EXPORT_PDF",
-					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
-					},
-					command: function () {
-						var self = this;
-						var filename = "baocao_"+self.model.get("tenthon")+"_"+self.model.get("nambaocao")+"_"+self.model.get("kybaocao");
-//						xepOnline.Formatter.Format('content',{render:'download', "filename":filename
-//				            });
-//						self.getApp().exportToPDF("content",filename);
-//						self.getApp().exportToPDF_canvas("content",filename);
-						self.getApp().exportPDF_HTML2PDF("content",filename);
 					}
 				},
 			],
