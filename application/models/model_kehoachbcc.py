@@ -39,9 +39,9 @@ class TienDoKeHoachBCC(CommonModel):
     thonxom_id = db.Column(UUID(as_uuid=True), ForeignKey('thonxom.id'), nullable=True)
     thonxom = relationship('ThonXom')
     
-    tiendo_xaydung = db.Column(db.SmallInteger, nullable=False)
-    tiendo_rasoat = db.Column(db.SmallInteger, nullable=False)
-    tiendo_pheduyet = db.Column(db.SmallInteger, nullable=False)
+    tiendo_xaydung = db.Column(db.SmallInteger, nullable=True)
+    tiendo_rasoat = db.Column(db.SmallInteger, nullable=True)
+    tiendo_pheduyet = db.Column(db.SmallInteger, nullable=True)
     ngay_pheduyet = db.Column(db.DateTime())
     sohoatdong_cotloi_pheduyet = db.Column(db.Integer)
     sohoatdong_cotloi_hoanthanh = db.Column(db.Integer)
