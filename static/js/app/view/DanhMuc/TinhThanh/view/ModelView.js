@@ -40,10 +40,20 @@ define(function (require) {
 							var self = this;
 							var ten = self.model.get("ten");
 							var quocgia = self.model.get("quocgia");
+							var tongdan_nam = self.model.get("tongdan_nam");
+							var tongdan_nu = self.model.get("tongdan_nu");
+							var tong_hgd = self.model.get("tong_hgd");
+							const isNumeric = /^\d+$/;
 							if (ten == null || ten == "") {
 								self.getApp().notify({ message: "Tên tỉnh thành không được để trống!" }, { type: "danger" });
 							} else if (quocgia == null || quocgia == undefined) {
 								self.getApp().notify({ message: "Bạn chưa chọn tên quốc gia!" }, { type: "danger" });
+							} else if(isNumeric.test(tongdan_nam) == false){
+								self.getApp().notify({ message: "Tổng số nam của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+							} else if(isNumeric.test(tongdan_nu) == false){
+								self.getApp().notify({ message: "Tổng số nữ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+							} else if(isNumeric.test(tong_hgd) == false){
+								self.getApp().notify({ message: "Tổng số HGĐ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 							} else {
 								self.model.save(null, {
 									success: function (model, respose, options) {
