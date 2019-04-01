@@ -496,7 +496,10 @@ async def baocao_theo_cap(request):
             'tuyen': 'Hoạt động cấp thôn',
             "hoatdong":[]
         }
-        other = {}
+        other = {
+            'tuyen': 'Hoạt động khác',
+            "hoatdong":[]
+        }
         if hoatdongbccs is not None and isinstance(hoatdongbccs, list):
             for _ in hoatdongbccs:
                 _ = to_dict(_)
