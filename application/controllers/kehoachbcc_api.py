@@ -507,13 +507,13 @@ async def baocao_theo_cap(request):
                                 tongsonguoithamgia_nu += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
                                 tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 flag = True
-                                for hd in tinh['hoatdong']:
+                                for i in range(len(tinh['hoatdong'])):
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
                                         hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
                                         hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                            
+                                        tinh['hoatdong'][i] = hoatdong
                                 if flag == True:
                                     tinh['hoatdong'].append(hoatdong)
                     
@@ -561,7 +561,7 @@ async def baocao_theo_cap(request):
                                 if flag == True:
                                     xa['hoatdong'].append(hoatdong)
                     
-                    baocao_hoatdong_thon = baocao_data.filter(and_(TienDoKeHoachBCC.xaphuong_id == _["xaphuong_id"], TienDoKeHoachBCC.tuyendonvi == "thon")).all()
+                    baocao_hoatdong_thon = baocao_data.filter(and_(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"], TienDoKeHoachBCC.tuyendonvi == "thon")).all()
                     
                     if 'hoatdong' not in thon or thon['hoatdong'] is None:
                         thon['hoatdong'] = []
