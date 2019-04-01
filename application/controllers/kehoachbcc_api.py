@@ -508,6 +508,7 @@ async def baocao_theo_cap(request):
                                 tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 flag = True
                                 for i in range(len(tinh['hoatdong'])):
+                                    hd = tinh['hoatdong'][i]
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
@@ -530,6 +531,7 @@ async def baocao_theo_cap(request):
                                 
                                 flag = True
                                 for i in range(len(huyen['hoatdong'])):
+                                    hd = huyen['hoatdong'][i]
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
@@ -553,6 +555,7 @@ async def baocao_theo_cap(request):
                                 
                                 flag = True
                                 for i in range(len(xa['hoatdong'])):
+                                    hd = xa['hoatdong'][i]
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
@@ -610,6 +613,7 @@ async def baocao_theo_cap(request):
                                 
                                 flag = True
                                 for i in range(len(thon['hoatdong'])):
+                                    hd = thon['hoatdong'][i]
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
