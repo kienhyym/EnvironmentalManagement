@@ -623,6 +623,7 @@ async def congdon_baocao_bcc(nambaocao, loaikybaocao, kydanhgia, parent_id, danh
     ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
     if ds_nganh is not None:
         for nganh in ds_nganh:
+            nganh = to_dict(nganh)
             if baocao_hoatdong is not None:
                 for bc in baocao_hoatdong:
                     bc = to_dict(bc)
