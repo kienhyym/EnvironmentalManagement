@@ -573,13 +573,14 @@ async def baocao_theo_cap(request):
                         for hoatdong in _['danhsach_hoatdong']:
                             if hoatdong['nganh_id'] == nganh['id']:
                                 flag = True
-                                for hd in other['hoatdong']:
-                                    if hoatdong['id'] == hd['id']:
+                                for i in range(len(other['hoatdong'])):
+                                    hd = other['hoatdong'][i]
+                                    if hd is not None and hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
                                         hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
                                         hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                                        
+                                        other['hoatdong'][i] = hoatdong
                                 if flag == True:
                                     other['hoatdong'].append({
                                         'songuoithamgia': int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0,
