@@ -529,13 +529,14 @@ async def baocao_theo_cap(request):
                                 tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 
                                 flag = True
-                                for hd in huyen['hoatdong']:
+                                for i in range(len(huyen['hoatdong'])):
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
                                         hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
                                         hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                            
+                                        huyen['hoatdong'][i] = hoatdong
+                                        
                                 if flag == True:
                                     huyen['hoatdong'].append(hoatdong)
                         
@@ -551,39 +552,18 @@ async def baocao_theo_cap(request):
                                 tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 
                                 flag = True
-                                for hd in xa['hoatdong']:
+                                for i in range(len(huyen['hoatdong'])):
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
                                         hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
                                         hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                            
+                                        xa['hoatdong'][i] = hoatdong
+                                        
                                 if flag == True:
                                     xa['hoatdong'].append(hoatdong)
                     
-                    baocao_hoatdong_thon = baocao_data.filter(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"]).filter(TienDoKeHoachBCC.tuyendonvi == "thon").all()
-                    print("baocao_hoatdong_thon===",to_dict(baocao_hoatdong_thon))
-                    if 'hoatdong' not in thon or thon['hoatdong'] is None:
-                        thon['hoatdong'] = []
-                    if baocao_hoatdong_thon is not None:
-                        for bc_thon in baocao_hoatdong_thon:
-                            if 'danhsach_hoatdong' in bc_thon and isinstance(bc_thon['danhsach_hoatdong'], list):
-                                for hoatdong in bc_thon['danhsach_hoatdong']:
-                                    if hoatdong['nganh_id'] == nganh['id']:
-                                        tongsonguoithamgia += int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0
-                                        tongsonguoithamgia_nu += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
-                                        tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
-                                        
-                                        flag = True
-                                        for hd in thon['hoatdong']:
-                                            if hoatdong['id'] == hd['id']:
-                                                flag == False
-                                                hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
-                                                hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
-                                                hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                                    
-                                        if flag == True:
-                                            thon['hoatdong'].append(hoatdong)
+                    
                 else:
                     if 'tuyen' not in other or other['tuyen'] is None:
                         other['tuyen'] = 'Khác'
@@ -601,7 +581,7 @@ async def baocao_theo_cap(request):
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
                                         hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
                                         hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                            
+                                        
                                 if flag == True:
                                     other['hoatdong'].append({
                                         'songuoithamgia': int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0,
@@ -614,6 +594,31 @@ async def baocao_theo_cap(request):
         elif tuyendonvi ==3:
             data_in_nganh['tuyendonvis'] = [huyen, xa, thon]
         elif tuyendonvi ==4:
+            baocao_hoatdong_thon = db.session.query(TienDoKeHoachBCC).filter(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"]).filter(TienDoKeHoachBCC.tuyendonvi == "thon").all()
+            print("baocao_hoatdong_thon===",to_dict(baocao_hoatdong_thon))
+            if 'hoatdong' not in thon or thon['hoatdong'] is None:
+                thon['hoatdong'] = []
+            if baocao_hoatdong_thon is not None:
+                for bc_thon in baocao_hoatdong_thon:
+                    bc_thon = to_dict(bc_thon)
+                    if 'danhsach_hoatdong' in bc_thon and isinstance(bc_thon['danhsach_hoatdong'], list):
+                        for hoatdong in bc_thon['danhsach_hoatdong']:
+                            if hoatdong['nganh_id'] == nganh['id']:
+                                tongsonguoithamgia += int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0
+                                tongsonguoithamgia_nu += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
+                                tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
+                                
+                                flag = True
+                                for i in range(len(thon['hoatdong'])):
+                                    if hoatdong['id'] == hd['id']:
+                                        flag == False
+                                        hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
+                                        hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
+                                        hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
+                                        thon['hoatdong'][i] = hoatdong
+                                        
+                                if flag == True:
+                                    thon['hoatdong'].append(hoatdong)
             data_in_nganh['tuyendonvis'] = [xa, thon]
             
         result['tongsonguoithamgia'] = tongsonguoithamgia
