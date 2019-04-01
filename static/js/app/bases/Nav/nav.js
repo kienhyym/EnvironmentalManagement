@@ -866,22 +866,6 @@ define(function (require) {
 					"collectionName": "kehoachbcc",
 					"entries": [
 						{
-							"text": "Thống kê hoạt động BCC",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "thongkevesinh",
-							"route": "thongkevesinh",
-							"$ref": "app/view/HoatDongBCC/ThongKeHoatDong/view/ModelView",
-						},
-						{
-							"text": "Thống kê giới và dân tộc thiểu số",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "gioi_dantocthieuso",
-							"route": "hoatdongbcc/gioi_dantocthieuso",
-							"$ref": "app/view/HoatDongBCC/Gioi_Dantocthieuso/view/ModelView",
-						},
-						{
 							"text": "Báo cáo hoạt động",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "category",
@@ -1371,6 +1355,22 @@ define(function (require) {
 							"collectionName": "tiendo_kehoach_bcc",
 							"route": "hoatdongbcc/baocao",
 							"$ref": "app/view/HoatDongBCC/BaoCao/ModelView"
+						},
+						{
+							"text": "Thống kê giới và dân tộc thiểu số",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "gioi_dantocthieuso",
+							"route": "hoatdongbcc/gioi_dantocthieuso",
+							"$ref": "app/view/HoatDongBCC/Gioi_Dantocthieuso/view/ModelView",
+						},
+						{
+							"text": "Báo cáo tổng hợp",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocaotonghopbcc",
+							"route": "baocaotonghopbcc",
+							"$ref": "app/view/HoatDongBCC/BaoCaoTongHop/view/ModelView",
 						}
 					]
 				},

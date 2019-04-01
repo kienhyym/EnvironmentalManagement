@@ -103,6 +103,7 @@ def get_baocao_bcc_tinhthanh(nambaocao,loaikybaocao,kybaocao, tinhthanh_id):
                                                         TienDoKeHoachBCC.kybaocao == kybaocao, \
                                                         TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                         TienDoKeHoachBCC.tuyendonvi == 'xa').all()
+            bc_huyen["xa"] = []
             if records_xaphuong is not None:
                 for bc_xaphuong in records_xaphuong:
                     baocao_xaphuong = to_dict(bc_xaphuong)
@@ -111,6 +112,7 @@ def get_baocao_bcc_tinhthanh(nambaocao,loaikybaocao,kybaocao, tinhthanh_id):
                                                         TienDoKeHoachBCC.kybaocao == kybaocao, \
                                                         TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                         TienDoKeHoachBCC.tuyendonvi == 'thon').all()
+                    baocao_xaphuong["thon"] = []
                     if records_thonxom is not None:
                         for bc_thonxom in records_thonxom:
                             baocao_thonxom = to_dict(bc_thonxom)
@@ -139,6 +141,7 @@ def get_baocao_bcc_quanhuyen(nambaocao,loaikybaocao,kybaocao, quanhuyen_id):
                                                 TienDoKeHoachBCC.kybaocao == kybaocao, \
                                                 TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                 TienDoKeHoachBCC.tuyendonvi == 'thon').all()
+            baocao_xaphuong["thon"] = []
             if records_thonxom is not None:
                 for bc_thonxom in records_thonxom:
                     baocao_thonxom = to_dict(bc_thonxom)
@@ -618,14 +621,6 @@ async def baocao_theo_cap(request):
 async def congdon_baocao_bcc(baocao_data, danhsachhoatdong, tuyendonvi):
     baocao_hoatdong = baocao_data.filter(TienDoKeHoachBCC.tuyendonvi == tuyendonvi).all()
                     
-#     if (tuyendonvi == "thon"):
-#         baocao_hoatdong = baocao_hoatdong.filter(TienDoKeHoachBCC.xaphuong_id == parent_id).all()       
-#     elif (tuyendonvi == "xa"):
-#         baocao_hoatdong = baocao_hoatdong.filter(TienDoKeHoachBCC.quanhuyen_id == parent_id).all()       
-#     elif (tuyendonvi == "huyen"):
-#         baocao_hoatdong = baocao_hoatdong.filter(TienDoKeHoachBCC.tinhthanh_id == parent_id).all()       
-    
-    
     ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
     if ds_nganh is not None:
         for nganh in ds_nganh:
