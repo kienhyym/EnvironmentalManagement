@@ -608,10 +608,10 @@ async def baocao_theo_cap(request):
 
 async def congdon_baocao_bcc(nambaocao, loaikybaocao, kydanhgia, parent_id, danhsachhoatdong, tuyendonvi):
     baocao_hoatdong = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nambaocao == nambaocao,\
-                                                          TienDoKeHoachBCC.kybaocao == kydanhgia,\
-                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao,\
-                                                          TienDoKeHoachBCC.tuyendonvi == tuyendonvi))
-            
+                                                                  TienDoKeHoachBCC.kybaocao == kydanhgia,\
+                                                                  TienDoKeHoachBCC.loaikybaocao == loaikybaocao,\
+                                                                  TienDoKeHoachBCC.tuyendonvi == tuyendonvi))
+                    
     if (tuyendonvi == "thon"):
         baocao_hoatdong = baocao_hoatdong.filter(TienDoKeHoachBCC.xaphuong_id == parent_id).all()       
     elif (tuyendonvi == "xa"):
@@ -620,28 +620,28 @@ async def congdon_baocao_bcc(nambaocao, loaikybaocao, kydanhgia, parent_id, danh
         baocao_hoatdong = baocao_hoatdong.filter(TienDoKeHoachBCC.tinhthanh_id == parent_id).all()       
     
     
-    if baocao_hoatdong is not None:
-        for bc in baocao_hoatdong:
-            bc = to_dict(bc)
-            if 'danhsach_hoatdong' in bc and isinstance(bc['danhsach_hoatdong'], list):
-                for hoatdong in bc['danhsach_hoatdong']:
-                    if hoatdong['nganh_id'] == nganh['id']:
-                        tongsonguoithamgia += int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0
-                        tongsonguoithamgia_nu += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
-                        tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
-                        
-                        flag = True
-                        for i in range(len(danhsachhoatdong)):
-                            hd = danhsachhoatdong[i]
-                            if hoatdong['id'] == hd['id']:
-                                flag == False
-                                hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
-                                hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
-                                hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
-                                danhsachhoatdong[i] = hoatdong
-                                
-                        if flag == True:
-                            danhsachhoatdong.append(hoatdong)
+    ds_nganh = Nganh.query.filter().order_by(Nganh.thutu).all()
+    if ds_nganh is not None:
+        for nganh in ds_nganh:
+            if baocao_hoatdong is not None:
+                for bc in baocao_hoatdong:
+                    bc = to_dict(bc)
+                    if 'danhsach_hoatdong' in bc and isinstance(bc['danhsach_hoatdong'], list):
+                        for hoatdong in bc['danhsach_hoatdong']:
+                            if hoatdong['nganh_id'] == nganh['id']:
+                                flag = True
+                                for i in range(len(danhsachhoatdong)):
+                                    hd = danhsachhoatdong[i]
+                                    if hoatdong['id'] == hd['id']:
+                                        flag == False
+                                        hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
+                                        hoatdong['songuoithamgia_nu'] += int(hd['songuoithamgia_nu']) if 'songuoithamgia_nu' in hd and hd['songuoithamgia_nu'] is not None else 0
+                                        hoatdong['songuoithamgia_dtts'] += int(hd['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hd and hd['songuoithamgia_dtts'] is not None else 0
+                                        danhsachhoatdong[i] = hoatdong
+                                        break
+                                        
+                                if flag == True:
+                                    danhsachhoatdong.append(hoatdong)
     
     return danhsachhoatdong
     
