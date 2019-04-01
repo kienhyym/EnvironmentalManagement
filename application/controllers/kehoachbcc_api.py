@@ -597,7 +597,14 @@ async def baocao_theo_cap(request):
         elif tuyendonvi ==3:
             data_in_nganh['tuyendonvis'] = [huyen, xa, thon]
         elif tuyendonvi ==4:
-            baocao_hoatdong_thon = db.session.query(TienDoKeHoachBCC).filter(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"]).filter(TienDoKeHoachBCC.tuyendonvi == "thon").all()
+            
+            baocao_hoatdong_thon = TienDoKeHoachBCC.query.filter(and_(TienDoKeHoachBCC.nambaocao == nambaocao,\
+                                                          TienDoKeHoachBCC.kybaocao == kydanhgia,\
+                                                          TienDoKeHoachBCC.loaikybaocao == loaikybaocao,\
+                                                          TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"],\
+                                                          TienDoKeHoachBCC.tuyendonvi == "thon"))
+            
+            
             print("baocao_hoatdong_thon===",to_dict(baocao_hoatdong_thon))
             if 'hoatdong' not in thon or thon['hoatdong'] is None:
                 thon['hoatdong'] = []
