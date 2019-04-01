@@ -866,6 +866,14 @@ define(function (require) {
 					"collectionName": "kehoachbcc",
 					"entries": [
 						{
+							"text": "Thống kê hoạt động BCC",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "thongkevesinh",
+							"route": "thongkevesinh",
+							"$ref": "app/view/HoatDongBCC/ThongKeHoatDong/view/ModelView",
+						},
+						{
 							"text": "Thống kê giới và dân tộc thiểu số",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",

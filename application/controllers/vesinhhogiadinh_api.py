@@ -35,6 +35,9 @@ async def ThongKe_VESINH(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     records = None
     if(currentuser.donvi.tuyendonvi_id ==1):
+        if tinhthanh_id is None or tinhthanh_id == "undefined" or tinhthanh_id == "":
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn thông tin tỉnh thành!"}, status=520)
+
         records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == tinhthanh_id, \
                                                         VSCapXa.loaikybaocao == loaikybaocao, \
                                                         VSCapXa.kybaocao == kybaocao, \
@@ -146,6 +149,9 @@ async def ThongKe_TienDo_VSTX(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     records = None
     if(currentuser.donvi.tuyendonvi_id ==1):
+        if tinhthanh_id is None or tinhthanh_id == "undefined" or tinhthanh_id == "":
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn thông tin tỉnh thành!"}, status=520)
+
         records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == tinhthanh_id, \
                                                         VSCapXa.loaikybaocao == loaikybaocao, \
                                                         VSCapXa.kybaocao == kybaocao, \
@@ -242,6 +248,9 @@ async def ThongKe_TienDo_VSTX_BENVUNG(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     records = None
     if(currentuser.donvi.tuyendonvi_id ==1):
+        if tinhthanh_id is None or tinhthanh_id == "undefined" or tinhthanh_id == "":
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn thông tin tỉnh thành!"}, status=520)
+
         records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.tinhthanh_id == tinhthanh_id).all()
     elif(currentuser.donvi.tuyendonvi_id ==2):
         records = db.session.query(DuyetVeSinhToanXa).filter(DuyetVeSinhToanXa.tinhthanh_id == currentuser.donvi.tinhthanh_id).all() 
