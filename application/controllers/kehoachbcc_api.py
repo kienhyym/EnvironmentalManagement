@@ -624,7 +624,7 @@ async def congdon_baocao_bcc(nambaocao, loaikybaocao, kydanhgia, parent_id, danh
         for bc in baocao_hoatdong:
             bc = to_dict(bc)
             if 'danhsach_hoatdong' in bc and isinstance(bc['danhsach_hoatdong'], list):
-                for hoatdong in bc_thon['danhsach_hoatdong']:
+                for hoatdong in bc['danhsach_hoatdong']:
                     if hoatdong['nganh_id'] == nganh['id']:
                         tongsonguoithamgia += int(hoatdong['songuoithamgia']) if 'songuoithamgia' in hoatdong and hoatdong['songuoithamgia'] is not None else 0
                         tongsonguoithamgia_nu += int(hoatdong['songuoithamgia_nu']) if 'songuoithamgia_nu' in hoatdong and hoatdong['songuoithamgia_nu'] is not None else 0
