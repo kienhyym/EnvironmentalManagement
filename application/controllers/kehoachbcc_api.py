@@ -552,7 +552,7 @@ async def baocao_theo_cap(request):
                                 tongsonguoithamgia_dtts += int(hoatdong['songuoithamgia_dtts']) if 'songuoithamgia_dtts' in hoatdong and hoatdong['songuoithamgia_dtts'] is not None else 0
                                 
                                 flag = True
-                                for i in range(len(huyen['hoatdong'])):
+                                for i in range(len(xa['hoatdong'])):
                                     if hoatdong['id'] == hd['id']:
                                         flag == False
                                         hoatdong['songuoithamgia'] += int(hd['songuoithamgia']) if 'songuoithamgia' in hd and hd['songuoithamgia'] is not None else 0
