@@ -561,8 +561,8 @@ async def baocao_theo_cap(request):
                                 if flag == True:
                                     xa['hoatdong'].append(hoatdong)
                     
-                    baocao_hoatdong_thon = baocao_data.filter(and_(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"], TienDoKeHoachBCC.tuyendonvi == "thon")).all()
-                    
+                    baocao_hoatdong_thon = baocao_data.filter(TienDoKeHoachBCC.xaphuong_id == result["xaphuong_id"]).filter(TienDoKeHoachBCC.tuyendonvi == "thon").all()
+                    print("baocao_hoatdong_thon===",to_dict(baocao_hoatdong_thon))
                     if 'hoatdong' not in thon or thon['hoatdong'] is None:
                         thon['hoatdong'] = []
                     if baocao_hoatdong_thon is not None:
