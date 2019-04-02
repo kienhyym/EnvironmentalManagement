@@ -59,16 +59,16 @@ define(function (require) {
 			});
 			var currentUser = self.getApp().currentUser;
 			if(!!currentUser && !!currentUser.donvi){
-				if(currentUser.donvi.tuyendonvi_id === 1){//tuyen TW
-					var tinhthanh = self.$el.find("#tinhthanh");
-					tinhthanh.show()
-					tinhthanh.find("input").ref({
-						textField: "ten",
-						valueField: "id",
-						dataSource: TinhThanhSelectView,
-					});
-					self.$el.find("#search").attr({"style":"margin-top: 23px;"});
-				}
+				// if(currentUser.donvi.tuyendonvi_id === 1){//tuyen TW
+				// 	var tinhthanh = self.$el.find("#tinhthanh");
+				// 	tinhthanh.show()
+				// 	tinhthanh.find("input").ref({
+				// 		textField: "ten",
+				// 		valueField: "id",
+				// 		dataSource: TinhThanhSelectView,
+				// 	});
+				// 	self.$el.find("#search").attr({"style":"margin-top: 23px;"});
+				// }
 				
 				var donvi = currentUser.donvi;
 				if (donvi.tuyendonvi_id ===1 || donvi.tuyendonvi_id ===2){
@@ -81,10 +81,10 @@ define(function (require) {
 				self.$el.find("#search").unbind("click").bind("click", function(){
 					var nambaocao = self.$el.find("#namdanhgia").val();
 					var kybaocao = $("#kydanhgia").data('gonrin').getValue();
-					var tinhthanh_id = "";
-					if(currentUser.donvi.tuyendonvi_id === 1){
-						tinhthanh_id = self.$el.find("#tinhthanh input").data('gonrin').getValue();
-					}
+					// var tinhthanh_id = "";
+					// if(currentUser.donvi.tuyendonvi_id === 1){
+					// 	tinhthanh_id = self.$el.find("#tinhthanh input").data('gonrin').getValue();
+					// }
 					
 					if(toInt(nambaocao)<2000 || toInt(nambaocao)>3000){
 						self.getApp().notify("Năm không hợp lệ, vui lòng kiểm tra lại");
@@ -99,28 +99,30 @@ define(function (require) {
 					var url = self.getApp().serviceURL + "/api/v1/thongkevesinh?nambaocao="
 						+ nambaocao+"&loaikybaocao="
 						+ itemKybaocao.loaikybaocao+"&kybaocao="
-						+ itemKybaocao.kybaocao+"&tinhthanh_id="+tinhthanh_id;
+						+ itemKybaocao.kybaocao;
 					$.ajax({
 						url: url,
 						method: "GET",
 						contentType: "application/json",
 						success: function (obj) {
 							self.$el.find("#danhsachdonvi").html("");
-							if (obj && !!obj.tentinhthanh && obj.tentinhthanh!==""){
-								var tr = $('<tr id="danhsachdonvi">');
-								tr.append('<td class="tinhthanh">' + obj.tentinhthanh + '</td>');
-								tr.append('<td class="quanhuyen">' + obj.tenquanhuyen + '</td>');
-								tr.append('<td class="xaphuong">' + obj.tenxaphuong + "</td>");
-								tr.append('<td>' + obj.tyle_conhatieu + "</td>");
-								tr.append("<td>" + obj.tyle_conhatieu_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_tuhoai_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_thamdoi_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_2ngan_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_ongthonghoi_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_nhatieu_caithien_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_caithien_hongheo_hvs + "</td>");
-								tr.append("<td>" + obj.tyle_diemruatay + "</td>");
-								self.$el.find("#danhsachdonvi").append(tr);
+							if (obj){
+								for (var i = 0; i < obj.length; i ++){
+									var tr = $('<tr id="danhsachdonvi">');
+									tr.append('<td class="tinhthanh">' + obj[i].tentinhthanh + '</td>');
+									tr.append('<td class="quanhuyen">' + obj[i].tenquanhuyen + '</td>');
+									tr.append('<td class="xaphuong">' + obj[i].tenxaphuong + "</td>");
+									tr.append('<td>' + obj[i].tyle_conhatieu + "</td>");
+									tr.append("<td>" + obj[i].tyle_conhatieu_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_tuhoai_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_thamdoi_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_2ngan_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_ongthonghoi_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_nhatieu_caithien_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_caithien_hongheo_hvs + "</td>");
+									tr.append("<td>" + obj[i].tyle_diemruatay + "</td>");
+									self.$el.find("#danhsachdonvi").append(tr);
+								}
 							}else{
 	 	 			    		self.getApp().notify("Không tìm thấy báo cáo trên hệ thống");
 	 	 			    		return;

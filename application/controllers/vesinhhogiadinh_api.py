@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import hashlib
 import ujson
+from copy import deepcopy
 from application.extensions import apimanager
 from application.server import app
 from application.database import db
@@ -35,11 +36,9 @@ async def ThongKe_VESINH(request):
         return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
     records = None
     if(currentuser.donvi.tuyendonvi_id ==1):
-        if tinhthanh_id is None or tinhthanh_id == "undefined" or tinhthanh_id == "":
-            return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn thông tin tỉnh thành!"}, status=520)
-
-        records = db.session.query(VSCapXa).filter(and_(VSCapXa.tinhthanh_id == tinhthanh_id, \
-                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+        # if tinhthanh_id is None or tinhthanh_id == "undefined" or tinhthanh_id == "":
+        #     return json({"error_code":"PARAMS_ERROR", "error_message":"Vui lòng chọn thông tin tỉnh thành!"}, status=520)
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.loaikybaocao == loaikybaocao, \
                                                         VSCapXa.kybaocao == kybaocao, \
                                                         VSCapXa.nambaocao == nambaocao)).all()
     elif(currentuser.donvi.tuyendonvi_id ==2):
@@ -47,6 +46,7 @@ async def ThongKe_VESINH(request):
                                                         VSCapXa.loaikybaocao == loaikybaocao, \
                                                         VSCapXa.kybaocao == kybaocao, \
                                                         VSCapXa.nambaocao == nambaocao)).all() 
+
     elif(currentuser.donvi.tuyendonvi_id ==3):
         records = db.session.query(VSCapXa).filter(and_(VSCapXa.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
                                                         VSCapXa.loaikybaocao == loaikybaocao, \
@@ -60,7 +60,7 @@ async def ThongKe_VESINH(request):
     if records is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
     else:
-        results = {}
+        baocao_all = []
         tong_soho = 0
         tong_khongnhatieu = 0
         tong_hopvs = 0
@@ -76,36 +76,10 @@ async def ThongKe_VESINH(request):
         tenxaphuong = ""
         
         for baocao in records:
+            results = {}
             tentinhthanh = baocao.tinhthanh.ten
             tenquanhuyen = baocao.quanhuyen.ten
             tenxaphuong = baocao.xaphuong.ten
-#             bcxa['tenxaphuong'] = baocao.xaphuong.ten
-#             bcxa['tenquanhuyen'] = baocao.quanhuyen.ten
-#             bcxa['tentinhthanh'] = baocao.tinhthanh.ten
-#             bcxa['tongxa'] = len(records)
-#             if(baocao.tong_soho is None or baocao.tong_soho <= 0):
-#                 bcxa['tyle_conhatieu'] = 0
-#                 bcxa['tyle_conhatieu_hvs'] = 0
-#                 bcxa['tyle_tuhoai_hvs'] = 0
-#                 bcxa['tyle_thamdoi_hvs'] = 0
-#                 bcxa['tyle_2ngan_hvs'] = 0
-#                 bcxa['tyle_ongthonghoi_hvs'] = 0
-#                 bcxa['tyle_nhatieu_caithien_hvs'] = 0
-#                 bcxa['tyle_caithien_hongheo_hvs'] = 0
-#                 bcxa['tyle_diemruatay'] = 0
-#             else:
-#                 bcxa['tyle_conhatieu'] = ((baocao.tong_soho - baocao.tong_khongnhatieu)/baocao.tong_soho)*100
-#                 bcxa['tyle_conhatieu_hvs'] = (baocao.tong_hopvs/baocao.tong_soho)*100
-#                 bcxa['tyle_tuhoai_hvs'] = (baocao.tong_tuhoai_hvs/baocao.tong_soho)*100
-#                 bcxa['tyle_thamdoi_hvs'] = (baocao.tong_thamdoi_hvs/baocao.tong_soho)*100
-#                 bcxa['tyle_2ngan_hvs'] = (baocao.tong_2ngan_hvs/baocao.tong_soho)*100
-#                 bcxa['tyle_ongthonghoi_hvs'] = (baocao.tong_ongthonghoi_hvs/baocao.tong_soho)*100
-# 
-#                 bcxa['tyle_nhatieu_caithien_hvs'] = (baocao.tong_caithien_hvs/baocao.tong_soho)*100
-#                 bcxa['tyle_caithien_hongheo_hvs'] = (baocao.tong_caithien_hongheo_hvs/baocao.tong_soho)*100
-#                 bcxa['tyle_diemruatay'] = (baocao.tong_diemruatay/baocao.tong_soho)*100
-#                 
-            
             tong_soho += baocao.tong_soho if baocao.tong_soho is not None else 0
             tong_khongnhatieu += baocao.tong_khongnhatieu
             tong_hopvs += baocao.tong_hopvs
@@ -116,21 +90,60 @@ async def ThongKe_VESINH(request):
             tong_caithien_hvs += baocao.tong_caithien_hvs
             tong_caithien_hongheo_hvs += baocao.tong_caithien_hongheo_hvs
             tong_diemruatay += baocao.tong_diemruatay
-    
+
+            results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - tong_khongnhatieu)/tong_soho)*100, 2)
+            results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else round((tong_hopvs/tong_soho)*100, 2)
+            results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else round((tong_tuhoai_hvs/tong_soho)*100, 2)
+            results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else round((tong_thamdoi_hvs/tong_soho)*100, 2)
+            results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else round((tong_2ngan_hvs/tong_soho)*100, 2)
+            results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else round((tong_ongthonghoi_hvs/tong_soho)*100, 2)
+            results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hvs/tong_soho)*100, 2)
+            results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hongheo_hvs/tong_soho)*100, 2)
+            results['tyle_diemruatay'] =  0 if tong_soho == 0 else round((tong_diemruatay/tong_soho)*100, 2)
+            results['tentinhthanh'] = tentinhthanh
+            results['tenquanhuyen'] = tenquanhuyen
+            results['tenxaphuong'] = tenxaphuong
+
+            baocao_all.append(results)
+
+        if (len(baocao_all) > 0):
+            tong_63tinh = {}
+            tong_tyle_conhatieu = 0
+            tong_tyle_conhatieu_hvs = 0
+            tong_tyle_tuhoai_hvs = 0
+            tong_tyle_thamdoi_hvs = 0
+            tong_tyle_2ngan_hvs = 0
+            tong_tyle_ongthonghoi_hvs = 0
+            tong_tyle_nhatieu_caithien_hvs = 0
+            tong_tyle_caithien_hongheo_hvs = 0
+            tong_tyle_diemruatay = 0
+
+            for bctong in baocao_all:
+                tong_tyle_conhatieu += (bctong['tyle_conhatieu'])
+                tong_63tinh['tyle_conhatieu'] = 0 if tong_tyle_conhatieu == 0 else round((tong_tyle_conhatieu/len(baocao_all)), 2)
+                tong_tyle_conhatieu_hvs += (bctong['tyle_conhatieu_hvs'])
+                tong_63tinh['tyle_conhatieu_hvs'] = 0 if tong_tyle_conhatieu_hvs == 0 else round((tong_tyle_conhatieu_hvs/len(baocao_all)), 2)
+                tong_tyle_tuhoai_hvs += (bctong['tyle_tuhoai_hvs'])
+                tong_63tinh['tyle_tuhoai_hvs'] = 0 if tong_tyle_tuhoai_hvs == 0 else round((tong_tyle_tuhoai_hvs/len(baocao_all)), 2)
+                tong_tyle_thamdoi_hvs += (bctong['tyle_thamdoi_hvs'])
+                tong_63tinh['tyle_thamdoi_hvs'] = 0 if tong_tyle_thamdoi_hvs == 0 else round((tong_tyle_thamdoi_hvs/len(baocao_all)), 2)
+                tong_tyle_2ngan_hvs += (bctong['tyle_2ngan_hvs'])
+                tong_63tinh['tyle_2ngan_hvs'] = 0 if tong_tyle_2ngan_hvs == 0 else round((tong_tyle_2ngan_hvs/len(baocao_all)), 2)
+                tong_tyle_ongthonghoi_hvs += (bctong['tyle_ongthonghoi_hvs'])
+                tong_63tinh['tyle_ongthonghoi_hvs'] = 0 if tong_tyle_ongthonghoi_hvs == 0 else round((tong_tyle_ongthonghoi_hvs/len(baocao_all)), 2)
+                tong_tyle_nhatieu_caithien_hvs += (bctong['tyle_nhatieu_caithien_hvs'])
+                tong_63tinh['tyle_nhatieu_caithien_hvs'] = 0 if tong_tyle_nhatieu_caithien_hvs == 0 else round((tong_tyle_nhatieu_caithien_hvs/len(baocao_all)), 2)
+                tong_tyle_caithien_hongheo_hvs += (bctong['tyle_caithien_hongheo_hvs'])
+                tong_63tinh['tyle_caithien_hongheo_hvs'] = 0 if tong_tyle_caithien_hongheo_hvs == 0 else round((tong_tyle_caithien_hongheo_hvs/len(baocao_all)), 2)
+                tong_tyle_diemruatay += (bctong['tyle_diemruatay'])
+                tong_63tinh['tyle_diemruatay'] = 0 if tong_tyle_diemruatay == 0 else round((tong_tyle_diemruatay/len(baocao_all)), 2)
+                tong_63tinh['tentinhthanh'] = "Tổng"
+            baocao_all.append(tong_63tinh)
+
+            return json(baocao_all)
+        else:
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
         
-        results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - tong_khongnhatieu)/tong_soho)*100, 2)
-        results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else round((tong_hopvs/tong_soho)*100, 2)
-        results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else round((tong_tuhoai_hvs/tong_soho)*100, 2)
-        results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else round((tong_thamdoi_hvs/tong_soho)*100, 2)
-        results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else round((tong_2ngan_hvs/tong_soho)*100, 2)
-        results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else round((tong_ongthonghoi_hvs/tong_soho)*100, 2)
-        results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hvs/tong_soho)*100, 2)
-        results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hongheo_hvs/tong_soho)*100, 2)
-        results['tyle_diemruatay'] =  0 if tong_soho == 0 else round((tong_diemruatay/tong_soho)*100, 2)
-        results['tentinhthanh'] = tentinhthanh
-        results['tenquanhuyen'] = tenquanhuyen
-        results['tenxaphuong'] = tenxaphuong
-        return json(results)
 
 @app.route('api/v1/tiendovstx', methods=['GET'])
 async def ThongKe_TienDo_VSTX(request):
@@ -310,6 +323,37 @@ async def ThongKe_TienDo_VSTX_BENVUNG(request):
                     bcxa['tyle_tramyte_hvs'] = 0
             results.append(bcxa)
         return json(results)
+
+@app.route('api/v1/timkiembaocao_vesinh', methods=['GET'])
+async def TimKiemBaoCaoVeSinh(request):
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+    xaphuong_id = request.args.get("xaphuong_id", None)
+    
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại!"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ!"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo!"}, status=520)
+    records = None
+    response = []
+    if loaikybaocao is not None and kybaocao is not None and nambaocao is not None and xaphuong_id is not None:
+        records = db.session.query(VSCapXa).filter(and_(VSCapXa.nambaocao == nambaocao, \
+                                                        VSCapXa.loaikybaocao == loaikybaocao, \
+                                                        VSCapXa.kybaocao == kybaocao, \
+                                                        VSCapXa.xaphuong_id == xaphuong_id)).first()
+        print("data recordsss", records)
+    response = to_dict(records)
+    if response is not None:
+        return json(response)
+    else:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của đơn vị!"}, status=520)
+   
+    print("respone===", response)
 
 def congdonTongCong(Baocao, current_user, data=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
