@@ -320,7 +320,7 @@ define(function (require) {
 			var total_soNu = 0;
 			var total_danso = 0;
 			var total_soho = 0;
-			
+			var index = 1;
 			self.model.set("tong_tuhoai", 0);
 			self.model.set("tong_tuhoai_hvs", 0);
 			self.model.set("tong_thamdoi", 0);
@@ -352,6 +352,7 @@ define(function (require) {
 				var tr = $('<tr id="danhsachdonvi">').attr({
 					"id": element.id
 				});
+				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenxa + "</td>");
 				tr.append("<td>" + element.tong_chuholanu + "</td>");
 				tr.append('<td class="chuongtrinhsup">' + element.tong_sohodtts + "</td>");
@@ -367,6 +368,7 @@ define(function (require) {
 				tr.append('<td class="chuongtrinhsup">' + element.tong_caithien + "</td>");
 				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
+				index++;
 				var id_record = this.getApp().getRouter().getParam("id");
 				tr.unbind('click').bind('click', function () {
 					if (id_record == null){

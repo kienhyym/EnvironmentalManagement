@@ -134,7 +134,6 @@ define(function (require) {
 									if (event.rowId) {
 										var quy = event.rowData.kybaocao;
 										var path = 'vscapxa/model/' +'quy'+quy+ '?id=' + event.rowId;
-										console.log(path);
 										this.getApp().getRouter().navigate(path);
 									}
 								}
