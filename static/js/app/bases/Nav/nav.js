@@ -383,6 +383,14 @@ define(function (require) {
 					"$ref": "app/view/VeSinh/ThongKeVeSinh/view/ModelView",
 				},
 				{
+					"text": "Tìm kiếm báo cáo vệ sinh",
+					"icon": "glyphicon glyphicon-tasks",
+					"type": "view",
+					"collectionName": "timkiembaocaovesinh",
+					"route": "timkiembaocaovesinh",
+					"$ref": "app/view/VeSinh/TimKiemBaoCaoVeSinh/view/ModelView",
+				},
+				{
 					"text": "Cấp thôn",
 					"icon": "glyphicon glyphicon-tasks",
 					"type": "category",
