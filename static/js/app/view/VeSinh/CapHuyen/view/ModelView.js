@@ -365,8 +365,14 @@ define(function (require) {
 				tr.append("<td>" + element.tong_khongnhatieu + "</td>");
 				tr.append("<td>" + element.tong_hopvs + "</td>");
 				tr.append("<td>" + element.tong_khonghopvs + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_caithien + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
+				var tong_caithien = element.tong_caithien;
+				var tong_diemruatay = element.tong_diemruatay;
+				if (element.thuocsuprsws == 0){
+					tong_caithien = "";
+					tong_diemruatay = "";
+				}
+				tr.append('<td class="chuongtrinhsup">' + tong_caithien + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + tong_diemruatay + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
 				var id_record = this.getApp().getRouter().getParam("id");

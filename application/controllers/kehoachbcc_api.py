@@ -62,25 +62,32 @@ async def ThongKeBCC(request):
                                                         TienDoKeHoachBCC.loaikybaocao == loaikybaocao, \
                                                         TienDoKeHoachBCC.kybaocao == kybaocao, \
                                                         TienDoKeHoachBCC.nambaocao == nambaocao),\
-                                                        TienDoKeHoachBCC.tuyendonvi == 'xa').first()                                                                                                                                     
+                                                        TienDoKeHoachBCC.tuyendonvi == 'xa').first()
+
     if records is None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
     else:
         results = {}
         if records.tuyendonvi == "tinh":
             captinh = to_dict(records)
+            if (records.tinhthanh is not None):
+                captinh['tinhthanh']= to_dict(records.tinhthanh)
             baocao_children = get_baocao_bcc_tinhthanh(nambaocao, loaikybaocao, kybaocao, captinh['tinhthanh_id'])
             captinh["huyen"] = baocao_children 
             results = captinh
             
         elif records.tuyendonvi == 'huyen':
             caphuyen = to_dict(records)
+            # if (records.quanhuyen is not None):
+            #     captinh['quanhuyen']= to_dict(records.quanhuyen)
             baocao_children = get_baocao_bcc_quanhuyen(nambaocao, loaikybaocao, kybaocao, caphuyen['quanhuyen_id'])
             caphuyen["xa"] = baocao_children
             results = caphuyen
             
         elif records.tuyendonvi == 'xa':
             capxa = to_dict(records)
+            # if (records.xaphuong is not None):
+            #     capxa['xaphuong']= to_dict(records.xaphuong)
             baocao_children = get_baocao_bcc_xaphuong(nambaocao, loaikybaocao, kybaocao, capxa['xaphuong_id'])
             capxa["thon"] = baocao_children   
             results = capxa
@@ -96,8 +103,10 @@ def get_baocao_bcc_tinhthanh(nambaocao,loaikybaocao,kybaocao, tinhthanh_id):
                                                         TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                         TienDoKeHoachBCC.tuyendonvi == 'huyen').all()
     if records_huyen is not None:
-        for bc_huyen in records_huyen:
-            bc_huyen = to_dict(bc_huyen)
+        for item_huyen in records_huyen:
+            bc_huyen = to_dict(item_huyen)
+            if (item_huyen.quanhuyen is not None):
+                bc_huyen['quanhuyen']= to_dict(item_huyen.quanhuyen)
             records_xaphuong = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.quanhuyen_id == bc_huyen['quanhuyen_id'], \
                                                         TienDoKeHoachBCC.loaikybaocao == loaikybaocao, \
                                                         TienDoKeHoachBCC.kybaocao == kybaocao, \
@@ -105,8 +114,10 @@ def get_baocao_bcc_tinhthanh(nambaocao,loaikybaocao,kybaocao, tinhthanh_id):
                                                         TienDoKeHoachBCC.tuyendonvi == 'xa').all()
             bc_huyen["xa"] = []
             if records_xaphuong is not None:
-                for bc_xaphuong in records_xaphuong:
-                    baocao_xaphuong = to_dict(bc_xaphuong)
+                for item_xaphuong in records_xaphuong:
+                    baocao_xaphuong = to_dict(item_xaphuong)
+                    if (item_xaphuong.xaphuong is not None):
+                        baocao_xaphuong['xaphuong']= to_dict(item_xaphuong.xaphuong)
                     records_thonxom = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.xaphuong_id == baocao_xaphuong['xaphuong_id'], \
                                                         TienDoKeHoachBCC.loaikybaocao == loaikybaocao, \
                                                         TienDoKeHoachBCC.kybaocao == kybaocao, \
@@ -114,8 +125,10 @@ def get_baocao_bcc_tinhthanh(nambaocao,loaikybaocao,kybaocao, tinhthanh_id):
                                                         TienDoKeHoachBCC.tuyendonvi == 'thon').all()
                     baocao_xaphuong["thon"] = []
                     if records_thonxom is not None:
-                        for bc_thonxom in records_thonxom:
-                            baocao_thonxom = to_dict(bc_thonxom)
+                        for item_thonxom in records_thonxom:
+                            baocao_thonxom = to_dict(item_thonxom)
+                            if (item_thonxom.thonxom is not None):
+                                baocao_thonxom['thonxom']= to_dict(item_thonxom.thonxom)
                             baocao_xaphuong["thon"].append(baocao_thonxom)
                     else:
                         baocao_xaphuong["thon"]=[]
@@ -134,8 +147,10 @@ def get_baocao_bcc_quanhuyen(nambaocao,loaikybaocao,kybaocao, quanhuyen_id):
                                                 TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                 TienDoKeHoachBCC.tuyendonvi == 'xa').all()
     if records_xaphuong is not None:
-        for bc_xaphuong in records_xaphuong:
-            baocao_xaphuong = to_dict(bc_xaphuong)
+        for item_xaphuong in records_xaphuong:
+            baocao_xaphuong = to_dict(item_xaphuong)
+            if (item_xaphuong.xaphuong is not None):
+                baocao_xaphuong['xaphuong']= to_dict(item_xaphuong.xaphuong)
             records_thonxom = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.xaphuong_id == baocao_xaphuong['xaphuong_id'], \
                                                 TienDoKeHoachBCC.loaikybaocao == loaikybaocao, \
                                                 TienDoKeHoachBCC.kybaocao == kybaocao, \
@@ -162,8 +177,10 @@ def get_baocao_bcc_xaphuong(nambaocao,loaikybaocao,kybaocao, xaphuong_id):
                                                 TienDoKeHoachBCC.nambaocao == nambaocao),\
                                                 TienDoKeHoachBCC.tuyendonvi == 'thon').all()
     if records_thonxom is not None:
-        for bc_thonxom in records_thonxom:
-            baocao_thonxom = to_dict(bc_thonxom)
+        for item_thonxom in records_thonxom:
+            baocao_thonxom = to_dict(item_thonxom)
+            if (item_thonxom.thonxom is not None):
+                baocao_thonxom['xaphuong']= to_dict(item_thonxom.thonxom)
             results.append(baocao_thonxom)
     else:
         results=[]
@@ -605,7 +622,7 @@ async def baocao_theo_cap(request):
 
             data_in_nganh['tuyendonvis'] = [huyen, xa, thon]
         elif tuyendonvi ==4:
-            thon['hoatdong'] = await congdon_baocao_bcc(nambaocao, loaikybaocao, kydanhgia, result["xaphuong_id"], thon["hoatdong"], "thon")
+            thon['hoatdong'] = await congdon_baocao_bcc(baocao_data, thon["hoatdong"], "thon")
 
             data_in_nganh['tuyendonvis'] = [xa, thon]
             
