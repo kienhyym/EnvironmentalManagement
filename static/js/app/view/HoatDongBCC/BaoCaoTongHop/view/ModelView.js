@@ -106,7 +106,6 @@ define(function (require) {
 						success: function (obj) {
 							self.$el.find("#danhsachdonvi").html("");
 							if (obj) {
-								console.log("obj_tinh ====", obj);
 								if (obj.tuyendonvi == 'tinh') {
 									self.$el.find("#danhsachdonvi").append(`<tr>
 										<td colspan="8" class="text-left" style="color: #e30303; font-weight: bold; font-size: 16px; text-align: left"><h3>Cấp Tỉnh</h3></td>
