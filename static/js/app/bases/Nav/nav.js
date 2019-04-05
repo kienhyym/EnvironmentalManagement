@@ -1557,25 +1557,25 @@ define(function (require) {
 				return this.checkTuyendonvi([1,2,3,10]);
 			},
 			"entries": [
-				{
-					"text": "Phiếu kết quả nội kiểm chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/collection",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
-					"tuyendonvi": 3,
-					"visible": function () {
-						return this.checkTuyendonvi([1,2,3]);
-					},
-				},
-				{
-					"type": "view",
-					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/model",
-					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
-					"visible": false
-				},
+				// {
+				// 	"text": "Phiếu kết quả nội kiểm chất lượng nước sạch",
+				// 	"icon": "glyphicon glyphicon-file",
+				// 	"type": "view",
+				// 	"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+				// 	"route": "ketqua_noikiem_chatluong_nuocsach/collection",
+				// 	"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/CollectionView",
+				// 	"tuyendonvi": 3,
+				// 	"visible": function () {
+				// 		return this.checkTuyendonvi([1,2,3]);
+				// 	},
+				// },
+				// {
+				// 	"type": "view",
+				// 	"collectionName": "ketqua_noikiem_chatluong_nuocsach",
+				// 	"route": "ketqua_noikiem_chatluong_nuocsach/model",
+				// 	"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
+				// 	"visible": false
+				// },
 				{
 					"text": "Phiếu kết quả ngoại kiểm chất lượng nước sạch",
 					"icon": "glyphicon glyphicon-file",
@@ -1591,76 +1591,76 @@ define(function (require) {
 					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
-				{
-					"text": "Tổng hợp kết quả kiểm tra chất lượng nước sạch",
-					"icon": "glyphicon glyphicon-file",
-					"type": "category",
-//					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-//					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
-//					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-					"entries": [
-						{
-							"text": "Quý I",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy1",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-						},
-						{
-							"text": "Quý II",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy2",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-						},
-						{
-							"text": "Quý III",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy3",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-						},
-						{
-							"text": "Quý IV",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy4",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
-						},
-						{
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy1(/:id)",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
-							"visible": false
-						},
-						{
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy2(/:id)",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
-							"visible": false
-						},
-						{
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy3(/:id)",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
-							"visible": false
-						},
-						{
-							"type": "view",
-							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
-							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy4(/:id)",
-							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
-							"visible": false
-						},
-					]
-				},
+// 				{
+// 					"text": "Tổng hợp kết quả kiểm tra chất lượng nước sạch",
+// 					"icon": "glyphicon glyphicon-file",
+// 					"type": "category",
+// //					"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// //					"route": "tonghop_ketqua_chatluong_nuocsach/collection",
+// //					"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+// 					"entries": [
+// 						{
+// 							"text": "Quý I",
+// 							"icon": "glyphicon glyphicon-tasks",
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy1",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+// 						},
+// 						{
+// 							"text": "Quý II",
+// 							"icon": "glyphicon glyphicon-tasks",
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy2",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+// 						},
+// 						{
+// 							"text": "Quý III",
+// 							"icon": "glyphicon glyphicon-tasks",
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy3",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+// 						},
+// 						{
+// 							"text": "Quý IV",
+// 							"icon": "glyphicon glyphicon-tasks",
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/collection?loaikybaocao=quy4",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/CollectionView",
+// 						},
+// 						{
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy1(/:id)",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+// 							"visible": false
+// 						},
+// 						{
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy2(/:id)",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+// 							"visible": false
+// 						},
+// 						{
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy3(/:id)",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+// 							"visible": false
+// 						},
+// 						{
+// 							"type": "view",
+// 							"collectionName": "tonghop_ketqua_chatluong_nuocsach",
+// 							"route": "tonghop_ketqua_chatluong_nuocsach/model/quy4(/:id)",
+// 							"$ref": "app/view/BaoCaoNuoc/TongHopKQChatLuongNuocSach/view/ModelView",
+// 							"visible": false
+// 						},
+// 					]
+// 				},
 				{
 					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Huyện",
 					"icon": "glyphicon glyphicon-file",

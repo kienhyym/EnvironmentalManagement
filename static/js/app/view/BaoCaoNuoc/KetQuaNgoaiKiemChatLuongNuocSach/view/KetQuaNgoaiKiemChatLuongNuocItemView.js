@@ -97,8 +97,8 @@ define(function (require) {
                 		danhsachketqua[i].danhgia = ketqua_danhgia;
                 		danhgiaThongSo *= ketqua_danhgia ? ketqua_danhgia : 0;
                 	}
-                	self.model.set("danhgia",danhgiaThongSo);
-                	self.model.set("ketquakiemtra",danhsachketqua);
+                    self.model.set("danhgia",danhgiaThongSo);
+                    self.model.set("ketquakiemtra",danhsachketqua);
                 	self.applyBindings();
                 	
                 	var data_thongso = self.model.toJSON();
