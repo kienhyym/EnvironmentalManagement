@@ -346,7 +346,7 @@ define(function (require) {
 				if(currentUser.donvi.tuyendonvi_id === 3){
 					self.model.set("loai_donvi_kiemtra", 2)
 				} else if(currentUser.donvi.tuyendonvi_id === 2){
-					self.model.set("loai_donvi_kiemtra", 3)
+					self.model.set("loai_donvi_kiemtra", 1)
 				}
 			}
 			var somauvavitri = self.model.get("somauvavitri");
