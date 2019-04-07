@@ -325,11 +325,17 @@ define(function (require) {
         	
 //         },
         render_thongso_khongdat:function(thongso_khongdat, elementID){
-        	var self = this;
+			var self = this;
+			var arr_thongso_khongdat = []
+			const map = new Map();
         	if(!!thongso_khongdat && thongso_khongdat.length>0){
         		self.$el.find("#body_"+elementID).html("");
         		$.each(thongso_khongdat, function(idx,thongso){
-        			
+
+					if (!map.has(thongso.id)){
+						map.set(thongso.id, true);
+						arr_thongso_khongdat.push(thongso);
+					}
 					var tr = $("<tr>");
 					var thongso_gioihan_toida_txt = thongso.gioihan_toida_txt ? thongso.gioihan_toida_txt : "";
 					var thongso_ketqua = thongso.ketqua;
@@ -352,9 +358,20 @@ define(function (require) {
         			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(thongso.ngaykiemtra, "DD/MM/YYYY")+'</td>');
         			self.$el.find("#body_"+elementID).append(tr);
         		});
-        		self.$el.find("#"+elementID+"_value").text(thongso_khongdat.length);
+				self.$el.find("#"+elementID+"_value").text(thongso_khongdat.length);
+				var ds_thongso_khongdat = "";
+				if(arr_thongso_khongdat !== undefined || arr_thongso_khongdat.length > 0){
+					for(var i = 0; i < arr_thongso_khongdat.length; i++){
+						ds_thongso_khongdat += arr_thongso_khongdat[i].tenthongso+ " ," ;
+					}
+					self.$el.find("#tong_thongso_khongdat").html(`<h4>
+						Các thông số không đạt là: ${ds_thongso_khongdat}
+					</h4>`);
+				}
+
 			} else{
-        		self.$el.find("#"+elementID).hide();
+				self.$el.find("#"+elementID).hide();
+				self.$el.find("#tong_thongso_khongdat").hide();
         		self.$el.find("#"+elementID+"_value").text("Không có");
         	}
         },

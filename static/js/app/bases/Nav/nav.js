@@ -389,6 +389,9 @@ define(function (require) {
 					"collectionName": "timkiembaocaovesinh",
 					"route": "timkiembaocaovesinh",
 					"$ref": "app/view/VeSinh/TimKiemBaoCaoVeSinh/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([1]);
+					}
 				},
 				{
 					"text": "Cấp thôn",
@@ -1379,6 +1382,9 @@ define(function (require) {
 							"collectionName": "baocaotonghopbcc",
 							"route": "baocaotonghopbcc",
 							"$ref": "app/view/HoatDongBCC/BaoCaoTongHop/view/ModelView",
+							"visible": function () {
+								return this.checkTuyendonvi([1]);
+							}
 						}
 					]
 				},

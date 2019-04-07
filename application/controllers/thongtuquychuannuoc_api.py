@@ -476,7 +476,6 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     if currentuser.donvi.tuyendonvi_id == 2:
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
-        print("data tinhhhhh===", data)
         data["loaibaocao"] = 1
         danhsach_kybaocao = [1,2]
         if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
@@ -484,11 +483,12 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
             filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).all()
                 
-        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
-                 KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 1, \
+        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra >= startDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+
+        print("baocao_ngoaikiems===", baocao_ngoaikiems)
                  
         # ket qua noi kiem nuoc cua cac dong vi
         # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
@@ -577,7 +577,6 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
     
     if baocao_ngoaikiems is not None:
         # tong_donvi_capnuoc_thuchien_ngoaikiem = len(baocao_ngoaikiems)
-        print("baocao_ngoaikiems", to_dict(baocao_ngoaikiems))
         for baocao in baocao_ngoaikiems:
             baocao = copy.deepcopy(baocao)
             if baocao is not None:
@@ -649,7 +648,6 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                     item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
                                     thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
 
-                            print("thongso_khongdat_ngoaikiem_trungtam", thongso_khongdat_ngoaikiem_trungtam)
     
     # data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem
     data["tongdat_hoso_daydu_theoquydinh_ngoaikiem"] = tongdat_hoso_daydu_theoquydinh_ngoaikiem

@@ -29,40 +29,52 @@ define(function (require) {
 						return "";
 					},
 				},
+				// {
+				// 	field: "tiendo_xaydung",
+				// 	label: "Tiến độ xây dựng",
+				// 	template: function (rowData) {
+				// 		if (rowData.tiendo_xaydung == 2){
+				// 			return "Đã hoàn thành";
+				// 		} else if (rowData.tiendo_xaydung == 1){
+				// 			return "Đang xây dựng";
+				// 		}
+				// 		return "Chưa xây dựng";
+				// 	}
+				// },
+				// {
+				// 	field: "tiendo_rasoat",
+				// 	label: "Tiến độ rà soát",
+				// 	template: function (rowData) {
+				// 		if (rowData.tiendo_rasoat == 2){
+				// 			return "Đã chấp thuận";
+				// 		} else if (rowData.tiendo_rasoat == 1){
+				// 			return "Đang rà soát";
+				// 		}
+				// 		return "Chưa chấp thuận";
+				// 	}
+				// },
+				// {
+				// 	field: "tiendo_pheduyet",
+				// 	label: "Tiến độ phê duyệt",
+				// 	template: function (rowData) {
+				// 		if (rowData.tiendo_pheduyet == 1){
+				// 			return "Đã phê duyệt";
+				// 		}
+				// 		return "Chưa phê duyệt";
+				// 	}
+				// }
 				{
-					field: "tiendo_xaydung",
-					label: "Tiến độ xây dựng",
-					template: function (rowData) {
-						if (rowData.tiendo_xaydung == 2){
-							return "Đã hoàn thành";
-						} else if (rowData.tiendo_xaydung == 1){
-							return "Đang xây dựng";
-						}
-						return "Chưa xây dựng";
-					}
+					field: "sohoatdong_cotloi_hoanthanh",
+					label: "Số hoạt động cốt lõi",
 				},
 				{
-					field: "tiendo_rasoat",
-					label: "Tiến độ rà soát",
-					template: function (rowData) {
-						if (rowData.tiendo_rasoat == 2){
-							return "Đã chấp thuận";
-						} else if (rowData.tiendo_rasoat == 1){
-							return "Đang rà soát";
-						}
-						return "Chưa chấp thuận";
-					}
+					field: "giangvien",
+					label: "Tổng giảng viên",
 				},
 				{
-					field: "tiendo_pheduyet",
-					label: "Tiến độ phê duyệt",
-					template: function (rowData) {
-						if (rowData.tiendo_pheduyet == 1){
-							return "Đã phê duyệt";
-						}
-						return "Chưa phê duyệt";
-					}
-				}
+					field: "giangvien_nu",
+					label: "Tổng giảng viên nữ",
+				},
 			],
 			onRowClick: function (event) {
 				if (event.rowId) {
