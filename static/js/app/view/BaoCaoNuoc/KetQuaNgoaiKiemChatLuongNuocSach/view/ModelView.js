@@ -866,13 +866,37 @@ define(function (require) {
         		self.$el.find("#danhsachvitrilaymau").append(somauvavitri_view.$el);
         		somauvavitri_view.on("change", function(data){
         			var ds = self.model.get("danhsachvitrilaymau");
-        			var arr_vitri_new = ds;
+					var arr_vitri_new = ds;
         			for(var j=0; j<arr_vitri_new.length;j++){
         				if(data.data.id === arr_vitri_new[j].id){
         					arr_vitri_new[j].tenvitri = data.data.tenvitri;
         					arr_vitri_new[j].mavitri = data.data.mavitri;
         					arr_vitri_new[j].ngaykiemtra = data.data.ngaykiemtra;
-        					arr_vitri_new[j].danhgia = data.data.danhgia;
+							arr_vitri_new[j].danhgia = data.data.danhgia;
+							
+							//start:  update lai ngay kiem tra, ten vi tri cua thong so
+							var danhsachthongso = self.model.get("ketquangoaikiemchatluongnuoc");
+							for (var i = 0; i < danhsachthongso.length; i++) {
+								var data_thongso = danhsachthongso[i];
+								var ketquakiemtra_vitrilaymau = []
+								$.each(data_thongso.ketquakiemtra, function(idx, data){
+									
+									var item_vitri_thongso = data;
+									for(var index=0; index<ds.length; index++){
+										if (item_vitri_thongso.id === ds[index].id){
+											item_vitri_thongso.tenvitri = ds[index].tenvitri;
+											item_vitri_thongso.mavitri = ds[index].mavitri;
+											item_vitri_thongso.ngaykiemtra = ds[index].ngaykiemtra;
+											break;
+										}
+									}
+									ketquakiemtra_vitrilaymau.push(item_vitri_thongso);
+								});
+								data_thongso.ketquakiemtra = ketquakiemtra_vitrilaymau;
+								danhsachthongso[i] = data_thongso;
+							}
+							self.model.set('ketquangoaikiemchatluongnuoc', danhsachthongso);
+							// end
         					break;
         				}
         			}

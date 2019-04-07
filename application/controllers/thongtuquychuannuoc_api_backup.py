@@ -472,11 +472,9 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     
     danhmuc_donvicapnuoc = None
     baocao_ngoaikiems = None
-    # baocao_tonghops = None
+    baocao_tonghops = None
     if currentuser.donvi.tuyendonvi_id == 2:
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
-        data["tinhthanh"] = currentuser.donvi.tinhthanh
-        print("data tinhhhhh===", data)
         data["loaibaocao"] = 1
         danhsach_kybaocao = [1,2]
         if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
@@ -486,16 +484,16 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                 
         baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
                  KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 1, \
-                 KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra >= startDate, \
-                 KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao >= startDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
                  
         # ket qua noi kiem nuoc cua cac dong vi
-        # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
-        #         and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao.in_(danhsach_kybaocao), \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+        baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
+                and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao.in_(danhsach_kybaocao), \
+                TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     elif currentuser.donvi.tuyendonvi_id == 3:
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
@@ -509,32 +507,20 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
         
         baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
                  KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 2, \
-                 KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra >= startDate, \
-                 KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao >= startDate, \
+                 KetQuaNgoaiKiemChatLuongNuocSach.ngaybaocao <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
         
-        # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
-        #         and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke<1000,\
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
+        baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
+                and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke<1000,\
+                TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
+                TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     #thong ke don vi cap nuoc
     tong_donvi_capnuoc = 0
     tong_hogiadinh_duoccungcapnuoc = 0
-    tong_soluot_ngoaikiem = 0
-    tong_donvi_capnuoc_thuchien_ngoaikiem = 0
-    donvicapnuocid_ngoaikiem = []
-
-    if baocao_ngoaikiems is not None and len(baocao_ngoaikiems) > 0:
-        tong_soluot_ngoaikiem = len(baocao_ngoaikiems)
-        for item_baocao_ngoaikiem in baocao_ngoaikiems:
-            if item_baocao_ngoaikiem.donvicapnuoc_id not in donvicapnuocid_ngoaikiem:
-                donvicapnuocid_ngoaikiem.append(item_baocao_ngoaikiem.donvicapnuoc_id)
-    data["tong_soluot_ngoaikiem"] = tong_soluot_ngoaikiem
-    data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = len(donvicapnuocid_ngoaikiem)
-
-
+    
     if danhmuc_donvicapnuoc is not None and len(danhmuc_donvicapnuoc)>0:
         tong_donvi_capnuoc = len(danhmuc_donvicapnuoc)
         for donvi_capnuoc in danhmuc_donvicapnuoc:
@@ -544,14 +530,14 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     data["tong_hogiadinh_duoccungcapnuoc"] = tong_hogiadinh_duoccungcapnuoc
     
     await process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems, data)
-    # await process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops, data)
+    await process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops, data)
 
     
 async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=None, data=None):
     #thong ke bao cao ngoai kiem
-    # tong_donvi_capnuoc_thuchien_ngoaikiem = 0
-
-    # tongdat_laphoso_theoquydinh_ngoaikiem = 0
+    tong_donvi_capnuoc_thuchien_ngoaikiem = 0
+    
+    tongdat_laphoso_theoquydinh_ngoaikiem = 0
     tongdat_hoso_daydu_theoquydinh_ngoaikiem = 0
     tongdat_somau_thunghiem_dungquydinh_ngoaikiem = 0
     tongdat_thunghiem_daydu_thongso_ngoaikiem = 0
@@ -559,30 +545,19 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
     tongdat_thuchien_baocao_daydu_ngoaikiem = 0
     tongdat_thuchien_congkhai_thongtin_ngoaikiem = 0
     tongdat_thuchien_bienphap_khacphuc_ngoaikiem = 0
-
-    tong_maunuoc_thunghiem_noikiem = 0
-    tong_mau_dat_quychuan_noikiem = 0
     
     tong_maunuoc_thunghiem_ngoaikiem_trungtam = 0
     tong_mau_dat_quychuan_ngoaikiem_trungtam = 0
     tong_mau_khongdat_quychuan_ngoaikiem_trungtam = 0
     thongso_khongdat_ngoaikiem_trungtam = []
-
-    thongbao_thongtin_chatluongnuoc = 0
-    congkhai_thongtin_coquan_ngoaikiem = 0
-    thongbao_coquan_thamquyen = 0
-    thongbao_donvi_chuquan = 0
-
-
     
     if baocao_ngoaikiems is not None:
-        # tong_donvi_capnuoc_thuchien_ngoaikiem = len(baocao_ngoaikiems)
-        print("baocao_ngoaikiems", to_dict(baocao_ngoaikiems))
+        tong_donvi_capnuoc_thuchien_ngoaikiem = len(baocao_ngoaikiems)
         for baocao in baocao_ngoaikiems:
             baocao = copy.deepcopy(baocao)
             if baocao is not None:
-                # if baocao.laphoso_theoquydinh == 1:
-                #     tongdat_laphoso_theoquydinh_ngoaikiem += 1
+                if baocao.laphoso_theoquydinh == 1:
+                    tongdat_laphoso_theoquydinh_ngoaikiem += 1
                     
                 if baocao.hoso_daydu_theoquydinh == 1:
                     tongdat_hoso_daydu_theoquydinh_ngoaikiem += 1
@@ -604,26 +579,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                     
                 if baocao.thuchien_bienphap_khacphuc == 1:
                     tongdat_thuchien_bienphap_khacphuc_ngoaikiem += 1
-
-
-                if baocao.congbo_thongtin_chodonvicapnuoc == 1:
-                    thongbao_thongtin_chatluongnuoc += 1
-
-                if baocao.congkhai_thongtin == 1:
-                    congkhai_thongtin_coquan_ngoaikiem += 1
-
-                if baocao.thongbao_coquan_thamquyen == 1:
-                    thongbao_coquan_thamquyen += 1
-
-                if baocao.thongbao_donvi_chuquan == 1:
-                    thongbao_donvi_chuquan += 1
                 
-
-                tong_maunuoc_thunghiem_noikiem += baocao.tongsomau_thunghiem
-                tong_mau_dat_quychuan_noikiem += baocao.tongsomau_dat_quychuan
-
                 tong_maunuoc_thunghiem_ngoaikiem_trungtam += baocao.somauvavitri
-                
                 if baocao.danhsachvitrilaymau is not None:
                     for vitrimau in baocao.danhsachvitrilaymau:
                         if( vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] ==1):
@@ -648,10 +605,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                     item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
                                     item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
                                     thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
-
-                            print("thongso_khongdat_ngoaikiem_trungtam", thongso_khongdat_ngoaikiem_trungtam)
     
-    # data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem
+    data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem
     data["tongdat_hoso_daydu_theoquydinh_ngoaikiem"] = tongdat_hoso_daydu_theoquydinh_ngoaikiem
     data["tongdat_somau_thunghiem_dungquydinh_ngoaikiem"] = tongdat_somau_thunghiem_dungquydinh_ngoaikiem
     data["tongdat_thunghiem_daydu_thongso_ngoaikiem"] = tongdat_thunghiem_daydu_thongso_ngoaikiem
@@ -659,20 +614,12 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
     data["tongdat_thuchien_baocao_daydu_ngoaikiem"] = tongdat_thuchien_baocao_daydu_ngoaikiem
     data["tongdat_thuchien_congkhai_thongtin_ngoaikiem"] = tongdat_thuchien_congkhai_thongtin_ngoaikiem
     data["tongdat_thuchien_bienphap_khacphuc_ngoaikiem"] = tongdat_thuchien_bienphap_khacphuc_ngoaikiem
-
-    data["thongbao_thongtin_chatluongnuoc"] = thongbao_thongtin_chatluongnuoc
-    data["congkhai_thongtin_coquan_ngoaikiem"] = congkhai_thongtin_coquan_ngoaikiem
-    data["thongbao_coquan_thamquyen"] = thongbao_coquan_thamquyen
-    data["thongbao_donvi_chuquan"] = thongbao_donvi_chuquan
-
-    data["tong_maunuoc_thunghiem_noikiem"] = tong_maunuoc_thunghiem_noikiem
-    data["tong_mau_dat_quychuan_noikiem"] = tong_mau_dat_quychuan_noikiem
     
     data["tong_maunuoc_thunghiem_ngoaikiem_trungtam"] = tong_maunuoc_thunghiem_ngoaikiem_trungtam
     data["tong_mau_dat_quychuan_ngoaikiem_trungtam"] = tong_mau_dat_quychuan_ngoaikiem_trungtam
     data["tong_mau_khongdat_quychuan_ngoaikiem_trungtam"] = tong_mau_khongdat_quychuan_ngoaikiem_trungtam
     data["thongso_khongdat_ngoaikiem_trungtam"] = thongso_khongdat_ngoaikiem_trungtam  
-    # data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = tong_donvi_capnuoc_thuchien_ngoaikiem
+    data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = tong_donvi_capnuoc_thuchien_ngoaikiem
   
 
 async def process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops=None, data=None):

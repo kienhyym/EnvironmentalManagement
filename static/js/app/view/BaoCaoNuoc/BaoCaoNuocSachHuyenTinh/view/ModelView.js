@@ -131,11 +131,11 @@ define(function (require) {
                             self.getApp().notify("Cộng dồn thông tin thành công");
                             self.applyBindings();
                             self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_trungtam"),"thongso_khongdat_ngoaikiem_trungtam");
-                            self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
-                            self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_baocao"),"thongso_khongdat_ngoaikiem_baocao");
-                            self.render_hoso_quanly_noikiem(self.model.get("hoso_quanly_noikiem"));
-                            self.render_hoso_quanly_ngoaikiem_baocao(self.model.get("hoso_quanly_ngoaikiem_baocao"));
-                            self.render_donvi_ngoaikiem();
+                            // self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
+                            // self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_baocao"),"thongso_khongdat_ngoaikiem_baocao");
+                            // self.render_hoso_quanly_noikiem(self.model.get("hoso_quanly_noikiem"));
+                            // self.render_hoso_quanly_ngoaikiem_baocao(self.model.get("hoso_quanly_ngoaikiem_baocao"));
+                            // self.render_donvi_ngoaikiem();
                             self.apply_tyle();
                         },
                         error: function (xhr, status, error) {
@@ -237,11 +237,11 @@ define(function (require) {
                     success: function (data) {
                         self.applyBindings();
                         self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_trungtam"),"thongso_khongdat_ngoaikiem_trungtam");
-                        self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
-                        self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_baocao"),"thongso_khongdat_ngoaikiem_baocao");
-                        self.render_hoso_quanly_noikiem(self.model.get("hoso_quanly_noikiem"));
-                        self.render_hoso_quanly_ngoaikiem_baocao(self.model.get("hoso_quanly_ngoaikiem_baocao"));
-                        self.render_donvi_ngoaikiem();
+                        // self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
+                        // self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_baocao"),"thongso_khongdat_ngoaikiem_baocao");
+                        // self.render_hoso_quanly_noikiem(self.model.get("hoso_quanly_noikiem"));
+                        // self.render_hoso_quanly_ngoaikiem_baocao(self.model.get("hoso_quanly_ngoaikiem_baocao"));
+                        // self.render_donvi_ngoaikiem();
                         self.apply_tyle();
                     },
 					error: function (xhr, status, error) {
@@ -263,67 +263,67 @@ define(function (require) {
             }
 
         },
-        render_hoso_quanly_noikiem:function(hoso_quanly_noikiem){
-        	var self = this;
-        	self.$el.find("#body_hoso_quanly_noikiem").html("");
-        	if(!!hoso_quanly_noikiem && hoso_quanly_noikiem.length>0){
-        		$.each(hoso_quanly_noikiem, function(idx,hoso){
-        			var tr = $("<tr>");
-        			tr.append('<td>'+(idx+1)+'</td>');
-        			tr.append('<td>'+hoso.tendonvicapnuoc+'</td>');
-        			tr.append('<td>'+hoso.congsuat_thietke+'</td>');
-        			tr.append('<td>'+hoso.tong_laphoso_theoquydinh_noikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_hoso_daydu_theoquydinh_noikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_somau_thunghiem_dungquydinh_noikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_tansuat_thuchien_noikiem_dungquydinh_noikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_thuchien_baocao_daydu_noikiem+'</td>');
+        // render_hoso_quanly_noikiem:function(hoso_quanly_noikiem){
+        // 	var self = this;
+        // 	self.$el.find("#body_hoso_quanly_noikiem").html("");
+        // 	if(!!hoso_quanly_noikiem && hoso_quanly_noikiem.length>0){
+        // 		$.each(hoso_quanly_noikiem, function(idx,hoso){
+        // 			var tr = $("<tr>");
+        // 			tr.append('<td>'+(idx+1)+'</td>');
+        // 			tr.append('<td>'+hoso.tendonvicapnuoc+'</td>');
+        // 			tr.append('<td>'+hoso.congsuat_thietke+'</td>');
+        // 			tr.append('<td>'+hoso.tong_laphoso_theoquydinh_noikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_hoso_daydu_theoquydinh_noikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_somau_thunghiem_dungquydinh_noikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_tansuat_thuchien_noikiem_dungquydinh_noikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_thuchien_baocao_daydu_noikiem+'</td>');
         			
-        			tr.append('<td>'+hoso.tong_thuchien_congkhai_thongtin_noikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_thuchien_bienphap_khacphuc_dat_noikiem+'</td>');
-        			self.$el.find("#body_hoso_quanly_noikiem").append(tr);
-        		});
-        	}
-        },
-        render_hoso_quanly_ngoaikiem_baocao:function(hoso_quanly_ngoaikiem_baocao){
-        	var self = this;
-        	self.$el.find("#body_hoso_quanly_ngoaikiem_baocao").html("");
-        	if(!!hoso_quanly_ngoaikiem_baocao && hoso_quanly_ngoaikiem_baocao.length>0){
-        		$.each(hoso_quanly_ngoaikiem_baocao, function(idx,hoso){
-        			var tr = $("<tr>");
-        			tr.append('<td>'+(idx+1)+'</td>');
-        			tr.append('<td>'+hoso.tendonvicapnuoc+'</td>');
-        			tr.append('<td>'+hoso.congsuat_thietke+'</td>');
-        			tr.append('<td>'+hoso.tong_laphoso_theoquydinh_ngoaikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_hoso_daydu_theoquydinh_ngoaikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_somau_thunghiem_dungquydinh_ngoaikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_thuchien_baocao_daydu_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_thuchien_congkhai_thongtin_noikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_thuchien_bienphap_khacphuc_dat_noikiem+'</td>');
+        // 			self.$el.find("#body_hoso_quanly_noikiem").append(tr);
+        // 		});
+        // 	}
+        // },
+        // render_hoso_quanly_ngoaikiem_baocao:function(hoso_quanly_ngoaikiem_baocao){
+        // 	var self = this;
+        // 	self.$el.find("#body_hoso_quanly_ngoaikiem_baocao").html("");
+        // 	if(!!hoso_quanly_ngoaikiem_baocao && hoso_quanly_ngoaikiem_baocao.length>0){
+        // 		$.each(hoso_quanly_ngoaikiem_baocao, function(idx,hoso){
+        // 			var tr = $("<tr>");
+        // 			tr.append('<td>'+(idx+1)+'</td>');
+        // 			tr.append('<td>'+hoso.tendonvicapnuoc+'</td>');
+        // 			tr.append('<td>'+hoso.congsuat_thietke+'</td>');
+        // 			tr.append('<td>'+hoso.tong_laphoso_theoquydinh_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_hoso_daydu_theoquydinh_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_somau_thunghiem_dungquydinh_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_thuchien_baocao_daydu_ngoaikiem+'</td>');
         			
-        			tr.append('<td>'+hoso.tong_thuchien_congkhai_thongtin_ngoaikiem+'</td>');
-        			tr.append('<td>'+hoso.tong_thuchien_bienphap_khacphuc_dat_ngoaikiem+'</td>');
-        			self.$el.find("#body_hoso_quanly_ngoaikiem_baocao").append(tr);
-        		});
-        	}
-        },
-        render_donvi_ngoaikiem:function(){
-        	var self = this;
-        	var donvi_ngoaikiems = self.model.get("danhsach_donvi_ngoaikiem");
-        	self.$el.find("#danhsach_donvi_ngoaikiem").html("");
-        	if(!!donvi_ngoaikiems && donvi_ngoaikiems.length>0){
-        		$.each(donvi_ngoaikiems, function(idx,donvi){
+        // 			tr.append('<td>'+hoso.tong_thuchien_congkhai_thongtin_ngoaikiem+'</td>');
+        // 			tr.append('<td>'+hoso.tong_thuchien_bienphap_khacphuc_dat_ngoaikiem+'</td>');
+        // 			self.$el.find("#body_hoso_quanly_ngoaikiem_baocao").append(tr);
+        // 		});
+        // 	}
+        // },
+//         render_donvi_ngoaikiem:function(){
+//         	var self = this;
+//         	var donvi_ngoaikiems = self.model.get("danhsach_donvi_ngoaikiem");
+//         	self.$el.find("#danhsach_donvi_ngoaikiem").html("");
+//         	if(!!donvi_ngoaikiems && donvi_ngoaikiems.length>0){
+//         		$.each(donvi_ngoaikiems, function(idx,donvi){
         			
-					var tr = $("<tr>");
-					var donvi_noidung_ngoaikiem = donvi.noidung_ngoaikiem ? donvi.noidung_ngoaikiem : "";
-//        			tr.append('<td>'+(idx+1)+'</td>');
-        			tr.append('<td>'+donvi.tendonvicapnuoc+'</td>');
-        			tr.append('<td>'+donvi.tendonvi+'</td>');
-        			tr.append('<td>'+donvi_noidung_ngoaikiem+'</td>');
-        			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(donvi.ngaykiemtra, "DD/MM/YYYY")+'</td>');
-        			self.$el.find("#danhsach_donvi_ngoaikiem").append(tr);
-        		});
-        	}
+// 					var tr = $("<tr>");
+// 					var donvi_noidung_ngoaikiem = donvi.noidung_ngoaikiem ? donvi.noidung_ngoaikiem : "";
+// //        			tr.append('<td>'+(idx+1)+'</td>');
+//         			tr.append('<td>'+donvi.tendonvicapnuoc+'</td>');
+//         			tr.append('<td>'+donvi.tendonvi+'</td>');
+//         			tr.append('<td>'+donvi_noidung_ngoaikiem+'</td>');
+//         			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(donvi.ngaykiemtra, "DD/MM/YYYY")+'</td>');
+//         			self.$el.find("#danhsach_donvi_ngoaikiem").append(tr);
+//         		});
+//         	}
         	
-        },
+//         },
         render_thongso_khongdat:function(thongso_khongdat, elementID){
         	var self = this;
         	if(!!thongso_khongdat && thongso_khongdat.length>0){
@@ -336,13 +336,14 @@ define(function (require) {
 					if (thongso_ketqua === null || thongso_ketqua === ""){
 						thongso_ketqua = "";
 					}
-        			if(elementID === "thongso_khongdat_ngoaikiem_baocao"){
-        				var tendonvingoaikiem = "";
-        				if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){
-        					tendonvingoaikiem = thongso.tendonvingoaikiem;
-        				}
-        				tr.append('<td>'+tendonvingoaikiem+'</td>');
-        			}
+        			// if(elementID === "thongso_khongdat_ngoaikiem_trungtam"){
+        			// 	var tendonvingoaikiem = "";
+        			// 	if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){
+        			// 		tendonvingoaikiem = thongso.tendonvingoaikiem;
+        			// 	}
+        			// 	tr.append('<td>'+tendonvingoaikiem+'</td>');
+					// }
+					tr.append('<td>'+ (idx+1) +'</td>');
         			tr.append('<td>'+thongso.tendonvicapnuoc+'</td>');
         			tr.append('<td>'+thongso.tenthongso+'</td>');
         			tr.append('<td>'+thongso_ketqua+'</td>');
@@ -352,114 +353,137 @@ define(function (require) {
         			self.$el.find("#body_"+elementID).append(tr);
         		});
         		self.$el.find("#"+elementID+"_value").text(thongso_khongdat.length);
-        	}else{
+			} else{
         		self.$el.find("#"+elementID).hide();
-        		self.$el.find("#"+elementID+"_value").text("không có");
+        		self.$el.find("#"+elementID+"_value").text("Không có");
         	}
         },
         apply_tyle: function(){
         	var self = this;
-        	var tong_hogiadinh_diaban = self.getApp().toInt(self.model.get("tong_hogiadinh_diaban"));
-        	var tyle_hogiadinh_capnuocsach_diaban = tong_hogiadinh_diaban >0 ? (self.getApp().toInt(self.model.get("tong_hogiadinh_duoccungcapnuoc"))*100/tong_hogiadinh_diaban).toFixed(2) :0;
-        	self.$el.find("#tyle_hogiadinh_capnuocsach_diaban").val(tyle_hogiadinh_capnuocsach_diaban+"%");
+			var tong_hogiadinh_diaban = self.getApp().toInt(self.model.get("tong_hogiadinh_diaban"));
+			var tong_hogiadinh_duoccungcapnuoc = self.getApp().toInt(self.model.get("tong_hogiadinh_duoccungcapnuoc"));
+			if(tong_hogiadinh_duoccungcapnuoc > 0){
+				var tyle_hogiadinh_capnuocsach_diaban = ((tong_hogiadinh_diaban/tong_hogiadinh_duoccungcapnuoc)*100).toFixed(2);
+				self.$el.find("#tyle_hogiadinh_capnuocsach_diaban").val(tyle_hogiadinh_capnuocsach_diaban+"%");
+			}
         	
-        	self.model.on("change:tong_hogiadinh_diaban", function(){
-        		var tong_hogiadinh_diaban = self.getApp().toInt(self.model.get("tong_hogiadinh_diaban"));
-            	var tyle_hogiadinh_capnuocsach_diaban = tong_hogiadinh_diaban >0 ? (self.getApp().toInt(self.model.get("tong_hogiadinh_duoccungcapnuoc"))*100/tong_hogiadinh_diaban).toFixed(2) :0;
-            	self.$el.find("#tyle_hogiadinh_capnuocsach_diaban").val(tyle_hogiadinh_capnuocsach_diaban+"%");
+        	// self.model.on("change:tong_hogiadinh_diaban", function(){
+        	// 	var tong_hogiadinh_diaban = self.getApp().toInt(self.model.get("tong_hogiadinh_diaban"));
+            // 	var tyle_hogiadinh_capnuocsach_diaban = tong_hogiadinh_diaban >0 ? (self.getApp().toInt(self.model.get("tong_hogiadinh_duoccungcapnuoc"))*100/tong_hogiadinh_diaban).toFixed(2) :0;
+            // 	self.$el.find("#tyle_hogiadinh_capnuocsach_diaban").val(tyle_hogiadinh_capnuocsach_diaban+"%");
             	
-        	});
+        	// });
         	
-        	//ty le ket qua noi kiem
-        	var tong_donvi_capnuoc_thuchien_ngoaikiem = self.getApp().toInt(self.model.get("tong_donvi_capnuoc_thuchien_ngoaikiem"));
+			//ty le ket qua noi kiem
+			var tong_soluot_ngoaikiem = self.getApp().toInt(self.model.get("tong_soluot_ngoaikiem"));
+
+        	// var tong_donvi_capnuoc_thuchien_ngoaikiem = self.getApp().toInt(self.model.get("tong_donvi_capnuoc_thuchien_ngoaikiem"));
         	
-        	var tongdat_laphoso_theoquydinh_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_laphoso_theoquydinh_ngoaikiem"));
-        	var tyle_tongdat_laphoso_theoquydinh_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_laphoso_theoquydinh_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
-        	self.$el.find("#tongdat_laphoso_theoquydinh_ngoaikiem").val(tyle_tongdat_laphoso_theoquydinh_ngoaikiem+"%");
+        	// var tongdat_laphoso_theoquydinh_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_laphoso_theoquydinh_ngoaikiem"));
+        	// var tyle_tongdat_laphoso_theoquydinh_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
+        	// 		(tongdat_laphoso_theoquydinh_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	// self.$el.find("#tongdat_laphoso_theoquydinh_ngoaikiem").val(tyle_tongdat_laphoso_theoquydinh_ngoaikiem+"%");
         			
     		var tongdat_hoso_daydu_theoquydinh_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_hoso_daydu_theoquydinh_ngoaikiem"));
-        	var tyle_hoso_daydu_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_hoso_daydu_theoquydinh_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_hoso_daydu_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_hoso_daydu_theoquydinh_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_hoso_daydu_theoquydinh_ngoaikiem").val(tyle_hoso_daydu_ngoaikiem+"%");
         	
         	var tongdat_somau_thunghiem_dungquydinh_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_somau_thunghiem_dungquydinh_ngoaikiem"));
-        	var tyle_somau_thunghiem_dungquydinh_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_somau_thunghiem_dungquydinh_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_somau_thunghiem_dungquydinh_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_somau_thunghiem_dungquydinh_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_somau_thunghiem_dungquydinh_ngoaikiem").val(tyle_somau_thunghiem_dungquydinh_ngoaikiem+"%");
         		
         	var tongdat_thunghiem_daydu_thongso_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thunghiem_daydu_thongso_ngoaikiem"));
-        	var tyle_tongdat_thunghiem_daydu_thongso_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_thunghiem_daydu_thongso_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_tongdat_thunghiem_daydu_thongso_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_thunghiem_daydu_thongso_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_thunghiem_daydu_thongso_ngoaikiem").val(tyle_tongdat_thunghiem_daydu_thongso_ngoaikiem+"%");
         	
         	
         	var tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem"));
-        	var tyle_tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem").val(tyle_tongdat_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem+"%");
         		
         	var tongdat_thuchien_baocao_daydu_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thuchien_baocao_daydu_ngoaikiem"));
-        	var tyle_tongdat_thuchien_baocao_daydu_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_thuchien_baocao_daydu_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_tongdat_thuchien_baocao_daydu_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_thuchien_baocao_daydu_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_thuchien_baocao_daydu_ngoaikiem").val(tyle_tongdat_thuchien_baocao_daydu_ngoaikiem+"%");
         	
         	var tongdat_thuchien_congkhai_thongtin_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thuchien_congkhai_thongtin_ngoaikiem"));
-        	var tyle_tongdat_thuchien_congkhai_thongtin_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_thuchien_congkhai_thongtin_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_tongdat_thuchien_congkhai_thongtin_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_thuchien_congkhai_thongtin_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_thuchien_congkhai_thongtin_ngoaikiem").val(tyle_tongdat_thuchien_congkhai_thongtin_ngoaikiem+"%");
         	
         	var tongdat_thuchien_bienphap_khacphuc_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thuchien_bienphap_khacphuc_ngoaikiem"));
-        	var tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_thuchien_bienphap_khacphuc_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
+        	var tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(tongdat_thuchien_bienphap_khacphuc_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
         	self.$el.find("#tongdat_thuchien_bienphap_khacphuc_ngoaikiem").val(tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem+"%");
         	
-        	var tongdat_thuchien_bienphap_khacphuc_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thuchien_bienphap_khacphuc_ngoaikiem"));
-        	var tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem = tong_donvi_capnuoc_thuchien_ngoaikiem >0 ? 
-        			(tongdat_thuchien_bienphap_khacphuc_ngoaikiem*100/tong_donvi_capnuoc_thuchien_ngoaikiem).toFixed(2): 0;
-        	self.$el.find("#tongdat_thuchien_bienphap_khacphuc_ngoaikiem").val(tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem+"%");
+        	// var tongdat_thuchien_bienphap_khacphuc_ngoaikiem = self.getApp().toInt(self.model.get("tongdat_thuchien_bienphap_khacphuc_ngoaikiem"));
+        	// var tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        	// 		(tongdat_thuchien_bienphap_khacphuc_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
+			// self.$el.find("#tongdat_thuchien_bienphap_khacphuc_ngoaikiem").val(tyle_tongdat_thuchien_bienphap_khacphuc_ngoaikiem+"%");
+			
         	
         	
         	
         	var tong_maunuoc_thunghiem_ngoaikiem_trungtam = self.getApp().toInt(self.model.get("tong_maunuoc_thunghiem_ngoaikiem_trungtam"));
-
         	var tong_mau_dat_quychuan_ngoaikiem_trungtam = self.getApp().toInt(self.model.get("tong_mau_dat_quychuan_ngoaikiem_trungtam"));
         	var tyle_tong_mau_dat_quychuan_ngoaikiem_trungtam = tong_maunuoc_thunghiem_ngoaikiem_trungtam >0 ? 
         			(tong_mau_dat_quychuan_ngoaikiem_trungtam*100/tong_maunuoc_thunghiem_ngoaikiem_trungtam).toFixed(2): 0;
         	self.$el.find("#tong_mau_dat_quychuan_ngoaikiem_trungtam").val(tyle_tong_mau_dat_quychuan_ngoaikiem_trungtam+"%");
         	
-        	var tong_mau_khongdat_quychuan_ngoaikiem_trungtam = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_ngoaikiem_trungtam"));
-        	var tyle_tong_mau_khongdat_quychuan_ngoaikiem_trungtam = tong_maunuoc_thunghiem_ngoaikiem_trungtam >0 ? 
-        			(tong_mau_khongdat_quychuan_ngoaikiem_trungtam*100/tong_maunuoc_thunghiem_ngoaikiem_trungtam).toFixed(2): 0;
-        	self.$el.find("#tong_mau_khongdat_quychuan_ngoaikiem_trungtam").val(tyle_tong_mau_khongdat_quychuan_ngoaikiem_trungtam+"%");
+        	// var tong_mau_khongdat_quychuan_ngoaikiem_trungtam = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_ngoaikiem_trungtam"));
+        	// var tyle_tong_mau_khongdat_quychuan_ngoaikiem_trungtam = tong_maunuoc_thunghiem_ngoaikiem_trungtam >0 ? 
+        	// 		(tong_mau_khongdat_quychuan_ngoaikiem_trungtam*100/tong_maunuoc_thunghiem_ngoaikiem_trungtam).toFixed(2): 0;
+        	// self.$el.find("#tong_mau_khongdat_quychuan_ngoaikiem_trungtam").val(tyle_tong_mau_khongdat_quychuan_ngoaikiem_trungtam+"%");
         	
         	
-        	var tong_maunuoc_thunghiem_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_maunuoc_thunghiem_ngoaikiem_baocao"));
+        	// var tong_maunuoc_thunghiem_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_maunuoc_thunghiem_ngoaikiem_baocao"));
         	
-        	var tong_mau_dat_quychuan_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_mau_dat_quychuan_ngoaikiem_baocao"));
-        	var tyle_tong_mau_dat_quychuan_ngoaikiem_baocao = tong_maunuoc_thunghiem_ngoaikiem_baocao >0 ? 
-        			(tong_mau_dat_quychuan_ngoaikiem_baocao*100/tong_maunuoc_thunghiem_ngoaikiem_baocao).toFixed(2): 0;
-        	self.$el.find("#tong_mau_dat_quychuan_ngoaikiem_baocao").val(tyle_tong_mau_dat_quychuan_ngoaikiem_baocao+"%");
+        	// var tong_mau_dat_quychuan_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_mau_dat_quychuan_ngoaikiem_baocao"));
+        	// var tyle_tong_mau_dat_quychuan_ngoaikiem_baocao = tong_maunuoc_thunghiem_ngoaikiem_baocao >0 ? 
+        	// 		(tong_mau_dat_quychuan_ngoaikiem_baocao*100/tong_maunuoc_thunghiem_ngoaikiem_baocao).toFixed(2): 0;
+        	// self.$el.find("#tong_mau_dat_quychuan_ngoaikiem_baocao").val(tyle_tong_mau_dat_quychuan_ngoaikiem_baocao+"%");
         	
         	
-        	var tong_mau_khongdat_quychuan_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_ngoaikiem_baocao"));
-        	var tyle_tong_mau_khongdat_quychuan_ngoaikiem_baocao = tong_maunuoc_thunghiem_ngoaikiem_baocao >0 ? 
-        			(tong_mau_khongdat_quychuan_ngoaikiem_baocao*100/tong_maunuoc_thunghiem_ngoaikiem_baocao).toFixed(2): 0;
-        	self.$el.find("#tong_mau_khongdat_quychuan_ngoaikiem_baocao").val(tyle_tong_mau_khongdat_quychuan_ngoaikiem_baocao+"%");
+        	// var tong_mau_khongdat_quychuan_ngoaikiem_baocao = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_ngoaikiem_baocao"));
+        	// var tyle_tong_mau_khongdat_quychuan_ngoaikiem_baocao = tong_maunuoc_thunghiem_ngoaikiem_baocao >0 ? 
+        	// 		(tong_mau_khongdat_quychuan_ngoaikiem_baocao*100/tong_maunuoc_thunghiem_ngoaikiem_baocao).toFixed(2): 0;
+        	// self.$el.find("#tong_mau_khongdat_quychuan_ngoaikiem_baocao").val(tyle_tong_mau_khongdat_quychuan_ngoaikiem_baocao+"%");
         	
         	
         	var tong_maunuoc_thunghiem_noikiem = self.getApp().toInt(self.model.get("tong_maunuoc_thunghiem_noikiem"));
-        	
         	var tong_mau_dat_quychuan_noikiem = self.getApp().toInt(self.model.get("tong_mau_dat_quychuan_noikiem"));
         	var tyle_tong_mau_dat_quychuan_noikiem = tong_maunuoc_thunghiem_noikiem >0 ? 
         			(tong_mau_dat_quychuan_noikiem*100/tong_maunuoc_thunghiem_noikiem).toFixed(2): 0;
         	self.$el.find("#tong_mau_dat_quychuan_noikiem").val(tyle_tong_mau_dat_quychuan_noikiem+"%");
         	
-        	var tong_mau_khongdat_quychuan_noikiem = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_noikiem"));
-        	var tyle_tong_mau_khongdat_quychuan_noikiem = tong_maunuoc_thunghiem_noikiem >0 ? 
-        			(tong_mau_khongdat_quychuan_noikiem*100/tong_maunuoc_thunghiem_noikiem).toFixed(2): 0;
-        	self.$el.find("#tong_mau_khongdat_quychuan_noikiem").val(tyle_tong_mau_khongdat_quychuan_noikiem+"%");
-        	
+        	// var tong_mau_khongdat_quychuan_noikiem = self.getApp().toInt(self.model.get("tong_mau_khongdat_quychuan_noikiem"));
+        	// var tyle_tong_mau_khongdat_quychuan_noikiem = tong_maunuoc_thunghiem_noikiem >0 ? 
+        	// 		(tong_mau_khongdat_quychuan_noikiem*100/tong_maunuoc_thunghiem_noikiem).toFixed(2): 0;
+			// self.$el.find("#tong_mau_khongdat_quychuan_noikiem").val(tyle_tong_mau_khongdat_quychuan_noikiem+"%");
+			
+			var thongbao_thongtin_chatluongnuoc = self.getApp().toInt(self.model.get("thongbao_thongtin_chatluongnuoc"));
+        	var tyle_thongbao_thongtin_chatluongnuoc = tong_soluot_ngoaikiem >0 ? 
+        			(thongbao_thongtin_chatluongnuoc*100/tong_soluot_ngoaikiem).toFixed(2): 0;
+			self.$el.find("#thongbao_thongtin_chatluongnuoc").val(tyle_thongbao_thongtin_chatluongnuoc+"%");
+			
+			var congkhai_thongtin_coquan_ngoaikiem = self.getApp().toInt(self.model.get("congkhai_thongtin_coquan_ngoaikiem"));
+        	var tyle_congkhai_thongtin_coquan_ngoaikiem = tong_soluot_ngoaikiem >0 ? 
+        			(congkhai_thongtin_coquan_ngoaikiem*100/tong_soluot_ngoaikiem).toFixed(2): 0;
+			self.$el.find("#congkhai_thongtin_coquan_ngoaikiem").val(tyle_congkhai_thongtin_coquan_ngoaikiem+"%");
+			
+			var thongbao_coquan_thamquyen = self.getApp().toInt(self.model.get("thongbao_coquan_thamquyen"));
+        	var tyle_thongbao_coquan_thamquyen = tong_soluot_ngoaikiem >0 ? 
+        			(thongbao_coquan_thamquyen*100/tong_soluot_ngoaikiem).toFixed(2): 0;
+			self.$el.find("#thongbao_coquan_thamquyen").val(tyle_thongbao_coquan_thamquyen+"%");
+			
+			var thongbao_donvi_chuquan = self.getApp().toInt(self.model.get("thongbao_donvi_chuquan"));
+        	var tyle_thongbao_donvi_chuquan = tong_soluot_ngoaikiem >0 ? 
+        			(thongbao_donvi_chuquan*100/tong_soluot_ngoaikiem).toFixed(2): 0;
+        	self.$el.find("#thongbao_donvi_chuquan").val(tyle_thongbao_donvi_chuquan+"%");
         }
     });
 });

@@ -252,7 +252,7 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     tong_donvi_capnuoc = db.Column(db.Integer, default=0)
     tong_hogiadinh_duoccungcapnuoc = db.Column(db.Integer, default=0)
     tong_hogiadinh_diaban = db.Column(db.Integer, default=0)
-    
+    tong_soluot_ngoaikiem = db.Column(db.Integer, default=0)
     tong_donvi_capnuoc_thuchien_ngoaikiem = db.Column(db.Integer, default=0)
     tong_kinhphi_congtac_ngoaikiem = db.Column(db.Integer, default=0)
     kinhphi_ngoaikiem_sovoinamtruoc = db.Column(db.SmallInteger)
@@ -284,6 +284,11 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     tong_mau_dat_quychuan_ngoaikiem_baocao = db.Column(db.Integer, default=0)
     tong_mau_khongdat_quychuan_ngoaikiem_baocao = db.Column(db.Integer, default=0)
     thongso_khongdat_ngoaikiem_baocao = db.Column(JSONB)
+
+    thongbao_thongtin_chatluongnuoc = db.Column(db.Integer, default=0)
+    congkhai_thongtin_coquan_ngoaikiem = db.Column(db.Integer, default=0)
+    thongbao_coquan_thamquyen = db.Column(db.Integer, default=0)
+    thongbao_donvi_chuquan = db.Column(db.Integer, default=0)
     
     nhanxet = db.Column(db.String)
     dexuat = db.Column(db.String)

@@ -30,24 +30,18 @@
                         </tr>
                         <tr>
                             <td class="col-md-6" id="tong_hogiadinh_diaban_txt">Tổng số HGĐ trên địa bàn huyện</td>
-                            <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tong_hogiadinh_diaban" /></td>
+                            <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tong_hogiadinh_diaban" disabled /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Tỷ lệ (%)</td>
                             <td class="col-md-6"><input id="tyle_hogiadinh_capnuocsach_diaban" type="text" disabled class="form-control" /></td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h3 style="padding-bottom:10px;" id="title_ngoaikiem_B">B. Kết quản ngoại kiểm của Trung tâm y tế Huyện</h3>
-                <table class="table is-table">
-                    <tbody>
                         <tr>
-                            <td class="col-md-6">Số đơn vị cấp nước được thực hiện ngoại kiểm</td>
+                            <td class="col-md-6">Tổng số lượt ngoại kiểm</td>
+                            <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_soluot_ngoaikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6">Tổng số đơn vị cấp nước được kiểm tra</td>
                             <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_thuchien_ngoaikiem" /></td>
                         </tr>
                         <tr>
@@ -61,9 +55,12 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
+        <div class="row">
             <!-- start ket qua noi kiem  -->
             <div class="col-md-12">
+                <h3 style="padding-bottom:10px;" id="title_ngoaikiem_B">B. Kết quả ngoại kiểm của Trung tâm y tế Huyện</h3>
                 <h4 style="padding-bottom:10px;">1. Hồ sơ theo dõi, quản lý chất lượng nước</h4>
                 <table class="table is-table">
                     <thead>
@@ -74,11 +71,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <td>Lập hồ sơ đủ theo quy định</td>
                             <td><input type="text" disabled class="form-control" data-bind="value:tongdat_laphoso_theoquydinh_ngoaikiem" /></td>
                             <td><input type="text" disabled class="form-control" id="tongdat_laphoso_theoquydinh_ngoaikiem" /></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>Hồ sơ đầy đủ theo quy định</td>
                             <td><input type="text" disabled class="form-control" data-bind="value:tongdat_hoso_daydu_theoquydinh_ngoaikiem" /></td>
@@ -105,7 +102,7 @@
                             <td><input type="text" disabled class="form-control" id="tongdat_thuchien_baocao_daydu_ngoaikiem" /></td>
                         </tr>
                         <tr>
-                            <td>Thực hiện công khai thông tin</td>
+                            <td>Thực hiện công khai thông tin đầy đủ</td>
                             <td><input type="text" disabled class="form-control" data-bind="value:tongdat_thuchien_congkhai_thongtin_ngoaikiem" /></td>
                             <td><input type="text" disabled class="form-control" id="tongdat_thuchien_congkhai_thongtin_ngoaikiem" /></td>
                         </tr>
@@ -119,7 +116,39 @@
             </div>
             <!-- start ket qua thu nghiem nuoc  noi kiem-->
             <div class="col-md-12">
-                <h4 style="padding-bottom:10px;">2. Kết quả thử nghiệm chất lượng nước</h4>
+                <h4 style="padding-bottom:10px;">2. Nội kiểm chất lượng nước</h4>
+                <table class="table is-table">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%">Tổng số mẫu nước làm thử nghiệm (mẫu)</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:tong_maunuoc_thunghiem_noikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td>Tổng số mẫu đạt quy chuẩn (mẫu)</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:tong_mau_dat_quychuan_noikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td>Tỷ lệ mẫu đạt quy chuẩn (%)</td>
+                            <td><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_noikiem" /></td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:tong_mau_khongdat_quychuan_noikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td>Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
+                            <td><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_noikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td>Các thông số không đạt</td>
+                            <td id="thongso_khongdat_noikiem_value"></td>
+                        </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <h4 style="padding-bottom:10px;">3. Kết quả thử nghiệm chất lượng nước</h4>
                 <table class="table is-table">
                     <tbody>
                         <tr>
@@ -134,14 +163,14 @@
                             <td class="col-md-6">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
                             <td class="col-md-6"><input type="text" disabled class="form-control" id="tong_mau_dat_quychuan_ngoaikiem_trungtam" /></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="col-md-6">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
                             <td class="col-md-6"><input type="text" disabled class="form-control" data-bind="value:tong_mau_khongdat_quychuan_ngoaikiem_trungtam" /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Tỷ lệ mẫu không đạt quy chuẩn</td>
                             <td class="col-md-6"><input type="text" disabled class="form-control" id="tong_mau_khongdat_quychuan_ngoaikiem_trungtam" /></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="col-md-6">Các thông số không đạt</td>
                             <td class="col-md-6" id="thongso_khongdat_ngoaikiem_trungtam_value"></td>
@@ -149,9 +178,11 @@
 
                     </tbody>
                 </table>
+                <h4 style="padding-bottom:10px;">Các thông số không đạt</h4>
                 <table class="table is-table" id="thongso_khongdat_ngoaikiem_trungtam">
                     <thead>
                         <tr>
+                            <th class="background-colorTH text-center">STT</th>
                             <th class="background-colorTH text-center">Đơn vị cấp nước</th>
                             <th class="background-colorTH text-center">Thông số không đạt</th>
                             <th class="background-colorTH text-center">Kết quả thử nghiệm</th>
@@ -165,9 +196,43 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-md-12">
+                <h4 style="padding-bottom:10px;">4. Công bố thông tin</h4>
+                <table class="table is-table">
+                    <thead>
+                        <tr>
+                            <th class="top" style="min-width: 50%">Nội dung</th>
+                            <th class="top">Số đơn vị cấp nước đạt</th>
+                            <th class="top">Tỷ lệ (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Thông báo thông tin chất lượng nước cho đơn vị cấp nước</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:thongbao_thongtin_chatluongnuoc" /></td>
+                            <td><input type="text" disabled class="form-control" id="thongbao_thongtin_chatluongnuoc" /></td>
+                        </tr>
+                        <tr>
+                            <td>Công khai trên trang thông tin của cơ quan ngoại kiểm</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:congkhai_thongtin_coquan_ngoaikiem" /></td>
+                            <td><input type="text" disabled class="form-control" id="congkhai_thongtin_coquan_ngoaikiem" /></td>
+                        </tr>
+                        <tr>
+                            <td>Thông báo cho cơ quan có thẩm quyền</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:thongbao_coquan_thamquyen" /></td>
+                            <td><input type="text" disabled class="form-control" id="thongbao_coquan_thamquyen" /></td>
+                        </tr>
+                        <tr>
+                            <td>Thông báo cho đơn vị chủ quản của đơn vị cấp nước</td>
+                            <td><input type="text" disabled class="form-control" data-bind="value:thongbao_donvi_chuquan" /></td>
+                            <td><input type="text" disabled class="form-control" id="thongbao_donvi_chuquan" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row" hidden>
             <div class="col-md-12">
                 <h3 style="padding-bottom:10px;">C. Kết quả nội kiểm của các đơn vị cấp nước</h3>
                 <h4 style="padding-bottom:10px;">1. Hồ sơ theo dõi, quản lý chất lượng nước</h4>
@@ -238,9 +303,9 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> -->
 
-        <div class="row">
+        <!-- <div class="row" hidden>
             <div class="col-md-12">
                 <h3 style="padding-bottom:10px;">D. Kết quả ngoại kiểm của cơ quan có thẩm quyền theo báo cáo của đơn vị
                     cấp nước</h3>
@@ -282,7 +347,6 @@
                 </table>
             </div>
 
-            <!-- start ket qua thu nghiem nuoc  noi kiem-->
             <div class="col-md-12">
                 <h4 style="padding-bottom:10px;">3. Kết quả thử nghiệm chất lượng nước</h4>
                 <table class="table is-table">
@@ -331,17 +395,17 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-md-12">
-                <h3 style="padding-bottom:10px;">D. Nhận xét</h3>
+                <h3 style="padding-bottom:10px;">C. Nhận xét</h3>
                 <div class="form-group">
                     <textarea rows="3" class="form-control" data-bind="value:nhanxet"></textarea>
                 </div>
             </div>
             <div class="col-md-12">
-                <h3 style="padding-bottom:10px;">E. Đề Xuất</h3>
+                <h3 style="padding-bottom:10px;">D. Đề Xuất</h3>
                 <div class="form-group">
                     <textarea rows="3" class="form-control" data-bind="value:dexuat"></textarea>
                 </div>
