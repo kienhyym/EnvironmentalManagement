@@ -22,11 +22,11 @@ define(function (require) {
                 
             },
             {
-                field: "ngaybaocao",
-                label: "Ngày báo cáo",
+                field: "thoigiankiemtra",
+                label: "Ngày kiểm tra",
                 template:function(rowData){
 	    	    	 var template_helper = new TemplateHelper();
-	    	    	 return template_helper.datetimeFormat(rowData.ngaybaocao, "DD/MM/YYYY");
+	    	    	 return template_helper.datetimeFormat(rowData.thoigiankiemtra, "DD/MM/YYYY");
 	    	     }
             },
             {
@@ -42,11 +42,11 @@ define(function (require) {
                 label: "Địa chỉ",
                 
             },
-            {
-                field: "tendonvi_ngoaikiem",
-                label: "Đơn vị ngoại kiểm",
+            // {
+            //     field: "tendonvi_ngoaikiem",
+            //     label: "Đơn vị ngoại kiểm",
                 
-            },
+            // },
 
             ],
             pagination: {

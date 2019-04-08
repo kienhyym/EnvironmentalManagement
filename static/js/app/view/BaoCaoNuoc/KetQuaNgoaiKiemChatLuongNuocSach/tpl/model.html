@@ -7,14 +7,14 @@
         
         <div class="table1">
             <h3 style="padding-bottom:10px; padding-top: 20px">A. Thông tin chung</h3>
-            <h5 style="padding-bottom: 10px;">1. Đơn vị thực hiện ngoại kiểm</h5>
-            <div class="row">
+            <h5 style="padding-bottom: 10px;" hidden>1. Đơn vị thực hiện ngoại kiểm</h5>
+            <div class="row" hidden>
                 <div class="col-md-12">
                     <table class="table is-table">
                         <tbody>
                             <tr>
                                 <td class="col-md-6">Tên đơn vị thực hiện ngoại kiểm</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tendonvi_ngoaikiem" /></td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tendonvi_ngoaikiem" disabled /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Nội dung ngoại kiểm</td>
@@ -22,7 +22,7 @@
                             </tr>
                             <tr>
                                 <td class="col-md-6">Thử nghiệm chất lượng nước</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thunghiem_chatluong_nuoc" /></td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thunghiem_chatluong_nuoc" disabled /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="table1">
-            <h5 style="padding-bottom: 10px;">2. Đơn vị cấp nước</h5>
+            <h5 style="padding-bottom: 10px;" hidden>2. Đơn vị cấp nước</h5>
             <div class="row">
                 <div class="col-md-12">
                     <table class="table is-table">
@@ -40,6 +40,10 @@
                                 <td class="col-md-6"><input type="text" class="form-control" data-bind="value:nambaocao" placeholder="YYYY" /></td>
                             </tr>
                             <tr>
+                                <td class="col-md-6">Ngày kiểm tra</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
+                            </tr>
+                            <tr hidden>
                                 <td class="col-md-6">Ngày báo cáo</td>
                                 <td class="col-md-6"><input type="text" class="form-control" data-bind="value:ngaybaocao" /></td>
                             </tr>
@@ -67,13 +71,9 @@
                                 <td class="col-md-6">Địa chỉ cụ thể</td>
                                 <td class="col-md-6"><span data-bind="text:diachi_donvicapnuoc"></span></td>
                             </tr>
-                            <tr>
-                                <td class="col-md-6">Ngày kiểm tra</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
-                            </tr>
-                            <tr>
+                            <tr hidden>
                                 <td class="col-md-6">Phân loại đơn vị kiểm tra</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:loai_donvi_kiemtra" /></td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:loai_donvi_kiemtra" disabled /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Thành phần đoàn kiểm tra</td>
@@ -102,7 +102,7 @@
                             </tr>
                             <tr id="tailieu_thieu">
                                 <td class="col-md-6">Nếu không thì thiếu tài liệu gì?</td>
-                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tailieu_thieu" /></td>
+                                <td class="col-md-6"><textarea rows="2" class="form-control" data-bind="value:tailieu_thieu" ></textarea></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Số mẫu thử nghiệm đúng theo quy định</td>
@@ -151,14 +151,14 @@
                                 <td class="col-md-6">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
                                 <td class="col-md-6"><input id="tylemau_datquychuan" type="text" class="form-control" readonly="readonly" /></td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td class="col-md-6">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
                                 <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_khongdat_quychuan" /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
                                 <td class="col-md-6"><input id="tylemau_khongdatquychuan" type="text" class="form-control" readonly="readonly" /></td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td class="col-md-6">Các thông số không đạt</td>
                                 <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_thongso_khongdat" /></td>
@@ -246,7 +246,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Kết luận kết quả</label>
-                        <input type="text" class="form-control" data-bind="value:ketquangoaikiem"></input>
+                        <input type="text" class="form-control" data-bind="value:ketquangoaikiem" disabled></input>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group" >
+                        <label id="tong_thongsokhongdat_text">Tổng số thông số không đạt</label>
+                        <textarea rows="2" class="form-control" disabled id="tong_thongsokhongdat"></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
