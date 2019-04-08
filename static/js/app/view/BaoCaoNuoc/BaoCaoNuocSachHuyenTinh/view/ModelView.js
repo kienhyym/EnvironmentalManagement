@@ -125,11 +125,22 @@ define(function (require) {
                     if (nambaocao === null || nambaocao === "") {
                         self.getApp().notify({ message: "Chưa chọn năm báo cáo" }, { type: "danger" });
                         return;
-                    }
+					}
                     self.model.save(null, {
                         success: function (model, respose, options) {
                             self.getApp().notify("Cộng dồn thông tin thành công");
-                            self.applyBindings();
+							self.applyBindings();
+							if(self.getApp().currentUser.donvi.tuyendonvi_id === 3){
+								var quanhuyen = self.getApp().currentUser.donvi.quanhuyen;
+								if(quanhuyen != null && !!quanhuyen.tong_hgd && quanhuyen.tong_hgd>0){
+									self.model.set("tong_hogiadinh_diaban", quanhuyen.tong_hgd);
+								}
+							}else if(self.getApp().currentUser.donvi.tuyendonvi_id === 2){
+								var tinhthanh = self.getApp().currentUser.donvi.tinhthanh;
+								if(tinhthanh != null && !!tinhthanh.tong_hgd && tinhthanh.tong_hgd>0){
+									self.model.set("tong_hogiadinh_diaban", tinhthanh.tong_hgd);
+								}
+							}
                             self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_trungtam"),"thongso_khongdat_ngoaikiem_trungtam");
                             // self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
                             // self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_baocao"),"thongso_khongdat_ngoaikiem_baocao");
