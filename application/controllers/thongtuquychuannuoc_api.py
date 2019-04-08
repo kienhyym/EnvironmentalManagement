@@ -472,6 +472,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     
     danhmuc_donvicapnuoc = None
     baocao_ngoaikiems = None
+    list_donvicapnuoc_id = []
     # baocao_tonghops = None
     if currentuser.donvi.tuyendonvi_id == 2:
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
@@ -482,14 +483,20 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             danhsach_kybaocao = [1,2,3,4]
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
             filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).all()
-                
-        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(
+
+        for donvicapnuoc in danhmuc_donvicapnuoc:
+            if donvicapnuoc.id not in list_donvicapnuoc_id:
+                list_donvicapnuoc_id.append(donvicapnuoc.id)
+
+
+        
+        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvicapnuoc_id.in_(list_donvicapnuoc_id), \
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra >= startDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
 
-        print("baocao_ngoaikiems===", baocao_ngoaikiems)
-                 
+        print("baocao_ngoaikiems===", baocao_ngoaikiems, startDate, endDate)
+
         # ket qua noi kiem nuoc cua cac dong vi
         # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
         #         and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
