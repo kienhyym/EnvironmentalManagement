@@ -495,7 +495,6 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
 
-        print("baocao_ngoaikiems===", baocao_ngoaikiems, startDate, endDate)
 
         # ket qua noi kiem nuoc cua cac dong vi
         # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
