@@ -223,7 +223,7 @@ define(function (require) {
 							self.model.set("tong_hogiadinh_diaban", quanhuyen.tong_hgd);
 						}
     					txt_header = "Báo cáo dành cho Trung tâm y tế Huyện - "+itemkybaocao.text;
-    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quản ngoại kiểm của Trung tâm y tế Huyện");
+    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quả ngoại kiểm của Trung tâm y tế Huyện");
     					self.$el.find("#tong_hogiadinh_diaban_txt").html("Tổng số HGĐ trên địa bàn huyện");
 
     					
@@ -233,7 +233,7 @@ define(function (require) {
 						if(tinhthanh != null && !!tinhthanh.tong_hgd && tinhthanh.tong_hgd>0){
 							self.model.set("tong_hogiadinh_diaban", tinhthanh.tong_hgd);
 						}
-    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quản ngoại kiểm của Trung tâm kiểm soát bệnh tật Tỉnh");
+    					self.$el.find("#title_ngoaikiem_B").html("B. Kết quả ngoại kiểm của Trung tâm kiểm soát bệnh tật Tỉnh");
     					self.$el.find("#tong_hogiadinh_diaban_txt").html("Tổng số HGĐ trên địa bàn tỉnh");
     				}
     				self.$el.find(".panel-heading h3").html(txt_header);

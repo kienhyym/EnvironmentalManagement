@@ -92,9 +92,15 @@ define(function (require) {
 			}else{
 				var txt_header = "Danh sách báo cáo cấp Tỉnh - "+itemkybaocao.text;
 				self.$el.find(".panel-heading h3").html(txt_header);
-				self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-					{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-					{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				
+				if(self.getApp().currentUser.donvi.tuyendonvi ===1){
+					self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+						{"kybaocao":{"$eq":itemkybaocao.kybaocao}}]};
+				}else{
+					self.uiControl.filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+						{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+						{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+				}
 				self.uiControl.orderBy = [{"field": "nambaocao", "direction": "desc"}];
 				this.applyBindings();
 				
@@ -127,17 +133,31 @@ define(function (require) {
 							self.getApp().notify({ message: "Năm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 							return;
 						} else if (text){
-							var filters = {"$and":[
-								{"nambaocao": {"$eq": text}},
-								{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-								{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-								{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							var filters = "";
+							if(self.getApp().currentUser.donvi.tuyendonvi ===1){
+								filters = {"$and":[
+									{"nambaocao": {"$eq": text}},
+									{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+									{"kybaocao":{"$eq":itemkybaocao.kybaocao}}]};
+							}else{
+								filters = {"$and":[
+									{"nambaocao": {"$eq": text}},
+									{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+									{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+									{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							}
+							
 							$col.data('gonrin').filter(filters);
 						} else {
-
-							var filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-							{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-							{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							var filters = "";
+							if(self.getApp().currentUser.donvi.tuyendonvi ===1){
+								filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+									{"kybaocao":{"$eq":itemkybaocao.kybaocao}}]};
+							}else{
+								filters = {"$and":[{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
+									{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
+									{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
+							}
 							$col.data('gonrin').filter(filters);
 						}
 					}

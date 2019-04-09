@@ -1696,6 +1696,14 @@ define(function (require) {
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 						},
 						{
+							"text": "Báo cáo 6 tháng",
+							"icon": "glyphicon glyphicon-tasks",
+							"type": "view",
+							"collectionName": "baocao_nuocsach_huyentinh",
+							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=6thangdau",
+							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
+						},
+						{
 							"text": "Quý III",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
@@ -1709,14 +1717,6 @@ define(function (require) {
 							"type": "view",
 							"collectionName": "baocao_nuocsach_huyentinh",
 							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=quy4",
-							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
-						},
-						{
-							"text": "Báo cáo 6 tháng đầu năm",
-							"icon": "glyphicon glyphicon-tasks",
-							"type": "view",
-							"collectionName": "baocao_nuocsach_huyentinh",
-							"route": "baocao_nuocsach_huyen/collection?loaikybaocao=6thangdau",
 							"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 						},
 						{
@@ -1775,16 +1775,13 @@ define(function (require) {
 					"text": "Báo cáo Nước sạch dành cho Trung tâm y tế Tỉnh",
 					"icon": "glyphicon glyphicon-file",
 					"type": "category",
-//					"collectionName": "baocao_nuocsach_huyentinh",
-//					"route": "baocao_nuocsach_tinh/collection",
-//					"$ref": "app/view/BaoCaoNuoc/BaoCaoNuocSachHuyenTinh/view/CollectionView",
 					"tuyendonvi": 2,
 					"visible": function () {
 						return this.checkTuyendonvi([2,1]);
 					},
 					"entries": [
 						{
-							"text": "Báo cáo 6 tháng đầu năm",
+							"text": "Báo cáo 6 tháng",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_nuocsach_tinh",
@@ -1828,7 +1825,7 @@ define(function (require) {
 					},
 					"entries": [
 						{
-							"text": "Báo cáo 6 tháng đầu năm",
+							"text": "Báo cáo 6 tháng",
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "baocao_vienchuyennganh_nuoc",
@@ -1867,7 +1864,8 @@ define(function (require) {
 					"route": "timkiembaocaonuoc",
 					"$ref": "app/view/BaoCaoNuoc/TimKiemBaoCaoNuoc/view/ModelView",
 					"visible": function () {
-						return this.checkTuyendonvi([1,2,3,10]);
+						return false;
+//						return this.checkTuyendonvi([1,2,3,10]);
 					},
 				},
 				{

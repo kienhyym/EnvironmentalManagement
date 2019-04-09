@@ -743,7 +743,7 @@ async def entity_pregetmany_hogiadinh(search_params=None, **kw):
         if dshogiadinhid is not None and len(dshogiadinhid) >0:
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": dshogiadinhid}}]} \
                                     or {"id":{"$in": dshogiadinhid}}
-   
+
     
 
 apimanager.create_api(HoGiaDinh, max_results_per_page=1000000,

@@ -218,7 +218,7 @@ async def preprocess_kehoachbcc(request=None, data=None, Model=None, **kw):
                                                             TienDoKeHoachBCC.loaikybaocao == data['loaikybaocao'], \
                                                             TienDoKeHoachBCC.kybaocao == data['kybaocao'], \
                                                             TienDoKeHoachBCC.nambaocao == data['nambaocao'],
-                                                            TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).first()
+                                                            TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).all()
         tongsogiangvien = 0
         tongsogiangvien_nu = 0
 #         tongsonguoithamgia =0
