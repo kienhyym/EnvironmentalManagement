@@ -74,38 +74,67 @@ async def ThongKe_VESINH(request):
         tentinhthanh = ""
         tenquanhuyen = ""
         tenxaphuong = ""
-        
+        data_result_tinhthanh = {}
         for baocao in records:
-            results = {}
-            tentinhthanh = baocao.tinhthanh.ten
-            tenquanhuyen = baocao.quanhuyen.ten
-            tenxaphuong = baocao.xaphuong.ten
-            tong_soho += baocao.tong_soho if baocao.tong_soho is not None else 0
-            tong_khongnhatieu += baocao.tong_khongnhatieu
-            tong_hopvs += baocao.tong_hopvs
-            tong_tuhoai_hvs += baocao.tong_tuhoai_hvs
-            tong_thamdoi_hvs += baocao.tong_thamdoi_hvs
-            tong_2ngan_hvs += baocao.tong_2ngan_hvs
-            tong_ongthonghoi_hvs += baocao.tong_ongthonghoi_hvs
-            tong_caithien_hvs += baocao.tong_caithien_hvs
-            tong_caithien_hongheo_hvs += baocao.tong_caithien_hongheo_hvs
-            tong_diemruatay += baocao.tong_diemruatay
-
-            results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - tong_khongnhatieu)/tong_soho)*100, 2)
-            results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else round((tong_hopvs/tong_soho)*100, 2)
-            results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else round((tong_tuhoai_hvs/tong_soho)*100, 2)
-            results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else round((tong_thamdoi_hvs/tong_soho)*100, 2)
-            results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else round((tong_2ngan_hvs/tong_soho)*100, 2)
-            results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else round((tong_ongthonghoi_hvs/tong_soho)*100, 2)
-            results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hvs/tong_soho)*100, 2)
-            results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else round((tong_caithien_hongheo_hvs/tong_soho)*100, 2)
-            results['tyle_diemruatay'] =  0 if tong_soho == 0 else round((tong_diemruatay/tong_soho)*100, 2)
-            results['tentinhthanh'] = tentinhthanh
-            results['tenquanhuyen'] = tenquanhuyen
-            results['tenxaphuong'] = tenxaphuong
-
-            baocao_all.append(results)
-
+            if baocao.tinhthanh_id not in data_result_tinhthanh:
+                data_result_tinhthanh[baocao.tinhthanh_id] = {}
+                
+            results = data_result_tinhthanh[baocao.tinhthanh_id]
+                
+                
+            results['tentinhthanh'] = baocao.tinhthanh.ten
+            results['tenquanhuyen'] = baocao.quanhuyen.ten
+            results['tenxaphuong'] = baocao.xaphuong.ten
+            if("tong_soho" not in results):
+                results["tong_soho"] = 0
+            results["tong_soho"] += baocao.tong_soho if baocao.tong_soho is not None else 0
+            
+            if("tong_khongnhatieu" not in results):
+                results["tong_khongnhatieu"] = 0
+            results["tong_khongnhatieu"] += baocao.tong_khongnhatieu
+            
+            if("tong_hopvs" not in results):
+                results["tong_hopvs"] = 0
+            results["tong_hopvs"] += baocao.tong_hopvs
+            if("tong_tuhoai_hvs" not in results):
+                results["tong_tuhoai_hvs"] = 0
+            results["tong_tuhoai_hvs"] += baocao.tong_tuhoai_hvs
+            
+            if("tong_thamdoi_hvs" not in results):
+                results["tong_thamdoi_hvs"] = 0
+            results["tong_thamdoi_hvs"] += baocao.tong_thamdoi_hvs
+            if("tong_2ngan_hvs" not in results):
+                results["tong_2ngan_hvs"] = 0
+            results["tong_2ngan_hvs"] += baocao.tong_2ngan_hvs
+            if("tong_ongthonghoi_hvs" not in results):
+                results["tong_ongthonghoi_hvs"] = 0
+            results["tong_ongthonghoi_hvs"] += baocao.tong_ongthonghoi_hvs
+            if("tong_caithien_hvs" not in results):
+                results["tong_caithien_hvs"] = 0
+            results["tong_caithien_hvs"] += baocao.tong_caithien_hvs
+            if("tong_caithien_hongheo_hvs" not in results):
+                results["tong_caithien_hongheo_hvs"] = 0
+            results["tong_caithien_hongheo_hvs"] += baocao.tong_caithien_hongheo_hvs
+            if("tong_diemruatay" not in results):
+                results["tong_diemruatay"] = 0
+            results["tong_diemruatay"] += baocao.tong_diemruatay
+            tong_soho = results["tong_soho"]
+            results['tyle_conhatieu'] = 0 if tong_soho == 0 else round(((tong_soho - results["tong_khongnhatieu"])/tong_soho)*100, 2)
+            results['tyle_conhatieu_hvs'] = 0 if tong_soho == 0 else round((results["tong_hopvs"]/tong_soho)*100, 2)
+            results['tyle_tuhoai_hvs'] =  0 if tong_soho == 0 else round((results["tong_tuhoai_hvs"]/tong_soho)*100, 2)
+            results['tyle_thamdoi_hvs'] =  0 if tong_soho == 0 else round((results["tong_thamdoi_hvs"]/tong_soho)*100, 2)
+            results['tyle_2ngan_hvs'] =  0 if tong_soho == 0 else round((results["tong_2ngan_hvs"]/tong_soho)*100, 2)
+            results['tyle_ongthonghoi_hvs'] =  0 if tong_soho == 0 else round((results["tong_ongthonghoi_hvs"]/tong_soho)*100, 2)
+            results['tyle_nhatieu_caithien_hvs'] =  0 if tong_soho == 0 else round((results["tong_caithien_hvs"]/tong_soho)*100, 2)
+            results['tyle_caithien_hongheo_hvs'] =  0 if tong_soho == 0 else round((results["tong_caithien_hongheo_hvs"]/tong_soho)*100, 2)
+            results['tyle_diemruatay'] =  0 if tong_soho == 0 else round((results["tong_diemruatay"]/tong_soho)*100, 2)
+#             results['tentinhthanh'] = tentinhthanh
+#             results['tenquanhuyen'] = tenquanhuyen
+#             results['tenxaphuong'] = tenxaphuong
+            data_result_tinhthanh[baocao.tinhthanh_id]= results
+            
+        for key, value in data_result_tinhthanh.items():
+            baocao_all.append(value)
         if (len(baocao_all) > 0):
             tong_63tinh = {}
             tong_tyle_conhatieu = 0
