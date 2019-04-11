@@ -1878,7 +1878,29 @@ define(function (require) {
 					"visible": function () {
 						return this.checkTuyendonvi([1,2,3,10]);
 					},
-				} 
+				},
+				{
+                    "text": "Thống kê chất lượng nước dưới 1000m3",
+                    "icon": "glyphicon glyphicon-file",
+                    "type": "view",
+                    "collectionName": "thongkechatluongnuocduoi1000",
+                    "route": "thongkechatluongnuocduoi1000",
+                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000/view/ModelView",
+                    "visible": function () {
+                        return this.checkTuyendonvi([1]);
+                    },
+                },
+                {
+                    "text": "Thống kê chất lượng nước trên 1000m3",
+                    "icon": "glyphicon glyphicon-file",
+                    "type": "view",
+                    "collectionName": "thongkechatluongnuocduoi1000",
+                    "route": "thongkevesinh",
+                    "$ref": "app/view/VeSinh/ThongKeVeSinh/view/ModelView",
+                    "visible": function () {
+                        return this.checkTuyendonvi([1]);
+                    },
+                },
 			],
 		},
 	];

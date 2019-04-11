@@ -1206,3 +1206,202 @@ async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
     
     
 
+@app.route('api/v1/thongkenuocsach_duoi1000', methods=['GET'])
+async def ThongKe_NuocSach_Duoi100(request):
+    
+    nambaocao = request.args.get("nambaocao", None)
+    loaikybaocao = request.args.get("loaikybaocao", None)
+    kybaocao = request.args.get("kybaocao", None)
+
+    startDate = date(int(nambaocao), 1,1)
+    endDate = date(int(nambaocao), 1,1)
+    if (loaikybaocao is not None and int(loaikybaocao) == LoaiKyBaoCao.QUY):
+        if(int(kybaocao) == 1):
+            startDate = date(int(nambaocao), 1,1)
+            endDate = date(int(nambaocao), 3,31)
+        elif(int(kybaocao) == 2):
+            startDate = date(int(nambaocao), 4,1)
+            endDate = date(int(nambaocao), 6,30)
+        elif(int(kybaocao) == 3):
+            startDate = date(int(nambaocao), 7,1)
+            endDate = date(int(nambaocao), 9,30)
+        elif(int(kybaocao) == 4):
+            startDate = date(int(nambaocao), 10,1)
+            endDate = date(int(nambaocao), 12,31)
+    elif (loaikybaocao is not None and int(loaikybaocao) == LoaiKyBaoCao.SAUTHANG and int(kybaocao) == 1):
+        startDate = date(int(nambaocao), 1,1)
+        endDate = date(int(nambaocao), 6,30)
+    elif (loaikybaocao is not None and int(loaikybaocao) == LoaiKyBaoCao.NAM):
+        startDate = date(int(nambaocao), 1,1)
+        endDate = date(int(nambaocao), 12,31)
+
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    if "loaikybaocao" is None or "kybaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo không hợp lệ"}, status=520)
+    if "nambaocao" is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+
+    donvicapnuoc_id = []
+    data_result_tinhthanh = {}
+    baocao_all = []
+
+    if(currentuser.donvi.tuyendonvi_id == 1):
+        danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
+                    filter(DonViCapNuoc.congsuat < 1000).all()
+
+        if danhmuc_donvicapnuoc is None:
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
+        else:
+            for item_donvicapnuoc in danhmuc_donvicapnuoc:
+
+                tinhthanh_id = str(item_donvicapnuoc.tinhthanh_id)
+
+                # print("item_donvicapnuoc", item_donvicapnuoc)
+
+                if tinhthanh_id not in data_result_tinhthanh:
+                    data_result_tinhthanh[tinhthanh_id] = {}
+
+                if "tong_donvicapnuoc" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh[tinhthanh_id]["tong_donvicapnuoc"] = 0
+                data_result_tinhthanh[tinhthanh_id]["tong_donvicapnuoc"] += 1
+                
+                if "tentinhhthanh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = ""
+                data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = item_donvicapnuoc.tinhthanh.ten
+                
+                donvicapnuoc_id.append(item_donvicapnuoc.id)
+
+            
+        # print("startDate", startDate, "endDate", endDate)
+
+        baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(
+                                        KetQuaNgoaiKiemChatLuongNuocSach.donvicapnuoc_id.in_(donvicapnuoc_id), \
+                                        KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra >= startDate, \
+                                        KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
+                                        KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == int(nambaocao))).all()
+
+        # print("baocao_ngoaikiems", baocao_ngoaikiems)
+
+        if not baocao_ngoaikiems:
+            return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của các đơn vị, vui lòng kiểm tra lại"}, status=520)
+        else:
+            for item in baocao_ngoaikiems:
+                baocao_tinhthanh_id = str(item.donvicapnuoc.tinhthanh_id)
+                donvicapnuoc = to_dict(item.donvicapnuoc)
+                item_baocao = to_dict(copy.deepcopy(item))
+                item_baocao["donvicapnuoc"] = donvicapnuoc
+
+                baocao_tinhthanh = data_result_tinhthanh[baocao_tinhthanh_id]
+                
+                if "tong_donvicapnuoc_kiemtra" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] = 0
+
+                baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] = baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] + 1
+
+                baocao_tinhthanh["tyle_donvicapnuoc"] = 0 if baocao_tinhthanh["tong_donvicapnuoc"] == 0 else round((baocao_tinhthanh["tong_donvicapnuoc_kiemtra"]/baocao_tinhthanh["tong_donvicapnuoc"])*100, 2)
+
+                if "tong_mauthunghiem_ngoaikiem" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_mauthunghiem_ngoaikiem"] = 0
+                baocao_tinhthanh["tong_mauthunghiem_ngoaikiem"] += item_baocao["somauvavitri"]
+
+                if "tong_maudat_qc_ngoaikiem" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_maudat_qc_ngoaikiem"] = 0
+                if item_baocao["danhsachvitrilaymau"] is not None:
+                    for vitrimau in item_baocao["danhsachvitrilaymau"]:
+                        if(vitrimau is not None and vitrimau["danhgia"] is not None and vitrimau["danhgia"] == 1):
+                            baocao_tinhthanh["tong_maudat_qc_ngoaikiem"] += 1
+
+                baocao_tinhthanh["tyle_mauthunghiem_ngoaikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_ngoaikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_ngoaikiem"]/baocao_tinhthanh["tong_mauthunghiem_ngoaikiem"])*100, 2)
+
+                if "tong_thongso_khongdat" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_thongso_khongdat"] = []
+                
+                if item_baocao["ketquangoaikiemchatluongnuoc"] is not None:
+                    for thongso in item_baocao["ketquangoaikiemchatluongnuoc"]:
+                        if thongso is not None and thongso["danhgia"] is not None and thongso["danhgia"] == 0:
+                            flag = True
+                            danhsach_thongso_khongdat = baocao_tinhthanh["tong_thongso_khongdat"]
+                            danhsach_khongdat_new = []
+                            for ts_khongdat in danhsach_thongso_khongdat:
+                                if ts_khongdat['id'] == thongso['id']:
+                                    ts_khongdat['number'] = ts_khongdat['number'] +1
+                                    flag = False
+                                danhsach_khongdat_new.append(ts_khongdat)
+
+                            baocao_tinhthanh["tong_thongso_khongdat"] = danhsach_khongdat_new
+                            if flag == True:
+                                obj_thongso = {}
+                                obj_thongso["id"] = thongso["id"]
+                                obj_thongso["tenthongso"] = thongso["tenthongso"]
+                                obj_thongso["number"] = 1
+                                baocao_tinhthanh["tong_thongso_khongdat"].append(obj_thongso)
+                            
+                if "tong_mauthunghiem_noikiem" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_mauthunghiem_noikiem"] = 0
+                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_thunghiem"]
+
+                if "tong_maudat_qc_noikiem" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tong_maudat_qc_noikiem"] = 0
+                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_dat_quychuan"]
+
+                baocao_tinhthanh["tyle_mauthunghiem_noikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_noikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_noikiem"]/baocao_tinhthanh["tong_mauthunghiem_noikiem"])*100, 2)
+
+                if "tongdat_hoso_daydu_theoquydinh" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_hoso_daydu_theoquydinh"] = 0
+                if item_baocao["hoso_daydu_theoquydinh"] == 1:
+                    baocao_tinhthanh["tongdat_hoso_daydu_theoquydinh"] += 1
+
+                baocao_tinhthanh["tyle_hoso_daydu_theoquydinh"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_hoso_daydu_theoquydinh"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                if "tongdat_somau_thunghiem_dungquydinh" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_somau_thunghiem_dungquydinh"] = 0
+                if item_baocao["somau_thunghiem_dungquydinh"] == 1:
+                    baocao_tinhthanh["tongdat_somau_thunghiem_dungquydinh"] += 1
+
+                baocao_tinhthanh["tyle_somau_thunghiem_dungquydinh"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_somau_thunghiem_dungquydinh"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                if "tongdat_thunghiem_daydu_thongso" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_thunghiem_daydu_thongso"] = 0
+                if item_baocao["thunghiem_daydu_thongso"] == 1:
+                    baocao_tinhthanh["tongdat_thunghiem_daydu_thongso"] += 1
+
+                baocao_tinhthanh["tyle_thunghiem_daydu_thongso"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_thunghiem_daydu_thongso"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                if "tongdat_tansuat_thuchien_noikiem_dungquydinh" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] = 0
+                if item_baocao["tansuat_thuchien_noikiem_dungquydinh"] == 1:
+                    baocao_tinhthanh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] += 1
+
+                baocao_tinhthanh["tyle_tansuat_thuchien_noikiem_dungquydinh"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_tansuat_thuchien_noikiem_dungquydinh"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                if "tongdat_thuchien_baocao_daydu" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_thuchien_baocao_daydu"] = 0
+                if item_baocao["thuchien_baocao_daydu"] == 1:
+                    baocao_tinhthanh["tongdat_thuchien_baocao_daydu"] += 1
+
+                baocao_tinhthanh["tyle_thuchien_baocao_daydu"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_thuchien_baocao_daydu"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                if "tongdat_thuchien_congkhai_thongtin" not in baocao_tinhthanh:
+                    baocao_tinhthanh["tongdat_thuchien_congkhai_thongtin"] = 0
+                if item_baocao["thuchien_congkhai_thongtin"] == 1:
+                    baocao_tinhthanh["tongdat_thuchien_congkhai_thongtin"] += 1
+
+                baocao_tinhthanh["tyle_thuchien_congkhai_thongtin"] = 0 if baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] == 0 else round((baocao_tinhthanh["tongdat_thuchien_congkhai_thongtin"]/baocao_tinhthanh["tong_donvicapnuoc_kiemtra"])*100, 2)
+
+                data_result_tinhthanh[baocao_tinhthanh_id] =  baocao_tinhthanh
+
+            for key, value in data_result_tinhthanh.items():
+                baocao_all.append(value)
+            
+            if (len(baocao_all) > 0):
+                tong_63tinh = {}
+                tong_63tinh_donvicapnuoc = 0
+                
+
+        return json(baocao_all)
+            
+
+            
