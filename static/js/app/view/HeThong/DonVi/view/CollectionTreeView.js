@@ -92,12 +92,13 @@ define(function (require) {
 			]
 		}, ],
 		uiControl: {
-			fields: [{
-					field: "id",
-					label: "ID",
-					width: 250,
-					readonly: true,
-				},
+			fields: [
+				// {
+				// 	field: "id",
+				// 	label: "ID",
+				// 	width: 250,
+				// 	readonly: true,
+				// },
 				{
 					field: "ten",
 					label: "Tên",
@@ -162,10 +163,11 @@ define(function (require) {
 					uicontrol: "grid",
 					refresh: true,
 					primaryField: "id",
-					fields: [{
-							field: "id",
-							label: "ID"
-						},
+					fields: [
+						// {
+						// 	field: "id",
+						// 	label: "ID"
+						// },
 						{
 							field: "donvi_id",
 							visible: false
@@ -180,7 +182,7 @@ define(function (require) {
 						},
 						{
 							field: "phone",
-							label: "Phone"
+							label: "Số điện thoại"
 						},
 						{
 							field: "active",
@@ -208,10 +210,11 @@ define(function (require) {
 					uicontrol: "grid",
 					refresh: true,
 					primaryField: "id",
-					fields: [{
-							field: "id",
-							label: "ID"
-						},
+					fields: [
+						// {
+						// 	field: "id",
+						// 	label: "ID"
+						// },
 						{
 							field: "donvi_ten",
 							label: "Tên đơn vị"
@@ -235,7 +238,7 @@ define(function (require) {
 						},
 						{
 							field: "user_phone",
-							label: "Phone"
+							label: "Số điện thoại"
 						},
 						{
 							field: "donvi_tuyendonvi",

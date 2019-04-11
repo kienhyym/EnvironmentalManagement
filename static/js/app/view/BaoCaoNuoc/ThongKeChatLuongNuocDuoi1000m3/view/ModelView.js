@@ -92,7 +92,7 @@ define(function (require) {
 						contentType: "application/json",
 						success: function (response) {
 							self.$el.find("#danhsachdonvi").html("");
-							console.log("response", response);
+							// console.log("response", response);
 							if (response) {
 								for (var i = 0; i < response.length; i++) {
 									var tr = $('<tr id="danhsachdonvi">');

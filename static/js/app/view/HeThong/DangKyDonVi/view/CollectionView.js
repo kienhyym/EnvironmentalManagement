@@ -86,7 +86,7 @@ define(function (require) {
 				},
 				{
 					field: "phone",
-					label: "Phone"
+					label: "Số điện thoại"
 				},
 				{
 					field: "donvi_tuyendonvi",
