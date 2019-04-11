@@ -1883,9 +1883,9 @@ define(function (require) {
                     "text": "Thống kê chất lượng nước dưới 1000m3",
                     "icon": "glyphicon glyphicon-file",
                     "type": "view",
-                    "collectionName": "thongkechatluongnuocduoi1000",
-                    "route": "thongkechatluongnuocduoi1000",
-                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000/view/ModelView",
+                    "collectionName": "thongkechatluongnuocduoi1000m3",
+                    "route": "thongkechatluongnuocduoi1000m3",
+                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000m3/view/ModelView",
                     "visible": function () {
                         return this.checkTuyendonvi([1]);
                     },
@@ -1894,9 +1894,9 @@ define(function (require) {
                     "text": "Thống kê chất lượng nước trên 1000m3",
                     "icon": "glyphicon glyphicon-file",
                     "type": "view",
-                    "collectionName": "thongkechatluongnuocduoi1000",
-                    "route": "thongkevesinh",
-                    "$ref": "app/view/VeSinh/ThongKeVeSinh/view/ModelView",
+                    "collectionName": "thongkechatluongnuoctren1000m3",
+                    "route": "thongkechatluongnuoctren1000m3",
+                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocTren1000m3/view/ModelView",
                     "visible": function () {
                         return this.checkTuyendonvi([1]);
                     },

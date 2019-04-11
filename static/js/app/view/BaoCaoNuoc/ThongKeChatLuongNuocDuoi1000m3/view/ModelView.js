@@ -4,7 +4,7 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000/tpl/model.html'),
+	var template = require('text!app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000m3/tpl/model.html'),
 		schema = {};
 
 
@@ -17,7 +17,7 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "thongkechatluongnuocduoi1000",
+		collectionName: "thongkechatluongnuocduoi1000m3",
 		uiControl: {
 			fields: [
 			],
@@ -82,7 +82,7 @@ define(function (require) {
 						return;
 					}
 
-					var url = self.getApp().serviceURL + "/api/v1/thongkenuocsach_duoi1000?nambaocao="
+					var url = self.getApp().serviceURL + "/api/v1/thongkenuocsach_duoi1000m3?nambaocao="
 						+ nambaocao + "&loaikybaocao="
 						+ itemKybaocao.loaikybaocao + "&kybaocao="
 						+ itemKybaocao.kybaocao;
