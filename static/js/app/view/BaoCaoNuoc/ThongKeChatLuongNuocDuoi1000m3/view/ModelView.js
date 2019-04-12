@@ -110,12 +110,10 @@ define(function (require) {
 									if (danhsach_thongso_khongdat && danhsach_thongso_khongdat.length){
 										for (var j = 0; j < danhsach_thongso_khongdat.length; j++){
 											tenthongso +=  danhsach_thongso_khongdat[j].tenthongso + ", ";
-											if (j == (danhsach_thongso_khongdat.length - 1)){
-												tenthongso +=  danhsach_thongso_khongdat[j].tenthongso;
-											}
 										}
 									}
-									tr.append("<td>" + tenthongso + "</td>");
+									
+									tr.append("<td>" + tenthongso.slice(0, -2) + "</td>");
 									tr.append("<td>" + response[i].tong_mauthunghiem_noikiem + "</td>");
 									tr.append("<td>" + response[i].tong_maudat_qc_noikiem + "</td>");
 									tr.append("<td>" + response[i].tyle_mauthunghiem_noikiem + "%" + "</td>");
