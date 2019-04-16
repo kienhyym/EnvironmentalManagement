@@ -17,7 +17,8 @@ from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
 from application.models.model_danhmuc import DanToc, QuocGia, TinhThanh, QuanHuyen, XaPhuong
-
+from application.models.model_thongtuquychuannuoc import ThongSoQuyChuanNuocSach
+import ujson
 
 # Instance
 manager = Manager()
@@ -203,6 +204,37 @@ def add_danhsach_xaphuong():
     except Exception as e:
         print("XA PHUONG ERROR", e)
 
+@manager.command
+def create_default_thongso_tinhthanh():
+
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url_dsthongso = os.path.join(SITE_ROOT, "static/js/app/enum", "danhsach_thongso_macdinh.json")
+    data_dsthongso = json.load(open(json_url_dsthongso))
+    danhmuc_tinhthanhs = db.session.query(TinhThanh).all()
+    # danhmuc_thongsos = db.session.query(ThongSoQuyChuanNuocSach, TinhThanh).filter(str(TinhThanh.id) == ThongSoQuyChuanNuocSach.tinhthanh_id).first()
+
+    # print("danhmuc_thongsos", danhmuc_thongsos)
+    for item_tinhthanh in danhmuc_tinhthanhs:
+
+        # for thongso_tinhthanh in danhmuc_thongsos:
+        #     if item_tinhthanh.id not in thongso_tinhthanh:
+        for item_thongso in data_dsthongso:
+
+            print("item_thongso", item_thongso)
+
+            thongso_quychuan = ThongSoQuyChuanNuocSach()
+
+            thongso_quychuan.tinhthanh_id = item_tinhthanh.id
+            thongso_quychuan.tentinhthanh = item_tinhthanh.ten
+            thongso_quychuan.thongso = ujson.loads(ujson.dumps(item_thongso))
+            thongso_quychuan.thongso_nuocmat = False
+            thongso_quychuan.thongso_nuocngam = False
+            thongso_quychuan.thongso_nuocmat_nuocngam = False
+
+            db.session.add(thongso_quychuan)
+            db.session.commit()
+
+
 
     
 @manager.command
@@ -213,6 +245,7 @@ def run():
         add_danhsach_quocgia_tinhthanh()
         add_danhsach_quanhuyen()
         add_danhsach_xaphuong()
+        create_default_thongso_tinhthanh()
         print("Khoi tao du lieu mau")
         
     run_app(host="0.0.0.0", port=9070)

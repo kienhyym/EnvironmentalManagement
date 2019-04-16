@@ -1,0 +1,22 @@
+{
+	"id": {
+		"type": "string",
+		"primary": true
+	},
+	"mavitri": {
+		"type": "number"
+	},
+	"tenvitri": {
+		"type": "string"
+	},
+	"ketqua": {
+		"type": "number"
+	},
+	"ngaykiemtra": {
+		"type": "datetime"
+	},
+	"danhgia": {
+		"type": "number",
+		"default":0
+	}
+}

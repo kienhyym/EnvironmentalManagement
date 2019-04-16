@@ -363,6 +363,16 @@ define(function (require) {
 					"route": "thongsobaocaochatluongnuoc/model",
 					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/ModelView",
 					"visible": false
+				},
+				{
+					"text": "Thông số quy chuẩn nước sạch",
+					"type": "view",
+					"collectionName": "thongsoquychuannuocsach",
+					"route": "thongsoquychuannuocsach/model",
+					"$ref": "app/view/DanhMuc/ThongSoQuyChuanNuocSach/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([2]);
+					}
 				}
 			]
 		},
