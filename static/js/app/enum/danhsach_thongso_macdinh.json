@@ -1,0 +1,794 @@
+[
+    {
+        "stt": 1,
+        "tenthongso": "Coliform",
+        "donvitinh": "CFU/100 mL",
+        "gioihan_toithieu": 0.0,
+        "gioihan_toida": 3.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 2,
+        "tenthongso": "E.Coli hoặc Coliform chịu nhiệt",
+        "donvitinh": "CFU/100 mL",
+        "gioihan_toithieu": 0.0,
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 3,
+        "tenthongso": "Arsenic (As)(*)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.01,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 4,
+        "tenthongso": "Clo dư tự do(**)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": 0.2,
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 5,
+        "tenthongso": "Độ đục",
+        "donvitinh": "NTU",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 6,
+        "tenthongso": "Màu sắc",
+        "donvitinh": "TCU",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 15.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 7,
+        "tenthongso": "Mùi, vị",
+        "donvitinh": "-",
+        "gioihan_toithieu": 0.0,
+        "gioihan_toida": 0.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 8,
+        "tenthongso": "pH",
+        "donvitinh": "-",
+        "gioihan_toithieu": 6.0,
+        "gioihan_toida": 8.5,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 9,
+        "tenthongso": "Tụ cầu vàng \n(Staphylococcus aureus)",
+        "donvitinh": "CFU/ 100mL",
+        "gioihan_toithieu": 0.0,
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 10,
+        "tenthongso": "Trực khuẩn mủ xanh \n(Ps. Aeruginosa)",
+        "donvitinh": "CFU/ 100mL",
+        "gioihan_toithieu": 0.0,
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 11,
+        "tenthongso": "Amoni (NH3 và NH4+ tính theo N)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.30000000000000004,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 12,
+        "tenthongso": "Antimon (Sb)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.02,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 13,
+        "tenthongso": "Bari (Bs)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.7,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 14,
+        "tenthongso": "Bor tính chung cho cả Borat và axit Boric (B)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.30000000000000004,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 15,
+        "tenthongso": "Cadmi (Cd)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 3.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 16,
+        "tenthongso": "Chì (Plumbum) (Pb)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.01,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 17,
+        "tenthongso": "Chỉ số pecmanganat",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 18,
+        "tenthongso": "Chloride (Cl-)(***)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 300.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 19,
+        "tenthongso": "Chromi (Cr)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.05,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 20,
+        "tenthongso": "Đồng (Cuprum) (Cu)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 21,
+        "tenthongso": "Độ cứng, tính theo CaCO3",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 300.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 22,
+        "tenthongso": "Fluor (F)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.5,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 23,
+        "tenthongso": "Kẽm (Zincum) (Zn)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 24,
+        "tenthongso": "Mangan (Mn)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.1,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 25,
+        "tenthongso": "Natri (Na)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 200.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 26,
+        "tenthongso": "Nhôm (Aluminium) (Al)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.2,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 27,
+        "tenthongso": "Nickel (Ni)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.07,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 28,
+        "tenthongso": "Nitrat (NO3- tính theo N)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 29,
+        "tenthongso": "Nitrit (NO2- tính theo N) ",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.05,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 30,
+        "tenthongso": "Sắt (Ferrum) (Fe)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.30000000000000004,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 31,
+        "tenthongso": "Seleni (Se)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.01,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 32,
+        "tenthongso": "Sunphat",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 250.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 33,
+        "tenthongso": "Sunfua",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.05,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 34,
+        "tenthongso": "Thuỷ ngân (Hydrargyrum) (Hg)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.001,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 35,
+        "tenthongso": "Tổng chất rắn hoà tan (TDS)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1000.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 36,
+        "tenthongso": "Xyanua (CN-)",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.05,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 37,
+        "tenthongso": "1,1,1 - Tricloroetan",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2000.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 38,
+        "tenthongso": "1,2 - Dicloroetan",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 30.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 39,
+        "tenthongso": "1,2 - Dicloroeten",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 50.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 40,
+        "tenthongso": "Cacbontetraclorua",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 41,
+        "tenthongso": "Diclorometan",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 42,
+        "tenthongso": "Tetracloroeten",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 40.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 43,
+        "tenthongso": "Tricloroeten",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 44,
+        "tenthongso": "Vinyl clorua",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.30000000000000004,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 45,
+        "tenthongso": "Benzen",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 10.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 46,
+        "tenthongso": "Etylbenzen",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 300.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 47,
+        "tenthongso": "Phenol và dẫn xuất của Phenol",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 48,
+        "tenthongso": "Styren",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 49,
+        "tenthongso": "Toluen ",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 700.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 50,
+        "tenthongso": "Xylen ",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 500.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 51,
+        "tenthongso": "1,2 - Diclorobenzen",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1000.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 52,
+        "tenthongso": "Monoclorobenzen",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 300.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 53,
+        "tenthongso": "Triclorobenzen ",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 54,
+        "tenthongso": "Acrylamide",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.5,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 55,
+        "tenthongso": "Epiclohydrin",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.4,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 56,
+        "tenthongso": "Hexacloro butadien",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.6000000000000001,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 57,
+        "tenthongso": "1,2 - Dibromo - 3 Cloropropan",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 58,
+        "tenthongso": "1,2 -  Dicloropropan",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 40.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 59,
+        "tenthongso": "1,3 -  Dichloropropen",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 60,
+        "tenthongso": "2,4 – D",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 30.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 61,
+        "tenthongso": "2,4 - DB",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 90.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 62,
+        "tenthongso": "Alachlor",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 63,
+        "tenthongso": "Aldicarb",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 10.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 64,
+        "tenthongso": "Atrazine và các dẫn xuất chloro-s-triazine",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 100.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 65,
+        "tenthongso": "Carbofuran",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 5.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 66,
+        "tenthongso": "Chlorpyrifos",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 30.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 67,
+        "tenthongso": "Clodane",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.2,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 68,
+        "tenthongso": "Clorotoluron",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 30.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 69,
+        "tenthongso": "Cyanazine",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.6000000000000001,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 70,
+        "tenthongso": "DDT và các dẫn xuất",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 71,
+        "tenthongso": "Dichloprop",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 100.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 72,
+        "tenthongso": "Fenoprop",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 9.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 73,
+        "tenthongso": "Hydroxyatrazine",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 200.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 74,
+        "tenthongso": "Isoproturon",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 9.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 75,
+        "tenthongso": "MCPA",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 76,
+        "tenthongso": "Mecoprop",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 10.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 77,
+        "tenthongso": "Methoxychlor",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 78,
+        "tenthongso": "Molinate",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 6.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 79,
+        "tenthongso": "Pendimetalin",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 80,
+        "tenthongso": "Permethrin",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 81,
+        "tenthongso": "Propanil",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 82,
+        "tenthongso": "Simazine",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 2.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 83,
+        "tenthongso": "Trifuralin",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 84,
+        "tenthongso": "2,4,6 - Triclorophenol",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 200.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 85,
+        "tenthongso": "Bromat",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 10.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 86,
+        "tenthongso": "Bromodichloromethane",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 60.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 87,
+        "tenthongso": "Bromoform",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 100.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 88,
+        "tenthongso": "Chloroform",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": "300",
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 89,
+        "tenthongso": "Dibromoacetonitrile",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 70.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 90,
+        "tenthongso": "Dibromochloromethane",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 100.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 91,
+        "tenthongso": "Dichloroacetonitrile",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 92,
+        "tenthongso": "Dichloroacetic acid",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 50.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 93,
+        "tenthongso": "Formaldehyde",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 900.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 94,
+        "tenthongso": "Monochloramine",
+        "donvitinh": "mg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 3.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 95,
+        "tenthongso": "Monochloroacetic acid ",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 20.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 96,
+        "tenthongso": "Trichloroacetic acid ",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 200.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 97,
+        "tenthongso": "Trichloroaxetonitril",
+        "donvitinh": "μg/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 98,
+        "tenthongso": "Tổng hoạt độphóng xạ\t",
+        "donvitinh": "Bq/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 0.1,
+        "thongso_macdinh": 1
+    },
+    {
+        "stt": 99,
+        "tenthongso": "Tổng hoạt độphóng xạ",
+        "donvitinh": "Bq/L",
+        "gioihan_toithieu": "",
+        "gioihan_toida": 1.0,
+        "thongso_macdinh": 1
+    }
+]

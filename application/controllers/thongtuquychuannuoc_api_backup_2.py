@@ -93,13 +93,6 @@ apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
     collection_name='thongsobaocaochatluongnuoc')
 
-apimanager.create_api(ThongSoQuyChuanNuocSach,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[]),
-    collection_name='thongsoquychuannuocsach')
-
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
@@ -1778,21 +1771,6 @@ async def ThongKe_NuocSach_Tren100m3(request):
                 baocao_all.append(tong_63tinh)
 
         return json(baocao_all)
-
-@app.route('/api/v1/setting_thongsoquychuannuocsach', methods=['GET'])
-async def Setting_ThongSoQuyChuanNuocSach(request):
-
-    currentuser = await current_user(request)
-    if currentuser is None:
-        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
-    arr_danhmuc_thongso = []
-    if (currentuser.donvi.tuyendonvi_id == 2):
-        danhmuc_thongsoquychuan = db.query(ThongSoQuyChuanNuocSach.filter(ThongSoQuyChuanNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id)).all()
-        
-        print("danhmuc_thongsoquychuan===", danhmuc_thongsoquychuan)
-
-
-
             
 
             

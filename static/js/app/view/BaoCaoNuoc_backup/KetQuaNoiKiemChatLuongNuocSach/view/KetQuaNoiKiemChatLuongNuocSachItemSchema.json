@@ -1,0 +1,29 @@
+{
+    "id": {
+        "type": "string"
+    },
+    "mathongso": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string"
+    },
+    "gioihan_toithieu": {
+        "type": "number"
+    },
+    "gioihan_toithieu_txt": {
+        "type": "string"
+    },
+    "gioihan_toida": {
+        "type": "number"
+    },
+    "gioihan_toida_txt": {
+        "type": "string"
+    },
+    "ketquakiemtra": {
+        "type": "json"
+    },
+    "danhgia": {
+        "type": "number"
+    }
+}

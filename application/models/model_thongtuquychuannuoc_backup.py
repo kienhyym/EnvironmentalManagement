@@ -32,16 +32,6 @@ class ThongSoBaoCaoChatLuongNuoc(CommonModel):
     batbuoc = db.Column(db.Boolean)
     baocaoapdung = db.Column(JSONB)
 
-#Danh muc thong so quy chuan nuoc sach cua tung dia phuong
-class ThongSoQuyChuanNuocSach(CommonModel):
-    __tablename__ = 'thongsoquychuannuocsach'
-    tinhthanh_id = db.Column(db.String)
-    tentinhthanh = db.Column(db.String)
-    thongso = db.Column(JSONB)
-    thongso_nuocmat = db.Column(db.Boolean)
-    thongso_nuocngam = db.Column(db.Boolean)
-    thongso_nuocmat_nuocngam = db.Column(db.Boolean)
-
 #Danh muc cac don vi cap nuoc
 class DonViCapNuoc(CommonModel):
     __tablename__ = 'donvicapnuoc'

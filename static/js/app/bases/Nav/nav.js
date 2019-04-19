@@ -363,6 +363,16 @@ define(function (require) {
 					"route": "thongsobaocaochatluongnuoc/model",
 					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/ModelView",
 					"visible": false
+				},
+				{
+					"text": "Thông số quy chuẩn nước sạch",
+					"type": "view",
+					"collectionName": "thongsoquychuannuocsach",
+					"route": "thongsoquychuannuocsach/model",
+					"$ref": "app/view/DanhMuc/ThongSoQuyChuanNuocSach/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([2]);
+					}
 				}
 			]
 		},
@@ -1878,7 +1888,29 @@ define(function (require) {
 					"visible": function () {
 						return this.checkTuyendonvi([1,2,3,10]);
 					},
-				} 
+				},
+				{
+                    "text": "Thống kê chất lượng nước dưới 1000m3",
+                    "icon": "glyphicon glyphicon-file",
+                    "type": "view",
+                    "collectionName": "thongkechatluongnuocduoi1000m3",
+                    "route": "thongkechatluongnuocduoi1000m3",
+                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocDuoi1000m3/view/ModelView",
+                    "visible": function () {
+                        return this.checkTuyendonvi([1]);
+                    },
+                },
+                {
+                    "text": "Thống kê chất lượng nước trên 1000m3",
+                    "icon": "glyphicon glyphicon-file",
+                    "type": "view",
+                    "collectionName": "thongkechatluongnuoctren1000m3",
+                    "route": "thongkechatluongnuoctren1000m3",
+                    "$ref": "app/view/BaoCaoNuoc/ThongKeChatLuongNuocTren1000m3/view/ModelView",
+                    "visible": function () {
+                        return this.checkTuyendonvi([1]);
+                    },
+                },
 			],
 		},
 	];
