@@ -306,7 +306,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "thongsobaocaochatluongnuoc",
 					"route": "thongsobaocaochatluongnuoc/collection",
-					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/CollectionView",
+					"$ref": "app/view/DanhMuc/DanhMucThongSoNuocSach/view/CollectionView",
 					"visible": function () {
 						return this.userHasRole("Admin");
 					}
@@ -315,7 +315,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "thongsobaocaochatluongnuoc",
 					"route": "thongsobaocaochatluongnuoc/model",
-					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/ModelView",
+					"$ref": "app/view/DanhMuc/DanhMucThongSoNuocSach/view/ModelView",
 					"visible": false
 				},
 			]

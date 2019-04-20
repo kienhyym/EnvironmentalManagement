@@ -64,12 +64,14 @@ define(function (require) {
 					label: "Địa Chỉ"
 				},
 		    ],
+		    noResultsClass:"alert alert-default no-records-found",
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    	},
     	},
     	render:function(){
     		var self= this;
+    		var currentUser = this.getApp().currentUser;
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
     			sessionKey: "DonViCapNuoc_filter"
@@ -77,16 +79,15 @@ define(function (require) {
     		filter.render();
 
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
-    		if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
-				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}}, {"congsuat":{"$gte":1000}}]};
+    		if (currentUser.donvi.tuyendonvi_id ===2){
+				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"congsuat":{"$gte":1000}},{"trangthai":{"$eq":1}}]};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
-			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, {"congsuat":{"$lt":1000}}]};
-//				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}, "congsuat":{"$lt":1000}};
+			} else if (currentUser.donvi.tuyendonvi_id ===3){
+				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
-
     		} else {
+    			self.uiControl.filters = {"trangthai":{"$eq":1}};
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
     		}
 			if(!filter.isEmptyFilter()) {
@@ -96,33 +97,36 @@ define(function (require) {
 					{"diachi": {"$likeI": text }},
 						{"ten": {"$likeI": text }},
 					]};
-				if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
-					var filters = {"$and": [
-						{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+				var filters = {"trangthai":{"$eq":1}};
+				if (currentUser.donvi.tuyendonvi_id === 2){
+					 filters = {"$and": [
+						{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
 						{"congsuat":{"$gte":1000}},
+						{"trangthai":{"$eq":1}},
 						query
 					]};
-				} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-					var filters = {"$and": [
-						{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+				} else if (currentUser.donvi.tuyendonvi_id ===3){
+					 filters = {"$and": [
+						{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
 						{"congsuat":{"$lt":1000}},
+						{"trangthai":{"$eq":1}},
 						query
 					]};
 				}
 				self.uiControl.filters = filters;
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
 			}else{
-				if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
-					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}}, {"congsuat":{"$gte":1000}}]};
+				if (currentUser.donvi.tuyendonvi_id ===2){
+					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"congsuat":{"$gte":1000}},{"trangthai":{"$eq":1}}]};
 					self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
-	
-				} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, {"congsuat":{"$lt":1000}}]};
-	//				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}, "congsuat":{"$lt":1000}};
+
+				} else if (currentUser.donvi.tuyendonvi_id ===3){
+					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
 					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
-				} else{
-					self.uiControl.filters = null;
-				}
+	    		} else {
+	    			self.uiControl.filters = {"trangthai":{"$eq":1}};
+					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
+	    		}
 			}
     		self.applyBindings();
     		
@@ -136,21 +140,23 @@ define(function (require) {
 		    				{"diachi": {"$likeI": text }},
 							{"ten": {"$likeI": text }},
 						]};
-						if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
-		    				var filters = {"$and": [
-								{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
+						var filters = {"trangthai":{"$eq":1}};
+						if (currentUser.donvi.tuyendonvi_id === 2){
+							 filters = {"$and": [
+								{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
 								{"congsuat":{"$gte":1000}},
+								{"trangthai":{"$eq":1}},
 								query
 							]};
-		    			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-							var filters = {"$and": [
-								{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+						} else if (currentUser.donvi.tuyendonvi_id ===3){
+							 filters = {"$and": [
+								{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
 								{"congsuat":{"$lt":1000}},
+								{"trangthai":{"$eq":1}},
 								query
 							]};
 						}
 						$col.data('gonrin').filter(filters);
-						//self.uiControl.filters = filters;
 					} else {
 		    			self.uiControl.filters = null;
 					}

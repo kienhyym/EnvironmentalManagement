@@ -166,7 +166,7 @@ Login page
   font-size: 16px;
   float: right;
   display: inline-block;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .login .content .check {
@@ -174,7 +174,7 @@ Login page
 }
 
 .login .content .rememberme {
-  margin-left: 8px;
+  float: right;
   margin-top: 10px;
 }
 

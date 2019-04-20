@@ -52,7 +52,7 @@ define(function (require) {
 						{text: "Nước mặt", value: 3},
 						{text: "Nước ngầm", value: 2},
 						{text: "Cả nước mặt và nước ngầm", value: 1},
-						{text: "Loại khác", value: 0}
+//						{text: "Loại khác", value: 0}
 					]
 				},
 				{
@@ -63,6 +63,17 @@ define(function (require) {
 					dataSource: [
 						{text: "Sử dụng clo", value: 1},
 						{text: "Sử dụng ozon", value: 0},
+					]
+				},
+				{
+					field: "trangthai",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{text: "Đang hoạt động", value: 1},
+						{text: "Tạm ngừng hoạt động", value: 2},
+						{text: "Ngừng hoạt động vĩnh viễn", value: 3},
 					]
 				},
 			]
@@ -187,6 +198,7 @@ define(function (require) {
 					}
 				});
 			} else {
+				self.model.set("trangthai",1);
 				self.applyBindings();
 			}
 

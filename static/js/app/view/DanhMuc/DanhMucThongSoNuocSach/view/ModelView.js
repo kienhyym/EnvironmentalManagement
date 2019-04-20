@@ -4,8 +4,8 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 
-	var template = require('text!app/view/tpl/DanhMuc/ThongSoBaoCaoChatLuongNuoc/model.html'),
-		schema = require('json!schema/ThongSoBaoCaoChatLuongNuocSchema.json');
+	var template = require('text!app/view/tpl/DanhMuc/DanhMucThongSoNuocSach/model.html'),
+		schema = require('json!schema/DanhMucThongSoNuocSachSchema.json');
 
 	function toInt(x) {
 		return parseInt(x) ? parseInt(x) : 0;
@@ -15,7 +15,7 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "thongsobaocaochatluongnuoc",
+		collectionName: "danhmuc_thongso_nuocsach",
 		bindings:"data-thongsobaocaochatluongnuoc-bind",
 		uiControl: {
 			fields: [

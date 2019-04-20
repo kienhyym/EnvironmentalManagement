@@ -21,8 +21,8 @@ class MapVienChuyenNganhNuocVaTinh(CommonModel):
     danhsachtinhthanh = db.Column(JSONB)
     
     
-class ThongSoBaoCaoChatLuongNuoc(CommonModel):
-    __tablename__ = 'thongsobaocaochatluongnuoc'
+class DanhMucThongSoNuocSach(CommonModel):
+    __tablename__ = 'danhmuc_thongso_nuocsach'
     mathongso = db.Column(db.String)
     tenthongso = db.Column(db.String)
     gioihan_toida_txt = db.Column(db.String)

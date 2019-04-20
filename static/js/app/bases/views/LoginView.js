@@ -10,11 +10,12 @@ define(function (require) {
     return Gonrin.View.extend({
         render: function () {
         	var self = this;
+            this.$el.html(template);
+
 //        	storejs.set('X-USER-TOKEN', '');
         	self.getApp().currentUser = null;
 			$("body").attr({'style':'background-color: #e9ecf3 !important;'});
 
-            this.$el.html(template);
             
             $("#recover_account").unbind('click').bind('click', function(){
             	self.getApp().getRouter().navigate("recorver");

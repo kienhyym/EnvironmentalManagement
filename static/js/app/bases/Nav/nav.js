@@ -352,7 +352,7 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "thongsobaocaochatluongnuoc",
 					"route": "thongsobaocaochatluongnuoc/collection",
-					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/CollectionView",
+					"$ref": "app/view/DanhMuc/DanhMucThongSoNuocSach/view/CollectionView",
 					"visible": function () {
 						return this.checkTuyendonvi([1]);
 					}
@@ -361,15 +361,15 @@ define(function (require) {
 					"type": "view",
 					"collectionName": "thongsobaocaochatluongnuoc",
 					"route": "thongsobaocaochatluongnuoc/model",
-					"$ref": "app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/ModelView",
+					"$ref": "app/view/DanhMuc/DanhMucThongSoNuocSach/view/ModelView",
 					"visible": false
 				},
 				{
-					"text": "Thông số quy chuẩn nước sạch",
+					"text": "Cài đặt thông số nước",
 					"type": "view",
-					"collectionName": "thongsoquychuannuocsach",
-					"route": "thongsoquychuannuocsach/model",
-					"$ref": "app/view/DanhMuc/ThongSoQuyChuanNuocSach/view/ModelView",
+					"collectionName": "caidat_thongsonuoc_diaphuong",
+					"route": "caidat_thongsonuoc_diaphuong/model",
+					"$ref": "app/view/DanhMuc/CaiDatThongSoNuocDiaPhuong/view/ModelView",
 					"visible": function () {
 						return this.checkTuyendonvi([2]);
 					}

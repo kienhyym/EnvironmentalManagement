@@ -8,7 +8,7 @@ define(function (require) {
     var danhsachmautemplate = require('text!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/tpl/itemDanhSachMau.html');
     var danhsachmauschema = require('json!app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ViTriMauSchema.json');
     var KetQuaNgoaiKiemChatLuongNuocItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/KetQuaNgoaiKiemChatLuongNuocItemView');
-    var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/ThongSoBaoCaoChatLuongNuoc/view/SelectView');
+    var ThongSoBaoCaoChatLuongNuocView = require('app/view/DanhMuc/DanhMucThongSoNuocSach/view/SelectView');
     var DonViCapNuocSelectView = require('app/view/DanhMuc/DonViCapNuoc/view/SelectView');
     var ThongSoKhongDatItemView = require('app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ThongSoKhongDatItem');
     

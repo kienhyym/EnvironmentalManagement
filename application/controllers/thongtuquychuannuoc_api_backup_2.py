@@ -86,7 +86,7 @@ async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
                 datas.append(obj_tmp)
         result = datas
 
-apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
+apimanager.create_api(DanhMucThongSoNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_process_thongso_chatluong_nuoc], PUT_SINGLE=[auth_func, pre_process_thongso_chatluong_nuoc], DELETE_SINGLE=[auth_func]),
@@ -624,8 +624,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                     thongbao_donvi_chuquan += 1
                 
 
-                tong_maunuoc_thunghiem_noikiem += baocao.tongsomau_thunghiem
-                tong_mau_dat_quychuan_noikiem += baocao.tongsomau_dat_quychuan
+                tong_maunuoc_thunghiem_noikiem += baocao.tongsomau_noikiem_thunghiem
+                tong_mau_dat_quychuan_noikiem += baocao.tongsomau_noikiem_dat_quychuan
 
                 tong_maunuoc_thunghiem_ngoaikiem_trungtam += baocao.somauvavitri
                 
@@ -909,7 +909,7 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
             tinhthanh_ids.append(item_tinh["id"])
         
         
-        danhmuc_thongso = db.session.query(ThongSoBaoCaoChatLuongNuoc).all()
+        danhmuc_thongso = db.session.query(DanhMucThongSoNuocSach).all()
         
             
         danhsach_baocao_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
@@ -1341,11 +1341,11 @@ async def ThongKe_NuocSach_Duoi100m3(request):
                             
                 if "tong_mauthunghiem_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_mauthunghiem_noikiem"] = 0
-                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_thunghiem"]
+                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_noikiem_thunghiem"]
 
                 if "tong_maudat_qc_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_maudat_qc_noikiem"] = 0
-                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_dat_quychuan"]
+                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_noikiem_dat_quychuan"]
 
                 baocao_tinhthanh["tyle_mauthunghiem_noikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_noikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_noikiem"]/baocao_tinhthanh["tong_mauthunghiem_noikiem"])*100, 2)
 
@@ -1624,11 +1624,11 @@ async def ThongKe_NuocSach_Tren100m3(request):
                             
                 if "tong_mauthunghiem_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_mauthunghiem_noikiem"] = 0
-                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_thunghiem"]
+                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_noikiem_thunghiem"]
 
                 if "tong_maudat_qc_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_maudat_qc_noikiem"] = 0
-                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_dat_quychuan"]
+                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_noikiem_dat_quychuan"]
 
                 baocao_tinhthanh["tyle_mauthunghiem_noikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_noikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_noikiem"]/baocao_tinhthanh["tong_mauthunghiem_noikiem"])*100, 2)
 

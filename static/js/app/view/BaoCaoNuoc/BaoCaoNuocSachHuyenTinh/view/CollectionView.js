@@ -72,6 +72,7 @@ define(function (require) {
             	page: 1,
             	pageSize: 100
             },
+            noResultsClass:"alert alert-default no-records-found",
 			onRowClick: function (event) {
 				if (event.rowId) {
 					var path = "";

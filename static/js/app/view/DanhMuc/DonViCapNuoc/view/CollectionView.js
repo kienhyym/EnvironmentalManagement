@@ -37,11 +37,27 @@ define(function (require) {
 					field: "diachi",
 					label: "Địa Chỉ"
 				},
+				{
+					field: "trangthai",
+					label: "Trạng thái",
+					template: function (dataRow) {
+						if (dataRow.trangthai === 1) {
+							return "đang hoạt động"
+						} else if (dataRow.trangthai === 2) {
+							return "tạm ngừng hoạt động"
+						}else if (dataRow.trangthai === 3) {
+							return "tạm ngừng hoạt động"
+						}else{
+							return "";
+						}
+					},
+				},
 		    ],
 		    pagination: {
             	page: 1,
             	pageSize: 100
             },
+            noResultsClass:"alert alert-default no-records-found",
 			onRowClick: function (event) {
 				if (event.rowId) {
 					var path = this.collectionName + '/model?id=' + event.rowId;

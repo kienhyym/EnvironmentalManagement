@@ -17,8 +17,10 @@ from application.database import db
 from application.extensions import auth
 from application.models.model_user import Role, User, Permission,TuyenDonVi,DonVi
 from application.models.model_danhmuc import DanToc, QuocGia, TinhThanh, QuanHuyen, XaPhuong
-from application.models.model_thongtuquychuannuoc import ThongSoQuyChuanNuocSach
+from application.models.model_thongtuquychuannuoc import CaiDatThongSoNuocDiaPhuong,DanhMucThongSoNuocSach    
 import ujson
+from gatco_restapi.helpers import to_dict
+
 
 # Instance
 manager = Manager()
@@ -207,32 +209,41 @@ def add_danhsach_xaphuong():
 @manager.command
 def create_default_thongso_tinhthanh():
 
+    check_exist = db.session.query(DanhMucThongSoNuocSach).count()
+    if(check_exist is not None and check_exist>0):
+        print("da khoi tao danh muc thong so")
+        return
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
     json_url_dsthongso = os.path.join(SITE_ROOT, "static/js/app/enum", "danhsach_thongso_macdinh.json")
-    data_dsthongso = json.load(open(json_url_dsthongso))
+    dsthongso = json.load(open(json_url_dsthongso))
+    arrThongSo = []
+    
+    for ts in dsthongso:
+        thongso = DanhMucThongSoNuocSach()
+        thongso.id = ts['id']
+        thongso.tenthongso = ts['tenthongso']
+        thongso.donvitinh = ts['donvitinh']
+        thongso.gioihan_toithieu = ts['gioihan_toithieu']
+        thongso.gioihan_toida = ts['gioihan_toida']
+        if "batbuoc" in ts and ts['batbuoc'] is not None and ts['batbuoc'] == 1:
+            thongso.batbuoc = True
+        else:
+            thongso.batbuoc = False
+        
+        db.session.add(thongso)
+        ts_tinhthanh = to_dict(thongso)
+        ts_tinhthanh["nuocmat"] = 0
+        ts_tinhthanh["nuocngam"] = 0
+        arrThongSo.append(ts_tinhthanh)
+        
     danhmuc_tinhthanhs = db.session.query(TinhThanh).all()
-    # danhmuc_thongsos = db.session.query(ThongSoQuyChuanNuocSach, TinhThanh).filter(str(TinhThanh.id) == ThongSoQuyChuanNuocSach.tinhthanh_id).first()
-
-    # print("danhmuc_thongsos", danhmuc_thongsos)
     for item_tinhthanh in danhmuc_tinhthanhs:
-
-        # for thongso_tinhthanh in danhmuc_thongsos:
-        #     if item_tinhthanh.id not in thongso_tinhthanh:
-        for item_thongso in data_dsthongso:
-
-            print("item_thongso", item_thongso)
-
-            thongso_quychuan = ThongSoQuyChuanNuocSach()
-
-            thongso_quychuan.tinhthanh_id = item_tinhthanh.id
-            thongso_quychuan.tentinhthanh = item_tinhthanh.ten
-            thongso_quychuan.thongso = ujson.loads(ujson.dumps(item_thongso))
-            thongso_quychuan.thongso_nuocmat = False
-            thongso_quychuan.thongso_nuocngam = False
-            thongso_quychuan.thongso_nuocmat_nuocngam = False
-
-            db.session.add(thongso_quychuan)
-            db.session.commit()
+        thongso_tinhthanh = CaiDatThongSoNuocDiaPhuong()
+        thongso_tinhthanh.tinhthanh_id = item_tinhthanh.id
+        thongso_tinhthanh.tentinhthanh = item_tinhthanh.ten
+        thongso_tinhthanh.danhsachthongso = ujson.loads(ujson.dumps(arrThongSo))
+        db.session.add(thongso_tinhthanh)
+    db.session.commit()
 
 
 

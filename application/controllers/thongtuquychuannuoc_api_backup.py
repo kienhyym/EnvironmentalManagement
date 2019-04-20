@@ -86,12 +86,12 @@ async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
                 datas.append(obj_tmp)
         result = datas
 
-apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
+apimanager.create_api(DanhMucThongSoNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_process_thongso_chatluong_nuoc], PUT_SINGLE=[auth_func, pre_process_thongso_chatluong_nuoc], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
-    collection_name='thongsobaocaochatluongnuoc')
+    collection_name='danhmuc_thongso_nuocsach')
 
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -852,7 +852,7 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
             tinhthanh_ids.append(item_tinh["id"])
         
         
-        danhmuc_thongso = db.session.query(ThongSoBaoCaoChatLuongNuoc).all()
+        danhmuc_thongso = db.session.query(DanhMucThongSoNuocSach).all()
         
             
         danhsach_baocao_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \

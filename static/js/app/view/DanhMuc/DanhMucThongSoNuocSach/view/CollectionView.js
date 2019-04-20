@@ -4,21 +4,21 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/tpl/DanhMuc/ThongSoBaoCaoChatLuongNuoc/collection.html'),
-		schema 				= require('json!schema/ThongSoBaoCaoChatLuongNuocSchema.json');
+    var template 			= require('text!app/view/tpl/DanhMuc/DanhMucThongSoNuocSach/collection.html'),
+		schema 				= require('json!schema/DanhMucThongSoNuocSachSchema.json');
 	var CustomFilterView    = require('app/bases/views/CustomFilterView');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "thongsobaocaochatluongnuoc",
+		collectionName: "danhmuc_thongso_nuocsach",
 		bindings:"data-thongsobaocaochatluongnuoc-bind",
     	uiControl:{
     		fields: [
-				{ field: "stt", label: "STT"},
+				{ field: "stt", label: "STT", width: "50px"},
 	    	     { 
-	    	    	field: "mathongso",label:"Mã Thông Số",
+	    	    	field: "mathongso",label:"Mã Thông Số"
 	    	     },
 	    	     { field: "tenthongso", label: "Tên Thông số"},
 	    	     { field: "gioihan_toida_txt", label: "Giới hạn tối đa", width: 200},
@@ -31,6 +31,7 @@ define(function (require) {
 		        }
 		    	
 		    },
+	        noResultsClass:"alert alert-default no-records-found",
 		    pagination: {
             	page: 1,
             	pageSize: 100

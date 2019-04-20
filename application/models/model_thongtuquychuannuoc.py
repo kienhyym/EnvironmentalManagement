@@ -21,8 +21,9 @@ class MapVienChuyenNganhNuocVaTinh(CommonModel):
     danhsachtinhthanh = db.Column(JSONB)
     
     
-class ThongSoBaoCaoChatLuongNuoc(CommonModel):
-    __tablename__ = 'thongsobaocaochatluongnuoc'
+class DanhMucThongSoNuocSach(CommonModel):
+    __tablename__ = 'danhmuc_thongso_nuocsach'
+    id = db.Column(db.String, primary_key=True)
     mathongso = db.Column(db.String)
     tenthongso = db.Column(db.String)
     gioihan_toida_txt = db.Column(db.String)
@@ -30,17 +31,13 @@ class ThongSoBaoCaoChatLuongNuoc(CommonModel):
     gioihan_toithieu_txt = db.Column(db.String)
     gioihan_toithieu = db.Column(DECIMAL)
     batbuoc = db.Column(db.Boolean)
-    baocaoapdung = db.Column(JSONB)
 
 #Danh muc thong so quy chuan nuoc sach cua tung dia phuong
-class ThongSoQuyChuanNuocSach(CommonModel):
-    __tablename__ = 'thongsoquychuannuocsach'
-    tinhthanh_id = db.Column(db.String)
+class CaiDatThongSoNuocDiaPhuong(CommonModel):
+    __tablename__ = 'caidat_thongsonuoc_diaphuong'
+    tinhthanh_id = db.Column(db.String, unique=True)
     tentinhthanh = db.Column(db.String)
-    thongso = db.Column(JSONB)
-    thongso_nuocmat = db.Column(db.Boolean)
-    thongso_nuocngam = db.Column(db.Boolean)
-    thongso_nuocmat_nuocngam = db.Column(db.Boolean)
+    danhsachthongso = db.Column(JSONB)
 
 #Danh muc cac don vi cap nuoc
 class DonViCapNuoc(CommonModel):
@@ -60,6 +57,7 @@ class DonViCapNuoc(CommonModel):
     quanhuyen = relationship('QuanHuyen')
     xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=True)
     xaphuong = relationship('XaPhuong')
+    trangthai = db.Column(db.SmallInteger, default=1)
 
 ## Mau so 5TT - Bao cao so 1: Bao Cao Kết quả nội kiểm chất lượng nước sạch    
 class KetQuaNoiKiemChatLuongNuocSach(CommonModel):
@@ -146,12 +144,15 @@ class KetQuaNgoaiKiemChatLuongNuocSach(CommonModel):
     thuchien_congkhai_thongtin = db.Column(db.SmallInteger, default=0)
     thuchien_bienphap_khacphuc = db.Column(db.SmallInteger, default=0)
     
-    tongsomau_thunghiem = db.Column(db.Integer, default=0)
-    tongsomau_dat_quychuan = db.Column(db.Integer, default=0)
-    tongsomau_khongdat_quychuan = db.Column(db.Integer, default=0)
+    tongsomau_noikiem_thunghiem = db.Column(db.Integer, default=0)
+    tongsomau_noikiem_dat_quychuan = db.Column(db.Integer, default=0)
+    tongsomau_noikiem_khongdat_quychuan = db.Column(db.Integer, default=0)
     
-    tong_thongso_khongdat = db.Column(db.Integer, default=0)
-    danhsachthongso_khongdat = db.Column(JSONB)
+    tong_thongso_noikiem_khongdat = db.Column(db.Integer, default=0)
+    danhsachthongso_noikiem_khongdat = db.Column(JSONB)
+    
+    tong_thongso_ngoaikiem_khongdat = db.Column(db.Integer, default=0)
+    danhsachthongso_ngoaikiem_khongdat = db.Column(JSONB)
                                       
     somauvavitri = db.Column(db.Integer, default=0)
     danhsachvitrilaymau = db.Column(JSONB)

@@ -86,19 +86,19 @@ async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
                 datas.append(obj_tmp)
         result = datas
 
-apimanager.create_api(ThongSoBaoCaoChatLuongNuoc,
+apimanager.create_api(DanhMucThongSoNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, pre_process_thongso_chatluong_nuoc], PUT_SINGLE=[auth_func, pre_process_thongso_chatluong_nuoc], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[postprocess_add_stt]),
-    collection_name='thongsobaocaochatluongnuoc')
+    collection_name='danhmuc_thongso_nuocsach')
 
-apimanager.create_api(ThongSoQuyChuanNuocSach,
+apimanager.create_api(CaiDatThongSoNuocDiaPhuong,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[], GET_MANY =[]),
-    collection_name='thongsoquychuannuocsach')
+    collection_name='caidat_thongsonuoc_diaphuong')
 
 async def prepost_KetQuaNgoaiKiemChatLuongNuocSach(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -631,8 +631,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                     thongbao_donvi_chuquan += 1
                 
 
-                tong_maunuoc_thunghiem_noikiem += baocao.tongsomau_thunghiem
-                tong_mau_dat_quychuan_noikiem += baocao.tongsomau_dat_quychuan
+                tong_maunuoc_thunghiem_noikiem += baocao.tongsomau_noikiem_thunghiem
+                tong_mau_dat_quychuan_noikiem += baocao.tongsomau_noikiem_dat_quychuan
 
                 tong_maunuoc_thunghiem_ngoaikiem_trungtam += baocao.somauvavitri
                 
@@ -916,7 +916,7 @@ async def process_baocao_vien_chuyennganh_nuocsach(currentuser=None, data=None):
             tinhthanh_ids.append(item_tinh["id"])
         
         
-        danhmuc_thongso = db.session.query(ThongSoBaoCaoChatLuongNuoc).all()
+        danhmuc_thongso = db.session.query(DanhMucThongSoNuocSach).all()
         
             
         danhsach_baocao_tinh = db.session.query(BaoCaoNuocSachHuyenTinh).filter(and_(BaoCaoNuocSachHuyenTinh.loaibaocao == 1, \
@@ -1348,11 +1348,11 @@ async def ThongKe_NuocSach_Duoi100m3(request):
                             
                 if "tong_mauthunghiem_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_mauthunghiem_noikiem"] = 0
-                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_thunghiem"]
+                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_noikiem_thunghiem"]
 
                 if "tong_maudat_qc_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_maudat_qc_noikiem"] = 0
-                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_dat_quychuan"]
+                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_noikiem_dat_quychuan"]
 
                 baocao_tinhthanh["tyle_mauthunghiem_noikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_noikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_noikiem"]/baocao_tinhthanh["tong_mauthunghiem_noikiem"])*100, 2)
 
@@ -1631,11 +1631,11 @@ async def ThongKe_NuocSach_Tren100m3(request):
                             
                 if "tong_mauthunghiem_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_mauthunghiem_noikiem"] = 0
-                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_thunghiem"]
+                baocao_tinhthanh["tong_mauthunghiem_noikiem"] += item_baocao["tongsomau_noikiem_thunghiem"]
 
                 if "tong_maudat_qc_noikiem" not in baocao_tinhthanh:
                     baocao_tinhthanh["tong_maudat_qc_noikiem"] = 0
-                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_dat_quychuan"]
+                baocao_tinhthanh["tong_maudat_qc_noikiem"] += item_baocao["tongsomau_noikiem_dat_quychuan"]
 
                 baocao_tinhthanh["tyle_mauthunghiem_noikiem"] = 0 if baocao_tinhthanh["tong_mauthunghiem_noikiem"] == 0 else round((baocao_tinhthanh["tong_maudat_qc_noikiem"]/baocao_tinhthanh["tong_mauthunghiem_noikiem"])*100, 2)
 
@@ -1778,18 +1778,42 @@ async def ThongKe_NuocSach_Tren100m3(request):
                 baocao_all.append(tong_63tinh)
 
         return json(baocao_all)
-
-@app.route('/api/v1/setting_thongsoquychuannuocsach', methods=['GET'])
-async def Setting_ThongSoQuyChuanNuocSach(request):
-
+    
+    
+@app.route('/api/v1/caidatthongso/update', methods=['POST'])
+async def caidatthongso(request):
+    danhsachthongso = request.json.get("danhsachthongso", None)
+    if danhsachthongso is None:
+        return json({"error_code":"PARAMS_ERROR","error_message":"Tham số không hợp lệ!"}, status=520)
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
-    arr_danhmuc_thongso = []
-    if (currentuser.donvi.tuyendonvi_id == 2):
-        danhmuc_thongsoquychuan = db.query(ThongSoQuyChuanNuocSach.filter(ThongSoQuyChuanNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id)).all()
-        
-        print("danhmuc_thongsoquychuan===", danhmuc_thongsoquychuan)
+    
+    if currentuser.donvi.tuyendonvi_id !=2:
+        return json({"error_code":"PERMISSION_DENY","error_message":"Chức năng chỉ dành cho đơn vị cấp Tỉnh"}, status=520)
+
+    thongso_tinhthanh = db.session.query(CaiDatThongSoNuocDiaPhuong).filter(CaiDatThongSoNuocDiaPhuong.tinhthanh_id == str(currentuser.donvi.tinhthanh_id)).first()
+    if (thongso_tinhthanh is not None):
+        thongso_tinhthanh.danhsachthongso = danhsachthongso
+        db.session.commit()
+        return json({"error_message":"OK"})
+    else:
+        return json({"error_code":"NOT_FOUND","error_message":"Không tìm thấy dữ liệu"}, status=520)
+ 
+@app.route('/api/v1/caidatthongsonuoc', methods=['GET'])
+async def getListThongSoNuoc(request):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    
+
+    thongso_tinhthanh = db.session.query(CaiDatThongSoNuocDiaPhuong).filter(CaiDatThongSoNuocDiaPhuong.tinhthanh_id == str(currentuser.donvi.tinhthanh_id)).first()
+    if (thongso_tinhthanh is not None):
+        return json({"objects":thongso_tinhthanh.danhsachthongso})
+    else:
+        return json({"error_code":"NOT_FOUND","error_message":"Không tìm thấy dữ liệu"}, status=520)
+ 
+
 
 
 

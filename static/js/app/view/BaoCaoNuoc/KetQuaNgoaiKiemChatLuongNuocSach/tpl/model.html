@@ -141,11 +141,11 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-6">Tổng số mẫu nước làm thử nghiệm (mẫu)</td>
-                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_thunghiem" /></td>
+                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_noikiem_thunghiem" /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tổng số mẫu đạt quy chuẩn (mẫu)</td>
-                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_dat_quychuan" /></td>
+                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_noikiem_dat_quychuan" /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tỷ lệ mẫu đạt quy chuẩn (%)</td>
@@ -153,16 +153,16 @@
                             </tr>
                             <!-- <tr>
                                 <td class="col-md-6">Tổng số mẫu không đạt quy chuẩn (mẫu)</td>
-                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_khongdat_quychuan" /></td>
+                                <td class="col-md-6"><input type="number" min="0" class="form-control" data-bind="value:tongsomau_noikiem_khongdat_quychuan" /></td>
                             </tr>
                             <tr>
                                 <td class="col-md-6">Tỷ lệ mẫu không đạt quy chuẩn (%)</td>
                                 <td class="col-md-6"><input id="tylemau_khongdatquychuan" type="text" class="form-control" readonly="readonly" /></td>
                             </tr> -->
-                            <tr>
+                            <!-- <tr>
                                 <td class="col-md-6">Các thông số không đạt</td>
-                                <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_thongso_khongdat" /></td>
-                            </tr>
+                                <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_thongso_noikiem_khongdat" /></td>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -178,10 +178,10 @@
                         <th class="background-colorTH text-center">Vị trí lấy mẫu</th>
                         <th class="background-colorTH text-center">Ngày lấy mẫu</th>
                         <th class="background-colorTH text-center">Kết quả</th>
-                        <th class="background-colorTH text-center">Đánh giá</th>
+                        <!-- <th class="background-colorTH text-center">Đánh giá</th> -->
                     </tr>
                 </thead>
-                <tbody id="danhsachthongso_khongdat"></tbody>
+                <tbody id="danhsachthongso_noikiem_khongdat"></tbody>
             </table>
             <button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="them_thongso_khongdat">Thêm Thông Số</button>
         </div>
