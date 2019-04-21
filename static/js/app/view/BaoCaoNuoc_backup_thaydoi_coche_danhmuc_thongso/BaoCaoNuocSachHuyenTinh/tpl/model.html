@@ -22,27 +22,7 @@
                     <tbody>
                         <tr>
                             <td class="col-md-6">Tổng số đơn vị cấp nước</td>
-                            <td class="col-md-6">
-                            	 <input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-6">Tổng số đơn vị cấp nước mặt</td>
-                            <td class="col-md-6">
-                            	 <input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_mat" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-6">Tổng số đơn vị cấp nước ngầm</td>
-                            <td class="col-md-6">
-                            	 <input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_ngam" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-6">Tổng số đơn vị cấp nước mặt và nước ngầm</td>
-                            <td class="col-md-6">
-                            	 <input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_mat_ngam" />
-                            </td>
+                            <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc" /></td>
                         </tr>
                         <tr>
                             <td class="col-md-6">Tổng số HGĐ được cung cấp nước</td>
@@ -53,31 +33,22 @@
                             <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tong_hogiadinh_diaban" disabled /></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Tỷ lệ HGĐ được cấp nước (%)</td>
+                            <td class="col-md-6">Tỷ lệ (%)</td>
                             <td class="col-md-6"><input id="tyle_hogiadinh_capnuocsach_diaban" type="text" disabled class="form-control" /></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Tỷ lệ HGĐ được cấp nước (%)</td>
-                            <td class="col-md-6"><input id="tyle_hogiadinh_capnuocsach_diaban" type="text" disabled class="form-control" /></td>
-                        </tr>
-                        
-                        <!-- <tr>
                             <td class="col-md-6">Tổng số lượt ngoại kiểm</td>
                             <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_soluot_ngoaikiem" /></td>
-                        </tr> -->
+                        </tr>
                         <tr>
                             <td class="col-md-6">Tổng số đơn vị cấp nước được kiểm tra</td>
                             <td class="col-md-6"><input disabled type="text" class="form-control" data-bind="value:tong_donvi_capnuoc_thuchien_ngoaikiem" /></td>
                         </tr>
                         <tr>
-                            <td class="col-md-6">Tỷ lệ % đơn vị cấp nước được kiểm tra</td>
-                            <td class="col-md-6"><input id="tyle_donvicapnuoc_duockiemtra" type="text" disabled class="form-control" /></td>
-                        </tr>
-                        <tr>
                             <td class="col-md-6">Số kinh phí được cấp cho công tác ngoại kiểm</td>
                             <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tong_kinhphi_congtac_ngoaikiem" /></td>
                         </tr>
-                        <tr id="sosanh_kinhphi_ngoaikiem">
+                        <tr>
                             <td class="col-md-6">Kinh phí ngoại kiểm so với năm trước</td>
                             <td class="col-md-6"><input type="text" class="form-control" data-bind="value:kinhphi_ngoaikiem_sovoinamtruoc" /></td>
                         </tr>
@@ -207,15 +178,17 @@
 
                     </tbody>
                 </table>
-                <h4 style="padding-bottom:10px;" id="tong_thongso_khongdat">Danh sách các thông số không đạt</h4>
+                <h4 style="padding-bottom:10px;" id="tong_thongso_khongdat">Các thông số không đạt</h4>
                 <table class="table is-table" id="thongso_khongdat_ngoaikiem_trungtam">
                     <thead>
                         <tr>
                             <th class="background-colorTH text-center">STT</th>
-                            <th class="background-colorTH text-center">Tên Thông số</th>
-                            <th class="background-colorTH text-center">Số lần không đạt</th>
-                            <th class="background-colorTH text-center">Tỷ lệ (%)</th>
                             <th class="background-colorTH text-center">Đơn vị cấp nước</th>
+                            <th class="background-colorTH text-center">Thông số không đạt</th>
+                            <th class="background-colorTH text-center">Kết quả thử nghiệm</th>
+                            <th class="background-colorTH text-center">Giới hạn tối đa cho phép</th>
+                            <th class="background-colorTH text-center">Vị trí lấy mẫu</th>
+                            <th class="background-colorTH text-center">Ngày kiểm tra</th>
                         </tr>
                     </thead>
                     <tbody id="body_thongso_khongdat_ngoaikiem_trungtam">

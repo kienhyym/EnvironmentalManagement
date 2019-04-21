@@ -1,0 +1,36 @@
+{
+	"id": {
+		"type": "string",
+		"primary": true
+	},
+	"mathongso": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string"
+    },
+    "gioihan_toida_txt": {
+        "type": "string"
+    },
+    "gioihan_toida": {
+        "type": "number"
+    },
+    "gioihan_toithieu_txt": {
+        "type": "string"
+    },
+    "gioihan_toithieu": {
+        "type": "number"
+    },
+	"ngaylaymau": {
+        "type": "datetime"
+    },
+    "vitrilaymau": {
+		"type": "string"
+	},
+	"ketquavitrilaymau": {
+		"type": "number"
+    },
+    "danhgiavitrilaymau": {
+		"type": "number"
+	}
+}

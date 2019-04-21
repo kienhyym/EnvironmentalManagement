@@ -480,8 +480,13 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     danhmuc_donvicapnuoc = None
     baocao_ngoaikiems = None
     list_donvicapnuoc_id = []
-    # baocao_tonghops = None
+    baocao_namtruoc = None
     if currentuser.donvi.tuyendonvi_id == 2:
+        
+        baocao_namtruoc = db.session.query(BaoCaoNuocSachHuyenTinh).\
+            filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == currentuser.donvi.tinhthanh_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
+            order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
+        
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["loaibaocao"] = 1
@@ -489,8 +494,8 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
         if (loaikybaocao is not None and loaikybaocao == LoaiKyBaoCao.NAM):
             danhsach_kybaocao = [1,2,3,4]
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
-            filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).all()
-
+            filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, DonViCapNuoc.trangthai ==1)).all()
+            
         for donvicapnuoc in danhmuc_donvicapnuoc:
             if donvicapnuoc.id not in list_donvicapnuoc_id:
                 list_donvicapnuoc_id.append(donvicapnuoc.id)
@@ -503,13 +508,11 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
 
 
-        # ket qua noi kiem nuoc cua cac dong vi
-        # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
-        #         and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.kybaocao.in_(danhsach_kybaocao), \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     elif currentuser.donvi.tuyendonvi_id == 3:
+        baocao_namtruoc = db.session.query(BaoCaoNuocSachHuyenTinh).\
+            filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == currentuser.donvi.quanhuyen_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
+            order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
+    
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["quanhuyen_id"] = currentuser.donvi.quanhuyen_id
@@ -518,6 +521,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
             filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
                 DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
+                DonViCapNuoc.trangthai == 1, \
                 DonViCapNuoc.congsuat<1000)).all()
         
         baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
@@ -526,12 +530,6 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
                  KetQuaNgoaiKiemChatLuongNuocSach.thoigiankiemtra <= endDate, \
                  KetQuaNgoaiKiemChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
         
-        # baocao_tonghops = db.session.query(TongHopKetQuaKiemTraChatLuongNuocSach).filter(\
-        #         and_(TongHopKetQuaKiemTraChatLuongNuocSach.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.congsuat_thietke<1000,\
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.loaikybaocao == LoaiKyBaoCao.QUY, \
-        #         TongHopKetQuaKiemTraChatLuongNuocSach.nambaocao == data['nambaocao'])).all()
     #thong ke don vi cap nuoc
     tong_donvi_capnuoc = 0
     tong_hogiadinh_duoccungcapnuoc = 0
@@ -547,14 +545,39 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
     data["tong_soluot_ngoaikiem"] = tong_soluot_ngoaikiem
     data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = len(donvicapnuocid_ngoaikiem)
 
-
+    data["tong_donvi_capnuoc_ngam"] = 0
+    data["tong_donvi_capnuoc_mat"] = 0
+    data["tong_donvi_capnuoc_mat_ngam"] = 0
+    data["tong_donvi_capnuoc_tren1000m3"] = 0
+    data["tong_donvi_capnuoc_duoi1000m3"] = 0
     if danhmuc_donvicapnuoc is not None and len(danhmuc_donvicapnuoc)>0:
         tong_donvi_capnuoc = len(danhmuc_donvicapnuoc)
-        for donvi_capnuoc in danhmuc_donvicapnuoc:
-            if donvi_capnuoc is not None:
-                tong_hogiadinh_duoccungcapnuoc += donvi_capnuoc.tongso_hogiadinh
+        for dv in danhmuc_donvicapnuoc:
+            if dv is not None:
+                tong_hogiadinh_duoccungcapnuoc += dv.tongso_hogiadinh
+                if(dv.nguonnuoc_nguyenlieu == 1):
+                    data["tong_donvi_capnuoc_mat_ngam"] +=1
+                elif(dv.nguonnuoc_nguyenlieu == 2):
+                    data["tong_donvi_capnuoc_ngam"] +=1
+                elif(dv.nguonnuoc_nguyenlieu == 3):
+                    data["tong_donvi_capnuoc_mat"] +=1
+                    
+                if(dv.congsuat>=1000):
+                    data["tong_donvi_capnuoc_tren1000m3"] +=1
+                else:
+                    data["tong_donvi_capnuoc_duoi1000m3"] +=1
     data["tong_donvi_capnuoc"] = tong_donvi_capnuoc
     data["tong_hogiadinh_duoccungcapnuoc"] = tong_hogiadinh_duoccungcapnuoc
+    
+    if baocao_namtruoc is not None:
+        tongkinhphi_namtruoc = int(baocao_namtruoc.tong_kinhphi_congtac_ngoaikiem) if baocao_namtruoc.tong_kinhphi_congtac_ngoaikiem is not None else 0
+        tongkinhphi_namnay = int(data['tong_kinhphi_congtac_ngoaikiem']) if data['tong_kinhphi_congtac_ngoaikiem'] is not None else 0
+        if (tongkinhphi_namtruoc == tongkinhphi_namnay):
+            data['kinhphi_ngoaikiem_sovoinamtruoc'] = 0
+        elif (tongkinhphi_namtruoc > tongkinhphi_namnay):
+            data['kinhphi_ngoaikiem_sovoinamtruoc'] = 1
+        else:
+            data['kinhphi_ngoaikiem_sovoinamtruoc'] = 2
     
     await process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems, data)
     # await process_baocao_nuocsach_huyentinh_ketqua_tonghop(baocao_tonghops, data)
@@ -586,13 +609,17 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
     thongbao_coquan_thamquyen = 0
     thongbao_donvi_chuquan = 0
 
-
+    donvicapnuocid_ngoaikiem = []
+    
+    map_thongso_khongdat = {}
     
     if baocao_ngoaikiems is not None:
         # tong_donvi_capnuoc_thuchien_ngoaikiem = len(baocao_ngoaikiems)
         for baocao in baocao_ngoaikiems:
             baocao = copy.deepcopy(baocao)
             if baocao is not None:
+                if baocao.donvicapnuoc_id not in donvicapnuocid_ngoaikiem:
+                    donvicapnuocid_ngoaikiem.append(baocao.donvicapnuoc_id)
                 # if baocao.laphoso_theoquydinh == 1:
                 #     tongdat_laphoso_theoquydinh_ngoaikiem += 1
                     
@@ -643,25 +670,70 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                         else:
                             tong_mau_khongdat_quychuan_ngoaikiem_trungtam +=1
                 
-                #danh sach ket qua cac thong so
                 if baocao.ketquangoaikiemchatluongnuoc is not None and baocao.thunghiem_chatluong_nuoc == 1:
                     for thongso in baocao.ketquangoaikiemchatluongnuoc:
                         if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
                             obj_thongso = to_dict(thongso)
+                            item_map_thongso = {}
+                            if obj_thongso['id'] in map_thongso_khongdat:
+                                item_map_thongso = map_thongso_khongdat[obj_thongso['id']]
+                            else:
+                                map_thongso_khongdat[obj_thongso['id']] = {}
+                                
+                            if "tenthongso" not in item_map_thongso:
+                                item_map_thongso["tenthongso"] = obj_thongso["tenthongso"]
+                            if "id" not in item_map_thongso:
+                                item_map_thongso["id"] = obj_thongso["id"]
+                            if "mathongso" not in item_map_thongso:
+                                item_map_thongso["mathongso"] = obj_thongso["mathongso"]
+                            
                             for mauthongso in obj_thongso["ketquakiemtra"]:
                                 if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
                                     item_thongso_khongdat = copy.deepcopy(obj_thongso)
-                                    item_thongso_khongdat['donvicapnuoc_id'] = str(baocao.donvicapnuoc_id)
-                                    item_thongso_khongdat['tendonvicapnuoc'] = baocao.tendonvicapnuoc
-                                    item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
-                                    item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
-                                    item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
-                                    item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
-                                    item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
-                                    item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
-                                    thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
+                                    if "solan_khongdat" not in item_map_thongso:
+                                        item_map_thongso["solan_khongdat"] = 1
+                                    else:
+                                        item_map_thongso["solan_khongdat"] += 1
+                                    
+                                    if "danhsach_donvicapnuoc" not in item_map_thongso:
+                                        item_map_thongso["danhsach_donvicapnuoc"] = [{"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}]
+                                    else:
+                                        danhsachdonvi = item_map_thongso["danhsach_donvicapnuoc"]
+                                        danhsachdonvi_new = []
+                                        for dv in danhsachdonvi:
+                                            if(dv['id'] == str(baocao.donvicapnuoc_id)):
+                                                dv['solan'] +=1
+                                            danhsachdonvi_new.append(dv) 
+                                        item_map_thongso["danhsach_donvicapnuoc"] = danhsachdonvi_new
+                                    
+                            map_thongso_khongdat[obj_thongso['id']] = item_map_thongso       
+                                    
+#                 #danh sach ket qua cac thong so
+#                 if baocao.ketquangoaikiemchatluongnuoc is not None and baocao.thunghiem_chatluong_nuoc == 1:
+#                     for thongso in baocao.ketquangoaikiemchatluongnuoc:
+#                         if thongso is not None and "danhgia" in thongso and thongso["danhgia"] == 0:
+#                             obj_thongso = to_dict(thongso)
+#                             for mauthongso in obj_thongso["ketquakiemtra"]:
+#                                 if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+#                                     item_thongso_khongdat = copy.deepcopy(obj_thongso)
+#                                     item_thongso_khongdat['donvicapnuoc_id'] = str(baocao.donvicapnuoc_id)
+#                                     item_thongso_khongdat['tendonvicapnuoc'] = baocao.tendonvicapnuoc
+#                                     item_thongso_khongdat['mavitri'] = mauthongso["mavitri"]
+#                                     item_thongso_khongdat['tenvitri'] = mauthongso["tenvitri"]
+#                                     item_thongso_khongdat['ketqua'] = mauthongso["ketqua"]
+#                                     item_thongso_khongdat['ngaykiemtra'] = mauthongso["ngaykiemtra"]
+#                                     item_thongso_khongdat['danhgia'] = mauthongso["danhgia"]
+#                                     item_thongso_khongdat['tendonvingoaikiem'] = baocao.tendonvi_ngoaikiem
+#                                     thongso_khongdat_ngoaikiem_trungtam.append(item_thongso_khongdat)
 
+    for key, value in map_thongso_khongdat.items():
+        value["tyle"] = 0 if tong_mau_khongdat_quychuan_ngoaikiem_trungtam == 0 else round((value['solan_khongdat']/tong_mau_khongdat_quychuan_ngoaikiem_trungtam)*100, 2)
+        thongso_khongdat_ngoaikiem_trungtam.append(value)
     
+    thongso_khongdat_ngoaikiem_trungtam.sort(key=lambda x: x['solan_khongdat'])
+    
+    data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = len(donvicapnuocid_ngoaikiem)
+
     # data["tongdat_laphoso_theoquydinh_ngoaikiem"] = tongdat_laphoso_theoquydinh_ngoaikiem
     data["tongdat_hoso_daydu_theoquydinh_ngoaikiem"] = tongdat_hoso_daydu_theoquydinh_ngoaikiem
     data["tongdat_somau_thunghiem_dungquydinh_ngoaikiem"] = tongdat_somau_thunghiem_dungquydinh_ngoaikiem
@@ -1025,8 +1097,6 @@ async def process_baocao_vien_chuyennganh_ngoaikiem(currentuser=None, data=None)
     data["tong_mau_khongdat_quychuan_ngoaikiem_vien"] = tong_mau_khongdat_quychuan_ngoaikiem_vien
     data["thongso_khongdat_ngoaikiem_vien"] = thongso_khongdat_ngoaikiem_vien
     
-    
-    
                         
 apimanager.create_api(KetQuaNoiKiemChatLuongNuocSach,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
@@ -1045,6 +1115,7 @@ apimanager.create_api(BaoCaoNuocSachHuyenTinh,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany], POST=[auth_func,prepost_baocao_nuocsach_huyentinh], PUT_SINGLE=[auth_func, preput_baocao_nuocsach_huyentinh], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[]),
     collection_name='baocao_nuocsach_huyentinh')
 
 apimanager.create_api(BaoCaoVienChuyenNganhNuoc,
@@ -1142,13 +1213,27 @@ async def TimKiemDonVi_ChuaLam_BaoCaoNuoc(request):
     response = []
     donvicapnuocs = None
     if(quanhuyen_id is not None and quanhuyen_id!=""  and quanhuyen_id !="undefined"):
-        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == quanhuyen_id).filter(DonViCapNuoc.congsuat <1000).order_by(desc(DonViCapNuoc.congsuat)).all()
+        donvicapnuocs = db.session.query(DonViCapNuoc).\
+        filter(DonViCapNuoc.quanhuyen_id == quanhuyen_id).\
+        filter(DonViCapNuoc.congsuat <1000).\
+        filter(DonViCapNuoc.trangthai == 1).\
+        order_by(desc(DonViCapNuoc.congsuat)).all()
     elif(tinhthanh_id is not None and tinhthanh_id!=""  and tinhthanh_id !="undefined"):
-        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.tinhthanh_id == tinhthanh_id).order_by(desc(DonViCapNuoc.congsuat)).all()
+        donvicapnuocs = db.session.query(DonViCapNuoc).\
+        filter(DonViCapNuoc.tinhthanh_id == tinhthanh_id).\
+        filter(DonViCapNuoc.trangthai == 1).\
+        order_by(desc(DonViCapNuoc.congsuat)).all()
     elif (currentuser.donvi.tuyendonvi_id == 3):
-        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id).filter(DonViCapNuoc.congsuat <1000 ).order_by(desc(DonViCapNuoc.congsuat)).all()
+        donvicapnuocs = db.session.query(DonViCapNuoc).\
+        filter(DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id).\
+        filter(DonViCapNuoc.congsuat <1000 ).\
+        filter(DonViCapNuoc.trangthai == 1).\
+        order_by(desc(DonViCapNuoc.congsuat)).all()
     elif (currentuser.donvi.tuyendonvi_id == 2):
-        donvicapnuocs = db.session.query(DonViCapNuoc).filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).order_by(desc(DonViCapNuoc.congsuat)).all()
+        donvicapnuocs = db.session.query(DonViCapNuoc).\
+        filter(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id).\
+        filter(DonViCapNuoc.trangthai == 1).\
+        order_by(desc(DonViCapNuoc.congsuat)).all()
     
     if donvicapnuocs is None:
         if (currentuser.donvi.tuyendonvi_id == 1):
@@ -1257,6 +1342,7 @@ async def ThongKe_NuocSach_Duoi100m3(request):
 
     if(currentuser.donvi.tuyendonvi_id == 1):
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
+                    filter(DonViCapNuoc.trangthai == 1).\
                     filter(DonViCapNuoc.congsuat < 1000).all()
 
         if danhmuc_donvicapnuoc is None:
@@ -1540,6 +1626,7 @@ async def ThongKe_NuocSach_Tren100m3(request):
 
     if(currentuser.donvi.tuyendonvi_id == 1):
         danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
+                    filter(DonViCapNuoc.trangthai == 1).\
                     filter(DonViCapNuoc.congsuat > 1000).all()
 
         if danhmuc_donvicapnuoc is None:

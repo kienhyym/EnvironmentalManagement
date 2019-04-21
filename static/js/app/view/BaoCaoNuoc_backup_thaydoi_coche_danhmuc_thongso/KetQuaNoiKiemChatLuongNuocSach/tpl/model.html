@@ -1,0 +1,192 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Kết quả nội kiểm chất lượng nước sạch</h3>
+    </div>
+    <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+    <div id="content" class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+        <div class="table1">
+            <h3 style="padding-bottom:10px; padding-top: 20px">A. Thông tin chung</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table is-table">
+                        <tbody>
+	                        <tr>
+                                <td class="col-md-6">Năm báo cáo</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:nambaocao" placeholder="YYYY"/></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Ngày báo cáo</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:ngaybaocao" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Tên đơn vị cấp nước</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="dict:donvicapnuoc" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Công suất thiết kế</td>
+                                <td class="col-md-6"><span data-bind="text:congsuat_thietke"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Tuần suất thực hiện nội kiểm(lần/tháng)</td>
+                                <td class="col-md-6"><span data-bind="text:tansuat_noikiem"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Tổng số HGĐ được cung cấp nước</td>
+                                <td class="col-md-6"><span data-bind="text:tongso_hogiadinh"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Nguồn nước nguyên liệu</td>
+                                <td class="col-md-6"><span data-bind="text:nguonnuoc_nguyenlieu"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Địa chỉ cụ thể</td>
+                                <td class="col-md-6"><span data-bind="text:diachi_donvicapnuoc"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Ngày kiểm tra</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thoigiankiemtra" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Người kiểm tra</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:nguoikiemtra" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="table1">
+            <h3 style="padding-bottom:10px;">B. Hồ sơ theo dõi, quản lý chất lượng nước</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table is-table">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-6">Lập hồ sơ theo quy định</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:laphoso_theoquydinh" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Hồ sơ đầy đủ theo quy định</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:hoso_daydu_theoquydinh" /></td>
+                            </tr>
+                            <tr id="tailieu_thieu">
+                                <td class="col-md-6">Nếu không thì thiếu tài liệu gì?</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tailieu_thieu" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Số mẫu thử nghiệm đúng theo quy định</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:somau_thunghiem_dungquydinh" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Thử nghiệm đầy đủ các thông số theo quy định</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thunghiem_daydu_thongso" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Tuần suất thực hiện nội kiểm đúng theo quy định</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:tansuat_thuchien_noikiem_dungquydinh" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Thực hiện báo cáo đầy đủ</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thuchien_baocao_daydu" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Thực hiện công khai thông tin</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thuchien_congkhai_thongtin" /></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-6">Thực hiện các biện pháp khắc phục</td>
+                                <td class="col-md-6"><input type="text" class="form-control" data-bind="value:thuchien_bienphap_khacphuc" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="table1">
+            <h3 style="padding-bottom:10px;">C. Kết quả thử nghiệm chất lượng nước</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <td><label>Số mẫu và vị trí lấy mẫu nước: </label></td>
+                    <td><input type="number" min="0" class="form-control" data-bind="value:somauvavitri" /></td>
+                </div>
+                <div class="col-md-12" style="margin-bottom: 20px;margin-top: 20px;">
+                    <table class="table is-table">
+                        <thead>
+                            <tr>
+                                <th class="background-colorTH text-center">Mã vị trí lấy mẫu</th>
+                                <th class="background-colorTH text-center">Tên vị trí lấy mẫu</th>
+                                <th class="background-colorTH text-center">Ngày lấy mẫu</th>
+                                <th class="background-colorTH text-center">Kết quả</th>
+                            </tr>
+                        </thead>
+                        <tbody id="danhsachvitrilaymau"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; overflow: scroll;">
+            <table class="is-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" id="removeButton" class="background-colorTH"></th>
+                        <th rowspan="2" class="background-colorTH text-center">STT</th>
+                        <th rowspan="2" style="max-width: 400px; min-width: 400px;" class="background-colorTH text-center">Các thông số</th>
+                        <th id="ketquathunghiem" class="background-colorTH text-center">Kết quả thử nghiệm</th>
+                        <th style="min-width: 150px" colspan="2" class="background-colorTH text-center">Giới hạn</th>
+                        <th style="min-width: 150px" rowspan="2" class="background-colorTH text-center">Đánh giá (đạt/không đạt)</th>
+                    </tr>
+                    <tr>
+                        <th class="background-colorTH text-center" id="mauvitri_header_before"></th>
+                        <th class="background-colorTH text-center">Tối thiểu</th>
+                        <th class="background-colorTH text-center">Tối đa</th>
+                    </tr>
+                </thead>
+                <tbody id="ketquanoikiemchatluongnuoc"></tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Thông Số</button>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <p>- Dấu (*) chỉ áp dụng cho đơn vị cấp nước khai thác nước ngầm.
+                <br />- Dấu (**) chỉ áp dụng cho các đơn vị cấp nước sử dụng Clo làm phương pháp khử trùng.</p>
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Kết luận kết quả</label>
+                    <input type="text" class="form-control" data-bind="value:ketquanoikiem"></input>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Nhận xét</label>
+                    <textarea rows="2" class="form-control" data-bind="value:nhanxet"></textarea>
+                </div>
+            </div>
+        </div>
+		<div class="row hide" id="bienphap_extra">
+            <h3 style="padding-left: 15px; padding-bottom: 10px;">D. Các biện pháp khắc phục</h3>
+                <div class="col-md-3">
+                    <label>Thực hiện khắc phục</label>
+                    <input type="text" class="form-control" data-bind="value:cothuchien_khacphuc"></input>
+                </div>
+                <div class="col-md-12" style="margin-top: 10px;" >
+                    <label>Biện pháp khắc phục</label>
+                    <textarea rows="2" class="form-control" data-bind="value:bienphap_khacphuc"></textarea>
+                </div>
+        </div>
+        <div style="padding-top: 5px; padding-bottom: 30px;">
+            <h3 style="padding-bottom:10px;">E. Đề nghị</h3>
+            <textarea rows="2" class="form-control" data-bind="value:kiennghi"></textarea>
+        </div>
+    </div>
+</div>

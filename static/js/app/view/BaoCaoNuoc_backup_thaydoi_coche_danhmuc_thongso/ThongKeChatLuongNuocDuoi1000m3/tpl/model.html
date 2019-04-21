@@ -1,0 +1,69 @@
+<style type="text/css">
+	.address {
+		width: 9%;
+		vertical-align: top;
+	}
+
+	.tyle {
+		width: 8%;
+		vertical-align: top;
+	}
+</style>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>BẢNG TỔNG HỢP QUẢN LÝ CHẤT LƯỢNG NƯỚC DƯỚI 1000M3</h4>
+	</div>
+	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+		<div class="row" style=" margin-top: 20px">
+			<div class="form-group col-md-6">
+				<label>Năm báo cáo:</label>
+				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control"
+				autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+			</div>
+			<div class="col-md-6 form-group">
+				<label>Kỳ báo cáo:</label>
+				<input id="kydanhgia" type="text" class="form-control">
+			</div>
+			<div class="col-md-6 form-group">
+				<button id="search" class="btn btn-success">Tìm kiếm</button>
+			</div>
+		</div>
+
+		<div class="row" style="overflow: scroll;">
+			<div class="col-md-12">
+				<table class="table-align is-table">
+					<thead>
+						<tr>
+							<th class="background-colorTH">STT</th>
+							<th class="background-colorTH">Tỉnh</th>
+							<th class="background-colorTH">Tổng số đơn vị cấp nước</th>
+							<th class="background-colorTH">Tổng số ĐVCN được kiểm tra</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Tổng số mẫu ngoại kiểm thử nghiệm</th>
+							<th class="background-colorTH">Tổng số mẫu ngoại kiểm đạt QC</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Các thông số không đạt</th>
+							<th class="background-colorTH">Tổng số mẫu nội kiểm thử nghiệm</th>
+							<th class="background-colorTH">Tổng số mẫu nội kiểm đạt QC</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Hồ sơ đầy đủ theo quy định</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Số lượng mẫu thử nghiệm đúng theo quy định</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Thử nghiệm đầy đủ các thông số theo quy định</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Tần suất thực hiện nội kiểm đúng quy định</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Thực hiện báo cáo đầy đủ</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+							<th class="background-colorTH">Thực hiện công khai thông tin đầy đủ</th>
+							<th class="background-colorTH">Tỷ lệ %</th>
+						</tr>
+					</thead>
+					<tbody id="danhsachdonvi"></tbody>
+					<tfoot id="tongcongi"></tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -130,7 +130,6 @@ define(function (require) {
                         success: function (model, respose, options) {
                             self.getApp().notify("Cộng dồn thông tin thành công");
 							self.applyBindings();
-	                    	self.$el.find("#sosanh_kinhphi_ngoaikiem").show();
 							if(self.getApp().currentUser.donvi.tuyendonvi_id === 3){
 								var quanhuyen = self.getApp().currentUser.donvi.quanhuyen;
 								if(quanhuyen != null && !!quanhuyen.tong_hgd && quanhuyen.tong_hgd>0){
@@ -247,7 +246,6 @@ define(function (require) {
                 this.model.set('id', id);
                 this.model.fetch({
                     success: function (data) {
-                    	self.$el.find("#sosanh_kinhphi_ngoaikiem").show();
                         self.applyBindings();
                         self.render_thongso_khongdat(self.model.get("thongso_khongdat_ngoaikiem_trungtam"),"thongso_khongdat_ngoaikiem_trungtam");
                         // self.render_thongso_khongdat(self.model.get("thongso_khongdat_noikiem"),"thongso_khongdat_noikiem");
@@ -272,7 +270,6 @@ define(function (require) {
 					}
                 });
             } else {
-            	self.$el.find("#sosanh_kinhphi_ngoaikiem").hide();
                 self.applyBindings();
             }
 
@@ -340,43 +337,52 @@ define(function (require) {
 //         },
         render_thongso_khongdat:function(thongso_khongdat, elementID){
 			var self = this;
-//			var arr_thongso_khongdat = []
-//			const map = new Map();
+			var arr_thongso_khongdat = []
+			const map = new Map();
         	if(!!thongso_khongdat && thongso_khongdat.length>0){
         		self.$el.find("#body_"+elementID).html("");
         		$.each(thongso_khongdat, function(idx,thongso){
 
-//					if (!map.has(thongso.id)){
-//						map.set(thongso.id, true);
-//						arr_thongso_khongdat.push(thongso);
-//					}
+					if (!map.has(thongso.id)){
+						map.set(thongso.id, true);
+						arr_thongso_khongdat.push(thongso);
+					}
 					var tr = $("<tr>");
+					var thongso_gioihan_toida_txt = thongso.gioihan_toida_txt ? thongso.gioihan_toida_txt : "";
+					var thongso_ketqua = thongso.ketqua;
+					if (thongso_ketqua === null || thongso_ketqua === ""){
+						thongso_ketqua = "";
+					}
+        			// if(elementID === "thongso_khongdat_ngoaikiem_trungtam"){
+        			// 	var tendonvingoaikiem = "";
+        			// 	if (thongso.tendonvingoaikiem!==null && thongso.tendonvingoaikiem !== undefined){
+        			// 		tendonvingoaikiem = thongso.tendonvingoaikiem;
+        			// 	}
+        			// 	tr.append('<td>'+tendonvingoaikiem+'</td>');
+					// }
 					tr.append('<td>'+ (idx+1) +'</td>');
+        			tr.append('<td>'+thongso.tendonvicapnuoc+'</td>');
         			tr.append('<td>'+thongso.tenthongso+'</td>');
-        			tr.append('<td>'+thongso.solan_khongdat+'</td>');
-        			tr.append('<td>'+thongso.tyle+'</td>');
-        			var html_donvicapnuoc = "";
-        			for(var i=0; i<thongso.danhsach_donvicapnuoc.length;i++){
-        				var donvi = thongso.danhsach_donvicapnuoc[i];
-        				html_donvicapnuoc +='- <span>'+donvi.ten+'('+donvi.solan+' lần)</span><br>';
-        			}
-        			tr.append('<td>'+html_donvicapnuoc+'</td>');
+        			tr.append('<td>'+thongso_ketqua+'</td>');
+        			tr.append('<td>'+thongso_gioihan_toida_txt+'</td>');
+        			tr.append('<td>'+thongso.tenvitri+'</td>');
+        			tr.append('<td>'+self.getApp().template_helper.datetimeFormat(thongso.ngaykiemtra, "DD/MM/YYYY")+'</td>');
         			self.$el.find("#body_"+elementID).append(tr);
         		});
 				self.$el.find("#"+elementID+"_value").text(thongso_khongdat.length);
-//				var ds_thongso_khongdat = "";
-//				if(arr_thongso_khongdat !== undefined || arr_thongso_khongdat.length > 0){
-//					for(var i = 0; i < arr_thongso_khongdat.length; i++){
-//						ds_thongso_khongdat += arr_thongso_khongdat[i].tenthongso+ " ," ;
-//					}
-//					self.$el.find("#tong_thongso_khongdat").html(`<h4>
-//						Các thông số không đạt là: ${ds_thongso_khongdat}
-//					</h4>`);
-//				}
+				var ds_thongso_khongdat = "";
+				if(arr_thongso_khongdat !== undefined || arr_thongso_khongdat.length > 0){
+					for(var i = 0; i < arr_thongso_khongdat.length; i++){
+						ds_thongso_khongdat += arr_thongso_khongdat[i].tenthongso+ " ," ;
+					}
+					self.$el.find("#tong_thongso_khongdat").html(`<h4>
+						Các thông số không đạt là: ${ds_thongso_khongdat}
+					</h4>`);
+				}
 
 			} else{
-//				self.$el.find("#"+elementID).hide();
-//				self.$el.find("#tong_thongso_khongdat").hide();
+				self.$el.find("#"+elementID).hide();
+				self.$el.find("#tong_thongso_khongdat").hide();
         		self.$el.find("#"+elementID+"_value").text("Không có");
         	}
         },
@@ -388,14 +394,7 @@ define(function (require) {
 				var tyle_hogiadinh_capnuocsach_diaban = ((tong_hogiadinh_diaban/tong_hogiadinh_duoccungcapnuoc)*100).toFixed(2);
 				self.$el.find("#tyle_hogiadinh_capnuocsach_diaban").val(tyle_hogiadinh_capnuocsach_diaban+"%");
 			}
-			var tong_donvi_capnuoc = self.model.get("tong_donvi_capnuoc");
-			var tyle_donvicapnuoc_duockiemtra = 0;
-			if (tong_donvi_capnuoc!==null && self.getApp().toInt(tong_donvi_capnuoc)>0){
-				var tong_donvi_capnuoc_thuchien_ngoaikiem = self.getApp().toInt(self.model.get('tong_donvi_capnuoc_thuchien_ngoaikiem'));
-				tyle_donvicapnuoc_duockiemtra = ((tong_donvi_capnuoc_thuchien_ngoaikiem/tong_donvi_capnuoc)*100).toFixed(2);
-			}
-			
-			self.$el.find("#tyle_donvicapnuoc_duockiemtra").val(tyle_donvicapnuoc_duockiemtra+"%");
+        	
         	// self.model.on("change:tong_hogiadinh_diaban", function(){
         	// 	var tong_hogiadinh_diaban = self.getApp().toInt(self.model.get("tong_hogiadinh_diaban"));
             // 	var tyle_hogiadinh_capnuocsach_diaban = tong_hogiadinh_diaban >0 ? (self.getApp().toInt(self.model.get("tong_hogiadinh_duoccungcapnuoc"))*100/tong_hogiadinh_diaban).toFixed(2) :0;

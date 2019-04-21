@@ -48,8 +48,8 @@ class DonViCapNuoc(CommonModel):
     congsuat = db.Column(DECIMAL)
     tongso_hogiadinh = db.Column(db.Integer)
     tansuat_noikiem = db.Column(db.Integer)
-    nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)
-    phuongphap_khutrung = db.Column(db.SmallInteger)
+    nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)#3-nuoc mat, 2-nuoc ngam, 1-ca hai
+    phuongphap_khutrung = db.Column(db.SmallInteger)#0-ozon, 1-clo
     
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
@@ -261,6 +261,12 @@ class BaoCaoNuocSachHuyenTinh(CommonModel):
     quanhuyen = relationship('QuanHuyen')
     
     tong_donvi_capnuoc = db.Column(db.Integer, default=0)
+    tong_donvi_capnuoc_mat = db.Column(db.Integer, default=0)
+    tong_donvi_capnuoc_ngam = db.Column(db.Integer, default=0)
+    tong_donvi_capnuoc_mat_ngam = db.Column(db.Integer, default=0)
+    tong_donvi_capnuoc_duoi1000m3 = db.Column(db.Integer, default=0)
+    tong_donvi_capnuoc_tren1000m3 = db.Column(db.Integer, default=0)
+
     tong_hogiadinh_duoccungcapnuoc = db.Column(db.Integer, default=0)
     tong_hogiadinh_diaban = db.Column(db.Integer, default=0)
     tong_soluot_ngoaikiem = db.Column(db.Integer, default=0)

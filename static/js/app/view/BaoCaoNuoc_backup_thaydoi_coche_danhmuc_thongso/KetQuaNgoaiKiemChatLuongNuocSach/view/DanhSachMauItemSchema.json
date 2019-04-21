@@ -1,0 +1,15 @@
+{
+	"id": {
+		"type": "string",
+		"primary": true
+	},
+	"masomau": {
+		"type": "number"
+	},
+	"tenvitrilaymau": {
+		"type": "string"
+	},
+	"ketquavitrilaymau": {
+		"type": "number"
+	}
+}
