@@ -76,17 +76,17 @@ define(function (require) {
 					foreignField: "quanhuyen_id",
 					dataSource: QuanHuyenSelectView,
 				},
-				{
-    				field: "thuocsuprsws",
-    				uicontrol: "combobox",
-    				textField: "text",
-    				valueField: "value",
-    				dataSource: [
-    					{ "value": 1, "text": "Có" },
-    					{ "value": 0, "text": "Không" },
-					],
-					value:1
-				},
+//				{
+//    				field: "thuocsuprsws",
+//    				uicontrol: "combobox",
+//    				textField: "text",
+//    				valueField: "value",
+//    				dataSource: [
+//    					{ "value": 1, "text": "Có" },
+//    					{ "value": 0, "text": "Không" },
+//					],
+//					value:1
+//				},
 	],
 },
 		tools: [{
@@ -211,7 +211,7 @@ define(function (require) {
 									
 									self.applyBindings();
 									self.renderTinhTongI();
-									self.check_chuongtrinhSUP();
+									self.updateUIChuongTrinhSUP();
 									self.search_dshogiadinh();
 									
 									
@@ -292,28 +292,28 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
-			self.model.on("change:tong_nam", function() {
-				var tong_nu = self.model.get("tong_nu");
-				var tong_nam = self.model.get("tong_nam");
-				if (Number.isInteger(tong_nam) === true){
-					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-					self.model.set("tong_danso" , tong_dantrongthon)
-				} else {
-					self.getApp().notify({message:"Tổng số dân là nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
-					return;
-				}
-			});
-			self.model.on("change:tong_nu", function() {
-				var tong_nu = self.model.get("tong_nu");
-				var tong_nam = self.model.get("tong_nam");
-				if (Number.isInteger(tong_nu) === true){
-					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
-					self.model.set("tong_danso" , tong_dantrongthon)
-				} else {
-					self.getApp().notify({message:"Tổng số dân là nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
-					return;
-				}
-			});
+//			self.model.on("change:tong_nam", function() {
+//				var tong_nu = self.model.get("tong_nu");
+//				var tong_nam = self.model.get("tong_nam");
+//				if (Number.isInteger(tong_nam) === true){
+//					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+//					self.model.set("tong_danso" , tong_dantrongthon)
+//				} else {
+//					self.getApp().notify({message:"Tổng số dân là nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+//					return;
+//				}
+//			});
+//			self.model.on("change:tong_nu", function() {
+//				var tong_nu = self.model.get("tong_nu");
+//				var tong_nam = self.model.get("tong_nam");
+//				if (Number.isInteger(tong_nu) === true){
+//					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+//					self.model.set("tong_danso" , tong_dantrongthon)
+//				} else {
+//					self.getApp().notify({message:"Tổng số dân là nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+//					return;
+//				}
+//			});
 			var id = this.getApp().getRouter().getParam("id");
 			var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 			if (routeloaibaocao!==null){
@@ -392,7 +392,7 @@ define(function (require) {
 					self.search_dshogiadinh();
 					self.$el.find("#tongcongi").show();
 					self.renderTinhTongI();
-					self.check_chuongtrinhSUP();
+					self.updateUIChuongTrinhSUP();
 				});
 			});
 			if (id) {
@@ -446,20 +446,24 @@ define(function (require) {
 						}
 					},
 					complete:function(){
-						self.check_chuongtrinhSUP();
-						self.model.on("change:thuocsuprsws", function(){
-							self.check_chuongtrinhSUP();
-						});
+						self.updateUIChuongTrinhSUP();
+//						self.model.on("change:thuocsuprsws", function(){
+//							self.updateUIChuongTrinhSUP();
+//						});
 					}
 				});
 			} else {
 				self.applyBindings();
 				self.model.set("nhatieuthonhvs", []);
-				
-				self.check_chuongtrinhSUP();
-				self.model.on("change:thuocsuprsws", function(){
-					self.check_chuongtrinhSUP();
-				});
+				if(currentUser!==null && !!currentUser.check_SUP){
+					self.model.set("thuocsuprsws",currentUser.check_SUP);
+				}else{
+					self.model.set("thuocsuprsws",0);
+				}
+				self.updateUIChuongTrinhSUP();
+//				self.model.on("change:thuocsuprsws", function(){
+//					self.updateUIChuongTrinhSUP();
+//				});
 
 				// self.$el.find(".remove_columns").hide();
 
@@ -472,7 +476,7 @@ define(function (require) {
 				});
 			}
 		},
-		check_chuongtrinhSUP:function(){
+		updateUIChuongTrinhSUP:function(){
 			var self = this;
 			var check_thuoc_sup = self.model.get("thuocsuprsws");
 			if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
@@ -743,7 +747,7 @@ define(function (require) {
 					self.$el.find("#nhatieuthonhvs").html("");
 					for(var i=0; i< filterObj.length; i++){
 						self.renderItemView(filterObj[i], null);
-						self.check_chuongtrinhSUP();
+						self.updateUIChuongTrinhSUP();
 					}
 				}
 			});

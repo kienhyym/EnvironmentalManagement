@@ -265,6 +265,11 @@ define(function (require) {
                 if (choose_hogiadinh == undefined || choose_hogiadinh == null){
                     self.getApp().notify({message:"Vui lòng chọn thông tin hộ gia đình trước!"}, {type: "danger"});
                 }
+                if(self.model.get("loainhatieusudung") == 5){
+                	self.$el.find("#mota_nvs").hide();
+                }else{
+                	self.$el.find("#mota_nvs").show();
+                }
             });
             self.model.on("change:danhgiatinhtrangvesinh", function() {
                 var choose_hogiadinh = self.model.get("hogiadinh");
@@ -309,6 +314,7 @@ define(function (require) {
                     self.model.set("loainhatieusudung", 4);
                 }else if(dataHoGiaDinh.khongconhatieu === 1){
                     self.model.set("loainhatieusudung", 5);
+                    self.$el.find("#mota_nvs").hide();
                 }else if(dataHoGiaDinh.loaikhac >= 0){
                     self.model.set("loainhatieusudung", 6);
                     self.$el.find("#choose_loaikhac").show();

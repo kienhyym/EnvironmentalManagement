@@ -1,0 +1,63 @@
+<style type="text/css">
+	.sd {
+		width: 6%;
+		vertical-align: top;
+	}
+
+	.sd2 {
+		width: 15%;
+		vertical-align: top;
+	}
+</style>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Tiến độ thực hiện vệ sinh toàn xã</h4>
+	</div>
+	<!-- <div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div> -->
+	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+
+		<div class="row" style=" margin-top: 20px">
+			<div class="form-group col-md-6">
+				<label>Năm báo cáo:</label>
+				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control">
+			</div>
+			<div class="col-md-6 form-group">
+				<label>Kỳ báo cáo:</label>
+				<input id="kydanhgia" type="text" class="form-control">
+			</div>
+
+			<div id="tinhthanh" class="col-md-6 form-group " style="display:none;">
+				<label>Chọn Tỉnh/Thành phố</label>
+				<input type="text" class="form-control">
+			</div>
+			<div class="col-md-6 form-group">
+				<button id="search" class="btn btn-success">Tìm kiếm</button>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table-align is-table">
+					<thead>
+						<tr>
+							<th class="background-colorTH sd2">Tên Tỉnh</th>
+							<th class="background-colorTH sd2">Tên Huyện</th>
+							<th class="background-colorTH sd2">Tên Xã</th>
+							<th class="background-colorTH sd">% HGĐ có nhà tiêu cải thiện</th>
+							<th class="background-colorTH sd">Tỷ lệ % HGĐ có điểm rửa tay</th>
+							<th class="background-colorTH sd">% Trường học có nước sạch và nhà tiêu HVS</th>
+							<th class="background-colorTH sd">Tổng số học sinh</th>
+							<th class="background-colorTH sd">% Trạm y tế có nước sạch và nhà tiêu HVS</th>
+							<th class="background-colorTH sd">Tổng số Hộ gia đình trong xã</th>
+							<th class="background-colorTH sd">Tổng dân số của xã</th>
+							<th class="background-colorTH sd">% Hộ gia đình có chủ hộ là nữ</th>
+							<th class="background-colorTH sd">% Hộ gia đình là DTTS</th>
+						</tr>
+					</thead>
+					<tbody id="danhsachdonvi"></tbody>
+					<tfoot id="tongcongi"></tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

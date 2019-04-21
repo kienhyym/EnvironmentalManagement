@@ -1,0 +1,93 @@
+{
+    
+    "stt": {
+        "type": "number"
+    },
+    "tong_soxa":{
+        "type": "number"
+    },
+    "tong_sothon":{
+        "type": "number"
+    },
+    "tong_chuholanu": {
+        "type": "number",
+        "default":0
+    },
+    "tong_sohodtts": {
+        "type": "number",
+        "default":0
+    },
+    "tong_sohongheo": {
+        "type": "number",
+        "default":0
+    },
+    "tong_tuhoai": {
+        "type": "number",
+        "default":0
+    },
+    "tong_tuhoai_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_thamdoi": {
+        "type": "number",
+        "default":0
+    },
+    "tong_thamdoi_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_2ngan": {
+        "type": "number",
+        "default":0
+    },
+    "tong_2ngan_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_ongthonghoi": {
+        "type": "number",
+        "default":0
+    },
+    "tong_ongthonghoi_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_loaikhac": {
+        "type": "number",
+        "default":0
+    },
+    "tong_khongnhatieu": {
+        "type": "number",
+        "default":0
+    },
+    "tong_hopvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_khonghopvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "tong_caithien_hongheo_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "tong_diemruatay": {
+        "type": "number",
+        "default":0
+    }
+
+}

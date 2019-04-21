@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Duyệt Xã - Vệ Sinh Toàn Xã</h3>
+	</div>
+	<div style="padding:15px 10px;">
+		<div class="row">
+			<div class="col-md-4">
+				<div block-bind="toolbar"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<label>Nhập năm đạt VSTX: </label>
+				<input class="form-control" type="text" id="filter_nam" placeholder="YYYY">
+				</input>
+			</div>
+			<div class="col-md-4" id="filter_xa">
+				<label>Chọn Xã/Phường:</label>
+				<input class="form-control" id="filter_xa_data">
+				</input>
+			</div>
+			<div class="col-md-4">
+				<button class="btn-success btn" id="filterBtn">Tìm kiếm</button>
+				<button class="btn-default btn" id="clear">Xóa bộ lọc</button>
+			</div>
+		</div>
+		<div id="grid" data-bind='collection:$collection'></div>
+	</div>
+</div>

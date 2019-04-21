@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Thông tin hộ gia đình</h3>
+    </div>
+    <div style="margin-left: 16px; margin-top: 20px; margin-right: 16px;" block-bind="content">
+        <div class="table1">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="is-table">
+                        <tbody>
+                            <tr>
+                                <td>Thông tin hộ gia đình</td>
+                                <td><input type="text" class="form-control" bind-item-data="dict:hogiadinh" id="no_disabled" />
+                                </td>
+                            </tr>
+                            <tr id="hidden_hongheo">
+                                <td>Có thuộc diện hộ nghèo không?</td>
+                                <td><input type="text" class="form-control" bind-item-data="value:hongheo" id="hidden_hogiadinh" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Loại nhà tiêu đang sử dụng</td>
+                                <td>
+                                    <input type="text" class="form-control" bind-item-data="value:loainhatieusudung" />
+                                    <div id="choose_loaikhac">
+                                    <input type="text" class="form-control" bind-item-data="value:loaikhac" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Đánh giá tình trạng vệ sinh</td>
+                                <td>
+                                    <input type="text" class="form-control" bind-item-data="value:danhgiatinhtrangvesinh" />
+                                </td>
+                            </tr>
+                            <tr id="hidden_caithien">
+                                <td>Có thuộc diện được cải thiện không?</td>
+                                <td>
+                                    <input type="text" class="form-control" bind-item-data="value:caithien" />
+                                </td>
+                            </tr>
+                            <tr id="hidden_diemruatay">
+                                <td>Có điểm rửa tay với nước và xà phòng không?</td>
+                                <td><input type="text" class="form-control"
+                                        bind-item-data="value:diemruataycoxaphong" id="coxaphong" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div  class="text-right" style="margin-bottom: 10px;" block-bind="toolbar"></div>
+    </div>
+</div>

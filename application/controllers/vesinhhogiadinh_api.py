@@ -731,7 +731,7 @@ async def prepost_duyetvstoanxa(request=None, data=None, Model=None, **kw):
     data['donvi_id'] = currentuser.donvi_id
     data['nguoibaocao_id'] = currentuser.id
     
-async def postprocess_hogiadinh(request=None, Model=None, result=None, **kw):
+async def postprocess_stt_danhmuc(request=None, Model=None, result=None, **kw):
     if result is not None and "objects" in result:
         objects = to_dict(result["objects"])
         datas = []
@@ -779,7 +779,7 @@ apimanager.create_api(HoGiaDinh, max_results_per_page=1000000,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, entity_pregetmany_hogiadinh], POST=[auth_func, prepost_put_hogiadinh], PUT_SINGLE=[auth_func, prepost_put_hogiadinh], DELETE_SINGLE=[auth_func]),
-    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_hogiadinh]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_stt_danhmuc]),
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='hogiadinh')
 
@@ -845,4 +845,11 @@ apimanager.create_api(DuyetVeSinhToanXa,
     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func, prepost_duyetvstoanxa], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
     exclude_columns= ["nguoibaocao.confirmpassword","nguoibaocao.password"],
     collection_name='duyet_vesinh_toanxa')
+
+apimanager.create_api(DanhSachDonViThuocSUP,
+    methods=['GET', 'POST', 'DELETE', 'PUT'],
+    url_prefix='/api/v1',
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func], DELETE_SINGLE=[auth_func]),
+    postprocess=dict(POST=[], PUT_SINGLE=[], DELETE_SINGLE=[],GET_MANY =[postprocess_stt_danhmuc]),
+    collection_name='danhsach_donvi_thuocSUP')
 

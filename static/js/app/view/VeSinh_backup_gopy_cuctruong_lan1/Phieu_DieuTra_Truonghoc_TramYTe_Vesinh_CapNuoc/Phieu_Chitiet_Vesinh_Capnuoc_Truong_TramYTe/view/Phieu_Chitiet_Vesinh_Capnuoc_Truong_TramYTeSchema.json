@@ -1,0 +1,91 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ten_truong_tramyte": {
+        "type": "string"
+    },
+    "ma_truong_tramyte": {
+        "type": "string"
+    },
+    "ten_khu_khaosat": {
+        "type": "string"
+    },
+    "quansat_khuvesinh": {
+        "type": "number"
+    },
+    "quansat_khuvesinh_loaikhac": {
+        "type": "string"
+    },
+    "soluong_chauxi": {
+        "type": "number"
+    },
+    "sannha_rannut": {
+        "type": "number"
+    },
+    "coloditieu_daynapkin": {
+        "type": "number"
+    },
+    "bechua_rannut": {
+        "type": "number"
+    },
+    "khoangcach_nguonnuoc_bechua": {
+        "type": "number"
+    },
+    "hoatdong_binhthuong": {
+        "type": "number"
+    },
+    "capnuocsach": {
+        "type": "number"
+    },
+    "congtrinh_ruatay": {
+        "type": "number"
+    },
+    "quansat_congtrinh_ruatay": {
+        "type": "number"
+    },
+    "mailop_nhavesinh": {
+        "type": "number"
+    },
+    "phan_dinhdong_nhavesinh": {
+        "type": "number"
+    },
+    "vesinh_sachse": {
+        "type": "number"
+    },
+    "sannha_vesinh_kho_sach": {
+        "type": "number"
+    },
+    "nangmui": {
+        "type": "number"
+    },
+    "nuocthai_chaydidau": {
+        "type": "number"
+    },
+    "nuocthai_chaydidau_ten": {
+        "type": "string"
+    },
+    "bexi_docao": {
+        "type": "number"
+    },
+    "ngaplut_khi_mualon": {
+        "type": "number"
+    },
+    "khu_ditieu": {
+        "type": "number"
+    },
+    "khu_ditieu_dientich": {
+        "type": "number"
+    },
+    "khu_ditieu_sochau": {
+        "type": "number"
+    },
+    "ghichu": {
+        "type": "string"
+    },
+    "ketluan": {
+        "type": "number",
+        "default":0
+    }
+}

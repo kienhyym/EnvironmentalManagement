@@ -1,0 +1,224 @@
+<div style="margin-left: 15px" block-bind="toolbar"></div>
+<hr>
+<div block-bind="content">
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                <h4>
+                    PHIẾU THU THẬP THÔNG TIN VỀ CẤP NƯỚC VÀ VỆ SINH CỦA TRƯỜNG HỌC/TRẠM Y TẾ
+                </h4>
+                <p>
+                    <b>Hướng dẫn: </b>
+                    Hoàn thiện bảng hỏi này cho <b>TỪNG KHU</b> vệ sinh ở trường học. Khu vệ sinh ở đây được
+                    định
+                    nghĩa là công trình có lối đi riêng. Ví dụ, nếu có một khu vực gồm một lối đi dẫn đến những
+                    chậu cho nam và một lối đi riêng khác dẫn đến các chậu xí cho nữ thì sẽ tính là 2 khu vệ
+                    sinh
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <table class="table is-table">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    3. TÊN TRƯỜNG HỌC/TRẠM Y TẾ: <input type="text" class="form-control" data-bind="value:ten_truong_tramyte"
+                                        disabled /><br>
+                                    MÃ TRƯỜNG HỌC/TRẠM Y TẾ: <input type="text" class="form-control" data-bind="value:ma_truong_tramyte"
+                                        disabled /><br>
+                                    TÊN KHU VỆ SINH: <input type="text" class="form-control" data-bind="value:ten_khu_khaosat" /><br>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="stt">3.1</td>
+                                <td class="content">
+                                    Quan sát khu vệ sinh của trường học/trạm được không?<br>
+                                    Quan sát loại nhà vệ sinh<br>
+                                    Khu vệ sinh có thể có 1 hoặc nhiều nhà vệ sinh-toilet, mỗi nhà vệ sinh có 01 chậu
+                                    xí<br>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" data-bind="value:quansat_khuvesinh" /><br>
+                                    <input id="quansat_khuvesinh_loaikhac" type="text" class="form-control" data-bind="value:quansat_khuvesinh_loaikhac" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.2</td>
+                                <td class="content">
+                                    Có bao nhiêu chậu xí?<br>
+                                    Quan sát các chậu xí
+                                </td>
+                                <td><input type="number" min="0" class="form-control" data-bind="value:soluong_chauxi" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.3</td>
+                                <td class="content">
+                                    Sàn nhà tiêu có bị rạn nứt, sụt lún
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:sannha_rannut" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.4</td>
+                                <td class="content">
+                                    Các lỗ đi tiêu và cửa lấy phân có luôn được đậy kín khi không sử dụng không (hoặc
+                                    bằng
+                                    nắp,
+                                    nút, hoặc nút nước)?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:coloditieu_daynapkin" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.5</td>
+                                <td class="content">
+                                    Bể chứa phân có bị rạn nứt, sụt lún hoặc rò rỉ (Phân/phân bùn không bị rò rỉ hoặc
+                                    tràn
+                                    ra
+                                    bên ngoài bể chứa) không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:bechua_rannut" /></td>
+
+                            </tr>
+                            <tr id="khoangcach_nguonnuoc_bechua">
+                                <td class="stt">3.6</td>
+                                <td class="content">
+                                    Nguồn nước uống chính của trường học cách bể chứa phân hoặc hố thấm bao xa? (không
+                                    yêu
+                                    cầu
+                                    về khoảng cách đối với bể tự hoại)
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:khoangcach_nguonnuoc_bechua" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.7</td>
+                                <td class="content">
+                                    Công trình vệ sinh trường học có hoạt động bình thường không?<br>
+                                    Đối với nhà vệ sinh dội nước: phải có đủ nước để xả, nhà vệ sinh có thể xả được
+                                    nước,
+                                    và
+                                    không có vật nào cản trở việc xả nước.<br>
+                                    Đối với nhà vệ sinh khô: phải có tro hoặc chất thay thế tro để cho vào hố tiêu.
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:hoatdong_binhthuong" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.8</td>
+                                <td class="content">
+                                    Có công trình rửa tay trong hoặc gần nhà vệ sinh, hoặc ở khu vực công cộng không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:congtrinh_ruatay" /></td>
+
+                            </tr>
+                            <tr id="quansat_congtrinh_ruatay">
+                                <td class="stt">3.8.1</td>
+                                <td class="content">
+                                    Nếu có, đề nghị được quan sát công trình rửa tay<br>
+                                    (chọn tất cả các câu trả lời phù hợp)<br>
+                                    Ghi lại kết quả quan sát
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:quansat_congtrinh_ruatay" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.9</td>
+                                <td class="content">
+                                    Phần trên nhà vệ sinh có mái lợp đảm bảo che được mưa nắng không?<br>
+                                    Cửa và xung quanh đảm bảo sự riêng tư, kín đáo không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:mailop_nhavesinh" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.10</td>
+                                <td class="content">
+                                    Phân có bị dính đọng ở bệ xí/lỗ đi tiêu hoặc ở trên sàn nhà tiêu không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:phan_dinhdong_nhavesinh" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.11</td>
+                                <td class="content">
+                                    Công trình vệ sinh có sạch sẽ không?<br>
+                                    (Giấy chùi sau khi sử dụng phải bỏ vào hố tiêu hoặc bỏ vào dụng cụ chứa có nắp đậy)
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:vesinh_sachse" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.12</td>
+                                <td class="content">
+                                    Sàn nhà vệ sinh khô sạch không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:sannha_vesinh_kho_sach" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.13</td>
+                                <td class="content">
+                                    Có cảm thấy nặng mùi phân/nước tiểu trong nhà vệ sinh không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:nangmui" /></td>
+
+                            </tr>
+                            <tr id="nuocthaichaydidau">
+                                <td class="stt">3.14</td>
+                                <td class="content">
+                                    Nước thải từ bể tự hoại hoặc bể biogas được thải chảy đi đâu?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:nuocthai_chaydidau" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.15</td>
+                                <td class="content">
+                                    Nắp bệ xí cao hơn mặt đất xung quanh tối thiểu 20 cm không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:bexi_docao" /></td>
+
+                            </tr>
+                            <tr>
+                                <td class="stt">3.16</td>
+                                <td class="content">
+                                    Nhà vệ sinh có bị ngập lụt khi gặp mưa lớn không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:ngaplut_khi_mualon" /></td>
+                            </tr>
+                            <tr>
+                                <td class="stt">3.17</td>
+                                <td class="content">
+                                    Có khu đi tiểu không?
+                                </td>
+                                <td><input type="text" class="form-control" data-bind="value:khu_ditieu" /></td>
+                            </tr>
+                            <tr id="thongtinkhuditieu">
+                                <td class="stt">3.18</td>
+                                <td class="content">
+                                    Thông tin về khu đi tiểu
+                                </td>
+                                <td>
+                                    Diện tích (m2): <input type="number" min="0" class="form-control" data-bind="value:khu_ditieu_dientich" /><br>
+                                    Số chậu: <input type="number" min="0" class="form-control" data-bind="value:khu_ditieu_sochau" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5>CÁC NHẬN XÉT BỔ SUNG </h5>
+                    <p>Có điều gì không được đề cập trong cuộc khảo sát nhưng bạn cho là quan trọng cần báo cáo
+                        không?</p>
+                    <textarea rows="3" class="form-control" data-bind="value:ghichu"></textarea>
+                    <div class="form-group" style="margin-top:15px;">
+                    	<h5>KẾT LUẬN </h5>
+                    	<input disabled type="text" class="form-control" data-bind="value:ketluan" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

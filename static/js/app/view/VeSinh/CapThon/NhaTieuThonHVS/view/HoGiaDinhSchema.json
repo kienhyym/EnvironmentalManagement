@@ -52,6 +52,9 @@
         "type": "number",
         "default":0
     },
+    "mota_nvs":{
+    	"type": "string"
+    },
     "khongconhatieu": {
         "type": "number",
         "default":0

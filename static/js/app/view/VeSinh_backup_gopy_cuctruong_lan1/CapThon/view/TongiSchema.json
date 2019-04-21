@@ -1,0 +1,87 @@
+{
+    "stt": {
+        "type": "number"
+    },
+     "gioitinh": {
+        "type": "number",
+        "default":0
+    },
+    "dtts": {
+        "type": "number",
+        "default":0
+    },
+    "hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "tuhoai": {
+        "type": "number",
+        "default":0
+    },
+    "tuhoai_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "thamdoi": {
+        "type": "number",
+        "default":0
+    },
+    "thamdoi_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "haingan": {
+        "type": "number",
+        "default":0
+    },
+    "haingan_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "chimco_oth": {
+        "type": "number",
+        "default":0
+    },
+    "chimco_oth_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "loaikhac": {
+        "type": "number",
+        "default":0
+    },
+    "khongconhatieu": {
+        "type": "number",
+        "default":0
+    },
+    "hopvesinh": {
+        "type": "number",
+        "default":0
+    },
+    "khonghopvesinh": {
+        "type": "number",
+        "default":0
+    },
+    "caithien": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hongheo": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hongheo_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "caithien_hvs": {
+        "type": "number",
+        "default":0
+    },
+    "diemruataycoxaphong": {
+        "type": "number",
+        "default":0
+    }
+
+
+}

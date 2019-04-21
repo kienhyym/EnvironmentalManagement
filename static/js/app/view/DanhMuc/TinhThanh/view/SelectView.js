@@ -68,6 +68,7 @@ define(function (require) {
 //    	         },
 //    	         { field: "quocgia", visible:false },
 		    ],
+		    noResultsClass:"alert alert-default no-records-found",
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    	},

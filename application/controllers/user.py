@@ -5,6 +5,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gatco.response import json,text, html
 from application.extensions import apimanager
 from application.models.model_user import *
+from application.models.model_vesinhhogiadinh import DanhSachDonViThuocSUP
 from application.extensions import auth
 from application.database import db
 from application.server import app
@@ -25,6 +26,21 @@ async def get_user_with_permission(user):
     user_info['donvi']['quanhuyen'] = to_dict(user.donvi.quanhuyen)
     user_info['donvi']['xaphuong'] = to_dict(user.donvi.xaphuong)
      
+     
+    #check chuong trinh SUP
+    check_SUP = db.session.query(DanhSachDonViThuocSUP)
+    if(user.donvi.tuyendonvi_id ==2):
+        check_SUP.filter(DanhSachDonViThuocSUP.tinhthanh_id == user.donvi.tinhthanh_id).first()
+    elif(user.donvi.tuyendonvi_id ==3):
+        check_SUP.filter(DanhSachDonViThuocSUP.quanhuyen_id == user.donvi.quanhuyen_id).first()
+    elif(user.donvi.tuyendonvi_id ==4):
+        check_SUP.filter(DanhSachDonViThuocSUP.xaphuong_id == user.donvi.xaphuong_id).first()
+    else:
+        check_SUP = None
+    if check_SUP is not None:
+        user_info["check_SUP"] = 1
+    else:
+        user_info["check_SUP"] = 0
     #permission:
     perms = Permission.query.filter(Permission.role_id.in_(roleids)).order_by(Permission.subject).all()
     permobj = {}

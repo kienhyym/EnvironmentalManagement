@@ -10,6 +10,15 @@ from sqlalchemy.orm import backref, relationship
 def default_uuid():
     return str(uuid.uuid4())
 
+class DanhSachDonViThuocSUP(CommonModel):
+    __tablename__ = 'danhsach_donvi_thuocSUP'
+    tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
+    tinhthanh = relationship('TinhThanh')
+    quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)
+    quanhuyen = relationship('QuanHuyen')
+    xaphuong_id = db.Column(UUID(as_uuid=True), ForeignKey('xaphuong.id'), nullable=False, unique=True)
+    xaphuong = relationship('XaPhuong')
+
 class HoGiaDinh(CommonModel):
     __tablename__ = 'hogiadinh'
     maho = db.Column(db.String)

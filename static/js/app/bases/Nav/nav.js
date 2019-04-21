@@ -365,6 +365,23 @@ define(function (require) {
 					"visible": false
 				},
 				{
+					"text": "Danh sách đơn vị thuộc SUP",
+					"type": "view",
+					"collectionName": "danhsach_donvi_thuocSUP",
+					"route": "danhsach_donvi_thuocSUP/collection",
+					"$ref": "app/view/DanhMuc/DanhSachDonViThuocSUP/view/CollectionView",
+					"visible": function () {
+						return this.checkTuyendonvi([1,2,3,4]);
+					}
+				},
+				{
+					"type": "view",
+					"collectionName": "danhsach_donvi_thuocSUP",
+					"route": "danhsach_donvi_thuocSUP/model",
+					"$ref": "app/view/DanhMuc/DanhSachDonViThuocSUP/view/ModelView",
+					"visible": false
+				},
+				{
 					"text": "Cài đặt thông số nước",
 					"type": "view",
 					"collectionName": "caidat_thongsonuoc_diaphuong",

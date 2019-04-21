@@ -1,0 +1,198 @@
+<style type="text/css">
+	.same {
+		width: 5%;
+	}
+
+	.same2 {
+		width: 7%;
+	}
+</style>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Thôn</h3>
+	</div>
+	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
+	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+		<div data-html2canvas-ignore id="ignorePDF" class="row" style="margin-top: 30px;">
+			<div class="form-inline form-group col-md-6">
+				<label>Năm báo cáo:</label>
+				<input type="text" placeholder="YYYY" class="form-control" data-bind="value:nambaocao">
+			</div>
+			<div class="col-md-6 form-group form-inline ">
+				<label>Kỳ báo cáo:</label>
+				<input id="kydanhgia" disabled type="text" class="form-control">
+			</div>
+		</div>
+		<div class="table1">
+			<h3 style="margin-bottom:10px;">I. Thông tin chung</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="is-table">
+						<tbody>
+							<tr>
+								<td>Tỉnh/Thành phố</td>
+								<td><input id="tinhthanh" type="text" class="form-control" data-bind="dict:tinhthanh" /></td>
+								<td>Quận/Huyện</td>
+								<td><input id="quanhuyen" type="text" class="form-control" data-bind="dict:quanhuyen" /></td>
+							</tr>
+							<tr>
+								<td rowspan="2">Xã/Phường</td>
+								<td><input id="xaphuong" type="text" class="form-control" data-bind="dict:xaphuong" /></td>
+								<td rowspan="2">Thôn/Xóm</td>
+								<td rowspan="2"><input type="text" class="form-control" data-bind="dict:thonxom" /></td>
+							</tr>
+
+							<tr>
+
+								<td><b>Có thuộc chương trình SupRSWS không?</b><input type="text" class="form-control" data-bind="value:thuocsuprsws" /></td>
+							</tr>
+
+							<tr>
+								<td rowspan="3">Tổng số hộ trong thôn</td>
+								<th rowspan="3" class="text-center"><span data-bind="text:tong_soho"></span></th>
+								<td>Hộ có nữ là chủ hộ</td>
+								<td class="text-center"><span data-bind="text:tong_chuholanu"></span></td>
+							</tr>
+							<tr>
+
+								<td>Số hộ nghèo</td>
+								<td class="text-center"><span data-bind="text:tong_sohongheo"></span></td>
+							</tr>
+							<tr>
+
+								<td>Số hộ là DTTS</td>
+								<td class="text-center"><span data-bind="text:tong_sohodtts"></span></td>
+							</tr>
+
+
+							<tr>
+								<td rowspan="2">Tổng số dân trong thôn</td>
+								<td rowspan="2" class="text-center"><span data-bind="text:tong_danso"></span></td>
+								<td>Nữ</td>
+								<td><input type="number" min="0" class="form-control" data-bind="value:tong_nu" /></td>
+							</tr>
+							<tr>
+								<td>Nam</td>
+								<td><input type="number" min="0" class="form-control" data-bind="value:tong_nam" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="table2 row" style="margin-top: 20px; margin-bottom: 20px">
+			<div class="col-md-7">
+				<h3 style="margin-bottom: 10px;">II. Thông tin về nhà tiêu hộ gia đình</h3>
+			</div>
+			<div data-html2canvas-ignore class="col-md-5">
+				<input type="text" class="form-control" id="search_data" placeholder="Nhập tên chủ hộ...">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table-align is-table table-hover">
+					<thead id="header_table_sup">
+						<tr>
+							<th rowspan="2" class="background-colorTH" style="width: 3%;">STT</th>
+							<th rowspan="2" class="background-colorTH" style="min-width: 22%">Họ và tên chủ hộ</th>
+							<th rowspan="2" class="background-colorTH same2">Giới tính</th>
+							<th rowspan="2" class="background-colorTH same2">DTTS</th>
+							<th rowspan="2" class="background-colorTH same">Hộ nghèo</th>
+							<th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử
+								dụng</th>
+							<th colspan="3" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
+							<th rowspan="2" class="background-colorTH same2">Có điểm rửa tay với nước và xà phòng</th>
+							<th data-html2canvas-ignore rowspan="2" class="background-colorTH remove_columns"></th>
+						</tr>
+						<tr>
+							<th class="background-colorTH same">Tự hoại</th>
+							<th class="background-colorTH same">Thấm dội</th>
+							<th class="background-colorTH same">2 ngăn</th>
+							<th class="background-colorTH same">Chìm có ống thông hơi</th>
+							<th class="background-colorTH" style="width: 10%">Loại khác</th>
+							<th class="background-colorTH same">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
+
+							<th class="background-colorTH same">Hợp vệ sinh</th>
+							<th class="background-colorTH same">Không hợp vệ sinh</th>
+							<th class="background-colorTH same">Cải thiện</th>
+							
+						</tr>
+
+						<tr>
+							<td>(1)</td>
+							<td>(2)</td>
+							<td>(3)</td>
+							<td>(4)</td>
+							<td>(5)</td>
+							<td>(6)</td>
+							<td>(7)</td>
+							<td>(8)</td>
+							<td>(9)</td>
+							<td>(10)</td>
+							<td>(11)</td>
+							<td>(12)</td>
+							<td>(13)</td>
+							<td>(14)</td>
+							<td>(15)</td>
+							<td data-html2canvas-ignore class="remove_columns"></td>
+						</tr>
+					</thead>
+					<thead id="header_table_notsup" style="display:none;">
+						<tr>
+							<th rowspan="2" class="background-colorTH" style="width: 4%">STT</th>
+							<th rowspan="2" class="background-colorTH" style="min-width: 22%">Họ và tên chủ hộ</th>
+							<th rowspan="2" class="background-colorTH same2">Giới tính</th>
+							<th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử
+								dụng</th>
+							<th colspan="2" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
+							<th data-html2canvas-ignore rowspan="2" class="background-colorTH remove_columns"></th>
+						</tr>
+						<tr>
+							<th class="background-colorTH same2">Tự hoại</th>
+							<th class="background-colorTH same2">Thấm dội</th>
+							<th class="background-colorTH same2">2 ngăn</th>
+							<th class="background-colorTH same2">Chìm có ống thông hơi</th>
+							<th class="background-colorTH" style="width: 13%">Loại khác</th>
+							<th class="background-colorTH same2">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
+
+							<th class="background-colorTH same2">Hợp vệ sinh</th>
+							<th class="background-colorTH same2">Không hợp vệ sinh</th>
+
+						</tr>
+
+						<tr>
+							<td>(1)</td>
+							<td>(2)</td>
+							<td>(5)</td>
+							<td>(6)</td>
+							<td>(7)</td>
+							<td>(8)</td>
+							<td>(9)</td>
+							<td>(10)</td>
+							<td>(11)</td>
+							<td>(12)</td>
+							<td>(13)</td>
+							<td data-html2canvas-ignore class="remove_columns"></td>
+						</tr>
+					</thead>
+
+					<tbody id="nhatieuthonhvs">
+					</tbody>
+					<tfoot id="tongcongi"></tfoot>
+
+				</table>
+				<button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Hộ Gia Đình</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-justify">Ghi chú: (3) Nam/nữ, (4) Nếu là DTTS
+					ghi là rõ tên dân tộc, (5) nếu là hộ nghèo ghi là 1, (12) & (13) -
+					Theo tiêu chí từng loại nhà tiêu kèm theo, (14) & (15) áp dụng xã
+					trong chương trình SupRSWS</div>
+			</div>
+		</div>
+	</div>
+</div>

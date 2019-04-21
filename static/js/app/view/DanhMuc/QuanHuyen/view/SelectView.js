@@ -63,13 +63,16 @@ define(function (require) {
 //        	        	 width:250
 //        	         },
     		    ],
+    		    noResultsClass:"alert alert-default no-records-found",
     		    onRowClick: function(event){
 					this.uiControl.selectedItems = event.selectedItems;
     	    	},
     	},
     	render:function(){
 			var self= this;
-            if (this.getApp().data("tinhthanh_id") !== null) {
+			var filter_tinhthanh = this.uiControl.filters.tinhthanh_id;
+            if (this.getApp().data("tinhthanh_id") !== null && 
+            		(filter_tinhthanh ===null || filter_tinhthanh === undefined)) {
                 this.uiControl.filters = { "tinhthanh_id": { "$eq": this.getApp().data("tinhthanh_id")}};
 			}
 
@@ -85,15 +88,20 @@ define(function (require) {
     			var query = { "$or": [
 					{"ten": {"$likeI": text }},
 				]};
-				if (this.getApp().data("tinhthanh_id") !== null) {
-					var filters = {"$and": [
+    			var filters = "";
+    			if (filter_tinhthanh!==null && filter_tinhthanh!==undefined){
+    				filters = {"$and": [
+						{"tinhthanh_id": filter_tinhthanh},
+						query
+					]};
+    			}else if (this.getApp().data("tinhthanh_id") !== null) {
+					filters = {"$and": [
 						{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
 						query
 					]};
 				} else {
-					var filters = query;
+					filters = query;
 				}	
-				// console.log("chay vao day");
     			self.uiControl.filters = filters;
     		}
     		self.applyBindings();
@@ -106,14 +114,19 @@ define(function (require) {
 						var query = { "$or": [
 							{"ten": {"$likeI": text }},
 						]};
-						// console.log("tinhthanh===", this.getApp().data("tinhthanh_id"));
-						if (this.uiControl.filters && this.uiControl.filters !== null){
-							var filters = {"$and": [
+		    			var filters = "";
+		    			if (filter_tinhthanh!==null && filter_tinhthanh!==undefined){
+		    				filters = {"$and": [
+								{"tinhthanh_id": filter_tinhthanh},
+								query
+							]};
+		    			}else if (this.getApp().data("tinhthanh_id") !== null) {
+							filters = {"$and": [
 								{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
 								query
 							]};
 						} else {
-							var filters = query;
+							filters = query;
 						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

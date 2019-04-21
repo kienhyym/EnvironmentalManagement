@@ -61,6 +61,7 @@ define(function (require) {
 //        	        	 width:250
 //        	         },
     		    ],
+    		    noResultsClass:"alert alert-default no-records-found",
     		    onRowClick: function(event){
     	    		this.uiControl.selectedItems = event.selectedItems;
     	    	},
@@ -68,9 +69,11 @@ define(function (require) {
     	render:function(){
 			var self = this;
 			var currentUser = this.getApp().currentUser;
-			if (this.getApp().data("quanhuyen_id") !== null) {
-				this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id") } };
-            }
+			var filter_quanhuyen = this.uiControl.filters.quanhuyen_id;
+            if (this.getApp().data("quanhuyen_id") !== null && 
+            		(filter_quanhuyen ===null || filter_quanhuyen === undefined)) {
+                this.uiControl.filters = { "quanhuyen_id": { "$eq": this.getApp().data("quanhuyen_id")}};
+			}
 			self.uiControl.orderBy = [{"field": "ten", "direction": "desc"}];
     		var filter = new CustomFilterView({
     			el: self.$el.find("#grid_search"),
@@ -83,13 +86,19 @@ define(function (require) {
     			var query = { "$or": [
 					{"ten": {"$likeI": text }},
 				]};
-				if (this.getApp().data("quanhuyen_id") !== null) {
-					var filters = {"$and": [
+    			var filters = "";
+    			if (filter_quanhuyen!==null && filter_quanhuyen!==undefined){
+    				filters = {"$and": [
+						{"quanhuyen_id": filter_quanhuyen},
+						query
+					]};
+    			}else if (this.getApp().data("quanhuyen_id") !== null) {
+					filters = {"$and": [
 						{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
 						query
 					]};
 				} else {
-					var filters = query;
+					filters = query;
 				}
 				self.uiControl.filters = filters;
     		}
@@ -103,13 +112,19 @@ define(function (require) {
 						var query = { "$or": [
 							{"ten": {"$likeI": text }},
 						]};
-						if (this.getApp().data("quanhuyen_id") !== null) {
-							var filters = {"$and": [
+		    			var filters = "";
+		    			if (filter_quanhuyen!==null && filter_quanhuyen!==undefined){
+		    				filters = {"$and": [
+								{"quanhuyen_id": filter_quanhuyen},
+								query
+							]};
+		    			}else if (this.getApp().data("quanhuyen_id") !== null) {
+							filters = {"$and": [
 								{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
 								query
 							]};
 						} else {
-							var filters = query;
+							filters = query;
 						}
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;

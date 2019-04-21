@@ -80,102 +80,102 @@ define(function (require) {
 						},
 					],
 				},
-				{
-					field: "tuhoai",
-					uicontrol: "checkbox",
-					checkedField: "tuhoai",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"tuhoai": true
-						},
-						{
-							"value": 0,
-							"tuhoai": false
-						},
-					],
-				},
-
-				{
-					field: "thamdoi",
-					uicontrol: "checkbox",
-					checkedField: "thamdoi",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"thamdoi": true
-						},
-						{
-							"value": 0,
-							"thamdoi": false
-						},
-					],
-				},
-
-				{
-					field: "haingan",
-					uicontrol: "checkbox",
-					checkedField: "haingan",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"haingan": true
-
-						},
-						{
-							"value": 0,
-							"haingan": false
-						},
-					],
-				},
-
-				{
-					field: "thamdoi",
-					uicontrol: "checkbox",
-					checkedField: "thamdoi",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"thamdoi": true
-						},
-						{
-							"value": 0,
-							"thamdoi": false
-						},
-					],
-				},
-
-				{
-					field: "chimco_oth",
-					uicontrol: "checkbox",
-					checkedField: "chimco_oth",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"chimco_oth": true
-						},
-						{
-							"value": 0,
-							"chimco_oth": false
-						},
-					],
-				},
-
-				{
-					field: "khongconhatieu",
-					uicontrol: "checkbox",
-					checkedField: "khongconhatieu",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"khongconhatieu": true
-						},
-						{
-							"value": 0,
-							"khongconhatieu": false
-						},
-					],
-				},
+//				{
+//					field: "tuhoai",
+//					uicontrol: "checkbox",
+//					checkedField: "tuhoai",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"tuhoai": true
+//						},
+//						{
+//							"value": 0,
+//							"tuhoai": false
+//						},
+//					],
+//				},
+//
+//				{
+//					field: "thamdoi",
+//					uicontrol: "checkbox",
+//					checkedField: "thamdoi",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"thamdoi": true
+//						},
+//						{
+//							"value": 0,
+//							"thamdoi": false
+//						},
+//					],
+//				},
+//
+//				{
+//					field: "haingan",
+//					uicontrol: "checkbox",
+//					checkedField: "haingan",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"haingan": true
+//
+//						},
+//						{
+//							"value": 0,
+//							"haingan": false
+//						},
+//					],
+//				},
+//
+//				{
+//					field: "thamdoi",
+//					uicontrol: "checkbox",
+//					checkedField: "thamdoi",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"thamdoi": true
+//						},
+//						{
+//							"value": 0,
+//							"thamdoi": false
+//						},
+//					],
+//				},
+//
+//				{
+//					field: "chimco_oth",
+//					uicontrol: "checkbox",
+//					checkedField: "chimco_oth",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"chimco_oth": true
+//						},
+//						{
+//							"value": 0,
+//							"chimco_oth": false
+//						},
+//					],
+//				},
+//
+//				{
+//					field: "khongconhatieu",
+//					uicontrol: "checkbox",
+//					checkedField: "khongconhatieu",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"khongconhatieu": true
+//						},
+//						{
+//							"value": 0,
+//							"khongconhatieu": false
+//						},
+//					],
+//				},
 
 				{
 					field: "hopvesinh",
@@ -209,47 +209,47 @@ define(function (require) {
 					],
 				},
 
-				{
-					field: "caithien",
-					uicontrol: "checkbox",
-					checkedField: "caithien",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"caithien": true
-						},
-						{
-							"value": 0,
-							"caithien": false
-						},
-					],
-				},
-				{
-					field: "diemruataycoxaphong",
-					uicontrol: "checkbox",
-					checkedField: "diemruataycoxaphong",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"diemruataycoxaphong": true
-						},
-						{
-							"value": 0,
-							"diemruataycoxaphong": false
-						},
-					],
-				},
+//				{
+//					field: "caithien",
+//					uicontrol: "checkbox",
+//					checkedField: "caithien",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"caithien": true
+//						},
+//						{
+//							"value": 0,
+//							"caithien": false
+//						},
+//					],
+//				},
+//				{
+//					field: "diemruataycoxaphong",
+//					uicontrol: "checkbox",
+//					checkedField: "diemruataycoxaphong",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"diemruataycoxaphong": true
+//						},
+//						{
+//							"value": 0,
+//							"diemruataycoxaphong": false
+//						},
+//					],
+//				},
 				
 			]
 		},
 		render: function () {
 			var self = this;
-			var gioitinh = self.model.get("gioitinh");
-			if(gioitinh===0 || gioitinh === "0"){
-				self.$el.find("#gioitinh").html("Nam");
-			}else{
-				self.$el.find("#gioitinh").html("Nữ");
-			}
+//			var gioitinh = self.model.get("gioitinh");
+//			if(gioitinh===0 || gioitinh === "0"){
+//				self.$el.find("#gioitinh").html("Nam");
+//			}else{
+//				self.$el.find("#gioitinh").html("Nữ");
+//			}
 			self.model.on("change:dantoc",function(){
 				self.model.set("tendantoc",self.model.get("dantoc").ten);
 			});
@@ -285,21 +285,21 @@ define(function (require) {
 //			});
 			
 			self.applyBindings();
-			self.choose_one_in_all();
-			var loaikhac = self.model.get("loaikhac");
-			switch(loaikhac) {
-				  case 1:
-				    self.$el.find("#loaikhac").html("Dùng chung");
-				    break;
-				  case 2:
-					  self.$el.find("#loaikhac").html("Một ngăn");
-					  break;
-				  case 3:
-					  self.$el.find("#loaikhac").html("Chìm không OTH");
-					  break;
-				  default:
-					  self.$el.find("#loaikhac").html("");
-			} 
+//			self.choose_one_in_all();
+//			var loaikhac = self.model.get("loaikhac");
+//			switch(loaikhac) {
+//				  case 1:
+//				    self.$el.find("#loaikhac").html("Dùng chung");
+//				    break;
+//				  case 2:
+//					  self.$el.find("#loaikhac").html("Một ngăn");
+//					  break;
+//				  case 3:
+//					  self.$el.find("#loaikhac").html("Chìm không OTH");
+//					  break;
+//				  default:
+//					  self.$el.find("#loaikhac").html("");
+//			} 
 		},
 		choose_one_in_all: function() {
 			const self = this;
