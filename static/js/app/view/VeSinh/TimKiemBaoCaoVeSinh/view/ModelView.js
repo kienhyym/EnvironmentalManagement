@@ -19,7 +19,7 @@ define(function (require) {
 		template: template,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
-		collectionName: "timkiembaocaonuoc",
+		collectionName: "timkiembaocaovesinh",
 		uiControl: {
 			fields: [
 			],
