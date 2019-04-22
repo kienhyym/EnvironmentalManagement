@@ -730,7 +730,7 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
         value["tyle"] = 0 if tong_mau_khongdat_quychuan_ngoaikiem_trungtam == 0 else round((value['solan_khongdat']/tong_mau_khongdat_quychuan_ngoaikiem_trungtam)*100, 2)
         thongso_khongdat_ngoaikiem_trungtam.append(value)
     
-    thongso_khongdat_ngoaikiem_trungtam.sort(key=lambda x: x['solan_khongdat'])
+    thongso_khongdat_ngoaikiem_trungtam.sort(key=lambda x: x['solan_khongdat'], reverse=True)
     
     data["tong_donvi_capnuoc_thuchien_ngoaikiem"] = len(donvicapnuocid_ngoaikiem)
 
