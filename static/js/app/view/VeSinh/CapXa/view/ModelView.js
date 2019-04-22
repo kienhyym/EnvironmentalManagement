@@ -64,22 +64,22 @@ define(function (require) {
 					dataSource: TinhThanhSelectView
 				},
 				
-				{
-					field: "thuocsuprsws",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"text": "Có"
-						},
-						{
-							"value": 0,
-							"text": "Không"
-						},
-					],
-					value:1
-				},
+//				{
+//					field: "thuocsuprsws",
+//					uicontrol: "combobox",
+//					textField: "text",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"text": "Có"
+//						},
+//						{
+//							"value": 0,
+//							"text": "Không"
+//						},
+//					],
+//					value:1
+//				},
 
 			],
 		},
@@ -314,12 +314,17 @@ define(function (require) {
 					}
 				});
 			} else {
+				if(currentUser!==null && !!currentUser.check_SUP){
+					self.model.set("thuocsuprsws",currentUser.check_SUP);
+				}else{
+					self.model.set("thuocsuprsws",0);
+				}
 				self.applyBindings();
 				self.check_chuongtrinhSUP();
 				self.search_dshogiadinh();
-				self.model.on("change:thuocsuprsws", function(){
-					self.check_chuongtrinhSUP();
-				});
+//				self.model.on("change:thuocsuprsws", function(){
+//					self.check_chuongtrinhSUP();
+//				});
 			}
 
 		},
@@ -478,7 +483,7 @@ define(function (require) {
 			var tinhthanh = self.model.get("tinhthanh");
 			var quanhuyen = self.model.get("quanhuyen");
 			var xaphuong = self.model.get("xaphuong");
-			var thuocsuprsws = self.model.get("thuocsuprsws");
+//			var thuocsuprsws = self.model.get("thuocsuprsws");
 			if (nambaocao === null || nambaocao === ""){
 				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
 				return;
@@ -499,10 +504,10 @@ define(function (require) {
 				self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
 				return;
 			}
-			if (thuocsuprsws === null || thuocsuprsws === ""){
-				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
-				return;
-			}
+//			if (thuocsuprsws === null || thuocsuprsws === ""){
+//				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
+//				return;
+//			}
 			return true;
 		},
 		search_dshogiadinh: function(){

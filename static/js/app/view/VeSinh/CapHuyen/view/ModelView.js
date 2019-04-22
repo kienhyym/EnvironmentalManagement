@@ -55,22 +55,22 @@ define(function (require) {
 					foreignField: "tinhthanh_id",
 					dataSource: TinhThanhSelectView
 				},
-				{
-					field: "thuocsuprsws",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [{
-							"value": 1,
-							"text": "Có"
-						},
-						{
-							"value": 0,
-							"text": "Không"
-						},
-					],
-					value:1
-				},
+//				{
+//					field: "thuocsuprsws",
+//					uicontrol: "combobox",
+//					textField: "text",
+//					valueField: "value",
+//					dataSource: [{
+//							"value": 1,
+//							"text": "Có"
+//						},
+//						{
+//							"value": 0,
+//							"text": "Không"
+//						},
+//					],
+//					value:1
+//				},
 			],
 		},
 
