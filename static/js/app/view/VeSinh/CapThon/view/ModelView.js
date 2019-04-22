@@ -678,11 +678,11 @@ define(function (require) {
 			var tinhthanh = self.model.get("tinhthanh");
 			var quanhuyen = self.model.get("quanhuyen");
 			var xaphuong = self.model.get("xaphuong");
-			var thuocsuprsws = self.model.get("thuocsuprsws");
+//			var thuocsuprsws = self.model.get("thuocsuprsws");
 			var thonxom = self.model.get("thonxom");
-			var tong_nu = self.model.get("tong_nu");
-			var tong_nam = self.model.get("tong_nam");
-			var tong_danso = self.model.get("tong_danso");
+//			var tong_nu = self.model.get("tong_nu");
+//			var tong_nam = self.model.get("tong_nam");
+//			var tong_danso = self.model.get("tong_danso");
 			if(nambaocao === null || nambaocao === ""){
 				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
 				return;
@@ -703,34 +703,34 @@ define(function (require) {
 				self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường!"},{type: "danger"});
 				return;
 			}
-			if (thuocsuprsws === null || thuocsuprsws === ""){
-				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
-				return;
-			}
+//			if (thuocsuprsws === null || thuocsuprsws === ""){
+//				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
+//				return;
+//			}
 			if(thonxom === null || thonxom === undefined){
 				self.getApp().notify({message: "Chưa chọn thông tin Thôn/Xóm!"},{type: "danger"});
 				return;
 			}
-			if(tong_nu === null || tong_nu === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số  dân là nữ trong thôn!"},{type: "danger"});
-				return;
-			}
-			if(Number.isInteger(tong_nu) === false || toInt(tong_nu) < 0){
-				self.getApp().notify({message: "Tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(tong_nam === null || tong_nam === ""){
-				self.getApp().notify({message: "Chưa nhập tổng số dân là nam trong thôn!"},{type: "danger"});
-				return;
-			}
-			if(Number.isInteger(tong_nam) === false || toInt(tong_nam) < 0){
-				self.getApp().notify({message: "Tổng số dân là nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
-			if(toInt(tong_danso) <= 0){
-				self.getApp().notify({message: "Tổng số dân là nam hoặc tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
-				return;
-			}
+//			if(tong_nu === null || tong_nu === ""){
+//				self.getApp().notify({message: "Chưa nhập tổng số  dân là nữ trong thôn!"},{type: "danger"});
+//				return;
+//			}
+//			if(Number.isInteger(tong_nu) === false || toInt(tong_nu) < 0){
+//				self.getApp().notify({message: "Tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+//				return;
+//			}
+//			if(tong_nam === null || tong_nam === ""){
+//				self.getApp().notify({message: "Chưa nhập tổng số dân là nam trong thôn!"},{type: "danger"});
+//				return;
+//			}
+//			if(Number.isInteger(tong_nam) === false || toInt(tong_nam) < 0){
+//				self.getApp().notify({message: "Tổng số dân là nam không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+//				return;
+//			}
+//			if(toInt(tong_danso) <= 0){
+//				self.getApp().notify({message: "Tổng số dân là nam hoặc tổng số dân là nữ không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+//				return;
+//			}
 			return true;
 		},
 		search_dshogiadinh: function(){

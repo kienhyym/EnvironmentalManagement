@@ -199,19 +199,33 @@ async def preprocess_kehoachbcc(request=None, data=None, Model=None, **kw):
         if "kybaocao" not in data or data["kybaocao"] is None or "tuyendonvi" not in data or data["tuyendonvi"] is None or "loaikybaocao" not in data or data["loaikybaocao"] is None:
             return json({"error_code":"PARAMS_ERROR", "error_message":"Tham số không hợp lệ, vui lòng kiểm tra lại"}, status=520)
     
-        record = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi_id,\
+        
+                                                                
+        if request.method == "POST":
+            record = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi_id,\
                                                                 TienDoKeHoachBCC.loaikybaocao == data['loaikybaocao'], \
                                                                 TienDoKeHoachBCC.kybaocao == data['kybaocao'], \
                                                                 TienDoKeHoachBCC.nambaocao == data['nambaocao'],
-                                                                TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi'])).first()
-                                                                
-        if record is not None and request.method == "POST":
-            return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm của đơn vị hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
+                                                                TienDoKeHoachBCC.tuyendonvi == data['tuyendonvi']))
+            if data['tuyendonvi'] == 'thon':
+                record = record.filter(TienDoKeHoachBCC.thonxom_id == data['thonxom_id']).first()
+            elif data['tuyendonvi'] == 'xa':
+                record = record.filter(TienDoKeHoachBCC.xaphuong_id == data['xaphuong_id']).first()
+            elif data['tuyendonvi'] == 'huyen':
+                record = record.filter(TienDoKeHoachBCC.quanhuyen_id == data['quanhuyen_id']).first()
+            elif data['tuyendonvi'] == 'tinh':
+                record = record.filter(TienDoKeHoachBCC.tinhthanh_id == data['tinhthanh_id']).first()
+            else:
+                return json({"error_code":"PARAMS_ERROR", "error_message":"Tham số không hợp lệ, vui lòng kiểm tra lại"}, status=520)
+
+            if record is not None:
+                print("bao cao tien do bcc=====",record )
+                return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo của đơn vị đã được tạo, vui lòng kiểm tra lại"}, status=520)
         
-        if record is None and request.method == "PUT":
-            return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo, vui lòng kiểm tra lại"}, status=520)
-        elif record is not None and str(record.id) != data['id']:
-            return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo của năm đã tồn tại, vui lòng kiểm tra lại"}, status=520)
+        else:#PUT
+            record = db.session.query(TienDoKeHoachBCC).filter(TienDoKeHoachBCC.id == data['id']).first()
+            if record is None:
+                return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo, vui lòng kiểm tra lại"}, status=520)
         
         
         baocao_donvicon = db.session.query(TienDoKeHoachBCC).filter(and_(TienDoKeHoachBCC.donvi_id == currentuser.donvi.captren_id,\
