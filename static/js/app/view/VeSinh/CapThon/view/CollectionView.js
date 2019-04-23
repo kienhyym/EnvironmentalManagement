@@ -81,10 +81,10 @@ define(function (require) {
 					field: "tong_sohodtts",
 					label: "Số hộ là DTTS"
 				},
-				{
-					field: "tong_danso",
-					label: "Tổng số dân"
-				},
+//				{
+//					field: "tong_danso",
+//					label: "Tổng số dân"
+//				},
 
 			],
 			pagination: {

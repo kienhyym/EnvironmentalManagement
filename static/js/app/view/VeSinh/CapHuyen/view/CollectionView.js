@@ -54,10 +54,10 @@ define(function (require) {
 					field: "tong_soho",
 					label: "Tổng số hộ trong huyện"
 				},
-				{
-					field: "tong_danso",
-					label: "Tổng số dân trong huyện"
-				},
+//				{
+//					field: "tong_danso",
+//					label: "Tổng số dân trong huyện"
+//				},
 				{
 					field: "tong_sohongheo",
 					label: "Số hộ nghèo"

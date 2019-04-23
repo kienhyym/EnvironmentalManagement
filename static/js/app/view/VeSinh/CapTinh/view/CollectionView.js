@@ -56,10 +56,10 @@ define(function (require) {
 					field: "tong_soho",
 					label: "Tổng số hộ trong tỉnh"
 				},
-				{
-					field: "tong_danso",
-					label: "Tổng số dân trong tỉnh"
-				},
+//				{
+//					field: "tong_danso",
+//					label: "Tổng số dân trong tỉnh"
+//				},
 				{
 					field: "tong_sohongheo",
 					label: "Số hộ nghèo"

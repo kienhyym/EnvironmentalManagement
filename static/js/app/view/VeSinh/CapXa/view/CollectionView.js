@@ -77,10 +77,10 @@ define(function (require) {
 					field: "tong_sohodtts",
 					label: "Số hộ là DTTS"
 				},
-				{
-					field: "tong_danso",
-					label: "Tổng dân số"
-				},
+//				{
+//					field: "tong_danso",
+//					label: "Tổng dân số"
+//				},
 //				{
 //					field: "tong_nu",
 //					label: "Số Nữ"
