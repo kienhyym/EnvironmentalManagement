@@ -1903,7 +1903,8 @@ define(function (require) {
 					"route": "timkiem_donvi_chua_gui_baocao",
 					"$ref": "app/view/BaoCaoNuoc/TimKiemDonViChuaGuiBaoCaoNuoc/view/ModelView",
 					"visible": function () {
-						return this.checkTuyendonvi([1,2,3,10]);
+						return false;
+//						return this.checkTuyendonvi([1,2,3,10]);
 					},
 				},
 				{
