@@ -524,6 +524,9 @@ define(function (require) {
             	self.renderViTriMau();
 //            	var danhsachthongso = self.danhsachthongso;
             	var danhsachthongso = self.model.get("ketquangoaikiemchatluongnuoc");
+            	if (danhsachthongso == null || danhsachthongso.length ==0){
+            		danhsachthongso = self.danhsachthongso;
+            	}
                 console.log("renderThongSovaViTriLayMau====",danhsachthongso);
             	if (danhsachthongso.length == 0){
                 	self.$el.find("[id=removeButton]").hide();
