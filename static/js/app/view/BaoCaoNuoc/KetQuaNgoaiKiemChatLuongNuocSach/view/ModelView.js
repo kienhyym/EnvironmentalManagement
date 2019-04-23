@@ -519,7 +519,8 @@ define(function (require) {
             self.$el.find("[id=mauvitri_header]").remove();
             self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquangoaikiemchatluongnuoc").empty();
-            if (!!somau & (somau > 0)) {
+            if (!!somau && (somau > 0)) {
+            	console.log("chay vao render thong so ====", somau);
             	self.renderViTriMau();
 //            	var danhsachthongso = self.danhsachthongso;
             	var danhsachthongso = self.model.get("ketquangoaikiemchatluongnuoc");
@@ -763,6 +764,7 @@ define(function (require) {
                     }else{
                     	self.danhsachthongso = danhsachthongso_default;
                     }
+                    console.log(self.danhsachthongso);
                     
                     var check_id = self.model.get("id");
                     if (check_id !==null && check_id !== ""){
