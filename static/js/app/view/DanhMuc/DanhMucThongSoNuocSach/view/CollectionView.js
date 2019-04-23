@@ -21,8 +21,8 @@ define(function (require) {
 	    	    	field: "mathongso",label:"Mã Thông Số"
 	    	     },
 	    	     { field: "tenthongso", label: "Tên Thông số"},
-	    	     { field: "gioihan_toida_txt", label: "Giới hạn tối đa", width: 200},
-	    	     { field: "gioihan_toithieu_txt", label: "Giới hạn tối thiểu", width: 200},
+	    	     { field: "gioihan_toida", label: "Giới hạn tối đa", width: 200},
+	    	     { field: "gioihan_toithieu", label: "Giới hạn tối thiểu", width: 200},
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
