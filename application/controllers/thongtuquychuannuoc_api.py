@@ -487,7 +487,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == currentuser.donvi.tinhthanh_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
             order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
         
-        data['tong_hogiadinh_diaban'] = currentuser.donvi.tinhthanh.tong_hgd
+        data['tong_hogiadinh_diaban'] = currentuser.donvi.tinhthanh.tong_hgd if currentuser.donvi.tinhthanh.tong_hgd is not None else 0
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["loaibaocao"] = 1
@@ -514,7 +514,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == currentuser.donvi.quanhuyen_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
             order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
     
-        data['tong_hogiadinh_diaban'] = currentuser.donvi.quanhuyen.tong_hgd
+        data['tong_hogiadinh_diaban'] = currentuser.donvi.quanhuyen.tong_hgd if currentuser.donvi.quanhuyen.tong_hgd is not None else 0
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["quanhuyen_id"] = currentuser.donvi.quanhuyen_id
@@ -702,10 +702,15 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                     else:
                                         danhsachdonvi = item_map_thongso["danhsach_donvicapnuoc"]
                                         danhsachdonvi_new = []
+                                        check_exist_donvicapnuoc = False
                                         for dv in danhsachdonvi:
                                             if(dv['id'] == str(baocao.donvicapnuoc_id)):
+                                                check_exist_donvicapnuoc = True
                                                 dv['solan'] +=1
-                                            danhsachdonvi_new.append(dv) 
+                                            danhsachdonvi_new.append(dv)
+                                            
+                                        if check_exist_donvicapnuoc == False
+                                            danhsachdonvi_new.append({"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}) 
                                         item_map_thongso["danhsach_donvicapnuoc"] = danhsachdonvi_new
                                     
                             map_thongso_khongdat[obj_thongso['id']] = item_map_thongso       
