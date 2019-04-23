@@ -487,6 +487,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             filter(and_(BaoCaoNuocSachHuyenTinh.tinhthanh_id == currentuser.donvi.tinhthanh_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
             order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
         
+        data['tong_hogiadinh_diaban'] = currentuser.donvi.tinhthanh.tong_hgd
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["loaibaocao"] = 1
@@ -513,6 +514,7 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             filter(and_(BaoCaoNuocSachHuyenTinh.quanhuyen_id == currentuser.donvi.quanhuyen_id, BaoCaoNuocSachHuyenTinh.nambaocao == (data['nambaocao'] - 1))).\
             order_by(desc(BaoCaoNuocSachHuyenTinh.updated_at)).first()
     
+        data['tong_hogiadinh_diaban'] = currentuser.donvi.quanhuyen.tong_hgd
         data["tinhthanh_id"] = currentuser.donvi.tinhthanh_id
         data["tinhthanh"] = currentuser.donvi.tinhthanh
         data["quanhuyen_id"] = currentuser.donvi.quanhuyen_id
