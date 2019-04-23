@@ -480,11 +480,12 @@ define(function (require) {
         		(((self.viewData.loai_truong_tramyte ===1 || 
         				self.viewData.loai_truong_tramyte ===7) 
         				&& self.viewData.sokhuvesinh_truong_tramyte>=2)||
-        		((self.viewData.loai_truong_tramyte ===2 
+        				((self.viewData.loai_truong_tramyte ===2 
         				|| self.viewData.loai_truong_tramyte ===3 
         				|| self.viewData.loai_truong_tramyte ===4) 
-        				&& self.viewData.sokhuvesinh_truong_tramyte>=4))){
-        		tieuchichinh = true;
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=4)
+        				|| (self.viewData.loai_truong_tramyte ===5 || self.viewData.loai_truong_tramyte ===6))){
+                	tieuchichinh = true;
         	    }
             } else {
                 if((self.model.get("quansat_khuvesinh") !== null && self.model.get("quansat_khuvesinh") <7) &&
@@ -499,11 +500,12 @@ define(function (require) {
         		(((self.viewData.loai_truong_tramyte ===1 || 
         				self.viewData.loai_truong_tramyte ===7) 
         				&& self.viewData.sokhuvesinh_truong_tramyte>=2)||
-        		((self.viewData.loai_truong_tramyte ===2 
+        				((self.viewData.loai_truong_tramyte ===2 
         				|| self.viewData.loai_truong_tramyte ===3 
         				|| self.viewData.loai_truong_tramyte ===4) 
-        				&& self.viewData.sokhuvesinh_truong_tramyte>=4))){
-        		tieuchichinh = true;
+        				&& self.viewData.sokhuvesinh_truong_tramyte>=4)
+        				|| (self.viewData.loai_truong_tramyte ===5 || self.viewData.loai_truong_tramyte ===6))){
+                	tieuchichinh = true;
         	    }
             }
         	
