@@ -213,7 +213,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/TinhThanh/view/CollectionView",
 					"tuyendonvi": 1,
 					"visible": function () {
-						return this.checkTuyendonvi([1]);
+						return this.checkTuyendonvi([1,2]);
 					}
 				},
 				{
