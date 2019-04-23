@@ -709,7 +709,7 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                                 dv['solan'] +=1
                                             danhsachdonvi_new.append(dv)
                                             
-                                        if check_exist_donvicapnuoc == False
+                                        if check_exist_donvicapnuoc == False:
                                             danhsachdonvi_new.append({"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}) 
                                         item_map_thongso["danhsach_donvicapnuoc"] = danhsachdonvi_new
                                     
