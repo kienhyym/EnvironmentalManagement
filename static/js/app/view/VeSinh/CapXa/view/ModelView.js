@@ -410,7 +410,7 @@ define(function (require) {
 				"id": element.id
 			});
 			tr.append("<td>" + element.tenthon + "</td>");
-			tr.append("<td>" + element.tong_chuholanu + "</td>");
+//			tr.append("<td>" + element.tong_chuholanu + "</td>");
 			tr.append('<td class="chuongtrinhsup">' + element.tong_sohodtts + "</td>");
 			tr.append('<td class="chuongtrinhsup">' + element.tong_sohongheo + "</td>");
 			

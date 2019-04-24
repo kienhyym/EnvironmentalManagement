@@ -166,7 +166,11 @@ async def ThongKe_VESINH(request):
                 tong_63tinh['tyle_caithien_hongheo_hvs'] = 0 if tong_tyle_caithien_hongheo_hvs == 0 else round((tong_tyle_caithien_hongheo_hvs/len(baocao_all)), 2)
                 tong_tyle_diemruatay += (bctong['tyle_diemruatay'])
                 tong_63tinh['tyle_diemruatay'] = 0 if tong_tyle_diemruatay == 0 else round((tong_tyle_diemruatay/len(baocao_all)), 2)
-                tong_63tinh['tentinhthanh'] = "Tổng"
+            tong_63tinh['tentinhthanh'] = "Tổng"
+            tong_63tinh['tenquanhuyen'] = ""
+            tong_63tinh['tenxaphuong'] = ""
+                
+                    
             baocao_all.append(tong_63tinh)
 
             return json(baocao_all)

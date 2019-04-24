@@ -310,7 +310,7 @@ define(function (require) {
 				});
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenhuyen + "</td>");
-				tr.append("<td>" + element.tong_chuholanu + "</td>");
+//				tr.append("<td>" + element.tong_chuholanu + "</td>");
 				tr.append('<td class="chuongtrinhsup">' + element.tong_sohodtts + "</td>");
 				tr.append('<td class="chuongtrinhsup">' + element.tong_sohongheo + "</td>");
 				tr.append("<td>" + element.tong_tuhoai + "</td>");
@@ -434,7 +434,7 @@ define(function (require) {
 						});
 						tr.append("<td>" + (i + 1 )+ "</td>");
 						tr.append("<td>" + filterObj[i].tenhuyen + "</td>");
-						tr.append("<td>" + filterObj[i].tong_chuholanu + "</td>");
+//						tr.append("<td>" + filterObj[i].tong_chuholanu + "</td>");
 						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_sohodtts + "</td>");
 						tr.append('<td class="chuongtrinhsup">' + filterObj[i].tong_sohongheo + "</td>");
 						tr.append("<td>" + filterObj[i].tong_tuhoai + "</td>");
