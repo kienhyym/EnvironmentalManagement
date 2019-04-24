@@ -163,10 +163,16 @@ class DonVi(CommonModel):
         return obj
 
     def get_children_ids(self, data):
+#         if type(data) is list:
+#             data.append(self.id)
+#             for r in self.children.values():
+#                 r.get_children_ids(data)
         if type(data) is list:
-            data.append(self.id)
             for r in self.children.values():
-                r.get_children_ids(data)
+               data.append(r.id)
+            if len(data) == 0:
+                data.append(self.id)
+        return data
 
     def getlistid(self):
         data = []
