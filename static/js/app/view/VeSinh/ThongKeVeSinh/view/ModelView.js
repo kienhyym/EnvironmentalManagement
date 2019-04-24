@@ -124,6 +124,7 @@ define(function (require) {
 									self.$el.find("#danhsachdonvi").append(tr);
 								}
 							}else{
+								self.$el.find("#danhsachdonvi").html("");
 	 	 			    		self.getApp().notify("Không tìm thấy báo cáo trên hệ thống");
 	 	 			    		return;
 							}
