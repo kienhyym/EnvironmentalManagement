@@ -109,9 +109,9 @@ define(function (require) {
 							if (obj){
 								for (var i = 0; i < obj.length; i ++){
 									var tr = $('<tr id="danhsachdonvi">');
-									tr.append('<td class="tinhthanh">' + obj[i].tentinhthanh + '</td>');
-									tr.append('<td class="quanhuyen">' + obj[i].tenquanhuyen + '</td>');
-									tr.append('<td class="xaphuong">' + obj[i].tenxaphuong + "</td>");
+									tr.append('<td class="tinhthanh text-left">' + obj[i].tentinhthanh + '</td>');
+									tr.append('<td class="quanhuyen text-left">' + obj[i].tenquanhuyen + '</td>');
+									tr.append('<td class="xaphuong text-left">' + obj[i].tenxaphuong + "</td>");
 									tr.append('<td>' + obj[i].tyle_conhatieu + "</td>");
 									tr.append("<td>" + obj[i].tyle_conhatieu_hvs + "</td>");
 									tr.append("<td>" + obj[i].tyle_tuhoai_hvs + "</td>");
@@ -136,7 +136,8 @@ define(function (require) {
 									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 									self.getApp().getRouter().navigate("login");
 								} else {
-								  self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+									self.$el.find("#danhsachdonvi").html("");
+									self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 								}
 							}
 							catch (err) {
