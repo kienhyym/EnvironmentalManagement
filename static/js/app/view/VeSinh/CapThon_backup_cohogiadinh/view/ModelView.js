@@ -200,19 +200,19 @@ define(function (require) {
 									self.model.set("nambaocao",nambaocao);
 									self.model.set("kybaocao",kybaocao);
 									self.model.set("loaikybaocao",loaikybaocao);
-//									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
-//									self.$el.find("#nhatieuthonhvs").html("");
-//									self.$el.find("#tongcongi").show();
-//									for(var i=0; i< nhatieuthonhvs.length; i++){
-//										nhatieuthonhvs[i]['stt'] = i+1;
-//										self.renderItemView(nhatieuthonhvs[i], null);
-//										
-//									}
+									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
+									self.$el.find("#nhatieuthonhvs").html("");
+									self.$el.find("#tongcongi").show();
+									for(var i=0; i< nhatieuthonhvs.length; i++){
+										nhatieuthonhvs[i]['stt'] = i+1;
+										self.renderItemView(nhatieuthonhvs[i], null);
+										
+									}
 									
 									self.applyBindings();
-//									self.renderTinhTongI();
-//									self.updateUIChuongTrinhSUP();
-//									self.search_dshogiadinh();
+									self.renderTinhTongI();
+									self.updateUIChuongTrinhSUP();
+									self.search_dshogiadinh();
 									
 									
 									
@@ -292,6 +292,28 @@ define(function (require) {
 		}],
 		render: function () {
 			var self = this;
+//			self.model.on("change:tong_nam", function() {
+//				var tong_nu = self.model.get("tong_nu");
+//				var tong_nam = self.model.get("tong_nam");
+//				if (Number.isInteger(tong_nam) === true){
+//					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+//					self.model.set("tong_danso" , tong_dantrongthon)
+//				} else {
+//					self.getApp().notify({message:"Tổng số dân là nam không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+//					return;
+//				}
+//			});
+//			self.model.on("change:tong_nu", function() {
+//				var tong_nu = self.model.get("tong_nu");
+//				var tong_nam = self.model.get("tong_nam");
+//				if (Number.isInteger(tong_nu) === true){
+//					var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+//					self.model.set("tong_danso" , tong_dantrongthon)
+//				} else {
+//					self.getApp().notify({message:"Tổng số dân là nữ không hợp lệ, xin vui lòng nhập lại!"}, {type: "danger"});
+//					return;
+//				}
+//			});
 			var id = this.getApp().getRouter().getParam("id");
 			var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
 			if (routeloaibaocao!==null){
@@ -327,66 +349,66 @@ define(function (require) {
 					self.$el.find("#xaphuong").prop('disabled', true);
 				}
 			}
-//			self.$el.find("#addItem").unbind("click").bind("click", function () {
-//				if(self.model.get("thonxom") === null || !self.model.get("thonxom")){
-//					self.getApp().notify({message:"Chọn thông tin thôn/xóm trước khi thêm hộ gia đình!"}, {type: "danger"});
-//					return;
-//				}
-//				self.$el.find("#nhatieuthonhvs").show();
-//				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData":{"thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
-//				view_hogiadinh.dialog({size: "large"});
-//				view_hogiadinh.on("close", function(data){
-//					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-//					view.model.set("id",gonrin.uuid());
-//					var danhsachho = self.model.get("nhatieuthonhvs");
-//					for(var i=0; i< danhsachho.length; i++){
-//						var item_hogiadinh = danhsachho[i];
-//						if(item_hogiadinh.maho === data.maho){
-//							self.getApp().notify({message: "Hộ gia đình đã tồn tại trong báo cáo!"}, {type: "danger"});
-//							return;
-//						}
-//					}
-//					view.model.set("tenchuho", data.tenchuho);
-//					view.model.set("maho", data.maho);
-//					view.model.set("gioitinh", data.gioitinh);
-//					view.model.set("dantoc_id", data.dantoc_id);
-//					view.model.set("dantoc", data.dantoc);
-//					view.model.set("tendantoc",data.tendantoc);
-//					view.model.set("hongheo",data.hongheo);
-//					view.model.set("tuhoai",data.tuhoai);
-//					view.model.set("thamdoi",data.thamdoi);
-//					view.model.set("haingan",data.haingan);
-//					view.model.set("chimco_oth",data.chimco_oth);
-//					view.model.set("khongconhatieu",data.khongconhatieu);
-//					view.model.set("loaikhac",data.loaikhac);
-//					view.model.set("hopvesinh",data.hopvesinh);
-//					view.model.set("khonghopvesinh",data.khonghopvesinh);
-//					view.model.set("caithien",data.caithien);
-//					view.model.set("diemruataycoxaphong",data.diemruataycoxaphong);
-//					view.applyBindings();
-//					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-//					self.getApp().notify("Thêm hộ gia đình thành công");
-//					self.renderItemView(view.model.toJSON(), null);
-//					self.search_dshogiadinh();
-//					self.$el.find("#tongcongi").show();
-//					self.renderTinhTongI();
-//					self.updateUIChuongTrinhSUP();
-//				});
-//			});
+			self.$el.find("#addItem").unbind("click").bind("click", function () {
+				if(self.model.get("thonxom") === null || !self.model.get("thonxom")){
+					self.getApp().notify({message:"Chọn thông tin thôn/xóm trước khi thêm hộ gia đình!"}, {type: "danger"});
+					return;
+				}
+				self.$el.find("#nhatieuthonhvs").show();
+				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData":{"thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
+				view_hogiadinh.dialog({size: "large"});
+				view_hogiadinh.on("close", function(data){
+					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
+					view.model.set("id",gonrin.uuid());
+					var danhsachho = self.model.get("nhatieuthonhvs");
+					for(var i=0; i< danhsachho.length; i++){
+						var item_hogiadinh = danhsachho[i];
+						if(item_hogiadinh.maho === data.maho){
+							self.getApp().notify({message: "Hộ gia đình đã tồn tại trong báo cáo!"}, {type: "danger"});
+							return;
+						}
+					}
+					view.model.set("tenchuho", data.tenchuho);
+					view.model.set("maho", data.maho);
+					view.model.set("gioitinh", data.gioitinh);
+					view.model.set("dantoc_id", data.dantoc_id);
+					view.model.set("dantoc", data.dantoc);
+					view.model.set("tendantoc",data.tendantoc);
+					view.model.set("hongheo",data.hongheo);
+					view.model.set("tuhoai",data.tuhoai);
+					view.model.set("thamdoi",data.thamdoi);
+					view.model.set("haingan",data.haingan);
+					view.model.set("chimco_oth",data.chimco_oth);
+					view.model.set("khongconhatieu",data.khongconhatieu);
+					view.model.set("loaikhac",data.loaikhac);
+					view.model.set("hopvesinh",data.hopvesinh);
+					view.model.set("khonghopvesinh",data.khonghopvesinh);
+					view.model.set("caithien",data.caithien);
+					view.model.set("diemruataycoxaphong",data.diemruataycoxaphong);
+					view.applyBindings();
+					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
+					self.getApp().notify("Thêm hộ gia đình thành công");
+					self.renderItemView(view.model.toJSON(), null);
+					self.search_dshogiadinh();
+					self.$el.find("#tongcongi").show();
+					self.renderTinhTongI();
+					self.updateUIChuongTrinhSUP();
+				});
+			});
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
 					success: function (data) {
-//						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
-//						self.$el.find("#nhatieuthonhvs").html("");
-//						for(var i=0; i< nhatieuthonhvs.length; i++){
-//							nhatieuthonhvs[i]['stt'] = i+1;
-//							self.renderItemView(nhatieuthonhvs[i], null);
-//							
-//						}
+						var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
+						self.$el.find("#nhatieuthonhvs").html("");
+						for(var i=0; i< nhatieuthonhvs.length; i++){
+							nhatieuthonhvs[i]['stt'] = i+1;
+							self.renderItemView(nhatieuthonhvs[i], null);
+							
+						}
 						self.model.on("change:thonxom", function(){
-//							self.$el.find("#nhatieuthonhvs").html("");
-//							self.model.set("nhatieuthonhvs",[]);
+							self.$el.find("#nhatieuthonhvs").html("");
+							self.model.set("nhatieuthonhvs",[]);
 							self.model.set("tong_soho", 0);
 							self.model.set("tong_chuholanu", 0);
 							self.model.set("tong_sohongheo", 0);
@@ -395,14 +417,14 @@ define(function (require) {
 							self.model.set("tong_nam", 0);
 							self.model.set("tong_nu", 0);
 							
-//							self.$el.find("#tongcongi").hide();
+							self.$el.find("#tongcongi").hide();
 						});
 						self.applyBindings();
-//						self.search_dshogiadinh();
-//						self.renderTinhTongI();
-//						if (self.model.get("nhatieuthonhvs").length === 0) {
-//							self.$el.find("#nhatieuthonhvs").hide();
-//						}
+						self.search_dshogiadinh();
+						self.renderTinhTongI();
+						if (self.model.get("nhatieuthonhvs").length === 0) {
+							self.$el.find("#nhatieuthonhvs").hide();
+						}
 
 						if (self.getApp().currentUser !== null 
 									&& self.getApp().currentUser.donvi_id !== self.model.get("donvi_id")){
@@ -424,7 +446,7 @@ define(function (require) {
 						}
 					},
 					complete:function(){
-//						self.updateUIChuongTrinhSUP();
+						self.updateUIChuongTrinhSUP();
 //						self.model.on("change:thuocsuprsws", function(){
 //							self.updateUIChuongTrinhSUP();
 //						});
@@ -432,26 +454,26 @@ define(function (require) {
 				});
 			} else {
 				self.applyBindings();
-//				self.model.set("nhatieuthonhvs", []);
+				self.model.set("nhatieuthonhvs", []);
 				if(currentUser!==null && !!currentUser.check_SUP){
 					self.model.set("thuocsuprsws",currentUser.check_SUP);
 				}else{
 					self.model.set("thuocsuprsws",0);
 				}
-//				self.updateUIChuongTrinhSUP();
+				self.updateUIChuongTrinhSUP();
 //				self.model.on("change:thuocsuprsws", function(){
 //					self.updateUIChuongTrinhSUP();
 //				});
 
 				// self.$el.find(".remove_columns").hide();
-				
-//				self.model.on("change:thonxom", function(event, name){
-//					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
-//						self.$el.find("#nhatieuthonhvs").html("");
-//						self.model.set("nhatieuthonhvs",[]);
-//						self.$el.find("#tongcongi").hide();
-//					}		
-//				});
+
+				self.model.on("change:thonxom", function(event, name){
+					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
+						self.$el.find("#nhatieuthonhvs").html("");
+						self.model.set("nhatieuthonhvs",[]);
+						self.$el.find("#tongcongi").hide();
+					}		
+				});
 			}
 		},
 		updateUIChuongTrinhSUP:function(){

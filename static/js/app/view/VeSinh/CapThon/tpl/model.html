@@ -49,17 +49,23 @@
 
 							<tr>
 								<td rowspan="3">Tổng số hộ trong thôn</td>
-								<th rowspan="3" class="text-center"><span data-bind="text:tong_soho"></span></th>
+								<th rowspan="3" class="text-center">
+									<input type="number" min="0" class="form-control" data-bind="value:tong_soho" />
+								</th>
 								<!-- <td>Hộ có nữ là chủ hộ</td>
 								<td class="text-center"><span data-bind="text:tong_chuholanu"></span></td> -->
 							</tr>
 							<tr>
 								<td>Số hộ nghèo</td>
-								<td class="text-center"><span data-bind="text:tong_sohongheo"></span></td>
+								<td class="text-center">
+									<input type="number" min="0" class="form-control" data-bind="value:tong_sohongheo" />
+								</td>
 							</tr>
 							<tr>
 								<td>Số hộ là DTTS</td>
-								<td class="text-center"><span data-bind="text:tong_sohodtts"></span></td>
+								<td class="text-center">
+									 <input type="number" min="0" class="form-control" data-bind="value:tong_sohodtts" />
+								</td>
 							</tr>
 
 
@@ -80,117 +86,106 @@
 		</div>
 
 		<div class="table2 row" style="margin-top: 20px; margin-bottom: 20px">
-			<div class="col-md-7 col-sm-12">
+			<div class="col-md-12">
 				<h3 style="margin-bottom: 10px;">II. Thông tin về nhà tiêu hộ gia đình</h3>
-			</div>
-			<div data-html2canvas-ignore class="col-md-5  col-sm-12">
-				<input type="text" class="form-control" id="search_data" placeholder="Nhập tên chủ hộ...">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-12">
-				<table class="table-align is-table table-hover">
-					<thead id="header_table_sup">
-						<tr>
-							<th rowspan="2" class="background-colorTH" style="width: 3%;">STT</th>
-							<th rowspan="2" class="background-colorTH" style="min-width: 22%">Họ và tên chủ hộ</th>
-							<!-- <th rowspan="2" class="background-colorTH same2">Giới tính</th> -->
-							<th rowspan="2" class="background-colorTH same2">DTTS</th>
-							<th rowspan="2" class="background-colorTH same">Hộ nghèo</th>
-							<!-- <th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử
-								dụng</th> -->
-							<th colspan="2" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
-							<!-- <th rowspan="2" class="background-colorTH same2">Có điểm rửa tay với nước và xà phòng</th> -->
-							<th data-html2canvas-ignore rowspan="2" class="background-colorTH remove_columns"></th>
-						</tr>
-						<tr>
-							<!-- <th class="background-colorTH same">Tự hoại</th>
-							<th class="background-colorTH same">Thấm dội</th>
-							<th class="background-colorTH same">2 ngăn</th>
-							<th class="background-colorTH same">Chìm có ống thông hơi</th>
-							<th class="background-colorTH" style="width: 10%">Loại khác</th>
-							<th class="background-colorTH same">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
- 							-->
-							<th class="background-colorTH same">Hợp vệ sinh</th>
-							<th class="background-colorTH same">Không hợp vệ sinh</th>
-							<!-- <th class="background-colorTH same">Cải thiện</th> -->
-							
-						</tr>
-
-						<!-- <tr>
-							<td>(1)</td>
-							<td>(2)</td>
-							<td>(3)</td>
-							<td>(4)</td>
-							<td>(5)</td>
-							<td>(6)</td>
-							<td>(7)</td>
-							<td>(8)</td>
-							<td>(9)</td>
-							<td>(10)</td>
-							<td>(11)</td>
-							<td>(12)</td>
-							<td>(13)</td>
-							<td>(14)</td>
-							<td>(15)</td>
-							<td data-html2canvas-ignore class="remove_columns"></td>
-						</tr> -->
-					</thead>
-					<!-- <thead id="header_table_notsup" style="display:none;">
-						<tr>
-							<th rowspan="2" class="background-colorTH" style="width: 4%">STT</th>
-							<th rowspan="2" class="background-colorTH" style="min-width: 22%">Họ và tên chủ hộ</th>
-							<th rowspan="2" class="background-colorTH same2">Giới tính</th>
-							<th colspan="6" class="background-colorTH">Loại nhà tiêu đang sử
-								dụng</th>
-							<th colspan="2" class="background-colorTH">Đánh giá tình trạng vệ sinh</th>
-							<th data-html2canvas-ignore rowspan="2" class="background-colorTH remove_columns"></th>
-						</tr>
-						<tr>
-							<th class="background-colorTH same2">Tự hoại</th>
-							<th class="background-colorTH same2">Thấm dội</th>
-							<th class="background-colorTH same2">2 ngăn</th>
-							<th class="background-colorTH same2">Chìm có ống thông hơi</th>
-							<th class="background-colorTH" style="width: 13%">Loại khác</th>
-							<th class="background-colorTH same2">Không có nhà tiêu(bao gồm cầu tiêu ao cá)</th>
-
-							<th class="background-colorTH same2">Hợp vệ sinh</th>
-							<th class="background-colorTH same2">Không hợp vệ sinh</th>
-
-						</tr>
-
-						<tr>
-							<td>(1)</td>
-							<td>(2)</td>
-							<td>(5)</td>
-							<td>(6)</td>
-							<td>(7)</td>
-							<td>(8)</td>
-							<td>(9)</td>
-							<td>(10)</td>
-							<td>(11)</td>
-							<td>(12)</td>
-							<td>(13)</td>
-							<td data-html2canvas-ignore class="remove_columns"></td>
-						</tr>
-					</thead> -->
-
-					<tbody id="nhatieuthonhvs">
-					</tbody>
-					<tfoot id="tongcongi"></tfoot>
-
-				</table>
-				<button data-html2canvas-ignore class="btn btn-sm btn-success" style="margin-top: 10px" id="addItem">Thêm Hộ Gia Đình</button>
+			<div class="col-md-6">
+                <div class="form-group">
+                  <label>Tổng NVS Tự Hoại</label>
+                  <input autofocus type="number" data-bind="value:tong_tuhoai" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Tự Hoại HVS</label>
+                  <input  type="number" data-bind="value:tong_tuhoai_hvs" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Thấm dội</label>
+                  <input  type="number" data-bind="value:tong_thamdoi" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Thấm dội HVS</label>
+                  <input  type="number" data-bind="value:tong_thamdoi_hvs" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Hai Ngăn</label>
+                  <input  type="number" data-bind="value:tong_2ngan" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Hai Ngăn HVS</label>
+                  <input  type="number" data-bind="value:tong_2ngan_hvs" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                  <label>Tổng NVS Ống Thông Hơi</label>
+                  <input  type="number" data-bind="value:tong_ongthonghoi" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Ống Thông Hơi HVS</label>
+                  <input  type="number" data-bind="value:tong_ongthonghoi_hvs" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                  <label>Tổng NVS loại khác(ngoài những loại ở trên)</label>
+                  <input  type="number" data-bind="value:tong_loaikhac" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS loại khác HVS (ngoài những loại ở trên)</label>
+                  <input  type="number" data-bind="value:tong_loaikhac_hvs" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng số hộ gia đình không có nhà tiêu</label>
+                  <input  type="number" data-bind="value:tong_khongnhatieu" class="form-control">
+                </div>
+                
 			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+                  <label>Tổng NVS được cải thiện</label>
+                  <input  type="number" data-bind="value:tong_caithien" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng Hộ nghèo có NVS được cải thiện</label>
+                  <input  type="number" data-bind="value:tong_caithien_hongheo" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS có điểm rửa tay</label>
+                  <input  type="number" data-bind="value:tong_diemruatay" class="form-control">
+                </div>
+				<div class="form-group">
+                  <label>Tổng số NVS bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_hvs_xuongcap" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Tự Hoại bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_tuhoai_hvs_xuongcap" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Thấm Dội bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_thamdoi_hvs_xuongcap" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Hai Ngăn bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_2ngan_hvs_xuongcap" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng NVS Chìm có OTH bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_vip_hvs_xuongcap" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Tổng số Hộ có nhà tiêu được cải thiện bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_caithien_hvs_xuongcap" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                  <label>Tổng số Hộ nghèo có nhà tiêu được cải thiện bị xuống cấp</label>
+                  <input  type="number" data-bind="value:tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap" class="form-control">
+                </div>
+                
+			
+           </div>
 		</div>
-		<!-- <div class="row">
-			<div class="col-md-12">
-				<div class="text-justify">Ghi chú: (3) Nam/nữ, (4) Nếu là DTTS
-					ghi là rõ tên dân tộc, (5) nếu là hộ nghèo ghi là 1, (12) & (13) -
-					Theo tiêu chí từng loại nhà tiêu kèm theo, (14) & (15) áp dụng xã
-					trong chương trình SupRSWS</div>
-			</div>
-		</div> -->
 	</div>
 </div>

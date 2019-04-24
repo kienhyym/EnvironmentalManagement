@@ -79,13 +79,14 @@ class VSCapThon(CommonModel):
     tong_ongthonghoi = db.Column(db.Integer, default=0)
     tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
     tong_loaikhac = db.Column(db.Integer, default=0)
+    tong_loaikhac_hvs = db.Column(db.Integer, default=0)
     tong_khongnhatieu = db.Column(db.Integer, default=0)
-    tong_hopvs = db.Column(db.Integer, default=0)
-    tong_khonghopvs = db.Column(db.Integer, default=0)
+    tong_hopvs = db.Column(db.Integer, default=0)#
+    tong_khonghopvs = db.Column(db.Integer, default=0)#
     tong_caithien = db.Column(db.Integer, default=0)
-    tong_caithien_hvs = db.Column(db.Integer, default=0)
+    tong_caithien_hvs = db.Column(db.Integer, default=0)#
     tong_caithien_hongheo = db.Column(db.Integer, default=0)
-    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)
+    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)#
     
     tong_diemruatay = db.Column(db.Integer, default=0)
     
