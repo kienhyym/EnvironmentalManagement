@@ -170,8 +170,8 @@ class DonVi(CommonModel):
         if type(data) is list:
             for r in self.children.values():
                data.append(r.id)
-            if len(data) == 0:
-                data.append(self.id)
+#             if len(data) == 0:
+#                 data.append(self.id)
         return data
 
     def getlistid(self):

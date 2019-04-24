@@ -81,11 +81,11 @@ async def entity_pregetmany(search_params=None, **kw):
     currentUser = await current_user(request)
     if currentUser is not None:
         currdonvi = currentUser.donvi
-        donvichildids = []
-        if(currdonvi is not None):
-            currdonvi.get_children_ids(donvichildids)
+#         donvichildids = []
+#         if(currdonvi is not None):
+#             currdonvi.get_children_ids(donvichildids)
         if currdonvi.id != 1:
-            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"donvi_id":{"$in": donvichildids}}]} \
-                                    or {"donvi_id":{"$in": donvichildids}}
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"donvi_id":{"$eq": currdonvi.id}}]} \
+                                    or {"donvi_id":{"$ed": currdonvi.id}}
                                 
 
