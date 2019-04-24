@@ -110,7 +110,72 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						var 
+						var tong_tuhoai = self.model.get("tong_tuhoai");
+						var tong_tuhoai_hvs = self.model.get("tong_tuhoai_hvs");
+						var tong_thamdoi = self.model.get("tong_thamdoi");
+						var tong_thamdoi_hvs = self.model.get("tong_thamdoi_hvs");
+						var tong_2ngan = self.model.get("tong_2ngan");
+						var tong_2ngan_hvs = self.model.get("tong_2ngan_hvs");
+						var tong_ongthonghoi = self.model.get("tong_ongthonghoi");
+						var tong_ongthonghoi_hvs = self.model.get("tong_ongthonghoi_hvs");
+						var tong_loaikhac = self.model.get("tong_loaikhac");
+						var tong_loaikhac_hvs = self.model.get("tong_loaikhac_hvs");
+						var tong_caithien = self.model.get("tong_caithien");
+						var tong_caithien_hongheo = self.model.get("tong_caithien_hongheo");
+						var tong_soho_conhatieu_hvs_xuongcap = self.model.get("tong_soho_conhatieu_hvs_xuongcap");
+						var tong_soho_conhatieu_tuhoai_hvs_xuongcap = self.model.get("tong_soho_conhatieu_tuhoai_hvs_xuongcap");
+						var tong_soho_conhatieu_thamdoi_hvs_xuongcap = self.model.get("tong_soho_conhatieu_thamdoi_hvs_xuongcap");
+						var tong_soho_conhatieu_2ngan_hvs_xuongcap = self.model.get("tong_soho_conhatieu_2ngan_hvs_xuongcap");
+						var tong_soho_conhatieu_vip_hvs_xuongcap = self.model.get("tong_soho_conhatieu_vip_hvs_xuongcap");
+						var tong_soho_conhatieu_caithien_hvs_xuongcap = self.model.get("tong_soho_conhatieu_caithien_hvs_xuongcap");
+						var tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = self.model.get("tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap");
+						if(toInt(tong_tuhoai_hvs)-toInt(tong_tuhoai)>0){
+							self.getApp().notify('Tổng NVS Tự Hoại HVS không lớn hơn Tổng NVS Tự Hoại');
+							return;
+						}
+						if(toInt(tong_soho_conhatieu_tuhoai_hvs_xuongcap)-toInt(tong_tuhoai)>0){
+							self.getApp().notify('Tổng NVS Tự Hoại bị xuống cấp không lớn hơn Tổng NVS Tự Hoại');
+							return;
+						}
+						
+						if(toInt(tong_thamdoi_hvs)-toInt(tong_thamdoi)>0){
+							self.getApp().notify('Tổng NVS Thấm dội HVS không lớn hơn Tổng NVS Thấm dội');
+							return;
+						}
+						if(toInt(tong_soho_conhatieu_thamdoi_hvs_xuongcap)-toInt(tong_thamdoi)>0){
+							self.getApp().notify('Tổng NVS Thấm dội bị xuống cấp không lớn hơn Tổng NVS Thấm dội');
+							return;
+						}
+						
+						if(toInt(tong_2ngan_hvs)-toInt(tong_2ngan)>0){
+							self.getApp().notify('Tổng NVS Hai Ngăn HVS không lớn hơn Tổng NVS Hai Ngăn');
+							return;
+						}
+						
+						if(toInt(tong_soho_conhatieu_2ngan_hvs_xuongcap)-toInt(tong_2ngan)>0){
+							self.getApp().notify('Tổng NVS Hai Ngăn bị xuống cấp không lớn hơn Tổng NVS Hai Ngăn');
+							return;
+						}
+						
+						if(toInt(tong_ongthonghoi_hvs)-toInt(tong_ongthonghoi)>0){
+							self.getApp().notify('Tổng NVS Ống Thông Hơi HVS không lớn hơn Tổng NVS Ống Thông Hơi');
+							return;
+						}
+						
+						if(toInt(tong_soho_conhatieu_vip_hvs_xuongcap)-toInt(tong_ongthonghoi)>0){
+							self.getApp().notify('Tổng NVS Ống Thông Hơi bị xuống cấp không lớn hơn Tổng NVS Ống Thông Hơi');
+							return;
+						}
+						
+						if(toInt(tong_loaikhac_hvs)-toInt(tong_loaikhac)>0){
+							self.getApp().notify('Tổng NVS loại khác HVS không lớn hơn Tổng NVS loại khác');
+							return;
+						}
+						
+						if(toInt(tong_loaikhac_hvs)-toInt(tong_loaikhac)>0){
+							self.getApp().notify('Tổng NVS loại khác HVS không lớn hơn Tổng NVS loại khác');
+							return;
+						}
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công!");
