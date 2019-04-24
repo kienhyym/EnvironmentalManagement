@@ -520,14 +520,12 @@ define(function (require) {
             self.$el.find("[id=mauvitri_header_before]").hide();
             self.$el.find("#ketquangoaikiemchatluongnuoc").empty();
             if (!!somau && (somau > 0)) {
-            	console.log("chay vao render thong so ====", somau);
             	self.renderViTriMau();
 //            	var danhsachthongso = self.danhsachthongso;
             	var danhsachthongso = self.model.get("ketquangoaikiemchatluongnuoc");
             	if (danhsachthongso == null || danhsachthongso.length ==0){
             		danhsachthongso = self.danhsachthongso;
             	}
-                console.log("renderThongSovaViTriLayMau====",danhsachthongso);
             	if (danhsachthongso.length == 0){
                 	self.$el.find("[id=removeButton]").hide();
                 } else {

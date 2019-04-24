@@ -343,8 +343,8 @@ async def dangkydonvi_pregetmany(search_params=None, **kw):
         donvichildids = []
         if(currentDonvi is not None):
             currentDonvi.get_children_ids(donvichildids)
-            
-            
+        
+        search_params["order_by"] = [{"field": "created_at", "direction": "desc"},{"field": "trangthai", "direction": "desc"}]  
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"captren_id":{"$in": donvichildids}}]} \
                                     or {"captren_id":{"$in": donvichildids}}
 
