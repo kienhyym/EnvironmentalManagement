@@ -204,9 +204,17 @@ define(function (require) {
 			filter.on('filterChanged', function(evt) {
     			var $col = self.getCollectionElement();
     			var text = !!evt.data.text ? evt.data.text.trim() : "";
+    			var trangthai = $('#filter_status').data('gonrin').getValue();
 				if ($col) {
 					if (text !== null){
-						var filters = {"donvi_ten": {"$likeI": text }};
+						var filters = "";
+						if(trangthai !== null && trangthai !== ""){
+							filters = {"$and":[{"donvi_ten": {"$likeI": text }}, {"trangthai": {"$eq": trangthai }}]};
+						}else{
+							filters = {"$and":[{"donvi_ten": {"$likeI": text }}]};
+
+						}
+						 
 						$col.data('gonrin').filter(filters);
 						//self.uiControl.filters = filters;
 					} else {
