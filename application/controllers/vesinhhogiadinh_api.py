@@ -382,7 +382,6 @@ async def TimKiemBaoCaoVeSinh(request):
     else:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Không tìm thấy báo cáo của đơn vị!"}, status=520)
    
-    print("respone===", response)
 
 def congdonTongCong(Baocao, current_user, data=None):
     notdict = ['_created_at','_updated_at','_deleted','_deleted_at','_etag','id','donvi_id',\
@@ -651,7 +650,7 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
                                                       VSCapHuyen.loaikybaocao == data['loaikybaocao'], \
                                                       VSCapHuyen.kybaocao == data['kybaocao'], \
                                                       VSCapHuyen.nambaocao == data['nambaocao'])).first()
-    
+    print("record VSCapHuyen====",to_dict(VSCapHuyen));
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
     data['tenhuyen'] = data['quanhuyen']['ten']
