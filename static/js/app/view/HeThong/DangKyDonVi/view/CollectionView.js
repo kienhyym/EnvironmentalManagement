@@ -14,43 +14,43 @@ define(function (require) {
 
 	//var DonViSelectView = require('app/view/HeThong/DonVi/view/TreeSelectView.js');
 
-	var filterschema = {
-		"trangthai": {
-			"type": "number"
-		},
-	}
-	var filtertemplate = require('text!app/view/tpl/Filter/dangkyfilter.html');
-
-	var FilterView = Gonrin.ModelView.extend({
-		template: filtertemplate,
-		modelSchema: filterschema,
-		urlPrefix: "/api/v1/",
-		collectionName: "filter",
-		uiControl: [{
-				field: "trangthai",
-				uicontrol: "combobox",
-				dataSource: TrangThaiDangKyDonViEnum,
-				textField: "text",
-				valueField: "value",
-			},
-
-		],
-		render: function () {
-			var self = this;
-			// //preg select
-			//self.model.set("nambaocao", moment().year());
-			this.applyBindings();
-			var filterBtn = self.$el.find("#filterBtn");
-
-			filterBtn.unbind("click").bind("click", function () {
-				self.trigger('filterChanged', {
-					data: {
-						trangthai: self.model.get("trangthai")
-					}
-				});
-			});
-		},
-	});
+//	var filterschema = {
+//		"trangthai": {
+//			"type": "number"
+//		},
+//	}
+//	var filtertemplate = require('text!app/view/tpl/Filter/dangkyfilter.html');
+//
+//	var FilterView = Gonrin.ModelView.extend({
+//		template: filtertemplate,
+//		modelSchema: filterschema,
+//		urlPrefix: "/api/v1/",
+//		collectionName: "filter",
+//		uiControl: [{
+//				field: "trangthai",
+//				uicontrol: "combobox",
+//				dataSource: TrangThaiDangKyDonViEnum,
+//				textField: "text",
+//				valueField: "value",
+//			},
+//
+//		],
+//		render: function () {
+//			var self = this;
+//			// //preg select
+//			//self.model.set("nambaocao", moment().year());
+//			this.applyBindings();
+//			var filterBtn = self.$el.find("#filterBtn");
+//
+//			filterBtn.unbind("click").bind("click", function () {
+//				self.trigger('filterChanged', {
+//					data: {
+//						trangthai: self.model.get("trangthai")
+//					}
+//				});
+//			});
+//		},
+//	});
 
 	return Gonrin.CollectionView.extend({
 		template: template,
@@ -143,33 +143,55 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-			var $filter = this.$el.find("#filter");
-			var filterView = new FilterView({
-				el: $filter
+//			var $filter = this.$el.find("#filter");
+//			var filterView = new FilterView({
+//				el: $filter
+//			});
+//			filterView.render();
+//			filterView.on('filterChanged', function (evt) {
+//				var $col = self.getCollectionElement();
+//				if ($col) {
+//					if ((evt.data.trangthai !== null)) {
+//						var filters = {
+//							"$and": []
+//						};
+//						if (evt.data.trangthai !== null) {
+//							filters["$and"].push({
+//								"trangthai": {
+//									"$eq": evt.data.trangthai
+//								}
+//							});
+//						}
+//						//var filters = {"$and":[{"nambaocao":{"$eq":evt.data.nambaocao}}, {"donvi_id":{"$eq":evt.data.donvi_id}}]}
+//						$col.data('gonrin').filter(filters);
+//					} else {
+//						$col.data('gonrin').filter(null);
+//					}
+//				}
+//			});
+			self.$el.find('#filter_status').combobox({
+            	textField: "text",
+                valueField: "value",
+//                allowTextInput: true,
+//                enableSearch: true,
+                dataSource: TrangThaiDangKyDonViEnum
 			});
-			filterView.render();
-			filterView.on('filterChanged', function (evt) {
-				var $col = self.getCollectionElement();
+			$('#filter_status').on('change.gonrin', function(e){
+            	var trangthai = $('#filter_status').data('gonrin').getValue();
+            	var $col = self.getCollectionElement();
 				if ($col) {
-					if ((evt.data.trangthai !== null)) {
-						var filters = {
-							"$and": []
-						};
-						if (evt.data.trangthai !== null) {
-							filters["$and"].push({
-								"trangthai": {
-									"$eq": evt.data.trangthai
-								}
-							});
-						}
-						//var filters = {"$and":[{"nambaocao":{"$eq":evt.data.nambaocao}}, {"donvi_id":{"$eq":evt.data.donvi_id}}]}
+					if (trangthai !== null) {
+						var filters = {"trangthai": {
+							"$eq": trangthai
+						}};
 						$col.data('gonrin').filter(filters);
 					} else {
 						$col.data('gonrin').filter(null);
 					}
 				}
-			});
-
+            });
+			
+			
 			var filter = new CustomFilterView({
 				el: self.$el.find("#grid_search"),
 				sessionKey: self.collectionName +"_filter"
