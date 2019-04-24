@@ -110,31 +110,29 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						if (!self.validate()){
-							return;
-						}
-							self.model.save(null, {
-								success: function (model, respose, options) {
-									self.getApp().notify("Lưu thông tin thành công!");
-									var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
-									self.getApp().getRouter().navigate(self.collectionName 
-											+ "/collection?loaikybaocao="+routeloaibaocao);
-	
-								},
-								error: function (xhr, status, error) {
-									try {
-										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-											self.getApp().getRouter().navigate("login");
-										} else {
-										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-										}
-									}
-									catch (err) {
-									  self.getApp().notify({ message: "Có lỗi xảy ra, vui lòng kiểm tra lại!"}, { type: "danger", delay: 1000 });
+						var 
+						self.model.save(null, {
+							success: function (model, respose, options) {
+								self.getApp().notify("Lưu thông tin thành công!");
+								var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+								self.getApp().getRouter().navigate(self.collectionName 
+										+ "/collection?loaikybaocao="+routeloaibaocao);
+
+							},
+							error: function (xhr, status, error) {
+								try {
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+										self.getApp().getRouter().navigate("login");
+									} else {
+									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
 								}
-							});	
+								catch (err) {
+								  self.getApp().notify({ message: "Có lỗi xảy ra, vui lòng kiểm tra lại!"}, { type: "danger", delay: 1000 });
+								}
+							}
+						});	
 					}
 				},
 				{
