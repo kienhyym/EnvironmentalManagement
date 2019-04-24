@@ -381,16 +381,7 @@ define(function (require) {
 					"$ref": "app/view/DanhMuc/DanhSachDonViThuocSUP/view/ModelView",
 					"visible": false
 				},
-				{
-					"text": "Cài đặt thông số nước",
-					"type": "view",
-					"collectionName": "caidat_thongsonuoc_diaphuong",
-					"route": "caidat_thongsonuoc_diaphuong/model",
-					"$ref": "app/view/DanhMuc/CaiDatThongSoNuocDiaPhuong/view/ModelView",
-					"visible": function () {
-						return this.checkTuyendonvi([2]);
-					}
-				}
+				
 			]
 		},
 		{
@@ -1590,6 +1581,17 @@ define(function (require) {
 				return this.checkTuyendonvi([1,2,3,10]);
 			},
 			"entries": [
+				{
+					"text": "Cài đặt thông số nước",
+					"icon": "glyphicon glyphicon-file",
+					"type": "view",
+					"collectionName": "caidat_thongsonuoc_diaphuong",
+					"route": "caidat_thongsonuoc_diaphuong/model",
+					"$ref": "app/view/DanhMuc/CaiDatThongSoNuocDiaPhuong/view/ModelView",
+					"visible": function () {
+						return this.checkTuyendonvi([2]);
+					}
+				},
 				// {
 				// 	"text": "Phiếu kết quả nội kiểm chất lượng nước sạch",
 				// 	"icon": "glyphicon glyphicon-file",

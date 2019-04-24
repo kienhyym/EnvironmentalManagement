@@ -41,11 +41,15 @@ define(function (require) {
 							var danhsach_new = [];
 							for(var i=0;i<danhsachthongso.length; i++){
 								var item = danhsachthongso[i];
-								if(self.$el.find("input#nuocmat_"+item.id).prop('checked')){
+								if(self.$el.find("#nuocmat_"+item.id).prop('checked') === true){
 									item.nuocmat = 1;
+								}else{
+									item.nuocmat = 0;
 								}
-								if(self.$el.find("input#nuocngam_"+item.id).prop('checked')){
+								if(self.$el.find("#nuocngam_"+item.id).prop('checked') === true){
 									item.nuocngam = 1;
+								}else{
+									item.nuocngam = 0;
 								}
 								danhsach_new.push(item);
 								
@@ -86,21 +90,31 @@ define(function (require) {
 			html_content.html("");
 			for (var i = 0; i < danhsachthongso.length; i++) {
 				var item_thongso = danhsachthongso[i];
+				
+				 var tr_el = $("<tr>").html('<td>' + item_thongso.id + '</td>' +
+							'<td>' + item_thongso.tenthongso + '</td>' +
+							'<td class="nuocmat text-center"><input id="nuocmat_' + item_thongso.id + '" type="checkbox"></input></td>' +
+							'<td class="nuocngam text-center"><input id="nuocngam_' + item_thongso.id + '"  type="checkbox"></input></td>');
+				html_content.append(tr_el);
 				var check_nuocmat = "";
 				 if (item_thongso.nuocmat !== 0 && item_thongso.nuocmat !== "0") {
 					 check_nuocmat = "checked";
+					 tr_el.find("#nuocmat_"+item_thongso.id).prop('checked',true);
 				 }
 				 var check_nuocngam = "";
 				 if (item_thongso.nuocngam !== 0 && item_thongso.nuocngam !== "0") {
 					 check_nuocngam = "checked";
+					 tr_el.find("#nuocngam_"+item_thongso.id).prop('checked',true);
 				 }
-				html_content.append('<tr>' +
-					'<td>' + item_thongso.id + '</td>' +
-					'<td>' + item_thongso.tenthongso + '</td>' +
-					'<td class="nuocmat text-center"><input id="nuocmat_' + item_thongso.id + '" ' + check_nuocmat + ' type="checkbox"></input></td>' +
-					'<td class="nuocngam text-center"><input id="nuocngam_' + item_thongso.id + '" ' + check_nuocngam + ' type="checkbox"></input></td>' +
-//					'<td class="nuocmat_nuocngam" style="text-align: center;"><input id="' + item_thongso.stt + '" ' + isChecked + ' type="checkbox"></input></td>' +
-					'</tr>');
+				
+				
+//				 html_content.append('<tr>' +
+//					'<td>' + item_thongso.id + '</td>' +
+//					'<td>' + item_thongso.tenthongso + '</td>' +
+//					'<td class="nuocmat text-center"><input id="nuocmat_' + item_thongso.id + '" ' + check_nuocmat + ' type="checkbox"></input></td>' +
+//					'<td class="nuocngam text-center"><input id="nuocngam_' + item_thongso.id + '" ' + check_nuocngam + ' type="checkbox"></input></td>' +
+////					'<td class="nuocmat_nuocngam" style="text-align: center;"><input id="' + item_thongso.stt + '" ' + isChecked + ' type="checkbox"></input></td>' +
+//					'</tr>');
 			}
 		},
 		render: function () {
