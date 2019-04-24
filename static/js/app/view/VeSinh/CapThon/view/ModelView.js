@@ -176,6 +176,15 @@ define(function (require) {
 							self.getApp().notify('Tổng NVS loại khác HVS không lớn hơn Tổng NVS loại khác');
 							return;
 						}
+						
+						if(toInt(tong_caithien_hongheo)-toInt(tong_caithien)>0){
+							self.getApp().notify('Tổng Hộ nghèo có NVS được cải thiện không hợp lệ');
+							return;
+						}
+						if(toInt(tong_soho_conhatieu_caithien_hvs_xuongcap)-toInt(tong_caithien)>0){
+							self.getApp().notify('Tổng Hộ nghèo có NVS được cải thiện không hợp lệ');
+							return;
+						}
 						self.model.save(null, {
 							success: function (model, respose, options) {
 								self.getApp().notify("Lưu thông tin thành công!");
