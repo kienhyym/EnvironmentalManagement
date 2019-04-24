@@ -287,6 +287,7 @@ define(function (require) {
 			self.model.set("tong_loaikhac", 0);
 			self.model.set("tong_khongnhatieu", 0);
 			self.model.set("tong_hopvs", 0);
+			self.model.set("tong_loaikhac_hvs", 0);
 			self.model.set("tong_khonghopvs", 0);
 			self.model.set("tong_caithien", 0);
 			self.model.set("tong_caithien_hvs", 0);
@@ -297,6 +298,7 @@ define(function (require) {
 			self.model.set("tong_sothon",0);
 			self.model.set("tong_soxa",0);
 			self.$el.find("#danhsachdonvi").html("");
+			var index = 1;
 			danhsachbaocao.forEach(element => {
 				total_chuholanu += toInt(element.tong_chuholanu);
 				total_sohongheo += toInt(element.tong_sohongheo);
@@ -311,18 +313,18 @@ define(function (require) {
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenhuyen + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_sohodtts + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_sohongheo + "</td>");
-				tr.append("<td>" + element.tong_tuhoai + "</td>");
-				tr.append("<td>" + element.tong_thamdoi + "</td>");
-				tr.append("<td>" + element.tong_2ngan + "</td>");
-				tr.append("<td>" + element.tong_ongthonghoi + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + "</td>");
+				tr.append("<td>" + toInt(element.tong_tuhoai) + "</td>");
+				tr.append("<td>" + toInt(element.tong_thamdoi) + "</td>");
+				tr.append("<td>" + toInt(element.tong_2ngan) + "</td>");
+				tr.append("<td>" + toInt(element.tong_ongthonghoi) + "</td>");
 				tr.append("<td>" + toInt(element.tong_loaikhac) + "</td>");
-				tr.append("<td>" + element.tong_khongnhatieu + "</td>");
-				tr.append("<td>" + element.tong_hopvs + "</td>");
-				tr.append("<td>" + element.tong_khonghopvs + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_caithien + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + element.tong_diemruatay + "</td>");
+				tr.append("<td>" + toInt(element.tong_khongnhatieu) + "</td>");
+				tr.append("<td>" + toInt(element.tong_hopvs) + "</td>");
+				tr.append("<td>" + toInt(element.tong_khonghopvs) + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_caithien) + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_diemruatay) + "</td>");
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
 				var id_record = this.getApp().getRouter().getParam("id");
@@ -353,6 +355,8 @@ define(function (require) {
 				self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
 				
 				self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
+				self.model.set("tong_loaikhac_hvs", (toInt(self.model.get("tong_loaikhac_hvs"))+toInt(element.tong_loaikhac_hvs)));
+
 				self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
 				self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
 				self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
