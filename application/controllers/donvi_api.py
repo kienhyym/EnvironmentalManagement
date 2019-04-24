@@ -176,7 +176,7 @@ async def donvi_prepput_children(request=None, instance_id=None, data=None, **kw
 async def donvi_prepput(instance_id=None, data=None):
     if 'children' in data :
         del data['children']
-    if 'parent_id' in data:
+    if 'captren_id' in data:
         donvi = db.session.query(DonVi).filter(DonVi.id == instance_id).first()
         donvichildids = []
         if(donvi is not None):
@@ -185,7 +185,7 @@ async def donvi_prepput(instance_id=None, data=None):
             #    donvichildids.remove(instance_id)
             #except:
             #    pass
-            if (data['parent_id'] is not None) and (int(data['parent_id']) in donvichildids):
+            if (data['captren_id'] is not None) and (int(data['captren_id']) in donvichildids):
                 return json({"error_message":u'Cấp trên không đúng'},
                                       status=520)
  

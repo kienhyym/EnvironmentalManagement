@@ -104,18 +104,18 @@ define(function (require) {
 							self.getApp().notify({ message: "Tên đơn vị không được để trống!" }, { type: "danger" });
 						} else if (donvi_tuyendonvi.id !== 1 && (captren == null || captren == undefined)) {
 							self.getApp().notify({ message: "Chưa chọn cơ quan cấp trên!" }, { type: "danger" });
-						} else if (donvi_sodienthoai == null || donvi_sodienthoai == "") {
-							self.getApp().notify({ message: "Số điện thoại của đơn vị không được để trống!" }, { type: "danger" });
-						} else if (self.validatePhone(donvi_sodienthoai) === false) {
-							self.getApp().notify({ message: "Số điện thoại của đơn vị không đúng định dạng!" }, { type: "danger" });
+//						} else if (donvi_sodienthoai == null || donvi_sodienthoai == "") {
+//							self.getApp().notify({ message: "Số điện thoại của đơn vị không được để trống!" }, { type: "danger" });
+//						} else if (self.validatePhone(donvi_sodienthoai) === false) {
+//							self.getApp().notify({ message: "Số điện thoại của đơn vị không đúng định dạng!" }, { type: "danger" });
 						} else if (self.validateEmail(email) === false) {
 							self.getApp().notify({ message: "Email không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 						} else if (fullname == null || fullname == "") {
 							self.getApp().notify({ message: "Tên người dùng không được để trống!" }, { type: "danger" });
 						} else if  (phone == null || phone == ""){
 							self.getApp().notify({ message: "Số điện thoại không được để trống!" }, { type: "danger" });
-						} else if (self.validatePhone(phone) === false) {
-							self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
+//						} else if (self.validatePhone(phone) === false) {
+//							self.getApp().notify({ message: "Số điện thoại không đúng định dạng!" }, { type: "danger" });
 						} else if (pass == null || pass == "") {
 							self.getApp().notify({ message: "Mật khẩu không được để trống!" }, { type: "danger" });
 						}else if (pass == null || pass != cfpass) {
