@@ -143,7 +143,6 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-			this.applyBindings();
 			var $filter = this.$el.find("#filter");
 			var filterView = new FilterView({
 				el: $filter
@@ -177,6 +176,7 @@ define(function (require) {
 			});
 			$("#search_input").attr("placeholder", "Nhập tên đơn vị...");
 			filter.render();
+			self.uiControl.orderBy = [{"field": "created_at", "direction": "desc"},{"field": "trangthai", "direction": "desc"}]
 			this.applyBindings();
 
 			filter.on('filterChanged', function(evt) {
