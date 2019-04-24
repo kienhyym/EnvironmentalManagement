@@ -148,8 +148,8 @@ async def apply_DonVi_filter(search_params, request=None, **kw ):
         if(currDonVi is not None):
             currDonVi.get_children_ids(DonVichildids)
             if currDonVi.tuyenDonVi != 1:
-                search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"DonVi_id":{"$in": DonVichildids}}]} \
-                                        or {"DonVi_id":{"$in": DonVichildids}}
+                search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"donvi_id":{"$in": DonVichildids}}]} \
+                                        or {"donvi_id":{"$in": DonVichildids}}
     
 #@jwt_required()
 async def entity_pregetmany(search_params=None,request=None, **kw):
@@ -308,17 +308,17 @@ async def donvi_pregetmany(search_params=None, **kw):
         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
                                 
-async def baocao_pregetmany(search_params=None, **kw):
-    request = kw.get("request", None)
-    currentUser = await current_user(request)
-    if currentUser is not None:
-        currentDonvi = currentUser.donvi
-        donvichildids = []
-        if(currentDonvi is not None):
-            currentDonvi.get_children_ids(donvichildids)
-            
-        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
-                                or {"id":{"$in": donvichildids}}
+# async def baocao_pregetmany(search_params=None, **kw):
+#     request = kw.get("request", None)
+#     currentUser = await current_user(request)
+#     if currentUser is not None:
+#         currentDonvi = currentUser.donvi
+#         donvichildids = []
+#         if(currentDonvi is not None):
+#             currentDonvi.get_children_ids(donvichildids)
+#             
+#         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
+#                                 or {"id":{"$in": donvichildids}}
 
 # 
 # async def tuyendonvi_pregetmany(search_params=None, **kw):
