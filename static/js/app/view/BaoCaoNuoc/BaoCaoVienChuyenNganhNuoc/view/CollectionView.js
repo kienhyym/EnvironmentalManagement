@@ -99,7 +99,7 @@ define(function (require) {
 					var $col = self.getCollectionElement();
 					var text = !!evt.data.text ? evt.data.text.trim() : "";
 					if ($col) {
-						if (text){
+						if (text && text !== ""){
 							var filters = {"$and":[
 								{"nambaocao": {"$eq": text}},
 								{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 

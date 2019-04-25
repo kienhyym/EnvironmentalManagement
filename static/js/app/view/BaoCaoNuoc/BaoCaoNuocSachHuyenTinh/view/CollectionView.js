@@ -120,16 +120,6 @@ define(function (require) {
 				self.$el.find("#search_input").attr("placeholder", "Nhập năm báo cáo...");
 				filter.render();
 				 
-				// if(!filter.isEmptyFilter()) {
-				// 	var $col = self.getCollectionElement();
-				// 	var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-				// 	var filters = {"$and":[
-				// 			{"nambaocao": {"$eq": text}},
-				// 			{"loaikybaocao":{"$eq":itemkybaocao.loaikybaocao}}, 
-				// 			{"kybaocao":{"$eq":itemkybaocao.kybaocao}},
-				// 			{"donvi_id":{"$eq":self.getApp().currentUser.donvi_id}}]};
-				// 	$col.data('gonrin').filter(filters);
-				// }
 				self.applyBindings();
 	
 				filter.on('filterChanged', function(evt) {
