@@ -303,7 +303,8 @@ async def donvi_pregetmany(search_params=None, **kw):
         currentDonvi = currentUser.donvi
         donvichildids = []
         print(currentDonvi)
-        if currentDonvi.tuyendonvi_id == 10 and search_params["filters"] is not None and "tuyendonvi_id" in search_params["filters"]:
+        if currentDonvi.tuyendonvi_id == 10:
+            search_params["filters"] = {"id":{"$eq":currentDonvi.id}}
             pass
         if(currentDonvi is not None):
             currentDonvi.get_children_ids(donvichildids)
