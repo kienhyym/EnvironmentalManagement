@@ -136,7 +136,9 @@ define(function (require) {
                     self.model.destroy({
                         success: function (model, response) {
                             self.getApp().notify('Xoá dữ liệu thành công');
-                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                            var routeloaibaocao = self.getApp().get_currentRoute_loaibaocao();
+                            self.getApp().getRouter().navigate(self.collectionName
+                                + "/collection?loaikybaocao=" + routeloaibaocao);
                         },
                         error: function (xhr, status, error) {
                             try {
