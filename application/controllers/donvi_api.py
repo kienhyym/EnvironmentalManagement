@@ -303,13 +303,13 @@ async def donvi_pregetmany(search_params=None, **kw):
         currentDonvi = currentUser.donvi
         donvichildids = []
         print(currentDonvi)
-        if currentDonvi.tuyendonvi_id == 10:
-            search_params["filters"] = {"id":{"$eq":currentDonvi.id}}
-            pass
+        
         if(currentDonvi is not None):
             currentDonvi.get_children_ids(donvichildids)
-            
-        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
+        if currentDonvi.tuyendonvi_id == 10:
+            search_params["filters"] = {"id":{"$eq":currentDonvi.id}}
+        else:
+            search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
                                 
 # async def baocao_pregetmany(search_params=None, **kw):
