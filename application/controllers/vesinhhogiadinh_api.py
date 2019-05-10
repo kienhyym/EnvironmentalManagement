@@ -538,8 +538,9 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
     tong_ongthonghoi_hvs = data["tong_ongthonghoi_hvs"] if data["tong_ongthonghoi_hvs"] is not None else 0
     tong_loaikhac_hvs = data["tong_loaikhac_hvs"] if data["tong_loaikhac_hvs"] is not None else 0
 
-    tong_hopvs = int(tong_tuhoai_hvs)+int(tong_thamdoi_hvs)+int(tong_2ngan_hvs)+int(tong_ongthonghoi_hvs)+(tong_loaikhac_hvs)
-    tong_khonghopvs = int(data['tong_tuhoai'])+int(data['tong_thamdoi'])+int(data['tong_2ngan'])+int(data['tong_ongthonghoi']) + int(data['tong_loaikhac']) - int(tong_hopvs)
+    tong_hopvs = data["tong_hopvs"] if data["tong_hopvs"] is not None else 0
+#     tong_hopvs = int(tong_tuhoai_hvs)+int(tong_thamdoi_hvs)+int(tong_2ngan_hvs)+int(tong_ongthonghoi_hvs)+(tong_loaikhac_hvs)
+    tong_khonghopvs = int(data['tong_soho_conhatieu']) - int(tong_hopvs)
     if tong_khonghopvs <0:
         tong_khonghopvs = 0
     tong_caithien_hvs = int(data['tong_caithien']) if data['tong_caithien'] is not None else 0
