@@ -110,7 +110,6 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
-						console.log("save ve sinh cap thon model====",self.model.toJSON());
 						var tong_tuhoai = self.model.get("tong_tuhoai");
 						var tong_tuhoai_hvs = self.model.get("tong_tuhoai_hvs");
 						var tong_thamdoi = self.model.get("tong_thamdoi");
@@ -304,11 +303,22 @@ define(function (require) {
 							success: function (data) {
 								if (!!data && !!data.objects && (data.objects.length > 0)){
 									var id = data.objects[0].id;
-									self.model.set(data.objects[0]);
+									var data_model = data.objects[0];
+									self.model.set(data_model);
 									self.model.set("id",null);
 									self.model.set("nambaocao",nambaocao);
 									self.model.set("kybaocao",kybaocao);
 									self.model.set("loaikybaocao",loaikybaocao);
+									self.model.set("tong_soho_conhatieu_truocbaocao",data_model.tong_soho_conhatieu);
+									self.model.set("tong_soho_conhatieu_hvs_truocbaocao",data_model.tong_hopvs);
+									self.model.set("tong_soho_conhatieu_tuhoai_hvs_truocbaocao",data_model.tong_tuhoai_hvs);
+									self.model.set("tong_soho_conhatieu_thamdoi_hvs_truocbaocao",data_model.tong_thamdoi_hvs);
+									self.model.set("tong_soho_conhatieu_2ngan_hvs_truocbaocao",data_model.tong_2ngan_hvs);
+									self.model.set("tong_soho_conhatieu_vip_hvs_truocbaocao",data_model.tong_ongthonghoi_hvs);
+									self.model.set("tong_soho_conhatieu_caithien_hvs_truocbaocao",data_model.tong_caithien_hvs);
+									self.model.set("tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao",data_model.tong_caithien_hongheo_hvs);
+
+									
 //									var nhatieuthonhvs = self.model.get("nhatieuthonhvs");
 //									self.$el.find("#nhatieuthonhvs").html("");
 //									self.$el.find("#tongcongi").show();
