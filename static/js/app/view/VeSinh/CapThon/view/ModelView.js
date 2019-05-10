@@ -121,6 +121,7 @@ define(function (require) {
 						var tong_loaikhac = self.model.get("tong_loaikhac");
 						var tong_loaikhac_hvs = self.model.get("tong_loaikhac_hvs");
 						var tong_caithien = self.model.get("tong_caithien");
+						var tong_soho_conhatieu = self.model.get("tong_soho_conhatieu");
 						var tong_caithien_hongheo = self.model.get("tong_caithien_hongheo");
 						var tong_soho_conhatieu_hvs_xuongcap = self.model.get("tong_soho_conhatieu_hvs_xuongcap");
 						var tong_soho_conhatieu_tuhoai_hvs_xuongcap = self.model.get("tong_soho_conhatieu_tuhoai_hvs_xuongcap");
@@ -129,6 +130,28 @@ define(function (require) {
 						var tong_soho_conhatieu_vip_hvs_xuongcap = self.model.get("tong_soho_conhatieu_vip_hvs_xuongcap");
 						var tong_soho_conhatieu_caithien_hvs_xuongcap = self.model.get("tong_soho_conhatieu_caithien_hvs_xuongcap");
 						var tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = self.model.get("tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap");
+						
+						var tong_sohodtts = self.getApp().toInt(self.model.get("tong_sohodtts"));
+						var tong_sohongheo = self.getApp().toInt(self.model.get("tong_sohongheo"));
+						var tong_soho = self.getApp().toInt(self.model.get("tong_soho"));
+						if (tong_soho<=0){
+							self.getApp.notify("Tổng số hộ không phải lớn hơn 0");
+							return;
+						}
+						if(tong_sohodtts>0 && (tong_sohodtts-tong_soho)<0){
+							self.getApp.notify("Tổng số dân tộc thiểu số phải nhỏ hơn tổng số hộ");
+							return;
+						}
+						if(tong_sohongheo>0 && (tong_sohongheo-tong_soho)<0){
+							self.getApp.notify("Tổng số hộ nghèo phải nhỏ hơn tổng số hộ");
+							return;
+						}
+						
+						if(toInt(tong_soho_conhatieu) >0 && (toInt(tong_soho_conhatieu) - tong_soho)<0){
+							self.getApp.notify("Tổng số hộ có nhà tiêu phải nhỏ hơn tổng số hộ");
+							return;
+						}
+						
 						if(toInt(tong_tuhoai_hvs)-toInt(tong_tuhoai)>0){
 							self.getApp().notify('Tổng NVS Tự Hoại HVS không lớn hơn Tổng NVS Tự Hoại');
 							return;
