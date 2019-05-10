@@ -521,8 +521,8 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
             baocaokytruoc.tong_soho = 0
         if baocaokytruoc.tong_khongnhatieu is None:
             baocaokytruoc.tong_khongnhatieu = 0
-        data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
-        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_soho_conhatieu_hvs if baocaokytruoc.tong_soho_conhatieu_hvs is not None else 0
+        data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_soho_conhatieu if baocaokytruoc.tong_soho_conhatieu is not None else 0
+        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
         
         data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs if baocaokytruoc.tong_tuhoai_hvs is not None else 0
         data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs  if baocaokytruoc.tong_thamdoi_hvs is not None else 0
