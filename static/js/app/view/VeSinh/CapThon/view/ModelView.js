@@ -147,6 +147,11 @@ define(function (require) {
 							return;
 						}
 						
+						if(toInt(tong_soho_conhatieu_thamdoi_hvs_xuongcap) + toInt(tong_thamdoi_hvs)-toInt(tong_thamdoi)>0){
+							self.getApp().notify('Tổng NVS Thấm dội bị xuống cấp và HVS không lớn hơn Tổng NVS Thấm dội');
+							return;
+						}
+						
 						if(toInt(tong_2ngan_hvs)-toInt(tong_2ngan)>0){
 							self.getApp().notify('Tổng NVS Hai Ngăn HVS không lớn hơn Tổng NVS Hai Ngăn');
 							return;
@@ -154,6 +159,10 @@ define(function (require) {
 						
 						if(toInt(tong_soho_conhatieu_2ngan_hvs_xuongcap)-toInt(tong_2ngan)>0){
 							self.getApp().notify('Tổng NVS Hai Ngăn bị xuống cấp không lớn hơn Tổng NVS Hai Ngăn');
+							return;
+						}
+						if(toInt(tong_2ngan_hvs)+toInt(tong_soho_conhatieu_2ngan_hvs_xuongcap)-toInt(tong_2ngan)>0){
+							self.getApp().notify('Tổng NVS Hai Ngăn bị xuống cấp và HVS không lớn hơn Tổng NVS Hai Ngăn');
 							return;
 						}
 						
@@ -164,6 +173,10 @@ define(function (require) {
 						
 						if(toInt(tong_soho_conhatieu_vip_hvs_xuongcap)-toInt(tong_ongthonghoi)>0){
 							self.getApp().notify('Tổng NVS Ống Thông Hơi bị xuống cấp không lớn hơn Tổng NVS Ống Thông Hơi');
+							return;
+						}
+						if(toInt(tong_ongthonghoi_hvs)+toInt(tong_soho_conhatieu_vip_hvs_xuongcap)-toInt(tong_ongthonghoi)>0){
+							self.getApp().notify('Tổng NVS Ống Thông Hơi bị xuống cấp và HVS không lớn hơn Tổng NVS Ống Thông Hơi');
 							return;
 						}
 						
@@ -178,11 +191,11 @@ define(function (require) {
 						}
 						
 						if(toInt(tong_caithien_hongheo)-toInt(tong_caithien)>0){
-							self.getApp().notify('Tổng Hộ nghèo có NVS được cải thiện không hợp lệ');
+							self.getApp().notify('Tổng Hộ nghèo có NVS được cải thiện không lớn hơn tổng hộ có NVS được cải thiện');
 							return;
 						}
 						if(toInt(tong_soho_conhatieu_caithien_hvs_xuongcap)-toInt(tong_caithien)>0){
-							self.getApp().notify('Tổng Hộ nghèo có NVS được cải thiện không hợp lệ');
+							self.getApp().notify('Tổng Hộ có NVS được cải thiện bị xuống cấp không lớn hơn tổng hộ có NVS được cải thiện');
 							return;
 						}
 						self.model.save(null, {
@@ -399,52 +412,6 @@ define(function (require) {
 					self.$el.find("#xaphuong").prop('disabled', true);
 				}
 			}
-//			self.$el.find("#addItem").unbind("click").bind("click", function () {
-//				if(self.model.get("thonxom") === null || !self.model.get("thonxom")){
-//					self.getApp().notify({message:"Chọn thông tin thôn/xóm trước khi thêm hộ gia đình!"}, {type: "danger"});
-//					return;
-//				}
-//				self.$el.find("#nhatieuthonhvs").show();
-//				var view_hogiadinh = new HoGiaDinhItemDialog({"viewData":{"thonxom_id": self.model.get("thonxom").id, "chuongtrinhsup":self.model.get("thuocsuprsws")}});
-//				view_hogiadinh.dialog({size: "large"});
-//				view_hogiadinh.on("close", function(data){
-//					var view = new NhaTieuThonHVSItemView({"viewData":{"chuongtrinhsup":self.model.get("thuocsuprsws")}});
-//					view.model.set("id",gonrin.uuid());
-//					var danhsachho = self.model.get("nhatieuthonhvs");
-//					for(var i=0; i< danhsachho.length; i++){
-//						var item_hogiadinh = danhsachho[i];
-//						if(item_hogiadinh.maho === data.maho){
-//							self.getApp().notify({message: "Hộ gia đình đã tồn tại trong báo cáo!"}, {type: "danger"});
-//							return;
-//						}
-//					}
-//					view.model.set("tenchuho", data.tenchuho);
-//					view.model.set("maho", data.maho);
-//					view.model.set("gioitinh", data.gioitinh);
-//					view.model.set("dantoc_id", data.dantoc_id);
-//					view.model.set("dantoc", data.dantoc);
-//					view.model.set("tendantoc",data.tendantoc);
-//					view.model.set("hongheo",data.hongheo);
-//					view.model.set("tuhoai",data.tuhoai);
-//					view.model.set("thamdoi",data.thamdoi);
-//					view.model.set("haingan",data.haingan);
-//					view.model.set("chimco_oth",data.chimco_oth);
-//					view.model.set("khongconhatieu",data.khongconhatieu);
-//					view.model.set("loaikhac",data.loaikhac);
-//					view.model.set("hopvesinh",data.hopvesinh);
-//					view.model.set("khonghopvesinh",data.khonghopvesinh);
-//					view.model.set("caithien",data.caithien);
-//					view.model.set("diemruataycoxaphong",data.diemruataycoxaphong);
-//					view.applyBindings();
-//					self.model.get("nhatieuthonhvs").push(view.model.toJSON());
-//					self.getApp().notify("Thêm hộ gia đình thành công");
-//					self.renderItemView(view.model.toJSON(), null);
-//					self.search_dshogiadinh();
-//					self.$el.find("#tongcongi").show();
-//					self.renderTinhTongI();
-//					self.updateUIChuongTrinhSUP();
-//				});
-//			});
 			if (id) {
 				this.model.set('id', id);
 				this.model.fetch({
@@ -496,10 +463,7 @@ define(function (require) {
 						}
 					},
 					complete:function(){
-//						self.updateUIChuongTrinhSUP();
-//						self.model.on("change:thuocsuprsws", function(){
-//							self.updateUIChuongTrinhSUP();
-//						});
+						self.updateUIChuongTrinhSUP();
 					}
 				});
 			} else {
@@ -510,21 +474,61 @@ define(function (require) {
 				}else{
 					self.model.set("thuocsuprsws",0);
 				}
-//				self.updateUIChuongTrinhSUP();
-//				self.model.on("change:thuocsuprsws", function(){
-//					self.updateUIChuongTrinhSUP();
-//				});
-
-				// self.$el.find(".remove_columns").hide();
-				
-//				self.model.on("change:thonxom", function(event, name){
-//					if(self.model.previous("thonxom") === null || self.model.previous("thonxom").id !== self.model.get("thonxom").id){
-//						self.$el.find("#nhatieuthonhvs").html("");
-//						self.model.set("nhatieuthonhvs",[]);
-//						self.$el.find("#tongcongi").hide();
-//					}		
-//				});
+				self.updateUIChuongTrinhSUP();
 			}
+			self.model.on("change",function(){
+				var tong_soho_conhatieu_xaymoi = self.getApp().toInt(self.model.get("tong_soho_conhatieu_xaymoi"));
+				var tong_soho_conhatieu_hvs_xuongcap = self.getApp().toInt(self.model.get("tong_soho_conhatieu_hvs_xuongcap"));
+				var tong_soho_conhatieu_hvs_truocbaocao = self.getApp().toInt(self.model.get("tong_soho_conhatieu_hvs_truocbaocao"));
+				var tong_soho = self.getApp().toInt(self.model.get("tong_soho"));
+				var tong_soho_conhatieu_hvs = tong_soho_conhatieu_xaymoi+ tong_soho_conhatieu_hvs_truocbaocao -tong_soho_conhatieu_hvs_xuongcap;
+				self.model.set("tong_hopvs",tong_soho_conhatieu_hvs);
+				if (tong_soho>0){
+					var tyle_hvs = (tong_soho_conhatieu_hvs/tong_soho)*100;
+					self.$el.find("#tyle_hvs").val(tyle_hvs.toFixed(2)+"%");
+				}else{
+					self.$el.find("#tyle_hvs").val("0%");
+				}
+				var tong_tuhoai_hvs = self.getApp().toInt(self.model.get("tong_tuhoai_hvs"));
+				var tong_tuhoai = self.getApp().toInt(self.model.get("tong_tuhoai"));
+				var tyle_hvs_tuhoai = 0;
+				if (tong_tuhoai>0){
+					tyle_hvs_tuhoai = (tong_tuhoai_hvs/tong_tuhoai)*100;
+				}
+				self.$el.find("#tyle_hvs_tuhoai").val(tyle_hvs_tuhoai.toFixed(2)+"%");
+				
+				var tong_thamdoi_hvs = self.getApp().toInt(self.model.get("tong_thamdoi_hvs"));
+				var tong_thamdoi = self.getApp().toInt(self.model.get("tong_thamdoi"));
+				var tyle_hvs_thamdoi = 0;
+				if (tong_thamdoi>0){
+					tyle_hvs_thamdoi = (tong_thamdoi_hvs/tong_thamdoi)*100;
+				}
+				self.$el.find("#tyle_hvs_thamdoi").val(tyle_hvs_thamdoi.toFixed(2)+"%");
+				
+				var tong_2ngan_hvs = self.getApp().toInt(self.model.get("tong_2ngan_hvs"));
+				var tong_2ngan = self.getApp().toInt(self.model.get("tong_2ngan"));
+				var tyle_hvs_2ngan = 0;
+				if (tong_2ngan>0){
+					tyle_hvs_2ngan = (tong_2ngan_hvs/tong_2ngan)*100;
+				}
+				self.$el.find("#tyle_hvs_2ngan").val(tyle_hvs_2ngan.toFixed(2)+"%");
+				
+				var tong_ongthonghoi_hvs = self.getApp().toInt(self.model.get("tong_ongthonghoi_hvs"));
+				var tong_ongthonghoi = self.getApp().toInt(self.model.get("tong_ongthonghoi"));
+				var tyle_hvs_ongthonghoi = 0;
+				if (tong_ongthonghoi>0){
+					tyle_hvs_ongthonghoi = (tong_ongthonghoi_hvs/tong_ongthonghoi)*100;
+				}
+				self.$el.find("#tyle_hvs_ongthonghoi").val(tyle_hvs_ongthonghoi.toFixed(2)+"%");
+				
+				var tong_loaikhac_hvs = self.getApp().toInt(self.model.get("tong_loaikhac_hvs"));
+				var tong_loaikhac = self.getApp().toInt(self.model.get("tong_loaikhac"));
+				var tyle_hvs_loaikhac = 0;
+				if (tong_loaikhac>0){
+					tyle_hvs_loaikhac = (tong_loaikhac_hvs/tong_loaikhac)*100;
+				}
+				self.$el.find("#tyle_hvs_loaikhac").val(tyle_hvs_loaikhac.toFixed(2)+"%");
+			});
 		},
 		updateUIChuongTrinhSUP:function(){
 			var self = this;

@@ -70,58 +70,46 @@ class VSCapThon(CommonModel):
     tong_nam = db.Column(db.Integer, default=0)
     tong_nu = db.Column(db.Integer, default=0)
     
-    tong_soho_conhatieu = db.Column(db.Integer, default=0)
+    tong_tuhoai = db.Column(db.Integer, default=0)
+    tong_tuhoai_hvs = db.Column(db.Integer, default=0)
+    tong_thamdoi = db.Column(db.Integer, default=0)
+    tong_thamdoi_hvs = db.Column(db.Integer, default=0)
+    tong_2ngan = db.Column(db.Integer, default=0)
+    tong_2ngan_hvs = db.Column(db.Integer, default=0)
+    tong_ongthonghoi = db.Column(db.Integer, default=0)
+    tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
+    tong_loaikhac = db.Column(db.Integer, default=0)
+    tong_loaikhac_hvs = db.Column(db.Integer, default=0)
     tong_khongnhatieu = db.Column(db.Integer, default=0)
     tong_hopvs = db.Column(db.Integer, default=0)#
     tong_khonghopvs = db.Column(db.Integer, default=0)#
-    
-    tong_soho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
-    tong_tuhoai = db.Column(db.Integer, default=0)
-    tong_tuhoai_hvs = db.Column(db.Integer, default=0)
-    tong_tuhoai_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
-    tong_thamdoi = db.Column(db.Integer, default=0)
-    tong_thamdoi_hvs = db.Column(db.Integer, default=0)
-    tong_thamdoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
-    tong_2ngan = db.Column(db.Integer, default=0)
-    tong_2ngan_hvs = db.Column(db.Integer, default=0)
-    tong_2ngan_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
-    tong_ongthonghoi = db.Column(db.Integer, default=0)
-    tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
-    tong_ongthonghoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
-    tong_loaikhac = db.Column(db.Integer, default=0)
-    tong_loaikhac_hvs = db.Column(db.Integer, default=0)
-    
-    
-    
     tong_caithien = db.Column(db.Integer, default=0)
     tong_caithien_hvs = db.Column(db.Integer, default=0)#
     tong_caithien_hongheo = db.Column(db.Integer, default=0)
     tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)#
-    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
     
     tong_diemruatay = db.Column(db.Integer, default=0)
     
     
+    tong_soho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
     
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
 
 Index('vscapthon_uq_idx', VSCapThon.loaikybaocao, VSCapThon.kybaocao, VSCapThon.nambaocao, VSCapThon.donvi_id, VSCapThon.thonxom_id, unique=True)
 
@@ -178,55 +166,47 @@ class VSCapXa(CommonModel):
     tong_danso = db.Column(db.Integer)
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
-    tong_soho_conhatieu = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_hvs = db.Column(db.Integer, default=0)
     
     tong_tuhoai = db.Column(db.Integer, default=0)
     tong_tuhoai_hvs = db.Column(db.Integer, default=0)
-    tong_tuhoai_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_thamdoi = db.Column(db.Integer, default=0)
     tong_thamdoi_hvs = db.Column(db.Integer, default=0)
-    tong_thamdoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_2ngan = db.Column(db.Integer, default=0)
     tong_2ngan_hvs = db.Column(db.Integer, default=0)
-    tong_2ngan_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_ongthonghoi = db.Column(db.Integer, default=0)
     tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
-    tong_ongthonghoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_loaikhac = db.Column(db.Integer, default=0)
     tong_loaikhac_hvs = db.Column(db.Integer, default=0)
-    
     tong_khongnhatieu = db.Column(db.Integer, default=0)
-    tong_hopvs = db.Column(db.Integer, default=0)#
-    tong_khonghopvs = db.Column(db.Integer, default=0)#
-    
+    tong_hopvs = db.Column(db.Integer, default=0)
+    tong_khonghopvs = db.Column(db.Integer, default=0)
     tong_caithien = db.Column(db.Integer, default=0)
-    tong_caithien_hvs = db.Column(db.Integer, default=0)#
+    tong_caithien_hvs = db.Column(db.Integer, default=0)
     tong_caithien_hongheo = db.Column(db.Integer, default=0)
-    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)#
-    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)
     
     tong_diemruatay = db.Column(db.Integer, default=0)
     
+    
     tong_soho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_xaymoi = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
     danhsachbaocao = db.Column(JSONB())
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapXa_donvi_id_nambaocao'),)
 Index('vscapxa_uq_idx', VSCapXa.loaikybaocao, VSCapXa.kybaocao, VSCapXa.nambaocao, VSCapXa.donvi_id, unique=True)
@@ -259,55 +239,46 @@ class VSCapHuyen(CommonModel):
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
     
-    tong_soho_conhatieu = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_hvs = db.Column(db.Integer, default=0)
-    
     tong_tuhoai = db.Column(db.Integer, default=0)
     tong_tuhoai_hvs = db.Column(db.Integer, default=0)
-    tong_tuhoai_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_thamdoi = db.Column(db.Integer, default=0)
     tong_thamdoi_hvs = db.Column(db.Integer, default=0)
-    tong_thamdoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_2ngan = db.Column(db.Integer, default=0)
     tong_2ngan_hvs = db.Column(db.Integer, default=0)
-    tong_2ngan_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_ongthonghoi = db.Column(db.Integer, default=0)
     tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
-    tong_ongthonghoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_loaikhac = db.Column(db.Integer, default=0)
     tong_loaikhac_hvs = db.Column(db.Integer, default=0)
-    
     tong_khongnhatieu = db.Column(db.Integer, default=0)
-    tong_hopvs = db.Column(db.Integer, default=0)#
-    tong_khonghopvs = db.Column(db.Integer, default=0)#
-    
+    tong_hopvs = db.Column(db.Integer, default=0)
+    tong_khonghopvs = db.Column(db.Integer, default=0)
     tong_caithien = db.Column(db.Integer, default=0)
-    tong_caithien_hvs = db.Column(db.Integer, default=0)#
+    tong_caithien_hvs = db.Column(db.Integer, default=0)
     tong_caithien_hongheo = db.Column(db.Integer, default=0)
-    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)#
-    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)
     
     tong_diemruatay = db.Column(db.Integer, default=0)
     
+    
     tong_soho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_xaymoi = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
     danhsachbaocao = db.Column(JSONB())
 
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapHuyen_donvi_id_nambaocao'),)
@@ -341,55 +312,46 @@ class VSCapTinh(CommonModel):
     tong_nam = db.Column(db.Integer)
     tong_nu = db.Column(db.Integer)
     
-    tong_soho_conhatieu = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_hvs = db.Column(db.Integer, default=0)
-    
     tong_tuhoai = db.Column(db.Integer, default=0)
     tong_tuhoai_hvs = db.Column(db.Integer, default=0)
-    tong_tuhoai_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_thamdoi = db.Column(db.Integer, default=0)
     tong_thamdoi_hvs = db.Column(db.Integer, default=0)
-    tong_thamdoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_2ngan = db.Column(db.Integer, default=0)
     tong_2ngan_hvs = db.Column(db.Integer, default=0)
-    tong_2ngan_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_ongthonghoi = db.Column(db.Integer, default=0)
     tong_ongthonghoi_hvs = db.Column(db.Integer, default=0)
-    tong_ongthonghoi_xaymoi = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
-    
     tong_loaikhac = db.Column(db.Integer, default=0)
     tong_loaikhac_hvs = db.Column(db.Integer, default=0)
-    
     tong_khongnhatieu = db.Column(db.Integer, default=0)
-    tong_hopvs = db.Column(db.Integer, default=0)#
-    tong_khonghopvs = db.Column(db.Integer, default=0)#
-    
+    tong_hopvs = db.Column(db.Integer, default=0)
+    tong_khonghopvs = db.Column(db.Integer, default=0)
     tong_caithien = db.Column(db.Integer, default=0)
-    tong_caithien_hvs = db.Column(db.Integer, default=0)#
+    tong_caithien_hvs = db.Column(db.Integer, default=0)
     tong_caithien_hongheo = db.Column(db.Integer, default=0)
-    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)#
-    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_caithien_hongheo_hvs = db.Column(db.Integer, default=0)
     
     tong_diemruatay = db.Column(db.Integer, default=0)
     
+    
     tong_soho_conhatieu_truocbaocao = db.Column(db.Integer, default=0)
-    tong_soho_conhatieu_xaymoi = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_truocbaocao = db.Column(db.Integer, default=0)
     tong_soho_conhatieu_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_tuhoai_hvs_xuongcap = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_thamdoi_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_2ngan_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_2ngan_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_vip_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_vip_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hvs_xuongcap = db.Column(db.Integer, default=0)
+    
+    tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao = db.Column(db.Integer, default=0)
+    tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = db.Column(db.Integer, default=0)
     danhsachbaocao = db.Column(JSONB())
 #     __table_args__ = (UniqueConstraint('donvi_id', 'nambaocao', name='uq_CapTinh_donvi_id_nambaocao'),)
 Index('vscaptinh_uq_idx', VSCapTinh.loaikybaocao, VSCapTinh.kybaocao, VSCapTinh.nambaocao, VSCapTinh.donvi_id, unique=True)

@@ -9,7 +9,7 @@
 </style> -->
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Đánh giá hiện trạng sử dụng vệ sinh hộ gia đình - Cấp Thôn</h3>
+		<h3>Báo cáo vệ sinh hộ gia đình - Cấp Thôn</h3>
 	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
 	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
@@ -87,13 +87,239 @@
 
 		<div class="table2 row" style="margin-top: 20px; margin-bottom: 20px">
 			<div class="col-md-12">
-				<h3 style="margin-bottom: 10px;">II. Thông tin về nhà tiêu hộ gia đình</h3>
-				<small>(chú thích: HVS - Hợp Vệ Sinh, NVS - Nhà Vệ Sinh)</small>
+				<h3 style="margin-bottom: 10px;">II. Báo cáo vệ sinh nhà tiêu hộ gia đình</h3>
+				<small>(chú thích: HVS - Hợp Vệ Sinh)</small>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-12">
+				<table class="is-table">
+					<tbody>
+						<tr>
+							<td colspan="2">Số hộ có nhà tiêu</td>
+							<td colspan="2"><input type="text" class="form-control" data-bind="value:tong_soho_conhatieu" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">Số hộ có nhà tiêu HVS</td>
+							<td colspan="2"><input disabled  type="text" class="form-control" data-bind="value:tong_hopvs" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">Số hộ có nhà tiêu HVS mới được xây dựng trong kỳ báo cáo</td>
+							<td colspan="2"><input type="text" class="form-control" data-bind="value:tong_soho_conhatieu_xaymoi" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">Số hộ có nhà tiêu HVS bị xuống cấp thành nhà tiêu không HVS trong kỳ báo cáo</td>
+							<td colspan="2"><input type="text" class="form-control" data-bind="value:tong_soho_conhatieu_hvs_xuongcap" /></td>
+						</tr>
+						<tr>
+							<td colspan="2">Tỷ lệ % hộ có nhà tiêu HVS</td>
+							<td colspan="2"><input disabled id="tyle_hvs" type="text" class="form-control" /></td>
+						</tr>
+						<!-- start nha tieu tu hoai  -->
+						<tr>
+							<td rowspan="5">Nhà tiêu tự hoại</td>
+							<td>Số hộ có nhà tiêu</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_tuhoai" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số hộ có nhà tiêu HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_tuhoai_hvs" />
+							</td>
+						</tr>
+						<tr>
+							<td>Tỷ lệ % HVS</td>
+							<td class="text-center" colspan="2">
+								 <input id="tyle_hvs_tuhoai" type="text" disabled class="form-control" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS mới được xây dựng trong kỳ báo cáo</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_tuhoai_xaymoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS bị xuống cấp thành nhà tiêu không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_tuhoai_hvs_xuongcap" />
+							</td>
+						</tr>
+						<!-- end nha tieu tu hoai  -->
+						
+						<!-- start Nhà tiêu thấm dội nước  -->
+						<tr>
+							<td rowspan="5">Nhà tiêu thấm dội nước</td>
+							<td>Số hộ có nhà tiêu</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_thamdoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số hộ có nhà tiêu HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_thamdoi_hvs" />
+							</td>
+						</tr>
+						<tr>
+							<td>Tỷ lệ % HVS</td>
+							<td class="text-center" colspan="2">
+								 <input id="tyle_hvs_thamdoi" type="text" disabled class="form-control"/>
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS mới được xây dựng trong kỳ báo cáo</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_thamdoi_xaymoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS bị xuống cấp thành nhà tiêu không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_thamdoi_hvs_xuongcap" />
+							</td>
+						</tr>
+						<!-- end nha tieu Nhà tiêu thấm dội nước  -->
+						
+						<!-- start Nhà tiêu hai ngăn  -->
+						<tr>
+							<td rowspan="5">Nhà tiêu hai ngăn</td>
+							<td>Số hộ có nhà tiêu</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_2ngan" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số hộ có nhà tiêu HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_2ngan_hvs" />
+							</td>
+						</tr>
+						<tr>
+							<td>Tỷ lệ % HVS</td>
+							<td class="text-center" colspan="2">
+								 <input id="tyle_hvs_2ngan" type="text" disabled class="form-control" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS mới được xây dựng trong kỳ báo cáo</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_2ngan_xaymoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS bị xuống cấp thành nhà tiêu không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_2ngan_hvs_xuongcap" />
+							</td>
+						</tr>
+						<!-- end Nhà tiêu hai ngăn  -->
+						
+						<!-- start Nhà tiêu chìm có ống thông hơi  -->
+						<tr>
+							<td rowspan="5">Nhà tiêu chìm có ống thông hơi</td>
+							<td>Số hộ có nhà tiêu</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_ongthonghoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số hộ có nhà tiêu HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_ongthonghoi_hvs" />
+							</td>
+						</tr>
+						<tr>
+							<td>Tỷ lệ % HVS</td>
+							<td class="text-center" colspan="2">
+								 <input id="tyle_hvs_ongthonghoi" type="text" disabled class="form-control" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS mới được xây dựng trong kỳ báo cáo</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_ongthonghoi_xaymoi" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số nhà tiêu HVS bị xuống cấp thành nhà tiêu không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_vip_hvs_xuongcap" />
+							</td>
+						</tr>
+						<!-- end Nhà tiêu chìm có ống thông hơi -->
+						
+						<!-- start loại khác  -->
+						<tr>
+							<td rowspan="3">Loại khác</td>
+							<td>Số hộ có nhà tiêu</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_loaikhac" />
+							</td>
+						</tr>
+						<tr>
+							<td>Số hộ có nhà tiêu HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_loaikhac_hvs" />
+							</td>
+						</tr>
+						<tr>
+							<td>Tỷ lệ % HVS</td>
+							<td class="text-center" colspan="2">
+								 <input id="tyle_hvs_loaikhac" type="text" disabled class="form-control"  />
+							</td>
+						</tr>
+						<!-- end Loại khác -->
+						
+						<!-- start chương trình SUP   -->
+						<tr class="chuongtrinhsup">
+							<td rowspan="6">Chương trình SupRSWS</td>
+							<td>Số hộ có nhà tiêu được cải thiện</td>
+							<td class="text-center" colspan="2">
+								<input type="number" min="0" class="form-control" data-bind="value:tong_caithien" />
+							</td>
+						</tr>
+						<tr  class="chuongtrinhsup">
+							<td>Số hộ có nhà tiêu được cải thiện HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_caithien_hvs" />
+							</td>
+						</tr>
+						<tr  class="chuongtrinhsup">
+							<td>Số hộ có nhà tiêu được cải thiện HVS bị xuống cấp thành không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_caithien_hvs_xuongcap" />
+							</td>
+						</tr>
+						<tr class="chuongtrinhsup">
+							<td>Số hộ có nhà tiêu được cải thiện là hộ nghèo</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_caithien_hongheo" />
+							</td>
+						</tr>
+						<tr class="chuongtrinhsup">
+							<td>Số hộ có nhà tiêu được cải thiện là hộ nghèo có nhà tiêu HVS bị xuống cấp thành không HVS</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap" />
+							</td>
+						</tr>
+						<tr class="chuongtrinhsup">
+							<td>Số hộ có nhà tiêu có điểm rửa tay</td>
+							<td class="text-center" colspan="2">
+								 <input type="number" min="0" class="form-control" data-bind="value:tong_diemruatay" />
+							</td>
+						</tr>
+						<!-- end Loại khác -->
+						
+					</tbody>
+				</table>
+			</div>
+		
+		
+			<!-- <div class="col-md-6">
                 <div class="form-group">
                   <label>Tổng NVS Tự Hoại</label>
                   <input autofocus type="number" data-bind="value:tong_tuhoai" class="form-control">
@@ -186,7 +412,7 @@
                 </div>
                 
 			
-           </div>
+           </div> -->
 		</div>
 	</div>
 </div>

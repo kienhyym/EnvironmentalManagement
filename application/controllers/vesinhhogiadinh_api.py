@@ -379,7 +379,7 @@ async def TimKiemBaoCaoVeSinh(request):
                                                         VSCapXa.loaikybaocao == loaikybaocao, \
                                                         VSCapXa.kybaocao == kybaocao, \
                                                         VSCapXa.xaphuong_id == xaphuong_id)).first()
-        print("data recordsss", records)
+        print("vesinhhogiadinh.TimKiemBaoCaoVeSinh.data recordsss", records)
     response = to_dict(records)
     if response is not None:
         return json(response)
@@ -521,8 +521,9 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
             baocaokytruoc.tong_soho = 0
         if baocaokytruoc.tong_khongnhatieu is None:
             baocaokytruoc.tong_khongnhatieu = 0
-        data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_soho - baocaokytruoc.tong_khongnhatieu
-        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
+        data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
+        data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_soho_conhatieu_hvs if baocaokytruoc.tong_soho_conhatieu_hvs is not None else 0
+        
         data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs if baocaokytruoc.tong_tuhoai_hvs is not None else 0
         data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs  if baocaokytruoc.tong_thamdoi_hvs is not None else 0
         data["tong_soho_conhatieu_2ngan_hvs_truocbaocao"] = baocaokytruoc.tong_2ngan_hvs if baocaokytruoc.tong_2ngan_hvs is not None else 0
@@ -548,54 +549,161 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
     data['tong_khonghopvs'] = tong_khonghopvs
     data['tong_caithien_hvs'] = tong_caithien_hvs
     data['tong_caithien_hongheo_hvs'] = tong_caithien_hongheo_hvs
-    print("tong_hopvs",data['tong_hopvs'] )
-#         nhatieuthon_kytruoc  = baocaokytruoc.nhatieuthonhvs
-#         nhatieuthon_kyhientai = data["nhatieuthonhvs"]
-#         tong_soho_conhatieu_hvs_xuongcap = 0
-#         tong_soho_conhatieu_tuhoai_hvs_xuongcap = 0
-#         tong_soho_conhatieu_thamdoi_hvs_xuongcap = 0
-#         tong_soho_conhatieu_2ngan_hvs_xuongcap = 0
-#         tong_soho_conhatieu_vip_hvs_xuongcap = 0
-#         tong_soho_conhatieu_caithien_hvs_xuongcap = 0
-#         tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = 0
-#         for nt_truoc in nhatieuthon_kytruoc:
-#             for nt_sau in nhatieuthon_kyhientai:
-#                 if nt_truoc["maho"] == nt_sau["maho"]:
-#                     if(nt_truoc["hopvesinh"] == 1 and (nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_hvs_xuongcap += 1
-#                      
-#                     if((nt_truoc["tuhoai"] == 1 and nt_truoc["hopvesinh"] == 1) and (nt_sau["tuhoai"] is None or nt_sau["tuhoai"] == 0 or nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_tuhoai_hvs_xuongcap += 1
-#                      
-#                     if((nt_truoc["thamdoi"] == 1 and nt_truoc["hopvesinh"] == 1) and (nt_sau["thamdoi"] is None or nt_sau["thamdoi"]== 0  or nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_thamdoi_hvs_xuongcap += 1
-#                      
-#                     if((nt_truoc["haingan"] == 1 and nt_truoc["hopvesinh"] == 1) and (nt_sau["haingan"] is None or nt_sau["haingan"] == 0 or nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_2ngan_hvs_xuongcap += 1
-#                          
-#                     if((nt_truoc["chimco_oth"] == 1 and nt_truoc["hopvesinh"] == 1 ) and (nt_sau["chimco_oth"] is None or nt_sau["chimco_oth"] == 0 or nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_vip_hvs_xuongcap += 1
-#                          
-#                     if((nt_truoc["caithien"] == 1 and nt_truoc["hopvesinh"] == 1) and (nt_sau["caithien"] is None or nt_sau["caithien"] == 0 or nt_sau["hopvesinh"] is None or nt_sau["hopvesinh"] == 0)):
-#                         tong_soho_conhatieu_caithien_hvs_xuongcap += 1
-#                         if(nt_truoc["hongheo"] == 1 and nt_sau["hongheo"] == 1):
-#                             tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap += 1
-#         data["tong_soho_conhatieu_hvs_xuongcap"] = tong_soho_conhatieu_hvs_xuongcap
-#         data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = tong_soho_conhatieu_tuhoai_hvs_xuongcap
-#         data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = tong_soho_conhatieu_thamdoi_hvs_xuongcap
-#         data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = tong_soho_conhatieu_2ngan_hvs_xuongcap
-#         data["tong_soho_conhatieu_vip_hvs_xuongcap"] = tong_soho_conhatieu_vip_hvs_xuongcap
-#         data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hvs_xuongcap
-#         data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap
 
 async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, data=None):
+    if data is not None and "danhsachbaocao" in data and data['danhsachbaocao'] is not None and len(data['danhsachbaocao'])>0:
+        total_chuholanu = 0
+        total_sohongheo = 0
+        total_dtts = 0
+        total_soNam = 0
+        total_soNu = 0
+        total_danso = 0
+        total_soho = 0
+        tong_tuhoai = 0
+        tong_tuhoai_hvs = 0
+        tong_tuhoai_xaymoi = 0
+        tong_soho_conhatieu_tuhoai_hvs_xuongcap = 0
+        
+        
+        tong_thamdoi = 0
+        tong_thamdoi_hvs = 0
+        tong_thamdoi_xaymoi = 0
+        tong_soho_conhatieu_thamdoi_hvs_xuongcap = 0
+        
+        tong_2ngan = 0
+        tong_2ngan_hvs = 0
+        tong_2ngan_xaymoi = 0
+        tong_soho_conhatieu_2ngan_hvs_xuongcap = 0
+        
+        tong_ongthonghoi = 0
+        tong_ongthonghoi_hvs = 0
+        tong_ongthonghoi_xaymoi = 0
+        tong_soho_conhatieu_vip_hvs_xuongcap = 0
+        
+        tong_loaikhac = 0
+        tong_loaikhac_hvs = 0
+        
+        tong_khongnhatieu = 0
+        tong_hopvs = 0
+        tong_khonghopvs = 0
+        tong_soho_conhatieu_xaymoi = 0
+        tong_soho_conhatieu_hvs_xuongcap = 0
+        
+        tong_caithien = 0
+        tong_caithien_hvs = 0
+        tong_caithien_hongheo = 0
+        tong_caithien_hongheo_hvs = 0
+        tong_soho_conhatieu_caithien_hvs_xuongcap = 0
+        tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = 0
+        
+        
+    
+        tong_diemruatay = 0
+        for bc in data['danhsachbaocao']:
+            total_chuholanu += int(bc['tong_chuholanu']) if bc['tong_chuholanu'] is not None else 0
+            total_sohongheo += int(bc['tong_sohongheo']) if bc['tong_sohongheo'] is not None else 0
+            total_dtts += int(bc['tong_sohodtts']) if bc['tong_sohodtts'] is not None else 0
+            total_soNam += int(bc['tong_nam']) if bc['tong_nam'] is not None else 0
+            total_soNu += int(bc['tong_nu']) if bc['tong_nu'] is not None else 0
+            total_soho += int(bc['tong_soho']) if bc['tong_soho'] is not None else 0
+            total_danso += int(bc['tong_danso']) if bc['tong_danso'] is not None else 0
+            
+            
+            tong_tuhoai = tong_tuhoai + int(bc['tong_tuhoai']) if bc['tong_tuhoai'] is not None else 0
+            tong_tuhoai_hvs = tong_tuhoai_hvs + int(bc['tong_tuhoai_hvs']) if bc['tong_tuhoai_hvs'] is not None else 0
+            tong_tuhoai_xaymoi = tong_tuhoai_xaymoi + int(bc['tong_tuhoai_xaymoi']) if bc['tong_tuhoai_xaymoi'] is not None else 0
+            tong_soho_conhatieu_tuhoai_hvs_xuongcap = tong_soho_conhatieu_tuhoai_hvs_xuongcap + int(bc['tong_soho_conhatieu_tuhoai_hvs_xuongcap']) if bc['tong_soho_conhatieu_tuhoai_hvs_xuongcap'] is not None else 0
+    
+    
+            tong_thamdoi = tong_thamdoi + int(bc['tong_thamdoi']) if bc['tong_thamdoi'] is not None else 0
+            tong_thamdoi_hvs = tong_thamdoi_hvs + int(bc['tong_thamdoi_hvs']) if bc['tong_thamdoi_hvs'] is not None else 0
+            tong_thamdoi_xaymoi = tong_thamdoi_xaymoi + int(bc['tong_thamdoi_xaymoi']) if bc['tong_thamdoi_xaymoi'] is not None else 0
+            tong_soho_conhatieu_thamdoi_hvs_xuongcap = tong_soho_conhatieu_thamdoi_hvs_xuongcap + int(bc['tong_soho_conhatieu_thamdoi_hvs_xuongcap']) if bc['tong_soho_conhatieu_thamdoi_hvs_xuongcap'] is not None else 0
+    
+            tong_2ngan = tong_2ngan + int(bc['tong_2ngan']) if bc['tong_2ngan'] is not None else 0
+            tong_2ngan_hvs = tong_2ngan_hvs + int(bc['tong_2ngan_hvs']) if bc['tong_2ngan_hvs'] is not None else 0
+            tong_2ngan_xaymoi = tong_2ngan_xaymoi + int(bc['tong_2ngan_xaymoi']) if bc['tong_2ngan_xaymoi'] is not None else 0
+            tong_soho_conhatieu_2ngan_hvs_xuongcap = tong_soho_conhatieu_2ngan_hvs_xuongcap + int(bc['tong_soho_conhatieu_2ngan_hvs_xuongcap']) if bc['tong_soho_conhatieu_2ngan_hvs_xuongcap'] is not None else 0
+    
+            tong_ongthonghoi = tong_ongthonghoi + int(bc['tong_ongthonghoi']) if bc['tong_ongthonghoi'] is not None else 0
+            tong_ongthonghoi_hvs = tong_ongthonghoi_hvs + int(bc['tong_ongthonghoi_hvs']) if bc['tong_ongthonghoi_hvs'] is not None else 0
+            tong_ongthonghoi_xaymoi = tong_ongthonghoi_xaymoi + int(bc['tong_ongthonghoi_xaymoi']) if bc['tong_ongthonghoi_xaymoi'] is not None else 0
+            tong_soho_conhatieu_vip_hvs_xuongcap = tong_soho_conhatieu_vip_hvs_xuongcap + int(bc['tong_soho_conhatieu_vip_hvs_xuongcap']) if bc['tong_soho_conhatieu_vip_hvs_xuongcap'] is not None else 0
+    
+            tong_loaikhac = tong_loaikhac + int(bc['tong_loaikhac']) if bc['tong_loaikhac'] is not None else 0
+            tong_loaikhac_hvs = tong_loaikhac_hvs + int(bc['tong_loaikhac_hvs']) if bc['tong_loaikhac_hvs'] is not None else 0
+    
+            tong_khongnhatieu = tong_khongnhatieu + int(bc['tong_khongnhatieu']) if bc['tong_khongnhatieu'] is not None else 0
+            tong_hopvs = tong_hopvs + int(bc['tong_hopvs']) if bc['tong_hopvs'] is not None else 0
+            tong_khonghopvs = tong_khonghopvs + int(bc['tong_khonghopvs']) if bc['tong_khonghopvs'] is not None else 0
+            tong_soho_conhatieu_xaymoi = tong_soho_conhatieu_xaymoi + int(bc['tong_soho_conhatieu_xaymoi']) if bc['tong_soho_conhatieu_xaymoi'] is not None else 0
+            tong_soho_conhatieu_hvs_xuongcap = tong_soho_conhatieu_hvs_xuongcap + int(bc['tong_soho_conhatieu_hvs_xuongcap']) if bc['tong_soho_conhatieu_hvs_xuongcap'] is not None else 0
+    
+            
+            tong_caithien = tong_caithien + int(bc['tong_caithien']) if bc['tong_caithien'] is not None else 0
+            tong_caithien_hvs = tong_caithien_hvs + int(bc['tong_caithien_hvs']) if bc['tong_caithien_hvs'] is not None else 0
+            tong_caithien_hongheo = tong_caithien_hongheo + int(bc['tong_caithien_hongheo']) if bc['tong_caithien_hongheo'] is not None else 0
+            tong_caithien_hongheo_hvs = tong_caithien_hongheo_hvs + int(bc['tong_caithien_hongheo_hvs']) if bc['tong_caithien_hongheo_hvs'] is not None else 0
+            tong_soho_conhatieu_caithien_hvs_xuongcap = tong_soho_conhatieu_caithien_hvs_xuongcap + int(bc['tong_soho_conhatieu_caithien_hvs_xuongcap']) if bc['tong_soho_conhatieu_caithien_hvs_xuongcap'] is not None else 0
+            tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap + int(bc['tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap']) if bc['tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap'] is not None else 0
+    
+            tong_diemruatay = tong_diemruatay + int(bc['tong_diemruatay']) if bc['tong_diemruatay'] is not None else 0
+    
+        tong_chuholanu = total_chuholanu
+        tong_sohongheo = total_sohongheo
+        tong_sohodtts = total_dtts
+        tong_nam = total_soNam
+        tong_nu = total_soNu
+        tong_danso = total_danso
+        tong_soho = total_soho
+        tong_sothon = len(data['danhsachbaocao'])
+        data["tong_sothon"] = tong_sothon
+        data["tong_soho"] = tong_soho
+        data["tong_danso"] = tong_danso
+        data["tong_nu"] = tong_nu
+        data["tong_nam"] = tong_nam
+        data["tong_sohodtts"] = tong_sohodtts
+        data["tong_sohongheo"] = tong_sohongheo
+        data["tong_chuholanu"] = tong_chuholanu
+        data["tong_diemruatay"] = tong_diemruatay
+        data["tong_caithien_hongheo_hvs"] = tong_caithien_hongheo_hvs
+        data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap
+        data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = tong_soho_conhatieu_caithien_hvs_xuongcap
+        data["tong_caithien_hongheo"] = tong_caithien_hongheo
+        data["tong_caithien_hvs"] = tong_caithien_hvs
+        data["tong_caithien"] = tong_caithien
+        data["tong_soho_conhatieu_hvs_xuongcap"] = tong_soho_conhatieu_hvs_xuongcap
+        data["tong_soho_conhatieu_xaymoi"] = tong_soho_conhatieu_xaymoi
+        data["tong_khonghopvs"] = tong_khonghopvs
+        data["tong_hopvs"] = tong_hopvs
+        data["tong_khongnhatieu"] = tong_khongnhatieu
+        data["tong_loaikhac_hvs"] = tong_loaikhac_hvs
+        data["tong_loaikhac"] = tong_loaikhac
+        data["tong_soho_conhatieu_vip_hvs_xuongcap"] = tong_soho_conhatieu_vip_hvs_xuongcap
+        data["tong_ongthonghoi_xaymoi"] = tong_ongthonghoi_xaymoi
+        data["tong_ongthonghoi_hvs"] = tong_ongthonghoi_hvs
+        data["tong_ongthonghoi"] = tong_ongthonghoi
+        data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = tong_soho_conhatieu_2ngan_hvs_xuongcap
+        data["tong_2ngan_xaymoi"] = tong_2ngan_xaymoi
+        data["tong_2ngan_hvs"] = tong_2ngan_hvs
+        data["tong_2ngan"] = tong_2ngan
+        data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = tong_soho_conhatieu_thamdoi_hvs_xuongcap
+        data["tong_thamdoi_xaymoi"] = tong_thamdoi_xaymoi
+        data["tong_thamdoi_hvs"] = tong_thamdoi_hvs
+        data["tong_thamdoi"] = tong_thamdoi
+        data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = tong_soho_conhatieu_tuhoai_hvs_xuongcap
+        data["tong_tuhoai_xaymoi"] = tong_tuhoai_xaymoi
+        data["tong_tuhoai_hvs"] = tong_tuhoai_hvs
+        data["tong_tuhoai"] = tong_tuhoai
+    
+    
     baocaokytruoc = db.session.query(BaoCao).filter(and_(BaoCao.donvi_id == currentuser.donvi_id, BaoCao.id !=data['id'])).order_by(desc(BaoCao.created_at)).first()    
     if baocaokytruoc is not None:
         if baocaokytruoc.tong_soho is None:
             baocaokytruoc.tong_soho = 0
         if baocaokytruoc.tong_khongnhatieu is None:
             baocaokytruoc.tong_khongnhatieu = 0
-        data["tong_soho_conhatieu_truocbaocao"] = (int(baocaokytruoc.tong_soho) - int(baocaokytruoc.tong_khongnhatieu))
+        data["tong_soho_conhatieu_truocbaocao"] = baocaokytruoc.tong_soho_conhatieu if baocaokytruoc.tong_soho_conhatieu is not None else 0
         data["tong_soho_conhatieu_hvs_truocbaocao"] = baocaokytruoc.tong_hopvs if baocaokytruoc.tong_hopvs is not None else 0
         data["tong_soho_conhatieu_tuhoai_hvs_truocbaocao"] = baocaokytruoc.tong_tuhoai_hvs if baocaokytruoc.tong_tuhoai_hvs is not None else 0
         data["tong_soho_conhatieu_thamdoi_hvs_truocbaocao"] = baocaokytruoc.tong_thamdoi_hvs  if baocaokytruoc.tong_thamdoi_hvs is not None else 0
@@ -604,13 +712,13 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         data["tong_soho_conhatieu_caithien_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hvs if baocaokytruoc.tong_caithien_hvs is not None else 0
         data["tong_soho_conhatieu_caithien_hongheo_hvs_truocbaocao"] = baocaokytruoc.tong_caithien_hongheo_hvs if baocaokytruoc.tong_caithien_hongheo_hvs is not None else 0
         
-        data["tong_soho_conhatieu_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_vip_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap is not None else 0
-        data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_tuhoai_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_tuhoai_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_thamdoi_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_thamdoi_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_2ngan_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_2ngan_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_vip_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_vip_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_caithien_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hvs_xuongcap is not None else 0
+#         data["tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap"] = baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap if baocaokytruoc.tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap is not None else 0
     
     
 async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
