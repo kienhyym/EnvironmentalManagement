@@ -690,6 +690,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                                 item_map_thongso["mathongso"] = obj_thongso["mathongso"]
                             
                             
+                            
+                            print("obj_thongso====",obj_thongso)
                             if "ketquakiemtra" not in obj_thongso or obj_thongso["ketquakiemtra"] is None or len(obj_thongso["ketquakiemtra"])==0:
                                 item_map_thongso['solan_khongdat'] = 1
                                 item_map_thongso["danhsach_donvicapnuoc"] = [{"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}]
