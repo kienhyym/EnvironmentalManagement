@@ -231,10 +231,10 @@ define(function (require) {
 				self.getApp().notify({message: "Phương pháp khử trùng không được để trống"},{type: "danger"});
 				return;
 			}
-			if (!self.model.get("tansuat_noikiem")) {
-				self.getApp().notify({message: "Tần suất thực hiện nội kiểm không được để trống"},{type: "danger"});
-				return;
-			}
+//			if (!self.model.get("tansuat_noikiem")) {
+//				self.getApp().notify({message: "Tần suất thực hiện nội kiểm không được để trống"},{type: "danger"});
+//				return;
+//			}
 			if (!self.model.get("diachi")) {
 				self.getApp().notify({message: "Địa chỉ cụ thể không được để trống"},{type: "danger"});
 				return;
