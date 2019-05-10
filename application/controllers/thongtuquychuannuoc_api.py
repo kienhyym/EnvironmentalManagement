@@ -689,29 +689,35 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                             if "mathongso" not in item_map_thongso:
                                 item_map_thongso["mathongso"] = obj_thongso["mathongso"]
                             
-                            for mauthongso in obj_thongso["ketquakiemtra"]:
-                                if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
-                                    item_thongso_khongdat = copy.deepcopy(obj_thongso)
-                                    if "solan_khongdat" not in item_map_thongso:
-                                        item_map_thongso["solan_khongdat"] = 1
-                                    else:
-                                        item_map_thongso["solan_khongdat"] += 1
-                                    
-                                    if "danhsach_donvicapnuoc" not in item_map_thongso:
-                                        item_map_thongso["danhsach_donvicapnuoc"] = [{"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}]
-                                    else:
-                                        danhsachdonvi = item_map_thongso["danhsach_donvicapnuoc"]
-                                        danhsachdonvi_new = []
-                                        check_exist_donvicapnuoc = False
-                                        for dv in danhsachdonvi:
-                                            if(dv['id'] == str(baocao.donvicapnuoc_id)):
-                                                check_exist_donvicapnuoc = True
-                                                dv['solan'] +=1
-                                            danhsachdonvi_new.append(dv)
-                                            
-                                        if check_exist_donvicapnuoc == False:
-                                            danhsachdonvi_new.append({"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}) 
-                                        item_map_thongso["danhsach_donvicapnuoc"] = danhsachdonvi_new
+                            
+                            if "ketquakiemtra" not in obj_thongso or obj_thongso["ketquakiemtra"] is None or len(obj_thongso["ketquakiemtra"])==0:
+                                item_map_thongso['solan_khongdat'] = 1
+                                item_map_thongso["danhsach_donvicapnuoc"] = [{"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}]
+                            else: 
+                    
+                                for mauthongso in obj_thongso["ketquakiemtra"]:
+                                    if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                        item_thongso_khongdat = copy.deepcopy(obj_thongso)
+                                        if "solan_khongdat" not in item_map_thongso:
+                                            item_map_thongso["solan_khongdat"] = 1
+                                        else:
+                                            item_map_thongso["solan_khongdat"] += 1
+                                        
+                                        if "danhsach_donvicapnuoc" not in item_map_thongso:
+                                            item_map_thongso["danhsach_donvicapnuoc"] = [{"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}]
+                                        else:
+                                            danhsachdonvi = item_map_thongso["danhsach_donvicapnuoc"]
+                                            danhsachdonvi_new = []
+                                            check_exist_donvicapnuoc = False
+                                            for dv in danhsachdonvi:
+                                                if(dv['id'] == str(baocao.donvicapnuoc_id)):
+                                                    check_exist_donvicapnuoc = True
+                                                    dv['solan'] +=1
+                                                danhsachdonvi_new.append(dv)
+                                                
+                                            if check_exist_donvicapnuoc == False:
+                                                danhsachdonvi_new.append({"id":str(baocao.donvicapnuoc_id),"ten":baocao.tendonvicapnuoc,"solan":1}) 
+                                            item_map_thongso["danhsach_donvicapnuoc"] = danhsachdonvi_new
                                     
                             map_thongso_khongdat[obj_thongso['id']] = item_map_thongso       
                                     
@@ -735,8 +741,6 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
 
     for key, value in map_thongso_khongdat.items():
         print("map_thongso_khongdat.value====",value)
-        if "solan_khongdat" not in value or value['solan_khongdat'] is None:
-            value['solan_khongdat'] = 0
         value["tyle"] = 0 if tong_mau_khongdat_quychuan_ngoaikiem_trungtam == 0 else round((value['solan_khongdat']/tong_mau_khongdat_quychuan_ngoaikiem_trungtam)*100, 2)
         thongso_khongdat_ngoaikiem_trungtam.append(value)
     
