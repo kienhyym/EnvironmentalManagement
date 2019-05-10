@@ -133,7 +133,7 @@ define(function (require) {
 							filters = {"$and": [
 							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
 							query
-						]};
+							]};
 						} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
 						filters = {"$and": [
 							{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
@@ -163,7 +163,7 @@ define(function (require) {
 //							{"trangthai":{"$eq":1}},
 //							query
 //							]};
-//					}
+					}
 					$col.data('gonrin').filter(filters);
 					//self.uiControl.filters = filters;
 					} else {
