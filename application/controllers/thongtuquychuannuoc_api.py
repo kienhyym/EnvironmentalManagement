@@ -735,6 +735,8 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
 
     for key, value in map_thongso_khongdat.items():
         print("map_thongso_khongdat.value====",value)
+        if "solan_khongdat" not in value or value['solan_khongdat'] is None:
+            value['solan_khongdat'] = 0
         value["tyle"] = 0 if tong_mau_khongdat_quychuan_ngoaikiem_trungtam == 0 else round((value['solan_khongdat']/tong_mau_khongdat_quychuan_ngoaikiem_trungtam)*100, 2)
         thongso_khongdat_ngoaikiem_trungtam.append(value)
     
