@@ -63,6 +63,7 @@ define(function (require) {
 					dataSource: [
 						{text: "Sử dụng clo", value: 1},
 						{text: "Sử dụng ozon", value: 0},
+						{text: "Loại khác", value: 10}
 					]
 				},
 				{
@@ -239,10 +240,10 @@ define(function (require) {
 				return;
 			}
 			if (tuyendonvi_id === 3) {
-				if (self.model.get("congsuat") >= 1000){
-					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
-					return;
-				}
+//				if (self.model.get("congsuat") >= 1000){
+//					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
+//					return;
+//				}
 				if (!self.model.get("tinhthanh")) {
 					self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
 					return;
@@ -253,10 +254,10 @@ define(function (require) {
 				}
 			}
 			if (tuyendonvi_id === 2) {
-				if (self.model.get("congsuat") < 1000){
-					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
-					return;
-				}
+//				if (self.model.get("congsuat") < 1000){
+//					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
+//					return;
+//				}
 				if (!self.model.get("tinhthanh")) {
 					self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
 					return;

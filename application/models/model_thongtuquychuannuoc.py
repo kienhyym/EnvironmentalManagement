@@ -49,8 +49,8 @@ class DonViCapNuoc(CommonModel):
     tongso_hogiadinh = db.Column(db.Integer)
     tansuat_noikiem = db.Column(db.Integer)
     nguonnuoc_nguyenlieu = db.Column(db.SmallInteger)#3-nuoc mat, 2-nuoc ngam, 1-ca hai
-    phuongphap_khutrung = db.Column(db.SmallInteger)#0-ozon, 1-clo
-    
+    phuongphap_khutrung = db.Column(db.SmallInteger)#0-ozon, 1-clo, 10-loaikhac
+    ghichu = db.Column(db.String)
     tinhthanh_id = db.Column(UUID(as_uuid=True), ForeignKey('tinhthanh.id'), nullable=True)
     tinhthanh = relationship('TinhThanh')
     quanhuyen_id = db.Column(UUID(as_uuid=True), ForeignKey('quanhuyen.id'), nullable=True)

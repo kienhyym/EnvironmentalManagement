@@ -73,7 +73,7 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 			} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, {"congsuat":{"$lt":1000}}]};
+				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, {"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}}]};
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
 
     		} else {
@@ -99,6 +99,7 @@ define(function (require) {
 				} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
 					var filters = {"$and": [
 						{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+						{"tongso_hogiadinh":{"$lt":500}},
 						{"congsuat":{"$lt":1000}},
 						query
 					]};
@@ -110,7 +111,7 @@ define(function (require) {
 					self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 	
 				} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
-					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, {"congsuat":{"$lt":1000}}]};
+					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},{"tongso_hogiadinh":{"$lt":500}}, {"congsuat":{"$lt":1000}}]};
 	//				this.uiControl.filters = {"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}, "congsuat":{"$lt":1000}};
 					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
 				} else {
@@ -135,6 +136,7 @@ define(function (require) {
 						} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
 						var filters = {"$and": [
 							{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
+							{"tongso_hogiadinh":{"$lt":500}},
 							{"congsuat":{"$lt":1000}},
 							query
 						]};

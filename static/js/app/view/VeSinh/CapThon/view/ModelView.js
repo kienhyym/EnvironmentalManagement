@@ -135,20 +135,20 @@ define(function (require) {
 						var tong_sohongheo = self.getApp().toInt(self.model.get("tong_sohongheo"));
 						var tong_soho = self.getApp().toInt(self.model.get("tong_soho"));
 						if (tong_soho<=0){
-							self.getApp.notify("Tổng số hộ không phải lớn hơn 0");
+							self.getApp().notify("Tổng số hộ không phải lớn hơn 0");
 							return;
 						}
 						if(tong_sohodtts>0 && (tong_sohodtts-tong_soho)<0){
-							self.getApp.notify("Tổng số dân tộc thiểu số phải nhỏ hơn tổng số hộ");
+							self.getApp().notify("Tổng số dân tộc thiểu số phải nhỏ hơn tổng số hộ");
 							return;
 						}
 						if(tong_sohongheo>0 && (tong_sohongheo-tong_soho)<0){
-							self.getApp.notify("Tổng số hộ nghèo phải nhỏ hơn tổng số hộ");
+							self.getApp().notify("Tổng số hộ nghèo phải nhỏ hơn tổng số hộ");
 							return;
 						}
 						
 						if(toInt(tong_soho_conhatieu) >0 && (toInt(tong_soho_conhatieu) - tong_soho)<0){
-							self.getApp.notify("Tổng số hộ có nhà tiêu phải nhỏ hơn tổng số hộ");
+							self.getApp().notify("Tổng số hộ có nhà tiêu phải nhỏ hơn tổng số hộ");
 							return;
 						}
 						

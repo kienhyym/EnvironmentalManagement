@@ -87,7 +87,7 @@ define(function (require) {
 						buttonClass: "btn-danger btn-sm",
 						label: "TRANSLATE:DELETE",
 						visible: function () {
-							return this.getApp().getRouter().getParam("id") !== null;
+							return false;
 						},
 						command: function () {
 							var self = this;

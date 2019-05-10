@@ -80,11 +80,13 @@ define(function (require) {
 
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
     		if (currentUser.donvi.tuyendonvi_id ===2){
-				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"congsuat":{"$gte":1000}},{"trangthai":{"$eq":1}}]};
+				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
+					{"$or":[{"tongso_hogiadinh":{"$gte":500}},
+						{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 			} else if (currentUser.donvi.tuyendonvi_id ===3){
-				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
+				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
     		} else {
     			self.uiControl.filters = {"trangthai":{"$eq":1}};
@@ -101,13 +103,14 @@ define(function (require) {
 				if (currentUser.donvi.tuyendonvi_id === 2){
 					 filters = {"$and": [
 						{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
-						{"congsuat":{"$gte":1000}},
+						{"$or":[{"tongso_hogiadinh":{"$gte":500}},{"congsuat":{"$gte":1000}}]}
 						{"trangthai":{"$eq":1}},
 						query
 					]};
 				} else if (currentUser.donvi.tuyendonvi_id ===3){
 					 filters = {"$and": [
 						{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
+						{"tongso_hogiadinh":{"$lt":500}}
 						{"congsuat":{"$lt":1000}},
 						{"trangthai":{"$eq":1}},
 						query
@@ -117,15 +120,15 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
 			}else{
 				if (currentUser.donvi.tuyendonvi_id ===2){
-					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"congsuat":{"$gte":1000}},{"trangthai":{"$eq":1}}]};
+					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"$or":[{"tongso_hogiadinh":{"$gte":500}},{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
 					self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 				} else if (currentUser.donvi.tuyendonvi_id ===3){
-					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
-					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
+					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"$and":[{"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}}]},{"trangthai":{"$eq":1}}]};
+					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
 	    		} else {
 	    			self.uiControl.filters = {"trangthai":{"$eq":1}};
-					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
+					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
 	    		}
 			}
     		self.applyBindings();
