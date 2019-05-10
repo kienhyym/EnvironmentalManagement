@@ -110,6 +110,7 @@ define(function (require) {
 					label: "TRANSLATE:SAVE",
 					command: function () {
 						var self = this;
+						console.log("save ve sinh cap thon model====",self.model.toJSON());
 						var tong_tuhoai = self.model.get("tong_tuhoai");
 						var tong_tuhoai_hvs = self.model.get("tong_tuhoai_hvs");
 						var tong_thamdoi = self.model.get("tong_thamdoi");

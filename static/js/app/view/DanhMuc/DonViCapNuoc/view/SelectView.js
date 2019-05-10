@@ -81,7 +81,7 @@ define(function (require) {
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
     		if (currentUser.donvi.tuyendonvi_id ===2){
 				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
-					{"$or":[{"tongso_hogiadinh":{"$gte":500}},
+					{"$or":[{"$and":[{"tongso_hogiadinh":{"$gt":0}},{"tongso_hogiadinh":{"$gte":500}}]},
 						{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
