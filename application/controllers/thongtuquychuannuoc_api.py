@@ -698,7 +698,7 @@ async def process_baocao_nuocsach_huyentinh_ketqua_ngoaikiem(baocao_ngoaikiems=N
                             else: 
                     
                                 for mauthongso in obj_thongso["ketquakiemtra"]:
-                                    if "danhgia" in mauthongso and mauthongso["danhgia"] == 0:
+                                    if "danhgia" in mauthongso and int(mauthongso["danhgia"]) == 0):
                                         item_thongso_khongdat = copy.deepcopy(obj_thongso)
                                         if "solan_khongdat" not in item_map_thongso:
                                             item_map_thongso["solan_khongdat"] = 1
