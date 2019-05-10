@@ -80,57 +80,135 @@ define(function (require) {
 
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
     		if (currentUser.donvi.tuyendonvi_id ===2){
-				this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
-					{"$or":[{"$and":[{"tongso_hogiadinh":{"$gt":0}},{"tongso_hogiadinh":{"$gte":500}}]},
-						{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
+				this.uiControl.filters = {"$and":[
+					{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
+					{"$or":[
+						{"$and":[
+							{"tongso_hogiadinh":{"$ne":null}},
+							{"tongso_hogiadinh":{"$gte":500}}
+							]
+						},
+						{"$and":[
+							{"$or":[
+								{"tongso_hogiadinh":{"$eq":null}},
+								{"tongso_hogiadinh":{"$eq":0}}
+								]
+							},
+							{"congsuat":{"$gte":1000}}
+							]
+						}
+						]
+					},
+					{"trangthai":{"$eq":1}}
+					]};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 			} else if (currentUser.donvi.tuyendonvi_id ===3){
-				this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}},{"trangthai":{"$eq":1}}]};
+				this.uiControl.filters = {"$and":[
+					{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, 
+					{"$or":[
+						{"$and":[
+							{"tongso_hogiadinh":{"$ne":null}},
+							{"tongso_hogiadinh":{"$lt":500}}
+							]
+						},
+						{"$and":[
+							{"$or":[
+								{"tongso_hogiadinh":{"$eq":null}},
+								{"tongso_hogiadinh":{"$eq":0}}
+								]
+							},
+							{"congsuat":{"$lt":1000}}
+							]
+						}
+						]
+					},
+					{"trangthai":{"$eq":1}}
+					]};
+				
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
     		} else {
     			self.uiControl.filters = {"trangthai":{"$eq":1}};
 				self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"}];
     		}
-			if(!filter.isEmptyFilter()) {
-				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
-				var query = {"$or":[
-					{"ma": {"$likeI": text }},
-					{"diachi": {"$likeI": text }},
-						{"ten": {"$likeI": text }},
-					]};
-				var filters = {"trangthai":{"$eq":1}};
-				if (currentUser.donvi.tuyendonvi_id === 2){
-					 filters = {"$and": [
-						{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
-						{"$or":[{"tongso_hogiadinh":{"$gte":500}},{"congsuat":{"$gte":1000}}]}
-						{"trangthai":{"$eq":1}},
-						query
-					]};
-				} else if (currentUser.donvi.tuyendonvi_id ===3){
-					 filters = {"$and": [
-						{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
-						{"tongso_hogiadinh":{"$lt":500}}
-						{"congsuat":{"$lt":1000}},
-						{"trangthai":{"$eq":1}},
-						query
-					]};
-				}
-				self.uiControl.filters = filters;
-				self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
-			}else{
-				if (currentUser.donvi.tuyendonvi_id ===2){
-					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"$or":[{"tongso_hogiadinh":{"$gte":500}},{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
-					self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
-
-				} else if (currentUser.donvi.tuyendonvi_id ===3){
-					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"$and":[{"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}}]},{"trangthai":{"$eq":1}}]};
-					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
-	    		} else {
-	    			self.uiControl.filters = {"trangthai":{"$eq":1}};
-					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
-	    		}
-			}
+//			if(!filter.isEmptyFilter()) {
+//				var text = !!filter.model.get("text") ? filter.model.get("text").trim() : "";
+//				var query = {"$or":[
+//					{"ma": {"$likeI": text }},
+//					{"diachi": {"$likeI": text }},
+//						{"ten": {"$likeI": text }},
+//					]};
+//				var filters = {"trangthai":{"$eq":1}};
+//				if (currentUser.donvi.tuyendonvi_id === 2){
+//					filters = {"$and":[
+//							{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
+//							{"$or":[
+//								{"$and":[
+//									{"tongso_hogiadinh":{"$ne":null}},
+//									{"tongso_hogiadinh":{"$gte":500}}
+//									]
+//								},
+//								{"$and":[
+//									{"$or":[
+//										{"tongso_hogiadinh":{"$eq":null}},
+//										{"tongso_hogiadinh":{"$eq":0}}
+//										]
+//									},
+//									{"congsuat":{"$gte":1000}}
+//									]
+//								}
+//								]
+//							},
+//							{"trangthai":{"$eq":1}},
+//							query
+//							]};
+//				} else if (currentUser.donvi.tuyendonvi_id ===3){
+////					 filters = {"$and": [
+////						{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
+////						{"tongso_hogiadinh":{"$lt":500}}
+////						{"congsuat":{"$lt":1000}},
+////						{"trangthai":{"$eq":1}},
+////						query
+////					]};
+//					 filters = {"$and":[
+//							{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, 
+//							{"$or":[
+//								{"$and":[
+//									{"tongso_hogiadinh":{"$ne":null}},
+//									{"tongso_hogiadinh":{"$lt":500}}
+//									]
+//								},
+//								{"$and":[
+//									{"$or":[
+//										{"tongso_hogiadinh":{"$eq":null}},
+//										{"tongso_hogiadinh":{"$eq":0}}
+//										]
+//									},
+//									{"congsuat":{"$lt":1000}}
+//									]
+//								}
+//								]
+//							},
+//							{"trangthai":{"$eq":1}},
+//							query
+//							]};
+//					 
+//				}
+//				self.uiControl.filters = filters;
+//				self.uiControl.orderBy = [{"field": "congsuat", "direction": "asc"}, {"field": "tinhthanh_id", "direction": "asc"}, {"field": "quanhuyen_id", "direction": "asc"}];
+//			}else{
+//				if (currentUser.donvi.tuyendonvi_id ===2){
+//					this.uiControl.filters = {"$and":[{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, {"$or":[{"tongso_hogiadinh":{"$gte":500}},{"congsuat":{"$gte":1000}}]},{"trangthai":{"$eq":1}}]};
+//					self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
+//
+//				} else if (currentUser.donvi.tuyendonvi_id ===3){
+//					this.uiControl.filters = {"$and":[{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, {"$and":[{"tongso_hogiadinh":{"$lt":500}},{"congsuat":{"$lt":1000}}]},{"trangthai":{"$eq":1}}]};
+//					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
+//	    		} else {
+//	    			self.uiControl.filters = {"trangthai":{"$eq":1}};
+//					self.uiControl.orderBy = [{"field": "congsuat", "direction": "desc"},{"field": "tongso_hogiadinh", "direction": "desc"}];
+//	    		}
+//			}
     		self.applyBindings();
     		
     		filter.on('filterChanged', function(evt) {
@@ -145,19 +223,63 @@ define(function (require) {
 						]};
 						var filters = {"trangthai":{"$eq":1}};
 						if (currentUser.donvi.tuyendonvi_id === 2){
-							 filters = {"$and": [
-								{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
-								{"congsuat":{"$gte":1000}},
-								{"trangthai":{"$eq":1}},
-								query
-							]};
+//							 filters = {"$and": [
+//								{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}},
+//								{"congsuat":{"$gte":1000}},
+//								{"trangthai":{"$eq":1}},
+//								query
+//							]};
+							 filters = {"$and":[
+									{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
+									{"$or":[
+										{"$and":[
+											{"tongso_hogiadinh":{"$ne":null}},
+											{"tongso_hogiadinh":{"$gte":500}}
+											]
+										},
+										{"$and":[
+											{"$or":[
+												{"tongso_hogiadinh":{"$eq":null}},
+												{"tongso_hogiadinh":{"$eq":0}}
+												]
+											},
+											{"congsuat":{"$gte":1000}}
+											]
+										}
+										]
+									},
+									{"trangthai":{"$eq":1}},
+									query
+									]};
 						} else if (currentUser.donvi.tuyendonvi_id ===3){
-							 filters = {"$and": [
-								{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
-								{"congsuat":{"$lt":1000}},
-								{"trangthai":{"$eq":1}},
-								query
-							]};
+//							 filters = {"$and": [
+//								{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
+//								{"congsuat":{"$lt":1000}},
+//								{"trangthai":{"$eq":1}},
+//								query
+//							]};
+							 filters = {"$and":[
+									{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}}, 
+									{"$or":[
+										{"$and":[
+											{"tongso_hogiadinh":{"$ne":null}},
+											{"tongso_hogiadinh":{"$lt":500}}
+											]
+										},
+										{"$and":[
+											{"$or":[
+												{"tongso_hogiadinh":{"$eq":null}},
+												{"tongso_hogiadinh":{"$eq":0}}
+												]
+											},
+											{"congsuat":{"$lt":1000}}
+											]
+										}
+										]
+									},
+									{"trangthai":{"$eq":1}},
+									query
+									]};
 						}
 						$col.data('gonrin').filter(filters);
 					} else {

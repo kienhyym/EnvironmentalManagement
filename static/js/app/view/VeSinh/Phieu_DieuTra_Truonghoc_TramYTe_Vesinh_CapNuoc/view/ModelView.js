@@ -66,7 +66,7 @@ define(function (require) {
                     valueField: "value",
                     dataSource: [{
                         value: 1,
-                        text: "Trường mẫu giáo",
+                        text: "Trường mầm non",
                     },
                     {
                         value: 2,
@@ -78,16 +78,16 @@ define(function (require) {
                     },
                     {
                         value: 4,
-                        text: "Trường trung học phổ thông",
+                        text: "Trường học liên cấp(có nhiều cấp học)",
                     },
-                    {
-                        value: 5,
-                        text: "Trường trung học dạy nghề",
-                    },
-                    {
-                        value: 6,
-                        text: "Trường nội trú",
-                    },
+//                    {
+//                        value: 5,
+//                        text: "Trường trung học dạy nghề",
+//                    },
+//                    {
+//                        value: 6,
+//                        text: "Trường nội trú",
+//                    },
                     {
                         value: 7,
                         text: "Trạm y tế",

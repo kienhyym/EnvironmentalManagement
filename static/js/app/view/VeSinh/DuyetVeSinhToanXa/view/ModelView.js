@@ -188,8 +188,8 @@ define(function (require) {
 				self.getApp().notify({message: "Năm đạt vệ sinh toàn xã bền vững không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
 				return;
 			}
-			if (toInt(nam_datvesinh_toanxa_benvung) < toInt(nam_datvesinh_toanxa) + toInt(2)) {
-				self.getApp().notify({ message: "Năm đạt vệ sinh xã bền vững không hợp lệ!" }, { type: "danger" });
+			if (toInt(nam_datvesinh_toanxa_benvung) !== toInt(nam_datvesinh_toanxa) + toInt(2)) {
+				self.getApp().notify({ message: "Năm đạt vệ sinh xã bền vững phải cách 2 năm so với năm đạt vệ sinh toàn xã!" }, { type: "danger" });
 				return;
 			}
 			return true;

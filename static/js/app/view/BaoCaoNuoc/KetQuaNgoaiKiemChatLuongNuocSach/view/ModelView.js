@@ -1069,23 +1069,26 @@ define(function (require) {
 				self.getApp().notify({message: "Số vị trí lấy mẫu phải nhỏ hơn 10!"},{type: "danger"});
 				return false;
 			}
-			if(somauvavitri < 0 || isNumeric.test(somauvavitri) == false){
-				self.getApp().notify({message: "Số vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
-				return false;
-			}
+//			if(somauvavitri < 0 || isNumeric.test(somauvavitri) == false){
+//				self.getApp().notify({message: "Số vị trí lấy mẫu không hợp lệ!"},{type: "danger"});
+//				return false;
+//			}
 			if(tongsomau_noikiem_dat_quychuan > tongsomau_noikiem_thunghiem){
 				self.getApp().notify({message: "Tổng số mẫu đạt quy chuẩn không hợp lệ!"}, {type: "danger"});
 				return false;
 			}
-			for(var i = 0; i < danhsachthongso.length; i++){
-				var ketquakiemtra = danhsachthongso[i].ketquakiemtra;
-				for(var j = 0; j < ketquakiemtra.length; j++){
-					if(ketquakiemtra[j].ketqua === null || ketquakiemtra[j].ketqua === ""){
-						self.getApp().notify({message: "Bạn chưa nhập đầy đủ kết quả của từng vị trí lấy mẫu!"}, {type: "danger"});
-						return false;
+			if (somauvavitri>0){
+				for(var i = 0; i < danhsachthongso.length; i++){
+					var ketquakiemtra = danhsachthongso[i].ketquakiemtra;
+					for(var j = 0; j < ketquakiemtra.length; j++){
+						if(ketquakiemtra[j].ketqua === null || ketquakiemtra[j].ketqua === ""){
+							self.getApp().notify({message: "Bạn chưa nhập đầy đủ kết quả của từng vị trí lấy mẫu!"}, {type: "danger"});
+							return false;
+						}
 					}
 				}
 			}
+			
 			return true;
 		},
     });
