@@ -78,7 +78,7 @@ define(function (require) {
                     },
                     {
                         value: 4,
-                        text: "Trường học liên cấp(có nhiều cấp học)",
+                        text: "Trường học liên cấp (có nhiều cấp học)",
                     },
 //                    {
 //                        value: 5,

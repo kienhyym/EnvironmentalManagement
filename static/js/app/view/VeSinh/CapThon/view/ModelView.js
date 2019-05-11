@@ -503,11 +503,11 @@ define(function (require) {
 			} else {
 				self.applyBindings();
 //				self.model.set("nhatieuthonhvs", []);
-				if(currentUser!==null && !!currentUser.check_SUP){
-					self.model.set("thuocsuprsws",currentUser.check_SUP);
-				}else{
-					self.model.set("thuocsuprsws",0);
-				}
+//				if(currentUser!==null && !!currentUser.check_SUP){
+//					self.model.set("thuocsuprsws",currentUser.check_SUP);
+//				}else{
+//					self.model.set("thuocsuprsws",0);
+//				}
 				self.updateUIChuongTrinhSUP();
 			}
 			self.model.on("change",function(){
@@ -515,7 +515,10 @@ define(function (require) {
 				var tong_soho_conhatieu_hvs_xuongcap = self.getApp().toInt(self.model.get("tong_soho_conhatieu_hvs_xuongcap"));
 				var tong_soho_conhatieu_hvs_truocbaocao = self.getApp().toInt(self.model.get("tong_soho_conhatieu_hvs_truocbaocao"));
 				var tong_soho = self.getApp().toInt(self.model.get("tong_soho"));
-				var tong_soho_conhatieu_hvs = tong_soho_conhatieu_xaymoi+ tong_soho_conhatieu_hvs_truocbaocao -tong_soho_conhatieu_hvs_xuongcap;
+				var tong_soho_conhatieu_hvs = tong_soho_conhatieu_xaymoi;
+				if(tong_soho_conhatieu_hvs_truocbaocao>0){
+					tong_soho_conhatieu_hvs = tong_soho_conhatieu_xaymoi+ tong_soho_conhatieu_hvs_truocbaocao -tong_soho_conhatieu_hvs_xuongcap;
+				}
 				self.model.set("tong_hopvs",tong_soho_conhatieu_hvs);
 				if (tong_soho>0){
 					var tyle_hvs = (tong_soho_conhatieu_hvs/tong_soho)*100;
@@ -562,21 +565,81 @@ define(function (require) {
 					tyle_hvs_loaikhac = (tong_loaikhac_hvs/tong_loaikhac)*100;
 				}
 				self.$el.find("#tyle_hvs_loaikhac").val(tyle_hvs_loaikhac.toFixed(2)+"%");
+				
+				
+				var tong_caithien = self.getApp().toInt(self.model.get("tong_caithien"));
+				var tyle_caithien = 0;
+				if (tong_soho>0){
+					tyle_caithien = (tong_caithien/tong_soho)*100;
+				}
+				self.$el.find("#tyle_caithien").val(tyle_caithien.toFixed(2)+"%");
+				
+				var tong_caithien_hongheo = self.getApp().toInt(self.model.get("tong_caithien_hongheo"));
+				var tyle_hongheo_caithien = 0;
+				if (tong_soho>0){
+					tyle_hongheo_caithien = (tong_caithien_hongheo/tong_soho)*100;
+				}
+				self.$el.find("#tyle_hongheo_caithien").val(tyle_hongheo_caithien.toFixed(2)+"%");
+				
+				var tong_diemruatay = self.getApp().toInt(self.model.get("tong_diemruatay"));
+				var tyle_ruatayxaphong = 0;
+				if (tong_soho>0){
+					tyle_ruatayxaphong = (tong_diemruatay/tong_soho)*100;
+				}
+				self.$el.find("#tyle_ruatayxaphong").val(tyle_ruatayxaphong.toFixed(2)+"%");
+				
+				var tong_nu = self.model.get("tong_nu");
+				var tong_nam = self.model.get("tong_nam");
+				var tong_dantrongthon = toInt(tong_nam) + toInt(tong_nu);
+				self.model.set("tong_danso" , tong_dantrongthon)
 			});
 		},
 		updateUIChuongTrinhSUP:function(){
 			var self = this;
-			var check_thuoc_sup = self.model.get("thuocsuprsws");
-			if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
-				self.$el.find(".chuongtrinhsup").hide();
-				self.$el.find("#header_table_notsup").show();
-				self.$el.find("#header_table_sup").hide();
-				
-			} else{
-				self.$el.find(".chuongtrinhsup").show();
-				self.$el.find("#header_table_notsup").hide();
-				self.$el.find("#header_table_sup").show();
-			}
+			var url = self.getApp().serviceURL + "/api/v1/checkSUP";
+			$.ajax({
+				url: url,
+				method: "GET",
+				contentType: "application/json",
+				success: function (data) {
+					if(data.data === true){
+						self.model.set("thuocsuprsws",1);
+					}else{
+						self.model.set("thuocsuprsws",0);
+					}
+					
+				},
+				error: function (xhr, status, error) {
+					try {
+						if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+							self.getApp().getRouter().navigate("login");
+						} else {
+							self.model.set("thuocsuprsws",0);
+						}
+					}
+					catch (err) {
+						self.model.set("thuocsuprsws",0);
+					}
+				},
+				complete: function(){
+					var check_thuoc_sup = self.model.get("thuocsuprsws");
+					console.log("updateUIChuongTrinhSUP.check_thuoc_sup==",check_thuoc_sup);
+					if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
+						self.$el.find(".chuongtrinhsup").hide();
+						self.$el.find("#header_table_notsup").show();
+						self.$el.find("#header_table_sup").hide();
+						
+					} else{
+						self.$el.find(".chuongtrinhsup").show();
+						self.$el.find("#header_table_notsup").hide();
+						self.$el.find("#header_table_sup").show();
+					}
+				}
+			});	
+			
+			
+			
 		},
 		renderItemView: function(data, element_id){
 			var self  =this;

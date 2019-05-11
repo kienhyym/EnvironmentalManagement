@@ -18,6 +18,26 @@ from gatco_restapi.helpers import to_dict
 from application.models.model_user import TinhTrangBaocaoEnum
 from datetime import datetime
 
+@app.route('api/v1/checkSUP', methods=['GET'])
+async def check_donvi_thuocSUP(request):
+    currentuser = await current_user(request)
+    if currentuser is None:
+        return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+      
+    check_SUP = db.session.query(DanhSachDonViThuocSUP)
+    if(currentuser.donvi.tuyendonvi_id ==2):
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.tinhthanh_id == currentuser.donvi.tinhthanh_id).first()
+    elif(currentuser.donvi.tuyendonvi_id ==3):
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.quanhuyen_id == currentuser.donvi.quanhuyen_id).first()
+    elif(currentuser.donvi.tuyendonvi_id ==4):
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.xaphuong_id == currentuser.donvi.xaphuong_id).first()
+    else:
+        check_SUP = None
+    print("check_SUP===",check_SUP)
+    if check_SUP is not None:
+        return json({"data":True,"error_message":"successful!"}, status=200)
+    else:
+        return json({"data":False,"error_message":"successful!"}, status=200)
 
 @app.route('api/v1/thongkevesinh', methods=['GET'])
 async def ThongKe_VESINH(request):

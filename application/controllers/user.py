@@ -30,11 +30,11 @@ async def get_user_with_permission(user):
     #check chuong trinh SUP
     check_SUP = db.session.query(DanhSachDonViThuocSUP)
     if(user.donvi.tuyendonvi_id ==2):
-        check_SUP.filter(DanhSachDonViThuocSUP.tinhthanh_id == user.donvi.tinhthanh_id).first()
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.tinhthanh_id == user.donvi.tinhthanh_id).first()
     elif(user.donvi.tuyendonvi_id ==3):
-        check_SUP.filter(DanhSachDonViThuocSUP.quanhuyen_id == user.donvi.quanhuyen_id).first()
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.quanhuyen_id == user.donvi.quanhuyen_id).first()
     elif(user.donvi.tuyendonvi_id ==4):
-        check_SUP.filter(DanhSachDonViThuocSUP.xaphuong_id == user.donvi.xaphuong_id).first()
+        check_SUP = check_SUP.filter(DanhSachDonViThuocSUP.xaphuong_id == user.donvi.xaphuong_id).first()
     else:
         check_SUP = None
     if check_SUP is not None:
