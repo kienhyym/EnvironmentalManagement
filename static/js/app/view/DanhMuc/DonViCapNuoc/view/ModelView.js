@@ -219,10 +219,10 @@ define(function (require) {
 				self.getApp().notify({message: "Công suất thiết kế không được để trống"},{type: "danger"});
 				return;
 			}
-			if (!self.model.get("tongso_hogiadinh")) {
-				self.getApp().notify({message: "Tổng số hộ gia đình không được để trống"},{type: "danger"});
-				return;
-			}
+//			if (!self.model.get("tongso_hogiadinh")) {
+//				self.getApp().notify({message: "Tổng số hộ gia đình không được để trống"},{type: "danger"});
+//				return;
+//			}
 			if (self.model.get("nguonnuoc_nguyenlieu") === null || self.model.get("nguonnuoc_nguyenlieu") === "" ) {
 				self.getApp().notify({message: "Nguồn nước nguyên liệu không được để trống"},{type: "danger"});
 				return;
@@ -240,10 +240,11 @@ define(function (require) {
 				return;
 			}
 			if (tuyendonvi_id === 3) {
-//				if (self.model.get("congsuat") >= 1000){
-//					self.getApp().notify({message: "Công suất thiết kế không hợp lệ!"}, {type: "danger"})
-//					return;
-//				}
+				
+				if (self.model.get("tongso_hogiadinh") > 500){
+					self.getApp().notify({message: "Cấp huyện chỉ quản lý đơn vị dưới 500 hộ gia đình!"}, {type: "danger"})
+					return;
+				}
 				if (!self.model.get("tinhthanh")) {
 					self.getApp().notify({message: "Tỉnh thành không được để trống"},{type: "danger"});
 					return;

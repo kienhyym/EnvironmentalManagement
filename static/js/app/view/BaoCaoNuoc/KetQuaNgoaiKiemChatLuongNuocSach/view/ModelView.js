@@ -1087,6 +1087,10 @@ define(function (require) {
 						}
 					}
 				}
+			}else{
+				self.model.set("danhsachthongso_ngoaikiem_khongdat",[]);
+				self.model.set("danhsachvitrilaymau",[]);
+				self.model.set("ketquangoaikiemchatluongnuoc",[]);
 			}
 			
 			return true;
