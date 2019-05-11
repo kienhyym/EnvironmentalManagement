@@ -71,7 +71,7 @@ define(function (require) {
 			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
 				this.uiControl.filters = {"$and":[
 					{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
-					{"trangthai":{"$eq":1}}
+					{"trangthai":{"$eq":1}},
 					]};
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
@@ -152,9 +152,9 @@ define(function (require) {
 						if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id === 2){
 							filters = {"$and": [
 							{"tinhthanh_id": {"$eq": this.getApp().data("tinhthanh_id")}},
-							{"trangthai":{"$eq":1}}
+							{"trangthai":{"$eq":1}},
 							query
-						]};
+							]};
 						} else if (this.getApp().data("quanhuyen_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===3){
 //						filters = {"$and": [
 //							{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}},
