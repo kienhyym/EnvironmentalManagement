@@ -11,6 +11,7 @@ from gatco.response import json, text, html
 
 from .helpers import *
 from application.models.model_vesinhhogiadinh import *
+from application.models.model_danhmuc import *
 from application.models.model_truong_tramyte_vesinh_capnuoc import Phieu_DieuTra_Truonghoc_TramYTe_Vesinh_CapNuoc
 from sqlalchemy import or_, and_, desc
 from application.client import HTTPClient 
@@ -493,6 +494,21 @@ async def pre_put_vscapxa(request=None, instance_id=None, data=None, **kw):
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
     
+    if "xaphuong_id" not in data or data["xaphuong_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn xã/phường"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    
+    record = db.session.query(VSCapXa).filter(and_(VSCapXa.donvi_id == currentuser.donvi_id,\
+                                                      VSCapXa.xaphuong_id == data['xaphuong_id'], \
+                                                      VSCapXa.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapXa.kybaocao == data['kybaocao'], \
+                                                      VSCapXa.nambaocao == data['nambaocao'])).first()
+                                                      
+    if (record is not None and str(record.id) != data['id']):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo của đơn vị đã tồn tại, vui lòng kiểm tra lại"}, status=520)
+    
+    
     list_baocao = congdonTongCong(VSCapThon,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapXa,data)
@@ -501,6 +517,21 @@ async def pre_put_vscaphuyen(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    if "quanhuyen_id" not in data or data["quanhuyen_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn quận/huyện"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    
+    record = db.session.query(VSCapHuyen).filter(and_(VSCapHuyen.donvi_id == currentuser.donvi_id,\
+                                                      VSCapHuyen.quanhuyen_id == data['quanhuyen_id'], \
+                                                      VSCapHuyen.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapHuyen.kybaocao == data['kybaocao'], \
+                                                      VSCapHuyen.nambaocao == data['nambaocao'])).first()
+                                                      
+    if (record is not None and str(record.id) != data['id']):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo của đơn vị đã tồn tại, vui lòng kiểm tra lại"}, status=520)
+    
+    
     list_baocao = congdonTongCong(VSCapXa,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapHuyen,data)
@@ -509,6 +540,20 @@ async def pre_put_vscaptinh(request=None, instance_id=None, data=None, **kw):
     currentuser = await current_user(request)
     if currentuser is None:
         return json({"error_code":"SESSION_EXPIRED","error_message":"Hết phiên hoạt động, vui lòng đăng nhập lại"}, status=520)
+    
+    if "tinhthanh_id" not in data or data["tinhthanh_id"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn tỉnh/thành phố"}, status=520)
+    if "nambaocao" not in data or data["nambaocao"] is None:
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Chưa chọn năm báo cáo"}, status=520)
+    
+    record = db.session.query(VSCapTinh).filter(and_(VSCapTinh.donvi_id == currentuser.donvi_id,\
+                                                      VSCapTinh.tinhthanh_id == data['tinhthanh_id'], \
+                                                      VSCapTinh.loaikybaocao == data['loaikybaocao'], \
+                                                      VSCapTinh.kybaocao == data['kybaocao'], \
+                                                      VSCapTinh.nambaocao == data['nambaocao'])).first()
+                                                      
+    if (record is not None and str(record.id) != data['id']):
+        return json({"error_code":"PARAMS_ERROR", "error_message":"Kỳ báo cáo của đơn vị đã tồn tại, vui lòng kiểm tra lại"}, status=520)
     
     list_baocao = congdonTongCong(VSCapHuyen,currentuser, data)
     data['danhsachbaocao'] = list_baocao
@@ -584,6 +629,9 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         tong_tuhoai_hvs = 0
         tong_tuhoai_xaymoi = 0
         tong_soho_conhatieu_tuhoai_hvs_xuongcap = 0
+        tong_sothon = 0
+        tong_soxa = 0
+        tong_sohuyen = 0
         
         
         tong_thamdoi = 0
@@ -604,6 +652,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         tong_loaikhac = 0
         tong_loaikhac_hvs = 0
         
+        tong_soho_conhatieu = 0
         tong_khongnhatieu = 0
         tong_hopvs = 0
         tong_khonghopvs = 0
@@ -628,7 +677,13 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
             total_soNu += int(bc['tong_nu']) if bc['tong_nu'] is not None else 0
             total_soho += int(bc['tong_soho']) if bc['tong_soho'] is not None else 0
             total_danso += int(bc['tong_danso']) if bc['tong_danso'] is not None else 0
-            
+            if "tong_sothon" in bc:
+                tong_sothon += int(bc['tong_sothon']) if bc['tong_sothon'] is not None else 0
+            if "tong_soxa" in bc:
+                tong_soxa += int(bc['tong_soxa']) if bc['tong_soxa'] is not None else 0
+            if "tong_sohuyen" in bc:
+                tong_sohuyen += int(bc['tong_sohuyen']) if bc['tong_sohuyen'] is not None else 0
+
             
             tong_tuhoai = tong_tuhoai + int(bc['tong_tuhoai']) if bc['tong_tuhoai'] is not None else 0
             tong_tuhoai_hvs = tong_tuhoai_hvs + int(bc['tong_tuhoai_hvs']) if bc['tong_tuhoai_hvs'] is not None else 0
@@ -654,6 +709,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
             tong_loaikhac = tong_loaikhac + int(bc['tong_loaikhac']) if bc['tong_loaikhac'] is not None else 0
             tong_loaikhac_hvs = tong_loaikhac_hvs + int(bc['tong_loaikhac_hvs']) if bc['tong_loaikhac_hvs'] is not None else 0
     
+            tong_soho_conhatieu = tong_soho_conhatieu + int(bc['tong_soho_conhatieu']) if bc['tong_soho_conhatieu'] is not None else 0
             tong_khongnhatieu = tong_khongnhatieu + int(bc['tong_khongnhatieu']) if bc['tong_khongnhatieu'] is not None else 0
             tong_hopvs = tong_hopvs + int(bc['tong_hopvs']) if bc['tong_hopvs'] is not None else 0
             tong_khonghopvs = tong_khonghopvs + int(bc['tong_khonghopvs']) if bc['tong_khonghopvs'] is not None else 0
@@ -677,8 +733,34 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         tong_nu = total_soNu
         tong_danso = total_danso
         tong_soho = total_soho
-        tong_sothon = len(data['danhsachbaocao'])
-        data["tong_sothon"] = tong_sothon
+        data['tong_sothon'] = tong_sothon
+        if currentuser.donvi.tuyendonvi_id ==2:
+            tong_sohuyen = db.session.query(QuanHuyen).filter(QuanHuyen.tinhthanh_id == data["tinhthanh_id"]).count()
+            if tong_sohuyen is None:
+                tong_sohuyen = 0
+            tong_soxa = db.session.query(QuanHuyen,XaPhuong).filter(QuanHuyen.id==XaPhuong.quanhuyen_id).filter(QuanHuyen.tinhthanh_id == data["tinhthanh_id"]).count()
+            if tong_soxa is None:
+                tong_soxa = 0
+            tong_sothon = db.session.query(QuanHuyen,XaPhuong,ThonXom).filter(QuanHuyen.id==XaPhuong.quanhuyen_id).filter(XaPhuong.id==ThonXom.xaphuong_id).filter(QuanHuyen.tinhthanh_id == data["tinhthanh_id"]).count()
+            if tong_sothon is None:
+                tong_sothon = 0
+            data['tong_sohuyen'] = tong_sohuyen
+            data['tong_soxa'] = tong_soxa
+            data['tong_sothon'] = tong_sothon
+        elif currentuser.donvi.tuyendonvi_id ==3:
+            tong_soxa = db.session.query(XaPhuong).filter(XaPhuong.quanhuyen_id == data["quanhuyen_id"]).count()
+            if tong_soxa is None:
+                tong_soxa = 0
+            tong_sothon = db.session.query(XaPhuong,ThonXom).filter(XaPhuong.id==ThonXom.xaphuong_id).filter(XaPhuong.quanhuyen_id == data["quanhuyen_id"]).count()
+            if tong_sothon is None:
+                tong_sothon = 0
+            data['tong_soxa'] = tong_soxa
+            data['tong_sothon'] = tong_sothon
+        elif currentuser.donvi.tuyendonvi_id ==4:
+            tong_sothon = db.session.query(ThonXom).filter(ThonXom.xaphuong_id == data["xaphuong_id"]).count()
+            if tong_sothon is None:
+                tong_sothon = 0
+            data['tong_sothon'] = tong_sothon
         data["tong_soho"] = tong_soho
         data["tong_danso"] = tong_danso
         data["tong_nu"] = tong_nu
@@ -697,6 +779,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         data["tong_soho_conhatieu_xaymoi"] = tong_soho_conhatieu_xaymoi
         data["tong_khonghopvs"] = tong_khonghopvs
         data["tong_hopvs"] = tong_hopvs
+        data["tong_soho_conhatieu"] = tong_soho_conhatieu
         data["tong_khongnhatieu"] = tong_khongnhatieu
         data["tong_loaikhac_hvs"] = tong_loaikhac_hvs
         data["tong_loaikhac"] = tong_loaikhac
@@ -768,6 +851,8 @@ async def baocao_prepost_vscapxa(request=None, data=None, Model=None, **kw):
     list_baocao = congdonTongCong(VSCapThon,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapXa,data)
+    tong_sothon = len(data['danhsachbaocao'])
+    data["tong_sothon"] = tong_sothon
     
 async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -783,7 +868,6 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
                                                       VSCapHuyen.loaikybaocao == data['loaikybaocao'], \
                                                       VSCapHuyen.kybaocao == data['kybaocao'], \
                                                       VSCapHuyen.nambaocao == data['nambaocao'])).first()
-    print("record VSCapHuyen====",to_dict(record));
     if record is not None:
         return json({"error_code":"PARAMS_ERROR", "error_message":"Báo cáo năm hiện tại đã được tạo, vui lòng kiểm tra lại"}, status=520)
     data['tenhuyen'] = data['quanhuyen']['ten']
@@ -794,6 +878,8 @@ async def baocao_prepost_vscaphuyen(request=None, data=None, Model=None, **kw):
     list_baocao = congdonTongCong(VSCapXa,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapHuyen,data)
+    tong_soxa = len(data['danhsachbaocao'])
+    data["tong_soxa"] = tong_soxa
     
 async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     currentuser = await current_user(request)
@@ -820,7 +906,9 @@ async def baocao_prepost_vscaptinh(request=None, data=None, Model=None, **kw):
     list_baocao = congdonTongCong(VSCapHuyen,currentuser, data)
     data['danhsachbaocao'] = list_baocao
     await process_baocao_vesinh_capXaHuyenTinh(currentuser,VSCapTinh,data)
-
+    tong_sohuyen = len(data['danhsachbaocao'])
+    data["tong_sohuyen"] = tong_sohuyen
+    
 async def reponse_capxa_get_single(request=None, Model=None, result=None, **kw):
     currentuser = await current_user(request)
     obj = to_dict(result)

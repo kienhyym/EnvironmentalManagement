@@ -9,6 +9,12 @@
     "tong_sothon":{
         "type": "number"
     },
+    "tong_soho":{
+        "type": "number"
+    },
+    "tong_soho_conhatieu":{
+        "type": "number"
+    },
     "tong_chuholanu": {
         "type": "number",
         "default":0

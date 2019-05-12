@@ -53,9 +53,11 @@ require(['jquery', 'gonrin', 'app/router',
 			initialize: function () {
 				var tpl = gonrin.template(layout)({});
 				$('body').html(tpl);
+				
+				
+				this.getCurrentUser();
 				this.nav = new Nav();
 				this.nav.render();
-				this.getCurrentUser();
 				this.mapKyBaoCao = this.getMapKyBaoCao();
 			},
 			getParameterUrl: function (parameter, url) {

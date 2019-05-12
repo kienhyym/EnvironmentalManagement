@@ -289,15 +289,24 @@ define(function (require) {
 						catch (err) {
 						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
 						}
+					},
+					complete:function(){
+						if(currentUser!==null && !!currentUser.check_SUP){
+							self.getApp().check_chuongtrinhSUP(1, self.$el);
+
+//							self.model.set("thuocsuprsws",currentUser.check_SUP);
+						}else{
+//							self.model.set("thuocsuprsws",0);
+							self.getApp().check_chuongtrinhSUP(0, self.$el);
+						}
 					}
-//					complete:function(){
-//						self.getApp().check_chuongtrinhSUP(self.model.get("thuocsuprsws"), self.$el);
-//						self.model.on("change:thuocsuprsws", function(){
-//							self.getApp().check_chuongtrinhSUP(self.model.get("thuocsuprsws"), self.$el);
-//						});
-//					}
 				});
 			} else {
+				if(currentUser!==null && !!currentUser.check_SUP){
+					self.getApp().check_chuongtrinhSUP(1, self.$el);
+				}else{
+					self.getApp().check_chuongtrinhSUP(0, self.$el);
+				}
 				self.applyBindings();
 				//cap huyen/tinh ko can check
 //				self.getApp().check_chuongtrinhSUP(self.model.get("thuocsuprsws"), self.$el);
@@ -321,26 +330,26 @@ define(function (require) {
 			var total_danso = 0;
 			var total_soho = 0;
 			var index = 1;
-			self.model.set("tong_tuhoai", 0);
-			self.model.set("tong_tuhoai_hvs", 0);
-			self.model.set("tong_thamdoi", 0);
-			self.model.set("tong_thamdoi_hvs", 0);
-			self.model.set("tong_2ngan", 0);
-			self.model.set("tong_2ngan_hvs", 0);
-			self.model.set("tong_ongthonghoi", 0);
-			self.model.set("tong_ongthonghoi_hvs", 0);
-			self.model.set("tong_loaikhac", 0);
-			self.model.set("tong_loaikhac_hvs", 0);
-			self.model.set("tong_khongnhatieu", 0);
-			self.model.set("tong_hopvs", 0);
-			self.model.set("tong_khonghopvs", 0);
-			self.model.set("tong_caithien", 0);
-			self.model.set("tong_caithien_hvs", 0);
-			self.model.set("tong_caithien_hongheo", 0);
-			self.model.set("tong_caithien_hongheo_hvs", 0);
-			self.model.set("tong_diemruatay", 0);
-			
-			self.model.set("tong_sothon",0);
+//			self.model.set("tong_tuhoai", 0);
+//			self.model.set("tong_tuhoai_hvs", 0);
+//			self.model.set("tong_thamdoi", 0);
+//			self.model.set("tong_thamdoi_hvs", 0);
+//			self.model.set("tong_2ngan", 0);
+//			self.model.set("tong_2ngan_hvs", 0);
+//			self.model.set("tong_ongthonghoi", 0);
+//			self.model.set("tong_ongthonghoi_hvs", 0);
+//			self.model.set("tong_loaikhac", 0);
+//			self.model.set("tong_loaikhac_hvs", 0);
+//			self.model.set("tong_khongnhatieu", 0);
+//			self.model.set("tong_hopvs", 0);
+//			self.model.set("tong_khonghopvs", 0);
+//			self.model.set("tong_caithien", 0);
+//			self.model.set("tong_caithien_hvs", 0);
+//			self.model.set("tong_caithien_hongheo", 0);
+//			self.model.set("tong_caithien_hongheo_hvs", 0);
+//			self.model.set("tong_diemruatay", 0);
+//			
+//			self.model.set("tong_sothon",0);
 			self.$el.find("#danhsachdonvi").html("");
 			var index =1;
 			danhsachbaocao.forEach(element => {
@@ -351,30 +360,63 @@ define(function (require) {
 				total_soNu += toInt(element.tong_nu);
 				total_soho += toInt(element.tong_soho);
 				total_danso += toInt(element.tong_danso);
+				
+				var tyle_tong_sohodtts = 0;
+				var tyle_tong_sohongheo = 0;
+				var tyle_tong_tuhoai = 0;
+				var tyle_tong_thamdoi = 0;
+				var tyle_tong_2ngan = 0;
+				var tyle_tong_ongthonghoi = 0;
+				var tyle_tong_loaikhac = 0;
+				var tyle_tong_khongnhatieu = 0;
+				var tyle_tong_hopvs = 0;
+				var tyle_tong_khonghopvs = 0;
+				var tyle_tong_caithien = 0;
+				var tyle_tong_diemruatay = 0;
+				if (toInt(element.tong_soho)>0){
+					tyle_tong_sohodtts = toInt(element.tong_sohodtts)/toInt(element.tong_soho)*100;
+					tyle_tong_sohongheo = toInt(element.tong_sohongheo)/toInt(element.tong_soho)*100;
+					tyle_tong_khongnhatieu = toInt(element.tong_khongnhatieu)/toInt(element.tong_soho)*100;
+					tyle_tong_hopvs = toInt(element.tong_hopvs)/toInt(element.tong_soho)*100;
+					tyle_tong_khonghopvs = toInt(element.tong_khonghopvs)/toInt(element.tong_soho)*100;
+					tyle_tong_caithien = toInt(element.tong_caithien)/toInt(element.tong_soho)*100;
+					tyle_tong_diemruatay = toInt(element.tong_diemruatay)/toInt(element.tong_soho)*100;
+				}
+				if (toInt(element.tong_soho_conhatieu)>0){
+					tyle_tong_tuhoai = toInt(element.tong_tuhoai)/toInt(element.tong_soho_conhatieu)*100;
+					tyle_tong_thamdoi = toInt(element.tong_thamdoi)/toInt(element.tong_soho_conhatieu)*100;
+					tyle_tong_2ngan = toInt(element.tong_2ngan)/toInt(element.tong_soho_conhatieu)*100;
+					tyle_tong_ongthonghoi = toInt(element.tong_ongthonghoi)/toInt(element.tong_soho_conhatieu)*100;
+					tyle_tong_loaikhac = toInt(element.tong_loaikhac)/toInt(element.tong_soho_conhatieu)*100;
+				}
+				
 				var tr = $('<tr id="danhsachdonvi">').attr({
 					"id": element.id
 				});
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenxa + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + "</td>");
-				tr.append("<td>" + toInt(element.tong_tuhoai) + "</td>");
-				tr.append("<td>" + toInt(element.tong_thamdoi) + "</td>");
-				tr.append("<td>" + toInt(element.tong_2ngan) + "</td>");
-				tr.append("<td>" + toInt(element.tong_ongthonghoi) + "</td>");
-				tr.append("<td>" + toInt(element.tong_loaikhac) + "</td>");
-				tr.append("<td>" + toInt(element.tong_khongnhatieu) + "</td>");
-				tr.append("<td>" + toInt(element.tong_hopvs) + "</td>");
-				tr.append("<td>" + toInt(element.tong_khonghopvs) + "</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_tuhoai) + " <br>("+tyle_tong_tuhoai.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_thamdoi) + " <br>("+tyle_tong_thamdoi.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_2ngan) + " <br>("+tyle_tong_2ngan.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_ongthonghoi) + " <br>("+tyle_tong_ongthonghoi.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_loaikhac) + " <br>("+tyle_tong_loaikhac.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_khongnhatieu) + " <br>("+tyle_tong_khongnhatieu.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_hopvs) + " <br>("+tyle_tong_hopvs.toFixed(2)+"%)</td>");
+				tr.append("<td>" + toInt(element.tong_khonghopvs) + " <br>("+tyle_tong_khonghopvs.toFixed(2)+"%)</td>");
+				
 				var tong_caithien = toInt(element.tong_caithien);
 				var tong_diemruatay = toInt(element.tong_diemruatay);
 				if (element.thuocsuprsws == 0){
-					tong_caithien = "";
-					tong_diemruatay = "";
+					tr.append('<td class="chuongtrinhsup"> </td>');
+					tr.append('<td class="chuongtrinhsup"></td>');
+				}else{
+					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_caithien) + " <br>("+tyle_tong_caithien.toFixed(2)+"%)</td>");
+					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_diemruatay) + " <br>("+tyle_tong_diemruatay.toFixed(2)+"%)</td>");
 				}
-				tr.append('<td class="chuongtrinhsup">' + tong_caithien + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + tong_diemruatay + "</td>");
+				
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
 				var id_record = this.getApp().getRouter().getParam("id");
@@ -393,30 +435,30 @@ define(function (require) {
 				});
 				
 				
-				self.model.set("tong_tuhoai", (toInt(self.model.get("tong_tuhoai"))+toInt(element.tong_tuhoai)));
-				self.model.set("tong_tuhoai_hvs", (toInt(self.model.get("tong_tuhoai_hvs"))+toInt(element.tong_tuhoai_hvs)));
-
-				self.model.set("tong_thamdoi", (toInt(self.model.get("tong_thamdoi"))+toInt(element.tong_thamdoi)));
-				self.model.set("tong_thamdoi_hvs", (toInt(self.model.get("tong_thamdoi_hvs"))+toInt(element.tong_thamdoi_hvs)));
-
-				self.model.set("tong_2ngan", (toInt(self.model.get("tong_2ngan"))+toInt(element.tong_2ngan)));
-				self.model.set("tong_2ngan_hvs", (toInt(self.model.get("tong_2ngan_hvs"))+toInt(element.tong_2ngan_hvs)));
-				
-				self.model.set("tong_ongthonghoi", (toInt(self.model.get("tong_ongthonghoi"))+toInt(element.tong_ongthonghoi)));
-				self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
-				
-				self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
-				self.model.set("tong_loaikhac_hvs", (toInt(self.model.get("tong_loaikhac_hvs"))+toInt(element.tong_loaikhac_hvs)));
-
-				self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
-				self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
-				self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
-				self.model.set("tong_caithien", (toInt(self.model.get("tong_caithien"))+toInt(element.tong_caithien)));
-				self.model.set("tong_caithien_hvs", (toInt(self.model.get("tong_caithien_hvs"))+toInt(element.tong_caithien)));
-				self.model.set("tong_caithien_hongheo", (toInt(self.model.get("tong_caithien_hongheo"))+toInt(element.tong_caithien_hongheo)));
-				self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
-				self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
-
+//				self.model.set("tong_tuhoai", (toInt(self.model.get("tong_tuhoai"))+toInt(element.tong_tuhoai)));
+//				self.model.set("tong_tuhoai_hvs", (toInt(self.model.get("tong_tuhoai_hvs"))+toInt(element.tong_tuhoai_hvs)));
+//
+//				self.model.set("tong_thamdoi", (toInt(self.model.get("tong_thamdoi"))+toInt(element.tong_thamdoi)));
+//				self.model.set("tong_thamdoi_hvs", (toInt(self.model.get("tong_thamdoi_hvs"))+toInt(element.tong_thamdoi_hvs)));
+//
+//				self.model.set("tong_2ngan", (toInt(self.model.get("tong_2ngan"))+toInt(element.tong_2ngan)));
+//				self.model.set("tong_2ngan_hvs", (toInt(self.model.get("tong_2ngan_hvs"))+toInt(element.tong_2ngan_hvs)));
+//				
+//				self.model.set("tong_ongthonghoi", (toInt(self.model.get("tong_ongthonghoi"))+toInt(element.tong_ongthonghoi)));
+//				self.model.set("tong_ongthonghoi_hvs", (toInt(self.model.get("tong_ongthonghoi_hvs"))+toInt(element.tong_ongthonghoi)));
+//				
+//				self.model.set("tong_loaikhac", (toInt(self.model.get("tong_loaikhac"))+toInt(element.tong_loaikhac)));
+//				self.model.set("tong_loaikhac_hvs", (toInt(self.model.get("tong_loaikhac_hvs"))+toInt(element.tong_loaikhac_hvs)));
+//
+//				self.model.set("tong_khongnhatieu", (toInt(self.model.get("tong_khongnhatieu"))+toInt(element.tong_khongnhatieu)));
+//				self.model.set("tong_hopvs", (toInt(self.model.get("tong_hopvs"))+toInt(element.tong_hopvs)));
+//				self.model.set("tong_khonghopvs", (toInt(self.model.get("tong_khonghopvs"))+toInt(element.tong_khonghopvs)));
+//				self.model.set("tong_caithien", (toInt(self.model.get("tong_caithien"))+toInt(element.tong_caithien)));
+//				self.model.set("tong_caithien_hvs", (toInt(self.model.get("tong_caithien_hvs"))+toInt(element.tong_caithien)));
+//				self.model.set("tong_caithien_hongheo", (toInt(self.model.get("tong_caithien_hongheo"))+toInt(element.tong_caithien_hongheo)));
+//				self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
+//				self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
+//
 				self.model.set("tong_sothon", (toInt(self.model.get("tong_sothon"))+toInt(element.tong_sothon)));
 			});
 			self.model.set("tong_chuholanu", total_chuholanu);
@@ -426,7 +468,7 @@ define(function (require) {
 			self.model.set("tong_nu", total_soNu);
 			self.model.set("tong_danso", total_danso);
 			self.model.set("tong_soho", total_soho);
-			self.model.set("tong_soxa", danhsachbaocao.length);
+//			self.model.set("tong_soxa", danhsachbaocao.length);
 			self.renderTinhTongI(danhsachbaocao);
 			self.model.trigger("change");
 		},
@@ -447,6 +489,42 @@ define(function (require) {
 
 				});
 			}
+			var tyle_tong_sohodtts = 0;
+			var tyle_tong_sohongheo = 0;
+			var tyle_tong_tuhoai = 0;
+			var tyle_tong_thamdoi = 0;
+			var tyle_tong_2ngan = 0;
+			var tyle_tong_ongthonghoi = 0;
+			var tyle_tong_loaikhac = 0;
+			var tyle_tong_khongnhatieu = 0;
+			var tyle_tong_hopvs = 0;
+			var tyle_tong_khonghopvs = 0;
+			var tyle_tong_caithien = 0;
+			var tyle_tong_diemruatay = 0;
+			var tong_soho = toInt(data['tong_soho']);
+			var tong_soho_conhatieu = toInt(data['tong_soho_conhatieu']);
+			var array_key_tong_soho = ["tong_sohodtts","tong_sohongheo","tong_khongnhatieu","tong_hopvs","tong_khonghopvs","tong_caithien","tong_diemruatay"];
+			var array_key_tong_soho_conhatieu = ["tong_tuhoai","tong_thamdoi","tong_2ngan","tong_ongthonghoi","tong_loaikhac"];
+			_.each(data, function (props, key) {
+				
+				if (array_key_tong_soho.indexOf(key)>=0){
+					if (tong_soho>0){
+						data[key] = data[key] + " ("+(toInt(data[key])/toInt(tong_soho)*100).toFixed(2)+"%)";
+					}else{
+						data[key] = data[key] +  " (0.00%)";
+
+					}
+				}
+				
+				if (array_key_tong_soho_conhatieu.indexOf(key)>=0){
+					if (tong_soho_conhatieu>0){
+						data[key] = data[key] +  " ("+(toInt(data[key])/toInt(tong_soho_conhatieu)*100).toFixed(2)+"%)";
+					}else{
+						data[key] = data[key] +  " (0.00%)";
+
+					}
+				}
+			});
 			self.tongViewi.model.set(data);
 			self.tongViewi.applyBindings();
 		},

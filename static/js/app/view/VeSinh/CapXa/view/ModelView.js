@@ -355,8 +355,6 @@ define(function (require) {
 			if (element.tenthon!== null){
 				tenthon = element.tenthon;
 			}
-			tr.append("<td>" + element.tenthon + "</td>");
-//			tr.append("<td>" + element.tong_chuholanu + "</td>");
 			var tyle_tong_sohodtts = 0;
 			var tyle_tong_sohongheo = 0;
 			var tyle_tong_tuhoai = 0;
@@ -387,10 +385,11 @@ define(function (require) {
 				tyle_tong_ongthonghoi = toInt(element.tong_ongthonghoi)/toInt(element.tong_soho_conhatieu)*100;
 				tyle_tong_loaikhac = toInt(element.tong_loaikhac)/toInt(element.tong_soho_conhatieu)*100;
 			}
+			tr.append("<td>" + element.tenthon + "</td>");
+//			tr.append("<td>" + element.tong_chuholanu + "</td>");
 			
 			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
 			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
-			
 			tr.append("<td>" + toInt(element.tong_tuhoai) + " <br>("+tyle_tong_tuhoai.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_thamdoi) + " <br>("+tyle_tong_thamdoi.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_2ngan) + " <br>("+tyle_tong_2ngan.toFixed(2)+"%)</td>");
@@ -422,7 +421,6 @@ define(function (require) {
 		check_chuongtrinhSUP:function(){
 			var self = this;
 			var check_thuoc_sup = self.model.get("thuocsuprsws");
-			console.log("check_thuoc_sup====",check_thuoc_sup);
 			if (check_thuoc_sup === 0 || check_thuoc_sup === "0"){
 				self.$el.find(".chuongtrinhsup").hide();
 				self.$el.find("#header_table_notsup").show();
@@ -472,12 +470,18 @@ define(function (require) {
 				if (array_key_tong_soho.indexOf(key)>=0){
 					if (tong_soho>0){
 						data[key] = data[key] + " ("+(toInt(data[key])/toInt(tong_soho)*100).toFixed(2)+"%)";
+					}else{
+						data[key] = data[key] +  " (0.00%)";
+
 					}
 				}
 				
 				if (array_key_tong_soho_conhatieu.indexOf(key)>=0){
 					if (tong_soho_conhatieu>0){
 						data[key] = data[key] +  " ("+(toInt(data[key])/toInt(tong_soho_conhatieu)*100).toFixed(2)+"%)";
+					}else{
+						data[key] = data[key] +  " (0.00%)";
+
 					}
 				}
 			});
@@ -511,10 +515,6 @@ define(function (require) {
 				self.getApp().notify({message: "Chưa chọn thông tin Xã/Phường"},{type: "danger"});
 				return;
 			}
-//			if (thuocsuprsws === null || thuocsuprsws === ""){
-//				self.getApp().notify({message: "Có thuộc chương trình SupRSWS hay không?"},{type: "danger"});
-//				return;
-//			}
 			return true;
 		},
 		search_dshogiadinh: function(){
