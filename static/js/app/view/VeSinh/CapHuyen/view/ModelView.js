@@ -397,7 +397,7 @@ define(function (require) {
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenxa + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				if(currentUser!==null && !!currentUser.check_SUP){
+				if (element.thuocsuprsws == 1){
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
 				}else{
