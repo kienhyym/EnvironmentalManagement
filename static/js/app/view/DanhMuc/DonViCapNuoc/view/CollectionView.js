@@ -80,7 +80,7 @@ define(function (require) {
 					{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, 
 					{"$or":[
 						{"$and":[
-							{"tongso_hogiadinh":{"$gte":0}},
+							{"tongso_hogiadinh":{"$gt":0}},
 							{"tongso_hogiadinh":{"$lt":500}}
 							]
 						},
