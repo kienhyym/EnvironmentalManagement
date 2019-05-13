@@ -2,8 +2,10 @@
 
 from gatco import Gatco
 from .config import Config
+from gatco.sessions import CookieSessionInterface
 
 app = Gatco(name=__name__)
+app.session_interface = CookieSessionInterface()
 app.config.from_object(Config)
 
 from application.database import init_database
