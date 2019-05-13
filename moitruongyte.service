@@ -1,0 +1,17 @@
+[Unit]
+Description=MoiTruongYTe daemon
+After=network.target
+
+[Service]
+PIDFile=/var/run/gunicorn/moitruongyte.pid
+User=gonner
+Group=gonner
+RuntimeDirectory=moitruongyte
+WorkingDirectory=/opt/deploy/moitruongyte/repo/
+ExecStart=/opt/deploy/moitruongyte/bin/python manage.py run
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
