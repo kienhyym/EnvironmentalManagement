@@ -478,6 +478,11 @@ define(function (require) {
 //			self.model.set("tong_soxa", danhsachbaocao.length);
 			self.renderTinhTongI(danhsachbaocao);
 			self.model.trigger("change");
+			if(currentUser!==null && !!currentUser.check_SUP){
+				self.getApp().check_chuongtrinhSUP(1, self.$el);
+			}else{
+				self.getApp().check_chuongtrinhSUP(0, self.$el);
+			}
 		},
 		renderTinhTongI: function (danhsachbaocao) {
 			var self = this;
