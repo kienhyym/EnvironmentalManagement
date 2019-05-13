@@ -387,9 +387,13 @@ define(function (require) {
 			}
 			tr.append("<td>" + element.tenthon + "</td>");
 //			tr.append("<td>" + element.tong_chuholanu + "</td>");
-			
-			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
-			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
+			if (element.thuocsuprsws == 1){
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
+			}else{
+				tr.append('<td class="chuongtrinhsup"></td>');
+				tr.append('<td class="chuongtrinhsup"></td>');
+			}
 			tr.append("<td>" + toInt(element.tong_tuhoai) + " <br>("+tyle_tong_tuhoai.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_thamdoi) + " <br>("+tyle_tong_thamdoi.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_2ngan) + " <br>("+tyle_tong_2ngan.toFixed(2)+"%)</td>");
@@ -398,8 +402,15 @@ define(function (require) {
 			tr.append("<td>" + toInt(element.tong_khongnhatieu) + " <br>("+tyle_tong_khongnhatieu.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_hopvs) + " <br>("+tyle_tong_hopvs.toFixed(2)+"%)</td>");
 			tr.append("<td>" + toInt(element.tong_khonghopvs) + " <br>("+tyle_tong_khonghopvs.toFixed(2)+"%)</td>");
-			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_caithien) + " <br>("+tyle_tong_caithien.toFixed(2)+"%)</td>");
-			tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_diemruatay) + " <br>("+tyle_tong_diemruatay.toFixed(2)+"%)</td>");
+			var tong_caithien = toInt(element.tong_caithien);
+			var tong_diemruatay = toInt(element.tong_diemruatay);
+			if (element.thuocsuprsws == 0){
+				tr.append('<td class="chuongtrinhsup"> </td>');
+				tr.append('<td class="chuongtrinhsup"></td>');
+			}else{
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_caithien) + " <br>("+tyle_tong_caithien.toFixed(2)+"%)</td>");
+				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_diemruatay) + " <br>("+tyle_tong_diemruatay.toFixed(2)+"%)</td>");
+			}
 			self.$el.find("#danhsachdonvi").append(tr);
 
 			

@@ -396,8 +396,14 @@ define(function (require) {
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenxa + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
-				tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
+				if (element.thuocsuprsws == 1){
+					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
+					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
+				}else{
+					tr.append('<td class="chuongtrinhsup"></td>');
+					tr.append('<td class="chuongtrinhsup"></td>');
+				}
+				
 				tr.append("<td>" + toInt(element.tong_tuhoai) + " <br>("+tyle_tong_tuhoai.toFixed(2)+"%)</td>");
 				tr.append("<td>" + toInt(element.tong_thamdoi) + " <br>("+tyle_tong_thamdoi.toFixed(2)+"%)</td>");
 				tr.append("<td>" + toInt(element.tong_2ngan) + " <br>("+tyle_tong_2ngan.toFixed(2)+"%)</td>");
