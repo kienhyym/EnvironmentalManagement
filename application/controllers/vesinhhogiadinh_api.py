@@ -576,7 +576,7 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
             kybaocaotruoc = 2
             
     baocaokytruoc = db.session.query(BaoCao).filter(and_(BaoCao.donvi_id == currentuser.donvi_id,\
-#                                                       VSCapThon.thonxom_id == data['thonxom_id'], \
+                                                      BaoCao.thonxom_id == data['thonxom_id'], \
                                                       BaoCao.loaikybaocao == data['loaikybaocao'], \
                                                       BaoCao.kybaocao == kybaocaotruoc, \
                                                       BaoCao.nambaocao == nambaocao_truoc)).first()    
