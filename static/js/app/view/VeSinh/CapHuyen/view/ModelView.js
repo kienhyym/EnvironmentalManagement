@@ -318,6 +318,7 @@ define(function (require) {
 		},
 		compute_baocao:function(){
 			var self = this;
+			var currentUser = self.getApp().currentUser;
 			var danhsachbaocao = self.model.get("danhsachbaocao");
 			if (danhsachbaocao.length == 0) {
 				self.$el.find("#danhsachdonvi").hide();
@@ -396,7 +397,7 @@ define(function (require) {
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenxa + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				if (element.thuocsuprsws == 1){
+				if(currentUser!==null && !!currentUser.check_SUP){
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
 				}else{

@@ -270,6 +270,7 @@ define(function (require) {
 		},
 		compute_baocao: function(){
 			var self = this;
+			var currentUser = self.getApp().currentUser;
 			var danhsachbaocao = self.model.get("danhsachbaocao");
 			if (danhsachbaocao.length == 0) {
 				self.$el.find("#danhsachdonvi").hide();
@@ -349,7 +350,7 @@ define(function (require) {
 				tr.append("<td>" + index + "</td>");
 				tr.append("<td>" + element.tenhuyen + "</td>");
 //				tr.append("<td>" + element.tong_chuholanu + "</td>");
-				if (element.thuocsuprsws == 1){
+				if(currentUser!==null && !!currentUser.check_SUP){
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohodtts) + " <br>("+tyle_tong_sohodtts.toFixed(2)+"%)</td>");
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_sohongheo) + " <br>("+tyle_tong_sohongheo.toFixed(2)+"%)</td>");
 				}else{
@@ -368,12 +369,13 @@ define(function (require) {
 				tr.append("<td>" + toInt(element.tong_khonghopvs) + " <br>("+tyle_tong_khonghopvs.toFixed(2)+"%)</td>");
 				var tong_caithien = toInt(element.tong_caithien);
 				var tong_diemruatay = toInt(element.tong_diemruatay);
-				if (element.thuocsuprsws == 0){
-					tr.append('<td class="chuongtrinhsup"> </td>');
-					tr.append('<td class="chuongtrinhsup"></td>');
-				}else{
+				if(currentUser!==null && !!currentUser.check_SUP){
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_caithien) + " <br>("+tyle_tong_caithien.toFixed(2)+"%)</td>");
 					tr.append('<td class="chuongtrinhsup">' + toInt(element.tong_diemruatay) + " <br>("+tyle_tong_diemruatay.toFixed(2)+"%)</td>");
+					
+				}else{
+					tr.append('<td class="chuongtrinhsup"> </td>');
+					tr.append('<td class="chuongtrinhsup"></td>');
 				}
 				self.$el.find("#danhsachdonvi").append(tr);
 				index++;
