@@ -68,7 +68,12 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-			if (this.getApp().data("tinhthanh_id") !== null && this.getApp().currentUser.donvi.tuyendonvi_id ===2){
+			var currentUser = self.getApp().currentUser;
+			if (currentUser === null){
+				self.getApp().getRouter().navigate("login");
+				return;
+			}
+			if (this.getApp().data("tinhthanh_id") !== null && currentUser.donvi.tuyendonvi_id ===2){
 				this.uiControl.filters = {"$and":[
 					{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
 					{"trangthai":{"$eq":1}},
