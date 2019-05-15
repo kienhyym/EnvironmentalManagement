@@ -21,3 +21,7 @@ def init_controllers(app):
     @app.route('/')
     def index(request):
         return jinja.render('index.html', request)
+    
+    @app.route('/huongdansudung')
+    def index(request):
+        return jinja.render('huongdansudung/huongdansudung.html', request)
