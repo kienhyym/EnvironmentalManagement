@@ -50,8 +50,8 @@ async def postprocess_add_stt(request=None, Model=None, result=None, **kw):
         i =1
         page = request.args.get("page",None)
         results_per_page = request.args.get("results_per_page",None)
-        if page is not None and results_per_page is not None and int(page) != 1:
-            i = i + int(results_per_page)*int(page)
+        if page is not None and results_per_page is not None and int(page) > 1:
+            i = i + int(results_per_page)*int(int(page)-1)
         for obj in objects:
             if obj is not None:
                 obj_tmp = to_dict(obj)

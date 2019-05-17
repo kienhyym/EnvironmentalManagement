@@ -71,7 +71,7 @@ async def addUserDonvi(request):
                 error_msg = u"Xin mời nhập lại mật khẩu!"
     
         if(error_msg is None):
-            checkemail = UserDonvi.query.filter(UserDonvi.email == email).first()
+            checkemail = User.query.filter(User.email == email).first()
             if(checkemail is not None):
                 error_msg = u"Email đã có người sử dụng, xin mời nhập lại!"  
                               
@@ -80,7 +80,7 @@ async def addUserDonvi(request):
                 error_msg = u"Xin nhập phone!"
                 
         if(error_msg is None):
-            checkphone = UserDonvi.query.filter(UserDonvi.phone == phone).first()
+            checkphone = User.query.filter(User.phone == phone).first()
             if(checkphone is not None):
                 error_msg = u"Số điện thoại đã có người sử dụng, xin mời nhập lại!"            
                    
