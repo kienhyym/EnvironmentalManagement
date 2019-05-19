@@ -347,8 +347,9 @@ async def dangkydonvi_pregetmany(search_params=None, **kw):
 #         donvichildids = []
 #         if(currentDonvi is not None):
 #             currentDonvi.get_children_ids(donvichildids)
-        
-        search_params["filters"] = {"captren_id":{"$eq": currentDonvi.id}}
+        search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"captren_id":{"$eq": currentDonvi.id}}]} \
+                                    or {"captren_id":{"$eq": currentDonvi.id}}
+#         search_params["filters"] = {"captren_id":{"$eq": currentDonvi.id}}
 
 
 apimanager.create_api(UserDonvi,
