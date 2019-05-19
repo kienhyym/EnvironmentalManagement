@@ -168,7 +168,7 @@ define(function (require) {
 					name: "export",
 					type: "button",
 					buttonClass: "btn-warning btn-sm",
-					label: "Tạo đơn vị và tài khoản theo đơn đăng ký",
+					label: "Duyệt đơn vị và tạo tài khoản theo đơn đăng ký",
 					visible: function () {
 						return this.getApp().getRouter().getParam("id") !== null;
 					},
