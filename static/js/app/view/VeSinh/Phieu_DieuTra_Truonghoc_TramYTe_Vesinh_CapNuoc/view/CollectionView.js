@@ -27,6 +27,17 @@ define(function (require) {
 						var path = this.collectionName + '/model/'+loaibaocao;
 						this.getApp().getRouter().navigate(path);
 					}
+				},
+				{
+					name: "export_pdf",
+					type: "button",
+					buttonClass: "btn-warning btn-sm",
+					label: "TRANSLATE:EXPORT_PDF",
+					command: function () {
+						var self = this;
+						var filename = "danhsach_phieudieutra_truongtram";
+						self.getApp().exportPDF_HTML2PDF("content",filename);
+					}
 				}]
 		}],
         uiControl: {

@@ -13,8 +13,8 @@
 	<div class="panel-heading">
 		<h4>HỆ THỐNG THEO DÕI VÀ GIÁM SÁT VỀ VỆ SINH</h4>
 	</div>
-	<div style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
-		<div class="row" style=" margin-top: 20px">
+	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+		<div  data-html2canvas-ignore class="row" style=" margin-top: 20px">
 			<div class="form-group col-md-6">
 				<label>Năm báo cáo:</label>
 				<input id="namdanhgia" type="text" placeholder="YYYY" class="form-control"
@@ -28,8 +28,9 @@
 				<label>Chọn Tỉnh/Thành phố</label>
 				<input type="text" class="form-control">
 			</div>
-			<div class="col-md-6 form-group">
+			<div class="col-md-6 form-group" data-html2canvas-ignore>
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
+				<button id="export_pdf" class="btn btn-warning">Xuất báo cáo PDF</button>
 			</div>
 		</div>
 

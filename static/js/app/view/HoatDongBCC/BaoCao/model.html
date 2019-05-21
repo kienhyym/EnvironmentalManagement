@@ -3,7 +3,7 @@
 		<h3>Tiến độ lập kế hoạch và thực hiện Kế Hoạch Truyền Thông</h3>
 	</div>
 	<div style="margin-left: 16px; margin-top: 20px" block-bind="toolbar"></div>
-	<div class="" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
+	<div id="content" style="margin-left: 26px; margin-right: 20px; text-align: left;" block-bind="content">
 		<div class="row" style=" margin-top: 20px">
 			<div class="form-group col-md-6">
 				<label>Năm báo cáo:</label>
@@ -29,8 +29,10 @@
 				<label>Chọn Thôn/Xóm</label>
 				<input  type="text" class="form-control" data-bind="dict:thonxom">
 			</div> -->
-			<div class="col-md-12 form-group">
+			<div class="col-md-12 form-group" data-html2canvas-ignore>
 				<button id="search" class="btn btn-success">Tìm kiếm</button>
+				<button id="export_pdf" class="btn btn-warning">Xuất báo cáo PDF</button>
+				
 			</div>
 		</div>
 
@@ -84,7 +86,7 @@
 				</div>
 			</div>
 		</div>
-
+		<h3 style="margin-bottom:10px;">II. Danh sách hoạt động</h3>
 		<div class="row">
 			<div class="col-md-12">
 				<table class="table table-align is-table">

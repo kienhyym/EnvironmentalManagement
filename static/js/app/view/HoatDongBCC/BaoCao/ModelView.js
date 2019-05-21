@@ -168,6 +168,10 @@ define(function (require) {
 		
 		onChangeEvents: function() {
 			var self = this;
+			self.$el.find("#export_pdf").unbind('click').bind('click',function(){
+				var filename = "thongke_hoatdong_bcc";
+				self.getApp().exportPDF_HTML2PDF("content",filename);
+			});
 			self.$el.find("#search").unbind("click").bind("click", function(event) {
 				var query = "";
 				if (!self.$el.find("#namdanhgia").val()) {

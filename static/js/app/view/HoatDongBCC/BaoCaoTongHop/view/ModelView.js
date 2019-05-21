@@ -47,6 +47,12 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			self.$el.find("#export_pdf").unbind('click').bind('click',function(){
+				var nambaocao = self.$el.find("#namdanhgia").val();
+				var kybaocao = $("#kydanhgia").data('gonrin').getValue();
+				var filename = "baocao_tonghop_hoatdong_bcc_"+nambaocao+"_"+kybaocao;
+				self.getApp().exportPDF_HTML2PDF("content",filename);
+			});
 			$('#kydanhgia').combobox({
 				textField: "text",
 				valueField: "value",

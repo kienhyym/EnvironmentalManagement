@@ -44,6 +44,10 @@ define(function (require) {
 
 		render: function () {
 			var self = this;
+			self.$el.find("#export_pdf").unbind('click').bind('click',function(){
+				var filename = "tiendo_vesinh_toanxa";
+				self.getApp().exportPDF_HTML2PDF("content",filename);
+			});
 			$('#kydanhgia').combobox({
             	textField: "text",
                 valueField: "value",

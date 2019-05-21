@@ -167,6 +167,21 @@ define(function (require) {
                 }
             },
             {
+				name: "export_pdf",
+				type: "button",
+				buttonClass: "btn-warning btn-sm",
+				label: "TRANSLATE:EXPORT_PDF",
+				visible: function () {
+					return this.getApp().getRouter().getParam("id") !== null;
+				},
+				command: function () {
+					var self = this;
+					var kybaocao = $("#kydanhgia").data('gonrin').getValue();
+					var filename = "baocao_tonghop_nuocsach_"+self.model.get("nambaocao")+"_"+kybaocao;
+					self.getApp().exportPDF_HTML2PDF("content",filename);
+				}
+			},
+            {
                 name: "delete",
                 type: "button",
                 buttonClass: "btn-danger btn-sm",

@@ -39,11 +39,29 @@ define(function (require) {
 						Backbone.history.history.back();
 					}
 				},
+				{
+					name: "export_pdf",
+					type: "button",
+					buttonClass: "btn-warning btn-sm",
+					label: "TRANSLATE:EXPORT_PDF",
+					visible: function () {
+						return this.getApp().getRouter().getParam("id") !== null;
+					},
+					command: function () {
+						var self = this;
+						var filename = "thongke_giamsat_vesinh";
+						self.getApp().exportPDF_HTML2PDF("content",filename);
+					}
+				},
 			],
 		}],
 
 		render: function () {
 			var self = this;
+			self.$el.find("#export_pdf").unbind('click').bind('click',function(){
+				var filename = "thongke_giamsat_vesinh";
+				self.getApp().exportPDF_HTML2PDF("content",filename);
+			});
 			$('#kydanhgia').combobox({
             	textField: "text",
                 valueField: "value",
