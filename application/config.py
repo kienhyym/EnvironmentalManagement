@@ -1,7 +1,7 @@
 class Config(object):
     #DEV MODE
     DEBUG = True
-    STATIC_URL = "static5"
+    STATIC_URL = "static6"
     SQLALCHEMY_DATABASE_URI = 'postgresql://moitruongyteusr:123456@localhost:5432/moitruongyte'
 #     SQLALCHEMY_DATABASE_URI = 'sqlite:///testdb.db'
 #     SQLALCHEMY_TRACK_MODIFICATIONS = True
@@ -11,7 +11,7 @@ class Config(object):
     AUTH_PASSWORD_SALT = 'add_salt'
     SECRET_KEY = 'acndef'
     SESSION_COOKIE_SALT = 'salt_key'
-    DOMAIN_URL = 'http://103.74.120.65:9070'
+    DOMAIN_URL = 'http://103.74.120.71:9070'
     
     
     MAIL_SERVER_HOST = 'smtp.gmail.com'
