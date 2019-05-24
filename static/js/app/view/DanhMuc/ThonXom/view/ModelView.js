@@ -49,12 +49,12 @@ define(function (require) {
 								self.getApp().notify({ message: "Tên thôn xóm không được để trống!" }, { type: "danger" });
 							} else if (xaphuong === null || xaphuong === undefined) {
 								self.getApp().notify({ message: "Bạn chưa chọn tên xã phường!" }, { type: "danger" });
-							} else if(isNumeric.test(tongdan_nam) == false){
-								self.getApp().notify({ message: "Tổng số nam của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
-							} else if(isNumeric.test(tongdan_nu) == false){
-								self.getApp().notify({ message: "Tổng số nữ của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
-							} else if(isNumeric.test(tong_hgd) == false){
-								self.getApp().notify({ message: "Tổng số HGĐ của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tongdan_nam) == false){
+//								self.getApp().notify({ message: "Tổng số nam của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tongdan_nu) == false){
+//								self.getApp().notify({ message: "Tổng số nữ của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tong_hgd) == false){
+//								self.getApp().notify({ message: "Tổng số HGĐ của thôn/xóm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 							} else {
 								self.model.save(null, {
 									success: function (model, respose, options) {

@@ -48,12 +48,12 @@ define(function (require) {
 								self.getApp().notify({ message: "Tên tỉnh thành không được để trống!" }, { type: "danger" });
 							} else if (quocgia == null || quocgia == undefined) {
 								self.getApp().notify({ message: "Bạn chưa chọn tên quốc gia!" }, { type: "danger" });
-							} else if(isNumeric.test(tongdan_nam) == false){
-								self.getApp().notify({ message: "Tổng số nam của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
-							} else if(isNumeric.test(tongdan_nu) == false){
-								self.getApp().notify({ message: "Tổng số nữ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
-							} else if(isNumeric.test(tong_hgd) == false){
-								self.getApp().notify({ message: "Tổng số HGĐ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tongdan_nam) == false){
+//								self.getApp().notify({ message: "Tổng số nam của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tongdan_nu) == false){
+//								self.getApp().notify({ message: "Tổng số nữ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
+//							} else if(isNumeric.test(tong_hgd) == false){
+//								self.getApp().notify({ message: "Tổng số HGĐ của tỉnh không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 							} else {
 								self.model.save(null, {
 									success: function (model, respose, options) {
