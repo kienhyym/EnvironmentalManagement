@@ -58,14 +58,14 @@ define(function (require) {
 //					field: "tong_danso",
 //					label: "Tổng số dân trong huyện"
 //				},
-				{
-					field: "tong_sohongheo",
-					label: "Số hộ nghèo"
-				},
-				{
-					field: "tong_sohodtts",
-					label: "Số hộ DTTS"
-				},
+//				{
+//					field: "tong_sohongheo",
+//					label: "Số hộ nghèo"
+//				},
+//				{
+//					field: "tong_sohodtts",
+//					label: "Số hộ DTTS"
+//				},
 
 			],
 			pagination: {
