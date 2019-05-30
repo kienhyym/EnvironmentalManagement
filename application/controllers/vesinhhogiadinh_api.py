@@ -102,7 +102,7 @@ async def ThongKe_VESINH(request):
                 
             results = data_result_tinhthanh[baocao.tinhthanh_id]
                 
-                
+            print("thongkevesinh===baocao===",ujson.dumps(baocao))   
             results['tentinhthanh'] = baocao.tinhthanh.ten
             results['tenquanhuyen'] = baocao.quanhuyen.ten
             results['tenxaphuong'] = baocao.xaphuong.ten
@@ -724,7 +724,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
             tong_soho_conhatieu_caithien_hvs_xuongcap = tong_soho_conhatieu_caithien_hvs_xuongcap + int(bc['tong_soho_conhatieu_caithien_hvs_xuongcap']) if bc['tong_soho_conhatieu_caithien_hvs_xuongcap'] is not None else 0
             tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap = tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap + int(bc['tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap']) if bc['tong_soho_conhatieu_caithien_hongheo_hvs_xuongcap'] is not None else 0
     
-            tong_diemruatay = tong_diemruatay + int(bc['tong_diemruatay']) if bc['tong_diemruatay'] is not None else 0
+            tong_diemruatay = tong_diemruatay + (int(bc['tong_diemruatay']) if bc['tong_diemruatay'] is not None else 0)
     
         tong_chuholanu = total_chuholanu
         tong_sohongheo = total_sohongheo
