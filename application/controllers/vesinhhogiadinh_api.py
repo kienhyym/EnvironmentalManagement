@@ -101,8 +101,9 @@ async def ThongKe_VESINH(request):
                 data_result_tinhthanh[baocao.tinhthanh_id] = {}
                 
             results = data_result_tinhthanh[baocao.tinhthanh_id]
-                
-            print("thongkevesinh===baocao===",ujson.dumps(baocao))   
+            print("thongkevesinh===baocao===",baocao)   
+
+#             print("thongkevesinh===baocao===",ujson.dumps(ujson.loads(baocao)))   
             results['tentinhthanh'] = baocao.tinhthanh.ten
             results['tenquanhuyen'] = baocao.quanhuyen.ten
             results['tenxaphuong'] = baocao.xaphuong.ten
