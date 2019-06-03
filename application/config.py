@@ -1,7 +1,7 @@
 class Config(object):
     #DEV MODE
     DEBUG = True
-    STATIC_URL = "static6"
+    STATIC_URL = "static7"
     SQLALCHEMY_DATABASE_URI = 'postgresql://moitruongyteusr:123456@localhost:5432/moitruongyte'
 #     SQLALCHEMY_DATABASE_URI = 'sqlite:///testdb.db'
 #     SQLALCHEMY_TRACK_MODIFICATIONS = True
