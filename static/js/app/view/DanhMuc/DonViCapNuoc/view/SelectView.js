@@ -80,8 +80,9 @@ define(function (require) {
 
     		//data: {"q": JSON.stringify({"filters": filters, "order_by":[{"field": "thoigian", "direction": "desc"}], "limit":1})},
     		if (currentUser.donvi.tuyendonvi_id ===2){
+    			//{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, 
     			this.uiControl.filters = {"$and":[
-					{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, 
+    				{"tinhthanh_id": {"$eq": currentUser.donvi.tinhthanh_id}}, 
 					{"$or":[
 						{"tongso_hogiadinh":{"$gte":500}},
 						{"$and":[
@@ -96,8 +97,9 @@ define(function (require) {
 				self.uiControl.orderBy = [{"field": "quanhuyen_id", "direction": "desc"},{"field": "congsuat", "direction": "desc"}];
 
 			} else if (currentUser.donvi.tuyendonvi_id ===3){
+				//{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, 
 				this.uiControl.filters = {"$and":[
-					{"quanhuyen_id": {"$eq": this.getApp().data("quanhuyen_id")}}, 
+					{"quanhuyen_id": {"$eq": currentUser.donvi.quanhuyen_id}},
 					{"$or":[
 						{"$and":[
 							{"tongso_hogiadinh":{"$gt":0}},
