@@ -87,7 +87,7 @@ define(function (require) {
 						buttonClass: "btn-danger btn-sm",
 						label: "TRANSLATE:DELETE",
 						visible: function () {
-							return self.getApp().currentUser.donvi.tuyendonvi_id === 1;
+							return this.getApp().currentUser.donvi.tuyendonvi_id === 1;
 //							return false;
 						},
 						command: function () {
