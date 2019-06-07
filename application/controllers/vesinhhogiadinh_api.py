@@ -617,6 +617,8 @@ async def process_baocao_vesinh_capthon(currentuser=None, data=None):
     data['tong_khonghopvs'] = tong_khonghopvs
     data['tong_caithien_hvs'] = tong_caithien_hvs
     data['tong_caithien_hongheo_hvs'] = tong_caithien_hongheo_hvs
+    tong_khongnhatieu = int(data["tong_soho"]) - int(data["tong_soho_conhatieu"])
+    data['tong_khongnhatieu'] = tong_khongnhatieu if tong_khongnhatieu>=0 else 0
 
 async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, data=None):
     if data is not None and "danhsachbaocao" in data and data['danhsachbaocao'] is not None and len(data['danhsachbaocao'])>0:
