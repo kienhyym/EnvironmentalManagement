@@ -12,7 +12,7 @@ from gatco_restapi.helpers import to_dict
 
 from application.models.model_user import *
 from .helpers import *
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from application.client import HTTPClient 
 
 
