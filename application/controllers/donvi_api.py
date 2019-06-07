@@ -350,19 +350,19 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
             return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại hoặc Email của người dùng đã tồn tại trong hệ thống"},status=520)
 
     if donvi is not None:
-        try:
-            donvi.ten = data["ten"]
-            donvi.captren_id = data["captren_id"]
-            donvi.tuyendonvi_id = data["tuyendonvi_id"]
-            donvi.diachi = data["donvi_diachi"]
-            donvi.sodienthoai = data["donvi_sodienthoai"]
-            donvi.coquanchuquan = data["captren"]["ten"]
-            donvi.tinhthanh_id = data["tinhthanh_id"]
-            donvi.quanhuyen_id = data["quanhuyen_id"]
-            donvi.xaphuong_id = data["xaphuong_id"]
-            db.session.commit()
-        except:
-            return json({"error_code": "PARAMS_ERROR", "error_message": "Không cập nhật được thông tin đơn vị"},status=520)
+#         try:
+        donvi.ten = data["ten"]
+        donvi.captren_id = data["captren_id"]
+        donvi.tuyendonvi_id = data["tuyendonvi_id"]
+        donvi.diachi = data["donvi_diachi"]
+        donvi.sodienthoai = data["donvi_sodienthoai"]
+        donvi.coquanchuquan = data["captren"]["ten"]
+        donvi.tinhthanh_id = data["tinhthanh_id"]
+        donvi.quanhuyen_id = data["quanhuyen_id"]
+        donvi.xaphuong_id = data["xaphuong_id"]
+        db.session.commit()
+#         except:
+#             return json({"error_code": "PARAMS_ERROR", "error_message": "Không cập nhật được thông tin đơn vị"},status=520)
     
         
         
