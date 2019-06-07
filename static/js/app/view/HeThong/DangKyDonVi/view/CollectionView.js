@@ -143,32 +143,6 @@ define(function (require) {
 		},
 		render: function () {
 			var self = this;
-//			var $filter = this.$el.find("#filter");
-//			var filterView = new FilterView({
-//				el: $filter
-//			});
-//			filterView.render();
-//			filterView.on('filterChanged', function (evt) {
-//				var $col = self.getCollectionElement();
-//				if ($col) {
-//					if ((evt.data.trangthai !== null)) {
-//						var filters = {
-//							"$and": []
-//						};
-//						if (evt.data.trangthai !== null) {
-//							filters["$and"].push({
-//								"trangthai": {
-//									"$eq": evt.data.trangthai
-//								}
-//							});
-//						}
-//						//var filters = {"$and":[{"nambaocao":{"$eq":evt.data.nambaocao}}, {"donvi_id":{"$eq":evt.data.donvi_id}}]}
-//						$col.data('gonrin').filter(filters);
-//					} else {
-//						$col.data('gonrin').filter(null);
-//					}
-//				}
-//			});
 			self.$el.find('#filter_status').combobox({
             	textField: "text",
                 valueField: "value",

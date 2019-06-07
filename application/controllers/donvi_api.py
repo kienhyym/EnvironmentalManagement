@@ -236,51 +236,54 @@ async def addDonViWillUser(request):
             checkdonvi = DonVi.query.filter(DonVi.ten == dangky.fullname).first()            
             checkuser = User.query.filter(User.email == dangky.email).first()
             checkphone = User.query.filter(User.phone == dangky.phone).first()
-            if((checkdonvi is None) and (checkuser is None) and (checkphone is None)):                
-                donvi = DonVi(
-                    ten = dangky.donvi_ten,
-                    captren = dangky.captren,
-                    tuyendonvi_id = dangky.donvi_tuyendonvi_id,
-                )
-                  
-                donvi.diachi = dangky.donvi_diachi
-                donvi.sodienthoai = dangky.donvi_sodienthoai
-                donvi.coquanchuquan = dangky.captren.ten
-                donvi.tinhthanh_id = dangky.tinhthanh_id
-                donvi.tinhthanh = dangky.tinhthanh
-                donvi.quanhuyen_id = dangky.quanhuyen_id
-                donvi.quanhuyen = dangky.quanhuyen
-                donvi.xaphuong_id = dangky.xaphuong_id
-                donvi.xaphuong = dangky.xaphuong
-                donvi.active = True
-                  
-                db.session.add(donvi)
-                db.session.flush()
-                role = Role.query.get(2)
-                user = User(
-                    email = dangky.email,
-                    fullname = dangky.fullname,
-                    active = True,
-                    phone = dangky.phone,
-                    password = auth.encrypt_password(dangky.password),
-                    donvi_id = donvi.id,
-                    roles = [role]
-                )
-                
-                db.session.add(user)
-                db.session.flush()
-                  
-                dangky.donvi_id = donvi.id
-                dangky.user_id = user.id
-                dangky.trangthai = TrangThaiDangKyDonViEnum.dongbo
-                db.session.commit()
-                
-                return json({"user_id": str(user.id),"donvi_id": str(donvi.id)},status=200)
+            if checkdonvi is not None:
+                return json({"error_code": "PARAMS_ERROR", "error_message": "Tên đơn vị đã tồn tại, vui lòng nhập tên đơn vị khác"},status=520)
+            if checkuser is not None:
+                return json({"error_code": "PARAMS_ERROR", "error_message": "Email của người dùng đã tồn tại, vui lòng chọn email khác"},status=520)
+            if checkphone is not None:
+                return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại của người dùng đã tồn tại, vui lòng chọn SĐT khác"},status=520)
+            
+            donvi = DonVi(
+                ten = dangky.donvi_ten,
+                captren = dangky.captren,
+                tuyendonvi_id = dangky.donvi_tuyendonvi_id,
+            )
               
-            else:
-                error_msg = u"Tên đơn vị hoặc email hoặc số điện thoại đã được sử dụng, xin mời nhập lại!"
+            donvi.diachi = dangky.donvi_diachi
+            donvi.sodienthoai = dangky.donvi_sodienthoai
+            donvi.coquanchuquan = dangky.captren.ten
+            donvi.tinhthanh_id = dangky.tinhthanh_id
+            donvi.tinhthanh = dangky.tinhthanh
+            donvi.quanhuyen_id = dangky.quanhuyen_id
+            donvi.quanhuyen = dangky.quanhuyen
+            donvi.xaphuong_id = dangky.xaphuong_id
+            donvi.xaphuong = dangky.xaphuong
+            donvi.active = True
+              
+            db.session.add(donvi)
+            db.session.flush()
+            role = Role.query.get(2)
+            user = User(
+                email = dangky.email,
+                fullname = dangky.fullname,
+                active = True,
+                phone = dangky.phone,
+                password = auth.encrypt_password(dangky.password),
+                donvi_id = donvi.id,
+                roles = [role]
+            )
+            
+            db.session.add(user)
+            db.session.flush()
+              
+            dangky.donvi_id = donvi.id
+            dangky.user_id = user.id
+            dangky.trangthai = TrangThaiDangKyDonViEnum.dongbo
+            db.session.commit()
+            
+            return json({"user_id": str(user.id),"donvi_id": str(donvi.id)},status=200)
         else:
-            error_msg = u"Không tìm thấy đăng ký!"
+            error_msg = u"Không tìm thấy thông tin đăng ký!"
                   
       
     return json({"error_code": "Đăng ký không thành công", "error_message": error_msg},status=520)
@@ -312,31 +315,6 @@ async def donvi_pregetmany(search_params=None, **kw):
             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
                                 or {"id":{"$in": donvichildids}}
                                 
-# async def baocao_pregetmany(search_params=None, **kw):
-#     request = kw.get("request", None)
-#     currentUser = await current_user(request)
-#     if currentUser is not None:
-#         currentDonvi = currentUser.donvi
-#         donvichildids = []
-#         if(currentDonvi is not None):
-#             currentDonvi.get_children_ids(donvichildids)
-#             
-#         search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$in": donvichildids}}]} \
-#                                 or {"id":{"$in": donvichildids}}
-
-# 
-# async def tuyendonvi_pregetmany(search_params=None, **kw):
-#     request = kw.get("request", None)
-#     currentUser = await current_user(request)
-#     if currentUser is not None:
-#         currentDonvi = currentUser.donvi
-#         if(currentDonvi is not None) and currentDonvi.tuyendonvi_id == 1:
-#             pass
-#             print(currentDonvi)
-#         else:
-#             search_params["filters"] = ("filters" in search_params) and {"$and":[search_params["filters"], {"id":{"$gt": 1}}]} \
-#                                     or {"id":{"$gt": 1}}
-#             print(search_params)
             
             
 async def dangkydonvi_pregetmany(search_params=None, **kw):
@@ -351,11 +329,64 @@ async def dangkydonvi_pregetmany(search_params=None, **kw):
                                     or {"captren_id":{"$eq": currentDonvi.id}}
 #         search_params["filters"] = {"captren_id":{"$eq": currentDonvi.id}}
 
+async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
+    check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
+    checkemail = UserDonvi.query.filter(and_(UserDonvi.email == data["email"], UserDonvi.id != data["id"])).first()
+    if checkemail is not None:
+        return json({"error_code": "PARAMS_ERROR", "error_message": "Email của người dùng đã tồn tại trong hệ thống, vui lòng chọn Email khác"},status=520)
+            
+    checkphone = UserDonvi.query.filter(and_(UserDonvi.email == data["phone"], UserDonvi.id != data["id"])).first()
+    if checkphone is not None:
+        return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại của người dùng đã tồn tại trong hệ thống"},status=520)
+    checkphone = UserDonvi.query.filter(and_(UserDonvi.email == data["phone"], UserDonvi.id != data["id"])).first()
+    
+    donvi = db.session.query(DonVi).filter(DonVi.id == data["donvi_id"]).first()
+    if check_user is not None:
+        try:
+            check_user.email = data["email"]
+            check_user.phone = data["phone"]
+            db.session.commit()
+        except:
+            return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại hoặc Email của người dùng đã tồn tại trong hệ thống"},status=520)
+
+    if donvi is not None:
+        try:
+            donvi.ten = data["ten"]
+            donvi.captren_id = data["captren_id"]
+            donvi.tuyendonvi_id = data["tuyendonvi_id"]
+            donvi.diachi = data["donvi_diachi"]
+            donvi.sodienthoai = data["donvi_sodienthoai"]
+            donvi.coquanchuquan = data["captren"]["ten"]
+            donvi.tinhthanh_id = data["tinhthanh_id"]
+            donvi.quanhuyen_id = data["quanhuyen_id"]
+            donvi.xaphuong_id = data["xaphuong_id"]
+            db.session.commit()
+        except:
+            return json({"error_code": "PARAMS_ERROR", "error_message": "Không cập nhật được thông tin đơn vị"},status=520)
+    
+        
+        
+async def predelete_userdonvi(request=None, instance_id=None, data=None, **kw):
+    check_donvi = db.session.query(DonVi).filter(DonVi.id == data["donvi_id"]).first()
+    check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
+    if check_user is not None:
+        try:
+            db.session.delete(check_user)
+            db.session.commit()
+        except:
+            return json({"error_code": "PARAMS_ERROR", "error_message": "Không thể xóa tài khoản người dùng đã tạo báo cáo"},status=520)
+    if check_donvi is not None:
+        try:
+            db.session.delete(check_donvi)
+            db.session.commit()
+        except:
+            return json({"error_code": "PARAMS_ERROR", "error_message": "Không thể xóa đơn vị đã tạo báo cáo"},status=520)
+
 
 apimanager.create_api(UserDonvi,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, dangkydonvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func]),
+    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func, dangkydonvi_pregetmany], POST=[auth_func], PUT_SINGLE=[auth_func,pre_put_user_donvi], DELETE_SINGLE=[auth_func, predelete_userdonvi]),
     collection_name='user_donvi')
 
 
