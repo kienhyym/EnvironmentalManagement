@@ -353,7 +353,7 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
 #         try:
         donvi.ten = data["donvi_ten"]
         donvi.captren_id = data["captren_id"]
-        donvi.tuyendonvi_id = data["tuyendonvi_id"]
+        donvi.tuyendonvi_id = data["donvi_tuyendonvi_id"]
         donvi.diachi = data["donvi_diachi"]
         donvi.sodienthoai = data["donvi_sodienthoai"]
         donvi.coquanchuquan = data["captren"]["ten"]
