@@ -367,8 +367,12 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
         
         
 async def predelete_userdonvi(request=None, instance_id=None, data=None, **kw):
-    check_donvi = db.session.query(DonVi).filter(DonVi.id == data["donvi_id"]).first()
-    check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
+    dangkydonvi = db.session.query(UserDonvi).filter(UserDonvi.id == instance_id).first()
+    if (dangkydonvi is None):
+        return json({"error_code": "PARAMS_ERROR", "error_message": "Không tìm thấy thông tin đăng ký"},status=520)
+
+    check_donvi = db.session.query(DonVi).filter(DonVi.id == dangkydonvi.donvi_id).first()
+    check_user = db.session.query(User).filter(User.id == dangkydonvi.user_id).first()
     if check_user is not None:
         try:
             db.session.delete(check_user)
