@@ -14,6 +14,7 @@ define(function (require) {
     	urlPrefix: "/api/v1/",
 		collectionName: "xaphuong",
 		bindings:"data-xaphuong-bind",
+		tools : [],
     	uiControl:{
 	    	fields: [
 				{

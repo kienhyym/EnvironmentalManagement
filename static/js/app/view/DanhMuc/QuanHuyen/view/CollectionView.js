@@ -14,6 +14,25 @@ define(function (require) {
         urlPrefix: "/api/v1/",
         collectionName: "quanhuyen",
         bindings:"data-quanhuyen-bind",
+        tools : [
+//    	    {
+//    	    	name: "defaultgr",
+//    	    	type: "group",
+//    	    	groupClass: "toolbar-group",
+//    	    	buttons: [
+//					{
+//		    	    	name: "back",
+//		    	    	type: "button",
+//		    	    	buttonClass: "btn-default btn-sm",
+//		    	    	label: "TRANSLATE:BACK",
+//		    	    	command: function(){
+//		    	    		var self = this;
+//		    	    		Backbone.history.history.back();
+//		    	    	}
+//		    	    },
+//    	    	]
+//    	    },
+    	],
         uiControl: {
             fields: [
                 {

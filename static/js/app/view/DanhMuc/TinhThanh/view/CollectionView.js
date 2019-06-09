@@ -14,6 +14,7 @@ define(function (require) {
     	urlPrefix: "/api/v1/",
 		collectionName: "tinhthanh",
 		bindings:"data-tinhthanh-bind",
+		tools : [],
     	uiControl:{
     		fields: [
 				{
