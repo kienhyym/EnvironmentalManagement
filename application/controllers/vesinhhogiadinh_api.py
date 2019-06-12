@@ -681,12 +681,12 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
             total_soNu += int(bc['tong_nu']) if bc['tong_nu'] is not None else 0
             total_soho += int(bc['tong_soho']) if bc['tong_soho'] is not None else 0
             total_danso += int(bc['tong_danso']) if bc['tong_danso'] is not None else 0
-            if "tong_sothon" in bc:
-                tong_sothon += int(bc['tong_sothon']) if bc['tong_sothon'] is not None else 0
-            if "tong_soxa" in bc:
-                tong_soxa += int(bc['tong_soxa']) if bc['tong_soxa'] is not None else 0
-            if "tong_sohuyen" in bc:
-                tong_sohuyen += int(bc['tong_sohuyen']) if bc['tong_sohuyen'] is not None else 0
+#             if "tong_sothon" in bc:
+#                 tong_sothon += int(bc['tong_sothon']) if bc['tong_sothon'] is not None else 0
+#             if "tong_soxa" in bc:
+#                 tong_soxa += int(bc['tong_soxa']) if bc['tong_soxa'] is not None else 0
+#             if "tong_sohuyen" in bc:
+#                 tong_sohuyen += int(bc['tong_sohuyen']) if bc['tong_sohuyen'] is not None else 0
 
             
             tong_tuhoai = tong_tuhoai + int(bc['tong_tuhoai']) if bc['tong_tuhoai'] is not None else 0
@@ -737,7 +737,7 @@ async def process_baocao_vesinh_capXaHuyenTinh(currentuser=None,BaoCao=None, dat
         tong_nu = total_soNu
         tong_danso = total_danso
         tong_soho = total_soho
-        data['tong_sothon'] = tong_sothon
+#         data['tong_sothon'] = tong_sothon
         if currentuser.donvi.tuyendonvi_id ==2:
             tong_sohuyen = db.session.query(QuanHuyen).filter(QuanHuyen.tinhthanh_id == data["tinhthanh_id"]).count()
             if tong_sohuyen is None:
