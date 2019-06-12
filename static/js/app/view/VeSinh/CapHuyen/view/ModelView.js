@@ -466,7 +466,7 @@ define(function (require) {
 //				self.model.set("tong_caithien_hongheo_hvs", (toInt(self.model.get("tong_caithien_hongheo_hvs"))+toInt(element.tong_caithien_hongheo_hvs)));
 //				self.model.set("tong_diemruatay", (toInt(self.model.get("tong_diemruatay"))+toInt(element.tong_diemruatay)));
 //
-				self.model.set("tong_sothon", (toInt(self.model.get("tong_sothon"))+toInt(element.tong_sothon)));
+//				self.model.set("tong_sothon", (toInt(self.model.get("tong_sothon"))+toInt(element.tong_sothon)));
 			});
 			self.model.set("tong_chuholanu", total_chuholanu);
 			self.model.set("tong_sohongheo", total_sohongheo);
