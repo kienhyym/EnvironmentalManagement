@@ -524,7 +524,8 @@ async def process_baocao_nuocsach_huyentinh(currentuser=None, data=None):
             filter(and_(DonViCapNuoc.tinhthanh_id == currentuser.donvi.tinhthanh_id, \
                 DonViCapNuoc.quanhuyen_id == currentuser.donvi.quanhuyen_id, \
                 DonViCapNuoc.trangthai == 1, \
-                DonViCapNuoc.congsuat<1000)).all()
+                or_(and_(DonViCapNuoc.tongso_hogiadinh > 0, DonViCapNuoc.tongso_hogiadinh <500 ),and_(DonViCapNuoc.tongso_hogiadinh == 0,DonViCapNuoc.congsuat<1000)) \
+                )).all()
         
         baocao_ngoaikiems = db.session.query(KetQuaNgoaiKiemChatLuongNuocSach).filter(and_(KetQuaNgoaiKiemChatLuongNuocSach.donvi_id == currentuser.donvi_id, \
                  KetQuaNgoaiKiemChatLuongNuocSach.loai_donvi_kiemtra == 2, \
