@@ -1541,64 +1541,64 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 tong_63tinh_donvicapnuoc += baocao_tinh["tong_donvicapnuoc"]
                 tong_63tinh["tong_donvicapnuoc"] = tong_63tinh_donvicapnuoc
 
-                tong_63tinh_donvicapnuoc_kiemtra += baocao_tinh["tong_donvicapnuoc_kiemtra"]
+                tong_63tinh_donvicapnuoc_kiemtra += baocao_tinh["tong_donvicapnuoc_kiemtra"] if "tong_donvicapnuoc_kiemtra" in  baocao_tinh and baocao_tinh['tong_donvicapnuoc_kiemtra'] is not None else 0
                 tong_63tinh["tong_donvicapnuoc_kiemtra"] = tong_63tinh_donvicapnuoc_kiemtra
 
-                tong_63tinh_tyle_donvicapnuoc += baocao_tinh["tyle_donvicapnuoc"]
+                tong_63tinh_tyle_donvicapnuoc += baocao_tinh["tyle_donvicapnuoc"] if "tyle_donvicapnuoc" in  baocao_tinh and baocao_tinh['tyle_donvicapnuoc'] is not None else 0
                 tong_63tinh["tyle_donvicapnuoc"] = round((tong_63tinh_tyle_donvicapnuoc/len(baocao_all)), 2)
 
-                tong_63tinh_mauthunghiem_ngoaikiem += baocao_tinh["tong_mauthunghiem_ngoaikiem"]
+                tong_63tinh_mauthunghiem_ngoaikiem += baocao_tinh["tong_mauthunghiem_ngoaikiem"] if "tong_mauthunghiem_ngoaikiem" in  baocao_tinh and baocao_tinh['tong_mauthunghiem_ngoaikiem'] is not None else 0
                 tong_63tinh["tong_mauthunghiem_ngoaikiem"] = tong_63tinh_mauthunghiem_ngoaikiem
 
-                tong_63tinh_maudat_qc_ngoaikiem += baocao_tinh["tong_maudat_qc_ngoaikiem"]
+                tong_63tinh_maudat_qc_ngoaikiem += baocao_tinh["tong_maudat_qc_ngoaikiem"] if "tong_maudat_qc_ngoaikiem" in  baocao_tinh and baocao_tinh['tong_maudat_qc_ngoaikiem'] is not None else 0
                 tong_63tinh["tong_maudat_qc_ngoaikiem"] = tong_63tinh_maudat_qc_ngoaikiem
 
-                tong_63tinh_tyle_mauthunghiem_ngoaikiem += baocao_tinh["tyle_mauthunghiem_ngoaikiem"]
+                tong_63tinh_tyle_mauthunghiem_ngoaikiem += baocao_tinh["tyle_mauthunghiem_ngoaikiem"] if "tyle_mauthunghiem_ngoaikiem" in  baocao_tinh and baocao_tinh['tyle_mauthunghiem_ngoaikiem'] is not None else 0
                 tong_63tinh["tyle_mauthunghiem_ngoaikiem"] = round((tong_63tinh_tyle_mauthunghiem_ngoaikiem/len(baocao_all)), 2)
 
-                tong_63tinh_mauthunghiem_noikiem += baocao_tinh["tong_mauthunghiem_noikiem"]
+                tong_63tinh_mauthunghiem_noikiem += baocao_tinh["tong_mauthunghiem_noikiem"] if "tong_mauthunghiem_noikiem" in  baocao_tinh and baocao_tinh['tong_mauthunghiem_noikiem'] is not None else 0
                 tong_63tinh["tong_mauthunghiem_noikiem"] = tong_63tinh_mauthunghiem_noikiem
 
-                tong_63tinh_maudat_qc_noikiem += baocao_tinh["tong_maudat_qc_noikiem"]
+                tong_63tinh_maudat_qc_noikiem += baocao_tinh["tong_maudat_qc_noikiem"] if "tong_maudat_qc_noikiem" in  baocao_tinh and baocao_tinh['tong_maudat_qc_noikiem'] is not None else 0
                 tong_63tinh["tong_maudat_qc_noikiem"] = tong_63tinh_maudat_qc_noikiem
 
-                tong_63tinh_tyle_mauthunghiem_noikiem += baocao_tinh["tyle_mauthunghiem_noikiem"]
+                tong_63tinh_tyle_mauthunghiem_noikiem += baocao_tinh["tyle_mauthunghiem_noikiem"] if "tyle_mauthunghiem_noikiem" in  baocao_tinh and baocao_tinh['tyle_mauthunghiem_noikiem'] is not None else 0
                 tong_63tinh["tyle_mauthunghiem_noikiem"] = round((tong_63tinh_tyle_mauthunghiem_noikiem/len(baocao_all)), 2)
 
-                tong_63tinh_hoso_daydu_theoquydinh += baocao_tinh["tongdat_hoso_daydu_theoquydinh"]
+                tong_63tinh_hoso_daydu_theoquydinh += baocao_tinh["tongdat_hoso_daydu_theoquydinh"] if "tongdat_hoso_daydu_theoquydinh" in  baocao_tinh and baocao_tinh['tongdat_hoso_daydu_theoquydinh'] is not None else 0
                 tong_63tinh["tongdat_hoso_daydu_theoquydinh"] = tong_63tinh_hoso_daydu_theoquydinh
 
-                tong_63tinh_tyle_hoso_daydu_theoquydinh += baocao_tinh["tyle_hoso_daydu_theoquydinh"]
+                tong_63tinh_tyle_hoso_daydu_theoquydinh += baocao_tinh["tyle_hoso_daydu_theoquydinh"] if "tyle_hoso_daydu_theoquydinh" in  baocao_tinh and baocao_tinh['tyle_hoso_daydu_theoquydinh'] is not None else 0
                 tong_63tinh["tyle_hoso_daydu_theoquydinh"] = round((tong_63tinh_tyle_hoso_daydu_theoquydinh/len(baocao_all)), 2)
 
-                tong_63tinh_somau_thunghiem_dungquydinh += baocao_tinh["tongdat_somau_thunghiem_dungquydinh"]
+                tong_63tinh_somau_thunghiem_dungquydinh += baocao_tinh["tongdat_somau_thunghiem_dungquydinh"] if "tongdat_somau_thunghiem_dungquydinh" in  baocao_tinh and baocao_tinh['tongdat_somau_thunghiem_dungquydinh'] is not None else 0
                 tong_63tinh["tongdat_somau_thunghiem_dungquydinh"] = tong_63tinh_somau_thunghiem_dungquydinh
 
-                tong_63tinh_tyle_somau_thunghiem_dungquydinh += baocao_tinh["tyle_somau_thunghiem_dungquydinh"]
+                tong_63tinh_tyle_somau_thunghiem_dungquydinh += baocao_tinh["tyle_somau_thunghiem_dungquydinh"] if "tyle_somau_thunghiem_dungquydinh" in  baocao_tinh and baocao_tinh['tyle_somau_thunghiem_dungquydinh'] is not None else 0
                 tong_63tinh["tyle_somau_thunghiem_dungquydinh"] = round((tong_63tinh_tyle_somau_thunghiem_dungquydinh/len(baocao_all)), 2)
 
-                tong_63tinh_thunghiem_daydu_thongso += baocao_tinh["tongdat_thunghiem_daydu_thongso"]
+                tong_63tinh_thunghiem_daydu_thongso += baocao_tinh["tongdat_thunghiem_daydu_thongso"] if "tongdat_thunghiem_daydu_thongso" in  baocao_tinh and baocao_tinh['tongdat_thunghiem_daydu_thongso'] is not None else 0
                 tong_63tinh["tongdat_thunghiem_daydu_thongso"] = tong_63tinh_thunghiem_daydu_thongso
 
-                tong_63tinh_tyle_thunghiem_daydu_thongso += baocao_tinh["tyle_thunghiem_daydu_thongso"]
+                tong_63tinh_tyle_thunghiem_daydu_thongso += baocao_tinh["tyle_thunghiem_daydu_thongso"] if "tyle_thunghiem_daydu_thongso" in  baocao_tinh and baocao_tinh['tyle_thunghiem_daydu_thongso'] is not None else 0
                 tong_63tinh["tyle_thunghiem_daydu_thongso"] = round((tong_63tinh_tyle_thunghiem_daydu_thongso/len(baocao_all)), 2)
 
-                tong_63tinh_tansuat_thuchien_noikiem_dungquydinh += baocao_tinh["tongdat_tansuat_thuchien_noikiem_dungquydinh"]
+                tong_63tinh_tansuat_thuchien_noikiem_dungquydinh += baocao_tinh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] if "tongdat_tansuat_thuchien_noikiem_dungquydinh" in  baocao_tinh and baocao_tinh['tongdat_tansuat_thuchien_noikiem_dungquydinh'] is not None else 0
                 tong_63tinh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] = tong_63tinh_tansuat_thuchien_noikiem_dungquydinh
 
-                tong_63tinh_tyle_tansuat_thuchien_noikiem_dungquydinh += baocao_tinh["tyle_tansuat_thuchien_noikiem_dungquydinh"]
+                tong_63tinh_tyle_tansuat_thuchien_noikiem_dungquydinh += baocao_tinh["tyle_tansuat_thuchien_noikiem_dungquydinh"] if "tyle_tansuat_thuchien_noikiem_dungquydinh" in  baocao_tinh and baocao_tinh['tyle_tansuat_thuchien_noikiem_dungquydinh'] is not None else 0
                 tong_63tinh["tyle_tansuat_thuchien_noikiem_dungquydinh"] = round((tong_63tinh_tyle_tansuat_thuchien_noikiem_dungquydinh/len(baocao_all)), 2)
 
-                tong_63tinh_thuchien_baocao_daydu += baocao_tinh["tongdat_thuchien_baocao_daydu"]
+                tong_63tinh_thuchien_baocao_daydu += baocao_tinh["tongdat_thuchien_baocao_daydu"] if "tongdat_thuchien_baocao_daydu" in  baocao_tinh and baocao_tinh['tongdat_thuchien_baocao_daydu'] is not None else 0
                 tong_63tinh["tongdat_thuchien_baocao_daydu"] = tong_63tinh_thuchien_baocao_daydu
 
-                tong_63tinh_tyle_thuchien_baocao_daydu += baocao_tinh["tyle_thuchien_baocao_daydu"]
+                tong_63tinh_tyle_thuchien_baocao_daydu += baocao_tinh["tyle_thuchien_baocao_daydu"] if "tyle_thuchien_baocao_daydu" in  baocao_tinh and baocao_tinh['tyle_thuchien_baocao_daydu'] is not None else 0
                 tong_63tinh["tyle_thuchien_baocao_daydu"] = round((tong_63tinh_tyle_thuchien_baocao_daydu/len(baocao_all)), 2)
 
-                tong_63tinh_thuchien_congkhai_thongtin += baocao_tinh["tongdat_thuchien_congkhai_thongtin"]
+                tong_63tinh_thuchien_congkhai_thongtin += baocao_tinh["tongdat_thuchien_congkhai_thongtin"] if "tongdat_thuchien_congkhai_thongtin" in  baocao_tinh and baocao_tinh['tongdat_thuchien_congkhai_thongtin'] is not None else 0
                 tong_63tinh["tongdat_thuchien_congkhai_thongtin"] = tong_63tinh_thuchien_congkhai_thongtin
 
-                tong_63tinh_tyle_thuchien_congkhai_thongtin += baocao_tinh["tyle_thuchien_congkhai_thongtin"]
+                tong_63tinh_tyle_thuchien_congkhai_thongtin += baocao_tinh["tyle_thuchien_congkhai_thongtin"] if "tyle_thuchien_congkhai_thongtin" in  baocao_tinh and baocao_tinh['tyle_thuchien_congkhai_thongtin'] is not None else 0
                 tong_63tinh["tyle_thuchien_congkhai_thongtin"] = round((tong_63tinh_tyle_thuchien_congkhai_thongtin/len(baocao_all)), 2)
 
             baocao_all.append(tong_63tinh)
