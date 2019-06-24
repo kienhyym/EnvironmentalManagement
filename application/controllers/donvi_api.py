@@ -335,10 +335,9 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
     if checkemail is not None:
         return json({"error_code": "PARAMS_ERROR", "error_message": "Email của người dùng đã tồn tại trong hệ thống, vui lòng chọn Email khác"},status=520)
             
-    checkphone = UserDonvi.query.filter(and_(UserDonvi.email == data["phone"], UserDonvi.id != data["id"])).first()
+    checkphone = UserDonvi.query.filter(and_(UserDonvi.phone == data["phone"], UserDonvi.id != data["id"])).first()
     if checkphone is not None:
         return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại của người dùng đã tồn tại trong hệ thống"},status=520)
-    checkphone = UserDonvi.query.filter(and_(UserDonvi.email == data["phone"], UserDonvi.id != data["id"])).first()
     
     donvi = db.session.query(DonVi).filter(DonVi.id == data["donvi_id"]).first()
     if check_user is not None:
