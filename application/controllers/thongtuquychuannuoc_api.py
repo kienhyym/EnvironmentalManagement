@@ -1614,8 +1614,8 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
             tong_63tinh_thuchien_congkhai_thongtin = 0
             tong_63tinh_tyle_thuchien_congkhai_thongtin = 0
 
-            for bc_obj in baocao_all:
-                baocao_tinh = to_dict(bc_obj)
+            for baocao_tinh in baocao_all:
+#                 baocao_tinh = to_dict(bc_obj)
                 tong_63tinh["tentinhthanh"] = "Cả nước"
                 print(baocao_tinh)
                 print(baocao_tinh["tong_donvicapnuoc"])
