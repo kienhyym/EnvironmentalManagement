@@ -1616,7 +1616,7 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
 
             for baocao_tinh in baocao_all:
                 tong_63tinh["tentinhthanh"] = "Cả nước"
-                tong_63tinh_donvicapnuoc += baocao_tinh["tong_donvicapnuoc"]
+                tong_63tinh_donvicapnuoc += baocao_tinh["tong_donvicapnuoc"] if "tong_donvicapnuoc" in  baocao_tinh and baocao_tinh['tong_donvicapnuoc'] is not None else 0
                 tong_63tinh["tong_donvicapnuoc"] = tong_63tinh_donvicapnuoc
 
                 tong_63tinh_donvicapnuoc_kiemtra += baocao_tinh["tong_donvicapnuoc_kiemtra"] if "tong_donvicapnuoc_kiemtra" in  baocao_tinh and baocao_tinh['tong_donvicapnuoc_kiemtra'] is not None else 0
