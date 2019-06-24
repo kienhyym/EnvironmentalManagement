@@ -1617,7 +1617,7 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
             for baocao_tinh in baocao_all:
 #                 baocao_tinh = to_dict(bc_obj)
                 tong_63tinh["tentinhthanh"] = "Cả nước"
-                print(baocao_tinh)
+                print("baocao_tinh==",baocao_tinh)
                 print(baocao_tinh["tong_donvicapnuoc"])
                 
                 tong_63tinh_donvicapnuoc += int(baocao_tinh["tong_donvicapnuoc"]) if "tong_donvicapnuoc" in  baocao_tinh else 0
