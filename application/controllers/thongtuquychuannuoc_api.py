@@ -1487,7 +1487,7 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
 
                 if baocao_tinhthanh_id not in data_result_tinhthanh:
                     data_result_tinhthanh[baocao_tinhthanh_id] = {}
-                baocao_tinhthanh = to_dict(data_result_tinhthanh[baocao_tinhthanh_id])
+                baocao_tinhthanh = data_result_tinhthanh[baocao_tinhthanh_id]
                 
                 
                 if "tong_donvicapnuoc_kiemtra" not in baocao_tinhthanh:
@@ -1588,6 +1588,7 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 data_result_tinhthanh[baocao_tinhthanh_id] =  baocao_tinhthanh
 
         for key, value in data_result_tinhthanh.items():
+            print("key===",key,"===value====",value)
             baocao_all.append(value)
             
         if (len(baocao_all) > 0):
