@@ -1358,11 +1358,12 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
     baocao_all = []
 
     if(currentuser.donvi.tuyendonvi_id == 1):
-        if check_donvi == "duoi1000m3":
+        danhmuc_donvicapnuoc = None
+        if check_congsuat == "duoi1000m3":
             danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
                 filter(DonViCapNuoc.trangthai == 1).\
                 filter(DonViCapNuoc.congsuat < 1000).all()
-        elif check_donvi == "tren1000m3":
+        elif check_congsuat == "tren1000m3":
             danhmuc_donvicapnuoc = db.session.query(DonViCapNuoc).\
                 filter(DonViCapNuoc.trangthai == 1).\
                 filter(DonViCapNuoc.congsuat > 1000).all()
