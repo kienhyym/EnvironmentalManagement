@@ -1496,7 +1496,9 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                     baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] = 0
 
                 baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] = baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] + 1
-
+                
+                
+                print("baocao.tyle_donvicapnuoc====",baocao_tinhthanh["tong_donvicapnuoc"])
                 baocao_tinhthanh["tyle_donvicapnuoc"] = 0 if baocao_tinhthanh["tong_donvicapnuoc"] == 0 else round((baocao_tinhthanh["tong_donvicapnuoc_kiemtra"]/baocao_tinhthanh["tong_donvicapnuoc"])*100, 2)
 
                 if "tong_mauthunghiem_ngoaikiem" not in baocao_tinhthanh:
