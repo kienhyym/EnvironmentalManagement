@@ -1385,6 +1385,84 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                     data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = ""
                 data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = item_donvicapnuoc.tinhthanh.ten
                 
+                if "tong_donvicapnuoc_kiemtra" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_donvicapnuoc_kiemtra"] = 0
+                    
+                if "tong_mauthunghiem_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_mauthunghiem_ngoaikiem"] = 0
+                    
+                if "tong_maudat_qc_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_maudat_qc_ngoaikiem"] = 0
+                    
+                if "tyle_mauthunghiem_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_mauthunghiem_ngoaikiem"] = 0
+                    
+                if "tong_thongso_khongdat" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_thongso_khongdat"] = []
+                    
+                if "tong_mauthunghiem_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_mauthunghiem_noikiem"] = 0
+                    
+                if "tong_maudat_qc_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tong_maudat_qc_noikiem"] = 0
+                    
+                if "tyle_mauthunghiem_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_mauthunghiem_noikiem"] = 0
+                    
+                if "tongdat_hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_hoso_daydu_theoquydinh"] = 0
+                    
+                if "hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["hoso_daydu_theoquydinh"] = 0
+                    
+                if "tyle_hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_hoso_daydu_theoquydinh"] = 0
+                    
+                if "tongdat_somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_somau_thunghiem_dungquydinh"] = 0
+                    
+                if "somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["somau_thunghiem_dungquydinh"] = 0
+                    
+                if "tyle_somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_somau_thunghiem_dungquydinh"] = 0
+                    
+                if "tongdat_thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_thunghiem_daydu_thongso"] = 0
+                
+                if "thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["thunghiem_daydu_thongso"] = 0
+                    
+                if "tyle_thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_thunghiem_daydu_thongso"] = 0
+                    
+                if "tongdat_tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] = 0
+                    
+                if "tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tansuat_thuchien_noikiem_dungquydinh"] = 0
+                    
+                if "tyle_tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_tansuat_thuchien_noikiem_dungquydinh"] = 0
+                    
+                if "tongdat_thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_thuchien_baocao_daydu"] = 0
+                    
+                if "thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["thuchien_baocao_daydu"] = 0
+                    
+                if "tyle_thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_thuchien_baocao_daydu"] = 0
+                    
+                if "tongdat_thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tongdat_thuchien_congkhai_thongtin"] = 0
+                    
+                if "thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["thuchien_congkhai_thongtin"] = 0
+                    
+                if "tyle_thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
+                    data_result_tinhthanh["tyle_thuchien_congkhai_thongtin"] = 0
+                        
                 donvicapnuoc_id.append(item_donvicapnuoc.id)
 
             
