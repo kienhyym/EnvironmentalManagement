@@ -1374,95 +1374,97 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
 
                 tinhthanh_id = str(item_donvicapnuoc.tinhthanh_id)
                 # print("item_donvicapnuoc", item_donvicapnuoc)
+                
                 if tinhthanh_id not in data_result_tinhthanh:
                     data_result_tinhthanh[tinhthanh_id] = {}
-
-                if "tong_donvicapnuoc" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh[tinhthanh_id]["tong_donvicapnuoc"] = 0
-                data_result_tinhthanh[tinhthanh_id]["tong_donvicapnuoc"] += 1
+                obj_data = data_result_tinhthanh[tinhthanh_id]
+                if "tong_donvicapnuoc" not in obj_data:
+                    obj_data["tong_donvicapnuoc"] = 0
+                obj_data["tong_donvicapnuoc"] += 1
                 
-                if "tentinhhthanh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = ""
-                data_result_tinhthanh[tinhthanh_id]["tentinhthanh"] = item_donvicapnuoc.tinhthanh.ten
+                if "tentinhhthanh" not in obj_data:
+                    obj_data["tentinhthanh"] = ""
+                obj_data["tentinhthanh"] = item_donvicapnuoc.tinhthanh.ten
                 
-                if "tong_donvicapnuoc_kiemtra" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_donvicapnuoc_kiemtra"] = 0
+                if "tong_donvicapnuoc_kiemtra" not in obj_data:
+                    obj_data["tong_donvicapnuoc_kiemtra"] = 0
                     
-                if "tong_mauthunghiem_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_mauthunghiem_ngoaikiem"] = 0
+                if "tong_mauthunghiem_ngoaikiem" not in obj_data:
+                    obj_data["tong_mauthunghiem_ngoaikiem"] = 0
                     
-                if "tong_maudat_qc_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_maudat_qc_ngoaikiem"] = 0
+                if "tong_maudat_qc_ngoaikiem" not in obj_data:
+                    obj_data["tong_maudat_qc_ngoaikiem"] = 0
                     
-                if "tyle_mauthunghiem_ngoaikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_mauthunghiem_ngoaikiem"] = 0
+                if "tyle_mauthunghiem_ngoaikiem" not in obj_data:
+                    obj_data["tyle_mauthunghiem_ngoaikiem"] = 0
                     
-                if "tong_thongso_khongdat" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_thongso_khongdat"] = []
+                if "tong_thongso_khongdat" not in obj_data:
+                    obj_data["tong_thongso_khongdat"] = []
                     
-                if "tong_mauthunghiem_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_mauthunghiem_noikiem"] = 0
+                if "tong_mauthunghiem_noikiem" not in obj_data:
+                    obj_data["tong_mauthunghiem_noikiem"] = 0
                     
-                if "tong_maudat_qc_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tong_maudat_qc_noikiem"] = 0
+                if "tong_maudat_qc_noikiem" not in obj_data:
+                    obj_data["tong_maudat_qc_noikiem"] = 0
                     
-                if "tyle_mauthunghiem_noikiem" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_mauthunghiem_noikiem"] = 0
+                if "tyle_mauthunghiem_noikiem" not in obj_data:
+                    obj_data["tyle_mauthunghiem_noikiem"] = 0
                     
-                if "tongdat_hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_hoso_daydu_theoquydinh"] = 0
+                if "tongdat_hoso_daydu_theoquydinh" not in obj_data:
+                    obj_data["tongdat_hoso_daydu_theoquydinh"] = 0
                     
-                if "hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["hoso_daydu_theoquydinh"] = 0
+                if "hoso_daydu_theoquydinh" not in obj_data:
+                    obj_data["hoso_daydu_theoquydinh"] = 0
                     
-                if "tyle_hoso_daydu_theoquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_hoso_daydu_theoquydinh"] = 0
+                if "tyle_hoso_daydu_theoquydinh" not in obj_data:
+                    obj_data["tyle_hoso_daydu_theoquydinh"] = 0
                     
-                if "tongdat_somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_somau_thunghiem_dungquydinh"] = 0
+                if "tongdat_somau_thunghiem_dungquydinh" not in obj_data:
+                    obj_data["tongdat_somau_thunghiem_dungquydinh"] = 0
                     
-                if "somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["somau_thunghiem_dungquydinh"] = 0
+                if "somau_thunghiem_dungquydinh" not in obj_data:
+                    obj_data["somau_thunghiem_dungquydinh"] = 0
                     
-                if "tyle_somau_thunghiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_somau_thunghiem_dungquydinh"] = 0
+                if "tyle_somau_thunghiem_dungquydinh" not in obj_data:
+                    obj_data["tyle_somau_thunghiem_dungquydinh"] = 0
                     
-                if "tongdat_thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_thunghiem_daydu_thongso"] = 0
+                if "tongdat_thunghiem_daydu_thongso" not in obj_data:
+                    obj_data["tongdat_thunghiem_daydu_thongso"] = 0
                 
-                if "thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["thunghiem_daydu_thongso"] = 0
+                if "thunghiem_daydu_thongso" not in obj_data:
+                    obj_data["thunghiem_daydu_thongso"] = 0
                     
-                if "tyle_thunghiem_daydu_thongso" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_thunghiem_daydu_thongso"] = 0
+                if "tyle_thunghiem_daydu_thongso" not in obj_data:
+                    obj_data["tyle_thunghiem_daydu_thongso"] = 0
                     
-                if "tongdat_tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_tansuat_thuchien_noikiem_dungquydinh"] = 0
+                if "tongdat_tansuat_thuchien_noikiem_dungquydinh" not in obj_data:
+                    obj_data["tongdat_tansuat_thuchien_noikiem_dungquydinh"] = 0
                     
-                if "tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tansuat_thuchien_noikiem_dungquydinh"] = 0
+                if "tansuat_thuchien_noikiem_dungquydinh" not in obj_data:
+                    obj_data["tansuat_thuchien_noikiem_dungquydinh"] = 0
                     
-                if "tyle_tansuat_thuchien_noikiem_dungquydinh" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_tansuat_thuchien_noikiem_dungquydinh"] = 0
+                if "tyle_tansuat_thuchien_noikiem_dungquydinh" not in obj_data:
+                    obj_data["tyle_tansuat_thuchien_noikiem_dungquydinh"] = 0
                     
-                if "tongdat_thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_thuchien_baocao_daydu"] = 0
+                if "tongdat_thuchien_baocao_daydu" not in obj_data:
+                    obj_data["tongdat_thuchien_baocao_daydu"] = 0
                     
-                if "thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["thuchien_baocao_daydu"] = 0
+                if "thuchien_baocao_daydu" not in obj_data:
+                    obj_data["thuchien_baocao_daydu"] = 0
                     
-                if "tyle_thuchien_baocao_daydu" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_thuchien_baocao_daydu"] = 0
+                if "tyle_thuchien_baocao_daydu" not in obj_data:
+                    obj_data["tyle_thuchien_baocao_daydu"] = 0
                     
-                if "tongdat_thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tongdat_thuchien_congkhai_thongtin"] = 0
+                if "tongdat_thuchien_congkhai_thongtin" not in obj_data:
+                    obj_data["tongdat_thuchien_congkhai_thongtin"] = 0
                     
-                if "thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["thuchien_congkhai_thongtin"] = 0
+                if "thuchien_congkhai_thongtin" not in obj_data:
+                    obj_data["thuchien_congkhai_thongtin"] = 0
                     
-                if "tyle_thuchien_congkhai_thongtin" not in data_result_tinhthanh[tinhthanh_id]:
-                    data_result_tinhthanh["tyle_thuchien_congkhai_thongtin"] = 0
-                        
+                if "tyle_thuchien_congkhai_thongtin" not in obj_data:
+                    obj_data["tyle_thuchien_congkhai_thongtin"] = 0
+                    
+                data_result_tinhthanh[tinhthanh_id] = obj_data
                 donvicapnuoc_id.append(item_donvicapnuoc.id)
 
             
