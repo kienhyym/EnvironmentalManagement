@@ -1389,6 +1389,9 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 if "tong_donvicapnuoc_kiemtra" not in obj_data:
                     obj_data["tong_donvicapnuoc_kiemtra"] = 0
                     
+                if "tyle_donvicapnuoc" not in obj_data:
+                    obj_data["tyle_donvicapnuoc"] = 0
+                    
                 if "tong_mauthunghiem_ngoaikiem" not in obj_data:
                     obj_data["tong_mauthunghiem_ngoaikiem"] = 0
                     
@@ -1464,6 +1467,7 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 if "tyle_thuchien_congkhai_thongtin" not in obj_data:
                     obj_data["tyle_thuchien_congkhai_thongtin"] = 0
                     
+                    
                 data_result_tinhthanh[tinhthanh_id] = obj_data
                 donvicapnuoc_id.append(item_donvicapnuoc.id)
 
@@ -1498,7 +1502,6 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] = baocao_tinhthanh["tong_donvicapnuoc_kiemtra"] + 1
                 
                 
-                print("baocao.tyle_donvicapnuoc====",baocao_tinhthanh["tong_donvicapnuoc"])
                 baocao_tinhthanh["tyle_donvicapnuoc"] = 0 if baocao_tinhthanh["tong_donvicapnuoc"] == 0 else round((baocao_tinhthanh["tong_donvicapnuoc_kiemtra"]/baocao_tinhthanh["tong_donvicapnuoc"])*100, 2)
 
                 if "tong_mauthunghiem_ngoaikiem" not in baocao_tinhthanh:
@@ -1592,7 +1595,6 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
                 data_result_tinhthanh[baocao_tinhthanh_id] =  baocao_tinhthanh
 
         for key, value in data_result_tinhthanh.items():
-            print("key===",key,"===value====",value)
             baocao_all.append(value)
             
         if (len(baocao_all) > 0):
@@ -1622,8 +1624,6 @@ async def process_thongke_nuocsach_trunguong(request, check_congsuat):
             for baocao_tinh in baocao_all:
 #                 baocao_tinh = to_dict(bc_obj)
                 tong_63tinh["tentinhthanh"] = "Cả nước"
-                print("baocao_tinh==",baocao_tinh)
-                print(baocao_tinh["tong_donvicapnuoc"])
                 
                 tong_63tinh_donvicapnuoc += int(baocao_tinh["tong_donvicapnuoc"]) if "tong_donvicapnuoc" in  baocao_tinh else 0
                 tong_63tinh["tong_donvicapnuoc"] = tong_63tinh_donvicapnuoc
