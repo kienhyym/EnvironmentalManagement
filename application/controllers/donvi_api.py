@@ -330,7 +330,7 @@ async def dangkydonvi_pregetmany(search_params=None, **kw):
 #         search_params["filters"] = {"captren_id":{"$eq": currentDonvi.id}}
 
 def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
-    check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
+    check_user = User.query.filter(User.id == data["user_id"]).first()
     print("check_user===",to_dict(check_user))
     checkemail = UserDonvi.query.filter(and_(UserDonvi.email == data["email"], UserDonvi.id != data["id"])).first()
     if checkemail is not None:
