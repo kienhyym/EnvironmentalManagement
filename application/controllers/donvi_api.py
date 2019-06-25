@@ -345,6 +345,8 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
         try:
             check_user.email = data["email"]
             check_user.phone = data["phone"]
+            print("change.email===",data["email"])
+            print("change.phone===",data["phone"])
             db.session.commit()
         except:
             return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại hoặc Email của người dùng đã tồn tại trong hệ thống"},status=520)
