@@ -347,7 +347,8 @@ def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
         check_user.phone = data["phone"]
         print("change.email===",data["email"])
         print("change.phone===",data["phone"])
-        db.session.flush()
+        db.session.add(check_user)
+        db.session.commit()
         re_check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
         print("re_check_user===",to_dict(re_check_user))
 #         except:
