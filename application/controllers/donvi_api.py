@@ -105,7 +105,7 @@ async def addUserDonvi(request):
             userinfo.trangthai = TrangThaiDangKyDonViEnum.taomoi
             userinfo.macongdan = str(uuid.uuid1())
             db.session.add(userinfo)
-                
+            db.session.commit()    
             return json({"uid": userinfo.id, "name":userinfo.fullname, "phone":userinfo.phone}, status=200)
         return json({"error_code": "ADD_USER_FAILED", "error_message": error_msg},status=520)
  
@@ -342,16 +342,16 @@ def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
     
     donvi = db.session.query(DonVi).filter(DonVi.id == data["donvi_id"]).first()
     if check_user is not None:
-        try:
-            check_user.email = data["email"]
-            check_user.phone = data["phone"]
-            print("change.email===",data["email"])
-            print("change.phone===",data["phone"])
-            db.session.flush()
-            re_check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
-            print("re_check_user===",to_dict(re_check_user))
-        except:
-            return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại hoặc Email của người dùng đã tồn tại trong hệ thống"},status=520)
+#         try:
+        check_user.email = data["email"]
+        check_user.phone = data["phone"]
+        print("change.email===",data["email"])
+        print("change.phone===",data["phone"])
+        db.session.flush()
+        re_check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
+        print("re_check_user===",to_dict(re_check_user))
+#         except:
+#             return json({"error_code": "PARAMS_ERROR", "error_message": "Số điện thoại hoặc Email của người dùng đã tồn tại trong hệ thống"},status=520)
 
     if donvi is not None:
 #         try:
