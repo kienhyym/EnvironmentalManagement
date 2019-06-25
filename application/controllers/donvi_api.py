@@ -347,7 +347,7 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
             check_user.phone = data["phone"]
             print("change.email===",data["email"])
             print("change.phone===",data["phone"])
-            db.session.commit()
+            db.session.flush()
             re_check_user = db.session.query(User).filter(User.id == data["user_id"]).first()
             print("re_check_user===",to_dict(re_check_user))
         except:
@@ -364,7 +364,7 @@ async def pre_put_user_donvi(request=None, instance_id=None, data=None, **kw):
         donvi.tinhthanh_id = data["tinhthanh_id"]
         donvi.quanhuyen_id = data["quanhuyen_id"]
         donvi.xaphuong_id = data["xaphuong_id"]
-        db.session.commit()
+    db.session.commit()
 #         except:
 #             return json({"error_code": "PARAMS_ERROR", "error_message": "Không cập nhật được thông tin đơn vị"},status=520)
     
