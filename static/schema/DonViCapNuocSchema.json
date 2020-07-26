@@ -1,0 +1,77 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "ten": {
+        "type": "string"
+    },
+    "ma": {
+        "type": "string"
+    },
+    "diachi": {
+        "type": "string"
+    },
+    "congsuat": {
+        "type": "number"
+    },
+    "tongso_hogiadinh": {
+        "type": "number"
+    },
+    "tansuat_noikiem": {
+        "type": "number"
+    },
+    "nguonnuoc_nguyenlieu": {
+        "type": "number"
+    },
+    "phuongphap_khutrung": {
+        "type": "number"
+    },
+    "ghichu": {
+        "type": "string"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "trangthai": {
+        "type": "number",
+        "default": 1
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    }
+}

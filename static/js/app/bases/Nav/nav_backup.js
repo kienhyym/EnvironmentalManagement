@@ -155,7 +155,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "dantoc",
-					"route": "dantoc/model",
+					"route": "dantoc/model(/:id)",
 					"$ref": "app/view/DanhMuc/DanToc/view/ModelView",
 					"visible": false
 				},
@@ -172,7 +172,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "quocgia",
-					"route": "quocgia/model",
+					"route": "quocgia/model(/:id)",
 					"$ref": "app/view/DanhMuc/QuocGia/view/ModelView",
 					"visible": false
 				},
@@ -189,7 +189,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "tinhthanh",
-					"route": "tinhthanh/model",
+					"route": "tinhthanh/model(/:id)",
 					"$ref": "app/view/DanhMuc/TinhThanh/view/ModelView",
 					"visible": false
 				},
@@ -207,7 +207,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "quanhuyen",
-					"route": "quanhuyen/model",
+					"route": "quanhuyen/model(/:id)",
 					"$ref": "app/view/DanhMuc/QuanHuyen/view/ModelView",
 					"visible": false
 				},
@@ -225,7 +225,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "xaphuong",
-					"route": "xaphuong/model",
+					"route": "xaphuong/model(/:id)",
 					"$ref": "app/view/DanhMuc/XaPhuong/view/ModelView",
 					"visible": false
 				},
@@ -243,7 +243,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "thonxom",
-					"route": "thonxom/model",
+					"route": "thonxom/model(/:id)",
 					"$ref": "app/view/DanhMuc/ThonXom/view/ModelView",
 					"visible": false
 				},
@@ -261,7 +261,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "hogiadinh",
-					"route": "hogiadinh/model",
+					"route": "hogiadinh/model(/:id)",
 					"$ref": "app/view/DanhMuc/HoGiaDinh/view/ModelView",
 					"visible": false
 				},
@@ -279,7 +279,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "donvicapnuoc",
-					"route": "donvicapnuoc/model",
+					"route": "donvicapnuoc/model(/:id)",
 					"$ref": "app/view/DanhMuc/DonViCapNuoc/view/ModelView",
 					"visible": false
 				},
@@ -297,7 +297,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "danhmuchoatdong",
-					"route": "danhmuchoatdong/model",
+					"route": "danhmuchoatdong/model(/:id)",
 					"$ref": "app/view/DanhMuc/DanhMucHoatDong/view/ModelView",
 					"visible": false
 				},
@@ -314,7 +314,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "thongsobaocaochatluongnuoc",
-					"route": "thongsobaocaochatluongnuoc/model",
+					"route": "thongsobaocaochatluongnuoc/model(/:id)",
 					"$ref": "app/view/DanhMuc/DanhMucThongSoNuocSach/view/ModelView",
 					"visible": false
 				},
@@ -813,7 +813,7 @@ define(function (require) {
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "gioi_dantocthieuso",
-							"route": "hoatdongbcc/gioi_dantocthieuso",
+							"route": "hoatdongbcc/gioi_dantocthieuso(/:id)",
 							"$ref": "app/view/HoatDongBCC/Gioi_Dantocthieuso/view/ModelView",
 						},
 						{
@@ -1302,7 +1302,7 @@ define(function (require) {
 							"icon": "glyphicon glyphicon-tasks",
 							"type": "view",
 							"collectionName": "tiendovstx",
-							"route": "tiendovstx",
+							"route": "tiendovstx(/:id)",
 							"$ref": "app/view/VeSinh/TienDoVSTX/view/ModelView",
 						},
 						{
@@ -1328,7 +1328,7 @@ define(function (require) {
 						{
 							"type": "view",
 							"collectionName": "duyet_vesinh_toanxa",
-							"route": "duyet_vesinh_toanxa/model",
+							"route": "duyet_vesinh_toanxa/model(/:id)",
 							"$ref": "app/view/VeSinh/DuyetVeSinhToanXa/view/ModelView",
 							"visible": false
 						},
@@ -1468,7 +1468,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "ketqua_ngoaikiem_chatluong_nuocsach",
-					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model",
+					"route": "ketqua_ngoaikiem_chatluong_nuocsach/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/KetQuaNgoaiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
@@ -1483,7 +1483,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "baocaokiemtraclnuocsach",
-					"route": "baocaokiemtraclnuocsach/model",
+					"route": "baocaokiemtraclnuocsach/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/BaoCaoKiemTraCLNuocSach/view/ModelView",
 					"visible": false
 				},
@@ -1498,7 +1498,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "kqkiemtranuocsach",
-					"route": "kqkiemtranuocsach/model",
+					"route": "kqkiemtranuocsach/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/KQKiemTraNuocSach/view/ModelView",
 					"visible": false
 				},
@@ -1514,7 +1514,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "kqktchatluong",
-					"route": "kqktchatluong/model",
+					"route": "kqktchatluong/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/KQKTChatLuong/view/ModelView",
 					"visible": false
 				},
@@ -1529,7 +1529,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "ketqua_noikiem_chatluong_nuocsach",
-					"route": "ketqua_noikiem_chatluong_nuocsach/model",
+					"route": "ketqua_noikiem_chatluong_nuocsach/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/KetQuaNoiKiemChatLuongNuocSach/view/ModelView",
 					"visible": false
 				},
@@ -1544,7 +1544,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "thkqnoikiemnuocsach",
-					"route": "thkqnoikiemnuocsach/model",
+					"route": "thkqnoikiemnuocsach/model(/:id)",
 					"$ref": "app/view/BaoCaoNuoc/THKQNoiKiemNuocSach/view/ModelView",
 					"visible": false
 				},

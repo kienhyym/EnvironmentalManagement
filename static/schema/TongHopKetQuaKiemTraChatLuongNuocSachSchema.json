@@ -1,0 +1,216 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true,
+        "default": 1
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "donvicapnuoc_id": {
+        "type": "string",
+        "required": true
+    },
+    "tendonvicapnuoc": {
+        "type": "string"
+    },
+    "diachi_donvicapnuoc": {
+        "type": "string"
+    },
+    "congsuat_thietke": {
+        "type": "number"
+    },
+    "tongso_hogiadinh": {
+        "type": "number"
+    },
+    "nguonnuoc_nguyenlieu": {
+        "type": "number"
+    },
+    "tansuat_noikiem": {
+        "type": "number"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "xaphuong_id": {
+        "type": "string"
+    },
+    "tong_laphoso_theoquydinh_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_hoso_daydu_theoquydinh_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_somau_thunghiem_dungquydinh_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thunghiem_daydu_thongso_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_tansuat_thuchien_noikiem_dungquydinh_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_baocao_daydu_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_congkhai_thongtin_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_bienphap_khacphuc_dat_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_bienphap_khacphuc_khongdat_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_maunuoc_thunghiem_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_dat_quychuan_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_khongdat_quychuan_noikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "thongso_khongdat_noikiem": {
+        "type": "json"
+    },
+    "tong_solan_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "donvi_thuchien_ngoaikiem": {
+        "type": "json"
+    },
+    "tong_laphoso_theoquydinh_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_hoso_daydu_theoquydinh_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_somau_thunghiem_dungquydinh_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thunghiem_daydu_thongso_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_tansuat_thuchien_noikiem_dungquydinh_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_baocao_daydu_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_congkhai_thongtin_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_bienphap_khacphuc_dat_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_thuchien_bienphap_khacphuc_khongdat_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_maunuoc_thunghiem_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_dat_quychuan_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_khongdat_quychuan_ngoaikiem": {
+        "type": "number",
+        "default": 0
+    },
+    "thongso_khongdat_ngoaikiem": {
+        "type": "json"
+    },
+    "ketluan_dexuat": {
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    },
+    "donvicapnuoc": {
+        "type": "dict"
+    },
+    "tinhthanh": {
+        "type": "dict"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "xaphuong": {
+        "type": "dict"
+    }
+}

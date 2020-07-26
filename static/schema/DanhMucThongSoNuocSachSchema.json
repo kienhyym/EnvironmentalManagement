@@ -1,0 +1,49 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "mathongso": {
+        "type": "string"
+    },
+    "tenthongso": {
+        "type": "string"
+    },
+    "gioihan_toida_txt": {
+        "type": "string"
+    },
+    "gioihan_toida": {
+        "type": "number"
+    },
+    "gioihan_toithieu_txt": {
+        "type": "string"
+    },
+    "gioihan_toithieu": {
+        "type": "number"
+    },
+    "batbuoc": {
+        "type": "boolean"
+    }
+}

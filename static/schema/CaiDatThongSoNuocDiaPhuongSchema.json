@@ -1,0 +1,37 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "tinhthanh_id": {
+        "type": "string"
+    },
+    "tentinhthanh": {
+        "type": "string"
+    },
+    "danhsachthongso": {
+        "type": "json"
+    }
+}

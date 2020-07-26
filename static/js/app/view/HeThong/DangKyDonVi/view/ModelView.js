@@ -86,7 +86,6 @@ define(function (require) {
 						command: function () {
 							var self = this;
 							if (self.progressbar) {
-
 							}
 							Backbone.history.history.back();
 							//self.getApp().getRouter().navigate(self.collectionName + "/collection");
@@ -99,6 +98,7 @@ define(function (require) {
 						label: "TRANSLATE:SAVE",
 						command: function () {
 							var self = this;
+							console.log(self.model)
 
 							self.model.save(null, {
 								success: function (model, respose, options) {

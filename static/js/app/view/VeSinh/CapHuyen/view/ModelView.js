@@ -608,9 +608,10 @@ define(function (require) {
 				if (filterObj.length == 0){
 					self.$el.find("#danhsachdonvi").hide();
 				} else{
-					self.$el.find("#danhsachdonvi").show();
+					// self.$el.find("#danhsachdonvi").show();
 					self.$el.find("#danhsachdonvi").html("");
 					for(var i=0; i< filterObj.length; i++){
+						// console.log(self.renderItemView(filterObj[i]))
 						self.renderItemView(filterObj[i]);
 					}
 				}

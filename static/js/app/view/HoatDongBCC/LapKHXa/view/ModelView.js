@@ -20,7 +20,7 @@ define(function (require) {
 	var params = {
 		"filters": {
 			"$and": [
-				{"loai_hoatdong": {"$eq": "xa"}}
+				{ "loai_hoatdong": { "$eq": "xa" } }
 			]
 		}
 	};
@@ -72,9 +72,9 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "Đã hoàn thành dự thảo", value: 2},
-						{text: "Đang xây dựng", value: 1},
-						{text: "Chưa xây dựng", value: 0}
+						{ text: "Đã hoàn thành dự thảo", value: 2 },
+						{ text: "Đang xây dựng", value: 1 },
+						{ text: "Chưa xây dựng", value: 0 }
 					]
 				},
 				{
@@ -83,9 +83,9 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "VIHEMA đã chấp thuận", value: 2},
-						{text: "Đang rà soát", value: 1},
-						{text: "Chưa chấp thuận", value: 0}
+						{ text: "VIHEMA đã chấp thuận", value: 2 },
+						{ text: "Đang rà soát", value: 1 },
+						{ text: "Chưa chấp thuận", value: 0 }
 					]
 				},
 				{
@@ -94,8 +94,8 @@ define(function (require) {
 					textField: "text",
 					valueField: "value",
 					dataSource: [
-						{text: "Đã phê duyệt", value: 1},
-						{text: "Chưa phê duyệt", value: 0}
+						{ text: "Đã phê duyệt", value: 1 },
+						{ text: "Chưa phê duyệt", value: 0 }
 					]
 				},
 				{
@@ -110,101 +110,101 @@ define(function (require) {
 			type: "group",
 			groupClass: "toolbar-group",
 			buttons: [{
-					name: "back",
-					type: "button",
-					buttonClass: "btn-default btn-sm",
-					label: "TRANSLATE:BACK",
-					command: function () {
-						var self = this;
-						Backbone.history.history.back();
+				name: "back",
+				type: "button",
+				buttonClass: "btn-default btn-sm",
+				label: "TRANSLATE:BACK",
+				command: function () {
+					var self = this;
+					Backbone.history.history.back();
+				}
+			},
+			{
+				name: "save",
+				type: "button",
+				buttonClass: "btn-success btn-sm",
+				label: "TRANSLATE:SAVE",
+				command: function () {
+					var self = this;
+					var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
+					if (!self.validate()) {
+						return;
 					}
-				},
-				{
-					name: "save",
-					type: "button",
-					buttonClass: "btn-success btn-sm",
-					label: "TRANSLATE:SAVE",
-					command: function () {
-						var self = this;
-						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
-						if (!self.validate()) {
-							return;
-						}
 
-						var giangvien = self.model.get("giangvien");
-						var giangvien_nu = self.model.get("giangvien_nu");
-						if (toInt(giangvien) < toInt(giangvien_nu)) {
-							self.getApp().notify({message: "Tổng số giảng viên là nữ không hợp lệ!"}, {type: "danger"});
-						}
-						else {
-							self.model.save(null, {
-								success: function (model, respose, options) {
-									self.getApp().notify({message:"Lưu thông tin thành công"}, {type:"success"});
-									self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
-								},
-								error: function (xhr, status, error) {
-									try {
-										if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
-											self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
-											self.getApp().getRouter().navigate("login");
-										} else {
-										  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
-										}
-									}
-									catch (err) {
-									  self.getApp().notify({ message: "Lưu thông tin không thành công"}, { type: "danger", delay: 1000 });
-									}
-								}
-							});
-						}
+					var giangvien = self.model.get("giangvien");
+					var giangvien_nu = self.model.get("giangvien_nu");
+					if (toInt(giangvien) < toInt(giangvien_nu)) {
+						self.getApp().notify({ message: "Tổng số giảng viên là nữ không hợp lệ!" }, { type: "danger" });
 					}
-				},
-				{
-					name: "export_pdf",
-					type: "button",
-					buttonClass: "btn-warning btn-sm",
-					label: "TRANSLATE:EXPORT_PDF",
-					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
-					},
-					command: function () {
-						var self = this;
-						var filename = "kehoach_bcc_capxa_"+self.model.get("nambaocao")+"_ky_"+self.model.get("kybaocao");
-						self.getApp().exportPDF_HTML2PDF("content",filename);
-					}
-				},
-				{
-					name: "delete",
-					type: "button",
-					buttonClass: "btn-danger btn-sm",
-					label: "TRANSLATE:DELETE",
-					visible: function () {
-						return this.getApp().getRouter().getParam("id") !== null;
-					},
-					command: function () {
-						var self = this;
-						var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
-						self.model.destroy({
-							success: function (model, response) {
-								self.getApp().notify({message: "Xoá dữ liệu thành công"}, {type: "success"});
+					else {
+						self.model.save(null, {
+							success: function (model, respose, options) {
+								self.getApp().notify({ message: "Lưu thông tin thành công" }, { type: "success" });
 								self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
 							},
 							error: function (xhr, status, error) {
 								try {
-									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+									if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED") {
 										self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 										self.getApp().getRouter().navigate("login");
 									} else {
-									  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+										self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 									}
 								}
 								catch (err) {
-								  self.getApp().notify({ message: "Xóa dữ liệu không thành công"}, { type: "danger", delay: 1000 });
+									self.getApp().notify({ message: "Lưu thông tin không thành công" }, { type: "danger", delay: 1000 });
 								}
 							}
 						});
 					}
+				}
+			},
+			{
+				name: "export_pdf",
+				type: "button",
+				buttonClass: "btn-warning btn-sm",
+				label: "TRANSLATE:EXPORT_PDF",
+				visible: function () {
+					return this.getApp().getRouter().getParam("id") !== null;
 				},
+				command: function () {
+					var self = this;
+					var filename = "kehoach_bcc_capxa_" + self.model.get("nambaocao") + "_ky_" + self.model.get("kybaocao");
+					self.getApp().exportPDF_HTML2PDF("content", filename);
+				}
+			},
+			{
+				name: "delete",
+				type: "button",
+				buttonClass: "btn-danger btn-sm",
+				label: "TRANSLATE:DELETE",
+				visible: function () {
+					return this.getApp().getRouter().getParam("id") !== null;
+				},
+				command: function () {
+					var self = this;
+					var currentPeriod = self.getApp().get_currentRoute_loaibaocao();
+					self.model.destroy({
+						success: function (model, response) {
+							self.getApp().notify({ message: "Xoá dữ liệu thành công" }, { type: "success" });
+							self.getApp().getRouter().navigate("hoatdongbcc/capxa/collection?loaikybaocao=" + currentPeriod);
+						},
+						error: function (xhr, status, error) {
+							try {
+								if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED") {
+									self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
+									self.getApp().getRouter().navigate("login");
+								} else {
+									self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								}
+							}
+							catch (err) {
+								self.getApp().notify({ message: "Xóa dữ liệu không thành công" }, { type: "danger", delay: 1000 });
+							}
+						}
+					});
+				}
+			},
 			],
 		}],
 		render: function () {
@@ -228,15 +228,15 @@ define(function (require) {
 					},
 					error: function (xhr, status, error) {
 						try {
-							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							if (($.parseJSON(error.xhr.responseText).error_code) === "SESSION_EXPIRED") {
 								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 								self.getApp().getRouter().navigate("login");
 							} else {
-							  self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								self.getApp().notify({ message: $.parseJSON(error.xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 							}
 						}
 						catch (err) {
-						  self.getApp().notify({ message: "Lỗi không lấy được dữ liệu"}, { type: "danger", delay: 1000 });
+							self.getApp().notify({ message: "Lỗi không lấy được dữ liệu" }, { type: "danger", delay: 1000 });
 						}
 					}
 				});
@@ -246,42 +246,42 @@ define(function (require) {
 				self.onChangeEvents();
 				self.renderDanhSach(null);
 			}
-			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function(event) {
-				var dmHoatDongDialog = new DMHoatDongSelectView({"viewData":{"loai_hoatdong":"xa"}});
+			self.$el.find("#add_dmhoatdong").unbind("click").bind("click", function (event) {
+				var dmHoatDongDialog = new DMHoatDongSelectView({ "viewData": { "loai_hoatdong": "xa" } });
 				dmHoatDongDialog.dialog();
-				dmHoatDongDialog.on("onSelected", function(data) {
+				dmHoatDongDialog.on("onSelected", function (data) {
 					var danhsachhoatdong = self.model.get("danhsach_hoatdong") ? self.model.get("danhsach_hoatdong") : [];
-	                for(var i=0; i< danhsachhoatdong.length; i++){
-	                	var item = danhsachhoatdong[i];
-	                	if(item.id === data.id){
-	                		self.getApp().notify("Hoạt động đã tồn tại trong báo cáo");
-	                		return;
-	                	}
-	                }
+					for (var i = 0; i < danhsachhoatdong.length; i++) {
+						var item = danhsachhoatdong[i];
+						if (item.id === data.id) {
+							self.getApp().notify("Hoạt động đã tồn tại trong báo cáo");
+							return;
+						}
+					}
 					self.model.get("danhsach_hoatdong").push(data);
 					self.renderHoatDongView(data);
 				});
 			});
 		},
-		
+
 		/**
 		 * SET AUTO FIELD BASE ON CURRENT USER & FORM
 		 */
-		setDefaultData: function() {
+		setDefaultData: function () {
 			var self = this;
 			var currentUser = self.getApp().currentUser;
-			if(!!currentUser && !!currentUser.donvi) {
+			if (!!currentUser && !!currentUser.donvi) {
 				if (!!currentUser.donvi.tinhthanh_id && currentUser.donvi.tuyendonvi_id >= 2) {
 					self.model.set("tinhthanh_id", currentUser.donvi.tinhthanh_id);
 					self.model.set("tinhthanh", currentUser.donvi.tinhthanh);
 					self.$el.find("#tinhthanh").prop('disabled', true);
 				}
-				if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3){
+				if (!!currentUser.donvi.quanhuyen_id && currentUser.donvi.tuyendonvi_id >= 3) {
 					self.model.set("quanhuyen_id", currentUser.donvi.quanhuyen_id);
 					self.model.set("quanhuyen", currentUser.donvi.quanhuyen);
 					self.$el.find("#quanhuyen").prop('disabled', true);
 				}
-				if (!!currentUser.donvi.xaphuong_id && currentUser.donvi.tuyendonvi_id === 4){
+				if (!!currentUser.donvi.xaphuong_id && currentUser.donvi.tuyendonvi_id === 4) {
 					self.model.set("xaphuong_id", currentUser.donvi.xaphuong_id);
 					self.model.set("xaphuong", currentUser.donvi.xaphuong);
 					self.$el.find("#xaphuong").prop('disabled', true);
@@ -289,9 +289,9 @@ define(function (require) {
 			}
 			self.model.set("tuyendonvi", "xa");
 		},
-		onChangeEvents: function() {
+		onChangeEvents: function () {
 			var self = this;
-			self.model.on("change:tiendo_pheduyet", function(model) {
+			self.model.on("change:tiendo_pheduyet", function (model) {
 				if (self.model.get("tiendo_pheduyet") == 1) {
 					if (self.$el.find("#pheduyet_extra").hasClass("hide")) {
 						self.$el.find("#pheduyet_extra").removeClass("hide");
@@ -308,27 +308,27 @@ define(function (require) {
 				}
 			}
 		},
-		renderHoatDongView:function(data){
+		renderHoatDongView: function (data) {
 			var self = this;
 			var hoatDongItemView = new HoatDongItemView();
 			hoatDongItemView.model.set(JSON.parse(JSON.stringify(data)));
 			hoatDongItemView.render();
-			hoatDongItemView.$el.find("#itemRemove").unbind('click').bind('click',{obj:data}, function(e){
-            	var fields = self.model.get("danhsach_hoatdong");
-            	var data = e.data.obj;
-                for( var i = 0; i < fields.length; i++){ 
-                	   if ( fields[i].id === data.id) {
-                		   fields.splice(i, 1); 
-                	   }
-                	}
-                self.model.set("danhsach_hoatdong", fields);
-                self.model.trigger("change");
-                hoatDongItemView.destroy();
-                hoatDongItemView.remove();
-            });
-			hoatDongItemView.on("change", function(data) {
+			hoatDongItemView.$el.find("#itemRemove").unbind('click').bind('click', { obj: data }, function (e) {
+				var fields = self.model.get("danhsach_hoatdong");
+				var data = e.data.obj;
+				for (var i = 0; i < fields.length; i++) {
+					if (fields[i].id === data.id) {
+						fields.splice(i, 1);
+					}
+				}
+				self.model.set("danhsach_hoatdong", fields);
+				self.model.trigger("change");
+				hoatDongItemView.destroy();
+				hoatDongItemView.remove();
+			});
+			hoatDongItemView.on("change", function (data) {
 				var dshoatdong = self.model.get("danhsach_hoatdong");
-				dshoatdong.forEach(function(item, idx) {
+				dshoatdong.forEach(function (item, idx) {
 					if (item.id == data.id) {
 						dshoatdong[idx] = data;
 					}
@@ -338,7 +338,7 @@ define(function (require) {
 			});
 			self.$el.find("#danhsachhoatdong_list").append(hoatDongItemView.$el);
 		},
-		renderDanhSach: function(danhsachhoatdong) {
+		renderDanhSach: function (danhsachhoatdong) {
 			var self = this;
 			self.$el.find("#danhsachhoatdong_list").empty();
 			self.$el.find("#danhsachhoatdong_list").append(`
@@ -363,63 +363,63 @@ define(function (require) {
                 <td></td>
                 <td></td>
             </tr>`);
-			
-			if(danhsachhoatdong === null){
+
+			if (danhsachhoatdong === null) {
 				$.ajax({
 					url: self.getApp().serviceURL + "/api/v1/danhmuchoatdong",
-		    		data: {"q": JSON.stringify({"filters": {"loai_hoatdong":{"$eq":"xa"}}, "order_by":[{"field": "nganh_id", "direction": "asc"}]})},
+					data: { "q": JSON.stringify({ "filters": { "loai_hoatdong": { "$eq": "xa" } }, "order_by": [{ "field": "nganh_id", "direction": "asc" }] }) },
 					type: "GET",
-					success: function(data) {
-						self.model.set("danhsach_hoatdong",[]);
-						$.each(data.objects, function(idx, obj){
-							if(!!obj && obj.id !==null && obj.id.length>0){
+					success: function (data) {
+						self.model.set("danhsach_hoatdong", []);
+						$.each(data.objects, function (idx, obj) {
+							if (!!obj && obj.id !== null && obj.id.length > 0) {
 								self.model.get("danhsach_hoatdong").push(obj);
-				                self.renderHoatDongView(obj);
+								self.renderHoatDongView(obj);
 							}
 						});
 					},
 					error: function (xhr, status, error) {
 						try {
-							if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED"){
+							if (($.parseJSON(xhr.responseText).error_code) === "SESSION_EXPIRED") {
 								self.getApp().notify("Hết phiên làm việc, vui lòng đăng nhập lại!");
 								self.getApp().getRouter().navigate("login");
 							} else {
-							  self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
+								self.getApp().notify({ message: $.parseJSON(xhr.responseText).error_message }, { type: "danger", delay: 1000 });
 							}
 						}
 						catch (err) {
-						  self.getApp().notify({ message: "Không lấy được danh sách họat động, vui lòng thử lại sau"}, { type: "danger", delay: 1000 });
+							self.getApp().notify({ message: "Không lấy được danh sách họat động, vui lòng thử lại sau" }, { type: "danger", delay: 1000 });
 						}
 					}
 				});
-			}else{
-				for(var i=0; i< danhsachhoatdong.length; i++){
+			} else {
+				for (var i = 0; i < danhsachhoatdong.length; i++) {
 					self.renderHoatDongView(danhsachhoatdong[i]);
 				}
 			}
 		},
-		validate : function() {
+		validate: function () {
 			const self = this;
 			var nambaocao = self.model.get("nambaocao");
 			var danhsach_hoatdong = self.model.get("danhsach_hoatdong");
-			if (nambaocao === null || nambaocao === ""){
-				self.getApp().notify({message: "Năm đánh giá không được để trống!"},{type: "danger"});
+			if (nambaocao === null || nambaocao === "") {
+				self.getApp().notify({ message: "Năm đánh giá không được để trống!" }, { type: "danger" });
 				return;
 			}
-			if (toInt(nambaocao)<1900 || toInt(nambaocao)>3000) {
-				self.getApp().notify({message: "Năm không hợp lệ, vui lòng kiểm tra lại!"},{type: "danger"});
+			if (toInt(nambaocao) < 1900 || toInt(nambaocao) > 3000) {
+				self.getApp().notify({ message: "Năm không hợp lệ, vui lòng kiểm tra lại!" }, { type: "danger" });
 				return;
 			}
 			if (!self.model.get("tinhthanh")) {
-				self.getApp().notify({message: "Chưa chọn tỉnh thành!"},{type: "danger"});
+				self.getApp().notify({ message: "Chưa chọn tỉnh thành!" }, { type: "danger" });
 				return;
 			}
 			if (!self.model.get("quanhuyen")) {
-				self.getApp().notify({message: "Chưa chọn quận huyện!"},{type: "danger"});
+				self.getApp().notify({ message: "Chưa chọn quận huyện!" }, { type: "danger" });
 				return;
 			}
 			if (!self.model.get("xaphuong")) {
-				self.getApp().notify({message: "Chưa chọn xã phường!"},{type: "danger"});
+				self.getApp().notify({ message: "Chưa chọn xã phường!" }, { type: "danger" });
 				return;
 			}
 			// if (self.model.get("tiendo_xaydung") === null || self.model.get("tiendo_xaydung") === "") {
@@ -446,63 +446,63 @@ define(function (require) {
 			// 		return;
 			// 	}
 			// }
-			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 || 
+			if (toInt(self.model.get("sohoatdong_cotloi_hoanthanh")) < 0 ||
 				Number.isInteger(self.model.get("sohoatdong_cotloi_hoanthanh")) === false ||
 				self.model.get("sohoatdong_cotloi_hoanthanh") === null || self.model.get("sohoatdong_cotloi_hoanthanh") === "") {
-				self.getApp().notify({message: "Số hoạt động BBC cốt lõi đã hoàn thành không hợp lệ!"},{type: "danger"});
+				self.getApp().notify({ message: "Số hoạt động BBC cốt lõi đã hoàn thành không hợp lệ!" }, { type: "danger" });
 				return;
 			}
 			if (toInt(self.model.get("giangvien")) < 0 ||
 				Number.isInteger(self.model.get("giangvien")) === false ||
 				self.model.get("giangvien") === null || self.model.get("giangvien") === "") {
-				self.getApp().notify({message: "Tổng số giảng viên của đơn vị không hợp lệ!"},{type: "danger"});
+				self.getApp().notify({ message: "Tổng số giảng viên của đơn vị không hợp lệ!" }, { type: "danger" });
 				return;
 			}
 			if (toInt(self.model.get("giangvien_nu")) < 0 ||
 				Number.isInteger(self.model.get("giangvien_nu")) === false ||
 				self.model.get("giangvien_nu") === null || self.model.get("giangvien_nu") === "") {
-				self.getApp().notify({message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!"},{type: "danger"});
+				self.getApp().notify({ message: "Tổng số giảng viên nữ của đơn vị không hợp lệ!" }, { type: "danger" });
 				return;
 			}
-			for (var i = 0; i < danhsach_hoatdong.length; i++){
-				if(danhsach_hoatdong[i].songuoithamgia === null || danhsach_hoatdong[i].songuoithamgia === ""){
-					self.getApp().notify({message: "Tổng số người tham gia không được để trống!"},{type: "danger"});
+			for (var i = 0; i < danhsach_hoatdong.length; i++) {
+				if (danhsach_hoatdong[i].songuoithamgia === null || danhsach_hoatdong[i].songuoithamgia === "") {
+					self.getApp().notify({ message: "Tổng số người tham gia không được để trống!" }, { type: "danger" });
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia) === false){
-					self.getApp().notify({message: "Tổng số người tham gia không hợp lệ!"},{type: "danger"});
+				if (toInt(danhsach_hoatdong[i].songuoithamgia) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia) === false) {
+					self.getApp().notify({ message: "Tổng số người tham gia không hợp lệ!" }, { type: "danger" });
 					return;
 				}
-				if(danhsach_hoatdong[i].songuoithamgia_nu === null || danhsach_hoatdong[i].songuoithamgia_nu === ""){
-					self.getApp().notify({message: "Số người tham gia là nữ không được để trống!"},{type: "danger"});
+				if (danhsach_hoatdong[i].songuoithamgia_nu === null || danhsach_hoatdong[i].songuoithamgia_nu === "") {
+					self.getApp().notify({ message: "Số người tham gia là nữ không được để trống!" }, { type: "danger" });
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_nu) === false){
-					self.getApp().notify({message: "Số người tham gia là nữ không hợp lệ!"},{type: "danger"});
+				if (toInt(danhsach_hoatdong[i].songuoithamgia_nu) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_nu) === false) {
+					self.getApp().notify({ message: "Số người tham gia là nữ không hợp lệ!" }, { type: "danger" });
 					return;
 				}
-				if(danhsach_hoatdong[i].songuoithamgia_dtts === null || danhsach_hoatdong[i].songuoithamgia_dtts === ""){
-					self.getApp().notify({message: "Số người tham gia là DTTS không được để trống!"},{type: "danger"});
+				if (danhsach_hoatdong[i].songuoithamgia_dtts === null || danhsach_hoatdong[i].songuoithamgia_dtts === "") {
+					self.getApp().notify({ message: "Số người tham gia là DTTS không được để trống!" }, { type: "danger" });
 					return;
 				}
-				if(toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_dtts) === false){
-					self.getApp().notify({message: "Số người tham gia là DTTS không hợp lệ!"},{type: "danger"});
+				if (toInt(danhsach_hoatdong[i].songuoithamgia_dtts) < 0 || Number.isInteger(danhsach_hoatdong[i].songuoithamgia_dtts) === false) {
+					self.getApp().notify({ message: "Số người tham gia là DTTS không hợp lệ!" }, { type: "danger" });
 					return;
 				}
 			}
 			return true;
 		},
-		search_HoatDong: function() {
+		search_HoatDong: function () {
 			var self = this;
 			var search_data = self.$el.find("#search_data");
 			search_data.unbind("keyup").bind("keyup", function () {
 				var search_data = self.$el.find("#search_data").val().trim();
 				var arr = self.model.get("danhsach_hoatdong");
-				var filterObj = gonrin.query(arr, {tenhoatdong: {$likeI: search_data}});
-				if (filterObj.length == 0){
+				var filterObj = gonrin.query(arr, { tenhoatdong: { $likeI: search_data } });
+				if (filterObj.length == 0) {
 					// self.getApp().notify({message: "Không tìm thấy hoạt động!"},{type: "danger"});
-				} else{
-					for(var i=0; i< filterObj.length; i++){
+				} else {
+					for (var i = 0; i < filterObj.length; i++) {
 						self.renderHoatDongView(filterObj[i]);
 						self.renderDanhSach(filterObj);
 					}

@@ -1,0 +1,111 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "donvi_id": {
+        "type": "number",
+        "required": true
+    },
+    "nguoibaocao_id": {
+        "type": "string"
+    },
+    "tinhtrang": {
+        "type": "number",
+        "required": true
+    },
+    "ngaybaocao": {
+        "type": "datetime"
+    },
+    "nambaocao": {
+        "type": "number",
+        "required": true
+    },
+    "kybaocao": {
+        "type": "number",
+        "required": true,
+        "default": 1
+    },
+    "loaikybaocao": {
+        "type": "number",
+        "required": true
+    },
+    "tong_tinh_phutrach": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_tinh_cobaocao": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_donvi_capnuoc_phutrach": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_hogiadinh_duoccungcapnuoc": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_hogiadinh_diaban": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_maunuoc_thunghiem_ngoaikiem_vien": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_dat_quychuan_ngoaikiem_vien": {
+        "type": "number",
+        "default": 0
+    },
+    "tong_mau_khongdat_quychuan_ngoaikiem_vien": {
+        "type": "number",
+        "default": 0
+    },
+    "thongso_khongdat_ngoaikiem_vien": {
+        "type": "json"
+    },
+    "ketqua_kiemtra_noikiem_tinh": {
+        "type": "json"
+    },
+    "cacdexuat_kythuat": {
+        "type": "string"
+    },
+    "nghiencuu_chatluong_nuocsach": {
+        "type": "string"
+    },
+    "ketluan": {
+        "type": "string"
+    },
+    "dexuat": {
+        "type": "string"
+    },
+    "donvi": {
+        "type": "dict"
+    },
+    "nguoibaocao": {
+        "type": "dict"
+    }
+}

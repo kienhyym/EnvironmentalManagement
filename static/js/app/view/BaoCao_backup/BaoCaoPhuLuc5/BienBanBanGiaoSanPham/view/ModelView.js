@@ -3,7 +3,7 @@ define(function (require) {
 	var $ = require('jquery'), _ = require('underscore'), Gonrin = require('gonrin');
 
 	var template = require('text!app/view/BaoCaoPhuLuc5/BienBanBanGiaoSanPham/tpl/model.html'),
-	schema = require('json!schema/BienBanBanGiaoSanPhamSchema.json');
+		schema = require('json!schema/BienBanBanGiaoSanPhamSchema.json');
 	var CungNhauBanGiaoSanPhamView = require('app/view/BaoCaoPhuLuc5/CungNhauBanGiaoSanPham/view/ModelDialogView');
 
 	var curenDate = new Date();
@@ -17,79 +17,79 @@ define(function (require) {
 			uiControl: {
 				fields: [
 					{
-						field:"ngaytaobienban",
-						textFormat:"DD/MM/YYYY",
-						extraFormats:["DDMMYYYY"],
-						maxDate:curenDate,
-						},					
-						{
-		    				field: "cungnhaubangiaosanpham",
-		    				uicontrol: "grid",
-		    				refresh: true,
-		    				primaryField: "id",
-		    				fields:[
-		    				          {field:"stt", label:"STT"},
-		                	          {field:"dulieu", label:"Dữ liệu"},
-		                	          {field:"khuondang", label: "Khuôn dạng"},
-		                	          {field:"dvt", label: "Đánh giá"},
-		                	          {field:"soluong", label: "Số lượng"},
-		                	          {field:"ghichu", label: "Ghi chú"},
-		                	          {
-		                     	    	 field: "command", 
-		                     	    	 label:"Command",
-		                     	    	 width:"50px", 
-		                     	    	 command: [
-//		                     	    	     {"label":"Delete",
-//		                     	    	        	"action": "delete",
-//		                     	    	        	"class": "btn-sm",
-//		                     	    	     },
-		                     	    	     {
-		                     	    	       "label":"Delete",
-		                        	    	        "action": function(params, args){
-		                        	    	        	$("#grid").data('gonrin').deleteRow(params.el);
-		                        	    	        },
-		                        	    	        "class": "btn-danger btn-sm"
-		                        	    	     },   
-		                     	    	 ],
-		                     	   	 },
-		                	        ],
-		                	        
-		                	tools:[
-	        	                 {
-	        	                	 name: "create",
-	        	                	 buttonClass:"btn-success",
-	        	                	 label: "Thêm",
-	        	                	 command: function(){
-	        	                		 var self = this;
-	                	    			 var view = new CungNhauBanGiaoSanPhamView({"viewData":{"id":null,"baocao_id":self.model.get("id")}});
-	        	                		 view.dialog();
-	        	                		 view.on('close',function(data){
-	        	                			 var cungnhaubangiaosanpham = self.model.get('cungnhaubangiaosanpham');
-	        	                			 cungnhaubangiaosanpham.push(data);
-	        	                			 self.model.set("cungnhaubangiaosanpham",cungnhaubangiaosanpham);
-	        	                			 self.applyBindings();
-	        	                		 });
-	        	                	 }
-	        	                 }
-	          	                 ],
-		                	onRowClick: function(event){
-		                		var self= this;
-	            	    		if(event.rowId){
-	            	    			 var view = new CungNhauBanGiaoSanPhamView({"viewData":{"id":event.rowId,"baocao_id":self.model.get("id")}});
-	    	                		 view.dialog();
-	    	                		 view.on('close',function(data){
-	    	                			 var str = self.model.get('cungnhaubangiaosanpham');
-	    	                			    for(var i=0 ;i<str.length;i++){
-	    	                			    	if(str[i].id == data.id){	    	                			    
-		    	                					str.splice(i,1);	    	              	  	    	                			 
-		    	                				 }		    	                			    	 
-	    	                			    } 	   
-	    	                			    str.push(data);  
-		  	    	                		self.applyBindings();                				  	    	                			
-        	                		 });	
-	            	        	}
-	            	    	}
-		    			},
+						field: "ngaytaobienban",
+						textFormat: "DD/MM/YYYY",
+						extraFormats: ["DDMMYYYY"],
+						maxDate: curenDate,
+					},
+					{
+						field: "cungnhaubangiaosanpham",
+						uicontrol: "grid",
+						refresh: true,
+						primaryField: "id",
+						fields: [
+							{ field: "stt", label: "STT" },
+							{ field: "dulieu", label: "Dữ liệu" },
+							{ field: "khuondang", label: "Khuôn dạng" },
+							{ field: "dvt", label: "Đánh giá" },
+							{ field: "soluong", label: "Số lượng" },
+							{ field: "ghichu", label: "Ghi chú" },
+							{
+								field: "command",
+								label: "Command",
+								width: "50px",
+								command: [
+									//		                     	    	     {"label":"Delete",
+									//		                     	    	        	"action": "delete",
+									//		                     	    	        	"class": "btn-sm",
+									//		                     	    	     },
+									{
+										"label": "Delete",
+										"action": function (params, args) {
+											$("#grid").data('gonrin').deleteRow(params.el);
+										},
+										"class": "btn-danger btn-sm"
+									},
+								],
+							},
+						],
+
+						tools: [
+							{
+								name: "create",
+								buttonClass: "btn-success",
+								label: "Thêm",
+								command: function () {
+									var self = this;
+									var view = new CungNhauBanGiaoSanPhamView({ "viewData": { "id": null, "baocao_id": self.model.get("id") } });
+									view.dialog();
+									view.on('close', function (data) {
+										var cungnhaubangiaosanpham = self.model.get('cungnhaubangiaosanpham');
+										cungnhaubangiaosanpham.push(data);
+										self.model.set("cungnhaubangiaosanpham", cungnhaubangiaosanpham);
+										self.applyBindings();
+									});
+								}
+							}
+						],
+						onRowClick: function (event) {
+							var self = this;
+							if (event.rowId) {
+								var view = new CungNhauBanGiaoSanPhamView({ "viewData": { "id": event.rowId, "baocao_id": self.model.get("id") } });
+								view.dialog();
+								view.on('close', function (data) {
+									var str = self.model.get('cungnhaubangiaosanpham');
+									for (var i = 0; i < str.length; i++) {
+										if (str[i].id == data.id) {
+											str.splice(i, 1);
+										}
+									}
+									str.push(data);
+									self.applyBindings();
+								});
+							}
+						}
+					},
 				],
 			},
 
@@ -115,7 +115,7 @@ define(function (require) {
 						buttonClass: "btn-success btn-sm",
 						label: "TRANSLATE:SAVE",
 						command: function () {
-							var self = this;						                				                			 
+							var self = this;
 							self.model
 								.save(
 									null,
@@ -123,7 +123,7 @@ define(function (require) {
 										success: function (
 											model, respose,
 											options) {
-											
+
 											self
 												.getApp()
 												.notify(

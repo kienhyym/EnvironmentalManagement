@@ -1,0 +1,57 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "created_by": {
+        "type": "string"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "updated_by": {
+        "type": "string"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_by": {
+        "type": "string"
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "ma": {
+        "type": "string",
+        "length": 255
+    },
+    "ten": {
+        "type": "string",
+        "length": 255
+    },
+    "tongdan_nam": {
+        "type": "number"
+    },
+    "tongdan_nu": {
+        "type": "number"
+    },
+    "tong_hgd": {
+        "type": "number"
+    },
+    "tongdan_dtts": {
+        "type": "number"
+    },
+    "quanhuyen_id": {
+        "type": "string"
+    },
+    "quanhuyen": {
+        "type": "dict"
+    },
+    "thonxom": {
+        "type": "list"
+    }
+}

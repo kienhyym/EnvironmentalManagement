@@ -3,12 +3,12 @@ define('jquery', [], function () {
 });
 
 require.config({
-	baseUrl: static_url + '/js/lib',
-	//    baseUrl: '/static/js/lib',
+	// baseUrl: static_url + '/js/lib',
+	   baseUrl: '/static/js/lib',
 	paths: {
 		app: '../app',
 		tpl: '../tpl',
-		schema: '../schema',
+		schema: '../../schema',
 		vendor: '../../vendor'
 	},
 	shim: {

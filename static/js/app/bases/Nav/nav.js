@@ -273,7 +273,7 @@ define(function (require) {
 				{
 					"type": "view",
 					"collectionName": "thonxom",
-					"route": "thonxom/model",
+					"route": "thonxom/model(/:id)",
 					"$ref": "app/view/DanhMuc/ThonXom/view/ModelView",
 					"visible": false
 				},

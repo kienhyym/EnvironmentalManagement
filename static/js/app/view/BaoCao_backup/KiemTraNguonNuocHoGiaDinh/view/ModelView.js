@@ -19,7 +19,6 @@ define(function(require) {
   var NuocDuoi25mView = require('app/view/BaoCao/NguonNuocGiengKhoanDuoi25m/view/ModelView');
   var NuocThuHungView = require('app/view/BaoCao/HeThongThuHungNuocMua/view/ModelView');
   var NuocChumVaiView = require('app/view/BaoCao/LuuTruNuocBECHUMVAI/view/ModelView');
-
   var currentDate = new Date();
 
   return Gonrin.ModelView.extend({
